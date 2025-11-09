@@ -1,0 +1,1831 @@
+{
+  "timestamp": "2025-11-09T12:06:36.799Z",
+  "totalFiles": 448,
+  "results": {
+    "passed": 448,
+    "failed": 0,
+    "totalSize": 3385013,
+    "byKind": {
+      "agent": {
+        "passed": 90,
+        "failed": 0,
+        "size": 1267742
+      },
+      "skill": {
+        "passed": 97,
+        "failed": 0,
+        "size": 1394486
+      },
+      "command": {
+        "passed": 93,
+        "failed": 0,
+        "size": 336519
+      },
+      "mcp": {
+        "passed": 120,
+        "failed": 0,
+        "size": 226002
+      },
+      "setting": {
+        "passed": 48,
+        "failed": 0,
+        "size": 160264
+      }
+    },
+    "failures": [],
+    "fileSizes": [
+      {
+        "file": ".claude/agents/api-documentation-specialist.md",
+        "size": 45123
+      },
+      {
+        "file": ".claude/agents/tutorial-creator.md",
+        "size": 42578
+      },
+      {
+        "file": ".claude/agents/code-example-generator.md",
+        "size": 38972
+      },
+      {
+        "file": ".claude/skills/uniswap-v3-liquidity-math/SKILL.md",
+        "size": 37482
+      },
+      {
+        "file": ".claude/agents/test-automation-engineer.md",
+        "size": 36658
+      },
+      {
+        "file": ".claude/skills/api-rate-limiting/SKILL.md",
+        "size": 35677
+      },
+      {
+        "file": ".claude/skills/shadcn-component-system/SKILL.md",
+        "size": 35163
+      },
+      {
+        "file": ".claude/agents/integration-test-architect.md",
+        "size": 35103
+      },
+      {
+        "file": ".claude/agents/build-system-engineer.md",
+        "size": 35098
+      },
+      {
+        "file": ".claude/skills/aave-flashloan-patterns/SKILL.md",
+        "size": 35022
+      },
+      {
+        "file": ".claude/skills/trpc-type-safe-apis/SKILL.md",
+        "size": 34976
+      },
+      {
+        "file": ".claude/skills/error-handling-patterns/SKILL.md",
+        "size": 34024
+      },
+      {
+        "file": ".claude/agents/unit-test-generator.md",
+        "size": 33600
+      },
+      {
+        "file": ".claude/skills/redis-caching-patterns/SKILL.md",
+        "size": 33475
+      },
+      {
+        "file": ".claude/skills/erc4626-vault-implementation/SKILL.md",
+        "size": 32487
+      },
+      {
+        "file": ".claude/skills/multicall-aggregation/SKILL.md",
+        "size": 32475
+      },
+      {
+        "file": ".claude/skills/load-testing-k6/SKILL.md",
+        "size": 31737
+      },
+      {
+        "file": ".claude/skills/zod-schema-validation/SKILL.md",
+        "size": 31651
+      },
+      {
+        "file": ".claude/skills/solana-program-testing/SKILL.md",
+        "size": 31454
+      },
+      {
+        "file": ".claude/agents/openzeppelin-patterns-expert.md",
+        "size": 31148
+      },
+      {
+        "file": ".claude/agents/gnosis-safe-integrator.md",
+        "size": 30844
+      },
+      {
+        "file": ".claude/skills/account-abstraction-erc4337/SKILL.md",
+        "size": 30805
+      },
+      {
+        "file": ".claude/skills/helius-rpc-optimization/SKILL.md",
+        "size": 30640
+      },
+      {
+        "file": ".claude/skills/diamond-proxy-pattern/SKILL.md",
+        "size": 30156
+      },
+      {
+        "file": ".claude/skills/create2-deterministic-deployment/SKILL.md",
+        "size": 29881
+      },
+      {
+        "file": ".claude/agents/aave-protocol-integrator.md",
+        "size": 29675
+      },
+      {
+        "file": ".claude/skills/chainlink-automation-keepers/SKILL.md",
+        "size": 29659
+      },
+      {
+        "file": ".claude/agents/layer2-arbitrum-specialist.md",
+        "size": 29093
+      },
+      {
+        "file": ".claude/skills/foundry-fuzzing-techniques/SKILL.md",
+        "size": 29065
+      },
+      {
+        "file": ".claude/skills/supabase-realtime-subscriptions/SKILL.md",
+        "size": 28846
+      },
+      {
+        "file": ".claude/agents/erc-standards-implementer.md",
+        "size": 28753
+      },
+      {
+        "file": ".claude/agents/package-manager-expert.md",
+        "size": 28753
+      },
+      {
+        "file": ".claude/agents/log-aggregation-expert.md",
+        "size": 28396
+      },
+      {
+        "file": ".claude/skills/safe-transaction-batching/SKILL.md",
+        "size": 28335
+      },
+      {
+        "file": ".claude/agents/web3-security-specialist.md",
+        "size": 28057
+      },
+      {
+        "file": ".claude/agents/bundler-optimizer.md",
+        "size": 27874
+      },
+      {
+        "file": ".claude/agents/uniswap-v3-integration-specialist.md",
+        "size": 27712
+      },
+      {
+        "file": ".claude/agents/chainlink-oracle-specialist.md",
+        "size": 27421
+      },
+      {
+        "file": ".claude/agents/ci-cd-architect.md",
+        "size": 27362
+      },
+      {
+        "file": ".claude/agents/monitoring-specialist.md",
+        "size": 27171
+      },
+      {
+        "file": ".claude/skills/tailwind-design-system/SKILL.md",
+        "size": 27043
+      },
+      {
+        "file": ".claude/agents/deployment-strategist.md",
+        "size": 26566
+      },
+      {
+        "file": ".claude/agents/devtools-optimizer.md",
+        "size": 26439
+      },
+      {
+        "file": ".claude/skills/jest-unit-testing/SKILL.md",
+        "size": 26412
+      },
+      {
+        "file": ".claude/skills/jupiter-aggregator-integration/SKILL.md",
+        "size": 26392
+      },
+      {
+        "file": ".claude/skills/dex-screener-api/SKILL.md",
+        "size": 25942
+      },
+      {
+        "file": ".claude/skills/eip712-typed-signatures/SKILL.md",
+        "size": 25928
+      },
+      {
+        "file": ".claude/skills/merkle-tree-airdrops/SKILL.md",
+        "size": 25897
+      },
+      {
+        "file": ".claude/skills/anchor-macros-deep-dive/SKILL.md",
+        "size": 25813
+      },
+      {
+        "file": ".claude/agents/hardhat-deployment-specialist.md",
+        "size": 25779
+      },
+      {
+        "file": ".claude/skills/database-migration-strategies/SKILL.md",
+        "size": 25764
+      },
+      {
+        "file": ".claude/agents/fullstack-orchestrator.md",
+        "size": 25762
+      },
+      {
+        "file": ".claude/skills/typescript-advanced-types/SKILL.md",
+        "size": 25685
+      },
+      {
+        "file": ".claude/agents/smart-contract-auditor.md",
+        "size": 25613
+      },
+      {
+        "file": ".claude/skills/framer-motion-animations/SKILL.md",
+        "size": 25479
+      },
+      {
+        "file": ".claude/agents/performance-profiler.md",
+        "size": 25474
+      },
+      {
+        "file": ".claude/agents/gas-optimization-specialist.md",
+        "size": 25357
+      },
+      {
+        "file": ".claude/agents/upgradeable-contracts-architect.md",
+        "size": 25094
+      },
+      {
+        "file": ".claude/agents/frontend-fusion-engine.md",
+        "size": 24763
+      },
+      {
+        "file": ".claude/agents/defi-integration-architect.md",
+        "size": 24566
+      },
+      {
+        "file": ".claude/agents/layer2-optimism-specialist.md",
+        "size": 24551
+      },
+      {
+        "file": ".claude/skills/hardhat-deployment-scripts/SKILL.md",
+        "size": 24339
+      },
+      {
+        "file": ".claude/skills/responsive-mobile-first/SKILL.md",
+        "size": 24195
+      },
+      {
+        "file": ".claude/skills/playwright-e2e-testing/SKILL.md",
+        "size": 24187
+      },
+      {
+        "file": ".claude/agents/e2e-testing-specialist.md",
+        "size": 23912
+      },
+      {
+        "file": ".claude/agents/ethersjs-integration-architect.md",
+        "size": 23800
+      },
+      {
+        "file": ".claude/agents/solana-guardian-auditor.md",
+        "size": 23750
+      },
+      {
+        "file": ".claude/skills/web3-wallet-integration/SKILL.md",
+        "size": 23147
+      },
+      {
+        "file": ".claude/agents/foundry-testing-expert.md",
+        "size": 22986
+      },
+      {
+        "file": ".claude/agents/database-schema-oracle.md",
+        "size": 22717
+      },
+      {
+        "file": ".claude/skills/nextjs-app-router-patterns/SKILL.md",
+        "size": 22597
+      },
+      {
+        "file": ".claude/skills/graph-subgraph-development/SKILL.md",
+        "size": 22473
+      },
+      {
+        "file": ".claude/skills/solana-program-optimization/SKILL.md",
+        "size": 22200
+      },
+      {
+        "file": ".claude/agents/evm-security-auditor.md",
+        "size": 22084
+      },
+      {
+        "file": ".claude/skills/vercel-deployment-optimization/SKILL.md",
+        "size": 22046
+      },
+      {
+        "file": ".claude/skills/ethersjs-v6-migration/SKILL.md",
+        "size": 22023
+      },
+      {
+        "file": ".claude/skills/github-actions-workflows/SKILL.md",
+        "size": 21697
+      },
+      {
+        "file": ".claude/agents/rust-systems-architect.md",
+        "size": 21548
+      },
+      {
+        "file": ".claude/skills/solana-anchor-mastery/SKILL.md",
+        "size": 21224
+      },
+      {
+        "file": ".claude/agents/graph-protocol-indexer.md",
+        "size": 21135
+      },
+      {
+        "file": ".claude/skills/bonding-curve-mathematics/SKILL.md",
+        "size": 20977
+      },
+      {
+        "file": ".claude/skills/react-performance-optimization/SKILL.md",
+        "size": 20512
+      },
+      {
+        "file": ".claude/skills/docker-best-practices/SKILL.md",
+        "size": 19338
+      },
+      {
+        "file": ".claude/agents/icm-anchor-architect.md",
+        "size": 17513
+      },
+      {
+        "file": ".claude/skills/cross-program-invocations/SKILL.md",
+        "size": 16089
+      },
+      {
+        "file": ".claude/mcp/github-README.md",
+        "size": 15803
+      },
+      {
+        "file": ".claude/mcp/tenderly-README.md",
+        "size": 15582
+      },
+      {
+        "file": ".claude/commands/storage-layout.md",
+        "size": 14460
+      },
+      {
+        "file": ".claude/commands/simulate-bundle.md",
+        "size": 14337
+      },
+      {
+        "file": ".claude/mcp/quicknode-README.md",
+        "size": 14081
+      },
+      {
+        "file": ".claude/mcp/e2b-README.md",
+        "size": 13845
+      },
+      {
+        "file": ".claude/skills/nft-metadata-standards/SKILL.md",
+        "size": 13532
+      },
+      {
+        "file": ".claude/mcp/alchemy-README.md",
+        "size": 13484
+      },
+      {
+        "file": ".claude/mcp/infura-README.md",
+        "size": 13419
+      },
+      {
+        "file": ".claude/mcp/thegraph-README.md",
+        "size": 13097
+      },
+      {
+        "file": ".claude/commands/create-safe.md",
+        "size": 12996
+      },
+      {
+        "file": ".claude/commands/generate-merkle.md",
+        "size": 12974
+      },
+      {
+        "file": ".claude/commands/trace-tx.md",
+        "size": 12958
+      },
+      {
+        "file": ".claude/skills/transaction-retry-logic/SKILL.md",
+        "size": 12702
+      },
+      {
+        "file": ".claude/commands/create-subgraph.md",
+        "size": 11570
+      },
+      {
+        "file": ".claude/commands/estimate-gas.md",
+        "size": 11031
+      },
+      {
+        "file": ".claude/commands/snapshot-state.md",
+        "size": 10974
+      },
+      {
+        "file": ".claude/mcp/context7-README.md",
+        "size": 10951
+      },
+      {
+        "file": ".claude/commands/audit-security.md",
+        "size": 10802
+      },
+      {
+        "file": ".claude/commands/generate-abi.md",
+        "size": 10356
+      },
+      {
+        "file": ".claude/skills/mlops-best-practices.md",
+        "size": 10162
+      },
+      {
+        "file": ".claude/commands/gas-report.md",
+        "size": 10160
+      },
+      {
+        "file": ".claude/commands/decode-tx.md",
+        "size": 10006
+      },
+      {
+        "file": ".claude/mcp/supabase-README.md",
+        "size": 9900
+      },
+      {
+        "file": ".claude/commands/fork-mainnet.md",
+        "size": 9549
+      },
+      {
+        "file": ".claude/skills/microservices-architecture.md",
+        "size": 9423
+      },
+      {
+        "file": ".claude/commands/flatten-contract.md",
+        "size": 9226
+      },
+      {
+        "file": ".claude/commands/impersonate-account.md",
+        "size": 9184
+      },
+      {
+        "file": ".claude/commands/test-coverage.md",
+        "size": 8827
+      },
+      {
+        "file": ".claude/commands/deploy-foundry.md",
+        "size": 8795
+      },
+      {
+        "file": ".claude/agents/cloud-architect.md",
+        "size": 8711
+      },
+      {
+        "file": ".claude/commands/upgrade-proxy.md",
+        "size": 8641
+      },
+      {
+        "file": ".claude/commands/verify-contract.md",
+        "size": 8547
+      },
+      {
+        "file": ".claude/settings/performance/lazy-skill-loading.md",
+        "size": 8161
+      },
+      {
+        "file": ".claude/agents/blockchain-indexer-specialist.md",
+        "size": 8118
+      },
+      {
+        "file": ".claude/skills/documentation-automation/SKILL.md",
+        "size": 7811
+      },
+      {
+        "file": ".claude/skills/react-native-performance.md",
+        "size": 7562
+      },
+      {
+        "file": ".claude/commands/deploy-hardhat.md",
+        "size": 7441
+      },
+      {
+        "file": ".claude/skills/kubernetes-patterns.md",
+        "size": 6888
+      },
+      {
+        "file": ".claude/commands/monitoring-setup.md",
+        "size": 6519
+      },
+      {
+        "file": ".claude/agents/backend-api-specialist.md",
+        "size": 6111
+      },
+      {
+        "file": ".claude/commands/code-review.md",
+        "size": 6098
+      },
+      {
+        "file": ".claude/agents/ios-expert.md",
+        "size": 6034
+      },
+      {
+        "file": ".claude/skills/code-review-best-practices/SKILL.md",
+        "size": 5770
+      },
+      {
+        "file": ".claude/skills/advanced-typescript-patterns.md",
+        "size": 5769
+      },
+      {
+        "file": ".claude/settings/security/sandbox-mode.md",
+        "size": 5601
+      },
+      {
+        "file": ".claude/agents/data-scientist.md",
+        "size": 5503
+      },
+      {
+        "file": ".claude/mcp/google-drive-README.md",
+        "size": 5453
+      },
+      {
+        "file": ".claude/commands/analytics-setup.md",
+        "size": 5411
+      },
+      {
+        "file": ".claude/mcp/postgresql-README.md",
+        "size": 5322
+      },
+      {
+        "file": ".claude/settings/monitoring/cost-tracking.md",
+        "size": 5263
+      },
+      {
+        "file": ".claude/agents/security-engineer.md",
+        "size": 5261
+      },
+      {
+        "file": ".claude/agents/security-engineer.md",
+        "size": 5261
+      },
+      {
+        "file": ".claude/settings/optimization/cdn-caching-strategy.md",
+        "size": 5093
+      },
+      {
+        "file": ".claude/agents/game-developer.md",
+        "size": 5092
+      },
+      {
+        "file": ".claude/agents/game-developer.md",
+        "size": 5092
+      },
+      {
+        "file": ".claude/settings/optimization/code-splitting-strategy.md",
+        "size": 5064
+      },
+      {
+        "file": ".claude/commands/sorting-gen.md",
+        "size": 4990
+      },
+      {
+        "file": ".claude/settings/optimization/image-optimization.md",
+        "size": 4776
+      },
+      {
+        "file": ".claude/commands/search-optimize.md",
+        "size": 4669
+      },
+      {
+        "file": ".claude/mcp/filesystem-README.md",
+        "size": 4659
+      },
+      {
+        "file": ".claude/mcp/openai-image-README.md",
+        "size": 4638
+      },
+      {
+        "file": ".claude/settings/integration/monitoring-dashboard.md",
+        "size": 4622
+      },
+      {
+        "file": ".claude/settings/monitoring/uptime-monitoring.md",
+        "size": 4503
+      },
+      {
+        "file": ".claude/agents/kubernetes-architect.md",
+        "size": 4484
+      },
+      {
+        "file": ".claude/commands/filtering-gen.md",
+        "size": 4484
+      },
+      {
+        "file": ".claude/commands/pagination-gen.md",
+        "size": 4424
+      },
+      {
+        "file": ".claude/agents/data-engineering-specialist.md",
+        "size": 4388
+      },
+      {
+        "file": ".claude/settings/monitoring/error-notification-webhook.md",
+        "size": 4338
+      },
+      {
+        "file": ".claude/agents/mobile-app-developer.md",
+        "size": 4287
+      },
+      {
+        "file": ".claude/agents/quality-assurance-specialist.md",
+        "size": 4261
+      },
+      {
+        "file": ".claude/agents/machine-learning-engineer.md",
+        "size": 4179
+      },
+      {
+        "file": ".claude/settings/optimization/bundle-analyzer-enabled.md",
+        "size": 4156
+      },
+      {
+        "file": ".claude/mcp/datadog-README.md",
+        "size": 4155
+      },
+      {
+        "file": ".claude/settings/optimization/tree-shaking.md",
+        "size": 4064
+      },
+      {
+        "file": ".claude/agents/data-engineer.md",
+        "size": 4044
+      },
+      {
+        "file": ".claude/agents/infrastructure-architect.md",
+        "size": 4024
+      },
+      {
+        "file": ".claude/settings/development/typescript-strict-mode.md",
+        "size": 3962
+      },
+      {
+        "file": ".claude/settings/integration/error-reporting-service.md",
+        "size": 3946
+      },
+      {
+        "file": ".claude/agents/api-design-architect.md",
+        "size": 3926
+      },
+      {
+        "file": ".claude/agents/ui-ux-designer.md",
+        "size": 3924
+      },
+      {
+        "file": ".claude/agents/ui-ux-designer.md",
+        "size": 3924
+      },
+      {
+        "file": ".claude/mcp/mongodb-README.md",
+        "size": 3920
+      },
+      {
+        "file": ".claude/mcp/sentry-README.md",
+        "size": 3913
+      },
+      {
+        "file": ".claude/settings/monitoring/slow-query-threshold-ms.md",
+        "size": 3875
+      },
+      {
+        "file": ".claude/agents/ml-engineer.md",
+        "size": 3816
+      },
+      {
+        "file": ".claude/agents/devops-platform-engineer.md",
+        "size": 3802
+      },
+      {
+        "file": ".claude/settings/development/dependency-auto-update.md",
+        "size": 3783
+      },
+      {
+        "file": ".claude/settings/development/pre-commit-hooks.md",
+        "size": 3751
+      },
+      {
+        "file": ".claude/settings/security/require-signature-verification.md",
+        "size": 3657
+      },
+      {
+        "file": ".claude/agents/ar-vr-developer.md",
+        "size": 3654
+      },
+      {
+        "file": ".claude/settings/performance/mcp-timeout-duration.md",
+        "size": 3599
+      },
+      {
+        "file": ".claude/skills/refactoring-patterns/SKILL.md",
+        "size": 3418
+      },
+      {
+        "file": ".claude/settings/development/test-before-deploy.md",
+        "size": 3412
+      },
+      {
+        "file": ".claude/commands/feature.md",
+        "size": 3364
+      },
+      {
+        "file": ".claude/agents/blockchain-auditor.md",
+        "size": 3351
+      },
+      {
+        "file": ".claude/settings/security/mcp-permission-model.md",
+        "size": 3344
+      },
+      {
+        "file": ".claude/settings/monitoring/memory-usage-alerts.md",
+        "size": 3326
+      },
+      {
+        "file": ".claude/skills/event-sourcing-patterns/SKILL.md",
+        "size": 3316
+      },
+      {
+        "file": ".claude/commands/rate-limit-setup.md",
+        "size": 3315
+      },
+      {
+        "file": ".claude/skills/debugging-techniques/SKILL.md",
+        "size": 3308
+      },
+      {
+        "file": ".claude/agents/iot-developer.md",
+        "size": 3303
+      },
+      {
+        "file": ".claude/agents/react-native-expert.md",
+        "size": 3285
+      },
+      {
+        "file": ".claude/agents/performance-engineer.md",
+        "size": 3166
+      },
+      {
+        "file": ".claude/settings/integration/wallet-adapter-priority.md",
+        "size": 3163
+      },
+      {
+        "file": ".claude/mcp/redis-README.md",
+        "size": 3125
+      },
+      {
+        "file": ".claude/settings/integration/ipfs-gateway-url.md",
+        "size": 3125
+      },
+      {
+        "file": ".claude/settings/monitoring/performance-profiling.md",
+        "size": 3092
+      },
+      {
+        "file": ".claude/settings/security/credential-encryption.md",
+        "size": 3087
+      },
+      {
+        "file": ".claude/agents/qa-automation-lead.md",
+        "size": 3079
+      },
+      {
+        "file": ".claude/settings/security/disallowed-commands.md",
+        "size": 3072
+      },
+      {
+        "file": ".claude/settings/integration/default-rpc-provider.md",
+        "size": 3068
+      },
+      {
+        "file": ".claude/agents/solutions-architect.md",
+        "size": 3058
+      },
+      {
+        "file": ".claude/settings/development/conventional-commits.md",
+        "size": 3044
+      },
+      {
+        "file": ".claude/agents/site-reliability-engineer.md",
+        "size": 3014
+      },
+      {
+        "file": ".claude/commands/xss-scan.md",
+        "size": 3000
+      },
+      {
+        "file": ".claude/settings/integration/subgraph-endpoint.md",
+        "size": 2996
+      },
+      {
+        "file": ".claude/agents/platform-engineer.md",
+        "size": 2956
+      },
+      {
+        "file": ".claude/skills/observability-cost-optimization/SKILL.md",
+        "size": 2946
+      },
+      {
+        "file": ".claude/agents/technical-writer.md",
+        "size": 2932
+      },
+      {
+        "file": ".claude/settings/development/format-on-save.md",
+        "size": 2928
+      },
+      {
+        "file": ".claude/settings/integration/analytics-enabled.md",
+        "size": 2925
+      },
+      {
+        "file": ".claude/commands/cors-config.md",
+        "size": 2906
+      },
+      {
+        "file": ".claude/settings/security/rate-limit-per-hour.md",
+        "size": 2861
+      },
+      {
+        "file": ".claude/commands/sql-injection-scan.md",
+        "size": 2845
+      },
+      {
+        "file": ".claude/skills/feature-flag-management/SKILL.md",
+        "size": 2828
+      },
+      {
+        "file": ".claude/settings/development/linting-enabled.md",
+        "size": 2791
+      },
+      {
+        "file": ".claude/skills/api-gateway-patterns/SKILL.md",
+        "size": 2785
+      },
+      {
+        "file": ".claude/mcp/linear-README.md",
+        "size": 2750
+      },
+      {
+        "file": ".claude/skills/smart-contract-security/SKILL.md",
+        "size": 2736
+      },
+      {
+        "file": ".claude/settings/security/allowed-domains.md",
+        "size": 2682
+      },
+      {
+        "file": ".claude/settings/security/audit-log-enabled.md",
+        "size": 2681
+      },
+      {
+        "file": ".claude/commands/idor-scan.md",
+        "size": 2657
+      },
+      {
+        "file": ".claude/skills/event-driven-architecture/SKILL.md",
+        "size": 2561
+      },
+      {
+        "file": ".claude/skills/circuit-breaker-patterns/SKILL.md",
+        "size": 2547
+      },
+      {
+        "file": ".claude/skills/load-balancing-strategies/SKILL.md",
+        "size": 2543
+      },
+      {
+        "file": ".claude/skills/data-consistency-patterns/SKILL.md",
+        "size": 2538
+      },
+      {
+        "file": ".claude/skills/rate-limiting-advanced/SKILL.md",
+        "size": 2496
+      },
+      {
+        "file": ".claude/commands/env-validator.md",
+        "size": 2468
+      },
+      {
+        "file": ".claude/commands/secrets-scan.md",
+        "size": 2457
+      },
+      {
+        "file": ".claude/skills/saga-pattern-implementation/SKILL.md",
+        "size": 2432
+      },
+      {
+        "file": ".claude/commands/error-boundary-gen.md",
+        "size": 2421
+      },
+      {
+        "file": ".claude/settings/performance/token-budget-limit.md",
+        "size": 2416
+      },
+      {
+        "file": ".claude/settings/performance/batch-operation-size.md",
+        "size": 2414
+      },
+      {
+        "file": ".claude/settings/performance/parallel-tool-execution.md",
+        "size": 2367
+      },
+      {
+        "file": ".claude/settings/security/api-key-rotation-days.md",
+        "size": 2362
+      },
+      {
+        "file": ".claude/commands/release-notes.md",
+        "size": 2361
+      },
+      {
+        "file": ".claude/skills/serverless-architecture/SKILL.md",
+        "size": 2337
+      },
+      {
+        "file": ".claude/settings/performance/agent-cache-strategy.md",
+        "size": 2315
+      },
+      {
+        "file": ".claude/skills/vulnerability-management/SKILL.md",
+        "size": 2294
+      },
+      {
+        "file": ".claude/skills/blockchain-consensus/SKILL.md",
+        "size": 2285
+      },
+      {
+        "file": ".claude/skills/performance-profiling/SKILL.md",
+        "size": 2213
+      },
+      {
+        "file": ".claude/skills/distributed-tracing/SKILL.md",
+        "size": 2203
+      },
+      {
+        "file": ".claude/settings/security/require-env-validation.md",
+        "size": 2198
+      },
+      {
+        "file": ".claude/commands/seo-audit.md",
+        "size": 2155
+      },
+      {
+        "file": ".claude/skills/caching-strategies/SKILL.md",
+        "size": 2146
+      },
+      {
+        "file": ".claude/skills/machine-learning-pipelines/SKILL.md",
+        "size": 2111
+      },
+      {
+        "file": ".claude/commands/lighthouse-check.md",
+        "size": 2108
+      },
+      {
+        "file": ".claude/skills/zero-knowledge-proofs/SKILL.md",
+        "size": 2076
+      },
+      {
+        "file": ".claude/skills/full-text-search-engine/SKILL.md",
+        "size": 2042
+      },
+      {
+        "file": ".claude/settings/performance/response-streaming.md",
+        "size": 2039
+      },
+      {
+        "file": ".claude/skills/grpc-communication/SKILL.md",
+        "size": 2025
+      },
+      {
+        "file": ".claude/settings/performance/mcp-retry-attempts.md",
+        "size": 2017
+      },
+      {
+        "file": ".claude/commands/cache-strategy.md",
+        "size": 1998
+      },
+      {
+        "file": ".claude/skills/authentication-patterns/SKILL.md",
+        "size": 1936
+      },
+      {
+        "file": ".claude/settings/performance/compression-enabled.md",
+        "size": 1936
+      },
+      {
+        "file": ".claude/settings/performance/network-timeout.md",
+        "size": 1933
+      },
+      {
+        "file": ".claude/commands/changelog-gen.md",
+        "size": 1930
+      },
+      {
+        "file": ".claude/skills/redis-advanced-patterns/SKILL.md",
+        "size": 1922
+      },
+      {
+        "file": ".claude/settings/performance/skill-cache-ttl.md",
+        "size": 1878
+      },
+      {
+        "file": ".claude/commands/load-test.md",
+        "size": 1845
+      },
+      {
+        "file": ".claude/skills/progressive-web-apps/SKILL.md",
+        "size": 1839
+      },
+      {
+        "file": ".claude/commands/deps-upgrade.md",
+        "size": 1836
+      },
+      {
+        "file": ".claude/skills/service-mesh-istio/SKILL.md",
+        "size": 1822
+      },
+      {
+        "file": ".claude/commands/anchor-init.md",
+        "size": 1804
+      },
+      {
+        "file": ".claude/commands/refactor.md",
+        "size": 1781
+      },
+      {
+        "file": ".claude/skills/cqrs-implementation/SKILL.md",
+        "size": 1768
+      },
+      {
+        "file": ".claude/skills/kafka-stream-processing/SKILL.md",
+        "size": 1721
+      },
+      {
+        "file": ".claude/skills/message-queue-patterns/SKILL.md",
+        "size": 1720
+      },
+      {
+        "file": ".claude/commands/api-mock-gen.md",
+        "size": 1704
+      },
+      {
+        "file": ".claude/commands/optimize.md",
+        "size": 1698
+      },
+      {
+        "file": ".claude/commands/architecture-gen.md",
+        "size": 1684
+      },
+      {
+        "file": ".claude/commands/bundle-analyze.md",
+        "size": 1635
+      },
+      {
+        "file": ".claude/skills/elasticsearch-optimization/SKILL.md",
+        "size": 1626
+      },
+      {
+        "file": ".claude/settings/performance/context-window-size.md",
+        "size": 1583
+      },
+      {
+        "file": ".claude/commands/perf-trace.md",
+        "size": 1573
+      },
+      {
+        "file": ".claude/skills/container-security/SKILL.md",
+        "size": 1560
+      },
+      {
+        "file": ".claude/commands/dockerfile-gen.md",
+        "size": 1539
+      },
+      {
+        "file": ".claude/skills/sql-optimization/SKILL.md",
+        "size": 1527
+      },
+      {
+        "file": ".claude/commands/component-gen.md",
+        "size": 1519
+      },
+      {
+        "file": ".claude/commands/config-gen.md",
+        "size": 1501
+      },
+      {
+        "file": ".claude/commands/env-setup.md",
+        "size": 1498
+      },
+      {
+        "file": ".claude/commands/migration-gen.md",
+        "size": 1492
+      },
+      {
+        "file": ".claude/skills/websocket-realtime/SKILL.md",
+        "size": 1474
+      },
+      {
+        "file": ".claude/commands/ci-gen.md",
+        "size": 1474
+      },
+      {
+        "file": ".claude/commands/monorepo-init.md",
+        "size": 1474
+      },
+      {
+        "file": ".claude/commands/benchmark.md",
+        "size": 1464
+      },
+      {
+        "file": ".claude/commands/graphql-gen.md",
+        "size": 1450
+      },
+      {
+        "file": ".claude/commands/hook-gen.md",
+        "size": 1445
+      },
+      {
+        "file": ".claude/commands/test-gen.md",
+        "size": 1427
+      },
+      {
+        "file": ".claude/mcp/elasticsearch-README.md",
+        "size": 1407
+      },
+      {
+        "file": ".claude/commands/schema-gen.md",
+        "size": 1398
+      },
+      {
+        "file": ".claude/commands/mock-gen.md",
+        "size": 1391
+      },
+      {
+        "file": ".claude/commands/type-gen.md",
+        "size": 1384
+      },
+      {
+        "file": ".claude/commands/db-seed.md",
+        "size": 1377
+      },
+      {
+        "file": ".claude/commands/api-gen.md",
+        "size": 1366
+      },
+      {
+        "file": ".claude/commands/storybook-gen.md",
+        "size": 1346
+      },
+      {
+        "file": ".claude/mcp/temporal.json",
+        "size": 1345
+      },
+      {
+        "file": ".claude/commands/lint-fix.md",
+        "size": 1323
+      },
+      {
+        "file": ".claude/mcp/launchdarkly.json",
+        "size": 1252
+      },
+      {
+        "file": ".claude/skills/monitoring-observability/SKILL.md",
+        "size": 1249
+      },
+      {
+        "file": ".claude/skills/monitoring-observability/SKILL.md",
+        "size": 1249
+      },
+      {
+        "file": ".claude/mcp/mixpanel.json",
+        "size": 1245
+      },
+      {
+        "file": ".claude/mcp/hasura.json",
+        "size": 1244
+      },
+      {
+        "file": ".claude/mcp/supabase-ext.json",
+        "size": 1229
+      },
+      {
+        "file": ".claude/mcp/planetscale-advanced.json",
+        "size": 1214
+      },
+      {
+        "file": ".claude/skills/terraform-infrastructure/SKILL.md",
+        "size": 1201
+      },
+      {
+        "file": ".claude/mcp/upstash.json",
+        "size": 1201
+      },
+      {
+        "file": ".claude/mcp/vectara.json",
+        "size": 1188
+      },
+      {
+        "file": ".claude/mcp/posthog.json",
+        "size": 1187
+      },
+      {
+        "file": ".claude/mcp/retool.json",
+        "size": 1175
+      },
+      {
+        "file": ".claude/mcp/sqlite-README.md",
+        "size": 1169
+      },
+      {
+        "file": ".claude/mcp/neon.json",
+        "size": 1165
+      },
+      {
+        "file": ".claude/mcp/n8n.json",
+        "size": 1146
+      },
+      {
+        "file": ".claude/mcp/web3-multichain-README.md",
+        "size": 1143
+      },
+      {
+        "file": ".claude/skills/graphql-optimization/SKILL.md",
+        "size": 1136
+      },
+      {
+        "file": ".claude/mcp/bytebase.json",
+        "size": 1121
+      },
+      {
+        "file": ".claude/mcp/anthropic-extended.json",
+        "size": 1116
+      },
+      {
+        "file": ".claude/mcp/infisical.json",
+        "size": 1115
+      },
+      {
+        "file": ".claude/mcp/grafana.json",
+        "size": 1106
+      },
+      {
+        "file": ".claude/mcp/warp.json",
+        "size": 1096
+      },
+      {
+        "file": ".claude/mcp/langfuse.json",
+        "size": 1090
+      },
+      {
+        "file": ".claude/mcp/snyk.json",
+        "size": 1081
+      },
+      {
+        "file": ".claude/mcp/together-ai.json",
+        "size": 1076
+      },
+      {
+        "file": ".claude/mcp/replicate.json",
+        "size": 1075
+      },
+      {
+        "file": ".claude/mcp/logto.json",
+        "size": 1073
+      },
+      {
+        "file": ".claude/mcp/metabase.json",
+        "size": 1067
+      },
+      {
+        "file": ".claude/mcp/huggingface.json",
+        "size": 1054
+      },
+      {
+        "file": ".claude/mcp/langsmith.json",
+        "size": 1042
+      },
+      {
+        "file": ".claude/mcp/solana-agent-kit-README.md",
+        "size": 1021
+      },
+      {
+        "file": ".claude/mcp/groq.json",
+        "size": 999
+      },
+      {
+        "file": ".claude/settings/development/auto-git-commit.md",
+        "size": 995
+      },
+      {
+        "file": ".claude/mcp/chainstack-README.md",
+        "size": 832
+      },
+      {
+        "file": ".claude/mcp/playwright-README.md",
+        "size": 780
+      },
+      {
+        "file": ".claude/commands/test-generate-cases.md",
+        "size": 758
+      },
+      {
+        "file": ".claude/mcp/tenderly.json",
+        "size": 739
+      },
+      {
+        "file": ".claude/agents/web3-integration-maestro.md",
+        "size": 729
+      },
+      {
+        "file": ".claude/agents/smart-contract-forensics.md",
+        "size": 729
+      },
+      {
+        "file": ".claude/mcp/quicknode.json",
+        "size": 726
+      },
+      {
+        "file": ".claude/agents/penetration-testing-specialist.md",
+        "size": 725
+      },
+      {
+        "file": ".claude/agents/context-sculptor.md",
+        "size": 723
+      },
+      {
+        "file": ".claude/mcp/kubernetes-README.md",
+        "size": 701
+      },
+      {
+        "file": ".claude/mcp/thegraph.json",
+        "size": 698
+      },
+      {
+        "file": ".claude/agents/typescript-precision-engineer.md",
+        "size": 697
+      },
+      {
+        "file": ".claude/mcp/infura.json",
+        "size": 697
+      },
+      {
+        "file": ".claude/agents/ci-cd-pipeline-engineer.md",
+        "size": 691
+      },
+      {
+        "file": ".claude/agents/project-coordinator.md",
+        "size": 690
+      },
+      {
+        "file": ".claude/agents/api-contract-designer.md",
+        "size": 687
+      },
+      {
+        "file": ".claude/agents/changelog-generator.md",
+        "size": 683
+      },
+      {
+        "file": ".claude/agents/technical-writer-pro.md",
+        "size": 682
+      },
+      {
+        "file": ".claude/agents/debugging-detective.md",
+        "size": 668
+      },
+      {
+        "file": ".claude/agents/compliance-guardian.md",
+        "size": 667
+      },
+      {
+        "file": ".claude/agents/code-reviewer.md",
+        "size": 667
+      },
+      {
+        "file": ".claude/agents/accessibility-advocate.md",
+        "size": 657
+      },
+      {
+        "file": ".claude/mcp/alchemy.json",
+        "size": 651
+      },
+      {
+        "file": ".claude/agents/git-flow-coordinator.md",
+        "size": 649
+      },
+      {
+        "file": ".claude/skills/env-secrets-management/SKILL.md",
+        "size": 649
+      },
+      {
+        "file": ".claude/skills/api-versioning-strategies/SKILL.md",
+        "size": 648
+      },
+      {
+        "file": ".claude/agents/readme-architect.md",
+        "size": 642
+      },
+      {
+        "file": ".claude/agents/diagram-illustrator.md",
+        "size": 642
+      },
+      {
+        "file": ".claude/agents/qa-stress-tester.md",
+        "size": 638
+      },
+      {
+        "file": ".claude/agents/content-strategist.md",
+        "size": 636
+      },
+      {
+        "file": ".claude/skills/git-workflow-best-practices/SKILL.md",
+        "size": 630
+      },
+      {
+        "file": ".claude/mcp/cloudflare-README.md",
+        "size": 630
+      },
+      {
+        "file": ".claude/mcp/google-cloud-run-README.md",
+        "size": 617
+      },
+      {
+        "file": ".claude/skills/docker-containerization/SKILL.md",
+        "size": 595
+      },
+      {
+        "file": ".claude/mcp/aws-bedrock-README.md",
+        "size": 591
+      },
+      {
+        "file": ".claude/mcp/circleci-README.md",
+        "size": 589
+      },
+      {
+        "file": ".claude/mcp/supabase.json",
+        "size": 587
+      },
+      {
+        "file": ".claude/mcp/aws.json",
+        "size": 577
+      },
+      {
+        "file": ".claude/mcp/stripe-README.md",
+        "size": 539
+      },
+      {
+        "file": ".claude/mcp/gitlab-README.md",
+        "size": 535
+      },
+      {
+        "file": ".claude/mcp/playwright.json",
+        "size": 512
+      },
+      {
+        "file": ".claude/mcp/perplexity-README.md",
+        "size": 509
+      },
+      {
+        "file": ".claude/mcp/notion-README.md",
+        "size": 508
+      },
+      {
+        "file": ".claude/mcp/planetscale.json",
+        "size": 503
+      },
+      {
+        "file": ".claude/mcp/firecrawl-README.md",
+        "size": 500
+      },
+      {
+        "file": ".claude/mcp/mongodb.json",
+        "size": 492
+      },
+      {
+        "file": ".claude/mcp/docker-README.md",
+        "size": 477
+      },
+      {
+        "file": ".claude/mcp/cloudflare.json",
+        "size": 473
+      },
+      {
+        "file": ".claude/mcp/figma.json",
+        "size": 473
+      },
+      {
+        "file": ".claude/commands/git-workflow.md",
+        "size": 472
+      },
+      {
+        "file": ".claude/mcp/slack-README.md",
+        "size": 471
+      },
+      {
+        "file": ".claude/mcp/sqlite.json",
+        "size": 470
+      },
+      {
+        "file": ".claude/mcp/prisma.json",
+        "size": 456
+      },
+      {
+        "file": ".claude/mcp/aws-bedrock.json",
+        "size": 454
+      },
+      {
+        "file": ".claude/mcp/azure.json",
+        "size": 454
+      },
+      {
+        "file": ".claude/mcp/git-README.md",
+        "size": 451
+      },
+      {
+        "file": ".claude/mcp/jira.json",
+        "size": 450
+      },
+      {
+        "file": ".claude/commands/dev-refactor.md",
+        "size": 447
+      },
+      {
+        "file": ".claude/mcp/pinecone.json",
+        "size": 436
+      },
+      {
+        "file": ".claude/mcp/openai.json",
+        "size": 435
+      },
+      {
+        "file": ".claude/mcp/anthropic.json",
+        "size": 435
+      },
+      {
+        "file": ".claude/mcp/postgresql.json",
+        "size": 434
+      },
+      {
+        "file": ".claude/mcp/sentry.json",
+        "size": 434
+      },
+      {
+        "file": ".claude/mcp/kubernetes.json",
+        "size": 431
+      },
+      {
+        "file": ".claude/mcp/twilio.json",
+        "size": 428
+      },
+      {
+        "file": ".claude/mcp/web3-multichain.json",
+        "size": 424
+      },
+      {
+        "file": ".claude/mcp/datadog.json",
+        "size": 422
+      },
+      {
+        "file": ".claude/mcp/gcp.json",
+        "size": 422
+      },
+      {
+        "file": ".claude/commands/tdd-cycle.md",
+        "size": 416
+      },
+      {
+        "file": ".claude/mcp/discord.json",
+        "size": 408
+      },
+      {
+        "file": ".claude/commands/performance-optimize-db.md",
+        "size": 407
+      },
+      {
+        "file": ".claude/mcp/brave-search-README.md",
+        "size": 405
+      },
+      {
+        "file": ".claude/mcp/railway.json",
+        "size": 405
+      },
+      {
+        "file": ".claude/mcp/solana-agent-kit.json",
+        "size": 403
+      },
+      {
+        "file": ".claude/mcp/airtable.json",
+        "size": 402
+      },
+      {
+        "file": ".claude/mcp/openai-image.json",
+        "size": 401
+      },
+      {
+        "file": ".claude/mcp/chainstack.json",
+        "size": 399
+      },
+      {
+        "file": ".claude/mcp/git.json",
+        "size": 399
+      },
+      {
+        "file": ".claude/mcp/firecrawl.json",
+        "size": 398
+      },
+      {
+        "file": ".claude/mcp/linear.json",
+        "size": 398
+      },
+      {
+        "file": ".claude/mcp/google-drive.json",
+        "size": 397
+      },
+      {
+        "file": ".claude/commands/dev-code-review.md",
+        "size": 396
+      },
+      {
+        "file": ".claude/mcp/sendgrid.json",
+        "size": 396
+      },
+      {
+        "file": ".claude/mcp/netlify.json",
+        "size": 394
+      },
+      {
+        "file": ".claude/commands/feature-development.md",
+        "size": 393
+      },
+      {
+        "file": ".claude/mcp/notion.json",
+        "size": 392
+      },
+      {
+        "file": ".claude/commands/test-e2e-setup.md",
+        "size": 389
+      },
+      {
+        "file": ".claude/commands/performance-audit.md",
+        "size": 388
+      },
+      {
+        "file": ".claude/mcp/google-cloud-run.json",
+        "size": 387
+      },
+      {
+        "file": ".claude/mcp/stripe.json",
+        "size": 386
+      },
+      {
+        "file": ".claude/commands/test-coverage-report.md",
+        "size": 385
+      },
+      {
+        "file": ".claude/mcp/vercel.json",
+        "size": 384
+      },
+      {
+        "file": ".claude/commands/security-audit.md",
+        "size": 381
+      },
+      {
+        "file": ".claude/commands/security-dependency-audit.md",
+        "size": 374
+      },
+      {
+        "file": ".claude/commands/test-write-tests.md",
+        "size": 373
+      },
+      {
+        "file": ".claude/mcp/perplexity.json",
+        "size": 373
+      },
+      {
+        "file": ".claude/commands/performance-caching.md",
+        "size": 372
+      },
+      {
+        "file": ".claude/mcp/gitlab.json",
+        "size": 369
+      },
+      {
+        "file": ".claude/mcp/elasticsearch.json",
+        "size": 368
+      },
+      {
+        "file": ".claude/commands/api-scaffold.md",
+        "size": 365
+      },
+      {
+        "file": ".claude/commands/pr-enhance.md",
+        "size": 361
+      },
+      {
+        "file": ".claude/commands/full-review.md",
+        "size": 359
+      },
+      {
+        "file": ".claude/mcp/circleci.json",
+        "size": 358
+      },
+      {
+        "file": ".claude/mcp/github.json",
+        "size": 357
+      },
+      {
+        "file": ".claude/mcp/slack.json",
+        "size": 356
+      },
+      {
+        "file": ".claude/commands/doc-generate.md",
+        "size": 352
+      },
+      {
+        "file": ".claude/mcp/docker.json",
+        "size": 344
+      },
+      {
+        "file": ".claude/commands/context-save.md",
+        "size": 336
+      },
+      {
+        "file": ".claude/commands/deploy-prepare-release.md",
+        "size": 335
+      },
+      {
+        "file": ".claude/commands/deploy-containerize.md",
+        "size": 334
+      },
+      {
+        "file": ".claude/commands/deploy-rollback.md",
+        "size": 332
+      },
+      {
+        "file": ".claude/mcp/filesystem.json",
+        "size": 331
+      },
+      {
+        "file": ".claude/mcp/postgres.json",
+        "size": 330
+      },
+      {
+        "file": ".claude/commands/deploy-ci-setup.md",
+        "size": 318
+      },
+      {
+        "file": ".claude/commands/refactor-clean.md",
+        "size": 318
+      },
+      {
+        "file": ".claude/mcp/redis.json",
+        "size": 318
+      },
+      {
+        "file": ".claude/commands/deploy-kubernetes.md",
+        "size": 316
+      },
+      {
+        "file": ".claude/mcp/brave-search.json",
+        "size": 306
+      },
+      {
+        "file": ".claude/mcp/context7.json",
+        "size": 238
+      },
+      {
+        "file": ".claude/mcp/e2b.json",
+        "size": 218
+      },
+      {
+        "file": ".claude/skills/solana-anchor-mastery/references/",
+        "size": 0
+      }
+    ]
+  }
+}
