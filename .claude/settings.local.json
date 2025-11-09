@@ -9,7 +9,11 @@
       "Bash(npm whoami:*)",
       "Bash(npx @gicm/cli add:*)",
       "Bash(curl:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npx:*)",
+      "Bash(python3:*)",
+      "Bash(complete_entries.txt)",
+      "Bash(tsc:*)"
     ],
     "deny": [],
     "ask": []
