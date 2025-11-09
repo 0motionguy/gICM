@@ -17,10 +17,10 @@ Controls how long skill content is cached before being reloaded. Helps reduce to
 
 ```bash
 # Install with default value (1 hour)
-npx gicm-stack settings add performance/skill-cache-ttl
+npx @gicm/cli settings add performance/skill-cache-ttl
 
 # Install with custom value (2 hours)
-npx gicm-stack settings add performance/skill-cache-ttl --value 7200
+npx @gicm/cli settings add performance/skill-cache-ttl --value 7200
 ```
 
 ## Recommendations

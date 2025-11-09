@@ -17,10 +17,10 @@ When enabled, Claude will check that all required environment variables are set 
 
 ```bash
 # Enable validation (default)
-npx gicm-stack settings add security/require-env-validation --value true
+npx @gicm/cli settings add security/require-env-validation --value true
 
 # Disable validation
-npx gicm-stack settings add security/require-env-validation --value false
+npx @gicm/cli settings add security/require-env-validation --value false
 ```
 
 ## What Gets Validated

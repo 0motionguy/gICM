@@ -17,10 +17,10 @@ Enables detailed performance profiling for all operations. Tracks execution time
 
 ```bash
 # Enable profiling
-npx gicm-stack settings add monitoring/performance-profiling --value true
+npx @gicm/cli settings add monitoring/performance-profiling --value true
 
 # Disable profiling (default)
-npx gicm-stack settings add monitoring/performance-profiling --value false
+npx @gicm/cli settings add monitoring/performance-profiling --value false
 ```
 
 ## Metrics Collected
@@ -114,10 +114,10 @@ Memory:
 **Generate flamegraphs:**
 ```bash
 # Enable flamegraph generation
-npx gicm-stack settings add monitoring/performance-profiling --value true
+npx @gicm/cli settings add monitoring/performance-profiling --value true
 
 # After operation completes
-npx gicm-stack profiling flamegraph --last
+npx @gicm/cli profiling flamegraph --last
 ```
 
 ## Performance Impact

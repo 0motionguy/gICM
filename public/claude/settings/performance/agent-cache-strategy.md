@@ -17,13 +17,13 @@ Controls how agent prompts are cached. 'none' disables caching, 'session' caches
 
 ```bash
 # Session caching (default)
-npx gicm-stack settings add performance/agent-cache-strategy --value session
+npx @gicm/cli settings add performance/agent-cache-strategy --value session
 
 # No caching
-npx gicm-stack settings add performance/agent-cache-strategy --value none
+npx @gicm/cli settings add performance/agent-cache-strategy --value none
 
 # Persistent caching
-npx gicm-stack settings add performance/agent-cache-strategy --value persistent
+npx @gicm/cli settings add performance/agent-cache-strategy --value persistent
 ```
 
 ## Caching Strategies

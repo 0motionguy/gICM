@@ -17,10 +17,10 @@ Controls the maximum size of the context window. Larger windows allow more conte
 
 ```bash
 # Install with default value (200k)
-npx gicm-stack settings add performance/context-window-size
+npx @gicm/cli settings add performance/context-window-size
 
 # Install with custom value (100k)
-npx gicm-stack settings add performance/context-window-size --value 100000
+npx @gicm/cli settings add performance/context-window-size --value 100000
 ```
 
 ## Model Limits

@@ -17,10 +17,10 @@ When enabled, Claude can execute multiple independent tool calls simultaneously 
 
 ```bash
 # Enable parallel execution (default)
-npx gicm-stack settings add performance/parallel-tool-execution --value true
+npx @gicm/cli settings add performance/parallel-tool-execution --value true
 
 # Disable parallel execution
-npx gicm-stack settings add performance/parallel-tool-execution --value false
+npx @gicm/cli settings add performance/parallel-tool-execution --value false
 ```
 
 ## Performance Impact

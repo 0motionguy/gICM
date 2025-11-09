@@ -17,10 +17,10 @@ Enables gzip compression for API responses. Significantly reduces bandwidth usag
 
 ```bash
 # Enable compression (default)
-npx gicm-stack settings add performance/compression-enabled --value true
+npx @gicm/cli settings add performance/compression-enabled --value true
 
 # Disable compression
-npx gicm-stack settings add performance/compression-enabled --value false
+npx @gicm/cli settings add performance/compression-enabled --value false
 ```
 
 ## Performance Impact

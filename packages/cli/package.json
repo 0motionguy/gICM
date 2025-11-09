@@ -33,15 +33,15 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "commander": "^11.1.0",
     "axios": "^1.6.2",
     "chalk": "^5.3.0",
-    "ora": "^7.0.1",
-    "fs-extra": "^11.2.0"
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^7.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
     "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.10.4",
     "typescript": "^5.3.3"
   }
 }

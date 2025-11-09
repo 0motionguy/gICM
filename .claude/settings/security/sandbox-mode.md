@@ -17,10 +17,10 @@ Sandbox Mode creates an isolated environment that restricts Claude Code's file s
 
 ```bash
 # Enable sandbox mode
-npx gicm-stack settings add security/sandbox-mode --value true
+npx @gicm/cli settings add security/sandbox-mode --value true
 
 # Disable sandbox mode (default)
-npx gicm-stack settings add security/sandbox-mode --value false
+npx @gicm/cli settings add security/sandbox-mode --value false
 ```
 
 ## How It Works
@@ -130,7 +130,7 @@ If you encounter access denied errors:
 
 3. **Temporarily disable for diagnosis:**
    ```bash
-   npx gicm-stack settings remove security/sandbox-mode
+   npx @gicm/cli settings remove security/sandbox-mode
    ```
 
 4. **Review audit logs:**
@@ -142,9 +142,9 @@ If you encounter access denied errors:
 
 If you need to access files outside the project:
 
-1. **Disable temporarily:** `npx gicm-stack settings remove security/sandbox-mode`
+1. **Disable temporarily:** `npx @gicm/cli settings remove security/sandbox-mode`
 2. **Complete operation**
-3. **Re-enable:** `npx gicm-stack settings add security/sandbox-mode --value true`
+3. **Re-enable:** `npx @gicm/cli settings add security/sandbox-mode --value true`
 
 Or configure allowed paths in `.claude/settings.json`:
 ```json

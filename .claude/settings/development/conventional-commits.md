@@ -17,10 +17,10 @@ Enforces conventional commit message format for all commits created by Claude. F
 
 ```bash
 # Enable conventional commits (default)
-npx gicm-stack settings add development/conventional-commits --value true
+npx @gicm/cli settings add development/conventional-commits --value true
 
 # Disable conventional commits
-npx gicm-stack settings add development/conventional-commits --value false
+npx @gicm/cli settings add development/conventional-commits --value false
 ```
 
 ## Commit Format
@@ -99,7 +99,7 @@ Prevents crashes when endpoint returns unexpected data.
 
 **Generate changelog:**
 ```bash
-npx gicm-stack changelog generate
+npx @gicm/cli changelog generate
 
 # Output:
 ## v1.2.0 (2025-11-08)

@@ -17,13 +17,13 @@ Logs database queries, API calls, and operations that exceed the specified thres
 
 ```bash
 # Default threshold (1 second)
-npx gicm-stack settings add monitoring/slow-query-threshold-ms
+npx @gicm/cli settings add monitoring/slow-query-threshold-ms
 
 # Custom threshold (500ms)
-npx gicm-stack settings add monitoring/slow-query-threshold-ms --value 500
+npx @gicm/cli settings add monitoring/slow-query-threshold-ms --value 500
 
 # Disable slow query logging (0)
-npx gicm-stack settings add monitoring/slow-query-threshold-ms --value 0
+npx @gicm/cli settings add monitoring/slow-query-threshold-ms --value 0
 ```
 
 ## What Gets Logged

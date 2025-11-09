@@ -17,10 +17,10 @@ Sets the maximum number of tokens that can be used in a single request. Helps co
 
 ```bash
 # Install with default value (200k)
-npx gicm-stack settings add performance/token-budget-limit
+npx @gicm/cli settings add performance/token-budget-limit
 
 # Install with custom value (100k)
-npx gicm-stack settings add performance/token-budget-limit --value 100000
+npx @gicm/cli settings add performance/token-budget-limit --value 100000
 ```
 
 ## Recommendations

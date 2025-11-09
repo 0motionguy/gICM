@@ -19,10 +19,10 @@ This is the **single most impactful** performance optimization in the gICM stack
 
 ```bash
 # Enable (recommended, default)
-npx gicm-stack settings add performance/lazy-skill-loading --value true
+npx @gicm/cli settings add performance/lazy-skill-loading --value true
 
 # Disable (only for debugging)
-npx gicm-stack settings add performance/lazy-skill-loading --value false
+npx @gicm/cli settings add performance/lazy-skill-loading --value false
 ```
 
 ## How It Works
@@ -206,7 +206,7 @@ If Claude seems to lack details about a skill:
 
 1. **Explicitly request:** "Show me the full Bonding Curves skill"
 2. **Check setting:** Verify `lazy-skill-loading: true`
-3. **Clear cache:** `npx gicm-stack settings add performance/skill-cache-ttl --value 0`
+3. **Clear cache:** `npx @gicm/cli settings add performance/skill-cache-ttl --value 0`
 4. **Review logs:** Enable `lazy-skill-debug: true`
 
 ### Skills Expanding Too Often

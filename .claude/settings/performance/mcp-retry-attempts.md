@@ -17,10 +17,10 @@ Determines how many times Claude Code will retry a failed MCP server call before
 
 ```bash
 # Install with default value
-npx gicm-stack settings add performance/mcp-retry-attempts
+npx @gicm/cli settings add performance/mcp-retry-attempts
 
 # Install with custom value
-npx gicm-stack settings add performance/mcp-retry-attempts --value 3
+npx @gicm/cli settings add performance/mcp-retry-attempts --value 3
 ```
 
 ## Recommendations

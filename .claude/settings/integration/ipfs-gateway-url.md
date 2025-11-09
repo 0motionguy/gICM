@@ -16,16 +16,16 @@ Sets the IPFS gateway for retrieving NFT metadata and assets. Cloudflare gateway
 
 ```bash
 # Cloudflare gateway (default - fastest)
-npx gicm-stack settings add integration/ipfs-gateway-url --value cloudflare-ipfs.com
+npx @gicm/cli settings add integration/ipfs-gateway-url --value cloudflare-ipfs.com
 
 # IPFS.io gateway
-npx gicm-stack settings add integration/ipfs-gateway-url --value ipfs.io
+npx @gicm/cli settings add integration/ipfs-gateway-url --value ipfs.io
 
 # Dweb.link gateway
-npx gicm-stack settings add integration/ipfs-gateway-url --value dweb.link
+npx @gicm/cli settings add integration/ipfs-gateway-url --value dweb.link
 
 # Custom gateway
-npx gicm-stack settings add integration/ipfs-gateway-url --value gateway.pinata.cloud
+npx @gicm/cli settings add integration/ipfs-gateway-url --value gateway.pinata.cloud
 ```
 
 ## Gateway Comparison

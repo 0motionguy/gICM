@@ -12,7 +12,7 @@ Automatically commit changes after successful operations with detailed commit me
 ## Usage
 
 ```bash
-npx gicm-stack settings add development/auto-git-commit --value true
+npx @gicm/cli settings add development/auto-git-commit --value true
 ```
 
 ## Description

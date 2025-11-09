@@ -16,10 +16,10 @@ Prevents execution of specified bash commands that could cause data loss or syst
 
 ```bash
 # Use default blacklist
-npx gicm-stack settings add security/disallowed-commands
+npx @gicm/cli settings add security/disallowed-commands
 
 # Custom blacklist
-npx gicm-stack settings add security/disallowed-commands --value "rm -rf,dd,mkfs,sudo rm"
+npx @gicm/cli settings add security/disallowed-commands --value "rm -rf,dd,mkfs,sudo rm"
 ```
 
 ## Default Blacklist
@@ -109,10 +109,10 @@ When disallowed command is attempted:
 **Temporary override:**
 ```bash
 # Disable blacklist for current operation
-npx gicm-stack settings override disallowed-commands --value ""
+npx @gicm/cli settings override disallowed-commands --value ""
 # Run command
 # Re-enable
-npx gicm-stack settings add security/disallowed-commands
+npx @gicm/cli settings add security/disallowed-commands
 ```
 
 **Whitelist specific path:**

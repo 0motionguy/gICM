@@ -34,7 +34,7 @@ All agents, skills, commands, MCP servers, and settings are stored in a separate
 
 Users can:
 - Clone the library directly
-- Install via CLI: `npx gicm-stack add agent/icm-anchor-architect`
+- Install via CLI: `npx @gicm/cli add agent/icm-anchor-architect`
 - Browse content on GitHub
 - Submit pull requests to add new items
 

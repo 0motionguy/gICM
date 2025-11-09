@@ -17,13 +17,13 @@ Controls permission model for MCP servers. 'strict' requires explicit approval f
 
 ```bash
 # Strict mode (production)
-npx gicm-stack settings add security/mcp-permission-model --value strict
+npx @gicm/cli settings add security/mcp-permission-model --value strict
 
 # Permissive mode (default)
-npx gicm-stack settings add security/mcp-permission-model --value permissive
+npx @gicm/cli settings add security/mcp-permission-model --value permissive
 
 # Custom permission rules
-npx gicm-stack settings add security/mcp-permission-model --value custom
+npx @gicm/cli settings add security/mcp-permission-model --value custom
 ```
 
 ## Permission Models

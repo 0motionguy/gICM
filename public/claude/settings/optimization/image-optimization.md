@@ -17,10 +17,10 @@ Automatically optimizes images by converting to WebP format, generating responsi
 
 ```bash
 # Enable image optimization (default)
-npx gicm-stack settings add optimization/image-optimization --value true
+npx @gicm/cli settings add optimization/image-optimization --value true
 
 # Disable image optimization
-npx gicm-stack settings add optimization/image-optimization --value false
+npx @gicm/cli settings add optimization/image-optimization --value false
 ```
 
 ## Optimizations Applied

@@ -17,10 +17,10 @@ Automatically runs linters (ESLint, Prettier, Rustfmt, etc.) on all generated co
 
 ```bash
 # Enable linting (default)
-npx gicm-stack settings add development/linting-enabled --value true
+npx @gicm/cli settings add development/linting-enabled --value true
 
 # Disable linting
-npx gicm-stack settings add development/linting-enabled --value false
+npx @gicm/cli settings add development/linting-enabled --value false
 ```
 
 ## Supported Linters

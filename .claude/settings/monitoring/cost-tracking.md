@@ -17,10 +17,10 @@ Enables real-time cost tracking for all API usage including Claude API calls, bl
 
 ```bash
 # Enable cost tracking
-npx gicm-stack settings add monitoring/cost-tracking --value true
+npx @gicm/cli settings add monitoring/cost-tracking --value true
 
 # Disable cost tracking (default)
-npx gicm-stack settings add monitoring/cost-tracking --value false
+npx @gicm/cli settings add monitoring/cost-tracking --value false
 ```
 
 ## Cost Breakdown
@@ -115,13 +115,13 @@ Apply all suggestions? [Y/n]
 **Generate cost reports:**
 ```bash
 # Daily report
-npx gicm-stack costs report --period daily
+npx @gicm/cli costs report --period daily
 
 # Monthly report with breakdown
-npx gicm-stack costs report --period monthly --detailed
+npx @gicm/cli costs report --period monthly --detailed
 
 # Export to CSV
-npx gicm-stack costs export --format csv --output costs.csv
+npx @gicm/cli costs export --format csv --output costs.csv
 ```
 
 **Report format:**

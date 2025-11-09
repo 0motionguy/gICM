@@ -17,13 +17,13 @@ Controls CDN caching behavior. 'aggressive' caches everything with long TTLs (be
 
 ```bash
 # Balanced strategy (default)
-npx gicm-stack settings add optimization/cdn-caching-strategy --value balanced
+npx @gicm/cli settings add optimization/cdn-caching-strategy --value balanced
 
 # Aggressive caching
-npx gicm-stack settings add optimization/cdn-caching-strategy --value aggressive
+npx @gicm/cli settings add optimization/cdn-caching-strategy --value aggressive
 
 # Conservative caching
-npx gicm-stack settings add optimization/cdn-caching-strategy --value conservative
+npx @gicm/cli settings add optimization/cdn-caching-strategy --value conservative
 ```
 
 ## Caching Strategies

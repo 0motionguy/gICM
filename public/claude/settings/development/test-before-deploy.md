@@ -17,10 +17,10 @@ Automatically runs full test suite before any deployment operations. Deployment 
 
 ```bash
 # Enable test-before-deploy (default)
-npx gicm-stack settings add development/test-before-deploy --value true
+npx @gicm/cli settings add development/test-before-deploy --value true
 
 # Disable test-before-deploy
-npx gicm-stack settings add development/test-before-deploy --value false
+npx @gicm/cli settings add development/test-before-deploy --value false
 ```
 
 ## How It Works
@@ -99,9 +99,9 @@ Fix failing tests and try again.
 npm run deploy -- --skip-tests
 
 # Or override setting
-npx gicm-stack settings override test-before-deploy --value false
+npx @gicm/cli settings override test-before-deploy --value false
 npm run deploy
-npx gicm-stack settings add development/test-before-deploy --value true
+npx @gicm/cli settings add development/test-before-deploy --value true
 ```
 
 ## CI/CD Integration

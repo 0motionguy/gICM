@@ -17,16 +17,16 @@ Configures error tracking and reporting service. Automatically reports errors, e
 
 ```bash
 # Sentry (recommended)
-npx gicm-stack settings add integration/error-reporting-service --value sentry
+npx @gicm/cli settings add integration/error-reporting-service --value sentry
 
 # Bugsnag
-npx gicm-stack settings add integration/error-reporting-service --value bugsnag
+npx @gicm/cli settings add integration/error-reporting-service --value bugsnag
 
 # Rollbar
-npx gicm-stack settings add integration/error-reporting-service --value rollbar
+npx @gicm/cli settings add integration/error-reporting-service --value rollbar
 
 # Disable error reporting (default)
-npx gicm-stack settings add integration/error-reporting-service --value none
+npx @gicm/cli settings add integration/error-reporting-service --value none
 ```
 
 ## Service Comparison

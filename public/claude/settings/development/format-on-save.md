@@ -17,10 +17,10 @@ Automatically formats files using appropriate formatters (Prettier, Black, Rustf
 
 ```bash
 # Enable format-on-save (default)
-npx gicm-stack settings add development/format-on-save --value true
+npx @gicm/cli settings add development/format-on-save --value true
 
 # Disable format-on-save
-npx gicm-stack settings add development/format-on-save --value false
+npx @gicm/cli settings add development/format-on-save --value false
 ```
 
 ## Supported Formatters

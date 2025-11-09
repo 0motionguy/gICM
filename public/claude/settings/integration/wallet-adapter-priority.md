@@ -16,10 +16,10 @@ Defines the order in which wallet adapters are attempted when connecting. First 
 
 ```bash
 # Solana wallets (default)
-npx gicm-stack settings add integration/wallet-adapter-priority --value "phantom,solflare,backpack"
+npx @gicm/cli settings add integration/wallet-adapter-priority --value "phantom,solflare,backpack"
 
 # Ethereum wallets
-npx gicm-stack settings add integration/wallet-adapter-priority --value "metamask,walletconnect,coinbase"
+npx @gicm/cli settings add integration/wallet-adapter-priority --value "metamask,walletconnect,coinbase"
 ```
 
 ## Wallet Priorities

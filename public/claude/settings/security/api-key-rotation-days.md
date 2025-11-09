@@ -17,10 +17,10 @@ Sets the number of days after which Claude will warn you to rotate your API keys
 
 ```bash
 # Install with default value (90 days)
-npx gicm-stack settings add security/api-key-rotation-days
+npx @gicm/cli settings add security/api-key-rotation-days
 
 # Install with custom value (30 days)
-npx gicm-stack settings add security/api-key-rotation-days --value 30
+npx @gicm/cli settings add security/api-key-rotation-days --value 30
 ```
 
 ## Rotation Recommendations

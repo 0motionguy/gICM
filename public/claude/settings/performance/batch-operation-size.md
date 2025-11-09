@@ -17,10 +17,10 @@ Controls the batch size for bulk operations like file processing, data transform
 
 ```bash
 # Install with default value (10)
-npx gicm-stack settings add performance/batch-operation-size
+npx @gicm/cli settings add performance/batch-operation-size
 
 # Install with custom value (50)
-npx gicm-stack settings add performance/batch-operation-size --value 50
+npx @gicm/cli settings add performance/batch-operation-size --value 50
 ```
 
 ## Recommendations
@@ -54,19 +54,19 @@ npx gicm-stack settings add performance/batch-operation-size --value 50
 ### Bulk File Processing
 ```bash
 # Process 100 files in batches of 10
-npx gicm-stack settings add performance/batch-operation-size --value 10
+npx @gicm/cli settings add performance/batch-operation-size --value 10
 ```
 
 ### Data Transformation
 ```bash
 # Transform large datasets in batches of 50
-npx gicm-stack settings add performance/batch-operation-size --value 50
+npx @gicm/cli settings add performance/batch-operation-size --value 50
 ```
 
 ### API Integration
 ```bash
 # API calls with rate limit of 10/second
-npx gicm-stack settings add performance/batch-operation-size --value 5
+npx @gicm/cli settings add performance/batch-operation-size --value 5
 ```
 
 ## Related Settings

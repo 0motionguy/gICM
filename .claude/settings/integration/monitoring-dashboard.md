@@ -17,19 +17,19 @@ Integrates with monitoring and observability platforms for metrics, logs, and tr
 
 ```bash
 # Datadog (recommended)
-npx gicm-stack settings add integration/monitoring-dashboard --value datadog
+npx @gicm/cli settings add integration/monitoring-dashboard --value datadog
 
 # New Relic
-npx gicm-stack settings add integration/monitoring-dashboard --value newrelic
+npx @gicm/cli settings add integration/monitoring-dashboard --value newrelic
 
 # Grafana
-npx gicm-stack settings add integration/monitoring-dashboard --value grafana
+npx @gicm/cli settings add integration/monitoring-dashboard --value grafana
 
 # Prometheus
-npx gicm-stack settings add integration/monitoring-dashboard --value prometheus
+npx @gicm/cli settings add integration/monitoring-dashboard --value prometheus
 
 # Disable monitoring (default)
-npx gicm-stack settings add integration/monitoring-dashboard --value none
+npx @gicm/cli settings add integration/monitoring-dashboard --value none
 ```
 
 ## Service Comparison

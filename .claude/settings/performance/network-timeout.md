@@ -17,10 +17,10 @@ Sets the timeout for all network operations including API calls, RPC requests, a
 
 ```bash
 # Install with default value (30s)
-npx gicm-stack settings add performance/network-timeout
+npx @gicm/cli settings add performance/network-timeout
 
 # Install with custom value (60s)
-npx gicm-stack settings add performance/network-timeout --value 60000
+npx @gicm/cli settings add performance/network-timeout --value 60000
 ```
 
 ## Recommendations

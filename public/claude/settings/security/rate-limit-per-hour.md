@@ -17,10 +17,10 @@ Sets rate limit for API requests to prevent runaway costs and detect potential i
 
 ```bash
 # Install with default value (1000)
-npx gicm-stack settings add security/rate-limit-per-hour
+npx @gicm/cli settings add security/rate-limit-per-hour
 
 # Install with custom value (5000)
-npx gicm-stack settings add security/rate-limit-per-hour --value 5000
+npx @gicm/cli settings add security/rate-limit-per-hour --value 5000
 ```
 
 ## Recommendations
@@ -76,26 +76,26 @@ Rate limit resets in: 23 minutes
 **Temporary bypass:**
 ```bash
 # Disable for current session
-npx gicm-stack settings override rate-limit-per-hour --value 999999
+npx @gicm/cli settings override rate-limit-per-hour --value 999999
 ```
 
 **Permanent increase:**
 ```bash
 # Update settings permanently
-npx gicm-stack settings add security/rate-limit-per-hour --value 10000
+npx @gicm/cli settings add security/rate-limit-per-hour --value 10000
 ```
 
 ## Monitoring
 
 **View current usage:**
 ```bash
-npx gicm-stack status rate-limit
+npx @gicm/cli status rate-limit
 # Output: 342/1000 requests this hour (34%)
 ```
 
 **View usage history:**
 ```bash
-npx gicm-stack logs rate-limit --days 7
+npx @gicm/cli logs rate-limit --days 7
 ```
 
 ## Related Settings

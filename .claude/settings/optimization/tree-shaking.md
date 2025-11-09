@@ -17,10 +17,10 @@ Enables tree shaking (dead code elimination) in bundlers. Removes unused exports
 
 ```bash
 # Enable tree shaking (default)
-npx gicm-stack settings add optimization/tree-shaking --value true
+npx @gicm/cli settings add optimization/tree-shaking --value true
 
 # Disable tree shaking
-npx gicm-stack settings add optimization/tree-shaking --value false
+npx @gicm/cli settings add optimization/tree-shaking --value false
 ```
 
 ## How It Works
@@ -122,7 +122,7 @@ const { foo } = require('./utils');
 npm run build
 
 # Analyze bundle
-npx gicm-stack bundle analyze
+npx @gicm/cli bundle analyze
 
 # Output shows:
 # Before: 850 KB

@@ -16,10 +16,10 @@ Restricts external API calls to specified domains only. Provides additional secu
 
 ```bash
 # Allow specific domains
-npx gicm-stack settings add security/allowed-domains --value "api.anthropic.com,supabase.io,alchemy.com"
+npx @gicm/cli settings add security/allowed-domains --value "api.anthropic.com,supabase.io,alchemy.com"
 
 # Allow all domains (default)
-npx gicm-stack settings add security/allowed-domains --value ""
+npx @gicm/cli settings add security/allowed-domains --value ""
 ```
 
 ## Common Whitelists

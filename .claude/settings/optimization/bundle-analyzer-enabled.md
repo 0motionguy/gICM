@@ -17,10 +17,10 @@ Automatically runs bundle analyzer after builds to identify large dependencies, 
 
 ```bash
 # Enable bundle analysis
-npx gicm-stack settings add optimization/bundle-analyzer-enabled --value true
+npx @gicm/cli settings add optimization/bundle-analyzer-enabled --value true
 
 # Disable bundle analysis (default)
-npx gicm-stack settings add optimization/bundle-analyzer-enabled --value false
+npx @gicm/cli settings add optimization/bundle-analyzer-enabled --value false
 ```
 
 ## Analysis Output

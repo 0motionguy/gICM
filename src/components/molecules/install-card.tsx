@@ -48,8 +48,8 @@ export function InstallCard({ item }: InstallCardProps) {
   const [copied, setCopied] = useState(false);
   const providers = getProviders(item);
 
-  // Generate CLI install command
-  const cliCommand = `npx @gicm/cli add ${item.kind}/${item.slug}`;
+  // Use install command from registry (ensures consistency across all pages)
+  const cliCommand = item.install;
 
   function copyCommand() {
     navigator.clipboard?.writeText(cliCommand);

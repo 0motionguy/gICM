@@ -17,10 +17,10 @@ Controls how long Claude Code will wait for responses from Model Context Protoco
 
 ```bash
 # Install with default value
-npx gicm-stack settings add performance/mcp-timeout-duration
+npx @gicm/cli settings add performance/mcp-timeout-duration
 
 # Install with custom value (60 seconds)
-npx gicm-stack settings add performance/mcp-timeout-duration --value 60000
+npx @gicm/cli settings add performance/mcp-timeout-duration --value 60000
 ```
 
 ## Recommendations

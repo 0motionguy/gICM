@@ -57,7 +57,7 @@ gICM Web App
     ├── Marketplace pages (browse items)
     └── "Add to Stack" → generates install command
          ↓
-User runs: npx gicm-stack add agent/icm-anchor-architect
+User runs: npx @gicm/cli add agent/icm-anchor-architect
          ↓
 Downloads from gICM-library (GitHub)
 ```
@@ -66,7 +66,7 @@ Downloads from gICM-library (GitHub)
 
 **Method 1: Via CLI**
 ```bash
-npx gicm-stack add agent/icm-anchor-architect
+npx @gicm/cli add agent/icm-anchor-architect
 ```
 - CLI fetches from `gICM-library` repo
 - Downloads markdown/JSON files

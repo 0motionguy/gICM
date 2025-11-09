@@ -17,10 +17,10 @@ When enabled, Claude will stream responses token by token instead of waiting for
 
 ```bash
 # Enable streaming (default)
-npx gicm-stack settings add performance/response-streaming --value true
+npx @gicm/cli settings add performance/response-streaming --value true
 
 # Disable streaming
-npx gicm-stack settings add performance/response-streaming --value false
+npx @gicm/cli settings add performance/response-streaming --value false
 ```
 
 ## Benefits

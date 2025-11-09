@@ -17,10 +17,10 @@ Enables pre-commit hooks that run validation checks before creating commits. Inc
 
 ```bash
 # Enable pre-commit hooks (default)
-npx gicm-stack settings add development/pre-commit-hooks --value true
+npx @gicm/cli settings add development/pre-commit-hooks --value true
 
 # Disable pre-commit hooks
-npx gicm-stack settings add development/pre-commit-hooks --value false
+npx @gicm/cli settings add development/pre-commit-hooks --value false
 ```
 
 ## Hook Checks
@@ -98,9 +98,9 @@ git commit --no-verify -m "WIP: debugging"
 
 **Disable temporarily:**
 ```bash
-npx gicm-stack settings override pre-commit-hooks --value false
+npx @gicm/cli settings override pre-commit-hooks --value false
 # Make commits
-npx gicm-stack settings add development/pre-commit-hooks --value true
+npx @gicm/cli settings add development/pre-commit-hooks --value true
 ```
 
 ## Performance Impact

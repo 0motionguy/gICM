@@ -13,7 +13,21 @@
       "Bash(npx:*)",
       "Bash(python3:*)",
       "Bash(complete_entries.txt)",
-      "Bash(tsc:*)"
+      "Bash(tsc:*)",
+      "Bash(test:*)",
+      "Bash(dir /B)",
+      "Bash(npm ls:*)",
+      "Bash(npm exec:*)",
+      "Bash(npm cache verify:*)",
+      "Bash(gicm --version)",
+      "Bash(gicm --help:*)",
+      "Bash(gicm add:*)",
+      "Bash(npm config:*)",
+      "Bash(npm root:*)",
+      "Bash(gicm)",
+      "Bash(cmd /c \"npx @gicm/cli --version\")",
+      "Bash(npm uninstall:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []

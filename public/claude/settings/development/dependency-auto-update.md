@@ -17,16 +17,16 @@ Controls automatic dependency updates. 'none' disables auto-updates, 'patch' upd
 
 ```bash
 # No automatic updates (default)
-npx gicm-stack settings add development/dependency-auto-update --value none
+npx @gicm/cli settings add development/dependency-auto-update --value none
 
 # Patch updates only (1.0.x)
-npx gicm-stack settings add development/dependency-auto-update --value patch
+npx @gicm/cli settings add development/dependency-auto-update --value patch
 
 # Minor updates (1.x.0)
-npx gicm-stack settings add development/dependency-auto-update --value minor
+npx @gicm/cli settings add development/dependency-auto-update --value minor
 
 # All updates including major (x.0.0)
-npx gicm-stack settings add development/dependency-auto-update --value major
+npx @gicm/cli settings add development/dependency-auto-update --value major
 ```
 
 ## Update Levels

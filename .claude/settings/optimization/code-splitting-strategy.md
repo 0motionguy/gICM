@@ -17,16 +17,16 @@ Defines how code is split into separate bundles. 'route' splits by page routes (
 
 ```bash
 # Route-based splitting (default, best for Next.js)
-npx gicm-stack settings add optimization/code-splitting-strategy --value route
+npx @gicm/cli settings add optimization/code-splitting-strategy --value route
 
 # Component-based splitting
-npx gicm-stack settings add optimization/code-splitting-strategy --value component
+npx @gicm/cli settings add optimization/code-splitting-strategy --value component
 
 # Vendor splitting
-npx gicm-stack settings add optimization/code-splitting-strategy --value vendor
+npx @gicm/cli settings add optimization/code-splitting-strategy --value vendor
 
 # Manual splitting
-npx gicm-stack settings add optimization/code-splitting-strategy --value manual
+npx @gicm/cli settings add optimization/code-splitting-strategy --value manual
 ```
 
 ## Splitting Strategies

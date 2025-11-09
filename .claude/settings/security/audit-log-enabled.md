@@ -17,10 +17,10 @@ When enabled, logs all sensitive operations including file modifications, enviro
 
 ```bash
 # Enable audit logging
-npx gicm-stack settings add security/audit-log-enabled --value true
+npx @gicm/cli settings add security/audit-log-enabled --value true
 
 # Disable audit logging (default)
-npx gicm-stack settings add security/audit-log-enabled --value false
+npx @gicm/cli settings add security/audit-log-enabled --value false
 ```
 
 ## What Gets Logged

@@ -17,10 +17,10 @@ Ensures all generated TypeScript code uses strict mode with full type checking e
 
 ```bash
 # Enable strict mode (default)
-npx gicm-stack settings add development/typescript-strict-mode --value true
+npx @gicm/cli settings add development/typescript-strict-mode --value true
 
 # Disable strict mode
-npx gicm-stack settings add development/typescript-strict-mode --value false
+npx @gicm/cli settings add development/typescript-strict-mode --value false
 ```
 
 ## Strict Mode Checks

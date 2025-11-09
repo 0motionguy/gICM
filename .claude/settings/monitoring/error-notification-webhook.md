@@ -16,13 +16,13 @@ Sends error notifications to specified webhook URL. Supports Slack webhooks, Dis
 
 ```bash
 # Slack webhook
-npx gicm-stack settings add monitoring/error-notification-webhook --value "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+npx @gicm/cli settings add monitoring/error-notification-webhook --value "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
 
 # Discord webhook
-npx gicm-stack settings add monitoring/error-notification-webhook --value "https://discord.com/api/webhooks/YOUR/WEBHOOK"
+npx @gicm/cli settings add monitoring/error-notification-webhook --value "https://discord.com/api/webhooks/YOUR/WEBHOOK"
 
 # Custom webhook
-npx gicm-stack settings add monitoring/error-notification-webhook --value "https://your-api.com/webhooks/errors"
+npx @gicm/cli settings add monitoring/error-notification-webhook --value "https://your-api.com/webhooks/errors"
 ```
 
 ## Environment Variable

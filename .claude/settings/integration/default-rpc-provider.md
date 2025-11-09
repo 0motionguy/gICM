@@ -17,13 +17,13 @@ Sets the default RPC provider for blockchain interactions. Different providers o
 
 ```bash
 # Helius (Solana - default)
-npx gicm-stack settings add integration/default-rpc-provider --value helius
+npx @gicm/cli settings add integration/default-rpc-provider --value helius
 
 # Alchemy (EVM chains)
-npx gicm-stack settings add integration/default-rpc-provider --value alchemy
+npx @gicm/cli settings add integration/default-rpc-provider --value alchemy
 
 # Custom RPC endpoint
-npx gicm-stack settings add integration/default-rpc-provider --value custom
+npx @gicm/cli settings add integration/default-rpc-provider --value custom
 ```
 
 ## Provider Recommendations

@@ -17,13 +17,13 @@ Selects which The Graph network to use. 'hosted' uses legacy hosted service (bei
 
 ```bash
 # Subgraph Studio (default)
-npx gicm-stack settings add integration/subgraph-endpoint --value studio
+npx @gicm/cli settings add integration/subgraph-endpoint --value studio
 
 # Decentralized Network
-npx gicm-stack settings add integration/subgraph-endpoint --value decentralized
+npx @gicm/cli settings add integration/subgraph-endpoint --value decentralized
 
 # Hosted Service (deprecated)
-npx gicm-stack settings add integration/subgraph-endpoint --value hosted
+npx @gicm/cli settings add integration/subgraph-endpoint --value hosted
 ```
 
 ## Endpoint Types

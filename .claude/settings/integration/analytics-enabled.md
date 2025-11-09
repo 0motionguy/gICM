@@ -17,10 +17,10 @@ Enables anonymous usage analytics to help improve Claude Code. Collects command 
 
 ```bash
 # Enable analytics
-npx gicm-stack settings add integration/analytics-enabled --value true
+npx @gicm/cli settings add integration/analytics-enabled --value true
 
 # Disable analytics (default)
-npx gicm-stack settings add integration/analytics-enabled --value false
+npx @gicm/cli settings add integration/analytics-enabled --value false
 ```
 
 ## What Gets Collected
@@ -85,7 +85,7 @@ npx gicm-stack settings add integration/analytics-enabled --value false
 
 **Disable anytime:**
 ```bash
-npx gicm-stack settings add integration/analytics-enabled --value false
+npx @gicm/cli settings add integration/analytics-enabled --value false
 ```
 
 **Or via environment variable:**
@@ -97,7 +97,7 @@ export GICM_ANALYTICS_DISABLED=true
 
 **View anonymized community stats:**
 ```bash
-npx gicm-stack analytics view
+npx @gicm/cli analytics view
 
 # Shows:
 # - Most popular agents

@@ -17,10 +17,10 @@ Enables encryption for all stored credentials including API keys, database passw
 
 ```bash
 # Enable encryption
-npx gicm-stack settings add security/credential-encryption --value true
+npx @gicm/cli settings add security/credential-encryption --value true
 
 # Disable encryption (default)
-npx gicm-stack settings add security/credential-encryption --value false
+npx @gicm/cli settings add security/credential-encryption --value false
 ```
 
 ## How It Works
@@ -63,10 +63,10 @@ npx gicm-stack settings add security/credential-encryption --value false
 **First-time setup:**
 ```bash
 # Enable encryption
-npx gicm-stack settings add security/credential-encryption --value true
+npx @gicm/cli settings add security/credential-encryption --value true
 
 # Migrate existing credentials
-npx gicm-stack credentials migrate-to-encrypted
+npx @gicm/cli credentials migrate-to-encrypted
 ```
 
 **System will prompt:**
@@ -90,10 +90,10 @@ All credentials are now encrypted at rest.
 **Lost encryption key:**
 ```bash
 # Reset (will lose existing credentials)
-npx gicm-stack credentials reset-encryption
+npx @gicm/cli credentials reset-encryption
 
 # Then re-enter credentials
-npx gicm-stack credentials set ANTHROPIC_API_KEY
+npx @gicm/cli credentials set ANTHROPIC_API_KEY
 ```
 
 ## Related Settings

@@ -17,10 +17,10 @@ Enables automated uptime monitoring for deployed services. Periodically checks h
 
 ```bash
 # Enable uptime monitoring
-npx gicm-stack settings add monitoring/uptime-monitoring --value true
+npx @gicm/cli settings add monitoring/uptime-monitoring --value true
 
 # Disable uptime monitoring (default)
-npx gicm-stack settings add monitoring/uptime-monitoring --value false
+npx @gicm/cli settings add monitoring/uptime-monitoring --value false
 ```
 
 ## Health Check Configuration
@@ -131,7 +131,7 @@ Alert sent to: ${SLACK_WEBHOOK_URL}
 **Generate uptime reports:**
 ```bash
 # View current status
-npx gicm-stack uptime status
+npx @gicm/cli uptime status
 
 # Output:
 # ╔════════════╦═════════╦══════════════╦═══════════╗
@@ -143,7 +143,7 @@ npx gicm-stack uptime status
 # ╚════════════╩═════════╩══════════════╩═══════════╝
 
 # Historical report
-npx gicm-stack uptime report --days 30
+npx @gicm/cli uptime report --days 30
 ```
 
 ## Integration with Monitoring Services

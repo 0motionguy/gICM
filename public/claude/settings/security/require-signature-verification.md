@@ -17,10 +17,10 @@ Enables cryptographic signature verification for all installed packages, agents,
 
 ```bash
 # Enable signature verification
-npx gicm-stack settings add security/require-signature-verification --value true
+npx @gicm/cli settings add security/require-signature-verification --value true
 
 # Disable signature verification (default)
-npx gicm-stack settings add security/require-signature-verification --value false
+npx @gicm/cli settings add security/require-signature-verification --value false
 ```
 
 ## How It Works
@@ -91,10 +91,10 @@ Continue anyway? [y/N] (not recommended)
 **With signature verification enabled:**
 ```bash
 # Download signatures for offline use
-npx gicm-stack signatures download-all
+npx @gicm/cli signatures download-all
 
 # Use offline
-npx gicm-stack install agent/frontend-fusion --offline
+npx @gicm/cli install agent/frontend-fusion --offline
 ```
 
 ## Developer Mode
@@ -115,17 +115,17 @@ npx gicm-stack install agent/frontend-fusion --offline
 
 **View public keys:**
 ```bash
-npx gicm-stack keys list
+npx @gicm/cli keys list
 ```
 
 **Add trusted key:**
 ```bash
-npx gicm-stack keys add --publisher "Custom Publisher" --key-file ./pubkey.gpg
+npx @gicm/cli keys add --publisher "Custom Publisher" --key-file ./pubkey.gpg
 ```
 
 **Revoke key:**
 ```bash
-npx gicm-stack keys revoke --publisher "Old Publisher"
+npx @gicm/cli keys revoke --publisher "Old Publisher"
 ```
 
 ## Related Settings

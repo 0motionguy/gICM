@@ -17,13 +17,13 @@ Monitors memory usage and alerts when threshold is exceeded. Helps prevent out-o
 
 ```bash
 # Enable with 1GB threshold
-npx gicm-stack settings add monitoring/memory-usage-alerts --value 1024
+npx @gicm/cli settings add monitoring/memory-usage-alerts --value 1024
 
 # Enable with 2GB threshold
-npx gicm-stack settings add monitoring/memory-usage-alerts --value 2048
+npx @gicm/cli settings add monitoring/memory-usage-alerts --value 2048
 
 # Disable alerts (default)
-npx gicm-stack settings add monitoring/memory-usage-alerts --value 0
+npx @gicm/cli settings add monitoring/memory-usage-alerts --value 0
 ```
 
 ## Memory Monitoring
