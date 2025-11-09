@@ -1334,6 +1334,142 @@ export const AGENTS: RegistryItem[] = [
     installs: 980,
     remixes: 340,
   },
+  {
+    id: "api-documentation-specialist",
+    kind: "agent",
+    name: "api-documentation-specialist",
+    slug: "api-documentation-specialist",
+    description: "OpenAPI, tRPC, GraphQL schema documentation expert for API reference, interactive docs, and client SDK generation",
+    files: [".claude/agents/api-documentation-specialist.md"]
+  },
+  {
+    id: "build-system-engineer",
+    kind: "agent",
+    name: "build-system-engineer",
+    slug: "build-system-engineer",
+    description: "Webpack, Vite, and Turbopack configuration expert for module resolution, plugins, and build optimization",
+    files: [".claude/agents/build-system-engineer.md"]
+  },
+  {
+    id: "bundler-optimizer",
+    kind: "agent",
+    name: "bundler-optimizer",
+    slug: "bundler-optimizer",
+    description: "Tree-shaking, code splitting, and lazy loading expert for bundle analysis and optimization strategies",
+    files: [".claude/agents/bundler-optimizer.md"]
+  },
+  {
+    id: "ci-cd-architect",
+    kind: "agent",
+    name: "ci-cd-architect",
+    slug: "ci-cd-architect",
+    description: "GitHub Actions and deployment pipelines specialist for CI/CD best practices, automated testing, and deployment strategies",
+    files: [".claude/agents/ci-cd-architect.md"]
+  },
+  {
+    id: "code-example-generator",
+    kind: "agent",
+    name: "code-example-generator",
+    slug: "code-example-generator",
+    description: "Production-ready code snippet expert for real-world examples, best practices showcase, and integration patterns",
+    files: [".claude/agents/code-example-generator.md"]
+  },
+  {
+    id: "defi-integration-architect",
+    kind: "agent",
+    name: "defi-integration-architect",
+    slug: "defi-integration-architect",
+    description: "DeFi protocol integration specialist for AMMs, lending, liquidity pools, and yield optimization",
+    files: [".claude/agents/defi-integration-architect.md"]
+  },
+  {
+    id: "deployment-strategist",
+    kind: "agent",
+    name: "deployment-strategist",
+    slug: "deployment-strategist",
+    description: "Vercel, AWS, Docker deployment specialist for zero-downtime production releases",
+    files: [".claude/agents/deployment-strategist.md"]
+  },
+  {
+    id: "devtools-optimizer",
+    kind: "agent",
+    name: "devtools-optimizer",
+    slug: "devtools-optimizer",
+    description: "Browser DevTools expert specializing in Chrome/Firefox debugging, profiling, memory leak detection, and performance optimization",
+    files: [".claude/agents/devtools-optimizer.md"]
+  },
+  {
+    id: "e2e-testing-specialist",
+    kind: "agent",
+    name: "e2e-testing-specialist",
+    slug: "e2e-testing-specialist",
+    description: "End-to-end test scenarios expert specializing in user journey testing and visual regression",
+    files: [".claude/agents/e2e-testing-specialist.md"]
+  },
+  {
+    id: "integration-test-architect",
+    kind: "agent",
+    name: "integration-test-architect",
+    slug: "integration-test-architect",
+    description: "API integration testing expert specializing in database testing and external service mocks",
+    files: [".claude/agents/integration-test-architect.md"]
+  },
+  {
+    id: "log-aggregation-expert",
+    kind: "agent",
+    name: "log-aggregation-expert",
+    slug: "log-aggregation-expert",
+    description: "Structured logging and log aggregation specialist for production debugging",
+    files: [".claude/agents/log-aggregation-expert.md"]
+  },
+  {
+    id: "monitoring-specialist",
+    kind: "agent",
+    name: "monitoring-specialist",
+    slug: "monitoring-specialist",
+    description: "Sentry, Datadog, observability expert for error tracking and performance monitoring",
+    files: [".claude/agents/monitoring-specialist.md"]
+  },
+  {
+    id: "package-manager-expert",
+    kind: "agent",
+    name: "package-manager-expert",
+    slug: "package-manager-expert",
+    description: "npm, pnpm, and yarn optimization specialist for dependency management, monorepos, and lockfile strategies",
+    files: [".claude/agents/package-manager-expert.md"]
+  },
+  {
+    id: "smart-contract-auditor",
+    kind: "agent",
+    name: "smart-contract-auditor",
+    slug: "smart-contract-auditor",
+    description: "EVM smart contract security auditor specializing in Solidity vulnerabilities, reentrancy, and economic exploits",
+    files: [".claude/agents/smart-contract-auditor.md"]
+  },
+  {
+    id: "tutorial-creator",
+    kind: "agent",
+    name: "tutorial-creator",
+    slug: "tutorial-creator",
+    description: "Interactive tutorial and learning path specialist for step-by-step guides, code walkthroughs, and hands-on learning experiences",
+    files: [".claude/agents/tutorial-creator.md"]
+  },
+  {
+    id: "unit-test-generator",
+    kind: "agent",
+    name: "unit-test-generator",
+    slug: "unit-test-generator",
+    description: "Unit test creation and mocking patterns specialist for comprehensive test coverage",
+    files: [".claude/agents/unit-test-generator.md"]
+  },
+  {
+    id: "web3-security-specialist",
+    kind: "agent",
+    name: "web3-security-specialist",
+    slug: "web3-security-specialist",
+    description: "Cross-chain Web3 security expert covering wallet security, transaction signing, and frontend attack vectors",
+    files: [".claude/agents/web3-security-specialist.md"]
+  },
 ];
 
 // ============================================================================
@@ -2825,6 +2961,38 @@ export const SKILLS: RegistryItem[] = [
     tokenSavings: 85,
     installs: 1234,
     remixes: 389,
+  },
+  {
+    id: "api-rate-limiting",
+    kind: "skill",
+    name: "Api Rate Limiting",
+    slug: "api-rate-limiting",
+    description: "Api Rate Limiting patterns and best practices",
+    files: [".claude/skills/api-rate-limiting/SKILL.md"]
+  },
+  {
+    id: "docker-best-practices",
+    kind: "skill",
+    name: "Docker Best Practices",
+    slug: "docker-best-practices",
+    description: "Docker Best Practices patterns and best practices",
+    files: [".claude/skills/docker-best-practices/SKILL.md"]
+  },
+  {
+    id: "error-handling-patterns",
+    kind: "skill",
+    name: "Error Handling Patterns",
+    slug: "error-handling-patterns",
+    description: "Error Handling Patterns patterns and best practices",
+    files: [".claude/skills/error-handling-patterns/SKILL.md"]
+  },
+  {
+    id: "typescript-advanced-types",
+    kind: "skill",
+    name: "Typescript Advanced Types",
+    slug: "typescript-advanced-types",
+    description: "Typescript Advanced Types patterns and best practices",
+    files: [".claude/skills/typescript-advanced-types/SKILL.md"]
   },
 ];
 
