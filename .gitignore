@@ -63,3 +63,8 @@ com1
 com2
 lpt1
 lpt2
+
+# CLI package (not part of web app)
+packages/
+
+.vercel
