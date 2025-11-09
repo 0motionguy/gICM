@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ScrambleText } from "@/components/ui/scramble-text";
+import { InfiniteScramble } from "@/components/ui/infinite-scramble";
 import {
   Zap,
   Shield,
@@ -10,12 +11,12 @@ import {
   Rocket,
   TrendingUp,
   ExternalLink,
+  Eye,
 } from "lucide-react";
 
 export function Web3HeroSection() {
   const [hoverSolana, setHoverSolana] = useState(false);
-  const [hoverWeb3, setHoverWeb3] = useState(false);
-  const [hoverDefi, setHoverDefi] = useState(false);
+  const [hoverCA, setHoverCA] = useState(false);
 
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-10 py-8">
@@ -48,37 +49,17 @@ export function Web3HeroSection() {
               </Badge>
             </div>
 
-            <div
-              onMouseEnter={() => setHoverWeb3(true)}
-              onMouseLeave={() => setHoverWeb3(false)}
-              className="group"
-            >
-              <Badge className="bg-purple-400/20 text-purple-300 border-purple-400/50 hover:bg-purple-400/30 transition-all cursor-default px-3 py-1">
-                <Code2 className="w-3 h-3 mr-1.5" />
-                {hoverWeb3 ? (
-                  <ScrambleText text="Web3 Native" trigger="hover" duration={300} />
-                ) : (
-                  "Web3 Native"
-                )}
-              </Badge>
-            </div>
+            <Badge className="bg-white/10 text-zinc-300 border-white/20 px-3 py-1">
+              <Code2 className="w-3 h-3 mr-1.5" />
+              Web3 Native
+            </Badge>
 
-            <div
-              onMouseEnter={() => setHoverDefi(true)}
-              onMouseLeave={() => setHoverDefi(false)}
-              className="group"
-            >
-              <Badge className="bg-blue-400/20 text-blue-300 border-blue-400/50 hover:bg-blue-400/30 transition-all cursor-default px-3 py-1">
-                <Shield className="w-3 h-3 mr-1.5" />
-                {hoverDefi ? (
-                  <ScrambleText text="DeFi Ready" trigger="hover" duration={300} />
-                ) : (
-                  "DeFi Ready"
-                )}
-              </Badge>
-            </div>
+            <Badge className="bg-white/10 text-zinc-300 border-white/20 px-3 py-1">
+              <Shield className="w-3 h-3 mr-1.5" />
+              DeFi Ready
+            </Badge>
 
-            <Badge className="bg-amber-400/20 text-amber-300 border-amber-400/50 px-3 py-1">
+            <Badge className="bg-white/10 text-zinc-300 border-white/20 px-3 py-1">
               <Rocket className="w-3 h-3 mr-1.5" />
               Production Grade
             </Badge>
@@ -94,10 +75,25 @@ export function Web3HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-6">
+          <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-4">
             90 specialized agents, 96 progressive skills, and 82 MCP integrations optimized for
             Solana, DeFi, and Web3 development. Ship faster with 88-92% token savings.
           </p>
+
+          {/* Contract Address Teaser */}
+          <div
+            className="flex items-center justify-center gap-2 text-xs mb-6 cursor-pointer group"
+            onMouseEnter={() => setHoverCA(true)}
+            onMouseLeave={() => setHoverCA(false)}
+          >
+            <Eye size={14} className="text-zinc-400 group-hover:text-lime-400 transition-colors" />
+            <span className="text-zinc-400 font-medium">CA:</span>
+            <InfiniteScramble
+              length={44}
+              active={hoverCA}
+              className={`font-mono text-lime-300/70 tracking-wider transition-all ${hoverCA ? '' : 'blur-sm'}`}
+            />
+          </div>
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -109,21 +105,21 @@ export function Web3HeroSection() {
             </div>
 
             <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-purple-300 mb-1">
+              <div className="text-2xl md:text-3xl font-black text-white mb-1">
                 18
               </div>
               <div className="text-xs text-zinc-400">DeFi Integrations</div>
             </div>
 
             <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-blue-300 mb-1">
+              <div className="text-2xl md:text-3xl font-black text-white mb-1">
                 12
               </div>
               <div className="text-xs text-zinc-400">Web3 Security Tools</div>
             </div>
 
             <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-amber-300 mb-1">
+              <div className="text-2xl md:text-3xl font-black text-white mb-1">
                 92%
               </div>
               <div className="text-xs text-zinc-400">Token Savings</div>
@@ -147,8 +143,8 @@ export function Web3HeroSection() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-lg bg-purple-400/10 border border-purple-400/30 flex items-center justify-center flex-shrink-0">
-                <Shield className="w-5 h-5 text-purple-300" />
+              <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-5 h-5 text-zinc-300" />
               </div>
               <div>
                 <h3 className="font-bold text-white text-sm mb-1">
@@ -161,8 +157,8 @@ export function Web3HeroSection() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-400/10 border border-blue-400/30 flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-5 h-5 text-blue-300" />
+              <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-5 h-5 text-zinc-300" />
               </div>
               <div>
                 <h3 className="font-bold text-white text-sm mb-1">
