@@ -183,7 +183,11 @@ export function Web3HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-lime-300/50 transition-all text-xs text-zinc-300 hover:text-lime-300"
             >
-              <span className="text-lg">⚡</span>
+              <img
+                src="https://cryptologos.cc/logos/solana-sol-logo.svg"
+                alt="Solana"
+                className="w-4 h-4"
+              />
               <span>Solana Ecosystem</span>
               <ExternalLink className="w-3 h-3" />
             </a>
@@ -194,7 +198,11 @@ export function Web3HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-lime-300/50 transition-all text-xs text-zinc-300 hover:text-lime-300"
             >
-              <span className="text-lg">🛠️</span>
+              <img
+                src="https://avatars.githubusercontent.com/u/35608259?s=200&v=4"
+                alt="Solana Labs"
+                className="w-4 h-4 rounded"
+              />
               <span>Solana Labs</span>
               <ExternalLink className="w-3 h-3" />
             </a>
@@ -205,7 +213,11 @@ export function Web3HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-lime-300/50 transition-all text-xs text-zinc-300 hover:text-lime-300"
             >
-              <span className="text-lg">⚓</span>
+              <img
+                src="https://www.anchor-lang.com/_next/image?url=%2Flogo.png&w=64&q=75"
+                alt="Anchor"
+                className="w-4 h-4"
+              />
               <span>Anchor Framework</span>
               <ExternalLink className="w-3 h-3" />
             </a>
@@ -216,7 +228,11 @@ export function Web3HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-lime-300/50 transition-all text-xs text-zinc-300 hover:text-lime-300"
             >
-              <span className="text-lg">🌐</span>
+              <img
+                src="https://pbs.twimg.com/profile_images/1664657283294855168/cPnj3C7__400x400.jpg"
+                alt="Helius"
+                className="w-4 h-4 rounded"
+              />
               <span>Helius RPC</span>
               <ExternalLink className="w-3 h-3" />
             </a>
