@@ -13,7 +13,7 @@ export function generateInstallCommand(selected: string[]): string {
     return `${kind}/${slug}`;
   });
 
-  return `npx gicm-stack add ${items.join(" ")} --yes`;
+  return `npx @gicm/cli add ${items.join(" ")} --yes`;
 }
 
 /**

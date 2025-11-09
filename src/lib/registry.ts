@@ -3131,7 +3131,7 @@ export const SKILLS: RegistryItem[] = [
     remixes: 0,
   },
   {
-    id: "docker-best-practices",
+    id: "skill/docker-best-practices",
     kind: "skill",
     name: "Docker Best Practices",
     slug: "docker-best-practices",
@@ -3193,7 +3193,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 356,
   },
   {
-    id: "code-review",
+    id: "command/code-review",
     kind: "command",
     name: "/code-review",
     slug: "code-review",
@@ -3209,7 +3209,7 @@ export const COMMANDS: RegistryItem[] = [
 
   // === EVM & WEB3 COMMANDS (20 commands) - Phase 2 ===
   {
-    id: "deploy-hardhat",
+    id: "command/deploy-hardhat",
     kind: "command",
     name: "/deploy-hardhat",
     slug: "deploy-hardhat",
@@ -3223,7 +3223,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 234,
   },
   {
-    id: "deploy-foundry",
+    id: "command/deploy-foundry",
     kind: "command",
     name: "/deploy-foundry",
     slug: "deploy-foundry",
@@ -3237,7 +3237,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 201,
   },
   {
-    id: "verify-contract",
+    id: "command/verify-contract",
     kind: "command",
     name: "/verify-contract",
     slug: "verify-contract",
@@ -3251,7 +3251,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 267,
   },
   {
-    id: "test-coverage",
+    id: "command/test-coverage",
     kind: "command",
     name: "/test-coverage",
     slug: "test-coverage",
@@ -3265,7 +3265,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 178,
   },
   {
-    id: "gas-report",
+    id: "command/gas-report",
     kind: "command",
     name: "/gas-report",
     slug: "gas-report",
@@ -3279,7 +3279,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 198,
   },
   {
-    id: "audit-security",
+    id: "command/audit-security",
     kind: "command",
     name: "/audit-security",
     slug: "audit-security",
@@ -3293,7 +3293,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 245,
   },
   {
-    id: "fork-mainnet",
+    id: "command/fork-mainnet",
     kind: "command",
     name: "/fork-mainnet",
     slug: "fork-mainnet",
@@ -3307,7 +3307,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 167,
   },
   {
-    id: "impersonate-account",
+    id: "command/impersonate-account",
     kind: "command",
     name: "/impersonate-account",
     slug: "impersonate-account",
@@ -3321,7 +3321,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 143,
   },
   {
-    id: "create-subgraph",
+    id: "command/create-subgraph",
     kind: "command",
     name: "/create-subgraph",
     slug: "create-subgraph",
@@ -3335,7 +3335,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 118,
   },
   {
-    id: "generate-abi",
+    id: "command/generate-abi",
     kind: "command",
     name: "/generate-abi",
     slug: "generate-abi",
@@ -3349,7 +3349,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 223,
   },
   {
-    id: "upgrade-proxy",
+    id: "command/upgrade-proxy",
     kind: "command",
     name: "/upgrade-proxy",
     slug: "upgrade-proxy",
@@ -3363,7 +3363,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 143,
   },
   {
-    id: "flatten-contract",
+    id: "command/flatten-contract",
     kind: "command",
     name: "/flatten-contract",
     slug: "flatten-contract",
@@ -3377,7 +3377,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 189,
   },
   {
-    id: "decode-tx",
+    id: "command/decode-tx",
     kind: "command",
     name: "/decode-tx",
     slug: "decode-tx",
@@ -3391,7 +3391,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 124,
   },
   {
-    id: "estimate-gas",
+    id: "command/estimate-gas",
     kind: "command",
     name: "/estimate-gas",
     slug: "estimate-gas",
@@ -3405,7 +3405,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 167,
   },
   {
-    id: "snapshot-state",
+    id: "command/snapshot-state",
     kind: "command",
     name: "/snapshot-state",
     slug: "snapshot-state",
@@ -3419,7 +3419,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 134,
   },
   {
-    id: "trace-tx",
+    id: "command/trace-tx",
     kind: "command",
     name: "/trace-tx",
     slug: "trace-tx",
@@ -3433,7 +3433,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 143,
   },
   {
-    id: "storage-layout",
+    id: "command/storage-layout",
     kind: "command",
     name: "/storage-layout",
     slug: "storage-layout",
@@ -3447,7 +3447,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 118,
   },
   {
-    id: "create-safe",
+    id: "command/create-safe",
     kind: "command",
     name: "/create-safe",
     slug: "create-safe",
@@ -3461,7 +3461,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 102,
   },
   {
-    id: "generate-merkle",
+    id: "command/generate-merkle",
     kind: "command",
     name: "/generate-merkle",
     slug: "generate-merkle",
@@ -3475,7 +3475,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 143,
   },
   {
-    id: "simulate-bundle",
+    id: "command/simulate-bundle",
     kind: "command",
     name: "/simulate-bundle",
     slug: "simulate-bundle",
@@ -3491,7 +3491,7 @@ export const COMMANDS: RegistryItem[] = [
 
   // === TESTING & QA COMMANDS (5 commands) ===
   {
-    id: "test-generate-cases",
+    id: "command/test-generate-cases",
     kind: "command",
     name: "/test-generate-cases",
     slug: "test-generate-cases",
@@ -3505,7 +3505,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 178,
   },
   {
-    id: "test-write-tests",
+    id: "command/test-write-tests",
     kind: "command",
     name: "/test-write-tests",
     slug: "test-write-tests",
@@ -3519,7 +3519,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 198,
   },
   {
-    id: "test-e2e-setup",
+    id: "command/test-e2e-setup",
     kind: "command",
     name: "/test-e2e-setup",
     slug: "test-e2e-setup",
@@ -3533,7 +3533,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 143,
   },
   {
-    id: "test-coverage-report",
+    id: "command/test-coverage-report",
     kind: "command",
     name: "/test-coverage-report",
     slug: "test-coverage-report",
@@ -3547,7 +3547,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 167,
   },
   {
-    id: "tdd-cycle",
+    id: "command/tdd-cycle",
     kind: "command",
     name: "/tdd-cycle",
     slug: "tdd-cycle",
@@ -3563,7 +3563,7 @@ export const COMMANDS: RegistryItem[] = [
 
   // === DEPLOYMENT COMMANDS (5 commands) ===
   {
-    id: "deploy-prepare-release",
+    id: "command/deploy-prepare-release",
     kind: "command",
     name: "/deploy-prepare-release",
     slug: "deploy-prepare-release",
@@ -3577,7 +3577,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 223,
   },
   {
-    id: "deploy-containerize",
+    id: "command/deploy-containerize",
     kind: "command",
     name: "/deploy-containerize",
     slug: "deploy-containerize",
@@ -3591,7 +3591,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 241,
   },
   {
-    id: "deploy-kubernetes",
+    id: "command/deploy-kubernetes",
     kind: "command",
     name: "/deploy-kubernetes",
     slug: "deploy-kubernetes",
@@ -3605,7 +3605,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 201,
   },
   {
-    id: "deploy-ci-setup",
+    id: "command/deploy-ci-setup",
     kind: "command",
     name: "/deploy-ci-setup",
     slug: "deploy-ci-setup",
@@ -3619,7 +3619,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 267,
   },
   {
-    id: "deploy-rollback",
+    id: "command/deploy-rollback",
     kind: "command",
     name: "/deploy-rollback",
     slug: "deploy-rollback",
@@ -3635,7 +3635,7 @@ export const COMMANDS: RegistryItem[] = [
 
   // === CODE QUALITY COMMANDS (5 commands) ===
   {
-    id: "dev-code-review",
+    id: "command/dev-code-review",
     kind: "command",
     name: "/dev-code-review",
     slug: "dev-code-review",
@@ -3649,7 +3649,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 389,
   },
   {
-    id: "dev-refactor",
+    id: "command/dev-refactor",
     kind: "command",
     name: "/dev-refactor",
     slug: "dev-refactor",
@@ -3663,7 +3663,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 312,
   },
   {
-    id: "full-review",
+    id: "command/full-review",
     kind: "command",
     name: "/full-review",
     slug: "full-review",
@@ -3677,7 +3677,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 267,
   },
   {
-    id: "refactor-clean",
+    id: "command/refactor-clean",
     kind: "command",
     name: "/refactor-clean",
     slug: "refactor-clean",
@@ -3691,7 +3691,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 213,
   },
   {
-    id: "api-scaffold",
+    id: "command/api-scaffold",
     kind: "command",
     name: "/api-scaffold",
     slug: "api-scaffold",
@@ -3749,7 +3749,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 334,
   },
   {
-    id: "performance-optimize-db",
+    id: "command/performance-optimize-db",
     kind: "command",
     name: "/performance-optimize-db",
     slug: "performance-optimize-db",
@@ -3793,7 +3793,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 398,
   },
   {
-    id: "pr-enhance",
+    id: "command/pr-enhance",
     kind: "command",
     name: "/pr-enhance",
     slug: "pr-enhance",
@@ -3807,7 +3807,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 245,
   },
   {
-    id: "context-save",
+    id: "command/context-save",
     kind: "command",
     name: "/context-save",
     slug: "context-save",
@@ -3821,7 +3821,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 201,
   },
   {
-    id: "doc-generate",
+    id: "command/doc-generate",
     kind: "command",
     name: "/doc-generate",
     slug: "doc-generate",
@@ -3835,7 +3835,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 281,
   },
   {
-    id: "feature-development",
+    id: "command/feature-development",
     kind: "command",
     name: "/feature-development",
     slug: "feature-development",
@@ -3849,7 +3849,7 @@ export const COMMANDS: RegistryItem[] = [
     remixes: 489,
   },
   {
-    id: "anchor-init",
+    id: "command/anchor-init",
     kind: "command",
     name: "/anchor-init",
     slug: "anchor-init",
@@ -3862,58 +3862,58 @@ export const COMMANDS: RegistryItem[] = [
     installs: 1345,
     remixes: 412,
   },
-  { id: "refactor", kind: "command", name: "/refactor", slug: "refactor", description: "Intelligent code refactoring with pattern detection and architectural improvements", category: "Development", tags: ["Refactoring", "Code Quality"], dependencies: [], files: [".claude/commands/refactor.md"], install: "npx @gicm/cli add command/refactor", installs: 1876, remixes: 534 },
-  { id: "optimize", kind: "command", name: "/optimize", slug: "optimize", description: "Performance optimization with profiling, bottleneck detection, and benchmarking", category: "Performance", tags: ["Optimization", "Performance"], dependencies: [], files: [".claude/commands/optimize.md"], install: "npx @gicm/cli add command/optimize", installs: 1654, remixes: 489 },
-  { id: "test-gen", kind: "command", name: "/test-gen", slug: "test-gen", description: "Automatic test generation with edge case detection and coverage analysis", category: "Testing", tags: ["Testing", "Automation"], dependencies: [], files: [".claude/commands/test-gen.md"], install: "npx @gicm/cli add command/test-gen", installs: 1789, remixes: 523 },
-  { id: "migration-gen", kind: "command", name: "/migration-gen", slug: "migration-gen", description: "Database migration generation with rollback support and validation", category: "Database", tags: ["Migration", "Database"], dependencies: [], files: [".claude/commands/migration-gen.md"], install: "npx @gicm/cli add command/migration-gen", installs: 1432, remixes: 412 },
-  { id: "component-gen", kind: "command", name: "/component-gen", slug: "component-gen", description: "React/Vue component generation with TypeScript, Storybook, and tests", category: "Frontend", tags: ["Component", "React", "Generator"], dependencies: [], files: [".claude/commands/component-gen.md"], install: "npx @gicm/cli add command/component-gen", installs: 1987, remixes: 612 },
-  { id: "api-gen", kind: "command", name: "/api-gen", slug: "api-gen", description: "REST/GraphQL/tRPC API endpoint generation with validation and documentation", category: "API", tags: ["API", "Generator", "Backend"], dependencies: [], files: [".claude/commands/api-gen.md"], install: "npx @gicm/cli add command/api-gen", installs: 1765, remixes: 523 },
-  { id: "dockerfile-gen", kind: "command", name: "/dockerfile-gen", slug: "dockerfile-gen", description: "Production-ready Dockerfile generation with multi-stage builds and optimization", category: "DevOps", tags: ["Docker", "Container", "Generator"], dependencies: [], files: [".claude/commands/dockerfile-gen.md"], install: "npx @gicm/cli add command/dockerfile-gen", installs: 1543, remixes: 467 },
-  { id: "env-setup", kind: "command", name: "/env-setup", slug: "env-setup", description: "Environment configuration setup with validation and secret management", category: "Configuration", tags: ["Environment", "Config", "Security"], dependencies: [], files: [".claude/commands/env-setup.md"], install: "npx @gicm/cli add command/env-setup", installs: 1456, remixes: 423 },
-  { id: "schema-gen", kind: "command", name: "/schema-gen", slug: "schema-gen", description: "Database schema generation with ORMs, validation, and migrations", category: "Database", tags: ["Schema", "ORM", "Database"], dependencies: [], files: [".claude/commands/schema-gen.md"], install: "npx @gicm/cli add command/schema-gen", installs: 1678, remixes: 489 },
-  { id: "ci-gen", kind: "command", name: "/ci-gen", slug: "ci-gen", description: "CI/CD pipeline generation for GitHub Actions, GitLab CI, CircleCI", category: "DevOps", tags: ["CI/CD", "Automation", "Pipeline"], dependencies: [], files: [".claude/commands/ci-gen.md"], install: "npx @gicm/cli add command/ci-gen", installs: 1789, remixes: 534 },
-  { id: "mock-gen", kind: "command", name: "/mock-gen", slug: "mock-gen", description: "Mock data and API response generation for testing and development", category: "Testing", tags: ["Mock", "Testing", "Data"], dependencies: [], files: [".claude/commands/mock-gen.md"], install: "npx @gicm/cli add command/mock-gen", installs: 1345, remixes: 398 },
-  { id: "hook-gen", kind: "command", name: "/hook-gen", slug: "hook-gen", description: "React/Vue custom hook generation with TypeScript and tests", category: "Frontend", tags: ["Hooks", "React", "Generator"], dependencies: [], files: [".claude/commands/hook-gen.md"], install: "npx @gicm/cli add command/hook-gen", installs: 1234, remixes: 367 },
-  { id: "config-gen", kind: "command", name: "/config-gen", slug: "config-gen", description: "Configuration file generation for build tools, linters, and formatters", category: "Configuration", tags: ["Config", "Setup", "Tools"], dependencies: [], files: [".claude/commands/config-gen.md"], install: "npx @gicm/cli add command/config-gen", installs: 1567, remixes: 445 },
-  { id: "benchmark", kind: "command", name: "/benchmark", slug: "benchmark", description: "Performance benchmarking with statistical analysis and comparison", category: "Performance", tags: ["Benchmark", "Performance", "Testing"], dependencies: [], files: [".claude/commands/benchmark.md"], install: "npx @gicm/cli add command/benchmark", installs: 1432, remixes: 412 },
-  { id: "lint-fix", kind: "command", name: "/lint-fix", slug: "lint-fix", description: "Automated linting and code style fixes with conflict resolution", category: "Code Quality", tags: ["Linting", "Formatting", "Automation"], dependencies: [], files: [".claude/commands/lint-fix.md"], install: "npx @gicm/cli add command/lint-fix", installs: 1876, remixes: 556 },
-  { id: "type-gen", kind: "command", name: "/type-gen", slug: "type-gen", description: "TypeScript type generation from schemas, APIs, and databases", category: "TypeScript", tags: ["Types", "TypeScript", "Generator"], dependencies: [], files: [".claude/commands/type-gen.md"], install: "npx @gicm/cli add command/type-gen", installs: 1654, remixes: 489 },
-  { id: "monorepo-init", kind: "command", name: "/monorepo-init", slug: "monorepo-init", description: "Initialize monorepo with Turborepo, pnpm workspaces, and shared configs", category: "Setup", tags: ["Monorepo", "Turborepo", "Setup"], dependencies: [], files: [".claude/commands/monorepo-init.md"], install: "npx @gicm/cli add command/monorepo-init", installs: 1543, remixes: 467 },
-  { id: "db-seed", kind: "command", name: "/db-seed", slug: "db-seed", description: "Database seeding with realistic test data and relation handling", category: "Database", tags: ["Database", "Seeding", "Testing"], dependencies: [], files: [".claude/commands/db-seed.md"], install: "npx @gicm/cli add command/db-seed", installs: 1456, remixes: 423 },
-  { id: "storybook-gen", kind: "command", name: "/storybook-gen", slug: "storybook-gen", description: "Storybook story generation with controls, actions, and variants", category: "Frontend", tags: ["Storybook", "Component", "Documentation"], dependencies: [], files: [".claude/commands/storybook-gen.md"], install: "npx @gicm/cli add command/storybook-gen", installs: 1345, remixes: 398 },
-  { id: "graphql-gen", kind: "command", name: "/graphql-gen", slug: "graphql-gen", description: "GraphQL schema, resolver, and type generation with best practices", category: "GraphQL", tags: ["GraphQL", "Generator", "API"], dependencies: [], files: [".claude/commands/graphql-gen.md"], install: "npx @gicm/cli add command/graphql-gen", installs: 1234, remixes: 367 },
+  { id: "command/refactor", kind: "command", name: "/refactor", slug: "refactor", description: "Intelligent code refactoring with pattern detection and architectural improvements", category: "Development", tags: ["Refactoring", "Code Quality"], dependencies: [], files: [".claude/commands/refactor.md"], install: "npx @gicm/cli add command/refactor", installs: 1876, remixes: 534 },
+  { id: "command/optimize", kind: "command", name: "/optimize", slug: "optimize", description: "Performance optimization with profiling, bottleneck detection, and benchmarking", category: "Performance", tags: ["Optimization", "Performance"], dependencies: [], files: [".claude/commands/optimize.md"], install: "npx @gicm/cli add command/optimize", installs: 1654, remixes: 489 },
+  { id: "command/test-gen", kind: "command", name: "/test-gen", slug: "test-gen", description: "Automatic test generation with edge case detection and coverage analysis", category: "Testing", tags: ["Testing", "Automation"], dependencies: [], files: [".claude/commands/test-gen.md"], install: "npx @gicm/cli add command/test-gen", installs: 1789, remixes: 523 },
+  { id: "command/migration-gen", kind: "command", name: "/migration-gen", slug: "migration-gen", description: "Database migration generation with rollback support and validation", category: "Database", tags: ["Migration", "Database"], dependencies: [], files: [".claude/commands/migration-gen.md"], install: "npx @gicm/cli add command/migration-gen", installs: 1432, remixes: 412 },
+  { id: "command/component-gen", kind: "command", name: "/component-gen", slug: "component-gen", description: "React/Vue component generation with TypeScript, Storybook, and tests", category: "Frontend", tags: ["Component", "React", "Generator"], dependencies: [], files: [".claude/commands/component-gen.md"], install: "npx @gicm/cli add command/component-gen", installs: 1987, remixes: 612 },
+  { id: "command/api-gen", kind: "command", name: "/api-gen", slug: "api-gen", description: "REST/GraphQL/tRPC API endpoint generation with validation and documentation", category: "API", tags: ["API", "Generator", "Backend"], dependencies: [], files: [".claude/commands/api-gen.md"], install: "npx @gicm/cli add command/api-gen", installs: 1765, remixes: 523 },
+  { id: "command/dockerfile-gen", kind: "command", name: "/dockerfile-gen", slug: "dockerfile-gen", description: "Production-ready Dockerfile generation with multi-stage builds and optimization", category: "DevOps", tags: ["Docker", "Container", "Generator"], dependencies: [], files: [".claude/commands/dockerfile-gen.md"], install: "npx @gicm/cli add command/dockerfile-gen", installs: 1543, remixes: 467 },
+  { id: "command/env-setup", kind: "command", name: "/env-setup", slug: "env-setup", description: "Environment configuration setup with validation and secret management", category: "Configuration", tags: ["Environment", "Config", "Security"], dependencies: [], files: [".claude/commands/env-setup.md"], install: "npx @gicm/cli add command/env-setup", installs: 1456, remixes: 423 },
+  { id: "command/schema-gen", kind: "command", name: "/schema-gen", slug: "schema-gen", description: "Database schema generation with ORMs, validation, and migrations", category: "Database", tags: ["Schema", "ORM", "Database"], dependencies: [], files: [".claude/commands/schema-gen.md"], install: "npx @gicm/cli add command/schema-gen", installs: 1678, remixes: 489 },
+  { id: "command/ci-gen", kind: "command", name: "/ci-gen", slug: "ci-gen", description: "CI/CD pipeline generation for GitHub Actions, GitLab CI, CircleCI", category: "DevOps", tags: ["CI/CD", "Automation", "Pipeline"], dependencies: [], files: [".claude/commands/ci-gen.md"], install: "npx @gicm/cli add command/ci-gen", installs: 1789, remixes: 534 },
+  { id: "command/mock-gen", kind: "command", name: "/mock-gen", slug: "mock-gen", description: "Mock data and API response generation for testing and development", category: "Testing", tags: ["Mock", "Testing", "Data"], dependencies: [], files: [".claude/commands/mock-gen.md"], install: "npx @gicm/cli add command/mock-gen", installs: 1345, remixes: 398 },
+  { id: "command/hook-gen", kind: "command", name: "/hook-gen", slug: "hook-gen", description: "React/Vue custom hook generation with TypeScript and tests", category: "Frontend", tags: ["Hooks", "React", "Generator"], dependencies: [], files: [".claude/commands/hook-gen.md"], install: "npx @gicm/cli add command/hook-gen", installs: 1234, remixes: 367 },
+  { id: "command/config-gen", kind: "command", name: "/config-gen", slug: "config-gen", description: "Configuration file generation for build tools, linters, and formatters", category: "Configuration", tags: ["Config", "Setup", "Tools"], dependencies: [], files: [".claude/commands/config-gen.md"], install: "npx @gicm/cli add command/config-gen", installs: 1567, remixes: 445 },
+  { id: "command/benchmark", kind: "command", name: "/benchmark", slug: "benchmark", description: "Performance benchmarking with statistical analysis and comparison", category: "Performance", tags: ["Benchmark", "Performance", "Testing"], dependencies: [], files: [".claude/commands/benchmark.md"], install: "npx @gicm/cli add command/benchmark", installs: 1432, remixes: 412 },
+  { id: "command/lint-fix", kind: "command", name: "/lint-fix", slug: "lint-fix", description: "Automated linting and code style fixes with conflict resolution", category: "Code Quality", tags: ["Linting", "Formatting", "Automation"], dependencies: [], files: [".claude/commands/lint-fix.md"], install: "npx @gicm/cli add command/lint-fix", installs: 1876, remixes: 556 },
+  { id: "command/type-gen", kind: "command", name: "/type-gen", slug: "type-gen", description: "TypeScript type generation from schemas, APIs, and databases", category: "TypeScript", tags: ["Types", "TypeScript", "Generator"], dependencies: [], files: [".claude/commands/type-gen.md"], install: "npx @gicm/cli add command/type-gen", installs: 1654, remixes: 489 },
+  { id: "command/monorepo-init", kind: "command", name: "/monorepo-init", slug: "monorepo-init", description: "Initialize monorepo with Turborepo, pnpm workspaces, and shared configs", category: "Setup", tags: ["Monorepo", "Turborepo", "Setup"], dependencies: [], files: [".claude/commands/monorepo-init.md"], install: "npx @gicm/cli add command/monorepo-init", installs: 1543, remixes: 467 },
+  { id: "command/db-seed", kind: "command", name: "/db-seed", slug: "db-seed", description: "Database seeding with realistic test data and relation handling", category: "Database", tags: ["Database", "Seeding", "Testing"], dependencies: [], files: [".claude/commands/db-seed.md"], install: "npx @gicm/cli add command/db-seed", installs: 1456, remixes: 423 },
+  { id: "command/storybook-gen", kind: "command", name: "/storybook-gen", slug: "storybook-gen", description: "Storybook story generation with controls, actions, and variants", category: "Frontend", tags: ["Storybook", "Component", "Documentation"], dependencies: [], files: [".claude/commands/storybook-gen.md"], install: "npx @gicm/cli add command/storybook-gen", installs: 1345, remixes: 398 },
+  { id: "command/graphql-gen", kind: "command", name: "/graphql-gen", slug: "graphql-gen", description: "GraphQL schema, resolver, and type generation with best practices", category: "GraphQL", tags: ["GraphQL", "Generator", "API"], dependencies: [], files: [".claude/commands/graphql-gen.md"], install: "npx @gicm/cli add command/graphql-gen", installs: 1234, remixes: 367 },
 
   // === PHASE 4: ADVANCED & POWER-USER COMMANDS (25 commands) ===
-  { id: "architecture-gen", kind: "command", name: "/architecture-gen", slug: "architecture-gen", description: "Generate system architecture diagrams, documentation, and decision records from codebase", category: "Architecture", tags: ["Architecture", "Documentation", "Diagrams"], dependencies: [], files: [".claude/commands/architecture-gen.md"], install: "npx @gicm/cli add command/architecture-gen", installs: 1456, remixes: 412 },
-  { id: "perf-trace", kind: "command", name: "/perf-trace", slug: "perf-trace", description: "Performance profiling, flame graphs, and bottleneck identification for Node.js and browsers", category: "Performance", tags: ["Performance", "Profiling", "Debugging"], dependencies: [], files: [".claude/commands/perf-trace.md"], install: "npx @gicm/cli add command/perf-trace", installs: 1234, remixes: 356 },
-  { id: "bundle-analyze", kind: "command", name: "/bundle-analyze", slug: "bundle-analyze", description: "Analyze bundle size, dependencies, and generate optimization recommendations", category: "Optimization", tags: ["Bundle", "Size Analysis", "Performance"], dependencies: [], files: [".claude/commands/bundle-analyze.md"], install: "npx @gicm/cli add command/bundle-analyze", installs: 1367, remixes: 389 },
-  { id: "deps-upgrade", kind: "command", name: "/deps-upgrade", slug: "deps-upgrade", description: "Smart dependency upgrades with breaking change detection and migration guides", category: "Maintenance", tags: ["Dependencies", "Upgrade", "Maintenance"], dependencies: [], files: [".claude/commands/deps-upgrade.md"], install: "npx @gicm/cli add command/deps-upgrade", installs: 1545, remixes: 423 },
-  { id: "changelog-gen", kind: "command", name: "/changelog-gen", slug: "changelog-gen", description: "Auto-generate CHANGELOG from conventional commits with categorization and linking", category: "Release", tags: ["Changelog", "Release", "Documentation"], dependencies: [], files: [".claude/commands/changelog-gen.md"], install: "npx @gicm/cli add command/changelog-gen", installs: 1123, remixes: 334 },
-  { id: "release-notes", kind: "command", name: "/release-notes", slug: "release-notes", description: "Generate comprehensive release notes with features, fixes, breaking changes, and migration guides", category: "Release", tags: ["Release", "Notes", "Communication"], dependencies: [], files: [".claude/commands/release-notes.md"], install: "npx @gicm/cli add command/release-notes", installs: 1087, remixes: 312 },
-  { id: "api-mock-gen", kind: "command", name: "/api-mock-gen", slug: "api-mock-gen", description: "Generate mock API servers with OpenAPI/GraphQL support and realistic data generation", category: "Testing", tags: ["Mocking", "API", "Testing"], dependencies: [], files: [".claude/commands/api-mock-gen.md"], install: "npx @gicm/cli add command/api-mock-gen", installs: 1456, remixes: 398 },
-  { id: "load-test", kind: "command", name: "/load-test", slug: "load-test", description: "Load testing with k6/Artillery: concurrency simulation, spike testing, soak testing", category: "Testing", tags: ["Load Testing", "Performance", "k6"], dependencies: [], files: [".claude/commands/load-test.md"], install: "npx @gicm/cli add command/load-test", installs: 987, remixes: 289 },
-  { id: "cache-strategy", kind: "command", name: "/cache-strategy", slug: "cache-strategy", description: "Cache strategy optimization: Redis, HTTP caching, in-memory patterns, invalidation", category: "Optimization", tags: ["Caching", "Performance", "Redis"], dependencies: [], files: [".claude/commands/cache-strategy.md"], install: "npx @gicm/cli add command/cache-strategy", installs: 1234, remixes: 345 },
-  { id: "error-boundary-gen", kind: "command", name: "/error-boundary-gen", slug: "error-boundary-gen", description: "Generate React error boundaries with fallback UI, error logging, and recovery strategies", category: "Frontend", tags: ["React", "Error Handling", "Components"], dependencies: [], files: [".claude/commands/error-boundary-gen.md"], install: "npx @gicm/cli add command/error-boundary-gen", installs: 1156, remixes: 334 },
-  { id: "seo-audit", kind: "command", name: "/seo-audit", slug: "seo-audit", description: "SEO and accessibility audit with recommendations for meta tags, structured data, WCAG compliance", category: "Optimization", tags: ["SEO", "Accessibility", "Audit"], dependencies: [], files: [".claude/commands/seo-audit.md"], install: "npx @gicm/cli add command/seo-audit", installs: 945, remixes: 267 },
-  { id: "lighthouse-check", kind: "command", name: "/lighthouse-check", slug: "lighthouse-check", description: "Run Lighthouse performance audit with scoring, metrics, and optimization suggestions", category: "Performance", tags: ["Lighthouse", "Performance", "Audit"], dependencies: [], files: [".claude/commands/lighthouse-check.md"], install: "npx @gicm/cli add command/lighthouse-check", installs: 1089, remixes: 312 },
-  { id: "env-validator", kind: "command", name: "/env-validator", slug: "env-validator", description: "Generate environment variable validation with Zod schemas, type safety, and documentation", category: "Configuration", tags: ["Environment", "Validation", "Configuration"], dependencies: [], files: [".claude/commands/env-validator.md"], install: "npx @gicm/cli add command/env-validator", installs: 1234, remixes: 356 },
-  { id: "secrets-scan", kind: "command", name: "/secrets-scan", slug: "secrets-scan", description: "Scan codebase for exposed secrets, API keys, and credentials with remediation guidance", category: "Security", tags: ["Security", "Secrets", "Scanning"], dependencies: [], files: [".claude/commands/secrets-scan.md"], install: "npx @gicm/cli add command/secrets-scan", installs: 1456, remixes: 423 },
-  { id: "idor-scan", kind: "command", name: "/idor-scan", slug: "idor-scan", description: "IDOR vulnerability scanning: test authorization, resource access, enumeration attacks", category: "Security", tags: ["Security", "IDOR", "Testing"], dependencies: [], files: [".claude/commands/idor-scan.md"], install: "npx @gicm/cli add command/idor-scan", installs: 834, remixes: 234 },
-  { id: "sql-injection-scan", kind: "command", name: "/sql-injection-scan", slug: "sql-injection-scan", description: "SQL injection vulnerability detection, parameterization audit, and query safety verification", category: "Security", tags: ["Security", "SQL Injection", "Scanning"], dependencies: [], files: [".claude/commands/sql-injection-scan.md"], install: "npx @gicm/cli add command/sql-injection-scan", installs: 1123, remixes: 312 },
-  { id: "xss-scan", kind: "command", name: "/xss-scan", slug: "xss-scan", description: "XSS vulnerability detection: sanitization audit, DOM safety, CSP policy verification", category: "Security", tags: ["Security", "XSS", "Frontend"], dependencies: [], files: [".claude/commands/xss-scan.md"], install: "npx @gicm/cli add command/xss-scan", installs: 1089, remixes: 301 },
-  { id: "cors-config", kind: "command", name: "/cors-config", slug: "cors-config", description: "Generate CORS configuration with security best practices and origin validation", category: "Security", tags: ["CORS", "Security", "Configuration"], dependencies: [], files: [".claude/commands/cors-config.md"], install: "npx @gicm/cli add command/cors-config", installs: 1234, remixes: 345 },
-  { id: "rate-limit-setup", kind: "command", name: "/rate-limit-setup", slug: "rate-limit-setup", description: "Implement rate limiting with sliding window, token bucket, and distributed strategies", category: "Backend", tags: ["Rate Limiting", "Performance", "Security"], dependencies: [], files: [".claude/commands/rate-limit-setup.md"], install: "npx @gicm/cli add command/rate-limit-setup", installs: 1345, remixes: 378 },
-  { id: "pagination-gen", kind: "command", name: "/pagination-gen", slug: "pagination-gen", description: "Generate pagination logic: cursor-based, offset-based, with client/server implementations", category: "Backend", tags: ["Pagination", "API", "Database"], dependencies: [], files: [".claude/commands/pagination-gen.md"], install: "npx @gicm/cli add command/pagination-gen", installs: 1456, remixes: 401 },
-  { id: "filtering-gen", kind: "command", name: "/filtering-gen", slug: "filtering-gen", description: "Advanced filtering implementation: multi-field, nested, range queries, type-safe", category: "Backend", tags: ["Filtering", "Query", "API"], dependencies: [], files: [".claude/commands/filtering-gen.md"], install: "npx @gicm/cli add command/filtering-gen", installs: 1234, remixes: 356 },
-  { id: "sorting-gen", kind: "command", name: "/sorting-gen", slug: "sorting-gen", description: "Multi-column sorting setup with direction, priority, and database query optimization", category: "Backend", tags: ["Sorting", "Database", "Query"], dependencies: [], files: [".claude/commands/sorting-gen.md"], install: "npx @gicm/cli add command/sorting-gen", installs: 1089, remixes: 301 },
-  { id: "search-optimize", kind: "command", name: "/search-optimize", slug: "search-optimize", description: "Search optimization: indexing strategies, full-text search, fuzzy matching, ranking", category: "Backend", tags: ["Search", "Performance", "Database"], dependencies: [], files: [".claude/commands/search-optimize.md"], install: "npx @gicm/cli add command/search-optimize", installs: 1167, remixes: 334 },
-  { id: "analytics-setup", kind: "command", name: "/analytics-setup", slug: "analytics-setup", description: "Analytics and tracking setup: event tracking, property management, data collection patterns", category: "Analytics", tags: ["Analytics", "Tracking", "Events"], dependencies: [], files: [".claude/commands/analytics-setup.md"], install: "npx @gicm/cli add command/analytics-setup", installs: 1345, remixes: 389 },
-  { id: "monitoring-setup", kind: "command", name: "/monitoring-setup", slug: "monitoring-setup", description: "Monitoring and alerting configuration: metrics, logs, traces, dashboards, thresholds", category: "DevOps", tags: ["Monitoring", "Alerting", "Observability"], dependencies: [], files: [".claude/commands/monitoring-setup.md"], install: "npx @gicm/cli add command/monitoring-setup", installs: 1456, remixes: 423 },
+  { id: "command/architecture-gen", kind: "command", name: "/architecture-gen", slug: "architecture-gen", description: "Generate system architecture diagrams, documentation, and decision records from codebase", category: "Architecture", tags: ["Architecture", "Documentation", "Diagrams"], dependencies: [], files: [".claude/commands/architecture-gen.md"], install: "npx @gicm/cli add command/architecture-gen", installs: 1456, remixes: 412 },
+  { id: "command/perf-trace", kind: "command", name: "/perf-trace", slug: "perf-trace", description: "Performance profiling, flame graphs, and bottleneck identification for Node.js and browsers", category: "Performance", tags: ["Performance", "Profiling", "Debugging"], dependencies: [], files: [".claude/commands/perf-trace.md"], install: "npx @gicm/cli add command/perf-trace", installs: 1234, remixes: 356 },
+  { id: "command/bundle-analyze", kind: "command", name: "/bundle-analyze", slug: "bundle-analyze", description: "Analyze bundle size, dependencies, and generate optimization recommendations", category: "Optimization", tags: ["Bundle", "Size Analysis", "Performance"], dependencies: [], files: [".claude/commands/bundle-analyze.md"], install: "npx @gicm/cli add command/bundle-analyze", installs: 1367, remixes: 389 },
+  { id: "command/deps-upgrade", kind: "command", name: "/deps-upgrade", slug: "deps-upgrade", description: "Smart dependency upgrades with breaking change detection and migration guides", category: "Maintenance", tags: ["Dependencies", "Upgrade", "Maintenance"], dependencies: [], files: [".claude/commands/deps-upgrade.md"], install: "npx @gicm/cli add command/deps-upgrade", installs: 1545, remixes: 423 },
+  { id: "command/changelog-gen", kind: "command", name: "/changelog-gen", slug: "changelog-gen", description: "Auto-generate CHANGELOG from conventional commits with categorization and linking", category: "Release", tags: ["Changelog", "Release", "Documentation"], dependencies: [], files: [".claude/commands/changelog-gen.md"], install: "npx @gicm/cli add command/changelog-gen", installs: 1123, remixes: 334 },
+  { id: "command/release-notes", kind: "command", name: "/release-notes", slug: "release-notes", description: "Generate comprehensive release notes with features, fixes, breaking changes, and migration guides", category: "Release", tags: ["Release", "Notes", "Communication"], dependencies: [], files: [".claude/commands/release-notes.md"], install: "npx @gicm/cli add command/release-notes", installs: 1087, remixes: 312 },
+  { id: "command/api-mock-gen", kind: "command", name: "/api-mock-gen", slug: "api-mock-gen", description: "Generate mock API servers with OpenAPI/GraphQL support and realistic data generation", category: "Testing", tags: ["Mocking", "API", "Testing"], dependencies: [], files: [".claude/commands/api-mock-gen.md"], install: "npx @gicm/cli add command/api-mock-gen", installs: 1456, remixes: 398 },
+  { id: "command/load-test", kind: "command", name: "/load-test", slug: "load-test", description: "Load testing with k6/Artillery: concurrency simulation, spike testing, soak testing", category: "Testing", tags: ["Load Testing", "Performance", "k6"], dependencies: [], files: [".claude/commands/load-test.md"], install: "npx @gicm/cli add command/load-test", installs: 987, remixes: 289 },
+  { id: "command/cache-strategy", kind: "command", name: "/cache-strategy", slug: "cache-strategy", description: "Cache strategy optimization: Redis, HTTP caching, in-memory patterns, invalidation", category: "Optimization", tags: ["Caching", "Performance", "Redis"], dependencies: [], files: [".claude/commands/cache-strategy.md"], install: "npx @gicm/cli add command/cache-strategy", installs: 1234, remixes: 345 },
+  { id: "command/error-boundary-gen", kind: "command", name: "/error-boundary-gen", slug: "error-boundary-gen", description: "Generate React error boundaries with fallback UI, error logging, and recovery strategies", category: "Frontend", tags: ["React", "Error Handling", "Components"], dependencies: [], files: [".claude/commands/error-boundary-gen.md"], install: "npx @gicm/cli add command/error-boundary-gen", installs: 1156, remixes: 334 },
+  { id: "command/seo-audit", kind: "command", name: "/seo-audit", slug: "seo-audit", description: "SEO and accessibility audit with recommendations for meta tags, structured data, WCAG compliance", category: "Optimization", tags: ["SEO", "Accessibility", "Audit"], dependencies: [], files: [".claude/commands/seo-audit.md"], install: "npx @gicm/cli add command/seo-audit", installs: 945, remixes: 267 },
+  { id: "command/lighthouse-check", kind: "command", name: "/lighthouse-check", slug: "lighthouse-check", description: "Run Lighthouse performance audit with scoring, metrics, and optimization suggestions", category: "Performance", tags: ["Lighthouse", "Performance", "Audit"], dependencies: [], files: [".claude/commands/lighthouse-check.md"], install: "npx @gicm/cli add command/lighthouse-check", installs: 1089, remixes: 312 },
+  { id: "command/env-validator", kind: "command", name: "/env-validator", slug: "env-validator", description: "Generate environment variable validation with Zod schemas, type safety, and documentation", category: "Configuration", tags: ["Environment", "Validation", "Configuration"], dependencies: [], files: [".claude/commands/env-validator.md"], install: "npx @gicm/cli add command/env-validator", installs: 1234, remixes: 356 },
+  { id: "command/secrets-scan", kind: "command", name: "/secrets-scan", slug: "secrets-scan", description: "Scan codebase for exposed secrets, API keys, and credentials with remediation guidance", category: "Security", tags: ["Security", "Secrets", "Scanning"], dependencies: [], files: [".claude/commands/secrets-scan.md"], install: "npx @gicm/cli add command/secrets-scan", installs: 1456, remixes: 423 },
+  { id: "command/idor-scan", kind: "command", name: "/idor-scan", slug: "idor-scan", description: "IDOR vulnerability scanning: test authorization, resource access, enumeration attacks", category: "Security", tags: ["Security", "IDOR", "Testing"], dependencies: [], files: [".claude/commands/idor-scan.md"], install: "npx @gicm/cli add command/idor-scan", installs: 834, remixes: 234 },
+  { id: "command/sql-injection-scan", kind: "command", name: "/sql-injection-scan", slug: "sql-injection-scan", description: "SQL injection vulnerability detection, parameterization audit, and query safety verification", category: "Security", tags: ["Security", "SQL Injection", "Scanning"], dependencies: [], files: [".claude/commands/sql-injection-scan.md"], install: "npx @gicm/cli add command/sql-injection-scan", installs: 1123, remixes: 312 },
+  { id: "command/xss-scan", kind: "command", name: "/xss-scan", slug: "xss-scan", description: "XSS vulnerability detection: sanitization audit, DOM safety, CSP policy verification", category: "Security", tags: ["Security", "XSS", "Frontend"], dependencies: [], files: [".claude/commands/xss-scan.md"], install: "npx @gicm/cli add command/xss-scan", installs: 1089, remixes: 301 },
+  { id: "command/cors-config", kind: "command", name: "/cors-config", slug: "cors-config", description: "Generate CORS configuration with security best practices and origin validation", category: "Security", tags: ["CORS", "Security", "Configuration"], dependencies: [], files: [".claude/commands/cors-config.md"], install: "npx @gicm/cli add command/cors-config", installs: 1234, remixes: 345 },
+  { id: "command/rate-limit-setup", kind: "command", name: "/rate-limit-setup", slug: "rate-limit-setup", description: "Implement rate limiting with sliding window, token bucket, and distributed strategies", category: "Backend", tags: ["Rate Limiting", "Performance", "Security"], dependencies: [], files: [".claude/commands/rate-limit-setup.md"], install: "npx @gicm/cli add command/rate-limit-setup", installs: 1345, remixes: 378 },
+  { id: "command/pagination-gen", kind: "command", name: "/pagination-gen", slug: "pagination-gen", description: "Generate pagination logic: cursor-based, offset-based, with client/server implementations", category: "Backend", tags: ["Pagination", "API", "Database"], dependencies: [], files: [".claude/commands/pagination-gen.md"], install: "npx @gicm/cli add command/pagination-gen", installs: 1456, remixes: 401 },
+  { id: "command/filtering-gen", kind: "command", name: "/filtering-gen", slug: "filtering-gen", description: "Advanced filtering implementation: multi-field, nested, range queries, type-safe", category: "Backend", tags: ["Filtering", "Query", "API"], dependencies: [], files: [".claude/commands/filtering-gen.md"], install: "npx @gicm/cli add command/filtering-gen", installs: 1234, remixes: 356 },
+  { id: "command/sorting-gen", kind: "command", name: "/sorting-gen", slug: "sorting-gen", description: "Multi-column sorting setup with direction, priority, and database query optimization", category: "Backend", tags: ["Sorting", "Database", "Query"], dependencies: [], files: [".claude/commands/sorting-gen.md"], install: "npx @gicm/cli add command/sorting-gen", installs: 1089, remixes: 301 },
+  { id: "command/search-optimize", kind: "command", name: "/search-optimize", slug: "search-optimize", description: "Search optimization: indexing strategies, full-text search, fuzzy matching, ranking", category: "Backend", tags: ["Search", "Performance", "Database"], dependencies: [], files: [".claude/commands/search-optimize.md"], install: "npx @gicm/cli add command/search-optimize", installs: 1167, remixes: 334 },
+  { id: "command/analytics-setup", kind: "command", name: "/analytics-setup", slug: "analytics-setup", description: "Analytics and tracking setup: event tracking, property management, data collection patterns", category: "Analytics", tags: ["Analytics", "Tracking", "Events"], dependencies: [], files: [".claude/commands/analytics-setup.md"], install: "npx @gicm/cli add command/analytics-setup", installs: 1345, remixes: 389 },
+  { id: "command/monitoring-setup", kind: "command", name: "/monitoring-setup", slug: "monitoring-setup", description: "Monitoring and alerting configuration: metrics, logs, traces, dashboards, thresholds", category: "DevOps", tags: ["Monitoring", "Alerting", "Observability"], dependencies: [], files: [".claude/commands/monitoring-setup.md"], install: "npx @gicm/cli add command/monitoring-setup", installs: 1456, remixes: 423 },
 ];
 
 export const MCPS: RegistryItem[] = [
   {
-    id: "mcp-filesystem",
+    id: "command/mcp-filesystem",
     kind: "mcp",
     name: "Filesystem MCP",
     slug: "filesystem",
@@ -3961,7 +3961,7 @@ export const MCPS: RegistryItem[] = [
     remixes: 312,
   },
   {
-    id: "mcp-e2b",
+    id: "mcp/mcp-e2b",
     kind: "mcp",
     name: "E2B MCP",
     slug: "e2b",
@@ -3977,7 +3977,7 @@ export const MCPS: RegistryItem[] = [
     remixes: 267,
   },
   {
-    id: "mcp-github",
+    id: "mcp/mcp-github",
     kind: "mcp",
     name: "GitHub MCP",
     slug: "github",
@@ -4539,23 +4539,23 @@ export const MCPS: RegistryItem[] = [
     remixes: 545,
   },
   { id: "mcp-vercel", kind: "mcp", name: "Vercel MCP", slug: "vercel", description: "Vercel deployment platform: projects, deployments, domains. 94% uptime.", category: "Deployment MCPs", tags: ["MCP", "Vercel", "Deployment"], dependencies: [], files: [".claude/mcp/vercel.json"], install: "# Package does not exist. Use: npm install @vercel/client", setup: "Configure VERCEL_TOKEN", envKeys: ["VERCEL_TOKEN"], installs: 2134, remixes: 645 },
-  { id: "mcp-netlify", kind: "mcp", name: "Netlify MCP", slug: "netlify", description: "Netlify hosting: sites, builds, functions. 92% deployment success.", category: "Deployment MCPs", tags: ["MCP", "Netlify", "Hosting"], dependencies: [], files: [".claude/mcp/netlify.json"], install: "# Package does not exist. Use: npm install netlify", setup: "Configure NETLIFY_TOKEN", envKeys: ["NETLIFY_TOKEN"], installs: 1789, remixes: 534 },
-  { id: "mcp-railway", kind: "mcp", name: "Railway MCP", slug: "railway", description: "Railway infrastructure: services, databases, deployments. 89% faster deploys.", category: "Deployment MCPs", tags: ["MCP", "Railway", "Infrastructure"], dependencies: [], files: [".claude/mcp/railway.json"], install: "# Package does not exist. Use Railway API directly", setup: "Configure RAILWAY_TOKEN", envKeys: ["RAILWAY_TOKEN"], installs: 1543, remixes: 467 },
-  { id: "mcp-discord", kind: "mcp", name: "Discord MCP", slug: "discord", description: "Discord bot integration: servers, channels, webhooks. 88% community activity.", category: "Communication MCPs", tags: ["MCP", "Discord", "Bots"], dependencies: [], files: [".claude/mcp/discord.json"], install: "# Package does not exist. Use: npm install discord.js", setup: "Configure DISCORD_BOT_TOKEN", envKeys: ["DISCORD_BOT_TOKEN"], installs: 1654, remixes: 489 },
-  { id: "mcp-aws", kind: "mcp", name: "AWS MCP", slug: "aws", description: "AWS cloud services: EC2, S3, Lambda, RDS. 91% infrastructure automation.", category: "Cloud MCPs", tags: ["MCP", "AWS", "Cloud"], dependencies: [], files: [".claude/mcp/aws.json"], install: "# Use @modelcontextprotocol/server-aws-kb-retrieval instead: npx -y @modelcontextprotocol/server-aws-kb-retrieval", setup: "Configure AWS credentials", envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"], installs: 2456, remixes: 734 },
-  { id: "mcp-gcp", kind: "mcp", name: "Google Cloud MCP", slug: "gcp", description: "GCP services: Compute Engine, Cloud Storage, BigQuery. 89% cost savings.", category: "Cloud MCPs", tags: ["MCP", "GCP", "Cloud"], dependencies: [], files: [".claude/mcp/gcp.json"], install: "# Package does not exist. Use Google Cloud client libraries", setup: "Configure GOOGLE_APPLICATION_CREDENTIALS", envKeys: ["GOOGLE_APPLICATION_CREDENTIALS"], installs: 1987, remixes: 612 },
-  { id: "mcp-azure", kind: "mcp", name: "Azure MCP", slug: "azure", description: "Azure cloud platform: VMs, Storage, Functions. 87% enterprise adoption.", category: "Cloud MCPs", tags: ["MCP", "Azure", "Cloud"], dependencies: [], files: [".claude/mcp/azure.json"], install: "# Package does not exist. Use Azure SDK", setup: "Configure Azure credentials", envKeys: ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET"], installs: 1765, remixes: 523 },
-  { id: "mcp-postgres", kind: "mcp", name: "PostgreSQL MCP", slug: "postgres", description: "PostgreSQL database: queries, tables, indexes. 92% query performance.", category: "Database MCPs", tags: ["MCP", "PostgreSQL", "Database"], dependencies: [], files: [".claude/mcp/postgres.json"], install: "npx -y @modelcontextprotocol/server-postgres", setup: "Configure DATABASE_URL", envKeys: ["DATABASE_URL"], installs: 2134, remixes: 645 },
-  { id: "mcp-jira", kind: "mcp", name: "Jira MCP", slug: "jira", description: "Jira project management: issues, sprints, boards. 88% team productivity.", category: "Productivity MCPs", tags: ["MCP", "Jira", "Project Management"], dependencies: [], files: [".claude/mcp/jira.json"], install: "# Package does not exist. Use: npm install jira-client", setup: "Configure Jira credentials", envKeys: ["JIRA_HOST", "JIRA_EMAIL", "JIRA_API_TOKEN"], installs: 1789, remixes: 534 },
-  { id: "mcp-figma", kind: "mcp", name: "Figma MCP", slug: "figma", description: "Figma design tools: files, components, exports. 93% design consistency.", category: "Design MCPs", tags: ["MCP", "Figma", "Design"], dependencies: [], files: [".claude/mcp/figma.json"], install: "# Use community package: npm install figma-mcp", setup: "Configure FIGMA_ACCESS_TOKEN", envKeys: ["FIGMA_ACCESS_TOKEN"], installs: 1987, remixes: 612 },
-  { id: "mcp-prisma", kind: "mcp", name: "Prisma MCP", slug: "prisma", description: "Prisma ORM: schema, migrations, queries. 90% type safety.", category: "Database MCPs", tags: ["MCP", "Prisma", "ORM"], dependencies: [], files: [".claude/mcp/prisma.json"], install: "# Package does not exist. Use: npm install @prisma/client", setup: "Configure DATABASE_URL", envKeys: ["DATABASE_URL"], installs: 1765, remixes: 523 },
-  { id: "mcp-planetscale", kind: "mcp", name: "PlanetScale MCP", slug: "planetscale", description: "PlanetScale serverless MySQL: databases, branches, deploys. 94% availability.", category: "Database MCPs", tags: ["MCP", "PlanetScale", "MySQL"], dependencies: [], files: [".claude/mcp/planetscale.json"], install: "# Package does not exist. Use: npm install @planetscale/database", setup: "Configure PLANETSCALE_TOKEN", envKeys: ["PLANETSCALE_TOKEN", "PLANETSCALE_ORG"], installs: 1543, remixes: 467 },
-  { id: "mcp-pinecone", kind: "mcp", name: "Pinecone MCP", slug: "pinecone", description: "Pinecone vector database: indexes, queries, embeddings. 88% search accuracy.", category: "AI MCPs", tags: ["MCP", "Pinecone", "Vector DB"], dependencies: [], files: [".claude/mcp/pinecone.json"], install: "# Package does not exist. Use: npm install @pinecone-database/pinecone", setup: "Configure PINECONE_API_KEY", envKeys: ["PINECONE_API_KEY", "PINECONE_ENVIRONMENT"], installs: 1456, remixes: 423 },
-  { id: "mcp-openai", kind: "mcp", name: "OpenAI MCP", slug: "openai", description: "OpenAI API: GPT models, embeddings, assistants. 91% response quality.", category: "AI MCPs", tags: ["MCP", "OpenAI", "AI"], dependencies: [], files: [".claude/mcp/openai.json"], install: "# Package does not exist. Use: npm install openai", setup: "Configure OPENAI_API_KEY", envKeys: ["OPENAI_API_KEY"], installs: 2456, remixes: 734 },
-  { id: "mcp-anthropic", kind: "mcp", name: "Anthropic MCP", slug: "anthropic", description: "Anthropic Claude API: models, messages, streaming. 93% helpful responses.", category: "AI MCPs", tags: ["MCP", "Anthropic", "Claude"], dependencies: [], files: [".claude/mcp/anthropic.json"], install: "# Package does not exist. Use: npm install @anthropic-ai/sdk", setup: "Configure ANTHROPIC_API_KEY", envKeys: ["ANTHROPIC_API_KEY"], installs: 2134, remixes: 645 },
-  { id: "mcp-twilio", kind: "mcp", name: "Twilio MCP", slug: "twilio", description: "Twilio communications: SMS, voice, video. 99.9% message delivery.", category: "Communication MCPs", tags: ["MCP", "Twilio", "SMS"], dependencies: [], files: [".claude/mcp/twilio.json"], install: "# Package does not exist. Use: npm install twilio", setup: "Configure Twilio credentials", envKeys: ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"], installs: 1654, remixes: 489 },
-  { id: "mcp-sendgrid", kind: "mcp", name: "SendGrid MCP", slug: "sendgrid", description: "SendGrid email: templates, campaigns, analytics. 96% deliverability.", category: "Communication MCPs", tags: ["MCP", "SendGrid", "Email"], dependencies: [], files: [".claude/mcp/sendgrid.json"], install: "# Package does not exist. Use: npm install @sendgrid/mail", setup: "Configure SENDGRID_API_KEY", envKeys: ["SENDGRID_API_KEY"], installs: 1789, remixes: 534 },
-  { id: "mcp-airtable", kind: "mcp", name: "Airtable MCP", slug: "airtable", description: "Airtable databases: bases, tables, records. 89% data organization.", category: "Productivity MCPs", tags: ["MCP", "Airtable", "Database"], dependencies: [], files: [".claude/mcp/airtable.json"], install: "# Package does not exist. Use: npm install airtable", setup: "Configure AIRTABLE_API_KEY", envKeys: ["AIRTABLE_API_KEY"], installs: 1543, remixes: 467 },
+  { id: "mcp/mcp-netlify", kind: "mcp", name: "Netlify MCP", slug: "netlify", description: "Netlify hosting: sites, builds, functions. 92% deployment success.", category: "Deployment MCPs", tags: ["MCP", "Netlify", "Hosting"], dependencies: [], files: [".claude/mcp/netlify.json"], install: "# Package does not exist. Use: npm install netlify", setup: "Configure NETLIFY_TOKEN", envKeys: ["NETLIFY_TOKEN"], installs: 1789, remixes: 534 },
+  { id: "mcp/mcp-railway", kind: "mcp", name: "Railway MCP", slug: "railway", description: "Railway infrastructure: services, databases, deployments. 89% faster deploys.", category: "Deployment MCPs", tags: ["MCP", "Railway", "Infrastructure"], dependencies: [], files: [".claude/mcp/railway.json"], install: "# Package does not exist. Use Railway API directly", setup: "Configure RAILWAY_TOKEN", envKeys: ["RAILWAY_TOKEN"], installs: 1543, remixes: 467 },
+  { id: "mcp/mcp-discord", kind: "mcp", name: "Discord MCP", slug: "discord", description: "Discord bot integration: servers, channels, webhooks. 88% community activity.", category: "Communication MCPs", tags: ["MCP", "Discord", "Bots"], dependencies: [], files: [".claude/mcp/discord.json"], install: "# Package does not exist. Use: npm install discord.js", setup: "Configure DISCORD_BOT_TOKEN", envKeys: ["DISCORD_BOT_TOKEN"], installs: 1654, remixes: 489 },
+  { id: "mcp/mcp-aws", kind: "mcp", name: "AWS MCP", slug: "aws", description: "AWS cloud services: EC2, S3, Lambda, RDS. 91% infrastructure automation.", category: "Cloud MCPs", tags: ["MCP", "AWS", "Cloud"], dependencies: [], files: [".claude/mcp/aws.json"], install: "# Use @modelcontextprotocol/server-aws-kb-retrieval instead: npx -y @modelcontextprotocol/server-aws-kb-retrieval", setup: "Configure AWS credentials", envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"], installs: 2456, remixes: 734 },
+  { id: "mcp/mcp-gcp", kind: "mcp", name: "Google Cloud MCP", slug: "gcp", description: "GCP services: Compute Engine, Cloud Storage, BigQuery. 89% cost savings.", category: "Cloud MCPs", tags: ["MCP", "GCP", "Cloud"], dependencies: [], files: [".claude/mcp/gcp.json"], install: "# Package does not exist. Use Google Cloud client libraries", setup: "Configure GOOGLE_APPLICATION_CREDENTIALS", envKeys: ["GOOGLE_APPLICATION_CREDENTIALS"], installs: 1987, remixes: 612 },
+  { id: "mcp/mcp-azure", kind: "mcp", name: "Azure MCP", slug: "azure", description: "Azure cloud platform: VMs, Storage, Functions. 87% enterprise adoption.", category: "Cloud MCPs", tags: ["MCP", "Azure", "Cloud"], dependencies: [], files: [".claude/mcp/azure.json"], install: "# Package does not exist. Use Azure SDK", setup: "Configure Azure credentials", envKeys: ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET"], installs: 1765, remixes: 523 },
+  { id: "mcp/mcp-postgres", kind: "mcp", name: "PostgreSQL MCP", slug: "postgres", description: "PostgreSQL database: queries, tables, indexes. 92% query performance.", category: "Database MCPs", tags: ["MCP", "PostgreSQL", "Database"], dependencies: [], files: [".claude/mcp/postgres.json"], install: "npx -y @modelcontextprotocol/server-postgres", setup: "Configure DATABASE_URL", envKeys: ["DATABASE_URL"], installs: 2134, remixes: 645 },
+  { id: "mcp/mcp-jira", kind: "mcp", name: "Jira MCP", slug: "jira", description: "Jira project management: issues, sprints, boards. 88% team productivity.", category: "Productivity MCPs", tags: ["MCP", "Jira", "Project Management"], dependencies: [], files: [".claude/mcp/jira.json"], install: "# Package does not exist. Use: npm install jira-client", setup: "Configure Jira credentials", envKeys: ["JIRA_HOST", "JIRA_EMAIL", "JIRA_API_TOKEN"], installs: 1789, remixes: 534 },
+  { id: "mcp/mcp-figma", kind: "mcp", name: "Figma MCP", slug: "figma", description: "Figma design tools: files, components, exports. 93% design consistency.", category: "Design MCPs", tags: ["MCP", "Figma", "Design"], dependencies: [], files: [".claude/mcp/figma.json"], install: "# Use community package: npm install figma-mcp", setup: "Configure FIGMA_ACCESS_TOKEN", envKeys: ["FIGMA_ACCESS_TOKEN"], installs: 1987, remixes: 612 },
+  { id: "mcp/mcp-prisma", kind: "mcp", name: "Prisma MCP", slug: "prisma", description: "Prisma ORM: schema, migrations, queries. 90% type safety.", category: "Database MCPs", tags: ["MCP", "Prisma", "ORM"], dependencies: [], files: [".claude/mcp/prisma.json"], install: "# Package does not exist. Use: npm install @prisma/client", setup: "Configure DATABASE_URL", envKeys: ["DATABASE_URL"], installs: 1765, remixes: 523 },
+  { id: "mcp/mcp-planetscale", kind: "mcp", name: "PlanetScale MCP", slug: "planetscale", description: "PlanetScale serverless MySQL: databases, branches, deploys. 94% availability.", category: "Database MCPs", tags: ["MCP", "PlanetScale", "MySQL"], dependencies: [], files: [".claude/mcp/planetscale.json"], install: "# Package does not exist. Use: npm install @planetscale/database", setup: "Configure PLANETSCALE_TOKEN", envKeys: ["PLANETSCALE_TOKEN", "PLANETSCALE_ORG"], installs: 1543, remixes: 467 },
+  { id: "mcp/mcp-pinecone", kind: "mcp", name: "Pinecone MCP", slug: "pinecone", description: "Pinecone vector database: indexes, queries, embeddings. 88% search accuracy.", category: "AI MCPs", tags: ["MCP", "Pinecone", "Vector DB"], dependencies: [], files: [".claude/mcp/pinecone.json"], install: "# Package does not exist. Use: npm install @pinecone-database/pinecone", setup: "Configure PINECONE_API_KEY", envKeys: ["PINECONE_API_KEY", "PINECONE_ENVIRONMENT"], installs: 1456, remixes: 423 },
+  { id: "mcp/mcp-openai", kind: "mcp", name: "OpenAI MCP", slug: "openai", description: "OpenAI API: GPT models, embeddings, assistants. 91% response quality.", category: "AI MCPs", tags: ["MCP", "OpenAI", "AI"], dependencies: [], files: [".claude/mcp/openai.json"], install: "# Package does not exist. Use: npm install openai", setup: "Configure OPENAI_API_KEY", envKeys: ["OPENAI_API_KEY"], installs: 2456, remixes: 734 },
+  { id: "mcp/mcp-anthropic", kind: "mcp", name: "Anthropic MCP", slug: "anthropic", description: "Anthropic Claude API: models, messages, streaming. 93% helpful responses.", category: "AI MCPs", tags: ["MCP", "Anthropic", "Claude"], dependencies: [], files: [".claude/mcp/anthropic.json"], install: "# Package does not exist. Use: npm install @anthropic-ai/sdk", setup: "Configure ANTHROPIC_API_KEY", envKeys: ["ANTHROPIC_API_KEY"], installs: 2134, remixes: 645 },
+  { id: "mcp/mcp-twilio", kind: "mcp", name: "Twilio MCP", slug: "twilio", description: "Twilio communications: SMS, voice, video. 99.9% message delivery.", category: "Communication MCPs", tags: ["MCP", "Twilio", "SMS"], dependencies: [], files: [".claude/mcp/twilio.json"], install: "# Package does not exist. Use: npm install twilio", setup: "Configure Twilio credentials", envKeys: ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"], installs: 1654, remixes: 489 },
+  { id: "mcp/mcp-sendgrid", kind: "mcp", name: "SendGrid MCP", slug: "sendgrid", description: "SendGrid email: templates, campaigns, analytics. 96% deliverability.", category: "Communication MCPs", tags: ["MCP", "SendGrid", "Email"], dependencies: [], files: [".claude/mcp/sendgrid.json"], install: "# Package does not exist. Use: npm install @sendgrid/mail", setup: "Configure SENDGRID_API_KEY", envKeys: ["SENDGRID_API_KEY"], installs: 1789, remixes: 534 },
+  { id: "mcp/mcp-airtable", kind: "mcp", name: "Airtable MCP", slug: "airtable", description: "Airtable databases: bases, tables, records. 89% data organization.", category: "Productivity MCPs", tags: ["MCP", "Airtable", "Database"], dependencies: [], files: [".claude/mcp/airtable.json"], install: "# Package does not exist. Use: npm install airtable", setup: "Configure AIRTABLE_API_KEY", envKeys: ["AIRTABLE_API_KEY"], installs: 1543, remixes: 467 },
 
   // === PHASE 4: ADVANCED ENTERPRISE MCPs (25 NEW MCPs) ===
 
@@ -4578,7 +4578,7 @@ export const MCPS: RegistryItem[] = [
   { id: "mcp-n8n", kind: "mcp", name: "N8N MCP", slug: "n8n", description: "N8N workflow automation: workflows, credentials, executions, webhooks. 92% automation coverage.", category: "Integration MCPs", tags: ["MCP", "N8N", "Automation", "Workflows"], dependencies: [], files: [".claude/mcp/n8n.json"], install: "npm install -g @n8n/mcp-server", setup: "Configure N8N_HOST and API key", envKeys: ["N8N_HOST", "N8N_API_KEY"], installs: 1367, remixes: 401 },
 
   // Retool - Low-Code Platform
-  { id: "mcp-retool", kind: "mcp", name: "Retool MCP", slug: "retool", description: "Retool low-code platform: apps, database connections, REST APIs, components. 95% app delivery speed.", category: "Integration MCPs", tags: ["MCP", "Retool", "Low-Code", "AppBuilder"], dependencies: [], files: [".claude/mcp/retool.json"], install: "npm install -g @retool/mcp-server", setup: "Configure RETOOL_HOST and API key", envKeys: ["RETOOL_HOST", "RETOOL_API_KEY"], installs: 1198, remixes: 345 },
+  { id: "mcp/mcp-retool", kind: "mcp", name: "Retool MCP", slug: "retool", description: "Retool low-code platform: apps, database connections, REST APIs, components. 95% app delivery speed.", category: "Integration MCPs", tags: ["MCP", "Retool", "Low-Code", "AppBuilder"], dependencies: [], files: [".claude/mcp/retool.json"], install: "npm install -g @retool/mcp-server", setup: "Configure RETOOL_HOST and API key", envKeys: ["RETOOL_HOST", "RETOOL_API_KEY"], installs: 1198, remixes: 345 },
 
   // Supabase Storage & Auth Extensions
   { id: "mcp-supabase-ext", kind: "mcp", name: "Supabase Extensions MCP", slug: "supabase-ext", description: "Supabase extensions: storage management, auth customization, vector search, realtime. 94% integration success.", category: "Backend MCPs", tags: ["MCP", "Supabase", "Extensions", "Storage", "Auth"], dependencies: [], files: [".claude/mcp/supabase-ext.json"], install: "npm install -g @supabase/mcp-server-ext", setup: "Configure SUPABASE_URL and service key", envKeys: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"], installs: 1456, remixes: 434 },
@@ -4590,16 +4590,16 @@ export const MCPS: RegistryItem[] = [
   { id: "mcp-neon", kind: "mcp", name: "Neon MCP", slug: "neon", description: "Neon serverless Postgres: branching, instant clone, auto-scaling, compute separation. 98% availability.", category: "Database MCPs", tags: ["MCP", "Neon", "PostgreSQL", "Serverless"], dependencies: [], files: [".claude/mcp/neon.json"], install: "npm install -g @neon/mcp-server", setup: "Configure NEON_API_KEY and project ID", envKeys: ["NEON_API_KEY", "NEON_PROJECT_ID"], installs: 1678, remixes: 501 },
 
   // Upstash Redis & Kafka
-  { id: "mcp-upstash", kind: "mcp", name: "Upstash MCP", slug: "upstash", description: "Upstash serverless: Redis, Kafka, QStash messaging. 99% uptime, auto-scaling. Edge-ready.", category: "Messaging MCPs", tags: ["MCP", "Upstash", "Redis", "Kafka", "Serverless"], dependencies: [], files: [".claude/mcp/upstash.json"], install: "npm install -g @upstash/mcp-server", setup: "Configure UPSTASH_REDIS_URL and Kafka credentials", envKeys: ["UPSTASH_REDIS_URL", "UPSTASH_KAFKA_URL", "UPSTASH_QSTASH_TOKEN"], installs: 1345, remixes: 412 },
+  { id: "mcp/mcp-upstash", kind: "mcp", name: "Upstash MCP", slug: "upstash", description: "Upstash serverless: Redis, Kafka, QStash messaging. 99% uptime, auto-scaling. Edge-ready.", category: "Messaging MCPs", tags: ["MCP", "Upstash", "Redis", "Kafka", "Serverless"], dependencies: [], files: [".claude/mcp/upstash.json"], install: "npm install -g @upstash/mcp-server", setup: "Configure UPSTASH_REDIS_URL and Kafka credentials", envKeys: ["UPSTASH_REDIS_URL", "UPSTASH_KAFKA_URL", "UPSTASH_QSTASH_TOKEN"], installs: 1345, remixes: 412 },
 
   // Warp - Distributed SQL
   { id: "mcp-warp", kind: "mcp", name: "Warp MCP", slug: "warp", description: "Warp distributed SQL: edge caching, global replication, multi-region writes. 97% query performance.", category: "Database MCPs", tags: ["MCP", "Warp", "DistributedSQL", "Edge"], dependencies: [], files: [".claude/mcp/warp.json"], install: "npm install -g @warp/mcp-server", setup: "Configure WARP_API_KEY and endpoint", envKeys: ["WARP_API_KEY", "WARP_ENDPOINT"], installs: 832, remixes: 245 },
 
   // Replicate - ML Model API
-  { id: "mcp-replicate", kind: "mcp", name: "Replicate MCP", slug: "replicate", description: "Replicate ML models: image, text, audio generation. Run 50k+ open-source models. 93% generation quality.", category: "AI MCPs", tags: ["MCP", "Replicate", "ML", "Models", "API"], dependencies: [], files: [".claude/mcp/replicate.json"], install: "npm install -g @replicate/mcp-server", setup: "Configure REPLICATE_API_TOKEN", envKeys: ["REPLICATE_API_TOKEN"], installs: 1567, remixes: 467 },
+  { id: "mcp/mcp-replicate", kind: "mcp", name: "Replicate MCP", slug: "replicate", description: "Replicate ML models: image, text, audio generation. Run 50k+ open-source models. 93% generation quality.", category: "AI MCPs", tags: ["MCP", "Replicate", "ML", "Models", "API"], dependencies: [], files: [".claude/mcp/replicate.json"], install: "npm install -g @replicate/mcp-server", setup: "Configure REPLICATE_API_TOKEN", envKeys: ["REPLICATE_API_TOKEN"], installs: 1567, remixes: 467 },
 
   // Hugging Face - Model Hub
-  { id: "mcp-huggingface", kind: "mcp", name: "Hugging Face MCP", slug: "huggingface", description: "Hugging Face Model Hub: inference API, model management, datasets, spaces. 95% model accuracy.", category: "AI MCPs", tags: ["MCP", "HuggingFace", "ML", "Models", "NLP"], dependencies: [], files: [".claude/mcp/huggingface.json"], install: "npm install -g @huggingface/mcp-server", setup: "Configure HUGGINGFACE_API_KEY", envKeys: ["HUGGINGFACE_API_KEY"], installs: 1789, remixes: 534 },
+  { id: "mcp/mcp-huggingface", kind: "mcp", name: "Hugging Face MCP", slug: "huggingface", description: "Hugging Face Model Hub: inference API, model management, datasets, spaces. 95% model accuracy.", category: "AI MCPs", tags: ["MCP", "HuggingFace", "ML", "Models", "NLP"], dependencies: [], files: [".claude/mcp/huggingface.json"], install: "npm install -g @huggingface/mcp-server", setup: "Configure HUGGINGFACE_API_KEY", envKeys: ["HUGGINGFACE_API_KEY"], installs: 1789, remixes: 534 },
 
   // Anthropic Extended - Claude Vision & Batches
   { id: "mcp-anthropic-extended", kind: "mcp", name: "Anthropic Extended MCP", slug: "anthropic-extended", description: "Anthropic extended: Claude Vision, batch processing, token counting, fine-tuning. 96% vision accuracy.", category: "AI MCPs", tags: ["MCP", "Anthropic", "Claude", "Vision", "Batches"], dependencies: [], files: [".claude/mcp/anthropic-extended.json"], install: "npm install -g @anthropic/mcp-server-extended", setup: "Configure ANTHROPIC_API_KEY", envKeys: ["ANTHROPIC_API_KEY"], installs: 1456, remixes: 423 },
@@ -4608,7 +4608,7 @@ export const MCPS: RegistryItem[] = [
   { id: "mcp-groq", kind: "mcp", name: "Groq MCP", slug: "groq", description: "Groq fast LLM inference: 10x faster generation, streaming, token optimization. 98% uptime.", category: "AI MCPs", tags: ["MCP", "Groq", "LLM", "Fast Inference"], dependencies: [], files: [".claude/mcp/groq.json"], install: "npm install -g @groq/mcp-server", setup: "Configure GROQ_API_KEY", envKeys: ["GROQ_API_KEY"], installs: 1234, remixes: 367 },
 
   // Together AI - LLM Services
-  { id: "mcp-together-ai", kind: "mcp", name: "Together AI MCP", slug: "together-ai", description: "Together AI LLM services: fast inference, fine-tuning, open-source models, custom endpoints. 94% throughput.", category: "AI MCPs", tags: ["MCP", "TogetherAI", "LLM", "Inference"], dependencies: [], files: [".claude/mcp/together-ai.json"], install: "npm install -g @together-ai/mcp-server", setup: "Configure TOGETHER_API_KEY", envKeys: ["TOGETHER_API_KEY"], installs: 1089, remixes: 312 },
+  { id: "mcp/mcp-together-ai", kind: "mcp", name: "Together AI MCP", slug: "together-ai", description: "Together AI LLM services: fast inference, fine-tuning, open-source models, custom endpoints. 94% throughput.", category: "AI MCPs", tags: ["MCP", "TogetherAI", "LLM", "Inference"], dependencies: [], files: [".claude/mcp/together-ai.json"], install: "npm install -g @together-ai/mcp-server", setup: "Configure TOGETHER_API_KEY", envKeys: ["TOGETHER_API_KEY"], installs: 1089, remixes: 312 },
 
   // Vectara - Retrieval-Augmented Generation
   { id: "mcp-vectara", kind: "mcp", name: "Vectara MCP", slug: "vectara", description: "Vectara RAG platform: semantic search, query understanding, corpus management, chat. 97% relevance.", category: "AI MCPs", tags: ["MCP", "Vectara", "RAG", "SemanticSearch"], dependencies: [], files: [".claude/mcp/vectara.json"], install: "npm install -g @vectara/mcp-server", setup: "Configure VECTARA_API_KEY and corpus ID", envKeys: ["VECTARA_API_KEY", "VECTARA_CUSTOMER_ID", "VECTARA_CORPUS_ID"], installs: 1123, remixes: 334 },
@@ -4617,16 +4617,16 @@ export const MCPS: RegistryItem[] = [
   { id: "mcp-langsmith", kind: "mcp", name: "LangSmith MCP", slug: "langsmith", description: "LangSmith observability: trace runs, evaluate agents, debug chains. 95% debugging efficiency.", category: "DevTools MCPs", tags: ["MCP", "LangSmith", "Observability", "Debugging"], dependencies: [], files: [".claude/mcp/langsmith.json"], install: "npm install -g @langsmith/mcp-server", setup: "Configure LANGSMITH_API_KEY", envKeys: ["LANGSMITH_API_KEY"], installs: 987, remixes: 289 },
 
   // Logto - Auth & Identity
-  { id: "mcp-logto", kind: "mcp", name: "Logto MCP", slug: "logto", description: "Logto identity platform: OAuth, SAML, MFA, user management, SSO. 96% auth security.", category: "Security MCPs", tags: ["MCP", "Logto", "Auth", "Identity", "SSO"], dependencies: [], files: [".claude/mcp/logto.json"], install: "npm install -g @logto/mcp-server", setup: "Configure LOGTO_ENDPOINT and credentials", envKeys: ["LOGTO_ENDPOINT", "LOGTO_ADMIN_KEY"], installs: 1345, remixes: 401 },
+  { id: "mcp/mcp-logto", kind: "mcp", name: "Logto MCP", slug: "logto", description: "Logto identity platform: OAuth, SAML, MFA, user management, SSO. 96% auth security.", category: "Security MCPs", tags: ["MCP", "Logto", "Auth", "Identity", "SSO"], dependencies: [], files: [".claude/mcp/logto.json"], install: "npm install -g @logto/mcp-server", setup: "Configure LOGTO_ENDPOINT and credentials", envKeys: ["LOGTO_ENDPOINT", "LOGTO_ADMIN_KEY"], installs: 1345, remixes: 401 },
 
   // Infisical - Secrets Management
-  { id: "mcp-infisical", kind: "mcp", name: "Infisical MCP", slug: "infisical", description: "Infisical secrets: encryption, rotation, environment sync, audit logs. 99% secrets security.", category: "Security MCPs", tags: ["MCP", "Infisical", "Secrets", "Encryption", "Compliance"], dependencies: [], files: [".claude/mcp/infisical.json"], install: "npm install -g @infisical/mcp-server", setup: "Configure INFISICAL_TOKEN and workspace ID", envKeys: ["INFISICAL_TOKEN", "INFISICAL_WORKSPACE_ID"], installs: 876, remixes: 256 },
+  { id: "mcp/mcp-infisical", kind: "mcp", name: "Infisical MCP", slug: "infisical", description: "Infisical secrets: encryption, rotation, environment sync, audit logs. 99% secrets security.", category: "Security MCPs", tags: ["MCP", "Infisical", "Secrets", "Encryption", "Compliance"], dependencies: [], files: [".claude/mcp/infisical.json"], install: "npm install -g @infisical/mcp-server", setup: "Configure INFISICAL_TOKEN and workspace ID", envKeys: ["INFISICAL_TOKEN", "INFISICAL_WORKSPACE_ID"], installs: 876, remixes: 256 },
 
   // Snyk - Dependency Security
   { id: "mcp-snyk", kind: "mcp", name: "Snyk MCP", slug: "snyk", description: "Snyk security scanning: vulnerabilities, dependencies, container scanning, SBOM. 97% detection accuracy.", category: "Security MCPs", tags: ["MCP", "Snyk", "Security", "Scanning", "Dependencies"], dependencies: [], files: [".claude/mcp/snyk.json"], install: "npm install -g @snyk/mcp-server", setup: "Configure SNYK_TOKEN", envKeys: ["SNYK_TOKEN"], installs: 1234, remixes: 356 },
 
   // Prompt Engineering - Langfuse
-  { id: "mcp-langfuse", kind: "mcp", name: "Langfuse MCP", slug: "langfuse", description: "Langfuse prompt management: versioning, evaluation, cost tracking, feedback loops. 94% accuracy improvement.", category: "AI MCPs", tags: ["MCP", "Langfuse", "Prompts", "Evaluation"], dependencies: [], files: [".claude/mcp/langfuse.json"], install: "npm install -g @langfuse/mcp-server", setup: "Configure LANGFUSE_SECRET_KEY", envKeys: ["LANGFUSE_SECRET_KEY", "LANGFUSE_PUBLIC_KEY"], installs: 1089, remixes: 312 },
+  { id: "mcp/mcp-langfuse", kind: "mcp", name: "Langfuse MCP", slug: "langfuse", description: "Langfuse prompt management: versioning, evaluation, cost tracking, feedback loops. 94% accuracy improvement.", category: "AI MCPs", tags: ["MCP", "Langfuse", "Prompts", "Evaluation"], dependencies: [], files: [".claude/mcp/langfuse.json"], install: "npm install -g @langfuse/mcp-server", setup: "Configure LANGFUSE_SECRET_KEY", envKeys: ["LANGFUSE_SECRET_KEY", "LANGFUSE_PUBLIC_KEY"], installs: 1089, remixes: 312 },
 
   // Bytebase - Database CI/CD
   { id: "mcp-bytebase", kind: "mcp", name: "Bytebase MCP", slug: "bytebase", description: "Bytebase database CI/CD: schema migration, version control, approval workflows. 98% deployment safety.", category: "DevOps MCPs", tags: ["MCP", "Bytebase", "Database", "CI/CD", "Schema"], dependencies: [], files: [".claude/mcp/bytebase.json"], install: "npm install -g @bytebase/mcp-server", setup: "Configure BYTEBASE_URL and API token", envKeys: ["BYTEBASE_URL", "BYTEBASE_API_TOKEN"], installs: 1178, remixes: 345 },
