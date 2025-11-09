@@ -341,17 +341,19 @@ function CatalogPageContent() {
       {/* Header */}
       <HeroBanner />
 
+      {/* ========== LANDING1 START ========== */}
       {/* Web3 Hero Section */}
-      <Web3HeroSection />
+      {/* <Web3HeroSection /> */}
 
       {/* Live Ticker */}
-      <LiveTicker />
+      {/* <LiveTicker /> */}
 
       {/* Pre-signup CTA */}
-      <PreSignupCTA />
+      {/* <PreSignupCTA /> */}
 
       {/* Solana Showcase */}
-      <SolanaShowcase />
+      {/* <SolanaShowcase /> */}
+      {/* ========== LANDING1 END ========== */}
 
       {/* Menu Builder */}
       <MenuBuilder selected={menuCategory} onSelect={setMenuCategory} />
