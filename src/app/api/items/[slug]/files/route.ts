@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 import { getItemBySlug } from '@/lib/registry';
 
 export async function GET(
@@ -20,12 +18,20 @@ export async function GET(
   try {
     const files: { path: string; content: string }[] = [];
 
+    // Get the base URL from the request
+    const baseUrl = new URL(request.url).origin;
+
     for (const filePath of (item.files || [])) {
       try {
-        // Read from public/claude/ instead of .claude/ for Vercel compatibility
-        const publicPath = filePath.replace('.claude/', 'public/claude/');
-        const fullPath = join(process.cwd(), publicPath);
-        const content = readFileSync(fullPath, 'utf-8');
+        // Fetch from public URL (public/claude/... is served at /claude/...)
+        const publicUrl = `${baseUrl}/${filePath.replace('.claude/', 'claude/')}`;
+        const response = await fetch(publicUrl);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const content = await response.text();
 
         // Extract relative path after .claude/
         const relativePath = filePath.split('.claude/')[1] || filePath;
@@ -35,7 +41,7 @@ export async function GET(
           content
         });
       } catch (error) {
-        console.warn(`Could not read file: ${filePath}`, error);
+        console.warn(`Could not fetch file: ${filePath}`, error);
         // Continue with other files
       }
     }
@@ -57,4 +63,4 @@ export async function GET(
   }
 }
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
