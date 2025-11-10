@@ -206,7 +206,7 @@ export default function AnalyticsPage() {
     <div className="min-h-screen bg-gradient-to-br from-lime-300 via-emerald-300 to-teal-300">
       {/* Header */}
       <div className="border-b border-black/20 bg-white/90 backdrop-blur sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
+        <div className="max-w-[1800px] mx-auto px-4 py-2 flex items-center justify-between">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm text-black/80 hover:text-black transition-colors"
@@ -222,16 +222,15 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 space-y-6">
-        {/* Header */}
-        <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-          <div className="flex items-center justify-between mb-4">
+      {/* Main Content - Optimized Single Page Layout */}
+      <div className="max-w-[1800px] mx-auto px-4 py-2">
+        {/* Header - Compact */}
+        <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3 mb-3">
+          <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-black text-black mb-2">Analytics Dashboard</h1>
-              <p className="text-black/60">Internal metrics for the last {days} days</p>
+              <h1 className="text-2xl font-black text-black">Analytics + Live Feed</h1>
+              <p className="text-xs text-black/60">Last {days} days • Updates every 5s</p>
             </div>
-
             <div className="flex items-center gap-2">
               {[7, 30, 90].map(d => (
                 <Button
@@ -239,7 +238,7 @@ export default function AnalyticsPage() {
                   onClick={() => setDays(d)}
                   variant={days === d ? "default" : "outline"}
                   size="sm"
-                  className={days === d ? "bg-lime-500 text-black hover:bg-lime-600" : ""}
+                  className={days === d ? "bg-lime-500 text-black hover:bg-lime-600 text-xs px-2 py-1 h-7" : "text-xs px-2 py-1 h-7"}
                 >
                   {d}d
                 </Button>
@@ -249,72 +248,72 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
           {/* Total Events */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <div className="flex items-center justify-between mb-2">
-              <Activity size={20} className="text-lime-600" />
-              <TrendingUp size={16} className="text-emerald-600" />
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+            <div className="flex items-center justify-between mb-1">
+              <Activity size={16} className="text-lime-600" />
+              <TrendingUp size={14} className="text-emerald-600" />
             </div>
-            <div className="text-3xl font-black text-black mb-1">
+            <div className="text-2xl font-black text-black mb-0.5">
               {stats.totalEvents?.toLocaleString() || 0}
             </div>
-            <div className="text-sm text-black/60">Total Events</div>
+            <div className="text-xs text-black/60">Total Events</div>
           </div>
 
           {/* Unique Visitors */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <div className="flex items-center justify-between mb-2">
-              <Eye size={20} className="text-blue-600" />
-              <TrendingUp size={16} className="text-emerald-600" />
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+            <div className="flex items-center justify-between mb-1">
+              <Eye size={16} className="text-blue-600" />
+              <TrendingUp size={14} className="text-emerald-600" />
             </div>
-            <div className="text-3xl font-black text-black mb-1">
+            <div className="text-2xl font-black text-black mb-0.5">
               {stats.uniqueVisitors?.toLocaleString() || 0}
             </div>
-            <div className="text-sm text-black/60">Unique Visitors</div>
+            <div className="text-xs text-black/60">Unique Visitors</div>
           </div>
 
           {/* Items Viewed */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <div className="flex items-center justify-between mb-2">
-              <Package size={20} className="text-purple-600" />
-              <TrendingUp size={16} className="text-emerald-600" />
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+            <div className="flex items-center justify-between mb-1">
+              <Package size={16} className="text-purple-600" />
+              <TrendingUp size={14} className="text-emerald-600" />
             </div>
-            <div className="text-3xl font-black text-black mb-1">
+            <div className="text-2xl font-black text-black mb-0.5">
               {stats.itemsViewed?.toLocaleString() || 0}
             </div>
-            <div className="text-sm text-black/60">Items Viewed</div>
+            <div className="text-xs text-black/60">Items Viewed</div>
           </div>
 
           {/* Waitlist */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <div className="flex items-center justify-between mb-2">
-              <Users size={20} className="text-orange-600" />
-              <Sparkles size={16} className="text-lime-600" />
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+            <div className="flex items-center justify-between mb-1">
+              <Users size={16} className="text-orange-600" />
+              <Sparkles size={14} className="text-lime-600" />
             </div>
-            <div className="text-3xl font-black text-black mb-1">
+            <div className="text-2xl font-black text-black mb-0.5">
               {waitlistCount.toLocaleString()}
             </div>
-            <div className="text-sm text-black/60">Waitlist Signups</div>
+            <div className="text-xs text-black/60">Waitlist Signups</div>
           </div>
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
           {/* Top Items */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <h3 className="text-lg font-black text-black mb-4">Top Viewed Items</h3>
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+            <h3 className="text-sm font-black text-black mb-2">Top Viewed Items</h3>
+            <ResponsiveContainer width="100%" height={180}>
               <BarChart data={topItems}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#0000001a" />
                 <XAxis
                   dataKey="name"
                   angle={-45}
                   textAnchor="end"
-                  height={100}
-                  tick={{ fontSize: 12, fill: '#000000aa' }}
+                  height={80}
+                  tick={{ fontSize: 10, fill: '#000000aa' }}
                 />
-                <YAxis tick={{ fill: '#000000aa' }} />
+                <YAxis tick={{ fontSize: 10, fill: '#000000aa' }} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -328,9 +327,9 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Kind Distribution */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <h3 className="text-lg font-black text-black mb-4">Views by Type</h3>
-            <ResponsiveContainer width="100%" height={300}>
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+            <h3 className="text-sm font-black text-black mb-2">Views by Type</h3>
+            <ResponsiveContainer width="100%" height={180}>
               <PieChart>
                 <Pie
                   data={kindDistribution}
@@ -338,7 +337,7 @@ export default function AnalyticsPage() {
                   cy="50%"
                   labelLine={false}
                   label={(props: any) => `${props.name} ${(props.percent * 100).toFixed(0)}%`}
-                  outerRadius={100}
+                  outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -354,9 +353,9 @@ export default function AnalyticsPage() {
 
         {/* Event Timeline */}
         {stats.dailyEvents && stats.dailyEvents.length > 0 && (
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-            <h3 className="text-lg font-black text-black mb-4">Activity Timeline</h3>
-            <ResponsiveContainer width="100%" height={250}>
+          <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3 mb-3">
+            <h3 className="text-sm font-black text-black mb-2">Activity Timeline</h3>
+            <ResponsiveContainer width="100%" height={150}>
               <AreaChart data={stats.dailyEvents}>
                 <defs>
                   <linearGradient id="colorEvents" x1="0" y1="0" x2="0" y2="1">
@@ -367,9 +366,9 @@ export default function AnalyticsPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#0000001a" />
                 <XAxis
                   dataKey="date"
-                  tick={{ fontSize: 12, fill: '#000000aa' }}
+                  tick={{ fontSize: 10, fill: '#000000aa' }}
                 />
-                <YAxis tick={{ fill: '#000000aa' }} />
+                <YAxis tick={{ fontSize: 10, fill: '#000000aa' }} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -391,30 +390,30 @@ export default function AnalyticsPage() {
         )}
 
         {/* Raw Stats */}
-        <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-          <h3 className="text-lg font-black text-black mb-4">Additional Metrics</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3 mb-3">
+          <h3 className="text-sm font-black text-black mb-2">Additional Metrics</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
             <div>
-              <div className="text-black/60 mb-1">Avg. Views/Day</div>
-              <div className="text-lg font-bold text-black">
+              <div className="text-black/60 mb-0.5">Avg. Views/Day</div>
+              <div className="text-base font-bold text-black">
                 {Math.round((stats.totalEvents || 0) / days)}
               </div>
             </div>
             <div>
-              <div className="text-black/60 mb-1">Most Popular Type</div>
-              <div className="text-lg font-bold text-black capitalize">
+              <div className="text-black/60 mb-0.5">Most Popular Type</div>
+              <div className="text-base font-bold text-black capitalize">
                 {Object.entries(stats.byKind || {}).sort(([,a], [,b]) => (b as number) - (a as number))[0]?.[0] || 'N/A'}
               </div>
             </div>
             <div>
-              <div className="text-black/60 mb-1">Search Events</div>
-              <div className="text-lg font-bold text-black">
+              <div className="text-black/60 mb-0.5">Search Events</div>
+              <div className="text-base font-bold text-black">
                 {stats.searchCount || 0}
               </div>
             </div>
             <div>
-              <div className="text-black/60 mb-1">Bundle Downloads</div>
-              <div className="text-lg font-bold text-black">
+              <div className="text-black/60 mb-0.5">Bundle Downloads</div>
+              <div className="text-base font-bold text-black">
                 {stats.bundleDownloads || 0}
               </div>
             </div>
@@ -422,21 +421,23 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Live Activity Feed Section */}
-        <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-          <h3 className="text-lg font-black text-black mb-4">🔴 Live Activity Stream</h3>
-          <p className="text-sm text-black/60 mb-4">
-            Real-time platform activity with simulated viral events for marketing
-          </p>
+        <div className="rounded-lg border border-black/20 bg-white/90 backdrop-blur p-3">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-black text-black">🔴 Live Activity Stream</h3>
+            <p className="text-xs text-black/60">
+              Real-time platform activity
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             {/* Live Stats */}
-            <div className="lg:col-span-4 min-h-[500px]">
+            <div className="lg:col-span-4 h-[300px]">
               <LiveStatsPanel />
             </div>
 
             {/* Live Activity Feed */}
-            <div className="lg:col-span-8 min-h-[500px]">
-              <div className="h-full rounded-xl border border-black/20 bg-white/90 backdrop-blur overflow-hidden">
+            <div className="lg:col-span-8 h-[300px]">
+              <div className="h-full rounded-lg border border-black/20 bg-white/90 backdrop-blur overflow-hidden">
                 <LiveActivityTicker />
               </div>
             </div>
@@ -444,9 +445,8 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="text-center text-sm text-black/50 pb-4">
-          <p>Data refreshes automatically • Last updated: {new Date().toLocaleString()}</p>
-          <p className="mt-1">🔒 This dashboard is password-protected and not publicly accessible</p>
+        <div className="text-center text-xs text-black/50 py-2">
+          <p>Auto-refresh • {new Date().toLocaleString()}</p>
         </div>
       </div>
     </div>
