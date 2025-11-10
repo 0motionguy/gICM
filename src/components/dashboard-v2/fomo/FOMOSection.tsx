@@ -25,70 +25,6 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      {/* Leaderboard */}
-      <div className={`
-        rounded-2xl border p-6
-        ${theme === "dark" ? "glass-card" : "glass-card-light bg-white"}
-      `}>
-        <div className="flex items-center gap-2 mb-6">
-          <Trophy className={`w-6 h-6 ${theme === "dark" ? "text-yellow-400" : "text-yellow-600"}`} />
-          <h3 className={`
-            text-lg font-black uppercase tracking-wide
-            ${theme === "dark" ? "text-white" : "text-black"}
-          `}>
-            Top Builders Today
-          </h3>
-        </div>
-
-        <div className="space-y-3">
-          {topBuilders.map((builder, index) => (
-            <div
-              key={builder.name}
-              className={`
-                flex items-center gap-3 p-3 rounded-xl border transition-all hover-scale
-                ${theme === "dark"
-                  ? "bg-white/5 border-white/8 hover:bg-white/10"
-                  : "bg-white border-black/20 hover:bg-gray-50"
-                }
-                ${index === 0 && "animate-pulse-glow border-yellow-500/50"}
-              `}
-            >
-              <div className={`
-                w-10 h-10 rounded-lg flex items-center justify-center text-base font-black
-                ${index === 0
-                  ? "bg-gradient-to-br from-yellow-400 to-yellow-600 text-black"
-                  : index === 1
-                  ? (theme === "dark" ? "bg-gray-400/20 text-gray-400" : "bg-gray-100 text-gray-600")
-                  : index === 2
-                  ? (theme === "dark" ? "bg-orange-500/20 text-orange-400" : "bg-orange-100 text-orange-600")
-                  : (theme === "dark" ? "bg-white/10 text-white/60" : "bg-black/5 text-black/60")
-                }
-              `}>
-                {index === 0 ? "🏆" : index + 1}
-              </div>
-
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className={`font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
-                    {builder.name}
-                  </span>
-                  {builder.trend === "up" && (
-                    <span className="text-xs">📈</span>
-                  )}
-                </div>
-                <span className={`text-xs ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
-                  {builder.stacksBuilt} stacks built
-                </span>
-              </div>
-
-              {index === 0 && (
-                <Star className="w-5 h-5 text-yellow-400 animate-float" />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Token Savings = Money Savings */}
       <div className={`
         rounded-2xl border p-6
@@ -195,6 +131,70 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Top Builders Today */}
+      <div className={`
+        rounded-2xl border p-6
+        ${theme === "dark" ? "glass-card" : "glass-card-light bg-white"}
+      `}>
+        <div className="flex items-center gap-2 mb-6">
+          <Trophy className={`w-6 h-6 ${theme === "dark" ? "text-yellow-400" : "text-yellow-600"}`} />
+          <h3 className={`
+            text-lg font-black uppercase tracking-wide
+            ${theme === "dark" ? "text-white" : "text-black"}
+          `}>
+            Top Builders Today
+          </h3>
+        </div>
+
+        <div className="space-y-3">
+          {topBuilders.map((builder, index) => (
+            <div
+              key={builder.name}
+              className={`
+                flex items-center gap-3 p-3 rounded-xl border transition-all hover-scale
+                ${theme === "dark"
+                  ? "bg-white/5 border-white/8 hover:bg-white/10"
+                  : "bg-white border-black/20 hover:bg-gray-50"
+                }
+                ${index === 0 && "animate-pulse-glow border-yellow-500/50"}
+              `}
+            >
+              <div className={`
+                w-10 h-10 rounded-lg flex items-center justify-center text-base font-black
+                ${index === 0
+                  ? "bg-gradient-to-br from-yellow-400 to-yellow-600 text-black"
+                  : index === 1
+                  ? (theme === "dark" ? "bg-gray-400/20 text-gray-400" : "bg-gray-100 text-gray-600")
+                  : index === 2
+                  ? (theme === "dark" ? "bg-orange-500/20 text-orange-400" : "bg-orange-100 text-orange-600")
+                  : (theme === "dark" ? "bg-white/10 text-white/60" : "bg-black/5 text-black/60")
+                }
+              `}>
+                {index === 0 ? "🏆" : index + 1}
+              </div>
+
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <span className={`font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
+                    {builder.name}
+                  </span>
+                  {builder.trend === "up" && (
+                    <span className="text-xs">📈</span>
+                  )}
+                </div>
+                <span className={`text-xs ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
+                  {builder.stacksBuilt} stacks built
+                </span>
+              </div>
+
+              {index === 0 && (
+                <Star className="w-5 h-5 text-yellow-400 animate-float" />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -66,53 +66,6 @@ export function StatsPanel({ theme }: StatsPanelProps) {
       h-[600px] rounded-2xl border p-6 overflow-y-auto custom-scrollbar
       ${theme === "dark" ? "glass-card" : "glass-card-light bg-white"}
     `}>
-      {/* Recent Deployments */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Rocket className={`w-5 h-5 ${theme === "dark" ? "text-blue-400" : "text-blue-600"}`} />
-          <h3 className={`
-            text-sm font-bold uppercase tracking-wide
-            ${theme === "dark" ? "text-white/70" : "text-black/70"}
-          `}>
-            Recent Deployments
-          </h3>
-        </div>
-        <div className="space-y-2">
-          {recentDeployments.map((deployment, index) => (
-            <div
-              key={index}
-              className={`
-                flex items-center justify-between p-3 rounded-lg border
-                transition-all hover-scale
-                ${theme === "dark"
-                  ? "bg-white/5 border-white/8 hover:bg-white/10"
-                  : "bg-white border-black/20 hover:bg-gray-50"
-                }
-              `}
-            >
-              <div className="flex items-center gap-2 flex-1 min-w-0">
-                <div className={`
-                  w-2 h-2 rounded-full flex-shrink-0
-                  ${deployment.success
-                    ? "bg-lime-500"
-                    : "bg-red-500"
-                  }
-                `} />
-                <span className={`
-                  text-sm font-medium truncate
-                  ${theme === "dark" ? "text-white" : "text-black"}
-                `}>
-                  {deployment.name}
-                </span>
-              </div>
-              <span className={`text-xs flex-shrink-0 ml-2 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
-                {deployment.time}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Quick Stats Grid */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-4">
@@ -247,6 +200,53 @@ export function StatsPanel({ theme }: StatsPanelProps) {
           </div>
         </div>
       )}
+
+      {/* Recent Deployments */}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Rocket className={`w-5 h-5 ${theme === "dark" ? "text-blue-400" : "text-blue-600"}`} />
+          <h3 className={`
+            text-sm font-bold uppercase tracking-wide
+            ${theme === "dark" ? "text-white/70" : "text-black/70"}
+          `}>
+            Recent Deployments
+          </h3>
+        </div>
+        <div className="space-y-2">
+          {recentDeployments.map((deployment, index) => (
+            <div
+              key={index}
+              className={`
+                flex items-center justify-between p-3 rounded-lg border
+                transition-all hover-scale
+                ${theme === "dark"
+                  ? "bg-white/5 border-white/8 hover:bg-white/10"
+                  : "bg-white border-black/20 hover:bg-gray-50"
+                }
+              `}
+            >
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <div className={`
+                  w-2 h-2 rounded-full flex-shrink-0
+                  ${deployment.success
+                    ? "bg-lime-500"
+                    : "bg-red-500"
+                  }
+                `} />
+                <span className={`
+                  text-sm font-medium truncate
+                  ${theme === "dark" ? "text-white" : "text-black"}
+                `}>
+                  {deployment.name}
+                </span>
+              </div>
+              <span className={`text-xs flex-shrink-0 ml-2 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
+                {deployment.time}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
