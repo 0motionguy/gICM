@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trophy, MessageSquare, Flame, Rocket, Star } from "lucide-react";
+import { Trophy, MessageSquare, DollarSign, Coins, TrendingUp, Zap, Star } from "lucide-react";
 import { AnimatedCounter } from "../hero/AnimatedCounter";
 
 interface FOMOSectionProps {
@@ -197,23 +197,23 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
         </div>
       </div>
 
-      {/* Urgency Indicators */}
+      {/* Token Savings = Money Savings */}
       <div className={`
         rounded-2xl border p-6
         ${theme === "dark" ? "glass-card" : "glass-card-light bg-white"}
       `}>
         <div className="flex items-center gap-2 mb-6">
-          <Flame className={`w-6 h-6 ${theme === "dark" ? "text-orange-400" : "text-orange-600"}`} />
+          <DollarSign className={`w-6 h-6 ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`} />
           <h3 className={`
             text-lg font-black uppercase tracking-wide
             ${theme === "dark" ? "text-white" : "text-black"}
           `}>
-            Live Momentum
+            💰 Token Savings = Money Savings
           </h3>
         </div>
 
         <div className="space-y-4">
-          {/* Launched Today */}
+          {/* Tokens Saved Today */}
           <div className={`
             p-4 rounded-xl border animate-pulse-glow
             ${theme === "dark"
@@ -222,20 +222,20 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
             }
           `}>
             <div className="flex items-center gap-2 mb-2">
-              <Rocket className={`w-5 h-5 ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`} />
+              <DollarSign className={`w-5 h-5 ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`} />
               <span className={`text-xs font-bold uppercase ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
-                Launched Today
+                Tokens Saved Today
               </span>
             </div>
-            <div className={`text-4xl font-black ${theme === "dark" ? "text-white" : "text-black"}`}>
-              <AnimatedCounter value={launchedToday} />
+            <div className={`text-3xl font-black ${theme === "dark" ? "text-white" : "text-black"}`}>
+              <AnimatedCounter value={2847} /> tokens
             </div>
-            <p className={`text-xs mt-1 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
-              +{((launchedToday / 143) * 100).toFixed(1)}% vs yesterday
+            <p className={`text-xl font-bold mt-1 ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
+              $142.35 saved
             </p>
           </div>
 
-          {/* Activity Indicators */}
+          {/* Additional Metrics */}
           <div className="space-y-3">
             <div className={`
               p-3 rounded-lg border
@@ -244,14 +244,43 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
                 : "bg-white border-black/20"
               }
             `}>
-              <div className="flex items-center justify-between">
-                <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
-                  🔥 Hot Stacks
-                </span>
-                <span className={`text-xs ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
-                  67 trending
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-2">
+                  <Coins className={`w-4 h-4 ${theme === "dark" ? "text-yellow-400" : "text-yellow-600"}`} />
+                  <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
+                    Avg Tokens/Stack
+                  </span>
+                </div>
+                <span className={`text-sm font-bold ${theme === "dark" ? "text-white" : "text-black"}`}>
+                  127 tokens
                 </span>
               </div>
+              <p className={`text-xs text-right ${theme === "dark" ? "text-yellow-400" : "text-yellow-600"}`}>
+                $6.35 saved/stack
+              </p>
+            </div>
+
+            <div className={`
+              p-3 rounded-lg border
+              ${theme === "dark"
+                ? "bg-white/5 border-white/8"
+                : "bg-white border-black/20"
+              }
+            `}>
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className={`w-4 h-4 ${theme === "dark" ? "text-blue-400" : "text-blue-600"}`} />
+                  <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
+                    Total Tokens Saved
+                  </span>
+                </div>
+                <span className={`text-sm font-bold ${theme === "dark" ? "text-white" : "text-black"}`}>
+                  1.2M
+                </span>
+              </div>
+              <p className={`text-xs text-right ${theme === "dark" ? "text-blue-400" : "text-blue-600"}`}>
+                $60,000 total saved
+              </p>
             </div>
 
             <div className={`
@@ -262,28 +291,14 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
               }
             `}>
               <div className="flex items-center justify-between">
-                <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
-                  ⚡ Active Builders
-                </span>
-                <span className={`text-xs ${theme === "dark" ? "text-yellow-400" : "text-yellow-600"}`}>
-                  234 online
-                </span>
-              </div>
-            </div>
-
-            <div className={`
-              p-3 rounded-lg border
-              ${theme === "dark"
-                ? "bg-white/5 border-white/8"
-                : "bg-white border-black/20"
-              }
-            `}>
-              <div className="flex items-center justify-between">
-                <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
-                  📈 Growth Rate
-                </span>
-                <span className={`text-xs ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
-                  +43% this hour
+                <div className="flex items-center gap-2">
+                  <Zap className={`w-4 h-4 ${theme === "dark" ? "text-purple-400" : "text-purple-600"}`} />
+                  <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
+                    Savings Rate
+                  </span>
+                </div>
+                <span className={`text-sm font-bold ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
+                  +43% this week
                 </span>
               </div>
             </div>

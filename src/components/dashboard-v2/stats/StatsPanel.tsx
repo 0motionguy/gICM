@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { LiveStatsResponse } from "@/types/live-activity";
-import { TrendingUp, Clock, Rocket, Zap, Target } from "lucide-react";
+import { TrendingUp, Rocket, Zap, Target } from "lucide-react";
 
 interface StatsPanelProps {
   theme: "dark" | "light";
@@ -11,19 +11,6 @@ interface StatsPanelProps {
 export function StatsPanel({ theme }: StatsPanelProps) {
   const [stats, setStats] = useState<LiveStatsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Mock hourly activity data (in real app, fetch from API)
-  const hourlyActivity = [
-    { hour: "00:00", count: 12 },
-    { hour: "03:00", count: 8 },
-    { hour: "06:00", count: 15 },
-    { hour: "09:00", count: 45 },
-    { hour: "12:00", count: 67 },
-    { hour: "15:00", count: 58 },
-    { hour: "18:00", count: 72 },
-    { hour: "21:00", count: 54 },
-    { hour: "now", count: 43 },
-  ];
 
   const recentDeployments = [
     { name: "DeFi Trading Bot", time: "2m ago", success: true },
@@ -74,57 +61,11 @@ export function StatsPanel({ theme }: StatsPanelProps) {
     );
   }
 
-  const maxActivity = Math.max(...hourlyActivity.map(h => h.count));
-
   return (
     <div className={`
       h-[600px] rounded-2xl border p-6 overflow-y-auto custom-scrollbar
       ${theme === "dark" ? "glass-card" : "glass-card-light bg-white"}
     `}>
-      {/* Activity Heatmap */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Clock className={`w-5 h-5 ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`} />
-          <h3 className={`
-            text-sm font-bold uppercase tracking-wide
-            ${theme === "dark" ? "text-white/70" : "text-black/70"}
-          `}>
-            24h Activity
-          </h3>
-        </div>
-        <div className="space-y-2">
-          {hourlyActivity.map((item) => (
-            <div key={item.hour} className="flex items-center gap-2">
-              <span className={`
-                text-xs w-12 flex-shrink-0 text-right font-mono
-                ${theme === "dark" ? "text-white/60" : "text-black/60"}
-              `}>
-                {item.hour}
-              </span>
-              <div className="flex-1 h-6 bg-white/5 rounded-md overflow-hidden">
-                <div
-                  className={`h-full rounded-md transition-all ${
-                    item.hour === "now"
-                      ? "bg-gradient-to-r from-lime-500 to-lime-400 animate-pulse-glow"
-                      : "bg-gradient-to-r from-purple-500/50 to-purple-400/50"
-                  }`}
-                  style={{ width: `${(item.count / maxActivity) * 100}%` }}
-                />
-              </div>
-              <span className={`
-                text-xs w-8 flex-shrink-0 font-bold tabular-nums
-                ${item.hour === "now"
-                  ? (theme === "dark" ? "text-lime-400" : "text-lime-600")
-                  : (theme === "dark" ? "text-white/60" : "text-black/60")
-                }
-              `}>
-                {item.count}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Recent Deployments */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-4">
