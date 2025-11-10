@@ -144,8 +144,8 @@ export function StatsPanel({ theme }: StatsPanelProps) {
                 flex items-center justify-between p-3 rounded-lg border
                 transition-all hover-scale
                 ${theme === "dark"
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white border-black/10 hover:bg-gray-50"
+                  ? "bg-white/5 border-white/8 hover:bg-white/10"
+                  : "bg-white border-black/20 hover:bg-gray-50"
                 }
               `}
             >
@@ -187,8 +187,8 @@ export function StatsPanel({ theme }: StatsPanelProps) {
           <div className={`
             p-3 rounded-lg border
             ${theme === "dark"
-              ? "bg-white/5 border-white/10"
-              : "bg-white border-black/10"
+              ? "bg-white/5 border-white/8"
+              : "bg-white border-black/20"
             }
           `}>
             <div className={`text-xs mb-1 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
@@ -201,8 +201,8 @@ export function StatsPanel({ theme }: StatsPanelProps) {
           <div className={`
             p-3 rounded-lg border
             ${theme === "dark"
-              ? "bg-white/5 border-white/10"
-              : "bg-white border-black/10"
+              ? "bg-white/5 border-white/8"
+              : "bg-white border-black/20"
             }
           `}>
             <div className={`text-xs mb-1 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
@@ -215,8 +215,8 @@ export function StatsPanel({ theme }: StatsPanelProps) {
           <div className={`
             p-3 rounded-lg border
             ${theme === "dark"
-              ? "bg-white/5 border-white/10"
-              : "bg-white border-black/10"
+              ? "bg-white/5 border-white/8"
+              : "bg-white border-black/20"
             }
           `}>
             <div className={`text-xs mb-1 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
@@ -229,14 +229,14 @@ export function StatsPanel({ theme }: StatsPanelProps) {
           <div className={`
             p-3 rounded-lg border
             ${theme === "dark"
-              ? "bg-white/5 border-white/10"
-              : "bg-white border-black/10"
+              ? "bg-white/5 border-white/8"
+              : "bg-white border-black/20"
             }
           `}>
             <div className={`text-xs mb-1 ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
               Top Category
             </div>
-            <div className={`text-lg font-black ${theme === "dark" ? "text-purple-400" : "text-purple-600"}`}>
+            <div className={`text-lg font-black ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
               DeFi
             </div>
           </div>
@@ -263,8 +263,8 @@ export function StatsPanel({ theme }: StatsPanelProps) {
                   flex items-center justify-between p-3 rounded-lg border
                   transition-all hover-scale
                   ${theme === "dark"
-                    ? "bg-white/5 border-white/10 hover:bg-white/10"
-                    : "bg-white border-black/10 hover:bg-gray-50"
+                    ? "bg-white/5 border-white/8 hover:bg-white/10"
+                    : "bg-white border-black/20 hover:bg-gray-50"
                   }
                   ${index === 0 && "animate-pulse-glow border-yellow-500/50"}
                 `}

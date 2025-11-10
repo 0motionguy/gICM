@@ -24,7 +24,7 @@ export function HeroMetrics({ theme }: HeroMetricsProps) {
       value: 2847,
       change: 12.8,
       icon: <Users className="w-7 h-7" />,
-      color: "purple",
+      color: "lime",
     },
     {
       label: "Building Now",

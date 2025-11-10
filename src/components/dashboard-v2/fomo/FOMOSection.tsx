@@ -80,8 +80,8 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
               className={`
                 flex items-center gap-3 p-3 rounded-xl border transition-all hover-scale
                 ${theme === "dark"
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white border-black/10 hover:bg-gray-50"
+                  ? "bg-white/5 border-white/8 hover:bg-white/10"
+                  : "bg-white border-black/20 hover:bg-gray-50"
                 }
                 ${index === 0 && "animate-pulse-glow border-yellow-500/50"}
               `}
@@ -149,8 +149,8 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
               <div className={`
                 p-6 rounded-xl border
                 ${theme === "dark"
-                  ? "bg-gradient-to-br from-purple-500/10 to-transparent border-purple-500/30"
-                  : "bg-gradient-to-br from-purple-50 to-transparent border-purple-200"
+                  ? "bg-gradient-to-br from-lime-500/10 to-transparent border-lime-500/30"
+                  : "bg-gradient-to-br from-lime-50 to-transparent border-lime-200"
                 }
               `}>
                 <p className={`
@@ -163,8 +163,8 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
                   <div className={`
                     w-10 h-10 rounded-full flex items-center justify-center font-bold
                     ${theme === "dark"
-                      ? "bg-purple-500/20 text-purple-400"
-                      : "bg-purple-100 text-purple-600"
+                      ? "bg-lime-500/20 text-lime-400"
+                      : "bg-lime-100 text-lime-600"
                     }
                   `}>
                     {testimonial.author[0]}
@@ -187,7 +187,7 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
               className={`
                 w-2 h-2 rounded-full transition-all
                 ${index === currentTestimonial
-                  ? (theme === "dark" ? "bg-purple-400 w-6" : "bg-purple-600 w-6")
+                  ? (theme === "dark" ? "bg-lime-400 w-6" : "bg-lime-600 w-6")
                   : (theme === "dark" ? "bg-white/20" : "bg-black/20")
                 }
               `}
@@ -240,8 +240,8 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
             <div className={`
               p-3 rounded-lg border
               ${theme === "dark"
-                ? "bg-white/5 border-white/10"
-                : "bg-white border-black/10"
+                ? "bg-white/5 border-white/8"
+                : "bg-white border-black/20"
               }
             `}>
               <div className="flex items-center justify-between">
@@ -257,8 +257,8 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
             <div className={`
               p-3 rounded-lg border
               ${theme === "dark"
-                ? "bg-white/5 border-white/10"
-                : "bg-white border-black/10"
+                ? "bg-white/5 border-white/8"
+                : "bg-white border-black/20"
               }
             `}>
               <div className="flex items-center justify-between">
@@ -274,15 +274,15 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
             <div className={`
               p-3 rounded-lg border
               ${theme === "dark"
-                ? "bg-white/5 border-white/10"
-                : "bg-white border-black/10"
+                ? "bg-white/5 border-white/8"
+                : "bg-white border-black/20"
               }
             `}>
               <div className="flex items-center justify-between">
                 <span className={`text-sm font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
                   📈 Growth Rate
                 </span>
-                <span className={`text-xs ${theme === "dark" ? "text-purple-400" : "text-purple-600"}`}>
+                <span className={`text-xs ${theme === "dark" ? "text-lime-400" : "text-lime-600"}`}>
                   +43% this hour
                 </span>
               </div>

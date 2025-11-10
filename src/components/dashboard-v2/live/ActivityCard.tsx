@@ -73,8 +73,8 @@ export function ActivityCard({ activity, theme }: ActivityCardProps) {
       group flex items-start gap-3 p-4 rounded-xl border transition-all
       hover-lift gpu-accelerated
       ${theme === "dark"
-        ? "bg-white/5 border-white/10 hover:bg-white/10"
-        : "bg-white border-black/10 hover:bg-gray-50"
+        ? "bg-white/5 border-white/8 hover:bg-white/10"
+        : "bg-white border-black/20 hover:bg-gray-50"
       }
     `}>
       {/* Icon */}

@@ -20,8 +20,8 @@ export default function DashboardV2Page() {
       <div className={`
         min-h-screen
         ${theme === "dark"
-          ? "bg-[#0F0F1E] gradient-dark-radial"
-          : "bg-gradient-to-br from-gray-50 to-gray-100"
+          ? "bg-[#0f0f0f]"
+          : "bg-gradient-to-br from-green-50 via-emerald-50 to-cyan-50"
         }
       `}>
         {/* Header */}
@@ -57,8 +57,8 @@ export default function DashboardV2Page() {
         <footer className={`
           border-t py-6 text-center text-sm
           ${theme === "dark"
-            ? "border-white/10 text-white/40"
-            : "border-black/10 text-black/40"
+            ? "border-white/8 text-zinc-400"
+            : "border-black/20 text-black/60"
           }
         `}>
           <p>gICM Marketplace · Real-time Dashboard · Updates every 5s</p>

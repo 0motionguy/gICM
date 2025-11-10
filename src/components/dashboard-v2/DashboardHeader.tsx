@@ -13,8 +13,8 @@ export function DashboardHeader({ theme, onToggleTheme }: DashboardHeaderProps) 
     <header className={`
       sticky top-0 z-50 backdrop-blur-lg border-b transition-colors
       ${theme === "dark"
-        ? "bg-[#0F0F1E]/80 border-white/10"
-        : "bg-white/80 border-black/10"
+        ? "bg-[#0f0f0f]/80 border-white/8"
+        : "bg-white/80 border-black/20"
       }
     `}>
       <div className="max-w-[1920px] mx-auto px-6 py-4">
@@ -22,14 +22,16 @@ export function DashboardHeader({ theme, onToggleTheme }: DashboardHeaderProps) 
           {/* Logo & Title */}
           <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="h-12 w-12 rounded-xl bg-gradient-purple-lime shadow-lg grid place-items-center transform group-hover:scale-110 transition-transform">
-                <span className="text-white font-black text-2xl">g</span>
+              <div className={`h-12 w-12 rounded-xl shadow-lg grid place-items-center transform group-hover:scale-110 transition-transform ${
+                theme === "dark" ? "bg-lime-400" : "bg-[#D1FD0A]"
+              }`}>
+                <span className="text-black font-black text-2xl">g</span>
               </div>
               <div>
                 <h1 className={`text-2xl font-black tracking-tight ${theme === "dark" ? "text-white" : "text-black"}`}>
-                  gICM<span className="text-gradient-purple-lime">://LIVE</span>
+                  gICM<span className={theme === "dark" ? "text-lime-400" : "text-[#D1FD0A]"}>://LIVE</span>
                 </h1>
-                <p className={`text-xs ${theme === "dark" ? "text-white/60" : "text-black/60"}`}>
+                <p className={`text-xs ${theme === "dark" ? "text-zinc-400" : "text-black/60"}`}>
                   Real-time Activity Dashboard
                 </p>
               </div>

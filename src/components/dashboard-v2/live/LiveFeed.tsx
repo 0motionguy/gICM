@@ -103,8 +103,8 @@ export function LiveFeed({ theme }: LiveFeedProps) {
       <div className={`
         sticky top-0 z-10 backdrop-blur-lg border-b px-6 py-4
         ${theme === "dark"
-          ? "bg-[#0F0F1E]/80 border-white/10"
-          : "bg-white/80 border-black/10"
+          ? "bg-[#0f0f0f]/80 border-white/8"
+          : "bg-white/80 border-black/20"
         }
       `}>
         <div className="flex items-center justify-between">
@@ -148,7 +148,7 @@ export function LiveFeed({ theme }: LiveFeedProps) {
       <div className={`
         absolute bottom-0 left-0 right-0 h-20 pointer-events-none
         ${theme === "dark"
-          ? "bg-gradient-to-t from-[#0F0F1E] to-transparent"
+          ? "bg-gradient-to-t from-[#0f0f0f] to-transparent"
           : "bg-gradient-to-t from-white to-transparent"
         }
       `} />
