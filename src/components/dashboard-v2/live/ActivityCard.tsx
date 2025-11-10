@@ -107,15 +107,6 @@ export function ActivityCard({ activity, theme }: ActivityCardProps) {
               JUST NOW
             </span>
           )}
-
-          {activity.isSimulated && process.env.NODE_ENV === "development" && (
-            <>
-              <span className={theme === "dark" ? "text-white/40" : "text-black/40"}>•</span>
-              <span className={`text-xs ${theme === "dark" ? "text-white/40" : "text-black/40"}`}>
-                sim
-              </span>
-            </>
-          )}
         </div>
       </div>
 

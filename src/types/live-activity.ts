@@ -37,7 +37,7 @@ export interface LiveActivity {
   relativeTime: string; // "2s ago", "1m ago"
   icon: ActivityIcon;
   color: "lime" | "purple" | "blue" | "green" | "yellow" | "pink";
-  isSimulated: boolean;
+  isSimulated?: boolean; // Internal only - stripped from public API
   metadata?: {
     itemName?: string;
     itemSlug?: string;
@@ -62,8 +62,6 @@ export interface LiveFeedResponse {
   activities: LiveActivity[];
   meta: {
     total: number;
-    realCount: number;
-    simulatedCount: number;
   };
 }
 

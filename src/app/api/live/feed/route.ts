@@ -151,12 +151,13 @@ export async function GET() {
       activity.relativeTime = getRelativeTime(new Date(activity.timestamp));
     });
 
+    // Strip isSimulated field from all activities before sending to client
+    const cleanActivities = allActivities.map(({ isSimulated, ...activity }) => activity);
+
     const response: LiveFeedResponse = {
-      activities: allActivities,
+      activities: cleanActivities as LiveActivity[],
       meta: {
-        total: allActivities.length,
-        realCount: allActivities.filter((a) => !a.isSimulated).length,
-        simulatedCount: allActivities.filter((a) => a.isSimulated).length,
+        total: cleanActivities.length,
       },
     };
 

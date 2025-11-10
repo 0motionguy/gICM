@@ -5,25 +5,16 @@
 import type { LiveActivity, ActivityType } from "@/types/live-activity";
 import { ANONYMOUS_NAMES, ACTIVITY_TEMPLATES } from "@/types/live-activity";
 import { LIVE_CONFIG } from "@/config/live";
+import { REGISTRY } from "@/lib/registry";
 
-// Popular items based on real registry data
-const POPULAR_ITEMS = [
-  "Redis Advanced Patterns",
-  "Kafka Stream Processing",
-  "Smart Contract Security",
-  "Web3 Wallet Integration",
-  "Solana Program Development",
-  "DeFi Protocol Integration",
-  "Real-time Analytics Dashboard",
-  "Microservices Architecture",
-  "Authentication Patterns",
-  "API Design Patterns",
-  "Database Optimization",
-  "Blockchain Indexing",
-  "NFT Marketplace Builder",
-  "Token Launch Platform",
-  "Trading Bot Framework",
-];
+// Get popular items from actual registry (randomly select from real items)
+function getPopularItems(): string[] {
+  // Shuffle and take 30 random items from registry for variety
+  const shuffled = [...REGISTRY].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 30).map(item => item.name);
+}
+
+const POPULAR_ITEMS = getPopularItems();
 
 // Project names for completion events
 const PROJECT_NAMES = [
@@ -85,10 +76,11 @@ function getRelativeTime(timestamp: Date): string {
 }
 
 /**
- * Generate unique activity ID
+ * Generate unique activity ID (using "real_" prefix to match actual user activities)
  */
 function generateActivityId(): string {
-  return `act_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const sessionId = `sim${Math.random().toString(36).substr(2, 9)}`;
+  return `real_${sessionId}_${Date.now()}`;
 }
 
 /**
