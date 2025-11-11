@@ -6,7 +6,7 @@
     "url": "https://gicm-marketplace.vercel.app"
   },
   "metadata": {
-    "description": "Complete Claude Code marketplace for Web3 builders. 91 agents, 96 skills, 93 commands, 82 MCPs for Solana, DeFi, NFTs, and full-stack development. 88-92% token savings with progressive disclosure.",
+    "description": "Complete Claude Code marketplace for Web3 builders. 90 agents, 96 skills, 93 commands, 33 workflows, 82 MCPs for Solana, DeFi, NFTs, and full-stack development. 88-92% token savings with progressive disclosure.",
     "version": "1.0.0",
     "pluginRoot": ".claude/",
     "repository": "https://github.com/Kermit457/gICM",
@@ -7702,7 +7702,11 @@
         "Production",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/solana-defi-protocol-launch.json"
+        ]
+      }
     },
     {
       "name": "nft-marketplace-deploy",
@@ -7717,7 +7721,11 @@
         "cNFT",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/nft-marketplace-deploy.json"
+        ]
+      }
     },
     {
       "name": "web3-saas-api-launch",
@@ -7732,7 +7740,11 @@
         "Payments",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/web3-saas-api-launch.json"
+        ]
+      }
     },
     {
       "name": "solana-token-launch",
@@ -7747,7 +7759,11 @@
         "DeFi",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/solana-token-launch.json"
+        ]
+      }
     },
     {
       "name": "security-audit-pipeline",
@@ -7762,7 +7778,11 @@
         "Vulnerability",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/security-audit-pipeline.json"
+        ]
+      }
     },
     {
       "name": "deploy-with-tests",
@@ -7776,7 +7796,11 @@
         "Safety",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/deploy-with-tests.json"
+        ]
+      }
     },
     {
       "name": "full-stack-feature-builder",
@@ -7791,7 +7815,11 @@
         "Frontend",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/full-stack-feature-builder.json"
+        ]
+      }
     },
     {
       "name": "tdd-workflow",
@@ -7805,7 +7833,11 @@
         "Development",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/tdd-workflow.json"
+        ]
+      }
     },
     {
       "name": "full-stack-solana-feature",
@@ -7820,7 +7852,11 @@
         "Production",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/full-stack-solana-feature.json"
+        ]
+      }
     },
     {
       "name": "security-complete-audit",
@@ -7835,7 +7871,11 @@
         "Testing",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/security-complete-audit.json"
+        ]
+      }
     },
     {
       "name": "test-pyramid-build",
@@ -7850,7 +7890,11 @@
         "Coverage",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/test-pyramid-build.json"
+        ]
+      }
     },
     {
       "name": "staged-deployment-pipeline",
@@ -7865,7 +7909,11 @@
         "Safety",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/staged-deployment-pipeline.json"
+        ]
+      }
     },
     {
       "name": "evm-dapp-complete",
@@ -7880,7 +7928,11 @@
         "Full-Stack",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/evm-dapp-complete.json"
+        ]
+      }
     },
     {
       "name": "defi-protocol-integration",
@@ -7895,7 +7947,11 @@
         "Jupiter",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/defi-protocol-integration.json"
+        ]
+      }
     },
     {
       "name": "performance-optimization-suite",
@@ -7910,7 +7966,11 @@
         "Frontend",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/performance-optimization-suite.json"
+        ]
+      }
     },
     {
       "name": "incident-response-protocol",
@@ -7925,7 +7985,11 @@
         "Security",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/incident-response-protocol.json"
+        ]
+      }
     },
     {
       "name": "api-documentation-complete",
@@ -7940,7 +8004,11 @@
         "Developer Experience",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/api-documentation-complete.json"
+        ]
+      }
     },
     {
       "name": "monitoring-observability-setup",
@@ -7955,7 +8023,11 @@
         "Alerts",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/monitoring-observability-setup.json"
+        ]
+      }
     },
     {
       "name": "qa-release-validation",
@@ -7970,7 +8042,11 @@
         "Quality",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/qa-release-validation.json"
+        ]
+      }
     },
     {
       "name": "economic-security-analysis",
@@ -7985,7 +8061,11 @@
         "Economic",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/economic-security-analysis.json"
+        ]
+      }
     },
     {
       "name": "penetration-test-web3",
@@ -7999,7 +8079,11 @@
         "Exploit",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/penetration-test-web3.json"
+        ]
+      }
     },
     {
       "name": "onboarding-quickstart-generator",
@@ -8013,7 +8097,11 @@
         "Developer Experience",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/onboarding-quickstart-generator.json"
+        ]
+      }
     },
     {
       "name": "changelog-release-notes",
@@ -8027,7 +8115,201 @@
         "Git",
         "Workflow"
       ],
-      "components": {}
+      "components": {
+        "workflows": [
+          ".claude/workflows/changelog-release-notes.json"
+        ]
+      }
+    },
+    {
+      "name": "microservices-architecture-setup",
+      "source": "github:Kermit457/gICM",
+      "description": "Design and deploy microservices: Service boundaries → Parallel build → K8s deploy. 12-16 hours → 3 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Microservices",
+        "Architecture",
+        "Kubernetes",
+        "Docker",
+        "Backend",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/microservices-architecture-setup.json"
+        ]
+      }
+    },
+    {
+      "name": "graphql-api-complete",
+      "source": "github:Kermit457/gICM",
+      "description": "Full GraphQL API: Schema design → resolvers → authentication → caching → documentation. 10-14 hours → 2.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "GraphQL",
+        "API",
+        "Backend",
+        "TypeScript",
+        "Documentation",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/graphql-api-complete.json"
+        ]
+      }
+    },
+    {
+      "name": "database-migration-safe",
+      "source": "github:Kermit457/gICM",
+      "description": "Zero-downtime DB migration: Backup → migration → validation → rollback plan. 4-6 hours → 1.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Database",
+        "Migration",
+        "PostgreSQL",
+        "DevOps",
+        "Production",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/database-migration-safe.json"
+        ]
+      }
+    },
+    {
+      "name": "mobile-app-mvp-launch",
+      "source": "github:Kermit457/gICM",
+      "description": "React Native MVP: Setup → parallel feature build → app store submission. 2-3 weeks → 5 days.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Mobile",
+        "React Native",
+        "iOS",
+        "Android",
+        "MVP",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/mobile-app-mvp-launch.json"
+        ]
+      }
+    },
+    {
+      "name": "pwa-progressive-enhancement",
+      "source": "github:Kermit457/gICM",
+      "description": "Convert web app to PWA: Service worker → offline support → install prompt → performance. 6-8 hours → 2 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "PWA",
+        "Frontend",
+        "Service Worker",
+        "Offline",
+        "Performance",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/pwa-progressive-enhancement.json"
+        ]
+      }
+    },
+    {
+      "name": "ci-cd-pipeline-complete",
+      "source": "github:Kermit457/gICM",
+      "description": "Full CI/CD: GitHub Actions setup → test automation → staging → production deploy. 8-12 hours → 2 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "CI/CD",
+        "GitHub Actions",
+        "DevOps",
+        "Deployment",
+        "Automation",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/ci-cd-pipeline-complete.json"
+        ]
+      }
+    },
+    {
+      "name": "docker-containerization-workflow",
+      "source": "github:Kermit457/gICM",
+      "description": "Containerize app: Multi-stage Dockerfile → docker-compose → optimization → registry push. 6-8 hours → 1.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Docker",
+        "Containers",
+        "DevOps",
+        "Optimization",
+        "Security",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/docker-containerization-workflow.json"
+        ]
+      }
+    },
+    {
+      "name": "monorepo-workspace-setup",
+      "source": "github:Kermit457/gICM",
+      "description": "Setup Turborepo monorepo: Package structure → shared configs → caching → CI optimization. 8-12 hours → 2.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Monorepo",
+        "Turborepo",
+        "Build System",
+        "DevOps",
+        "TypeScript",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/monorepo-workspace-setup.json"
+        ]
+      }
+    },
+    {
+      "name": "legacy-code-refactor-safe",
+      "source": "github:Kermit457/gICM",
+      "description": "Refactor legacy code: Test coverage → parallel refactors → validation. 10-15 hours → 4 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Refactoring",
+        "Legacy Code",
+        "Testing",
+        "Code Quality",
+        "Technical Debt",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/legacy-code-refactor-safe.json"
+        ]
+      }
+    },
+    {
+      "name": "code-quality-baseline-setup",
+      "source": "github:Kermit457/gICM",
+      "description": "Establish code quality tools: ESLint + Prettier + TypeScript + tests + pre-commit hooks. 6-8 hours → 1 hour.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Code Quality",
+        "ESLint",
+        "TypeScript",
+        "Testing",
+        "DevOps",
+        "Workflow"
+      ],
+      "components": {
+        "workflows": [
+          ".claude/workflows/code-quality-baseline-setup.json"
+        ]
+      }
     }
   ]
 }

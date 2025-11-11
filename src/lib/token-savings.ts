@@ -9,6 +9,7 @@ export const BASELINE_TOKENS = {
   agent: 5000, // Traditional agent setup/configuration prompts
   skill: 12000, // Traditional skill implementation prompts
   command: 2000, // Traditional command implementation
+  workflow: 8000, // Traditional workflow orchestration prompts
   mcp: 3000, // Traditional MCP server setup
   setting: 500, // Settings configuration
 } as const;
@@ -75,6 +76,9 @@ function calculateItemSavings(itemId: string): {
         break;
       case "command":
         savingsPercent = 80; // Commands save ~80%
+        break;
+      case "workflow":
+        savingsPercent = 75; // Workflows save ~75% on average
         break;
       case "mcp":
         savingsPercent = 70; // MCP servers save ~70%

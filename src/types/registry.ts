@@ -59,6 +59,7 @@ export type RegistryItem = {
   orchestrationPattern?: "sequential" | "parallel" | "conditional" | "hybrid";
   triggerPhrase?: string;
   estimatedTime?: string;
+  timeSavings?: number; // Workflow time savings percentage
   requiredAgents?: string[];
   requiredCommands?: string[];
   requiredSkills?: string[];
@@ -130,12 +131,23 @@ export const WorkflowStepSchema = z.object({
   command: z.string().optional(), // Command slug to run
   skill: z.string().optional(), // Skill ID to activate
   condition: z.string().optional(), // Conditional logic (e.g., "coverage >= 80%")
-  parallel: z.boolean().default(false), // Run in parallel with other steps?
-  onError: z.enum(["fail", "continue", "retry"]).default("fail"),
+  parallel: z.boolean().optional().default(false), // Run in parallel with other steps?
+  onError: z.enum(["fail", "continue", "retry"]).optional().default("fail"),
   retryCount: z.number().optional(),
 });
 
-export type WorkflowStep = z.infer<typeof WorkflowStepSchema>;
+// Manual type override to make parallel and onError optional in input
+export type WorkflowStep = {
+  name: string;
+  description?: string;
+  agent?: string;
+  command?: string;
+  skill?: string;
+  condition?: string;
+  parallel?: boolean;
+  onError?: "fail" | "continue" | "retry";
+  retryCount?: number;
+};
 
 export const OrchestrationPatternSchema = z.enum([
   "sequential", // Steps run one after another

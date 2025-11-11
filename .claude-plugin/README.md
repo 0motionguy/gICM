@@ -27,12 +27,12 @@ Then browse and install plugins:
 
 ## What's Included
 
-**432 Production-Ready Plugins:**
+**442 Production-Ready Plugins:**
 
 - **90 Agents** - Specialized AI assistants (Solana, DeFi, Frontend, Security, etc.)
 - **96 Skills** - Progressive disclosure knowledge modules (88-92% token savings)
 - **93 Commands** - Slash commands for workflows and automation
-- **23 Workflows** - Multi-agent orchestration for complex tasks (NEW!)
+- **33 Workflows** - Multi-agent orchestration for complex tasks (NEW!)
 - **82 MCPs** - Model Context Protocol servers for external integrations
 - **48 Settings** - Claude Code configuration optimizations
 
@@ -202,7 +202,7 @@ Plugins install to your `.claude/` directory:
 
 ## Workflow Orchestration
 
-23 production-ready workflows for complex multi-agent tasks:
+33 production-ready workflows for complex multi-agent tasks:
 
 ```bash
 # Tier 1: Core Development Lifecycle
@@ -227,6 +227,18 @@ Plugins install to your `.claude/` directory:
 /plugin install penetration-test-web3        # Smart contract pentesting (3h vs 16-20h)
 /plugin install onboarding-quickstart-generator # Tutorial generation (2h vs 8-10h)
 /plugin install changelog-release-notes      # Release notes (20m vs 2-3h)
+
+# Tier 5: General Development
+/plugin install microservices-architecture-setup # Microservices setup (3h vs 12-16h)
+/plugin install graphql-api-complete          # GraphQL API (2.5h vs 10-14h)
+/plugin install database-migration-safe       # DB migration (1.5h vs 4-6h)
+/plugin install mobile-app-mvp-launch         # React Native MVP (5 days vs 2-3 weeks)
+/plugin install pwa-progressive-enhancement   # PWA conversion (2h vs 6-8h)
+/plugin install ci-cd-pipeline-complete       # Full CI/CD (2h vs 8-12h)
+/plugin install docker-containerization-workflow # Dockerization (1.5h vs 6-8h)
+/plugin install monorepo-workspace-setup      # Turborepo setup (2.5h vs 8-12h)
+/plugin install legacy-code-refactor-safe     # Safe refactoring (4h vs 10-15h)
+/plugin install code-quality-baseline-setup   # Code quality tools (1h vs 6-8h)
 
 # Original Workflows
 /plugin install solana-defi-protocol-launch  # DeFi protocol (2-4 weeks vs 8-12 weeks)

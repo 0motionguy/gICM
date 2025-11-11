@@ -18,6 +18,7 @@ interface MarketplacePlugin {
     agents?: string[];
     skills?: string[];
     commands?: string[];
+    workflows?: string[];
     mcp?: string[];
     settings?: string[];
   };
@@ -59,6 +60,11 @@ function generateMarketplace(): Marketplace {
       components.skills = item.files;
     } else if (item.kind === "command") {
       components.commands = item.files;
+    } else if (item.kind === "workflow") {
+      // Workflows are code-defined, generate virtual path if no files exist
+      components.workflows = item.files && item.files.length > 0
+        ? item.files
+        : [`.claude/workflows/${item.slug}.json`];
     } else if (item.kind === "mcp") {
       components.mcp = item.files;
     } else if (item.kind === "setting") {
@@ -97,7 +103,7 @@ function generateMarketplace(): Marketplace {
     },
     metadata: {
       description:
-        "Complete Claude Code marketplace for Web3 builders. 91 agents, 96 skills, 93 commands, 82 MCPs for Solana, DeFi, NFTs, and full-stack development. 88-92% token savings with progressive disclosure.",
+        "Complete Claude Code marketplace for Web3 builders. 90 agents, 96 skills, 93 commands, 33 workflows, 82 MCPs for Solana, DeFi, NFTs, and full-stack development. 88-92% token savings with progressive disclosure.",
       version: "1.0.0",
       pluginRoot: ".claude/",
       repository: "https://github.com/Kermit457/gICM",
@@ -120,6 +126,7 @@ console.log(`✓ Generated marketplace.json with ${marketplace.plugins.length} p
 console.log(`  - Agents: ${marketplace.plugins.filter(p => p.components.agents).length}`);
 console.log(`  - Skills: ${marketplace.plugins.filter(p => p.components.skills).length}`);
 console.log(`  - Commands: ${marketplace.plugins.filter(p => p.components.commands).length}`);
+console.log(`  - Workflows: ${marketplace.plugins.filter(p => p.components.workflows).length}`);
 console.log(`  - MCPs: ${marketplace.plugins.filter(p => p.components.mcp).length}`);
 console.log(`  - Settings: ${marketplace.plugins.filter(p => p.components.settings).length}`);
 console.log(`\nFile: ${outputPath}`);

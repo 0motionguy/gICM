@@ -1860,4 +1860,817 @@ export const WORKFLOWS: RegistryItem[] = [
     installs: 0,
     remixes: 0,
   },
+
+  // === GENERAL-PURPOSE DEVELOPMENT WORKFLOWS ===
+
+  {
+    id: "microservices-architecture-setup",
+    kind: "workflow",
+    name: "Microservices Architecture Setup",
+    slug: "microservices-architecture-setup",
+    description:
+      "Design and deploy microservices: Service boundaries → Parallel build → K8s deploy. 12-16 hours → 3 hours.",
+    longDescription:
+      "Production microservices workflow: Phase 1 - Define service boundaries, design API contracts, setup shared infrastructure. Phase 2 - Parallel service implementation (auth, API gateway, core services). Phase 3 - Deploy to Kubernetes, setup service mesh, configure monitoring.",
+    category: "Orchestration & Automation",
+    tags: ["Microservices", "Architecture", "Kubernetes", "Docker", "Backend", "Workflow"],
+    install: "npx @gicm/cli add workflow/microservices-architecture-setup",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential
+    triggerPhrase: "/setup-microservices",
+    estimatedTime: "3 hours",
+    timeSavings: 75,
+    requiredAgents: [
+      "backend-api-specialist",
+      "api-design-architect",
+      "database-schema-oracle",
+      "devops-platform-engineer",
+      "cloud-architect",
+    ],
+    requiredCommands: ["docker-init", "k8s-deploy", "api-gen"],
+    steps: [
+      {
+        name: "Phase 1: Define service boundaries",
+        description: "Identify microservices based on domain-driven design",
+        agent: "backend-api-specialist",
+      },
+      {
+        name: "Phase 1: Design API contracts",
+        description: "Create OpenAPI specs for inter-service communication",
+        agent: "api-design-architect",
+        command: "api-gen",
+      },
+      {
+        name: "Phase 1: Setup shared infrastructure",
+        description: "Configure message queue, service registry, API gateway",
+        agent: "devops-platform-engineer",
+      },
+      {
+        name: "Phase 2: Build auth service (parallel)",
+        description: "Implement authentication and authorization service",
+        agent: "backend-api-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build API gateway (parallel)",
+        description: "Configure Kong/Nginx for API routing and rate limiting",
+        agent: "api-design-architect",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build core services (parallel)",
+        description: "Implement domain-specific microservices",
+        agent: "backend-api-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Setup databases (parallel)",
+        description: "Provision databases for each service",
+        agent: "database-schema-oracle",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Deploy to Kubernetes",
+        description: "Create K8s manifests and deploy all services",
+        agent: "devops-platform-engineer",
+        command: "k8s-deploy",
+      },
+      {
+        name: "Phase 3: Configure service mesh",
+        description: "Setup Istio for service-to-service communication",
+        agent: "cloud-architect",
+      },
+      {
+        name: "Phase 3: Setup monitoring",
+        description: "Configure distributed tracing and metrics",
+        agent: "monitoring-specialist",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "graphql-api-complete",
+    kind: "workflow",
+    name: "Complete GraphQL API",
+    slug: "graphql-api-complete",
+    description:
+      "Full GraphQL API: Schema design → resolvers → authentication → caching → documentation. 10-14 hours → 2.5 hours.",
+    longDescription:
+      "Production GraphQL API workflow: Phase 1 - Design schema with type safety + implement resolvers + add authentication. Phase 2 - Performance optimization (DataLoader, Redis caching, query complexity analysis). Phase 3 - Documentation (schema docs, playground, client examples).",
+    category: "Orchestration & Automation",
+    tags: ["GraphQL", "API", "Backend", "TypeScript", "Documentation", "Workflow"],
+    install: "npx @gicm/cli add workflow/graphql-api-complete",
+    orchestrationPattern: "sequential",
+    triggerPhrase: "/build-graphql-api",
+    estimatedTime: "2.5 hours",
+    timeSavings: 78,
+    requiredAgents: [
+      "api-design-architect",
+      "backend-api-specialist",
+      "database-schema-oracle",
+      "performance-engineer",
+      "api-documentation-specialist",
+    ],
+    requiredCommands: ["api-gen", "doc-generate", "performance-caching"],
+    steps: [
+      {
+        name: "Phase 1: Design GraphQL schema",
+        description: "Create type-safe schema with proper relations",
+        agent: "api-design-architect",
+        command: "api-gen",
+      },
+      {
+        name: "Phase 1: Generate TypeScript types",
+        description: "Generate TypeScript types from schema",
+        agent: "backend-api-specialist",
+      },
+      {
+        name: "Phase 1: Implement resolvers",
+        description: "Create resolvers with database queries",
+        agent: "backend-api-specialist",
+      },
+      {
+        name: "Phase 1: Add authentication",
+        description: "Implement JWT authentication and authorization",
+        agent: "backend-api-specialist",
+      },
+      {
+        name: "Phase 2: Add DataLoader for N+1 prevention",
+        description: "Implement DataLoader for efficient batching",
+        agent: "performance-engineer",
+      },
+      {
+        name: "Phase 2: Setup Redis caching",
+        description: "Add response caching with Redis",
+        agent: "performance-engineer",
+        command: "performance-caching",
+      },
+      {
+        name: "Phase 2: Add query complexity analysis",
+        description: "Prevent expensive queries with complexity limits",
+        agent: "api-design-architect",
+      },
+      {
+        name: "Phase 3: Generate API documentation",
+        description: "Create schema documentation with examples",
+        agent: "api-documentation-specialist",
+        command: "doc-generate",
+      },
+      {
+        name: "Phase 3: Setup GraphQL Playground",
+        description: "Configure interactive API explorer",
+        agent: "api-documentation-specialist",
+      },
+      {
+        name: "Phase 3: Create client examples",
+        description: "Write Apollo Client and urql examples",
+        agent: "code-example-generator",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "database-migration-safe",
+    kind: "workflow",
+    name: "Safe Database Migration",
+    slug: "database-migration-safe",
+    description:
+      "Zero-downtime DB migration: Backup → migration → validation → rollback plan. 4-6 hours → 1.5 hours.",
+    longDescription:
+      "Production database migration workflow: Phase 1 - Create backup + analyze migration impact + generate migration scripts. Phase 2 - Parallel validation (test migration on staging, run data integrity checks, performance testing). Phase 3 - Execute migration with monitoring, validate success, prepare rollback.",
+    category: "Orchestration & Automation",
+    tags: ["Database", "Migration", "PostgreSQL", "DevOps", "Production", "Workflow"],
+    install: "npx @gicm/cli add workflow/database-migration-safe",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential
+    triggerPhrase: "/migrate-database",
+    estimatedTime: "1.5 hours",
+    timeSavings: 70,
+    requiredAgents: [
+      "database-schema-oracle",
+      "devops-platform-engineer",
+      "data-engineering-specialist",
+    ],
+    requiredCommands: ["db-backup", "db-migrate", "db-rollback"],
+    steps: [
+      {
+        name: "Phase 1: Create full database backup",
+        description: "Backup production database before migration",
+        agent: "database-schema-oracle",
+        command: "db-backup",
+      },
+      {
+        name: "Phase 1: Analyze migration impact",
+        description: "Estimate downtime and identify breaking changes",
+        agent: "database-schema-oracle",
+      },
+      {
+        name: "Phase 1: Generate migration scripts",
+        description: "Create SQL migration with up/down scripts",
+        agent: "database-schema-oracle",
+      },
+      {
+        name: "Phase 2: Test on staging (parallel)",
+        description: "Execute migration on staging environment",
+        agent: "devops-platform-engineer",
+        command: "db-migrate",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Data integrity checks (parallel)",
+        description: "Validate data consistency after migration",
+        agent: "data-engineering-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Performance testing (parallel)",
+        description: "Verify queries still perform well post-migration",
+        agent: "performance-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Execute production migration",
+        description: "Run migration on production with monitoring",
+        agent: "database-schema-oracle",
+        command: "db-migrate",
+      },
+      {
+        name: "Phase 3: Validate migration success",
+        description: "Check all tables, indexes, constraints created correctly",
+        agent: "database-schema-oracle",
+      },
+      {
+        name: "Phase 3: Prepare rollback procedure",
+        description: "Document rollback steps in case of issues",
+        agent: "devops-platform-engineer",
+        command: "db-rollback",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "mobile-app-mvp-launch",
+    kind: "workflow",
+    name: "Mobile App MVP Launch",
+    slug: "mobile-app-mvp-launch",
+    description:
+      "React Native MVP: Setup → parallel feature build → app store submission. 2-3 weeks → 5 days.",
+    longDescription:
+      "Mobile MVP workflow: Phase 1 - React Native/Expo setup + navigation + authentication. Phase 2 - Parallel feature implementation (core screens, API integration, local storage). Phase 3 - App store preparation (screenshots, descriptions, submission to iOS/Android).",
+    category: "Orchestration & Automation",
+    tags: ["Mobile", "React Native", "iOS", "Android", "MVP", "Workflow"],
+    install: "npx @gicm/cli add workflow/mobile-app-mvp-launch",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential
+    triggerPhrase: "/launch-mobile-mvp",
+    estimatedTime: "5 days",
+    timeSavings: 65,
+    requiredAgents: [
+      "mobile-app-developer",
+      "frontend-fusion-engine",
+      "api-design-architect",
+      "ux-designer",
+    ],
+    requiredCommands: ["expo-init", "mobile-build"],
+    steps: [
+      {
+        name: "Phase 1: Initialize React Native project",
+        description: "Setup Expo or bare React Native with TypeScript",
+        agent: "mobile-app-developer",
+        command: "expo-init",
+      },
+      {
+        name: "Phase 1: Configure navigation",
+        description: "Setup React Navigation with stack and tab navigators",
+        agent: "mobile-app-developer",
+      },
+      {
+        name: "Phase 1: Implement authentication flow",
+        description: "Add login/signup with JWT and secure storage",
+        agent: "mobile-app-developer",
+      },
+      {
+        name: "Phase 2: Build core screens (parallel)",
+        description: "Implement main app screens with UI components",
+        agent: "mobile-app-developer",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: API integration (parallel)",
+        description: "Connect to backend API with React Query",
+        agent: "api-design-architect",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Local data storage (parallel)",
+        description: "Setup AsyncStorage or SQLite for offline support",
+        agent: "mobile-app-developer",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Push notifications (parallel)",
+        description: "Implement push notifications with Expo Notifications",
+        agent: "mobile-app-developer",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Create app store assets",
+        description: "Design screenshots, icons, and promotional images",
+        agent: "ux-designer",
+      },
+      {
+        name: "Phase 3: Write store descriptions",
+        description: "Craft compelling App Store and Play Store descriptions",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 3: Build and submit to stores",
+        description: "Create production builds and submit to iOS/Android",
+        agent: "mobile-app-developer",
+        command: "mobile-build",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "pwa-progressive-enhancement",
+    kind: "workflow",
+    name: "Progressive Web App Enhancement",
+    slug: "pwa-progressive-enhancement",
+    description:
+      "Convert web app to PWA: Service worker → offline support → install prompt → performance. 6-8 hours → 2 hours.",
+    longDescription:
+      "PWA enhancement workflow: Phase 1 - Setup service worker with caching strategies + manifest file. Phase 2 - Offline support (offline fallback, background sync, IndexedDB). Phase 3 - PWA features (install prompt, app shortcuts, share target) + Lighthouse validation.",
+    category: "Orchestration & Automation",
+    tags: ["PWA", "Frontend", "Service Worker", "Offline", "Performance", "Workflow"],
+    install: "npx @gicm/cli add workflow/pwa-progressive-enhancement",
+    orchestrationPattern: "sequential",
+    triggerPhrase: "/enhance-pwa",
+    estimatedTime: "2 hours",
+    timeSavings: 73,
+    requiredAgents: [
+      "frontend-fusion-engine",
+      "performance-profiler",
+      "pwa-specialist",
+    ],
+    requiredCommands: ["pwa-generate", "lighthouse-check"],
+    steps: [
+      {
+        name: "Phase 1: Generate service worker",
+        description: "Create service worker with Workbox caching strategies",
+        agent: "pwa-specialist",
+        command: "pwa-generate",
+      },
+      {
+        name: "Phase 1: Create manifest.json",
+        description: "Configure app manifest with icons and theme colors",
+        agent: "frontend-fusion-engine",
+      },
+      {
+        name: "Phase 2: Implement offline fallback",
+        description: "Create offline page and cache critical assets",
+        agent: "pwa-specialist",
+      },
+      {
+        name: "Phase 2: Add background sync",
+        description: "Queue failed requests for retry when online",
+        agent: "pwa-specialist",
+      },
+      {
+        name: "Phase 2: Setup IndexedDB storage",
+        description: "Implement local database for offline data",
+        agent: "frontend-fusion-engine",
+      },
+      {
+        name: "Phase 3: Add install prompt",
+        description: "Implement custom app install prompt",
+        agent: "pwa-specialist",
+      },
+      {
+        name: "Phase 3: Configure app shortcuts",
+        description: "Add quick actions to home screen icon",
+        agent: "frontend-fusion-engine",
+      },
+      {
+        name: "Phase 3: Add Web Share Target",
+        description: "Enable app to receive shared content",
+        agent: "pwa-specialist",
+      },
+      {
+        name: "Phase 3: Run Lighthouse PWA audit",
+        description: "Validate PWA criteria and performance",
+        agent: "performance-profiler",
+        command: "lighthouse-check",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "ci-cd-pipeline-complete",
+    kind: "workflow",
+    name: "Complete CI/CD Pipeline",
+    slug: "ci-cd-pipeline-complete",
+    description:
+      "Full CI/CD: GitHub Actions setup → test automation → staging → production deploy. 8-12 hours → 2 hours.",
+    longDescription:
+      "Production CI/CD workflow: Phase 1 - Setup GitHub Actions with test automation, linting, type checking. Phase 2 - Parallel environment setup (staging, production, preview environments). Phase 3 - Deployment automation (Docker builds, K8s deployment, smoke tests, rollback capability).",
+    category: "Orchestration & Automation",
+    tags: ["CI/CD", "GitHub Actions", "DevOps", "Deployment", "Automation", "Workflow"],
+    install: "npx @gicm/cli add workflow/ci-cd-pipeline-complete",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential
+    triggerPhrase: "/setup-cicd",
+    estimatedTime: "2 hours",
+    timeSavings: 80,
+    requiredAgents: [
+      "ci-cd-architect",
+      "devops-platform-engineer",
+      "test-automation-engineer",
+      "deployment-strategist",
+    ],
+    requiredCommands: ["docker-init", "k8s-deploy", "test-coverage"],
+    steps: [
+      {
+        name: "Phase 1: Create GitHub Actions workflow",
+        description: "Setup CI workflow for test, lint, and build",
+        agent: "ci-cd-architect",
+      },
+      {
+        name: "Phase 1: Configure test automation",
+        description: "Add unit, integration, and E2E test runs",
+        agent: "test-automation-engineer",
+        command: "test-coverage",
+      },
+      {
+        name: "Phase 1: Add code quality checks",
+        description: "Setup ESLint, TypeScript, and format checks",
+        agent: "ci-cd-architect",
+      },
+      {
+        name: "Phase 2: Setup staging environment (parallel)",
+        description: "Configure staging deployment pipeline",
+        agent: "devops-platform-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Setup production environment (parallel)",
+        description: "Configure production deployment with approvals",
+        agent: "deployment-strategist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Setup preview environments (parallel)",
+        description: "Deploy preview for each pull request",
+        agent: "devops-platform-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Implement Docker build pipeline",
+        description: "Build and push Docker images to registry",
+        agent: "devops-platform-engineer",
+        command: "docker-init",
+      },
+      {
+        name: "Phase 3: Configure K8s deployment",
+        description: "Setup automated Kubernetes deployments",
+        agent: "devops-platform-engineer",
+        command: "k8s-deploy",
+      },
+      {
+        name: "Phase 3: Add smoke tests",
+        description: "Run post-deployment health checks",
+        agent: "test-automation-engineer",
+      },
+      {
+        name: "Phase 3: Setup rollback capability",
+        description: "Implement automated rollback on deployment failure",
+        agent: "deployment-strategist",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "docker-containerization-workflow",
+    kind: "workflow",
+    name: "Docker Containerization Workflow",
+    slug: "docker-containerization-workflow",
+    description:
+      "Containerize app: Multi-stage Dockerfile → docker-compose → optimization → registry push. 6-8 hours → 1.5 hours.",
+    longDescription:
+      "Docker containerization workflow: Phase 1 - Create optimized multi-stage Dockerfile + docker-compose for local dev. Phase 2 - Security hardening (non-root user, vulnerability scanning, secrets management). Phase 3 - Image optimization (layer caching, size reduction) + push to registry.",
+    category: "Orchestration & Automation",
+    tags: ["Docker", "Containers", "DevOps", "Optimization", "Security", "Workflow"],
+    install: "npx @gicm/cli add workflow/docker-containerization-workflow",
+    orchestrationPattern: "sequential",
+    triggerPhrase: "/dockerize-app",
+    estimatedTime: "1.5 hours",
+    timeSavings: 77,
+    requiredAgents: [
+      "devops-platform-engineer",
+      "security-engineer",
+      "performance-engineer",
+    ],
+    requiredCommands: ["docker-init", "docker-scan", "docker-push"],
+    steps: [
+      {
+        name: "Phase 1: Create multi-stage Dockerfile",
+        description: "Build optimized Dockerfile with separate build and runtime stages",
+        agent: "devops-platform-engineer",
+        command: "docker-init",
+      },
+      {
+        name: "Phase 1: Create docker-compose.yml",
+        description: "Setup local development environment with all services",
+        agent: "devops-platform-engineer",
+      },
+      {
+        name: "Phase 1: Add .dockerignore",
+        description: "Optimize build context by excluding unnecessary files",
+        agent: "devops-platform-engineer",
+      },
+      {
+        name: "Phase 2: Implement non-root user",
+        description: "Run container as non-root for security",
+        agent: "security-engineer",
+      },
+      {
+        name: "Phase 2: Scan for vulnerabilities",
+        description: "Run Trivy or Docker Scan for CVE detection",
+        agent: "security-engineer",
+        command: "docker-scan",
+      },
+      {
+        name: "Phase 2: Secure secrets management",
+        description: "Use Docker secrets or external secret managers",
+        agent: "security-engineer",
+      },
+      {
+        name: "Phase 3: Optimize layer caching",
+        description: "Reorganize Dockerfile for efficient layer caching",
+        agent: "performance-engineer",
+      },
+      {
+        name: "Phase 3: Reduce image size",
+        description: "Use Alpine base images and minimize installed packages",
+        agent: "performance-engineer",
+      },
+      {
+        name: "Phase 3: Push to container registry",
+        description: "Tag and push images to Docker Hub or private registry",
+        agent: "devops-platform-engineer",
+        command: "docker-push",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "monorepo-workspace-setup",
+    kind: "workflow",
+    name: "Monorepo Workspace Setup",
+    slug: "monorepo-workspace-setup",
+    description:
+      "Setup Turborepo monorepo: Package structure → shared configs → caching → CI optimization. 8-12 hours → 2.5 hours.",
+    longDescription:
+      "Monorepo setup workflow: Phase 1 - Initialize Turborepo with package structure + shared ESLint/TypeScript configs. Phase 2 - Configure build caching and parallel execution. Phase 3 - Optimize CI (remote caching, affected package detection) + documentation.",
+    category: "Orchestration & Automation",
+    tags: ["Monorepo", "Turborepo", "Build System", "DevOps", "TypeScript", "Workflow"],
+    install: "npx @gicm/cli add workflow/monorepo-workspace-setup",
+    orchestrationPattern: "sequential",
+    triggerPhrase: "/setup-monorepo",
+    estimatedTime: "2.5 hours",
+    timeSavings: 69,
+    requiredAgents: [
+      "build-system-engineer",
+      "package-manager-expert",
+      "ci-cd-architect",
+    ],
+    requiredCommands: ["turbo-init", "monorepo-migrate"],
+    steps: [
+      {
+        name: "Phase 1: Initialize Turborepo",
+        description: "Create Turborepo structure with apps and packages",
+        agent: "build-system-engineer",
+        command: "turbo-init",
+      },
+      {
+        name: "Phase 1: Setup package manager",
+        description: "Configure pnpm workspaces or Yarn workspaces",
+        agent: "package-manager-expert",
+      },
+      {
+        name: "Phase 1: Create shared configs",
+        description: "Setup shared ESLint, TypeScript, and Prettier configs",
+        agent: "build-system-engineer",
+      },
+      {
+        name: "Phase 2: Configure build pipeline",
+        description: "Define Turborepo pipeline with proper dependencies",
+        agent: "build-system-engineer",
+      },
+      {
+        name: "Phase 2: Enable local caching",
+        description: "Configure Turborepo local cache for faster builds",
+        agent: "build-system-engineer",
+      },
+      {
+        name: "Phase 2: Setup parallel execution",
+        description: "Optimize task execution with parallel builds",
+        agent: "build-system-engineer",
+      },
+      {
+        name: "Phase 3: Configure remote caching",
+        description: "Setup Vercel Remote Cache or custom cache server",
+        agent: "ci-cd-architect",
+      },
+      {
+        name: "Phase 3: Optimize CI pipeline",
+        description: "Use affected package detection to only build changed packages",
+        agent: "ci-cd-architect",
+      },
+      {
+        name: "Phase 3: Document monorepo structure",
+        description: "Create README with package relationships and scripts",
+        agent: "technical-writer-pro",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "legacy-code-refactor-safe",
+    kind: "workflow",
+    name: "Safe Legacy Code Refactor",
+    slug: "legacy-code-refactor-safe",
+    description:
+      "Refactor legacy code: Test coverage → parallel refactors → validation. 10-15 hours → 4 hours.",
+    longDescription:
+      "Safe refactoring workflow: Phase 1 - Add test coverage to legacy code + identify refactor targets. Phase 2 - Parallel refactoring (extract functions, simplify conditionals, remove duplication, improve naming). Phase 3 - Validation (test suite passes, performance unchanged, code review).",
+    category: "Orchestration & Automation",
+    tags: ["Refactoring", "Legacy Code", "Testing", "Code Quality", "Technical Debt", "Workflow"],
+    install: "npx @gicm/cli add workflow/legacy-code-refactor-safe",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential
+    triggerPhrase: "/refactor-legacy",
+    estimatedTime: "4 hours",
+    timeSavings: 68,
+    requiredAgents: [
+      "refactoring-specialist",
+      "unit-test-generator",
+      "code-quality-guardian",
+    ],
+    requiredCommands: ["test-coverage", "complexity-report"],
+    steps: [
+      {
+        name: "Phase 1: Analyze legacy code",
+        description: "Identify code smells, complexity hotspots, and refactor targets",
+        agent: "refactoring-specialist",
+        command: "complexity-report",
+      },
+      {
+        name: "Phase 1: Add test coverage",
+        description: "Write tests for legacy code to enable safe refactoring",
+        agent: "unit-test-generator",
+        command: "test-coverage",
+      },
+      {
+        name: "Phase 1: Create refactor plan",
+        description: "Prioritize refactoring targets by impact and risk",
+        agent: "refactoring-specialist",
+      },
+      {
+        name: "Phase 2: Extract functions (parallel)",
+        description: "Break large functions into smaller, reusable pieces",
+        agent: "refactoring-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Simplify conditionals (parallel)",
+        description: "Replace complex if-else chains with cleaner patterns",
+        agent: "refactoring-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Remove code duplication (parallel)",
+        description: "Extract duplicated code into shared utilities",
+        agent: "refactoring-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Improve naming (parallel)",
+        description: "Rename variables and functions for clarity",
+        agent: "code-quality-guardian",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Verify test suite passes",
+        description: "Run full test suite to ensure refactors are safe",
+        agent: "unit-test-generator",
+        command: "test-coverage",
+      },
+      {
+        name: "Phase 3: Validate performance unchanged",
+        description: "Benchmark to ensure no performance regressions",
+        agent: "performance-engineer",
+      },
+      {
+        name: "Phase 3: Code review refactors",
+        description: "Review all changes for correctness and maintainability",
+        agent: "code-quality-guardian",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "code-quality-baseline-setup",
+    kind: "workflow",
+    name: "Code Quality Baseline Setup",
+    slug: "code-quality-baseline-setup",
+    description:
+      "Establish code quality tools: ESLint + Prettier + TypeScript + tests + pre-commit hooks. 6-8 hours → 1 hour.",
+    longDescription:
+      "Code quality infrastructure workflow: Phase 1 - Parallel setup of ESLint with best practices, Prettier formatting, TypeScript strict mode, testing framework. Phase 2 - Configure pre-commit hooks (Husky), CI checks, and IDE integration. Phase 3 - Document coding standards and onboarding guide.",
+    category: "Orchestration & Automation",
+    tags: ["Code Quality", "ESLint", "TypeScript", "Testing", "DevOps", "Workflow"],
+    install: "npx @gicm/cli add workflow/code-quality-baseline-setup",
+    orchestrationPattern: "parallel", // Parallel setup
+    triggerPhrase: "/setup-code-quality",
+    estimatedTime: "1 hour",
+    timeSavings: 83,
+    requiredAgents: [
+      "code-quality-guardian",
+      "test-automation-engineer",
+      "typescript-precision-engineer",
+      "ci-cd-architect",
+    ],
+    requiredCommands: ["lint-init", "prettier-init", "test-init", "husky-init"],
+    steps: [
+      {
+        name: "Phase 1: Setup ESLint (parallel)",
+        description: "Configure ESLint with recommended rules and plugins",
+        agent: "code-quality-guardian",
+        command: "lint-init",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Setup Prettier (parallel)",
+        description: "Configure Prettier with consistent formatting rules",
+        agent: "code-quality-guardian",
+        command: "prettier-init",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Enable TypeScript strict mode (parallel)",
+        description: "Configure strict TypeScript for maximum type safety",
+        agent: "typescript-precision-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Setup testing framework (parallel)",
+        description: "Configure Jest/Vitest with test coverage reporting",
+        agent: "test-automation-engineer",
+        command: "test-init",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Configure pre-commit hooks",
+        description: "Setup Husky and lint-staged for pre-commit checks",
+        agent: "ci-cd-architect",
+        command: "husky-init",
+      },
+      {
+        name: "Phase 2: Add CI quality checks",
+        description: "Configure GitHub Actions to run quality checks on PRs",
+        agent: "ci-cd-architect",
+      },
+      {
+        name: "Phase 2: Setup IDE integration",
+        description: "Add VSCode settings for ESLint and Prettier auto-fix",
+        agent: "code-quality-guardian",
+      },
+      {
+        name: "Phase 3: Document coding standards",
+        description: "Create style guide and best practices documentation",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 3: Create onboarding guide",
+        description: "Write guide for new developers on quality tools",
+        agent: "tutorial-creator",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
 ];
