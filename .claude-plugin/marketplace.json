@@ -7688,6 +7688,124 @@
           ".claude/settings/optimization/cdn-caching-strategy.md"
         ]
       }
+    },
+    {
+      "name": "solana-defi-protocol-launch",
+      "source": "github:Kermit457/gICM",
+      "description": "Complete workflow for building production DeFi protocols on Solana (AMM, lending, yield aggregator). 2-4 weeks vs 8-12 weeks traditional.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Solana",
+        "DeFi",
+        "Smart Contracts",
+        "AMM",
+        "Production",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "nft-marketplace-deploy",
+      "source": "github:Kermit457/gICM",
+      "description": "Launch a full-featured NFT marketplace on Solana. Includes Candy Machine, cNFTs, marketplace logic, frontend, and indexing. 4-6 weeks total.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Solana",
+        "NFT",
+        "Marketplace",
+        "Metaplex",
+        "cNFT",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "web3-saas-api-launch",
+      "source": "github:Kermit457/gICM",
+      "description": "Launch a Web3-powered SaaS API platform. Wallet auth, crypto payments, subscription tiers, analytics dashboard. 3-5 weeks total.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "SaaS",
+        "API",
+        "Web3",
+        "Authentication",
+        "Payments",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "solana-token-launch",
+      "source": "github:Kermit457/gICM",
+      "description": "Launch a token on Solana with bonding curve, liquidity pool, and instant trading. 2-3 days vs 2-3 weeks manual.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Solana",
+        "Token",
+        "Launch",
+        "Bonding Curve",
+        "DeFi",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "security-audit-pipeline",
+      "source": "github:Kermit457/gICM",
+      "description": "Comprehensive security audit workflow. SAST, dependency scan, secrets scan, manual review, and report generation. 1-2 hours vs 1-2 days manual.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Security",
+        "Audit",
+        "Testing",
+        "SAST",
+        "Vulnerability",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "deploy-with-tests",
+      "source": "github:Kermit457/gICM",
+      "description": "Safe deployment workflow with automated testing, security checks, and rollback. Prevents bad deployments. 30 mins vs 2-3 hours manual.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Deployment",
+        "Testing",
+        "CI/CD",
+        "Safety",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "full-stack-feature-builder",
+      "source": "github:Kermit457/gICM",
+      "description": "Build complete features from database to UI. Schema, API, frontend, tests, deployment. 4-6 hours vs 2-3 days manual.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Full-Stack",
+        "Feature",
+        "Development",
+        "API",
+        "Frontend",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "tdd-workflow",
+      "source": "github:Kermit457/gICM",
+      "description": "Test-Driven Development loop automation. Red → Green → Refactor cycle with AI assistance. Improves code quality by 3x.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "TDD",
+        "Testing",
+        "Quality",
+        "Development",
+        "Workflow"
+      ],
+      "components": {}
     }
   ]
 }

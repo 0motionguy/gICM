@@ -1,5 +1,6 @@
 import type { RegistryItem, Bundle } from "@/types/registry";
 import { SETTINGS } from "@/lib/settings-registry";
+import { WORKFLOWS } from "@/lib/workflows";
 
 // ============================================================================
 // AGENTS (52 Total - Phase 4 expansion with 15 new specialists)
@@ -4713,10 +4714,13 @@ export const REGISTRY: RegistryItem[] = [
   ...COMMANDS,
   ...MCPS,
   ...(SETTINGS as RegistryItem[]),
+  ...WORKFLOWS,
 ];
 
-export function getItemsByKind(kind: "agent" | "skill" | "command" | "mcp" | "setting"): RegistryItem[] {
-  return REGISTRY.filter(item => item.kind === kind);
+export function getItemsByKind(
+  kind: "agent" | "skill" | "command" | "mcp" | "setting" | "workflow"
+): RegistryItem[] {
+  return REGISTRY.filter((item) => item.kind === kind);
 }
 
 export function getItemBySlug(slug: string): RegistryItem | undefined {

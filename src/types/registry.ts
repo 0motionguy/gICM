@@ -1,6 +1,13 @@
 import { z } from "zod";
 
-export const ItemKindSchema = z.enum(["agent", "skill", "command", "mcp", "setting"]);
+export const ItemKindSchema = z.enum([
+  "agent",
+  "skill",
+  "command",
+  "mcp",
+  "setting",
+  "workflow",
+]);
 
 export const RegistryItemSchema = z.object({
   id: z.string(),
@@ -28,7 +35,7 @@ export const RegistryItemSchema = z.object({
 // Manual type with proper optionals
 export type RegistryItem = {
   id: string;
-  kind: "agent" | "skill" | "command" | "mcp" | "setting";
+  kind: "agent" | "skill" | "command" | "mcp" | "setting" | "workflow";
   name: string;
   slug: string;
   description: string;
@@ -47,6 +54,14 @@ export type RegistryItem = {
   tokenSavings?: number;
   layer?: ".agent" | ".claude" | "docs";
   modelRecommendation?: "sonnet" | "opus" | "haiku";
+  // Workflow-specific fields
+  steps?: WorkflowStep[];
+  orchestrationPattern?: "sequential" | "parallel" | "conditional" | "hybrid";
+  triggerPhrase?: string;
+  estimatedTime?: string;
+  requiredAgents?: string[];
+  requiredCommands?: string[];
+  requiredSkills?: string[];
 };
 export type ItemKind = z.infer<typeof ItemKindSchema>;
 
@@ -106,6 +121,43 @@ export const BundleSchema = z.object({
 });
 
 export type Bundle = z.infer<typeof BundleSchema>;
+
+// Workflow schemas
+export const WorkflowStepSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  agent: z.string().optional(), // Agent ID to invoke
+  command: z.string().optional(), // Command slug to run
+  skill: z.string().optional(), // Skill ID to activate
+  condition: z.string().optional(), // Conditional logic (e.g., "coverage >= 80%")
+  parallel: z.boolean().default(false), // Run in parallel with other steps?
+  onError: z.enum(["fail", "continue", "retry"]).default("fail"),
+  retryCount: z.number().optional(),
+});
+
+export type WorkflowStep = z.infer<typeof WorkflowStepSchema>;
+
+export const OrchestrationPatternSchema = z.enum([
+  "sequential", // Steps run one after another
+  "parallel", // All steps run simultaneously
+  "conditional", // Branch based on conditions
+  "hybrid", // Mix of above patterns
+]);
+
+export const WorkflowSchema = RegistryItemSchema.extend({
+  kind: z.literal("workflow"),
+  steps: z.array(WorkflowStepSchema),
+  orchestrationPattern: OrchestrationPatternSchema,
+  triggerPhrase: z.string(), // Natural language activation (e.g., "/deploy-defi")
+  estimatedTime: z.string(), // e.g., "2-4 hours"
+  requiredAgents: z.array(z.string()).default([]), // Agent IDs needed
+  requiredCommands: z.array(z.string()).default([]), // Command slugs needed
+  requiredSkills: z.array(z.string()).default([]), // Skill IDs needed
+  timeSavings: z.number().optional(), // Percentage time saved vs manual
+});
+
+export type Workflow = z.infer<typeof WorkflowSchema>;
+export type OrchestrationPattern = z.infer<typeof OrchestrationPatternSchema>;
 
 export interface StackExport {
   name: string;
