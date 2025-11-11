@@ -28,7 +28,11 @@
       "Bash(cmd /c \"npx @gicm/cli --version\")",
       "Bash(npm uninstall:*)",
       "Bash(ls:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(node -e:*)",
+      "Bash(paste:*)",
+      "Bash(cat:*)",
+      "Bash(npm view:*)"
     ],
     "deny": [],
     "ask": []
