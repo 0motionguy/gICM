@@ -593,4 +593,1271 @@ export const WORKFLOWS: RegistryItem[] = [
     installs: 0,
     remixes: 0,
   },
+
+  // === TIER 1: CORE DEVELOPMENT LIFECYCLE ===
+
+  {
+    id: "full-stack-solana-feature",
+    kind: "workflow",
+    name: "Full-Stack Solana Feature",
+    slug: "full-stack-solana-feature",
+    description:
+      "4-phase orchestration for complete Solana features: Architecture → Parallel Build → Integration → Deploy. 6-8 hours → 45 minutes.",
+    longDescription:
+      "Professional Solana feature workflow with 4-phase orchestration: Phase 1 (Architecture) - Anchor program design, API design, frontend architecture. Phase 2 (Parallel Build) - Program, API, and UI built simultaneously. Phase 3 (Integration) - Integration testing + security audit + E2E validation. Phase 4 (Deployment) - Devnet → Testnet → Mainnet with monitoring.",
+    category: "Orchestration & Automation",
+    tags: ["Solana", "Full-Stack", "Architecture", "Multi-Agent", "Production", "Workflow"],
+    install: "npx @gicm/cli add workflow/full-stack-solana-feature",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential → Sequential
+    triggerPhrase: "/full-stack-solana",
+    estimatedTime: "45 minutes",
+    timeSavings: 87,
+    requiredAgents: [
+      "icm-anchor-architect",
+      "backend-api-specialist",
+      "web3-integration-maestro",
+      "solana-guardian-auditor",
+      "e2e-testing-specialist",
+      "deployment-strategist",
+      "monitoring-specialist",
+      "performance-profiler",
+    ],
+    requiredCommands: ["anchor-init", "api-gen", "component-gen", "test-e2e-setup", "deploy-foundry", "monitoring-setup"],
+    steps: [
+      {
+        name: "Phase 1: Design Anchor program architecture",
+        description: "Design program accounts, instructions, PDAs, and state management",
+        agent: "icm-anchor-architect",
+        parallel: false,
+      },
+      {
+        name: "Phase 1: Design REST API architecture",
+        description: "Design API endpoints, validation schemas, rate limiting",
+        agent: "backend-api-specialist",
+        command: "api-gen",
+        parallel: false,
+      },
+      {
+        name: "Phase 1: Design frontend component hierarchy",
+        description: "Design React component structure, wallet integration, state management",
+        agent: "web3-integration-maestro",
+        parallel: false,
+      },
+      {
+        name: "Phase 2: Build Anchor program (parallel)",
+        description: "Implement program instructions and state management",
+        agent: "icm-anchor-architect",
+        command: "anchor-init",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build API backend (parallel)",
+        description: "Implement REST API with TypeScript + Zod validation",
+        agent: "backend-api-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build frontend UI (parallel)",
+        description: "Implement Next.js UI with wallet integration",
+        agent: "web3-integration-maestro",
+        command: "component-gen",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Integration testing",
+        description: "Validate program-API-frontend integration",
+        agent: "e2e-testing-specialist",
+        command: "test-e2e-setup",
+      },
+      {
+        name: "Phase 3: Security audit",
+        description: "Audit program for PDA bugs, signer checks, reentrancy",
+        agent: "solana-guardian-auditor",
+        command: "security-audit",
+      },
+      {
+        name: "Phase 3: E2E workflow validation",
+        description: "Test complete user flows end-to-end",
+        agent: "e2e-testing-specialist",
+      },
+      {
+        name: "Phase 4: Deploy to devnet/testnet/mainnet",
+        description: "Staged deployment with validation gates",
+        agent: "deployment-strategist",
+        command: "deploy-foundry",
+        condition: "audit_clean === true && tests_passed === true",
+      },
+      {
+        name: "Phase 4: Setup monitoring",
+        description: "Configure program logs, API metrics, error tracking",
+        agent: "monitoring-specialist",
+        command: "monitoring-setup",
+      },
+      {
+        name: "Phase 4: Performance optimization",
+        description: "Optimize compute units, API latency, frontend loading",
+        agent: "performance-profiler",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "security-complete-audit",
+    kind: "workflow",
+    name: "Complete Security Audit",
+    slug: "security-complete-audit",
+    description:
+      "Comprehensive security audit: SAST + dependency scan + manual review + economic analysis. 12-16 hours → 2 hours.",
+    longDescription:
+      "Professional security audit workflow with parallel scanning and sequential review. Phase 1: Parallel execution of SAST (Slither/Mythril), dependency auditing, code review, economic security analysis, and access control validation. Phase 2: Consolidate findings, prioritize by severity (CVSS), create remediation plan, and verify fixes.",
+    category: "Orchestration & Automation",
+    tags: ["Security", "Audit", "SAST", "Vulnerability", "Testing", "Workflow"],
+    install: "npx @gicm/cli add workflow/security-complete-audit",
+    orchestrationPattern: "hybrid", // Parallel → Sequential
+    triggerPhrase: "/security-complete-audit",
+    estimatedTime: "2 hours",
+    timeSavings: 87,
+    requiredAgents: [
+      "evm-security-auditor",
+      "solana-guardian-auditor",
+      "web3-security-specialist",
+      "smart-contract-auditor",
+      "security-engineer",
+    ],
+    requiredCommands: ["security-audit", "security-dependency-audit", "secrets-scan", "idor-scan", "sql-injection-scan", "xss-scan"],
+    steps: [
+      {
+        name: "Phase 1: SAST scanning (parallel)",
+        description: "Run Slither/Mythril (EVM) or Anchor security checks (Solana)",
+        command: "security-audit",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Dependency audit (parallel)",
+        description: "Check for vulnerable dependencies and outdated packages",
+        command: "security-dependency-audit",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Manual code review (parallel)",
+        description: "Expert review for logic bugs, business logic flaws",
+        agent: "smart-contract-auditor",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Economic security analysis (parallel)",
+        description: "Analyze MEV risks, oracle attacks, price manipulation vectors",
+        agent: "web3-security-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Access control audit (parallel)",
+        description: "Review roles, admin keys, multisig configurations",
+        agent: "security-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Consolidate findings",
+        description: "Merge all findings, remove duplicates, assess severity",
+        agent: "smart-contract-auditor",
+      },
+      {
+        name: "Phase 2: Prioritize by CVSS score",
+        description: "Assign CVSS scores (Critical/High/Medium/Low) and calculate risk",
+        agent: "security-engineer",
+      },
+      {
+        name: "Phase 2: Create remediation plan",
+        description: "Design fix strategy with timeline and testing requirements",
+        agent: "security-engineer",
+      },
+      {
+        name: "Phase 2: Verification testing",
+        description: "Re-test after fixes to confirm vulnerabilities resolved",
+        agent: "smart-contract-auditor",
+        command: "security-audit",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "test-pyramid-build",
+    kind: "workflow",
+    name: "Test Pyramid Builder",
+    slug: "test-pyramid-build",
+    description:
+      "Build complete test pyramid: Unit + Integration + E2E + Fuzz tests with coverage analysis. 8-10 hours → 1.5 hours.",
+    longDescription:
+      "Comprehensive testing workflow following test pyramid best practices. Phase 1: Parallel generation of unit tests, integration tests, E2E tests, and fuzz tests. Phase 2: Execute test suite, generate coverage report, identify gaps, and enhance tests until threshold met (80%+).",
+    category: "Orchestration & Automation",
+    tags: ["Testing", "QA", "Unit Tests", "E2E", "Coverage", "Workflow"],
+    install: "npx @gicm/cli add workflow/test-pyramid-build",
+    orchestrationPattern: "hybrid", // Parallel → Sequential
+    triggerPhrase: "/build-test-pyramid",
+    estimatedTime: "1.5 hours",
+    timeSavings: 85,
+    requiredAgents: [
+      "unit-test-generator",
+      "integration-test-architect",
+      "e2e-testing-specialist",
+      "foundry-testing-expert",
+      "test-automation-engineer",
+    ],
+    requiredCommands: ["test-gen", "test-write-tests", "test-e2e-setup", "test-coverage-report", "test-coverage"],
+    steps: [
+      {
+        name: "Phase 1: Generate unit tests (parallel)",
+        description: "Create unit tests for all functions with mocking",
+        agent: "unit-test-generator",
+        command: "test-gen",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Design integration tests (parallel)",
+        description: "Design contract/program interaction tests",
+        agent: "integration-test-architect",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Design E2E tests (parallel)",
+        description: "Design full user flow tests with Playwright",
+        agent: "e2e-testing-specialist",
+        command: "test-e2e-setup",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Create fuzz tests (parallel)",
+        description: "Generate property-based fuzz tests for edge cases",
+        agent: "foundry-testing-expert",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Execute test suite",
+        description: "Run all tests and generate coverage report",
+        command: "test-coverage-report",
+      },
+      {
+        name: "Phase 2: Analyze coverage gaps",
+        description: "Identify untested code paths and critical functions",
+        agent: "test-automation-engineer",
+        command: "test-coverage",
+      },
+      {
+        name: "Phase 2: Enhance test coverage",
+        description: "Fill coverage gaps until 80%+ threshold met",
+        agent: "unit-test-generator",
+        command: "test-write-tests",
+        condition: "coverage < 80%",
+      },
+      {
+        name: "Phase 2: Verify critical paths",
+        description: "Ensure all critical business logic has 100% coverage",
+        agent: "test-automation-engineer",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "staged-deployment-pipeline",
+    kind: "workflow",
+    name: "Staged Deployment Pipeline",
+    slug: "staged-deployment-pipeline",
+    description:
+      "Production-safe staged deployment: Devnet → Testnet → Mainnet with validation gates and rollback. 4-6 hours → 1 hour.",
+    longDescription:
+      "Enterprise deployment workflow with sequential staging and validation gates. Phase 1: Prepare release (checklist, configs, backups). Phase 2: Deploy to devnet + smoke tests. Phase 3: Deploy to testnet + integration tests. Phase 4: Deploy to mainnet with gradual rollout + monitoring + alerts.",
+    category: "Orchestration & Automation",
+    tags: ["Deployment", "CI/CD", "Production", "DevOps", "Safety", "Workflow"],
+    install: "npx @gicm/cli add workflow/staged-deployment-pipeline",
+    orchestrationPattern: "sequential", // Sequential with gates
+    triggerPhrase: "/staged-deploy",
+    estimatedTime: "1 hour",
+    timeSavings: 83,
+    requiredAgents: [
+      "deployment-strategist",
+      "hardhat-deployment-specialist",
+      "monitoring-specialist",
+      "ci-cd-architect",
+      "test-automation-engineer",
+    ],
+    requiredCommands: ["deploy-hardhat", "deploy-foundry", "verify-contract", "snapshot-state", "deploy-prepare-release", "monitoring-setup"],
+    steps: [
+      {
+        name: "Phase 1: Create deployment checklist",
+        description: "Generate pre-flight checklist for production deployment",
+        agent: "ci-cd-architect",
+        command: "deploy-prepare-release",
+      },
+      {
+        name: "Phase 1: Prepare environment configs",
+        description: "Configure network settings, RPC URLs, gas prices",
+        agent: "deployment-strategist",
+      },
+      {
+        name: "Phase 1: Snapshot current state",
+        description: "Backup current contract state for rollback capability",
+        command: "snapshot-state",
+      },
+      {
+        name: "Phase 1: Final security scan",
+        description: "Last security check before deployment",
+        agent: "smart-contract-auditor",
+        command: "security-audit",
+      },
+      {
+        name: "Phase 2: Deploy to devnet",
+        description: "Deploy contracts/programs to devnet",
+        command: "deploy-foundry",
+      },
+      {
+        name: "Phase 2: Smoke tests on devnet",
+        description: "Basic functionality tests to verify deployment",
+        agent: "test-automation-engineer",
+      },
+      {
+        name: "Phase 2: Gate 1 - Pass/Fail decision",
+        description: "Validate devnet deployment before proceeding",
+        condition: "devnet_tests_passed === true",
+      },
+      {
+        name: "Phase 3: Deploy to testnet",
+        description: "Deploy to testnet with verified bytecode",
+        command: "deploy-hardhat",
+      },
+      {
+        name: "Phase 3: Verify contracts on explorer",
+        description: "Submit source code for verification",
+        command: "verify-contract",
+      },
+      {
+        name: "Phase 3: Full integration tests on testnet",
+        description: "Execute complete integration test suite",
+        agent: "integration-test-architect",
+      },
+      {
+        name: "Phase 3: Gate 2 - Pass/Fail decision",
+        description: "Validate testnet deployment before mainnet",
+        condition: "testnet_tests_passed === true",
+      },
+      {
+        name: "Phase 4: Deploy to mainnet (small allocation)",
+        description: "Initial mainnet deployment with limited exposure",
+        command: "deploy-foundry",
+      },
+      {
+        name: "Phase 4: Setup monitoring and alerts",
+        description: "Configure real-time monitoring, alerts, dashboards",
+        agent: "monitoring-specialist",
+        command: "monitoring-setup",
+      },
+      {
+        name: "Phase 4: Gradual rollout",
+        description: "Scale allocation over 24-48 hours monitoring for issues",
+        agent: "deployment-strategist",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  // === TIER 2: ECOSYSTEM EXPANSION ===
+
+  {
+    id: "evm-dapp-complete",
+    kind: "workflow",
+    name: "Complete EVM dApp Launch",
+    slug: "evm-dapp-complete",
+    description:
+      "Full-stack EVM dApp: Hardhat contracts + Subgraph indexing + Web3 frontend. 8-10 hours → 1 hour.",
+    longDescription:
+      "Complete EVM dApp workflow: Phase 1 - Smart contract architecture + subgraph schema + frontend design. Phase 2 - Parallel contract development, subgraph creation, backend API, and frontend UI. Phase 3 - Integration testing + security audit (Slither/Mythril) + gas optimization. Phase 4 - Deploy contracts + verify on Etherscan + deploy subgraph + setup monitoring.",
+    category: "Orchestration & Automation",
+    tags: ["EVM", "Ethereum", "DApp", "Subgraph", "Full-Stack", "Workflow"],
+    install: "npx @gicm/cli add workflow/evm-dapp-complete",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential → Sequential
+    triggerPhrase: "/evm-dapp-launch",
+    estimatedTime: "1 hour",
+    timeSavings: 90,
+    requiredAgents: [
+      "smart-contract-auditor",
+      "graph-protocol-indexer",
+      "ethersjs-integration-architect",
+      "evm-security-auditor",
+      "gas-optimization-specialist",
+      "hardhat-deployment-specialist",
+    ],
+    requiredCommands: ["deploy-hardhat", "verify-contract", "create-subgraph", "generate-abi", "security-audit", "gas-report"],
+    steps: [
+      {
+        name: "Phase 1: Design contract architecture",
+        description: "Design upgradeable/non-upgradeable contract structure",
+        agent: "smart-contract-auditor",
+      },
+      {
+        name: "Phase 1: Design subgraph schema",
+        description: "Design GraphQL schema for on-chain data indexing",
+        agent: "graph-protocol-indexer",
+      },
+      {
+        name: "Phase 1: Design ethers.js integration",
+        description: "Design Web3 provider setup, wallet integration, transaction handling",
+        agent: "ethersjs-integration-architect",
+      },
+      {
+        name: "Phase 2: Implement Solidity contracts (parallel)",
+        description: "Write smart contracts with OpenZeppelin patterns",
+        agent: "openzeppelin-patterns-expert",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Create subgraph (parallel)",
+        description: "Implement event handlers and entity mappings",
+        agent: "graph-protocol-indexer",
+        command: "create-subgraph",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build REST API (parallel)",
+        description: "Create backend API for off-chain data and caching",
+        agent: "backend-api-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build Web3 frontend (parallel)",
+        description: "Implement Next.js UI with ethers.js and Web3 Modal",
+        agent: "frontend-fusion-engine",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Integration testing",
+        description: "Validate contract-subgraph-API-frontend flow",
+        agent: "integration-test-architect",
+      },
+      {
+        name: "Phase 3: Security audit",
+        description: "Run Slither + Mythril + manual audit for vulnerabilities",
+        agent: "evm-security-auditor",
+        command: "security-audit",
+      },
+      {
+        name: "Phase 3: Gas optimization",
+        description: "Optimize contract gas consumption, target <100k gas per tx",
+        agent: "gas-optimization-specialist",
+        command: "gas-report",
+      },
+      {
+        name: "Phase 4: Deploy contracts",
+        description: "Deploy to mainnet with Hardhat",
+        command: "deploy-hardhat",
+        condition: "audit_clean === true",
+      },
+      {
+        name: "Phase 4: Verify on Etherscan",
+        description: "Submit source code for verification",
+        command: "verify-contract",
+      },
+      {
+        name: "Phase 4: Deploy subgraph to Graph Studio",
+        description: "Publish subgraph for indexing",
+        agent: "graph-protocol-indexer",
+      },
+      {
+        name: "Phase 4: Setup monitoring",
+        description: "Configure contract event monitoring and alerts",
+        agent: "monitoring-specialist",
+        command: "monitoring-setup",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "defi-protocol-integration",
+    kind: "workflow",
+    name: "DeFi Protocol Integration",
+    slug: "defi-protocol-integration",
+    description:
+      "Integrate Uniswap/Aave/Jupiter/Marinade: Research + integration contracts + fork testing + MEV analysis. 10-12 hours → 1.5 hours.",
+    longDescription:
+      "Professional DeFi integration workflow: Phase 1 - Research protocol (Uniswap V3/Aave/Jupiter) + design integration architecture + design monitoring. Phase 2 - Parallel contract implementation, backend monitoring, and frontend UI. Phase 3 - Fork testing with mainnet state + economic security audit (MEV/oracle attacks) + integration validation. Phase 4 - Staged rollout with monitoring.",
+    category: "Orchestration & Automation",
+    tags: ["DeFi", "Integration", "Uniswap", "Aave", "Jupiter", "Workflow"],
+    install: "npx @gicm/cli add workflow/defi-protocol-integration",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential → Sequential
+    triggerPhrase: "/defi-integrate",
+    estimatedTime: "1.5 hours",
+    timeSavings: 88,
+    requiredAgents: [
+      "defi-integration-architect",
+      "uniswap-v3-integration-specialist",
+      "aave-protocol-integrator",
+      "chainlink-oracle-specialist",
+      "web3-security-specialist",
+    ],
+    requiredCommands: ["fork-mainnet", "impersonate-account", "trace-tx", "estimate-gas", "deploy-foundry"],
+    steps: [
+      {
+        name: "Phase 1: Research protocol",
+        description: "Deep dive into protocol mechanics (Uniswap V3 tick math, Aave rate model)",
+        agent: "defi-integration-architect",
+      },
+      {
+        name: "Phase 1: Design integration contracts",
+        description: "Design adapter contracts for protocol interaction",
+        agent: "uniswap-v3-integration-specialist",
+      },
+      {
+        name: "Phase 1: Design price feed and monitoring",
+        description: "Configure Chainlink oracles, liquidation monitoring, alerts",
+        agent: "chainlink-oracle-specialist",
+      },
+      {
+        name: "Phase 2: Implement integration (parallel)",
+        description: "Write adapter contracts with slippage protection",
+        agent: "uniswap-v3-integration-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build monitoring backend (parallel)",
+        description: "Create monitoring service for positions, health factors, liquidations",
+        agent: "backend-api-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build management UI (parallel)",
+        description: "Create dashboard for position management and analytics",
+        agent: "frontend-fusion-engine",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Fork mainnet for testing",
+        description: "Fork mainnet with real liquidity for realistic testing",
+        command: "fork-mainnet",
+      },
+      {
+        name: "Phase 3: Test with real protocol state",
+        description: "Execute integration tests against mainnet fork",
+        agent: "integration-test-architect",
+        command: "impersonate-account",
+      },
+      {
+        name: "Phase 3: Economic security audit",
+        description: "Analyze MEV risks, oracle manipulation, flash loan attacks",
+        agent: "web3-security-specialist",
+        command: "trace-tx",
+      },
+      {
+        name: "Phase 3: Validate end-to-end flows",
+        description: "Test deposit, swap, withdraw, liquidation flows",
+        agent: "e2e-testing-specialist",
+      },
+      {
+        name: "Phase 4: Deploy with small position",
+        description: "Initial mainnet deployment with limited capital exposure",
+        command: "deploy-foundry",
+        condition: "fork_tests_passed === true && audit_clean === true",
+      },
+      {
+        name: "Phase 4: Setup alerts",
+        description: "Configure alerts for protocol changes, price anomalies, position health",
+        agent: "monitoring-specialist",
+        command: "monitoring-setup",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "performance-optimization-suite",
+    kind: "workflow",
+    name: "Performance Optimization Suite",
+    slug: "performance-optimization-suite",
+    description:
+      "Complete performance optimization: Gas + API latency + bundle size + database. 6-8 hours → 1.5 hours.",
+    longDescription:
+      "Comprehensive performance workflow: Phase 1 - Profile bottlenecks (compute units, API latency, bundle size, slow queries). Phase 2 - Parallel optimization (gas optimization, API caching, code splitting, database indexing). Phase 3 - Benchmark before/after and validate performance targets met.",
+    category: "Orchestration & Automation",
+    tags: ["Performance", "Optimization", "Gas", "API", "Frontend", "Workflow"],
+    install: "npx @gicm/cli add workflow/performance-optimization-suite",
+    orchestrationPattern: "hybrid", // Sequential profiling → Parallel optimization → Sequential validation
+    triggerPhrase: "/optimize-performance",
+    estimatedTime: "1.5 hours",
+    timeSavings: 81,
+    requiredAgents: [
+      "gas-optimization-specialist",
+      "performance-engineer",
+      "bundler-optimizer",
+      "devtools-optimizer",
+      "database-schema-oracle",
+    ],
+    requiredCommands: ["gas-report", "perf-trace", "bundle-analyze", "benchmark", "performance-optimize-db", "performance-caching"],
+    steps: [
+      {
+        name: "Phase 1: Profile gas consumption",
+        description: "Identify expensive contract operations",
+        agent: "gas-optimization-specialist",
+        command: "gas-report",
+      },
+      {
+        name: "Phase 1: Profile API latency",
+        description: "Identify slow endpoints and database queries",
+        agent: "performance-engineer",
+        command: "perf-trace",
+      },
+      {
+        name: "Phase 1: Profile bundle size",
+        description: "Analyze JavaScript bundle size and identify large dependencies",
+        agent: "bundler-optimizer",
+        command: "bundle-analyze",
+      },
+      {
+        name: "Phase 1: Profile database queries",
+        description: "Identify slow queries without indexes",
+        agent: "database-schema-oracle",
+      },
+      {
+        name: "Phase 2: Optimize contract gas (parallel)",
+        description: "Storage packing, loop optimization, unchecked math",
+        agent: "gas-optimization-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Optimize API performance (parallel)",
+        description: "Add Redis caching, optimize queries, enable compression",
+        agent: "performance-engineer",
+        command: "performance-caching",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Optimize frontend bundle (parallel)",
+        description: "Code splitting, lazy loading, tree shaking",
+        agent: "bundler-optimizer",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Optimize database (parallel)",
+        description: "Add indexes, optimize queries, enable connection pooling",
+        agent: "database-schema-oracle",
+        command: "performance-optimize-db",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Run benchmarks",
+        description: "Compare before/after metrics for all optimizations",
+        command: "benchmark",
+      },
+      {
+        name: "Phase 3: Validate targets met",
+        description: "Ensure gas <100k, API <200ms, LCP <2.5s, query time <50ms",
+        agent: "performance-engineer",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "incident-response-protocol",
+    kind: "workflow",
+    name: "Incident Response Protocol",
+    slug: "incident-response-protocol",
+    description:
+      "Production incident response: Parallel diagnosis → sequential remediation → post-mortem. 8-12 hours → 2 hours.",
+    longDescription:
+      "Emergency incident response workflow: Phase 1 - Parallel diagnosis (log analysis, transaction tracing, state inspection, security check). Phase 2 - Sequential remediation (root cause analysis, remediation planning, emergency deployment, validation). Phase 3 - Post-incident (post-mortem, prevention controls).",
+    category: "Orchestration & Automation",
+    tags: ["Incident", "Emergency", "Production", "DevOps", "Security", "Workflow"],
+    install: "npx @gicm/cli add workflow/incident-response-protocol",
+    orchestrationPattern: "hybrid", // Parallel → Sequential → Sequential
+    triggerPhrase: "/incident-response",
+    estimatedTime: "2 hours",
+    timeSavings: 83,
+    requiredAgents: [
+      "debugging-detective",
+      "log-aggregation-expert",
+      "smart-contract-forensics",
+      "deployment-strategist",
+      "security-engineer",
+    ],
+    requiredCommands: ["trace-tx", "decode-tx", "snapshot-state", "fork-mainnet", "impersonate-account", "deploy-rollback"],
+    steps: [
+      {
+        name: "Phase 1: Parse logs for errors (parallel)",
+        description: "Analyze application logs for error patterns and anomalies",
+        agent: "log-aggregation-expert",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Trace failed transactions (parallel)",
+        description: "Trace and decode failed on-chain transactions",
+        command: "trace-tx",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Inspect contract state (parallel)",
+        description: "Compare current state vs expected state for anomalies",
+        agent: "smart-contract-forensics",
+        command: "snapshot-state",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Check exploit indicators (parallel)",
+        description: "Scan for security exploit patterns (reentrancy, overflow)",
+        agent: "security-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Identify root cause",
+        description: "Synthesize findings to identify root cause",
+        agent: "debugging-detective",
+      },
+      {
+        name: "Phase 2: Design remediation",
+        description: "Plan fix strategy (hotfix, pause contract, rollback)",
+        agent: "deployment-strategist",
+      },
+      {
+        name: "Phase 2: Execute emergency deployment",
+        description: "Deploy fix or pause contract to stop bleeding",
+        command: "deploy-rollback",
+      },
+      {
+        name: "Phase 2: Verify incident resolved",
+        description: "Confirm issue is resolved and system is stable",
+        agent: "debugging-detective",
+      },
+      {
+        name: "Phase 3: Write post-mortem",
+        description: "Document incident timeline, root cause, remediation, lessons learned",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 3: Design prevention controls",
+        description: "Implement controls to prevent recurrence (tests, alerts, circuit breakers)",
+        agent: "security-engineer",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  // === TIER 3: PRODUCTION OPERATIONS ===
+
+  {
+    id: "api-documentation-complete",
+    kind: "workflow",
+    name: "Complete API Documentation",
+    slug: "api-documentation-complete",
+    description:
+      "Auto-generate API docs: OpenAPI extraction + reference docs + examples + tutorials + SDK samples. 6-8 hours → 1.5 hours.",
+    longDescription:
+      "Professional API documentation workflow: Phase 1 - Extract OpenAPI/GraphQL schemas + generate reference docs + create endpoint examples. Phase 2 - Parallel creation of getting started guide, SDK examples (JS/Python/Rust), and interactive API playground. Phase 3 - Polish prose, ensure accessibility (WCAG), publish docs.",
+    category: "Orchestration & Automation",
+    tags: ["Documentation", "API", "OpenAPI", "Tutorial", "Developer Experience", "Workflow"],
+    install: "npx @gicm/cli add workflow/api-documentation-complete",
+    orchestrationPattern: "hybrid", // Sequential → Parallel → Sequential
+    triggerPhrase: "/document-api",
+    estimatedTime: "1.5 hours",
+    timeSavings: 81,
+    requiredAgents: [
+      "api-documentation-specialist",
+      "tutorial-creator",
+      "code-example-generator",
+      "technical-writer-pro",
+      "accessibility-advocate",
+    ],
+    requiredCommands: ["doc-generate", "generate-abi", "api-gen"],
+    steps: [
+      {
+        name: "Phase 1: Extract API contracts",
+        description: "Extract OpenAPI spec or GraphQL schema from codebase",
+        agent: "api-documentation-specialist",
+        command: "generate-abi",
+      },
+      {
+        name: "Phase 1: Generate reference docs",
+        description: "Auto-generate API reference from OpenAPI/GraphQL schema",
+        agent: "api-documentation-specialist",
+        command: "doc-generate",
+      },
+      {
+        name: "Phase 1: Create endpoint examples",
+        description: "Generate curl/fetch examples for each endpoint",
+        agent: "code-example-generator",
+      },
+      {
+        name: "Phase 2: Write getting started guide (parallel)",
+        description: "Create quick start tutorial for first API call",
+        agent: "tutorial-creator",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Create SDK examples (parallel)",
+        description: "Write JavaScript, Python, and Rust SDK examples",
+        agent: "code-example-generator",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build API playground (parallel)",
+        description: "Create interactive playground for testing endpoints",
+        agent: "frontend-fusion-engine",
+        parallel: true,
+      },
+      {
+        name: "Phase 3: Polish documentation prose",
+        description: "Edit for clarity, grammar, and consistent tone",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 3: Ensure accessibility",
+        description: "Validate WCAG 2.1 AA compliance",
+        agent: "accessibility-advocate",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "monitoring-observability-setup",
+    kind: "workflow",
+    name: "Monitoring & Observability Setup",
+    slug: "monitoring-observability-setup",
+    description:
+      "Complete observability: Logs + metrics + alerts + dashboards for program/contract monitoring. 4-6 hours → 1 hour.",
+    longDescription:
+      "Production observability workflow: Phase 1 - Parallel setup of program/contract event monitoring, log aggregation (Supabase/Datadog), metrics collection (Prometheus/Grafana), and alert configuration. Phase 2 - Integrate into unified dashboard, validate alerts trigger correctly, and document runbooks for alert response.",
+    category: "Orchestration & Automation",
+    tags: ["Monitoring", "Observability", "Logs", "Metrics", "Alerts", "Workflow"],
+    install: "npx @gicm/cli add workflow/monitoring-observability-setup",
+    orchestrationPattern: "hybrid", // Parallel → Sequential
+    triggerPhrase: "/setup-monitoring",
+    estimatedTime: "1 hour",
+    timeSavings: 83,
+    requiredAgents: [
+      "monitoring-specialist",
+      "log-aggregation-expert",
+      "devops-platform-engineer",
+    ],
+    requiredCommands: ["monitoring-setup", "analytics-setup"],
+    steps: [
+      {
+        name: "Phase 1: Setup event monitoring (parallel)",
+        description: "Configure monitoring for program/contract events",
+        agent: "monitoring-specialist",
+        command: "monitoring-setup",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Configure log aggregation (parallel)",
+        description: "Setup log collection (Supabase/Datadog/CloudWatch)",
+        agent: "log-aggregation-expert",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Setup metrics collection (parallel)",
+        description: "Configure Prometheus/Grafana for metrics",
+        agent: "devops-platform-engineer",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Create alerts (parallel)",
+        description: "Configure alerts for critical events (failures, high gas, low balance)",
+        agent: "monitoring-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Build unified dashboard",
+        description: "Create dashboard showing logs, metrics, and events in one view",
+        agent: "monitoring-specialist",
+      },
+      {
+        name: "Phase 2: Validate alerts",
+        description: "Test that alerts trigger correctly and route to on-call",
+        agent: "devops-platform-engineer",
+      },
+      {
+        name: "Phase 2: Document runbooks",
+        description: "Create alert response procedures for on-call engineers",
+        agent: "technical-writer-pro",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "qa-release-validation",
+    kind: "workflow",
+    name: "QA Release Validation",
+    slug: "qa-release-validation",
+    description:
+      "Pre-release QA validation: Parallel testing + security + performance checks with go/no-go decision. 4-6 hours → 45 minutes.",
+    longDescription:
+      "Release validation workflow with parallel checks: Phase 1 - Parallel execution of manual QA tests, automated test suite, performance/load testing, security scanning, and gas profiling. Phase 2 - Gate decision based on all checks passing, risk assessment, and go/no-go decision for release.",
+    category: "Orchestration & Automation",
+    tags: ["QA", "Testing", "Release", "Validation", "Quality", "Workflow"],
+    install: "npx @gicm/cli add workflow/qa-release-validation",
+    orchestrationPattern: "hybrid", // Parallel → Sequential gate
+    triggerPhrase: "/qa-validate-release",
+    estimatedTime: "45 minutes",
+    timeSavings: 81,
+    requiredAgents: [
+      "qa-automation-lead",
+      "quality-assurance-specialist",
+      "qa-stress-tester",
+      "performance-engineer",
+      "security-engineer",
+    ],
+    requiredCommands: ["test-coverage", "gas-report", "benchmark", "load-test", "lighthouse-check"],
+    steps: [
+      {
+        name: "Phase 1: Execute manual QA plan (parallel)",
+        description: "Human QA tests for critical user flows",
+        agent: "quality-assurance-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Run automated test suite (parallel)",
+        description: "Execute full test suite (unit + integration + E2E)",
+        command: "test-coverage",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Performance testing (parallel)",
+        description: "Run load tests and stress tests",
+        agent: "qa-stress-tester",
+        command: "load-test",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Security final scan (parallel)",
+        description: "Final security scan before release",
+        agent: "security-engineer",
+        command: "security-audit",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Gas profiling (parallel)",
+        description: "Validate gas optimization targets met",
+        command: "gas-report",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Validate all gates passed",
+        description: "Check that all validation checks passed thresholds",
+        agent: "qa-automation-lead",
+      },
+      {
+        name: "Phase 2: Assess deployment risk",
+        description: "Evaluate overall risk profile for release",
+        agent: "deployment-strategist",
+      },
+      {
+        name: "Phase 2: Go/No-Go decision",
+        description: "Final decision to approve or block release",
+        agent: "qa-automation-lead",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "economic-security-analysis",
+    kind: "workflow",
+    name: "Economic Security Analysis",
+    slug: "economic-security-analysis",
+    description:
+      "DeFi economic security: MEV + oracle manipulation + flash loan attacks + risk quantification. 6-8 hours → 1 hour.",
+    longDescription:
+      "DeFi-focused economic security workflow: Phase 1 - Parallel analysis of MEV risks (sandwich/front-running), oracle security (Chainlink validation), flash loan attack vectors, and governance/admin controls. Phase 2 - Synthesize findings, quantify potential loss scenarios, and design mitigations (slippage limits, circuit breakers).",
+    category: "Orchestration & Automation",
+    tags: ["DeFi", "Security", "MEV", "Oracle", "Economic", "Workflow"],
+    install: "npx @gicm/cli add workflow/economic-security-analysis",
+    orchestrationPattern: "hybrid", // Parallel → Sequential
+    triggerPhrase: "/economic-security",
+    estimatedTime: "1 hour",
+    timeSavings: 87,
+    requiredAgents: [
+      "defi-integration-architect",
+      "chainlink-oracle-specialist",
+      "smart-contract-auditor",
+      "web3-security-specialist",
+    ],
+    requiredCommands: ["fork-mainnet", "impersonate-account", "simulate-bundle", "trace-tx"],
+    steps: [
+      {
+        name: "Phase 1: MEV analysis (parallel)",
+        description: "Analyze sandwich attack vectors and front-running risks",
+        agent: "web3-security-specialist",
+        command: "simulate-bundle",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Oracle security (parallel)",
+        description: "Validate Chainlink price feed security and update frequency",
+        agent: "chainlink-oracle-specialist",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Flash loan analysis (parallel)",
+        description: "Check for flash loan attack vectors (price manipulation, liquidity drain)",
+        agent: "defi-integration-architect",
+        command: "fork-mainnet",
+        parallel: true,
+      },
+      {
+        name: "Phase 1: Governance analysis (parallel)",
+        description: "Review admin controls, timelock mechanisms, multisig config",
+        agent: "smart-contract-auditor",
+        parallel: true,
+      },
+      {
+        name: "Phase 2: Synthesize findings",
+        description: "Consolidate all economic attack vectors identified",
+        agent: "web3-security-specialist",
+      },
+      {
+        name: "Phase 2: Quantify risk",
+        description: "Estimate potential loss scenarios (e.g., $100k flash loan attack)",
+        agent: "defi-integration-architect",
+      },
+      {
+        name: "Phase 2: Design mitigations",
+        description: "Design protections (slippage limits, circuit breakers, timelock)",
+        agent: "smart-contract-auditor",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  // === TIER 4: ADVANCED FEATURES ===
+
+  {
+    id: "penetration-test-web3",
+    kind: "workflow",
+    name: "Web3 Penetration Testing",
+    slug: "penetration-test-web3",
+    description:
+      "Smart contract penetration testing: Reconnaissance → exploit development → validation. 16-20 hours → 3 hours.",
+    longDescription:
+      "Advanced penetration testing workflow: Phase 1 - Reconnaissance (map functions, dependencies, attack surface). Phase 2 - Exploit development (reentrancy, overflow, MEV, oracle manipulation). Phase 3 - Validation (demonstrate exploits on fork, calculate impact, generate detailed report).",
+    category: "Orchestration & Automation",
+    tags: ["Security", "Penetration Testing", "Red Team", "Exploit", "Workflow"],
+    install: "npx @gicm/cli add workflow/penetration-test-web3",
+    orchestrationPattern: "sequential", // Sequential attack chain
+    triggerPhrase: "/pentest-web3",
+    estimatedTime: "3 hours",
+    timeSavings: 85,
+    requiredAgents: [
+      "penetration-testing-specialist",
+      "evm-security-auditor",
+      "solana-guardian-auditor",
+      "web3-security-specialist",
+    ],
+    requiredCommands: ["fork-mainnet", "impersonate-account", "simulate-bundle", "trace-tx"],
+    steps: [
+      {
+        name: "Phase 1: Map contract functions",
+        description: "Analyze all functions, access controls, state variables",
+        agent: "smart-contract-auditor",
+      },
+      {
+        name: "Phase 1: Map dependencies",
+        description: "Identify external calls, oracle dependencies, protocol integrations",
+        agent: "defi-integration-architect",
+      },
+      {
+        name: "Phase 2: Attempt reentrancy attacks",
+        description: "Test for reentrancy vulnerabilities",
+        agent: "penetration-testing-specialist",
+        command: "fork-mainnet",
+      },
+      {
+        name: "Phase 2: Attempt integer overflow",
+        description: "Test for unchecked arithmetic vulnerabilities",
+        agent: "evm-security-auditor",
+      },
+      {
+        name: "Phase 2: Simulate MEV attacks",
+        description: "Test sandwich attacks and front-running",
+        agent: "web3-security-specialist",
+        command: "simulate-bundle",
+      },
+      {
+        name: "Phase 2: Test oracle manipulation",
+        description: "Attempt price oracle manipulation attacks",
+        agent: "chainlink-oracle-specialist",
+        command: "impersonate-account",
+      },
+      {
+        name: "Phase 3: Demonstrate exploits on fork",
+        description: "Validate successful attacks on mainnet fork",
+        agent: "penetration-testing-specialist",
+        command: "trace-tx",
+      },
+      {
+        name: "Phase 3: Calculate impact",
+        description: "Quantify potential loss from each exploit",
+        agent: "web3-security-specialist",
+      },
+      {
+        name: "Phase 3: Generate vulnerability report",
+        description: "Create detailed report with exploit steps and remediation",
+        agent: "security-engineer",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "onboarding-quickstart-generator",
+    kind: "workflow",
+    name: "Onboarding & Quickstart Generator",
+    slug: "onboarding-quickstart-generator",
+    description:
+      "Auto-generate project onboarding: Tutorial path + code examples + screenshots + accessibility. 8-10 hours → 2 hours.",
+    longDescription:
+      "Developer onboarding workflow: Phase 1 - Design learning path (beginner → advanced) + identify key examples. Phase 2 - Content creation (step-by-step tutorials, working code examples, screenshots/diagrams). Phase 3 - Validation (execute tutorials on fresh environment, ensure accessibility, optimize for learning).",
+    category: "Orchestration & Automation",
+    tags: ["Documentation", "Tutorial", "Onboarding", "Developer Experience", "Workflow"],
+    install: "npx @gicm/cli add workflow/onboarding-quickstart-generator",
+    orchestrationPattern: "sequential",
+    triggerPhrase: "/create-quickstart",
+    estimatedTime: "2 hours",
+    timeSavings: 80,
+    requiredAgents: [
+      "tutorial-creator",
+      "code-example-generator",
+      "technical-writer-pro",
+      "content-strategist",
+      "accessibility-advocate",
+    ],
+    requiredCommands: ["doc-generate", "readme-architect"],
+    steps: [
+      {
+        name: "Phase 1: Design learning path",
+        description: "Create progressive tutorial path from beginner to advanced",
+        agent: "tutorial-creator",
+      },
+      {
+        name: "Phase 1: Identify key examples",
+        description: "Select examples that demonstrate core concepts",
+        agent: "code-example-generator",
+      },
+      {
+        name: "Phase 2: Write step-by-step tutorials",
+        description: "Create detailed tutorials with explanations",
+        agent: "tutorial-creator",
+      },
+      {
+        name: "Phase 2: Create working code examples",
+        description: "Write runnable code examples for each tutorial step",
+        agent: "code-example-generator",
+      },
+      {
+        name: "Phase 2: Generate screenshots and diagrams",
+        description: "Create visual aids for complex concepts",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 3: Test tutorials on fresh environment",
+        description: "Execute all tutorials to ensure they work",
+        agent: "tutorial-creator",
+      },
+      {
+        name: "Phase 3: Ensure accessibility",
+        description: "Validate WCAG compliance for all content",
+        agent: "accessibility-advocate",
+      },
+      {
+        name: "Phase 3: Optimize for learning outcomes",
+        description: "Refine content based on learning science principles",
+        agent: "content-strategist",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
+
+  {
+    id: "changelog-release-notes",
+    kind: "workflow",
+    name: "Changelog & Release Notes Generator",
+    slug: "changelog-release-notes",
+    description:
+      "Auto-generate release notes: Git analysis → changelog grouping → user-friendly descriptions. 2-3 hours → 20 minutes.",
+    longDescription:
+      "Automated release notes workflow: Phase 1 - Extract commits since last release + group by type (features/fixes/breaking) + link to issues/PRs. Phase 2 - Write user-friendly descriptions + highlight breaking changes + add migration steps + code examples. Phase 3 - Polish prose and publish GitHub release.",
+    category: "Orchestration & Automation",
+    tags: ["Documentation", "Release", "Changelog", "Git", "Workflow"],
+    install: "npx @gicm/cli add workflow/changelog-release-notes",
+    orchestrationPattern: "sequential",
+    triggerPhrase: "/generate-release-notes",
+    estimatedTime: "20 minutes",
+    timeSavings: 88,
+    requiredAgents: [
+      "changelog-generator",
+      "technical-writer-pro",
+      "git-flow-coordinator",
+    ],
+    requiredCommands: ["changelog-gen", "release-notes", "pr-enhance"],
+    steps: [
+      {
+        name: "Phase 1: Extract commits since last release",
+        description: "Analyze git history and extract commit messages",
+        agent: "git-flow-coordinator",
+      },
+      {
+        name: "Phase 1: Group by type",
+        description: "Categorize commits (features, fixes, breaking changes)",
+        agent: "changelog-generator",
+        command: "changelog-gen",
+      },
+      {
+        name: "Phase 1: Link to issues and PRs",
+        description: "Associate commits with GitHub issues and pull requests",
+        agent: "git-flow-coordinator",
+      },
+      {
+        name: "Phase 2: Write user-friendly descriptions",
+        description: "Convert technical commits to user-focused release notes",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 2: Highlight breaking changes",
+        description: "Document breaking changes with migration guides",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 2: Add code examples for new features",
+        description: "Create examples showing how to use new features",
+        agent: "code-example-generator",
+      },
+      {
+        name: "Phase 3: Polish prose",
+        description: "Edit for clarity, grammar, and consistent tone",
+        agent: "technical-writer-pro",
+      },
+      {
+        name: "Phase 3: Publish GitHub release",
+        description: "Create GitHub release with changelog and tag",
+        agent: "git-flow-coordinator",
+        command: "release-notes",
+      },
+    ],
+    installs: 0,
+    remixes: 0,
+  },
 ];

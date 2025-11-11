@@ -27,12 +27,12 @@ Then browse and install plugins:
 
 ## What's Included
 
-**417 Production-Ready Plugins:**
+**432 Production-Ready Plugins:**
 
-- **91 Agents** - Specialized AI assistants (Solana, DeFi, Frontend, Security, etc.)
+- **90 Agents** - Specialized AI assistants (Solana, DeFi, Frontend, Security, etc.)
 - **96 Skills** - Progressive disclosure knowledge modules (88-92% token savings)
 - **93 Commands** - Slash commands for workflows and automation
-- **8 Workflows** - Multi-agent orchestration for complex tasks (NEW!)
+- **23 Workflows** - Multi-agent orchestration for complex tasks (NEW!)
 - **82 MCPs** - Model Context Protocol servers for external integrations
 - **48 Settings** - Claude Code configuration optimizations
 
@@ -202,23 +202,45 @@ Plugins install to your `.claude/` directory:
 
 ## Workflow Orchestration
 
-8 production-ready workflows for complex multi-agent tasks:
+23 production-ready workflows for complex multi-agent tasks:
 
 ```bash
-# Solana & Web3 Workflows
-/plugin install solana-token-launch          # Launch token on Solana (2-3 days)
-/plugin install solana-defi-protocol-launch  # DeFi protocol from scratch (2-4 weeks)
-/plugin install nft-marketplace-deploy       # NFT marketplace deployment (4-6 weeks)
+# Tier 1: Core Development Lifecycle
+/plugin install full-stack-solana-feature    # Complete Solana feature (45 mins vs 6-8h)
+/plugin install security-complete-audit      # Comprehensive security audit (2h vs 12-16h)
+/plugin install test-pyramid-build           # Unit+Integration+E2E+Fuzz (1.5h vs 8-10h)
+/plugin install staged-deployment-pipeline   # Devnet→Testnet→Mainnet (1h vs 4-6h)
 
-# Development Workflows
-/plugin install security-audit-pipeline      # Automated security scanning (1-2 hours)
-/plugin install deploy-with-tests           # Deploy with test validation (30 mins)
-/plugin install full-stack-feature-builder  # Full-stack feature (4-6 hours)
-/plugin install tdd-workflow                # Test-driven development loop
-/plugin install web3-saas-api-launch        # Web3 SaaS API launch (3-5 weeks)
+# Tier 2: Ecosystem Expansion
+/plugin install evm-dapp-complete            # Full EVM dApp launch (1h vs 8-10h)
+/plugin install defi-protocol-integration    # DeFi integration (1.5h vs 10-12h)
+/plugin install performance-optimization-suite # Gas+API+Frontend (1.5h vs 6-8h)
+/plugin install incident-response-protocol   # Emergency response (2h vs 8-12h)
+
+# Tier 3: Production Operations
+/plugin install api-documentation-complete   # API docs generation (1.5h vs 6-8h)
+/plugin install monitoring-observability-setup # Full observability (1h vs 4-6h)
+/plugin install qa-release-validation        # Release validation (45m vs 4-6h)
+/plugin install economic-security-analysis   # DeFi security (1h vs 6-8h)
+
+# Tier 4: Advanced Features
+/plugin install penetration-test-web3        # Smart contract pentesting (3h vs 16-20h)
+/plugin install onboarding-quickstart-generator # Tutorial generation (2h vs 8-10h)
+/plugin install changelog-release-notes      # Release notes (20m vs 2-3h)
+
+# Original Workflows
+/plugin install solana-defi-protocol-launch  # DeFi protocol (2-4 weeks vs 8-12 weeks)
+/plugin install nft-marketplace-deploy       # NFT marketplace (4-6 weeks)
+/plugin install web3-saas-api-launch         # Web3 SaaS API (3-5 weeks)
+/plugin install solana-token-launch          # Token launch (2-3 days)
+/plugin install security-audit-pipeline      # Security pipeline (1-2 hours)
+/plugin install deploy-with-tests            # Safe deployment (30 mins)
+/plugin install full-stack-feature-builder   # Full-stack feature (4-6 hours)
+/plugin install tdd-workflow                 # TDD automation (varies)
 ```
 
-**Time Savings**: 50-85% reduction in development time with automated orchestration
+**Time Savings**: 50-90% reduction in development time with automated orchestration
+**Coverage**: Complete development lifecycle (design → build → test → audit → deploy → monitor)
 
 ## Support & Resources
 

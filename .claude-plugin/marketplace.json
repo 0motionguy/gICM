@@ -7806,6 +7806,228 @@
         "Workflow"
       ],
       "components": {}
+    },
+    {
+      "name": "full-stack-solana-feature",
+      "source": "github:Kermit457/gICM",
+      "description": "4-phase orchestration for complete Solana features: Architecture → Parallel Build → Integration → Deploy. 6-8 hours → 45 minutes.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Solana",
+        "Full-Stack",
+        "Architecture",
+        "Multi-Agent",
+        "Production",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "security-complete-audit",
+      "source": "github:Kermit457/gICM",
+      "description": "Comprehensive security audit: SAST + dependency scan + manual review + economic analysis. 12-16 hours → 2 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Security",
+        "Audit",
+        "SAST",
+        "Vulnerability",
+        "Testing",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "test-pyramid-build",
+      "source": "github:Kermit457/gICM",
+      "description": "Build complete test pyramid: Unit + Integration + E2E + Fuzz tests with coverage analysis. 8-10 hours → 1.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Testing",
+        "QA",
+        "Unit Tests",
+        "E2E",
+        "Coverage",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "staged-deployment-pipeline",
+      "source": "github:Kermit457/gICM",
+      "description": "Production-safe staged deployment: Devnet → Testnet → Mainnet with validation gates and rollback. 4-6 hours → 1 hour.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Deployment",
+        "CI/CD",
+        "Production",
+        "DevOps",
+        "Safety",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "evm-dapp-complete",
+      "source": "github:Kermit457/gICM",
+      "description": "Full-stack EVM dApp: Hardhat contracts + Subgraph indexing + Web3 frontend. 8-10 hours → 1 hour.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "EVM",
+        "Ethereum",
+        "DApp",
+        "Subgraph",
+        "Full-Stack",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "defi-protocol-integration",
+      "source": "github:Kermit457/gICM",
+      "description": "Integrate Uniswap/Aave/Jupiter/Marinade: Research + integration contracts + fork testing + MEV analysis. 10-12 hours → 1.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "DeFi",
+        "Integration",
+        "Uniswap",
+        "Aave",
+        "Jupiter",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "performance-optimization-suite",
+      "source": "github:Kermit457/gICM",
+      "description": "Complete performance optimization: Gas + API latency + bundle size + database. 6-8 hours → 1.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Performance",
+        "Optimization",
+        "Gas",
+        "API",
+        "Frontend",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "incident-response-protocol",
+      "source": "github:Kermit457/gICM",
+      "description": "Production incident response: Parallel diagnosis → sequential remediation → post-mortem. 8-12 hours → 2 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Incident",
+        "Emergency",
+        "Production",
+        "DevOps",
+        "Security",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "api-documentation-complete",
+      "source": "github:Kermit457/gICM",
+      "description": "Auto-generate API docs: OpenAPI extraction + reference docs + examples + tutorials + SDK samples. 6-8 hours → 1.5 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Documentation",
+        "API",
+        "OpenAPI",
+        "Tutorial",
+        "Developer Experience",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "monitoring-observability-setup",
+      "source": "github:Kermit457/gICM",
+      "description": "Complete observability: Logs + metrics + alerts + dashboards for program/contract monitoring. 4-6 hours → 1 hour.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Monitoring",
+        "Observability",
+        "Logs",
+        "Metrics",
+        "Alerts",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "qa-release-validation",
+      "source": "github:Kermit457/gICM",
+      "description": "Pre-release QA validation: Parallel testing + security + performance checks with go/no-go decision. 4-6 hours → 45 minutes.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "QA",
+        "Testing",
+        "Release",
+        "Validation",
+        "Quality",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "economic-security-analysis",
+      "source": "github:Kermit457/gICM",
+      "description": "DeFi economic security: MEV + oracle manipulation + flash loan attacks + risk quantification. 6-8 hours → 1 hour.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "DeFi",
+        "Security",
+        "MEV",
+        "Oracle",
+        "Economic",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "penetration-test-web3",
+      "source": "github:Kermit457/gICM",
+      "description": "Smart contract penetration testing: Reconnaissance → exploit development → validation. 16-20 hours → 3 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Security",
+        "Penetration Testing",
+        "Red Team",
+        "Exploit",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "onboarding-quickstart-generator",
+      "source": "github:Kermit457/gICM",
+      "description": "Auto-generate project onboarding: Tutorial path + code examples + screenshots + accessibility. 8-10 hours → 2 hours.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Documentation",
+        "Tutorial",
+        "Onboarding",
+        "Developer Experience",
+        "Workflow"
+      ],
+      "components": {}
+    },
+    {
+      "name": "changelog-release-notes",
+      "source": "github:Kermit457/gICM",
+      "description": "Auto-generate release notes: Git analysis → changelog grouping → user-friendly descriptions. 2-3 hours → 20 minutes.",
+      "category": "Orchestration & Automation",
+      "tags": [
+        "Documentation",
+        "Release",
+        "Changelog",
+        "Git",
+        "Workflow"
+      ],
+      "components": {}
     }
   ]
 }
