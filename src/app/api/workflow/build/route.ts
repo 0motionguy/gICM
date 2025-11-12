@@ -102,9 +102,10 @@ Respond with a JSON object in this exact format:
 
 Only include item IDs that exist in the catalog. Be selective - quality over quantity.`;
 
-    // Call Claude API
+    // Call Claude API with prompt caching
+    // Cache the system prompt (catalog) for 5 minutes - saves 90% on repeated requests
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 2000,
       messages: [
         {
@@ -112,7 +113,13 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
           content: prompt,
         },
       ],
-      system: systemPrompt,
+      system: [
+        {
+          type: 'text',
+          text: systemPrompt,
+          cache_control: { type: 'ephemeral' },
+        },
+      ],
     });
 
     // Parse Claude's response
@@ -159,10 +166,12 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
       remainingRequests: rateLimit.remainingRequests - 1,
     };
 
-    // Track API usage
+    // Track API usage with cache info
     const inputTokens = message.usage.input_tokens;
     const outputTokens = message.usage.output_tokens;
-    const estimatedCost = calculateCost(inputTokens, outputTokens);
+    const cacheCreationTokens = message.usage.cache_creation_input_tokens || 0;
+    const cacheReadTokens = message.usage.cache_read_input_tokens || 0;
+    const estimatedCost = calculateCost(inputTokens, outputTokens, cacheCreationTokens, cacheReadTokens);
 
     trackAPIUsage({
       timestamp: new Date().toISOString(),

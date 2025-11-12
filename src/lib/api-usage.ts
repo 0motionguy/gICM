@@ -3,10 +3,12 @@ import { join } from 'path';
 import type { APIUsageEvent, APIUsageStats } from '@/types/analytics';
 import crypto from 'crypto';
 
-// Anthropic pricing (as of 2025)
+// Anthropic pricing (as of 2025) with prompt caching
 const PRICING = {
   INPUT_PER_MILLION: 3, // $3 per million input tokens
   OUTPUT_PER_MILLION: 15, // $15 per million output tokens
+  CACHE_WRITE_PER_MILLION: 3.75, // $3.75 per million tokens (cache creation)
+  CACHE_READ_PER_MILLION: 0.30, // $0.30 per million tokens (90% discount!)
 };
 
 // Rate limiting config
@@ -31,11 +33,19 @@ function ensureDirs() {
   }
 }
 
-// Calculate cost from token usage
-export function calculateCost(inputTokens: number, outputTokens: number): number {
+// Calculate cost from token usage (with cache support)
+export function calculateCost(
+  inputTokens: number,
+  outputTokens: number,
+  cacheCreationTokens: number = 0,
+  cacheReadTokens: number = 0
+): number {
   const inputCost = (inputTokens / 1000000) * PRICING.INPUT_PER_MILLION;
   const outputCost = (outputTokens / 1000000) * PRICING.OUTPUT_PER_MILLION;
-  return inputCost + outputCost;
+  const cacheWriteCost = (cacheCreationTokens / 1000000) * PRICING.CACHE_WRITE_PER_MILLION;
+  const cacheReadCost = (cacheReadTokens / 1000000) * PRICING.CACHE_READ_PER_MILLION;
+
+  return inputCost + outputCost + cacheWriteCost + cacheReadCost;
 }
 
 // Generate hash for prompt (for caching and deduplication)

@@ -29,6 +29,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# analytics and cache (runtime data)
+.analytics/
+.cache/
+
 # vercel
 .vercel
 

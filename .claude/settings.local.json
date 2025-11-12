@@ -32,7 +32,12 @@
       "Bash(node -e:*)",
       "Bash(paste:*)",
       "Bash(cat:*)",
-      "Bash(npm view:*)"
+      "Bash(npm view:*)",
+      "Bash(lsof:*)",
+      "Bash(netstat:*)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(taskkill:*)",
+      "Bash(kill:*)"
     ],
     "deny": [],
     "ask": []
