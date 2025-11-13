@@ -32,6 +32,7 @@ yarn-error.log*
 # analytics and cache (runtime data)
 .analytics/
 .cache/
+.metrics/
 
 # vercel
 .vercel

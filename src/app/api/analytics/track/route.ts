@@ -3,6 +3,7 @@ import type { AnalyticsEvent } from '@/types/analytics';
 import { writeFile, readFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { existsSync } from 'fs';
+import { incrementItemInstalls } from '@/lib/item-stats';
 
 // Store events in a JSON file for persistence
 const ANALYTICS_DIR = join(process.cwd(), '.analytics');
@@ -61,6 +62,16 @@ export async function POST(request: Request) {
 
     // Add new event
     events.push(fullEvent);
+
+    // Track item installs when adding to stack
+    if (fullEvent.type === 'item_add_to_stack' && fullEvent.itemId) {
+      try {
+        incrementItemInstalls(fullEvent.itemId, fullEvent.sessionId);
+      } catch (error) {
+        console.error('Failed to increment item installs:', error);
+        // Don't fail the analytics event if stats update fails
+      }
+    }
 
     // Keep only last 10,000 events to prevent file from growing too large
     const trimmedEvents = events.slice(-10000);

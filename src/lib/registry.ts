@@ -1,6 +1,7 @@
 import type { RegistryItem, Bundle } from "@/types/registry";
 import { SETTINGS } from "@/lib/settings-registry";
 import { WORKFLOWS } from "@/lib/workflows";
+import { readItemStats } from "@/lib/item-stats";
 
 // ============================================================================
 // AGENTS (52 Total - Phase 4 expansion with 15 new specialists)
@@ -4764,4 +4765,23 @@ export function resolveDependencies(itemIds: string[]): RegistryItem[] {
   }
 
   return Array.from(resolved).map(id => getItemById(id)!).filter(Boolean);
+}
+
+/**
+ * Get registry items with live stats merged in
+ * Falls back to hardcoded values if no live stats exist
+ */
+export function getRegistryWithLiveStats(): RegistryItem[] {
+  try {
+    const stats = readItemStats();
+
+    return REGISTRY.map(item => ({
+      ...item,
+      installs: stats.items[item.id]?.installs ?? item.installs ?? 0,
+      remixes: stats.items[item.id]?.remixes ?? item.remixes ?? 0,
+    }));
+  } catch (error) {
+    console.error('Failed to load live stats, using hardcoded values:', error);
+    return REGISTRY;
+  }
 }

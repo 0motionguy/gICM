@@ -434,14 +434,20 @@ export function calculateTokenSavings(items: RegistryItem[]): number {
  * Get popular items (by installs)
  */
 export function getPopularItems(limit: number = 10): RegistryItem[] {
-  const { REGISTRY } = require("./registry");
-  return [...REGISTRY].sort((a, b) => b.installs - a.installs).slice(0, limit);
+  const { getRegistryWithLiveStats } = require("./registry");
+  const registry = getRegistryWithLiveStats();
+  return [...registry]
+    .sort((a, b) => (b.installs || 0) - (a.installs || 0))
+    .slice(0, limit);
 }
 
 /**
  * Get trending items (by recent remixes)
  */
 export function getTrendingItems(limit: number = 10): RegistryItem[] {
-  const { REGISTRY } = require("./registry");
-  return [...REGISTRY].sort((a, b) => b.remixes - a.remixes).slice(0, limit);
+  const { getRegistryWithLiveStats } = require("./registry");
+  const registry = getRegistryWithLiveStats();
+  return [...registry]
+    .sort((a, b) => (b.remixes || 0) - (a.remixes || 0))
+    .slice(0, limit);
 }

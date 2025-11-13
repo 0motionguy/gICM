@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import type { RegistryItem } from "@/types/registry";
 import type { StackConfig } from "@/lib/remix";
+import { incrementBatchRemixes } from "@/lib/item-stats";
 import {
   generateStackId,
   generateShareURL,
@@ -132,6 +133,14 @@ export function useRemix() {
         loadPresets();
 
         await trackRemix(originalStack.id, forkedStack.id, options?.author);
+
+        // Track item-level remixes for all items in the forked stack
+        try {
+          incrementBatchRemixes(forkedStack.items);
+        } catch (error) {
+          console.error('Failed to track item remixes:', error);
+          // Don't fail the fork operation if stats update fails
+        }
 
         toast.success("Stack forked!", {
           description: `Created "${forkedStack.name}"`,
