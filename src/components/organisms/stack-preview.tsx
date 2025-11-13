@@ -75,6 +75,8 @@ export function StackPreview({ allItems }: StackPreviewProps) {
       skills: selectedItems.filter((i) => i.kind === "skill").length,
       commands: selectedItems.filter((i) => i.kind === "command").length,
       mcps: selectedItems.filter((i) => i.kind === "mcp").length,
+      workflows: selectedItems.filter((i) => i.kind === "workflow").length,
+      settings: selectedItems.filter((i) => i.kind === "setting").length,
     };
 
     // Calculate unique tags
@@ -203,6 +205,18 @@ export function StackPreview({ allItems }: StackPreviewProps) {
             <div className="bg-black/5 dark:bg-[#0f0f0f] rounded-lg p-1.5 text-center">
               <div className="text-xl font-bold text-black dark:text-white">{stats.breakdown.mcps}</div>
               <div className="text-[10px] text-zinc-600 dark:text-white/70">MCPs</div>
+            </div>
+          )}
+          {stats.breakdown.workflows > 0 && (
+            <div className="bg-black/5 dark:bg-[#0f0f0f] rounded-lg p-1.5 text-center">
+              <div className="text-xl font-bold text-black dark:text-white">{stats.breakdown.workflows}</div>
+              <div className="text-[10px] text-zinc-600 dark:text-white/70">Workflows</div>
+            </div>
+          )}
+          {stats.breakdown.settings > 0 && (
+            <div className="bg-black/5 dark:bg-[#0f0f0f] rounded-lg p-1.5 text-center">
+              <div className="text-xl font-bold text-black dark:text-white">{stats.breakdown.settings}</div>
+              <div className="text-[10px] text-zinc-600 dark:text-white/70">Settings</div>
             </div>
           )}
         </div>
