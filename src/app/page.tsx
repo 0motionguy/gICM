@@ -368,12 +368,12 @@ function CatalogPageContent() {
         <ImportStackBanner />
       </Suspense>
 
-      {/* Trending Banner + AI Builder */}
+      {/* Trending Banner + AI Builder + Components */}
       {trendingItems.length > 0 && (
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-3">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             {/* Trending Items */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-6">
               <div
                 className="relative overflow-hidden rounded-xl border border-lime-500/40 dark:border-lime-300/20 bg-lime-50/50 dark:bg-gradient-to-r dark:from-[#0f0f0f] dark:via-[#0a0a0a] dark:to-[#070707] backdrop-blur dark:backdrop-blur-xl p-4 dark:shadow-lg h-full"
                 onMouseEnter={() => setHoverTrendingHeader(true)}
@@ -408,8 +408,39 @@ function CatalogPageContent() {
               </div>
             </div>
 
+            {/* Component Library */}
+            <div className="lg:col-span-3">
+              <Link href="/components">
+                <div
+                  className="relative overflow-hidden rounded-xl border border-black/20 dark:border-lime-300/20 bg-white/90 dark:bg-gradient-to-r dark:from-[#0f0f0f] dark:via-[#0a0a0a] dark:to-[#070707] backdrop-blur dark:backdrop-blur-xl shadow-sm p-4 hover:border-lime-500/40 dark:hover:border-lime-300/40 transition-all cursor-pointer group h-full"
+                >
+                  {/* Glow effect - dark mode only */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-lime-300/10 via-emerald-300/5 to-transparent dark:block hidden pointer-events-none" />
+
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <Layers className="w-5 h-5 text-lime-600 dark:text-lime-400" />
+                        <h4 className="text-sm font-black text-black dark:text-white">
+                          Components
+                        </h4>
+                      </div>
+                      <Badge tone="green">NEW</Badge>
+                    </div>
+                    <p className="text-xs text-black/70 dark:text-white/70 mb-3">
+                      Browse 444+ production-ready components for Web3 AI development
+                    </p>
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-lime-600 dark:text-lime-400 group-hover:gap-2 transition-all">
+                      <span>Explore Library</span>
+                      <ArrowRight size={14} />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
             {/* AI Stack Builder */}
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <Link href="/workflow">
                 <div
                   className="relative overflow-hidden rounded-xl border border-black/20 dark:border-lime-300/20 bg-white/90 dark:bg-gradient-to-r dark:from-[#0f0f0f] dark:via-[#0a0a0a] dark:to-[#070707] backdrop-blur dark:backdrop-blur-xl shadow-sm p-4 hover:border-lime-500/40 dark:hover:border-lime-300/40 transition-all cursor-pointer group h-full"

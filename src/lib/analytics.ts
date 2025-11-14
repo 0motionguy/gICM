@@ -69,4 +69,10 @@ export const analytics = {
 
   trackFilterApplied: (filterValue: string) =>
     trackEvent('filter_applied', { filterValue }),
+
+  trackComponentCopied: (itemId: string, itemKind: string, itemSlug: string) =>
+    trackEvent('component_copied', { itemId, itemKind: itemKind as any, itemSlug }),
+
+  trackComponentPreviewed: (itemId: string, itemKind: string, itemSlug: string) =>
+    trackEvent('component_previewed', { itemId, itemKind: itemKind as any, itemSlug }),
 };

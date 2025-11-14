@@ -6,7 +6,9 @@ export type AnalyticsEventType =
   | 'bundle_copied'
   | 'search_query'
   | 'filter_applied'
-  | 'workflow_ai_request';
+  | 'workflow_ai_request'
+  | 'component_copied'
+  | 'component_previewed';
 
 export interface AnalyticsEvent {
   id: string;

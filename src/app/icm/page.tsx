@@ -376,7 +376,7 @@ export default function ICMPage() {
                 <div>
                   <h3 className="text-white font-bold mb-1">Start Trading</h3>
                   <p className="text-sm text-zinc-400">
-                    Ask Claude: "Analyze top 10 pump.fun launches. Filter by liquidity >$100k"
+                    Ask Claude: &quot;Analyze top 10 pump.fun launches. Filter by liquidity &gt;$100k&quot;
                   </p>
                 </div>
               </div>

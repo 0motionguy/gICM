@@ -13,11 +13,14 @@ import type { RegistryItem } from "@/types/registry";
 import { formatProductName } from "@/lib/utils";
 
 export default function StackPage() {
-  const { items, clearBundle, itemCount } = useBundleStore();
+  const { getActiveStack, clearBundle, itemCount } = useBundleStore();
   const [copied, setCopied] = useState(false);
   const [installCommand, setInstallCommand] = useState("");
   const [allItems, setAllItems] = useState<RegistryItem[]>([]);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+
+  const activeStack = getActiveStack();
+  const items = activeStack?.items || [];
 
   useEffect(() => {
     // Resolve all dependencies
