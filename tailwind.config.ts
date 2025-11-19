@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         icm: {
-          primary: "#D1FD0A", // acid lime
+          primary: "#00F0FF", // Aether Teal
           secondary: "#8EF0B4", // mint
           accent: "#A7E8E8", // cyan
           bg: "#0A0A0A", // deep black
@@ -58,6 +58,40 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-space)", "sans-serif"],
+        body: ["var(--font-jakarta)", "sans-serif"],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        aurora: {
+          "0%, 100%": { backgroundPosition: "50% 50%, 50% 50%" },
+          "50%": { backgroundPosition: "350% 50%, 350% 50%" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.6", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.1)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        aurora: "aurora 60s linear infinite",
+        "pulse-glow": "pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        shimmer: "shimmer 8s linear infinite",
       },
       borderRadius: {
         lg: "var(--radius)",

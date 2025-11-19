@@ -23,28 +23,35 @@ export function EmptyState({
   secondaryAction,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
-      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-lime-100 to-emerald-100 dark:from-lime-900/20 dark:to-emerald-900/20 flex items-center justify-center mb-4">
-        <Icon className="w-8 h-8 text-lime-600 dark:text-lime-400" />
+    <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
+      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#00F0FF]/10 to-[#7000FF]/10 border border-white/5 flex items-center justify-center mb-6 shadow-2xl">
+        <Icon className="w-10 h-10 text-[#00F0FF] opacity-80" />
       </div>
 
-      <h3 className="text-xl font-semibold text-black dark:text-white mb-2">
+      <h3 className="text-2xl font-bold text-white mb-3 font-display tracking-tight">
         {title}
       </h3>
 
-      <p className="text-zinc-600 dark:text-zinc-400 mb-6 max-w-md">
+      <p className="text-zinc-400 mb-8 max-w-md leading-relaxed">
         {description}
       </p>
 
       {(action || secondaryAction) && (
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           {action && (
-            <Button onClick={action.onClick}>
+            <Button 
+              onClick={action.onClick}
+              className="bg-white text-black hover:bg-zinc-200 font-bold"
+            >
               {action.label}
             </Button>
           )}
           {secondaryAction && (
-            <Button variant="outline" onClick={secondaryAction.onClick}>
+            <Button 
+              variant="outline" 
+              onClick={secondaryAction.onClick}
+              className="border-white/10 text-white hover:bg-white/5"
+            >
               {secondaryAction.label}
             </Button>
           )}

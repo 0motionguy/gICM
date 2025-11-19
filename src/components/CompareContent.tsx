@@ -185,7 +185,7 @@ export function CompareContent() {
                                 <div key={item.id} className="space-y-1">
                                   <div className="font-semibold text-xs text-black/60">{formatProductName(item.name)}:</div>
                                   <div className="flex flex-wrap gap-1">
-                                    {value.map((v: any, i: number) => (
+                                    {value.map((v: string | { name?: string }, i: number) => (
                                       <span
                                         key={i}
                                         className="px-2 py-0.5 rounded-md bg-black/5 text-xs"

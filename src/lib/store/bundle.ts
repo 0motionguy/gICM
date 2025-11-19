@@ -327,19 +327,20 @@ export const useBundleStore = create<BundleStore>()(
         activeStackId: state.activeStackId,
       }),
       version: 1,
-      migrate: (persistedState: any, version: number) => {
+      migrate: (persistedState: unknown, version: number) => {
         // Migrate from v0 (old single-stack format) to v1 (multi-stack)
-        if (version === 0 && persistedState.items && Array.isArray(persistedState.items)) {
+        const state = persistedState as Record<string, unknown>;
+        if (version === 0 && state.items && Array.isArray(state.items)) {
           const now = new Date();
           const defaultStackId = nanoid();
 
           return {
-            ...persistedState,
+            ...state,
             stacks: {
               [defaultStackId]: {
                 id: defaultStackId,
                 name: DEFAULT_STACK_NAME,
-                items: persistedState.items,
+                items: state.items,
                 createdAt: now,
                 updatedAt: now,
               }
@@ -349,7 +350,7 @@ export const useBundleStore = create<BundleStore>()(
           };
         }
 
-        return persistedState;
+        return state;
       }
     }
   )

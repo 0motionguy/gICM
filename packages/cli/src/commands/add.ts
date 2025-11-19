@@ -6,6 +6,7 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { GICMAPIClient } from '../lib/api';
 import { FileWriter } from '../lib/files';
+import { UniversalBridge } from '../lib/bridge';
 import type { ParsedItem, CLIOptions, RegistryItem } from '../lib/types';
 
 /**
@@ -35,11 +36,14 @@ function parseItemString(itemStr: string): ParsedItem {
  */
 export async function addCommand(items: string[], options: CLIOptions = {}): Promise<void> {
   const apiClient = new GICMAPIClient(options.apiUrl);
-  const fileWriter = new FileWriter();
+  
+  // Initialize FileWriter with platform awareness
+  const platform = options.platform || "claude";
+  const fileWriter = new FileWriter(undefined, platform);
 
-  // Ensure .claude directory exists and is writable
+  // Ensure config directory exists and is writable
   try {
-    await fileWriter.ensureClaudeDir();
+    await fileWriter.ensureConfigDir();
   } catch (error) {
     process.exit(1);
   }
@@ -54,7 +58,7 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
   }
 
   const spinner = ora({
-    text: 'Fetching items from marketplace...',
+    text: `Fetching items from Aether marketplace for ${platform === 'gemini' ? 'Gemini' : 'Claude'}...`,
     color: 'cyan',
   }).start();
 
@@ -80,7 +84,7 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
     );
 
     // Show what will be installed
-    console.log(chalk.cyan('\nItems to install:'));
+    console.log(chalk.cyan(`\nItems to install for ${chalk.bold(platform)}:`));
     const byKind = {
       agent: bundle.items.filter(i => i.kind === 'agent'),
       skill: bundle.items.filter(i => i.kind === 'skill'),
@@ -117,7 +121,7 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
 
     // Download and install files
     const installSpinner = ora({
-      text: 'Installing files...',
+      text: 'Installing files...', 
       color: 'green',
     }).start();
 
@@ -127,8 +131,26 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
         // Download files
         const files = await apiClient.getFiles(item.slug);
 
+        // Apply Universal Bridge Logic
+        // If targeting a different platform, wrap prompt files with compatibility shim
+        const bridgedFiles = files.map(file => {
+          // Only transform markdown files (prompts) and only if not using default Claude
+          if (file.path.endsWith('.md') && platform !== 'claude') {
+             // Check if file content already has specific headers to avoid double wrapping
+             if (!file.content.includes('AETHER BRIDGE: ADAPTER ACTIVE')) {
+                 const bridgedContent = UniversalBridge.bridgePrompt(file.content, {
+                     sourcePlatform: 'claude', // Assuming source is Claude-native by default
+                     targetPlatform: platform as 'gemini', // We checked platform != claude
+                     agentName: item.name
+                 });
+                 return { ...file, content: bridgedContent };
+             }
+          }
+          return file;
+        });
+
         // Write files
-        await fileWriter.writeItem(item, files);
+        await fileWriter.writeItem(item, bridgedFiles);
 
         installedCount++;
         installSpinner.text = `Installing... (${installedCount}/${bundle.stats.totalCount})`;
@@ -163,14 +185,15 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
       console.log(chalk.yellow('\n⚠️  MCP servers require configuration:'));
       mcps.forEach(mcp => {
         if (mcp.envKeys && mcp.envKeys.length > 0) {
+          const configPath = platform === 'claude' ? '.claude/mcp' : '.gemini/mcp';
           console.log(chalk.gray(`\n  ${mcp.name}:`));
-          console.log(chalk.gray(`    Configure: .claude/mcp/${mcp.slug}.json`));
+          console.log(chalk.gray(`    Configure: ${configPath}/${mcp.slug}.json`));
           console.log(chalk.gray(`    Required: ${mcp.envKeys.join(', ')}`));
         }
       });
     }
 
-    console.log(chalk.gray('\n💡 Tip: Reload your Claude editor to see the new items.\n'));
+    console.log(chalk.gray(`\n💡 Tip: Reload your ${platform === 'gemini' ? 'Gemini' : 'Claude'} editor to see the new items.\n`));
 
   } catch (error) {
     spinner.fail(chalk.red('Installation failed'));

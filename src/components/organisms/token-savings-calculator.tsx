@@ -196,7 +196,7 @@ export function TokenSavingsCalculator() {
               <label className="text-sm font-medium text-black block mb-2">
                 Claude Model
               </label>
-              <Select value={model} onValueChange={(v: any) => setModel(v)}>
+              <Select value={model} onValueChange={(v: "sonnet" | "opus") => setModel(v)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -271,9 +271,8 @@ export function TokenSavingsCalculator() {
                   <div
                     className="h-full bg-lime-500 rounded-full"
                     style={{
-                      width: `${
-                        (selectedSkill.progressiveTokens / selectedSkill.traditionalTokens) * 100
-                      }%`,
+                      width: `${(selectedSkill.progressiveTokens / selectedSkill.traditionalTokens) * 100
+                        }%`,
                     }}
                   />
                 </div>

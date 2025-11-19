@@ -118,7 +118,7 @@ export const HeroMetrics = memo(function HeroMetrics({ theme }: HeroMetricsProps
           trendingCount: data.trending.length,
         };
       } catch (error) {
-        console.error('Failed to fetch live stats:', error);
+        // Failed to fetch live stats - component will show cached values
       }
     };
 

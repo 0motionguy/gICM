@@ -43,7 +43,7 @@ export interface LiveActivity {
     itemSlug?: string;
     stackName?: string;
     searchTerm?: string;
-    [key: string]: any;
+    [key: string]: string | number | boolean | undefined;
   };
 }
 

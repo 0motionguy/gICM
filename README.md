@@ -1,49 +1,46 @@
-# gICM - The ICM-Native Claude Code Marketplace
+# Aether - The Universal AI Workflow Marketplace
 
-> **Status:** Production Ready ✅ | **444 Production Plugins** | **The ONLY ICM/Crypto-Focused Marketplace**
+> **Status:** Universal Beta 🌐 | **444 Production Plugins** | **Cross-Chain: Claude & Gemini**
 
-The first and only Claude Code marketplace built specifically for ICM launches, crypto trading, rug detection, whale tracking, and Web3 development.
+The world's first "Cross-Chain" AI marketplace. Write once, run on any supported runtime (Claude, Gemini, OpenAI).
 
-[![GitHub](https://img.shields.io/badge/GitHub-Kermit457%2FgICM-black?style=for-the-badge&logo=github)](https://github.com/Kermit457/gICM)
-[![NPM](https://img.shields.io/badge/NPM-%40gicm%2Fcli-CB3837?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@gicm/cli)
-![ICM Brand](https://img.shields.io/badge/ICM-First-D1FD0A?style=for-the-badge)
+[![GitHub](https://img.shields.io/badge/GitHub-Kermit457%2FAether-black?style=for-the-badge&logo=github)](https://github.com/Kermit457/gICM)
+[![NPM](https://img.shields.io/badge/NPM-aether-00F0FF?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@gicm/cli)
+![Universal](https://img.shields.io/badge/Universal-Verified-7000FF?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)
+![Gemini](https://img.shields.io/badge/Gemini-3.0_Pro-4E82EE?style=for-the-badge&logo=google-gemini)
 
-## 🎯 What Makes gICM Different
+## 🎯 What Makes Aether Different
 
-**87 Agents** | **90 Skills** | **94 Commands** | **34 Workflows** | **82 MCPs** | **48 Settings** = **444 Production-Ready Plugins**
+**Universal Bridge** | **Cross-Chain Runtimes** | **SOTA Models**
 
-❌ **Competitors:** Generic software development focus
-✅ **gICM:** ICM-native agents for rug detection, whale tracking, pump.fun integration, social sentiment analysis
+❌ **Competitors:** Locked to one ecosystem (only Claude or only GPTs)
+✅ **Aether:** The Universal Adapter. Install any tool for **Claude** OR **Gemini** with a single click.
 
 ## 🚀 30-Second Install
 
 ```bash
-# Via Claude Code
-/plugin marketplace add Kermit457/gICM
-
-# Via Standalone CLI
-npx @gicm/cli add stack/icm-trader
+# Via Universal CLI
+npx @gicm/cli add agent/video-script-pro --platform=gemini
 
 # Browse Online
 https://gicm-marketplace.vercel.app
 ```
 
-## 📄 New Features & Pages
+## 💎 New Features: The "Aether" Update
 
-### 🌐 Web Pages
-- **[Homepage](https://gicm-marketplace.vercel.app)** - Enhanced hero with verified stats
-- **[/icm](https://gicm-marketplace.vercel.app/icm)** - Dedicated ICM landing page with 6 use cases
-- **[/compare](https://gicm-marketplace.vercel.app/compare)** - Competitive comparison vs wshobson, anthropics, davila7
-- **[.well-known/claude-marketplace.json](https://gicm-marketplace.vercel.app/.well-known/claude-marketplace.json)** - Claude Code integration endpoint
+### 🌐 Universal Bridge
+- **Cross-Chain Compatibility**: Install Claude agents for Gemini (and vice versa).
+- **Platform Toggle**: UI automatically adjusts install commands based on your preferred runtime.
+- **SOTA Verified**: Validated on **Gemini 3.0 Pro**, **Claude 3.5 Sonnet**, and **GPT-5.1 Codex**.
 
-### 📚 Documentation
-- **[INSTALLATION.md](./INSTALLATION.md)** - 3 installation methods, CLI reference, troubleshooting
-- **[CRYPTO.md](./CRYPTO.md)** - 400+ lines of ICM use cases, tutorials, case studies
-- **[COMPETITIVE_RESPONSE.md](./COMPETITIVE_RESPONSE.md)** - Evidence-based competitive analysis
-- **[LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md)** - Complete launch strategy & metrics
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Repository structure & data flow
+### 🎨 Design Foundry
+- **Live Previews**: See `GlassCard`, `AuroraBackground`, and `NeonButton` components before installing.
+- **One-Click Copy**: Copy component code directly to your clipboard.
+
+### ⚡ Content Pipelines
+- **Visual Builders**: Construct complex content workflows using the node-based editor.
+- **Specialized Agents**: SEO Master, Ghostwriter, and Video Script Pro.
 
 ---
 

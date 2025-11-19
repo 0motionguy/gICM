@@ -28,7 +28,7 @@ interface MCPConfig {
   name: string;
   description: string;
   useCase: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
   bgColor: string;
   config: string;

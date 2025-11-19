@@ -38,7 +38,7 @@ export function PreSignupCTA() {
         // Could show a toast notification here
       }
     } catch (err) {
-      console.error('Share failed:', err);
+      // Share failed - user can manually copy URL
     }
   };
 

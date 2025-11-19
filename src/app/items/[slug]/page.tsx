@@ -1,45 +1,41 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Download, GitFork, ExternalLink, Github } from "lucide-react";
-import { REGISTRY, getItemById } from "@/lib/registry";
+import { ArrowLeft, Copy, Check, Terminal, Calendar, Download, Shield, Zap, Layout, Box, GitFork, ExternalLink, Github, Cpu, Monitor, Sparkles } from "lucide-react";
+import { ClaudeIcon, GeminiIcon, OpenAIIcon } from "@/components/ui/icons";
+import { REGISTRY, resolveDependencies, getItemById } from "@/lib/registry";
+import type { RegistryItem } from "@/types/registry";
 import { QualityScore } from "@/components/molecules/quality-score";
 import { InstallCard } from "@/components/molecules/install-card";
 import { AgentPromptViewer } from "@/components/molecules/agent-prompt-viewer";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { formatProductName } from "@/lib/utils";
+import { GlassCard } from "@/components/ui/glass-card";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// Use dynamic rendering to avoid build-time file reading issues
 export const dynamic = 'force-dynamic';
 
-// Generate static params for all registry items
 export async function generateStaticParams() {
-  return REGISTRY.map((item) => ({
-    slug: item.slug,
-  }));
+  return REGISTRY.map((item) => ({ slug: item.slug }));
 }
 
-// Helper to get item by slug
 function getItemBySlug(slug: string) {
   return REGISTRY.find((item) => item.slug === slug);
 }
 
-// Helper to read agent/skill/command markdown file
 function readPromptFile(filePath: string): string | null {
   try {
     const fullPath = join(process.cwd(), filePath);
     return readFileSync(fullPath, "utf-8");
   } catch (error) {
-    console.warn(`Could not read file: ${filePath}`, error);
     return null;
   }
 }
 
-// Format number with commas
 const formatNumber = (n: number) => new Intl.NumberFormat("en-US").format(n);
 
 export default async function ItemDetailsPage({ params }: PageProps) {
@@ -50,220 +46,172 @@ export default async function ItemDetailsPage({ params }: PageProps) {
     notFound();
   }
 
-  // Read the full agent prompt from markdown file
   const promptContent = item.files?.[0] ? readPromptFile(item.files[0]) : null;
-
-  // Get related items from same category (exclude current item)
-  const relatedItems = REGISTRY
-    .filter((i) => i.category === item.category && i.id !== item.id)
-    .slice(0, 3);
-
-  // Get dependencies
-  const dependencies = (item.dependencies || [])
-    .map((depId) => getItemById(depId))
-    .filter(Boolean);
+  const relatedItems = REGISTRY.filter((i) => i.category === item.category && i.id !== item.id).slice(0, 3);
+  const dependencies = (item.dependencies || []).map((depId) => getItemById(depId)).filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-lime-300 via-emerald-300 to-teal-300">
+    <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white font-sans">
       {/* Header */}
-      <div className="border-b border-black/20 bg-white/90 backdrop-blur sticky top-0 z-40">
-        <div className="max-w-5xl mx-auto px-6 md:px-10 py-4">
+      <div className="border-b border-white/10 bg-black/40 backdrop-blur sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-black/80 hover:text-black transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
-            Back to Catalog
+            Back to Aether Catalog
           </Link>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-6 md:px-10 py-8 space-y-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-12 space-y-8">
         {/* Hero Section */}
-        <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-6">
-          <div className="flex items-start justify-between gap-6">
-            {/* Left: Icon + Info */}
-            <div className="flex gap-4">
-              <div className="h-20 w-20 rounded-2xl bg-black text-lime-300 grid place-items-center font-black text-4xl flex-shrink-0">
-                g
+        <GlassCard className="p-8 md:p-10">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+            <div className="flex gap-6 flex-1">
+              <div className="h-24 w-24 rounded-3xl bg-gradient-to-br from-[#00F0FF]/20 to-[#7000FF]/20 border border-white/10 grid place-items-center flex-shrink-0 shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)]">
+                <span className="font-display font-bold text-5xl text-white">
+                  {item.name.charAt(0)}
+                </span>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-2xl md:text-3xl font-black text-black">{formatProductName(item.name)}</h1>
-                  <span className="px-2 py-1 rounded-lg bg-black/10 text-black text-xs font-semibold uppercase">
+              <div className="space-y-3 flex-1">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <h1 className="text-3xl md:text-4xl font-display font-bold text-white tracking-tight">
+                    {formatProductName(item.name)}
+                  </h1>
+                  <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-xs font-medium uppercase tracking-wider">
                     {item.kind}
                   </span>
                 </div>
-                <p className="text-sm text-zinc-600">{item.category}</p>
-                <p className="text-sm text-black/80 leading-relaxed max-w-2xl">
+                <p className="text-base text-zinc-400 font-medium">{item.category}</p>
+                <p className="text-lg text-zinc-300 leading-relaxed max-w-3xl">
                   {item.longDescription || item.description}
                 </p>
-                {item.modelRecommendation && (
-                  <div className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-lime-300/20 border border-lime-300/40 text-xs font-semibold text-black">
-                    Recommended: Claude {item.modelRecommendation.charAt(0).toUpperCase() + item.modelRecommendation.slice(1)}
-                  </div>
-                )}
               </div>
             </div>
-
-            {/* Right: Quality Score */}
             <div className="flex-shrink-0">
               <QualityScore item={item} size="lg" />
             </div>
           </div>
 
+          {/* Universal Compatibility Section (BIG VISUALS) */}
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                <Zap size={16} className="text-[#00F0FF]" /> Universal Compatibility
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Claude Card */}
+                <div className="p-4 rounded-xl bg-[#D97757]/10 border border-[#D97757]/20 flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-full bg-[#D97757]/20 flex items-center justify-center">
+                        <ClaudeIcon className="w-6 h-6 text-[#D97757]" />
+                    </div>
+                    <div>
+                        <div className="font-bold text-[#D97757]">Claude</div>
+                        <div className="text-xs text-zinc-400">3.5 Sonnet • Opus</div>
+                    </div>
+                </div>
+
+                {/* Gemini Card */}
+                <div className="p-4 rounded-xl bg-[#4E82EE]/10 border border-[#4E82EE]/20 flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-full bg-[#4E82EE]/20 flex items-center justify-center">
+                        <GeminiIcon className="w-6 h-6 text-[#4E82EE]" />
+                    </div>
+                    <div>
+                        <div className="font-bold text-[#4E82EE]">Gemini</div>
+                        <div className="text-xs text-zinc-400">3.0 Pro • 1.5 Flash</div>
+                    </div>
+                </div>
+
+                {/* OpenAI Card */}
+                <div className="p-4 rounded-xl bg-[#10A37F]/10 border border-[#10A37F]/20 flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-full bg-[#10A37F]/20 flex items-center justify-center">
+                        <OpenAIIcon className="w-6 h-6 text-[#10A37F]" />
+                    </div>
+                    <div>
+                        <div className="font-bold text-[#10A37F]">OpenAI</div>
+                        <div className="text-xs text-zinc-400">GPT-5.1 Codex • GPT-4o</div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
           {/* Stats Row */}
-          <div className="mt-6 pt-6 border-t border-black/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <div className="text-2xl font-black text-black">{formatNumber(item.installs || 0)}</div>
-              <div className="text-xs text-zinc-600 flex items-center gap-1">
+              <div className="text-3xl font-display font-bold text-white">{formatNumber(item.installs || 0)}</div>
+              <div className="text-xs text-zinc-500 flex items-center gap-1 mt-1">
                 <Download size={12} /> Installs
               </div>
             </div>
             <div>
-              <div className="text-2xl font-black text-black">{formatNumber(item.remixes || 0)}</div>
-              <div className="text-xs text-zinc-600 flex items-center gap-1">
+              <div className="text-3xl font-display font-bold text-white">{formatNumber(item.remixes || 0)}</div>
+              <div className="text-xs text-zinc-500 flex items-center gap-1 mt-1">
                 <GitFork size={12} /> Remixes
               </div>
             </div>
             {item.tokenSavings && (
               <div>
-                <div className="text-2xl font-black text-lime-600">{item.tokenSavings}%</div>
-                <div className="text-xs text-zinc-600">Token Savings</div>
+                <div className="text-3xl font-display font-bold text-[#00F0FF]">{item.tokenSavings}%</div>
+                <div className="text-xs text-zinc-500 mt-1">Token Savings</div>
               </div>
             )}
             <div>
-              <div className="text-2xl font-black text-black">{(item.dependencies || []).length}</div>
-              <div className="text-xs text-zinc-600">Dependencies</div>
+              <div className="text-3xl font-display font-bold text-white">{(item.dependencies || []).length}</div>
+              <div className="text-xs text-zinc-500 mt-1">Dependencies</div>
             </div>
           </div>
-        </div>
+        </GlassCard>
 
         {/* Installation Card */}
         <InstallCard item={item} />
 
         {/* Full Agent Prompt */}
         {promptContent && (
-          <AgentPromptViewer
-            content={promptContent}
-            fileName={item.files?.[0]}
-          />
+          <AgentPromptViewer content={promptContent} fileName={item.files?.[0]} />
         )}
 
-        {/* Metadata Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Tags */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-4 space-y-3">
-            <h3 className="text-sm font-semibold text-black">Tags</h3>
-            <div className="flex flex-wrap gap-2">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-1 rounded-lg bg-black/5 text-black text-xs font-medium hover:bg-black/10 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Files */}
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-4 space-y-3">
-            <h3 className="text-sm font-semibold text-black">Files Included</h3>
-            <div className="space-y-1">
-              {(item.files || []).map((file) => (
-                <div
-                  key={file}
-                  className="font-mono text-xs text-zinc-600 bg-black/5 px-2 py-1 rounded"
-                >
-                  {file}
+        {/* Related & Dependencies */}
+        <div className="grid md:grid-cols-2 gap-8">
+            {/* Metadata */}
+            <GlassCard className="space-y-4 h-fit" compact>
+                <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">Tags</h3>
+                <div className="flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-xs font-medium">
+                    {tag}
+                    </span>
+                ))}
                 </div>
-              ))}
-            </div>
-          </div>
+            </GlassCard>
+            
+             {/* Related */}
+             <div className="space-y-4">
+                 {relatedItems.length > 0 && (
+                     <>
+                        <h3 className="text-lg font-display font-bold text-white">Related Items</h3>
+                        <div className="grid gap-4">
+                        {relatedItems.map((related) => (
+                            <Link key={related.id} href={`/items/${related.slug}`}>
+                            <GlassCard compact hoverEffect className="flex items-center gap-4 p-4">
+                                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 grid place-items-center text-white">
+                                {related.name.charAt(0)}
+                                </div>
+                                <div className="min-w-0">
+                                <div className="text-sm font-bold text-white truncate">{formatProductName(related.name)}</div>
+                                <div className="text-xs text-zinc-500 truncate">{related.description}</div>
+                                </div>
+                            </GlassCard>
+                            </Link>
+                        ))}
+                        </div>
+                     </>
+                 )}
+             </div>
         </div>
-
-        {/* Dependencies */}
-        {dependencies.length > 0 && (
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-4 space-y-3">
-            <h3 className="text-sm font-semibold text-black">Dependencies</h3>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {dependencies.map((dep: any) => (
-                <Link
-                  key={dep.id}
-                  href={`/items/${dep.slug}`}
-                  className="p-3 rounded-lg border border-black/20 hover:border-black/40 bg-white transition-colors"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-lg bg-black text-lime-300 grid place-items-center font-black text-sm flex-shrink-0">
-                      g
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-sm font-semibold text-black truncate">{formatProductName(dep.name)}</div>
-                      <div className="text-xs text-zinc-600">{dep.kind}</div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Related Items */}
-        {relatedItems.length > 0 && (
-          <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-4 space-y-3">
-            <h3 className="text-sm font-semibold text-black">Related Items from {item.category}</h3>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {relatedItems.map((related) => (
-                <Link
-                  key={related.id}
-                  href={`/items/${related.slug}`}
-                  className="p-3 rounded-lg border border-black/20 hover:border-black/40 bg-white transition-colors"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-lg bg-black text-lime-300 grid place-items-center font-black text-sm flex-shrink-0">
-                      g
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-sm font-semibold text-black truncate">{formatProductName(related.name)}</div>
-                      <div className="text-xs text-zinc-600 truncate">{related.description}</div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* External Links */}
-        {(item.docsUrl || item.repoPath) && (
-          <div className="flex gap-3">
-            {item.docsUrl && (
-              <a
-                href={item.docsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-black/40 text-black/80 hover:border-black/80 hover:bg-black/5 text-sm transition-colors"
-              >
-                <ExternalLink size={16} />
-                View Docs
-              </a>
-            )}
-            {item.repoPath && (
-              <a
-                href={`https://github.com/${item.repoPath}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-black/40 text-black/80 hover:border-black/80 hover:bg-black/5 text-sm transition-colors"
-              >
-                <Github size={16} />
-                View on GitHub
-              </a>
-            )}
-          </div>
-        )}
       </div>
-    </div>
+    </AuroraBackground>
   );
 }

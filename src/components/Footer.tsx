@@ -28,16 +28,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/profile" className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors">
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link href="/stacks" className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors">
-                  Stacks
-                </Link>
-              </li>
-              <li>
                 <Link href="/workflow" className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors">
                   AI Stack Builder
                 </Link>

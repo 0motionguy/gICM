@@ -16,15 +16,16 @@ import {
   Eye,
   Github,
   ExternalLink,
+  Sparkles,
+  Cpu,
 } from "lucide-react";
 
 export function Web3HeroSection() {
   const [hoverSolana, setHoverSolana] = useState(false);
   const [hoverCA, setHoverCA] = useState(false);
   const [waitlistOpen, setWaitlistOpen] = useState(false);
-  const [waitlistCount, setWaitlistCount] = useState(289); // Default fallback
+  const [waitlistCount, setWaitlistCount] = useState(289);
 
-  // Calculate real stats from registry (all production-ready)
   const stats = useMemo(() => ({
     agents: REGISTRY.filter(item => item.kind === 'agent').length,
     skills: REGISTRY.filter(item => item.kind === 'skill').length,
@@ -34,246 +35,145 @@ export function Web3HeroSection() {
     settings: REGISTRY.filter(item => item.kind === 'setting').length,
   }), []);
 
-  // Fetch real waitlist count
   useEffect(() => {
     fetch('/api/waitlist')
       .then(res => res.json())
-      .then(data => {
-        if (data.count) {
-          setWaitlistCount(data.count);
-        }
-      })
-      .catch(() => {
-        // Keep default on error
-      });
+      .then(data => { if (data.count) setWaitlistCount(data.count); })
+      .catch(() => {});
   }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-10 py-8">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-black via-zinc-900 to-black border border-lime-300/30 p-8 md:p-10">
-        {/* Glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-lime-300/10 via-emerald-300/5 to-transparent" />
-
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-          }} />
-        </div>
+      {/* Main Hero Card - Deep Charcoal with Aether Glow */}
+      <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0F0F11] p-8 md:p-12 shadow-2xl">
+        
+        {/* Ambient Glows */}
+        <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#00F0FF]/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative z-10">
-          {/* Badges */}
-          <div className="flex flex-wrap items-center gap-2 mb-6">
-            {/* GitHub Badge - Prominent */}
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-8">
             <a
               href="https://github.com/Kermit457/gICM"
               target="_blank"
               rel="noopener noreferrer"
               className="group"
             >
-              <Badge className="bg-black/80 text-white border-white/30 hover:border-lime-300/50 hover:bg-black transition-all px-3 py-1 cursor-pointer">
-                <Github className="w-3 h-3 mr-1.5" />
-                <span className="font-bold">View on GitHub</span>
-                <ExternalLink className="w-2.5 h-2.5 ml-1.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+              <Badge className="bg-white/5 text-zinc-300 border-white/10 hover:bg-white/10 hover:text-white transition-all px-3 py-1.5 cursor-pointer rounded-lg">
+                <Github className="w-3.5 h-3.5 mr-2" />
+                <span className="font-medium">GitHub</span>
+                <ExternalLink className="w-3 h-3 ml-1.5 opacity-50 group-hover:opacity-100" />
               </Badge>
             </a>
 
-            <div
-              onMouseEnter={() => setHoverSolana(true)}
-              onMouseLeave={() => setHoverSolana(false)}
-              className="group"
-            >
-              <Badge className="bg-lime-300/20 text-lime-300 border-lime-300/50 hover:bg-lime-300/30 transition-all cursor-default px-3 py-1">
-                <Zap className="w-3 h-3 mr-1.5" />
-                {hoverSolana ? (
-                  <ScrambleText text="Solana First" trigger="hover" duration={300} />
-                ) : (
-                  "Solana First"
-                )}
-              </Badge>
-            </div>
-
-            <Badge className="bg-white/10 text-zinc-300 border-white/20 px-3 py-1">
-              <Code2 className="w-3 h-3 mr-1.5" />
-              Web3 Native
+            <Badge className="bg-[#00F0FF]/10 text-[#00F0FF] border-[#00F0FF]/20 px-3 py-1.5 rounded-lg">
+              <Sparkles className="w-3.5 h-3.5 mr-2" />
+              Gemini 3.0 Pro
             </Badge>
 
-            <Badge className="bg-white/10 text-zinc-300 border-white/20 px-3 py-1">
-              <Rocket className="w-3 h-3 mr-1.5" />
-              Production Grade
+            <Badge className="bg-[#7000FF]/10 text-[#A060FF] border-[#7000FF]/20 px-3 py-1.5 rounded-lg">
+              <Cpu className="w-3.5 h-3.5 mr-2" />
+              GPT-5.1 Codex
             </Badge>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-2 leading-tight">
-            The AI Dev Stack for Web3.
-          </h1>
-
-          {/* Production Ready Badge */}
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-lime-300/20 border border-lime-300/50 rounded-lg">
-            <span className="text-lime-300 font-bold text-sm">
-              {stats.agents + stats.skills + stats.commands + stats.mcps + stats.settings} PRODUCTION-READY PLUGINS
-            </span>
-            <Badge className="bg-lime-300 text-black border-none px-2 py-0 text-xs font-bold">
-              VERIFIED
-            </Badge>
+          {/* Headline Area */}
+          <div className="space-y-4 max-w-4xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+              The Universal <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-600">
+                AI Dev Marketplace.
+              </span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed">
+              Aether connects every runtime. Build with 
+              <span className="text-white font-medium"> 450+ verified agents</span>, skills, and workflows. 
+              Cross-chain compatible with Claude, Gemini, and OpenAI.
+            </p>
           </div>
 
-          {/* Subheadline */}
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-6 leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-300 to-lime-400">
-              Built for Pro teams / Solo Devs
-            </span>
-          </h2>
-
-          {/* Description */}
-          <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mb-2">
-            Remix agents, skills, and Web3 stacks. Ship today. <span className="font-semibold">Studio</span> (prompt→code→product) is in private alpha.
-          </p>
-
-          {/* Quick Install */}
-          <div className="flex items-center gap-2 text-sm mb-4">
-            <code className="bg-black/60 border border-lime-300/30 text-lime-300 px-3 py-1.5 rounded-md font-mono">
-              /plugin marketplace add Kermit457/gICM
-            </code>
-            <span className="text-zinc-400">← Install in Claude Code</span>
-          </div>
-
-          {/* Contract Address Teaser */}
-          <div
-            className="flex items-center justify-start gap-2 text-xs mb-6 cursor-pointer group"
-            onMouseEnter={() => setHoverCA(true)}
-            onMouseLeave={() => setHoverCA(false)}
-          >
-            <Eye size={14} className="text-zinc-400 group-hover:text-lime-400 transition-colors" />
-            <span className="text-zinc-400 font-medium">CA:</span>
-            <InfiniteScramble
-              length={44}
-              active={hoverCA}
-              className={`font-mono text-lime-300/70 tracking-wider transition-all ${hoverCA ? '' : 'blur-sm'}`}
-            />
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 mb-6">
+          {/* Action Bar */}
+          <div className="flex flex-wrap items-center gap-4 mt-10">
             <button
-              className="px-6 py-3 bg-lime-300 text-black font-bold rounded-lg hover:bg-lime-400 transition-colors"
+              className="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
               onClick={() => {
                 const marketplace = document.getElementById('marketplace-section');
                 marketplace?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              Start Building
+              Explore Catalog
             </button>
+            
             <Link href="/workflow">
-              <button className="px-6 py-3 bg-white/10 text-white font-medium rounded-lg border border-white/20 hover:bg-white/20 transition-colors">
-                Try AI Stack Builder
+              <button className="px-8 py-4 bg-white/5 text-white font-medium rounded-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all backdrop-blur-sm">
+                Launch Studio
               </button>
             </Link>
           </div>
 
-          {/* AWS Activate Partner Section */}
-          <div className="flex flex-wrap items-center gap-3 mb-8 text-sm">
-            <div className="px-3 py-1.5 bg-white/10 border border-white/20 rounded-md text-zinc-300 font-medium">
-              AWS Activate Partner
-            </div>
-            <span className="text-zinc-400">Up to $100k credits</span>
+          {/* Install Command */}
+          <div className="mt-8 inline-flex items-center gap-3 px-4 py-3 bg-[#05050A] border border-white/10 rounded-xl">
+            <span className="text-zinc-500">$</span>
+            <code className="font-mono text-sm text-[#00F0FF]">
+              npx aether install agent/video-script-pro
+            </code>
+            <span className="text-zinc-600 text-sm hidden sm:inline-block ml-2 border-l border-white/10 pl-3">
+               Universal Installer
+            </span>
           </div>
 
-          {/* Studio Alpha Key Section */}
-          <div className="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 mb-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <button
-                className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-zinc-100 transition-colors"
-                onClick={() => setWaitlistOpen(true)}
-              >
-                Join Waitlist
-              </button>
-
-              <div className="flex items-center gap-4">
-                <div className="flex-1 md:w-48">
-                  <div className="flex items-center justify-between text-xs text-zinc-400 mb-2">
-                    <span>Alpha keys</span>
-                    <span className="font-mono">{waitlistCount}/500</span>
-                  </div>
-                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-lime-300 to-emerald-400 rounded-full transition-all"
-                      style={{ width: `${(waitlistCount / 500) * 100}%` }}
-                    />
-                  </div>
-                </div>
-
-                <button className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-lime-300 border border-white/10 rounded-lg hover:border-lime-300/50 transition-colors">
-                  <Upload className="w-4 h-4" />
-                  Share to boost
-                </button>
+          {/* Stats Grid - Minimal & Clean */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-px bg-white/5 mt-16 rounded-xl overflow-hidden border border-white/5">
+            {[
+              { label: "Agents", value: stats.agents },
+              { label: "Skills", value: stats.skills },
+              { label: "Workflows", value: stats.workflows },
+              { label: "MCPs", value: stats.mcps },
+              { label: "Speed", value: "4.2x" },
+              { label: "Efficiency", value: "92%" },
+            ].map((stat, i) => (
+              <div key={i} className="bg-[#0F0F11] p-6 flex flex-col items-center text-center hover:bg-[#151518] transition-colors">
+                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium">{stat.label}</div>
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* Stats Grid - Now with 8 stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                {stats.agents}
-              </div>
-              <div className="text-xs text-zinc-400">Agents</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                {stats.skills}
-              </div>
-              <div className="text-xs text-zinc-400">Skills</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                {stats.commands}
-              </div>
-              <div className="text-xs text-zinc-400">Commands</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                {stats.workflows}
-              </div>
-              <div className="text-xs text-zinc-400">Workflows</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                {stats.mcps}
-              </div>
-              <div className="text-xs text-zinc-400">MCPs</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                {stats.settings}
-              </div>
-              <div className="text-xs text-zinc-400">Settings</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                ×4.2
-              </div>
-              <div className="text-xs text-zinc-400">Build Speed</div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-4">
-              <div className="text-2xl md:text-3xl font-black text-white mb-1">
-                88–92%
-              </div>
-              <div className="text-xs text-zinc-400">Context Saved</div>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Waitlist Modal */}
+      {/* Studio Access Bar */}
+      <div className="mt-6 flex flex-col md:flex-row items-center justify-between p-6 rounded-2xl border border-white/[0.05] bg-gradient-to-r from-zinc-900/50 to-[#0F0F11]/50 backdrop-blur-md">
+        <div className="flex items-center gap-4 mb-4 md:mb-0">
+          <div className="h-10 w-10 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/20 flex items-center justify-center">
+            <Zap className="w-5 h-5 text-[#00F0FF]" />
+          </div>
+          <div>
+            <h3 className="text-white font-bold">Private Alpha Access</h3>
+            <p className="text-sm text-zinc-400">
+              <span className="font-mono text-[#00F0FF]">{waitlistCount}/500</span> keys claimed
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 w-full md:w-auto">
+          <div className="h-1.5 flex-1 md:w-48 bg-white/5 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-[#00F0FF] rounded-full" 
+              style={{ width: `${(waitlistCount / 500) * 100}%` }} 
+            />
+          </div>
+          <button 
+            onClick={() => setWaitlistOpen(true)}
+            className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm text-white transition-colors whitespace-nowrap"
+          >
+            Join Waitlist
+          </button>
+        </div>
+      </div>
+
       <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
     </div>
   );

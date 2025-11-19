@@ -102,6 +102,7 @@ export function StackManager({ isOpen, onClose }: StackManagerProps) {
           <button
             onClick={onClose}
             className="p-2 hover:bg-black/5 rounded-lg transition-colors"
+            aria-label="Close stack manager"
           >
             <X className="w-5 h-5" />
           </button>
@@ -237,6 +238,7 @@ export function StackManager({ isOpen, onClose }: StackManagerProps) {
                         onClick={() => startEditing(stack.id, stack.name)}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/40 text-black/80 text-xs hover:bg-black/5 transition-colors"
                         title="Rename"
+                        aria-label="Rename stack"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                       </button>
@@ -245,6 +247,7 @@ export function StackManager({ isOpen, onClose }: StackManagerProps) {
                         onClick={() => handleDuplicate(stack.id)}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/40 text-black/80 text-xs hover:bg-black/5 transition-colors"
                         title="Duplicate"
+                        aria-label="Duplicate stack"
                       >
                         <Copy className="w-3.5 h-3.5" />
                       </button>
@@ -253,6 +256,7 @@ export function StackManager({ isOpen, onClose }: StackManagerProps) {
                         onClick={() => {}}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/40 text-black/80 text-xs hover:bg-black/5 transition-colors"
                         title="Compare"
+                        aria-label="Compare stack"
                       >
                         <GitCompare className="w-3.5 h-3.5" />
                       </button>
@@ -262,6 +266,7 @@ export function StackManager({ isOpen, onClose }: StackManagerProps) {
                         disabled={stacks.length === 1}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-400 text-red-600 text-xs hover:bg-red-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         title="Delete"
+                        aria-label="Delete stack"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>

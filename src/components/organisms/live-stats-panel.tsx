@@ -58,7 +58,7 @@ export function LiveStatsPanel() {
       setPulse(true);
       setTimeout(() => setPulse(false), 500);
     } catch (err) {
-      console.error("Failed to fetch stats:", err);
+      // Stats fetch failed - component will retry on next interval
     } finally {
       setIsLoading(false);
     }

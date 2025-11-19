@@ -133,6 +133,7 @@ export function AgentCard({ item, onSelect, selected = false }: AgentCardProps) 
               : "hover:bg-lime-500/10"
           }`}
           title="Copy install command"
+          aria-label="Copy install command"
         >
           {copied ? (
             <Check className="h-4 w-4" />

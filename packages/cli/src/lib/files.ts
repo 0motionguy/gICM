@@ -9,9 +9,18 @@ import type { RegistryItem, FileContent } from './types';
 
 export class FileWriter {
   private basePath: string;
+  private platform: "claude" | "gemini";
 
-  constructor(basePath?: string) {
+  constructor(basePath?: string, platform: "claude" | "gemini" = "claude") {
     this.basePath = basePath || process.cwd();
+    this.platform = platform;
+  }
+
+  /**
+   * Get the root configuration directory name (.claude or .gemini)
+   */
+  private get configDirName(): string {
+    return `.${this.platform}`;
   }
 
   /**
@@ -32,7 +41,7 @@ export class FileWriter {
    * Write a single file
    */
   private async writeFile(relativePath: string, content: string): Promise<void> {
-    const fullPath = path.join(this.basePath, '.claude', relativePath);
+    const fullPath = path.join(this.basePath, this.configDirName, relativePath);
 
     // Ensure directory exists
     await fs.ensureDir(path.dirname(fullPath));
@@ -42,21 +51,21 @@ export class FileWriter {
   }
 
   /**
-   * Check if .claude directory exists and is writable
+   * Check if config directory exists and is writable
    */
-  async ensureClaudeDir(): Promise<void> {
-    const claudeDir = path.join(this.basePath, '.claude');
+  async ensureConfigDir(): Promise<void> {
+    const configDir = path.join(this.basePath, this.configDirName);
 
     try {
-      // Create .claude directory if it doesn't exist
-      await fs.ensureDir(claudeDir);
+      // Create directory if it doesn't exist
+      await fs.ensureDir(configDir);
 
       // Test write permissions
-      const testFile = path.join(claudeDir, '.gicm-test');
+      const testFile = path.join(configDir, '.aether-test');
       await fs.writeFile(testFile, 'test', 'utf-8');
       await fs.remove(testFile);
     } catch (error) {
-      console.error(chalk.red('\n✗ Cannot write to .claude directory'));
+      console.error(chalk.red(`\n✗ Cannot write to ${this.configDirName} directory`));
       console.error(chalk.yellow('  Please check folder permissions.\n'));
       throw error;
     }
@@ -66,7 +75,7 @@ export class FileWriter {
    * Get installation paths for different item types
    */
   getInstallPath(item: RegistryItem): string {
-    const basePath = path.join(this.basePath, '.claude');
+    const basePath = path.join(this.basePath, this.configDirName);
 
     switch (item.kind) {
       case 'agent':
@@ -104,7 +113,7 @@ export class FileWriter {
    * Get list of installed items by kind
    */
   async getInstalledItems(kind?: string): Promise<string[]> {
-    const basePath = path.join(this.basePath, '.claude');
+    const basePath = path.join(this.basePath, this.configDirName);
     const installed: string[] = [];
 
     try {

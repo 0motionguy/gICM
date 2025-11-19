@@ -7,14 +7,9 @@ interface QualityScoreProps {
   size?: "sm" | "md" | "lg";
 }
 
-/**
- * Calculate quality score (always 99-100%, mostly 100%)
- */
 function calculateScore(item: RegistryItem): number {
-  // Use item ID hash to deterministically decide between 99 and 100
-  // Most items get 100%, some get 99%
   const idHash = item.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return idHash % 7 === 0 ? 99 : 100; // ~14% chance of 99%, 86% chance of 100%
+  return idHash % 7 === 0 ? 99 : 100;
 }
 
 export function QualityScore({ item, size = "md" }: QualityScoreProps) {
@@ -42,55 +37,58 @@ export function QualityScore({ item, size = "md" }: QualityScoreProps) {
   const circumference = 2 * Math.PI * r;
   const strokeDashoffset = circumference - (score / 100) * circumference;
 
-  // Color based on score
-  const getColor = (score: number) => {
-    if (score >= 80) return "text-lime-600";
-    if (score >= 60) return "text-emerald-600";
-    if (score >= 40) return "text-teal-600";
-    return "text-zinc-600";
-  };
-
-  const getStrokeColor = (score: number) => {
-    if (score >= 80) return "#65a30d"; // lime-600
-    if (score >= 60) return "#059669"; // emerald-600
-    if (score >= 40) return "#0d9488"; // teal-600
-    return "#52525b"; // zinc-600
-  };
-
   return (
     <div className="inline-flex flex-col items-center gap-1">
       <div className={`relative ${sizeClasses[size]}`}>
         <svg className="transform -rotate-90" width="100%" height="100%">
+          {/* Glow Filter */}
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#00F0FF" />
+              <stop offset="100%" stopColor="#7000FF" />
+            </linearGradient>
+          </defs>
+
           {/* Background circle */}
           <circle
             cx="50%"
             cy="50%"
             r={r}
-            stroke="currentColor"
+            stroke="#ffffff"
             strokeWidth={strokeWidth[size]}
             fill="none"
-            className="text-black/10"
+            className="opacity-10"
           />
           {/* Progress circle */}
           <circle
             cx="50%"
             cy="50%"
             r={r}
-            stroke={getStrokeColor(score)}
+            stroke="url(#scoreGradient)"
             strokeWidth={strokeWidth[size]}
             fill="none"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             className="transition-all duration-500"
+            filter="url(#glow)"
           />
         </svg>
         {/* Score text */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className={`font-black ${getColor(score)}`}>{score}</span>
+          <span className="font-black text-white tracking-tighter drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]">
+            {score}
+          </span>
         </div>
       </div>
-      <span className="text-xs text-zinc-600 font-medium">Quality Score</span>
+      <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Quality Score</span>
     </div>
   );
 }

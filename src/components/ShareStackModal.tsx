@@ -31,7 +31,9 @@ export function ShareStackModal({ itemIds, isOpen, onClose }: ShareStackModalPro
           dark: '#000000',
           light: '#ffffff'
         }
-      }).then(setQrCodeUrl).catch(console.error);
+      }).then(setQrCodeUrl).catch(() => {
+        // QR code generation failed - component will show share URL as fallback
+      });
     }
   }, [isOpen, itemIds]);
 

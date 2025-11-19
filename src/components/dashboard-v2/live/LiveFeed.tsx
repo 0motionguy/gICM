@@ -25,7 +25,6 @@ export function LiveFeed({ theme }: LiveFeedProps) {
       setActivities(data.activities);
       setError(null);
     } catch (err) {
-      console.error("Failed to fetch activities:", err);
       setError("Failed to load activity feed");
     } finally {
       setIsLoading(false);

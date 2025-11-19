@@ -43,7 +43,7 @@ export function FOMOSection({ theme }: FOMOSectionProps) {
       const data: LiveStatsResponse = await response.json();
       setStats(data);
     } catch (err) {
-      console.error("Failed to fetch stats:", err);
+      // Failed to fetch stats - component will retry on next interval
     } finally {
       setIsLoading(false);
     }

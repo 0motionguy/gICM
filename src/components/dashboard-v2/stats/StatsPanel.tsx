@@ -41,7 +41,7 @@ export function StatsPanel({ theme }: StatsPanelProps) {
       const data: TokenSavingsData = await response.json();
       setSavings(data);
     } catch (err) {
-      console.error("Failed to fetch token savings:", err);
+      // Failed to fetch token savings - component will show default values
     } finally {
       setIsLoading(false);
     }

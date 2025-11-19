@@ -12,6 +12,7 @@ export const BASELINE_TOKENS = {
   workflow: 8000, // Traditional workflow orchestration prompts
   mcp: 3000, // Traditional MCP server setup
   setting: 500, // Settings configuration
+  component: 1000, // Component implementation
 } as const;
 
 /**
@@ -85,6 +86,9 @@ function calculateItemSavings(itemId: string): {
         break;
       case "setting":
         savingsPercent = 60; // Settings save ~60%
+        break;
+      case "component":
+        savingsPercent = 90; // Components save ~90%
         break;
     }
   }

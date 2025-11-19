@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * gICM CLI - Official command-line interface for the gICM marketplace
+ * Aether CLI - Official command-line interface for the Aether marketplace
+ * (Formerly gICM)
  */
 
 import { Command } from 'commander';
@@ -19,21 +20,24 @@ const program = new Command();
 const DEFAULT_API_URL = 'https://gicm-marketplace.vercel.app/api';
 
 program
-  .name('gicm')
-  .description('Official CLI for gICM marketplace - Install agents, skills, commands, MCPs, and settings')
-  .version('1.0.0');
+  .name('aether')
+  .description('Official CLI for Aether marketplace - The Universal AI Workflow Marketplace')
+  .version('1.1.0');
 
 // Add command - Install items from marketplace
 program
   .command('add <items...>')
+  .alias('install')
   .description('Install one or more items from the marketplace')
   .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
+  .option('-p, --platform <platform>', 'Target platform (claude, gemini)', 'claude')
   .option('-y, --yes', 'Skip confirmation prompt', false)
   .option('-v, --verbose', 'Show verbose output', false)
   .action(async (items: string[], options) => {
     try {
       await addCommand(items, {
         apiUrl: options.apiUrl,
+        platform: options.platform,
         skipConfirm: options.yes,
         verbose: options.verbose,
       });
@@ -110,7 +114,7 @@ program
 // Validate command - Validate project setup
 program
   .command('validate')
-  .description('Validate Claude Code project setup and installed items')
+  .description('Validate project setup and installed items')
   .option('--fix', 'Automatically fix issues where possible', false)
   .option('-v, --verbose', 'Show detailed validation output', false)
   .action(async (options) => {

@@ -73,3 +73,5 @@ lpt2
 # packages/ is commented out to allow CLI package in repo
 
 .vercel
+apps/
+.gemini/

@@ -7,6 +7,7 @@ export const ItemKindSchema = z.enum([
   "mcp",
   "setting",
   "workflow",
+  "component",
 ]);
 
 export const RegistryItemSchema = z.object({
@@ -28,14 +29,31 @@ export const RegistryItemSchema = z.object({
   installs: z.number().optional().default(0),
   remixes: z.number().optional().default(0),
   tokenSavings: z.number().optional(), // for skills (percentage)
-  layer: z.enum([".agent", ".claude", "docs"]).optional(), // for agents
+  layer: z.enum([".agent", ".claude", ".gemini", "docs"]).optional(), // for agents
   modelRecommendation: z.enum(["sonnet", "opus", "haiku"]).optional(), // for agents
+
+  // Universal Agent Protocol (UAP) Fields
+  platforms: z.array(z.enum(["claude", "gemini", "openai"])).optional(),
+  compatibility: z.object({
+    models: z.array(z.enum(["sonnet-4.5", "sonnet", "opus", "haiku", "gemini-3.0-pro", "gemini-3-pro", "gemini-1.5-pro", "gpt-5.1-codex", "gpt-4o"])),
+    software: z.array(z.enum(["vscode", "cursor", "terminal", "windsurf"])),
+  }).optional(),
+  implementations: z.object({
+    claude: z.object({
+      install: z.string(),
+      configFile: z.string().optional(),
+    }).optional(),
+    gemini: z.object({
+      install: z.string(),
+      configFile: z.string().optional(),
+    }).optional(),
+  }).optional(),
 });
 
 // Manual type with proper optionals
 export type RegistryItem = {
   id: string;
-  kind: "agent" | "skill" | "command" | "mcp" | "setting" | "workflow";
+  kind: "agent" | "skill" | "command" | "mcp" | "setting" | "workflow" | "component";
   name: string;
   slug: string;
   description: string;
@@ -52,8 +70,26 @@ export type RegistryItem = {
   installs?: number;
   remixes?: number;
   tokenSavings?: number;
-  layer?: ".agent" | ".claude" | "docs";
+  layer?: ".agent" | ".claude" | ".gemini" | "docs";
   modelRecommendation?: "sonnet" | "opus" | "haiku";
+
+  // Universal Agent Protocol (UAP) Fields
+  platforms?: ("claude" | "gemini" | "openai")[];
+  compatibility?: {
+    models: ("sonnet-4.5" | "sonnet" | "opus" | "haiku" | "gemini-3.0-pro" | "gemini-3-pro" | "gemini-1.5-pro" | "gpt-5.1-codex" | "gpt-4o")[];
+    software: ("vscode" | "cursor" | "terminal" | "windsurf")[];
+  };
+  implementations?: {
+    claude?: {
+      install: string;
+      configFile?: string;
+    };
+    gemini?: {
+      install: string;
+      configFile?: string;
+    };
+  };
+
   // Workflow-specific fields
   steps?: WorkflowStep[];
   orchestrationPattern?: "sequential" | "parallel" | "conditional" | "hybrid";

@@ -34,7 +34,7 @@ export function InstallButton({ installCommand, slug, kind }: InstallButtonProps
         URL.revokeObjectURL(url);
       }
     } catch (error) {
-      console.error('Download failed:', error);
+      // Download failed silently - user can retry
     }
   };
 

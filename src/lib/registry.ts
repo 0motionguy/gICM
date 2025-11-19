@@ -1,6 +1,9 @@
 import type { RegistryItem, Bundle } from "@/types/registry";
 import { SETTINGS } from "@/lib/settings-registry";
 import { WORKFLOWS } from "@/lib/workflows";
+import { GEMINI_TOOLS } from "@/lib/registry-gemini";
+import { DESIGN_ASSETS } from "@/lib/registry-design";
+import { CONTENT_AGENTS } from "@/lib/registry-content";
 // import { readItemStats } from "@/lib/item-stats"; // Temporarily disabled for edge runtime compatibility
 
 // ============================================================================
@@ -26,6 +29,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["SOLANA_RPC_URL", "ANCHOR_WALLET"],
     installs: 1547,
     remixes: 623,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/icm-anchor-architect",
+      }
+    }
   },
   {
     id: "frontend-fusion-engine",
@@ -44,6 +57,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["NEXT_PUBLIC_RPC_ENDPOINT", "NEXT_PUBLIC_WALLET_ADAPTER"],
     installs: 1243,
     remixes: 412,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/frontend-fusion-engine",
+      }
+    }
   },
   {
     id: "rust-systems-architect",
@@ -62,6 +85,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 623,
     remixes: 189,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/rust-systems-architect",
+      }
+    }
   },
   {
     id: "typescript-precision-engineer",
@@ -80,6 +113,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 891,
     remixes: 267,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/typescript-precision-engineer",
+      }
+    }
   },
   {
     id: "database-schema-oracle",
@@ -98,6 +141,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["DATABASE_URL", "SUPABASE_URL", "SUPABASE_ANON_KEY"],
     installs: 734,
     remixes: 201,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/database-schema-oracle",
+      }
+    }
   },
   {
     id: "api-contract-designer",
@@ -116,6 +169,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 542,
     remixes: 156,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/api-contract-designer",
+      }
+    }
   },
   {
     id: "web3-integration-maestro",
@@ -134,6 +197,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["RPC_ENDPOINT", "BACKUP_RPC_ENDPOINT"],
     installs: 981,
     remixes: 312,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/web3-integration-maestro",
+      }
+    }
   },
   {
     id: "fullstack-orchestrator",
@@ -152,6 +225,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 1456,
     remixes: 478,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/fullstack-orchestrator",
+      }
+    }
   },
   {
     id: "react-native-expert",
@@ -170,6 +253,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["EXPO_TOKEN", "SENTRY_DSN", "WALLETCONNECT_PROJECT_ID"],
     installs: 2145,
     remixes: 623,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/react-native-expert",
+      }
+    }
   },
   {
     id: "ml-engineer",
@@ -188,6 +281,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["OPENAI_API_KEY", "HUGGINGFACE_TOKEN", "WANDB_API_KEY", "AWS_ACCESS_KEY_ID"],
     installs: 1876,
     remixes: 534,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/ml-engineer",
+      }
+    }
   },
   {
     id: "kubernetes-architect",
@@ -206,6 +309,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["KUBECONFIG", "K8S_CLUSTER_NAME", "K8S_NAMESPACE"],
     installs: 1654,
     remixes: 478,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/kubernetes-architect",
+      }
+    }
   },
   {
     id: "ios-expert",
@@ -224,6 +337,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["XCODE_VERSION", "SWIFT_VERSION", "WALLETCONNECT_PROJECT_ID"],
     installs: 1432,
     remixes: 389,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/ios-expert",
+      }
+    }
   },
   {
     id: "data-scientist",
@@ -242,6 +365,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["JUPYTER_TOKEN", "DATABRICKS_TOKEN", "SNOWFLAKE_ACCOUNT", "BIGQUERY_CREDENTIALS"],
     installs: 1567,
     remixes: 445,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/data-scientist",
+      }
+    }
   },
 
   // === SECURITY & AUDIT (4 agents) ===
@@ -262,6 +395,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 712,
     remixes: 198,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/solana-guardian-auditor",
+      }
+    }
   },
   {
     id: "smart-contract-forensics",
@@ -336,6 +479,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 1123,
     remixes: 389,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/context-sculptor",
+      }
+    }
   },
   {
     id: "performance-profiler",
@@ -354,6 +507,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 678,
     remixes: 203,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/performance-profiler",
+      }
+    }
   },
   {
     id: "ci-cd-pipeline-engineer",
@@ -372,6 +535,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: ["GITHUB_TOKEN", "VERCEL_TOKEN"],
     installs: 512,
     remixes: 147,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/ci-cd-pipeline-engineer",
+      }
+    }
   },
   {
     id: "git-flow-coordinator",
@@ -390,6 +563,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 823,
     remixes: 241,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/git-flow-coordinator",
+      }
+    }
   },
   {
     id: "debugging-detective",
@@ -408,6 +591,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 934,
     remixes: 287,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/debugging-detective",
+      }
+    }
   },
 
   // === DOCUMENTATION & CONTENT (5 agents) ===
@@ -428,6 +621,16 @@ export const AGENTS: RegistryItem[] = [
     envKeys: [],
     installs: 645,
     remixes: 178,
+    platforms: ['claude'],
+    compatibility: {
+      models: ['sonnet', 'opus', 'haiku'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    implementations: {
+      claude: {
+        install: "npx @gicm/cli add agent/technical-writer-pro",
+      }
+    }
   },
   {
     id: "readme-architect",
@@ -5049,6 +5252,9 @@ export const REGISTRY: RegistryItem[] = [
   ...MCPS,
   ...(SETTINGS as RegistryItem[]),
   ...WORKFLOWS,
+  ...GEMINI_TOOLS,
+  ...DESIGN_ASSETS,
+  ...CONTENT_AGENTS,
 ];
 
 export function getItemsByKind(
@@ -5115,6 +5321,6 @@ export function getRegistryWithLiveStats(): RegistryItem[] {
   //   }));
   // } catch (error) {
   //   console.error('Failed to load live stats, using hardcoded values:', error);
-    return REGISTRY;
+  return REGISTRY;
   // }
 }

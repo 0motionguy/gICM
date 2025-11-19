@@ -72,6 +72,7 @@ export function KeyboardShortcuts() {
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 left-6 h-12 w-12 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 shadow-lg hover:shadow-xl hover:scale-105 transition-all z-40 grid place-items-center group"
         title="Keyboard Shortcuts (Press ?)"
+        aria-label="Show keyboard shortcuts"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -118,6 +119,7 @@ export function KeyboardShortcuts() {
                   <button
                     onClick={() => setIsOpen(false)}
                     className="w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                    aria-label="Close keyboard shortcuts"
                   >
                     <X className="w-4 h-4" />
                   </button>

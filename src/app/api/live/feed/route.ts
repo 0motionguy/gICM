@@ -77,7 +77,7 @@ function convertToLiveActivity(event: AnalyticsEvent): LiveActivity | null {
 
   // Build message based on event type
   let message = "";
-  let metadata: any = { itemId: event.itemId, itemSlug: event.itemSlug };
+  let metadata: Record<string, string | number | undefined> = { itemId: event.itemId, itemSlug: event.itemSlug };
 
   switch (event.type) {
     case "item_view":

@@ -54,7 +54,9 @@ export default function AnalyticsPage() {
         const data = await res.json();
         setAuthenticated(data.authenticated);
       } catch (error) {
-        console.error("Auth check failed:", error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Auth check failed:", error);
+        }
       } finally {
         setCheckingAuth(false);
       }
@@ -80,7 +82,9 @@ export default function AnalyticsPage() {
         setStats(statsData);
         setWaitlistCount(waitlistData.total || 0);
       } catch (error) {
-        console.error("Failed to fetch analytics:", error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Failed to fetch analytics:", error);
+        }
         toast.error("Failed to load analytics data");
       } finally {
         setLoading(false);
@@ -359,8 +363,8 @@ export default function AnalyticsPage() {
               <AreaChart data={stats.dailyEvents}>
                 <defs>
                   <linearGradient id="colorEvents" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#84cc16" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#84cc16" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#84cc16" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#84cc16" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#0000001a" />
@@ -402,7 +406,7 @@ export default function AnalyticsPage() {
             <div>
               <div className="text-black/60 mb-0.5">Most Popular Type</div>
               <div className="text-base font-bold text-black capitalize">
-                {Object.entries(stats.byKind || {}).sort(([,a], [,b]) => (b as number) - (a as number))[0]?.[0] || 'N/A'}
+                {Object.entries(stats.byKind || {}).sort(([, a], [, b]) => (b as number) - (a as number))[0]?.[0] || 'N/A'}
               </div>
             </div>
             <div>

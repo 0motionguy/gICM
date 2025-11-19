@@ -59,4 +59,5 @@ export interface CLIOptions {
   apiUrl?: string;
   verbose?: boolean;
   skipConfirm?: boolean;
+  platform?: "claude" | "gemini";
 }

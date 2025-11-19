@@ -28,7 +28,7 @@ interface WorkflowTemplate {
   id: string;
   name: string;
   description: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
   bgColor: string;
   borderColor: string;
@@ -365,6 +365,7 @@ export function WorkflowTemplatesShowcase() {
                 className="flex-1"
                 disabled
                 title="Coming soon - template downloads will be available after launch"
+                aria-label="Use this template (coming soon)"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Use This Template
