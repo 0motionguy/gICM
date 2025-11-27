@@ -30,7 +30,7 @@ program
   .alias('install')
   .description('Install one or more items from the marketplace')
   .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('-p, --platform <platform>', 'Target platform (claude, gemini)', 'claude')
+  .option('-p, --platform <platform>', 'Target platform (claude, gemini, openai)', 'claude')
   .option('-y, --yes', 'Skip confirmation prompt', false)
   .option('-v, --verbose', 'Show verbose output', false)
   .action(async (items: string[], options) => {

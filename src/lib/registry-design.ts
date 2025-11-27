@@ -9,11 +9,16 @@ export const DESIGN_ASSETS: RegistryItem[] = [
     description: "Premium frosted glass effect card with inner glow and hover state.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Card", "Glassmorphism"],
-    install: "npx aether add component/glass-card",
+    install: "npx @gicm/cli add component/glass-card",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["sonnet-4.5", "gemini-3.0-pro"],
-      software: ["vscode", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 80,
+      status: "VERIFIED",
     },
   },
   {
@@ -24,11 +29,16 @@ export const DESIGN_ASSETS: RegistryItem[] = [
     description: "Animated ambient background with flowing gradient mesh.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Background", "Animation"],
-    install: "npx aether add component/aurora-background",
+    install: "npx @gicm/cli add component/aurora-background",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["sonnet-4.5", "gemini-3.0-pro"],
-      software: ["vscode", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 80,
+      status: "VERIFIED",
     },
   },
   {
@@ -39,11 +49,16 @@ export const DESIGN_ASSETS: RegistryItem[] = [
     description: "High-visibility action button with neon glow and pulse effect.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Button", "Neon"],
-    install: "npx aether add component/neon-button",
+    install: "npx @gicm/cli add component/neon-button",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["sonnet-4.5", "gemini-3.0-pro"],
-      software: ["vscode", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 80,
+      status: "VERIFIED",
     },
   },
   {
@@ -54,11 +69,16 @@ export const DESIGN_ASSETS: RegistryItem[] = [
     description: "Cyberpunk-style perspective grid background with infinite scrolling animation.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Background", "Animation", "3D"],
-    install: "npx aether add component/animated-grid",
+    install: "npx @gicm/cli add component/animated-grid",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["sonnet-4.5", "gemini-3.0-pro"],
-      software: ["vscode", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 80,
+      status: "VERIFIED",
     },
   },
 ];

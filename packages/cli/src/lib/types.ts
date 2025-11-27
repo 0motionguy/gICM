@@ -55,9 +55,11 @@ export interface ParsedItem {
   original: string;
 }
 
+export type Platform = "claude" | "gemini" | "openai";
+
 export interface CLIOptions {
   apiUrl?: string;
   verbose?: boolean;
   skipConfirm?: boolean;
-  platform?: "claude" | "gemini";
+  platform?: Platform;
 }

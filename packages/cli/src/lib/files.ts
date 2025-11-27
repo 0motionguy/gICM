@@ -9,9 +9,9 @@ import type { RegistryItem, FileContent } from './types';
 
 export class FileWriter {
   private basePath: string;
-  private platform: "claude" | "gemini";
+  private platform: "claude" | "gemini" | "openai";
 
-  constructor(basePath?: string, platform: "claude" | "gemini" = "claude") {
+  constructor(basePath?: string, platform: "claude" | "gemini" | "openai" = "claude") {
     this.basePath = basePath || process.cwd();
     this.platform = platform;
   }

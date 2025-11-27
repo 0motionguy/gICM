@@ -29,13 +29,13 @@ export const RegistryItemSchema = z.object({
   installs: z.number().optional().default(0),
   remixes: z.number().optional().default(0),
   tokenSavings: z.number().optional(), // for skills (percentage)
-  layer: z.enum([".agent", ".claude", ".gemini", "docs"]).optional(), // for agents
-  modelRecommendation: z.enum(["sonnet", "opus", "haiku"]).optional(), // for agents
+  layer: z.enum([".agent", ".claude", ".gemini", ".openai", "docs"]).optional(), // for agents
+  modelRecommendation: z.enum(["sonnet", "opus", "opus-4.5", "haiku"]).optional(), // for agents
 
   // Universal Agent Protocol (UAP) Fields
   platforms: z.array(z.enum(["claude", "gemini", "openai"])).optional(),
   compatibility: z.object({
-    models: z.array(z.enum(["sonnet-4.5", "sonnet", "opus", "haiku", "gemini-3.0-pro", "gemini-3-pro", "gemini-1.5-pro", "gpt-5.1-codex", "gpt-4o"])),
+    models: z.array(z.enum(["opus-4.5", "sonnet-4.5", "sonnet", "opus", "haiku", "gemini-2.0-flash", "gemini-3.0-pro", "gemini-3-pro", "gemini-1.5-pro", "gpt-4o", "gpt-4o-mini"])),
     software: z.array(z.enum(["vscode", "cursor", "terminal", "windsurf"])),
   }).optional(),
   implementations: z.object({
@@ -47,6 +47,18 @@ export const RegistryItemSchema = z.object({
       install: z.string(),
       configFile: z.string().optional(),
     }).optional(),
+    openai: z.object({
+      install: z.string(),
+      configFile: z.string().optional(),
+    }).optional(),
+  }).optional(),
+
+  // Audit metadata
+  audit: z.object({
+    lastAudited: z.string(),
+    qualityScore: z.number().min(0).max(100),
+    status: z.enum(["VERIFIED", "NEEDS_FIX", "FLAGGED", "DEPRECATED"]),
+    issues: z.array(z.string()).optional(),
   }).optional(),
 });
 
@@ -70,13 +82,13 @@ export type RegistryItem = {
   installs?: number;
   remixes?: number;
   tokenSavings?: number;
-  layer?: ".agent" | ".claude" | ".gemini" | "docs";
-  modelRecommendation?: "sonnet" | "opus" | "haiku";
+  layer?: ".agent" | ".claude" | ".gemini" | ".openai" | "docs";
+  modelRecommendation?: "sonnet" | "opus" | "opus-4.5" | "haiku";
 
   // Universal Agent Protocol (UAP) Fields
   platforms?: ("claude" | "gemini" | "openai")[];
   compatibility?: {
-    models: ("sonnet-4.5" | "sonnet" | "opus" | "haiku" | "gemini-3.0-pro" | "gemini-3-pro" | "gemini-1.5-pro" | "gpt-5.1-codex" | "gpt-4o")[];
+    models: ("opus-4.5" | "sonnet-4.5" | "sonnet" | "opus" | "haiku" | "gemini-2.0-flash" | "gemini-3.0-pro" | "gemini-3-pro" | "gemini-1.5-pro" | "gpt-4o" | "gpt-4o-mini")[];
     software: ("vscode" | "cursor" | "terminal" | "windsurf")[];
   };
   implementations?: {
@@ -88,6 +100,18 @@ export type RegistryItem = {
       install: string;
       configFile?: string;
     };
+    openai?: {
+      install: string;
+      configFile?: string;
+    };
+  };
+
+  // Audit metadata
+  audit?: {
+    lastAudited: string;
+    qualityScore: number;
+    status: "VERIFIED" | "NEEDS_FIX" | "FLAGGED" | "DEPRECATED";
+    issues?: string[];
   };
 
   // Workflow-specific fields

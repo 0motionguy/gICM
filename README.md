@@ -1,8 +1,14 @@
 # Aether - The Universal AI Workflow Marketplace
 
-> **Status:** Universal Beta 🌐 | **444 Production Plugins** | **Cross-Chain: Claude & Gemini**
+> **Status:** Universal Beta 🌐 | **1,055 Production Files** | **Cross-Platform: Claude, Gemini & OpenAI**
 
-The world's first "Cross-Chain" AI marketplace. Write once, run on any supported runtime (Claude, Gemini, OpenAI).
+The world's first truly cross-platform AI marketplace. Write once, run on any supported runtime (Claude, Gemini, OpenAI).
+
+| Platform | Agents | Skills | Commands | MCPs | Total |
+|----------|--------|--------|----------|------|-------|
+| Claude | 104 | 95 | 94 | 124 | 417 |
+| Gemini | 107 | 95 | 94 | - | 296 |
+| OpenAI | 104 | 95 | 94 | - | 293 |
 
 [![GitHub](https://img.shields.io/badge/GitHub-Kermit457%2FAether-black?style=for-the-badge&logo=github)](https://github.com/Kermit457/gICM)
 [![NPM](https://img.shields.io/badge/NPM-aether-00F0FF?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@gicm/cli)
@@ -20,8 +26,14 @@ The world's first "Cross-Chain" AI marketplace. Write once, run on any supported
 ## 🚀 30-Second Install
 
 ```bash
-# Via Universal CLI
-npx @gicm/cli add agent/video-script-pro --platform=gemini
+# Install for Claude (default)
+npx @gicm/cli add agent/icm-anchor-architect
+
+# Install for Gemini
+npx @gicm/cli add agent/icm-anchor-architect --platform=gemini
+
+# Install for OpenAI
+npx @gicm/cli add agent/icm-anchor-architect --platform=openai
 
 # Browse Online
 https://gicm-marketplace.vercel.app
@@ -320,6 +332,7 @@ See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap
 
 ## 📚 Documentation
 
+- **[docs/MULTI_PLATFORM.md](./docs/MULTI_PLATFORM.md)** - Complete multi-platform architecture guide
 - **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** - Complete implementation status, todos, and guides
 - **[UNIVERSAL_BOOTSTRAP_TEMPLATE.md](./.claude/UNIVERSAL_BOOTSTRAP_TEMPLATE.md)** - ICM Motion orchestration system bootstrap template
 - **[QUICK_START.md](./QUICK_START.md)** - Orchestration quick reference

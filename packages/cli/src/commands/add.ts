@@ -7,7 +7,7 @@ import ora from 'ora';
 import { GICMAPIClient } from '../lib/api';
 import { FileWriter } from '../lib/files';
 import { UniversalBridge } from '../lib/bridge';
-import type { ParsedItem, CLIOptions, RegistryItem } from '../lib/types';
+import type { ParsedItem, CLIOptions, RegistryItem, Platform } from '../lib/types';
 
 /**
  * Parse item string like "agent/slug" into { kind, slug }
@@ -57,8 +57,14 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
     process.exit(1);
   }
 
+  const platformNames: Record<Platform, string> = {
+    claude: 'Claude',
+    gemini: 'Gemini',
+    openai: 'OpenAI'
+  };
+
   const spinner = ora({
-    text: `Fetching items from Aether marketplace for ${platform === 'gemini' ? 'Gemini' : 'Claude'}...`,
+    text: `Fetching items from gICM marketplace for ${platformNames[platform]}...`,
     color: 'cyan',
   }).start();
 
@@ -140,7 +146,7 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
              if (!file.content.includes('AETHER BRIDGE: ADAPTER ACTIVE')) {
                  const bridgedContent = UniversalBridge.bridgePrompt(file.content, {
                      sourcePlatform: 'claude', // Assuming source is Claude-native by default
-                     targetPlatform: platform as 'gemini', // We checked platform != claude
+                     targetPlatform: platform, // gemini or openai
                      agentName: item.name
                  });
                  return { ...file, content: bridgedContent };
@@ -179,21 +185,24 @@ export async function addCommand(items: string[], options: CLIOptions = {}): Pro
       console.log(`  ${chalk.bold('Settings:')} ${bundle.stats.byKind.setting}`);
     }
 
-    // Show next steps for MCPs if any were installed
+    // Show next steps for MCPs if any were installed (Claude-only feature)
     const mcps = bundle.items.filter(i => i.kind === 'mcp');
     if (mcps.length > 0) {
-      console.log(chalk.yellow('\n⚠️  MCP servers require configuration:'));
-      mcps.forEach(mcp => {
-        if (mcp.envKeys && mcp.envKeys.length > 0) {
-          const configPath = platform === 'claude' ? '.claude/mcp' : '.gemini/mcp';
-          console.log(chalk.gray(`\n  ${mcp.name}:`));
-          console.log(chalk.gray(`    Configure: ${configPath}/${mcp.slug}.json`));
-          console.log(chalk.gray(`    Required: ${mcp.envKeys.join(', ')}`));
-        }
-      });
+      if (platform === 'claude') {
+        console.log(chalk.yellow('\n⚠️  MCP servers require configuration:'));
+        mcps.forEach(mcp => {
+          if (mcp.envKeys && mcp.envKeys.length > 0) {
+            console.log(chalk.gray(`\n  ${mcp.name}:`));
+            console.log(chalk.gray(`    Configure: .claude/mcp/${mcp.slug}.json`));
+            console.log(chalk.gray(`    Required: ${mcp.envKeys.join(', ')}`));
+          }
+        });
+      } else {
+        console.log(chalk.yellow('\n⚠️  Note: MCPs are Claude-only. Skipped MCP installation for ' + platformNames[platform]));
+      }
     }
 
-    console.log(chalk.gray(`\n💡 Tip: Reload your ${platform === 'gemini' ? 'Gemini' : 'Claude'} editor to see the new items.\n`));
+    console.log(chalk.gray(`\n💡 Tip: Reload your ${platformNames[platform]} editor to see the new items.\n`));
 
   } catch (error) {
     spinner.fail(chalk.red('Installation failed'));

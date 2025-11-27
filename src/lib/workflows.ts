@@ -95,6 +95,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -183,6 +193,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -266,6 +286,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   // === NEW HIGH-VALUE WORKFLOWS ===
@@ -328,6 +358,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -394,6 +434,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -459,6 +509,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -528,6 +588,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -592,6 +662,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   // === TIER 1: CORE DEVELOPMENT LIFECYCLE ===
@@ -701,6 +781,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -782,6 +872,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -861,6 +961,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -964,6 +1074,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   // === TIER 2: ECOSYSTEM EXPANSION ===
@@ -1076,6 +1196,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1173,6 +1303,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1262,6 +1402,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1347,6 +1497,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   // === TIER 3: PRODUCTION OPERATIONS ===
@@ -1424,6 +1584,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1492,6 +1662,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1569,6 +1749,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1639,6 +1829,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   // === TIER 4: ADVANCED FEATURES ===
@@ -1719,6 +1919,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1789,6 +1999,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -1859,6 +2079,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   // === GENERAL-PURPOSE DEVELOPMENT WORKFLOWS ===
@@ -1947,6 +2177,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2030,6 +2270,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2110,6 +2360,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2195,6 +2455,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2270,6 +2540,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2355,6 +2635,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2431,6 +2721,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2505,6 +2805,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2590,6 +2900,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 
   {
@@ -2672,6 +2992,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
   {
     id: "full-icm-research",
@@ -2714,6 +3044,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
   {
     id: "launch-monitoring",
@@ -2754,6 +3094,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
   {
     id: "rug-protection",
@@ -2796,6 +3146,16 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
   {
     id: "smart-entry-exit",
@@ -2856,5 +3216,15 @@ export const WORKFLOWS: RegistryItem[] = [
     ],
     installs: 0,
     remixes: 0,
+    platforms: ['claude', 'gemini', 'openai'],
+    compatibility: {
+      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
+      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 65,
+      status: "NEEDS_FIX",
+    },
   },
 ];

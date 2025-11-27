@@ -10,11 +10,16 @@ export const CONTENT_AGENTS: RegistryItem[] = [
     longDescription: "Analyzes top 20 SERP results and generates comprehensive, keyword-optimized articles that outrank competitors. Uses semantic keyword clustering and schema markup generation.",
     category: "Content Pipelines",
     tags: ["Gemini", "SEO", "Content", "Marketing"],
-    install: "npx aether install agent:gemini-seo",
-    platforms: ["gemini"],
+    install: "npx @gicm/cli add agent:gemini-seo",
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["gemini-3.0-pro"],
-      software: ["terminal", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
     },
   },
   {
@@ -26,11 +31,16 @@ export const CONTENT_AGENTS: RegistryItem[] = [
     longDescription: "Specialized in writing essays, technical documentation, and thought leadership pieces. Trained to avoid 'AI-isms' and maintain a consistent brand voice across long documents.",
     category: "Content Pipelines",
     tags: ["Claude", "Writing", "Content", "Blog"],
-    install: "npx aether install agent:claude-writer",
-    platforms: ["claude"],
+    install: "npx @gicm/cli add agent:claude-writer",
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["sonnet-4.5", "opus"],
-      software: ["terminal", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
     },
   },
   {
@@ -41,11 +51,16 @@ export const CONTENT_AGENTS: RegistryItem[] = [
     description: "YouTube script generator with hook, retention, and CTA optimization.",
     category: "Content Pipelines",
     tags: ["Universal", "Video", "YouTube", "Script"],
-    install: "npx aether install agent:video-script-pro",
+    install: "npx @gicm/cli add agent:video-script-pro",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ["sonnet-4.5", "gemini-3.0-pro", "gpt-4o"],
-      software: ["terminal", "cursor"],
+      models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gemini-3.0-pro", "gpt-4o"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
+    },
+    audit: {
+      lastAudited: "2025-11-27",
+      qualityScore: 80,
+      status: "VERIFIED",
     },
   },
 ];
