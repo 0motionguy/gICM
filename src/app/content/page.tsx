@@ -152,7 +152,7 @@ function PipelineBuilder() {
     navigator.clipboard.writeText(jsonConfig);
     
     toast.success("Pipeline configuration copied!", {
-      description: "Run 'npx aether deploy-pipeline' to implement this workflow."
+      description: "Run 'npx @gicm/cli add workflow/deploy-pipeline' to implement this workflow."
     });
   };
 

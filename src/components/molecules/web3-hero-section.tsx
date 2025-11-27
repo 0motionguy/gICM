@@ -123,7 +123,7 @@ export function Web3HeroSection() {
           <div className="mt-8 inline-flex items-center gap-3 px-4 py-3 bg-[#05050A] border border-white/10 rounded-xl">
             <span className="text-zinc-500">$</span>
             <code className="font-mono text-sm text-[#00F0FF]">
-              npx aether install agent/video-script-pro
+              npx @gicm/cli add agent/video-script-pro
             </code>
             <span className="text-zinc-600 text-sm hidden sm:inline-block ml-2 border-l border-white/10 pl-3">
                Universal Installer

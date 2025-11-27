@@ -220,14 +220,14 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Analyzes codebase structure and suggests modular improvements.",
         category: "Coding Agents",
         tags: ["Gemini", "Architecture", "Refactoring"],
-        install: "npx aether install agent:gemini-architect",
+        install: "npx @gicm/cli add agent/gemini-architect",
         platforms: ["gemini"],
         compatibility: {
             models: ["gemini-2.0-flash", "gemini-3.0-pro"],
             software: ["terminal", "vscode"],
         },
         implementations: {
-            gemini: { install: "npx aether install agent:gemini-architect" },
+            gemini: { install: "npx @gicm/cli add agent/gemini-architect" },
         
     },
     audit: {
@@ -245,7 +245,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Intelligent refactoring agent that adheres to SOLID principles.",
         category: "Coding Agents",
         tags: ["Gemini", "Refactoring", "SOLID"],
-        install: "npx aether install agent:gemini-refactor-pro",
+        install: "npx @gicm/cli add agent/gemini-refactor-pro",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["cursor"] },
         audit: {
@@ -262,7 +262,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Auto-generates Jest/Vitest suites with 100% coverage goals.",
         category: "Coding Agents",
         tags: ["Gemini", "Testing", "Jest"],
-        install: "npx aether install agent:gemini-test-gen",
+        install: "npx @gicm/cli add agent/gemini-test-gen",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -279,7 +279,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes TSDoc/JSDoc and updates README.md based on code changes.",
         category: "Coding Agents",
         tags: ["Gemini", "Documentation"],
-        install: "npx aether install agent:gemini-doc-writer",
+        install: "npx @gicm/cli add agent/gemini-doc-writer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -296,7 +296,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Analyzes stack traces and suggests 3 potential fixes.",
         category: "Coding Agents",
         tags: ["Gemini", "Debugging"],
-        install: "npx aether install agent:gemini-debugger",
+        install: "npx @gicm/cli add agent/gemini-debugger",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -313,7 +313,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Scans for OWASP Top 10 vulnerabilities in code.",
         category: "Coding Agents",
         tags: ["Gemini", "Security", "OWASP"],
-        install: "npx aether install agent:gemini-security-audit",
+        install: "npx @gicm/cli add agent/gemini-security-audit",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -330,7 +330,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates mock API endpoints based on TypeScript interfaces.",
         category: "Coding Agents",
         tags: ["Gemini", "API", "Mocking"],
-        install: "npx aether install agent:gemini-api-mocker",
+        install: "npx @gicm/cli add agent/gemini-api-mocker",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -347,7 +347,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Converts text descriptions to React/Tailwind components.",
         category: "Coding Agents",
         tags: ["Gemini", "UI", "React", "Tailwind"],
-        install: "npx aether install agent:gemini-ui-builder",
+        install: "npx @gicm/cli add agent/gemini-ui-builder",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["cursor"] },
         audit: {
@@ -364,7 +364,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Analyzes SQL queries and suggests index improvements.",
         category: "Coding Agents",
         tags: ["Gemini", "SQL", "Database"],
-        install: "npx aether install agent:gemini-sql-optimizer",
+        install: "npx @gicm/cli add agent/gemini-sql-optimizer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -381,7 +381,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates and explains complex Regex patterns.",
         category: "Coding Agents",
         tags: ["Gemini", "Regex"],
-        install: "npx aether install agent:gemini-regex-wizard",
+        install: "npx @gicm/cli add agent/gemini-regex-wizard",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -402,7 +402,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates optimized Dockerfiles for any stack.",
         category: "DevOps & Cloud",
         tags: ["Gemini", "Docker", "DevOps"],
-        install: "npx aether install agent:gemini-dockerizer",
+        install: "npx @gicm/cli add agent/gemini-dockerizer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -419,7 +419,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes Kubernetes YAMLs from plain English.",
         category: "DevOps & Cloud",
         tags: ["Gemini", "Kubernetes", "K8s"],
-        install: "npx aether install agent:gemini-k8s-manifest",
+        install: "npx @gicm/cli add agent/gemini-k8s-manifest",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -436,7 +436,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates GitHub Actions / GitLab CI workflows.",
         category: "DevOps & Cloud",
         tags: ["Gemini", "CI/CD", "GitHub Actions"],
-        install: "npx aether install agent:gemini-ci-pipeline",
+        install: "npx @gicm/cli add agent/gemini-ci-pipeline",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -453,7 +453,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes Terraform code for AWS infrastructure.",
         category: "DevOps & Cloud",
         tags: ["Gemini", "AWS", "Terraform", "IaC"],
-        install: "npx aether install agent:gemini-aws-terraform",
+        install: "npx @gicm/cli add agent/gemini-aws-terraform",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -470,7 +470,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Auto-deploys to Google Cloud Run.",
         category: "DevOps & Cloud",
         tags: ["Gemini", "GCP", "Cloud Run"],
-        install: "npx aether install agent:gemini-gcp-deploy",
+        install: "npx @gicm/cli add agent/gemini-gcp-deploy",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -491,7 +491,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates Pandas data manipulation code.",
         category: "Data Science",
         tags: ["Gemini", "Python", "Pandas", "Data"],
-        install: "npx aether install agent:gemini-pandas-helper",
+        install: "npx @gicm/cli add agent/gemini-pandas-helper",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["cursor"] },
         audit: {
@@ -508,7 +508,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Creates Plotly/Matplotlib charts from CSVs.",
         category: "Data Science",
         tags: ["Gemini", "Visualization", "Python"],
-        install: "npx aether install agent:gemini-viz-creator",
+        install: "npx @gicm/cli add agent/gemini-viz-creator",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["cursor"] },
         audit: {
@@ -525,7 +525,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes Python ETL scripts.",
         category: "Data Science",
         tags: ["Gemini", "ETL", "Data Engineering"],
-        install: "npx aether install agent:gemini-etl-pipeline",
+        install: "npx @gicm/cli add agent/gemini-etl-pipeline",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -542,7 +542,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Converts natural language to complex SQL.",
         category: "Data Science",
         tags: ["Gemini", "SQL"],
-        install: "npx aether install agent:gemini-sql-generator",
+        install: "npx @gicm/cli add agent/gemini-sql-generator",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -559,7 +559,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Automates data cleaning workflows.",
         category: "Data Science",
         tags: ["Gemini", "Data Cleaning", "Python"],
-        install: "npx aether install agent:gemini-data-cleaner",
+        install: "npx @gicm/cli add agent/gemini-data-cleaner",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["cursor"] },
         audit: {
@@ -580,7 +580,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "SEO-optimized blog post generator.",
         category: "Content & Creative",
         tags: ["Gemini", "Writing", "SEO", "Blog"],
-        install: "npx aether install agent:gemini-blog-writer",
+        install: "npx @gicm/cli add agent/gemini-blog-writer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -597,7 +597,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates social media calendars.",
         category: "Content & Creative",
         tags: ["Gemini", "Social Media", "Marketing"],
-        install: "npx aether install agent:gemini-social-scheduler",
+        install: "npx @gicm/cli add agent/gemini-social-scheduler",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -614,7 +614,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes drip campaign sequences.",
         category: "Content & Creative",
         tags: ["Gemini", "Email", "Marketing"],
-        install: "npx aether install agent:gemini-email-marketer",
+        install: "npx @gicm/cli add agent/gemini-email-marketer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -631,7 +631,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes YouTube video scripts.",
         category: "Content & Creative",
         tags: ["Gemini", "YouTube", "Video", "Script"],
-        install: "npx aether install agent:gemini-video-script",
+        install: "npx @gicm/cli add agent/gemini-video-script",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -648,7 +648,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Optimizes Midjourney/DALL-E prompts.",
         category: "Content & Creative",
         tags: ["Gemini", "Art", "Prompts"],
-        install: "npx aether install agent:gemini-image-prompt",
+        install: "npx @gicm/cli add agent/gemini-image-prompt",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -669,7 +669,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Checks data handling for GDPR compliance.",
         category: "Enterprise",
         tags: ["Gemini", "GDPR", "Compliance"],
-        install: "npx aether install agent:gemini-gdpr-audit",
+        install: "npx @gicm/cli add agent/gemini-gdpr-audit",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -686,7 +686,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Summarizes legal contracts.",
         category: "Enterprise",
         tags: ["Gemini", "Legal", "Contracts"],
-        install: "npx aether install agent:gemini-contract-review",
+        install: "npx @gicm/cli add agent/gemini-contract-review",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -703,7 +703,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Drafts company policies (HR, IT).",
         category: "Enterprise",
         tags: ["Gemini", "HR", "Policy"],
-        install: "npx aether install agent:gemini-policy-writer",
+        install: "npx @gicm/cli add agent/gemini-policy-writer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -720,7 +720,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Summarizes meeting transcripts.",
         category: "Enterprise",
         tags: ["Gemini", "Meetings", "Productivity"],
-        install: "npx aether install agent:gemini-meeting-minutes",
+        install: "npx @gicm/cli add agent/gemini-meeting-minutes",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -737,7 +737,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Screens resumes against job descriptions.",
         category: "Enterprise",
         tags: ["Gemini", "HR", "Recruiting"],
-        install: "npx aether install agent:gemini-recruiter-bot",
+        install: "npx @gicm/cli add agent/gemini-recruiter-bot",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -758,7 +758,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Step-by-step calculus and algebra solver.",
         category: "Education",
         tags: ["Gemini", "Math", "Education"],
-        install: "npx aether install agent:gemini-tutor-math",
+        install: "npx @gicm/cli add agent/gemini-tutor-math",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -775,7 +775,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Conversational partner for learning Spanish/French/Japanese.",
         category: "Education",
         tags: ["Gemini", "Language", "Learning"],
-        install: "npx aether install agent:gemini-language-coach",
+        install: "npx @gicm/cli add agent/gemini-language-coach",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -792,7 +792,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Interactive history lessons and fact checking.",
         category: "Education",
         tags: ["Gemini", "History", "Education"],
-        install: "npx aether install agent:gemini-history-buff",
+        install: "npx @gicm/cli add agent/gemini-history-buff",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -809,7 +809,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Explains algorithms and data structures simply.",
         category: "Education",
         tags: ["Gemini", "Coding", "Education"],
-        install: "npx aether install agent:gemini-code-mentor",
+        install: "npx @gicm/cli add agent/gemini-code-mentor",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -826,7 +826,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Simulates physics and chemistry experiments.",
         category: "Education",
         tags: ["Gemini", "Science", "Physics"],
-        install: "npx aether install agent:gemini-science-lab",
+        install: "npx @gicm/cli add agent/gemini-science-lab",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -847,7 +847,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Creates detailed travel itineraries with budget tracking.",
         category: "Productivity",
         tags: ["Gemini", "Travel", "Planning"],
-        install: "npx aether install agent:gemini-travel-planner",
+        install: "npx @gicm/cli add agent/gemini-travel-planner",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -864,7 +864,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates weekly meal plans and shopping lists.",
         category: "Productivity",
         tags: ["Gemini", "Food", "Health"],
-        install: "npx aether install agent:gemini-meal-prep",
+        install: "npx @gicm/cli add agent/gemini-meal-prep",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -881,7 +881,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Categorizes expenses and suggests budget cuts.",
         category: "Productivity",
         tags: ["Gemini", "Finance", "Money"],
-        install: "npx aether install agent:gemini-finance-tracker",
+        install: "npx @gicm/cli add agent/gemini-finance-tracker",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -898,7 +898,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Creates personalized workout routines.",
         category: "Productivity",
         tags: ["Gemini", "Fitness", "Health"],
-        install: "npx aether install agent:gemini-fitness-coach",
+        install: "npx @gicm/cli add agent/gemini-fitness-coach",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -915,7 +915,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Summarizes non-fiction books into key takeaways.",
         category: "Productivity",
         tags: ["Gemini", "Reading", "Summary"],
-        install: "npx aether install agent:gemini-book-summarizer",
+        install: "npx @gicm/cli add agent/gemini-book-summarizer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -936,7 +936,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Acts as a Dungeon Master for D&D campaigns.",
         category: "Gaming",
         tags: ["Gemini", "Gaming", "DnD"],
-        install: "npx aether install agent:gemini-dnd-dm",
+        install: "npx @gicm/cli add agent/gemini-dnd-dm",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -953,7 +953,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Provides walkthroughs and tips for popular games.",
         category: "Gaming",
         tags: ["Gemini", "Gaming", "Walkthrough"],
-        install: "npx aether install agent:gemini-game-guide",
+        install: "npx @gicm/cli add agent/gemini-game-guide",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -970,7 +970,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Hosts trivia games on any topic.",
         category: "Gaming",
         tags: ["Gemini", "Trivia", "Fun"],
-        install: "npx aether install agent:gemini-trivia-host",
+        install: "npx @gicm/cli add agent/gemini-trivia-host",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -987,7 +987,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates interactive fiction stories.",
         category: "Gaming",
         tags: ["Gemini", "Story", "Fiction"],
-        install: "npx aether install agent:gemini-story-teller",
+        install: "npx @gicm/cli add agent/gemini-story-teller",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -1004,7 +1004,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates backstories and stats for RPG characters.",
         category: "Gaming",
         tags: ["Gemini", "RPG", "Character"],
-        install: "npx aether install agent:gemini-character-creator",
+        install: "npx @gicm/cli add agent/gemini-character-creator",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -1025,7 +1025,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Audits smart contracts for gas optimization.",
         category: "Web3",
         tags: ["Gemini", "Web3", "Solidity"],
-        install: "npx aether install agent:gemini-solidity-auditor",
+        install: "npx @gicm/cli add agent/gemini-solidity-auditor",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -1042,7 +1042,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates metadata and art prompts for NFT collections.",
         category: "Web3",
         tags: ["Gemini", "NFT", "Web3"],
-        install: "npx aether install agent:gemini-nft-generator",
+        install: "npx @gicm/cli add agent/gemini-nft-generator",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -1059,7 +1059,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Analyzes DeFi yields and risks.",
         category: "Web3",
         tags: ["Gemini", "DeFi", "Finance"],
-        install: "npx aether install agent:gemini-defi-analyst",
+        install: "npx @gicm/cli add agent/gemini-defi-analyst",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -1076,7 +1076,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Summarizes DAO proposals and voting history.",
         category: "Web3",
         tags: ["Gemini", "DAO", "Governance"],
-        install: "npx aether install agent:gemini-dao-governance",
+        install: "npx @gicm/cli add agent/gemini-dao-governance",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -1093,7 +1093,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Helps write Solana programs in Rust/Anchor.",
         category: "Web3",
         tags: ["Gemini", "Solana", "Rust"],
-        install: "npx aether install agent:gemini-rust-anchor",
+        install: "npx @gicm/cli add agent/gemini-rust-anchor",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["cursor"] },
         audit: {
@@ -1114,7 +1114,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Writes C++ code for Arduino projects.",
         category: "IoT",
         tags: ["Gemini", "Arduino", "IoT"],
-        install: "npx aether install agent:gemini-arduino-coder",
+        install: "npx @gicm/cli add agent/gemini-arduino-coder",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -1131,7 +1131,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Automates Raspberry Pi configuration.",
         category: "IoT",
         tags: ["Gemini", "Raspberry Pi", "Linux"],
-        install: "npx aether install agent:gemini-pi-setup",
+        install: "npx @gicm/cli add agent/gemini-pi-setup",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] },
         audit: {
@@ -1148,7 +1148,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Generates YAML for Home Assistant automations.",
         category: "IoT",
         tags: ["Gemini", "Home Automation", "YAML"],
-        install: "npx aether install agent:gemini-home-assistant",
+        install: "npx @gicm/cli add agent/gemini-home-assistant",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -1165,7 +1165,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Boilerplate for ESP32 WiFi/Bluetooth connections.",
         category: "IoT",
         tags: ["Gemini", "ESP32", "IoT"],
-        install: "npx aether install agent:gemini-esp32-wifi",
+        install: "npx @gicm/cli add agent/gemini-esp32-wifi",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["vscode"] },
         audit: {
@@ -1182,7 +1182,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
         description: "Suggests components for circuit diagrams.",
         category: "IoT",
         tags: ["Gemini", "Electronics", "Circuits"],
-        install: "npx aether install agent:gemini-circuit-designer",
+        install: "npx @gicm/cli add agent/gemini-circuit-designer",
         platforms: ["gemini"],
         compatibility: { models: ["gemini-2.0-flash", "gemini-3.0-pro"], software: ["terminal"] }
     }

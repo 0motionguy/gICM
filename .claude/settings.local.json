@@ -51,7 +51,8 @@
       "Bash(API_URL=http://localhost:4000/api npx tsx:*)",
       "Bash(gh repo view:*)",
       "WebSearch",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(cmd /c \"if exist .next rmdir /s /q .next\")"
     ],
     "deny": [],
     "ask": []

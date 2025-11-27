@@ -281,7 +281,11 @@ function CatalogPageContent() {
       <WorkflowVisualizer />
       <ModelShowcase />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-6">
+      <Web3HeroSection />
+      <MenuBuilder selected={menuCategory} onSelect={setMenuCategory} />
+
+      {/* Platform Filter - next to category filter */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pb-4 -mt-2">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 p-1 bg-white/5 rounded-xl border border-white/5 backdrop-blur-sm">
             {[
@@ -306,9 +310,6 @@ function CatalogPageContent() {
           </div>
         </div>
       </div>
-
-      <Web3HeroSection />
-      <MenuBuilder selected={menuCategory} onSelect={setMenuCategory} />
 
       <div id="marketplace-section" className="max-w-7xl mx-auto px-6 md:px-10 py-4 pb-8">
         {menuCategory === "design" ? (
