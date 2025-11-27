@@ -67,6 +67,11 @@ export function Web3HeroSection() {
               </Badge>
             </a>
 
+            <Badge className="bg-[#D97757]/10 text-[#D97757] border-[#D97757]/20 px-3 py-1.5 rounded-lg">
+              <Code2 className="w-3.5 h-3.5 mr-2" />
+              Claude Code
+            </Badge>
+
             <Badge className="bg-[#00F0FF]/10 text-[#00F0FF] border-[#00F0FF]/20 px-3 py-1.5 rounded-lg">
               <Sparkles className="w-3.5 h-3.5 mr-2" />
               Gemini 3.0 Pro
@@ -89,7 +94,7 @@ export function Web3HeroSection() {
             
             <p className="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed">
               Aether connects every runtime. Build with 
-              <span className="text-white font-medium"> 450+ verified agents</span>, skills, and workflows. 
+              <span className="text-white font-medium"> {stats.agents + stats.skills + stats.commands + stats.mcps}+ verified items</span> across agents, skills, and commands. 
               Cross-chain compatible with Claude, Gemini, and OpenAI.
             </p>
           </div>
@@ -123,10 +128,10 @@ export function Web3HeroSection() {
           <div className="mt-8 inline-flex items-center gap-3 px-4 py-3 bg-[#05050A] border border-white/10 rounded-xl">
             <span className="text-zinc-500">$</span>
             <code className="font-mono text-sm text-[#00F0FF]">
-              npx @gicm/cli add agent/video-script-pro
+              npx @gicm/cli list agents
             </code>
             <span className="text-zinc-600 text-sm hidden sm:inline-block ml-2 border-l border-white/10 pl-3">
-               Universal Installer
+               Browse Catalog
             </span>
           </div>
 
@@ -135,10 +140,10 @@ export function Web3HeroSection() {
             {[
               { label: "Agents", value: stats.agents },
               { label: "Skills", value: stats.skills },
-              { label: "Workflows", value: stats.workflows },
+              { label: "Commands", value: stats.commands },
               { label: "MCPs", value: stats.mcps },
-              { label: "Speed", value: "4.2x" },
-              { label: "Efficiency", value: "92%" },
+              { label: "Platforms", value: "3" },
+              { label: "Token Savings", value: "90%" },
             ].map((stat, i) => (
               <div key={i} className="bg-[#0F0F11] p-6 flex flex-col items-center text-center hover:bg-[#151518] transition-colors">
                 <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
