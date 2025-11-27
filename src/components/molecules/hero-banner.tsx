@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { BridgeModal } from "./bridge-modal";
-import { Network, Sparkles } from "lucide-react";
-import { NeonButton } from "@/components/ui/neon-button";
+import { Network } from "lucide-react";
 
 /**
  * HeroBanner Component
@@ -54,8 +52,6 @@ export function HeroBanner() {
                 Universal Bridge
               </span>
             </button>
-            
-            <ThemeToggle />
           </div>
         </div>
       </div>

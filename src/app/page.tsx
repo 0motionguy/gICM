@@ -27,7 +27,6 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { toast } from "sonner";
 import { getStackPresetById } from "@/lib/remix";
 import { formatProductName } from "@/lib/utils";
-import { WorkflowVisualizer } from "@/components/molecules/workflow-visualizer";
 import { ModelShowcase } from "@/components/molecules/model-showcase";
 import { DesignCard } from "@/components/molecules/design-card";
 import { DESIGN_ASSETS } from "@/lib/registry-design";
@@ -278,9 +277,6 @@ function CatalogPageContent() {
     <AuroraBackground className="min-h-screen">
       <HeroBanner />
 
-      <WorkflowVisualizer />
-      <ModelShowcase />
-
       <Web3HeroSection />
       <MenuBuilder selected={menuCategory} onSelect={setMenuCategory} />
 
@@ -376,6 +372,8 @@ function CatalogPageContent() {
           </div>
         )}
       </div>
+
+      <ModelShowcase />
 
       <button
         onClick={() => setIsStackManagerOpen(true)}

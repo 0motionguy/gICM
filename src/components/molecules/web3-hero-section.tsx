@@ -142,7 +142,7 @@ export function Web3HeroSection() {
               { label: "Skills", value: stats.skills },
               { label: "Commands", value: stats.commands },
               { label: "MCPs", value: stats.mcps },
-              { label: "Platforms", value: "3" },
+              { label: "Build Time", value: "4.2x" },
               { label: "Token Savings", value: "90%" },
             ].map((stat, i) => (
               <div key={i} className="bg-[#0F0F11] p-6 flex flex-col items-center text-center hover:bg-[#151518] transition-colors">
