@@ -52,7 +52,9 @@
       "Bash(gh repo view:*)",
       "WebSearch",
       "Bash(xargs:*)",
-      "Bash(cmd /c \"if exist .next rmdir /s /q .next\")"
+      "Bash(cmd /c \"if exist .next rmdir /s /q .next\")",
+      "Bash(npm publish:*)",
+      "Bash(npm cache clean:*)"
     ],
     "deny": [],
     "ask": []

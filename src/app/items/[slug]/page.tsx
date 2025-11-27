@@ -12,6 +12,7 @@ import { join } from "path";
 import { formatProductName } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { MODEL_VERSIONS } from "@/lib/model-versions";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -109,8 +110,8 @@ export default async function ItemDetailsPage({ params }: PageProps) {
                         <ClaudeIcon className="w-6 h-6 text-[#D97757]" />
                     </div>
                     <div>
-                        <div className="font-bold text-[#D97757]">Claude</div>
-                        <div className="text-xs text-zinc-400">3.5 Sonnet • Opus</div>
+                        <div className="font-bold text-[#D97757]">{MODEL_VERSIONS.claude.name}</div>
+                        <div className="text-xs text-zinc-400">{MODEL_VERSIONS.claude.models}</div>
                     </div>
                 </div>
 
@@ -120,8 +121,8 @@ export default async function ItemDetailsPage({ params }: PageProps) {
                         <GeminiIcon className="w-6 h-6 text-[#4E82EE]" />
                     </div>
                     <div>
-                        <div className="font-bold text-[#4E82EE]">Gemini</div>
-                        <div className="text-xs text-zinc-400">3.0 Pro • 1.5 Flash</div>
+                        <div className="font-bold text-[#4E82EE]">{MODEL_VERSIONS.gemini.name}</div>
+                        <div className="text-xs text-zinc-400">{MODEL_VERSIONS.gemini.models}</div>
                     </div>
                 </div>
 
@@ -131,8 +132,8 @@ export default async function ItemDetailsPage({ params }: PageProps) {
                         <OpenAIIcon className="w-6 h-6 text-[#10A37F]" />
                     </div>
                     <div>
-                        <div className="font-bold text-[#10A37F]">OpenAI</div>
-                        <div className="text-xs text-zinc-400">GPT-5.1 Codex • GPT-4o</div>
+                        <div className="font-bold text-[#10A37F]">{MODEL_VERSIONS.openai.name}</div>
+                        <div className="text-xs text-zinc-400">{MODEL_VERSIONS.openai.models}</div>
                     </div>
                 </div>
             </div>

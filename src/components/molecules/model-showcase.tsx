@@ -6,49 +6,50 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { GeminiIcon, ClaudeIcon, OpenAIIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { MODEL_VERSIONS } from "@/lib/model-versions";
 
 const models = [
     {
         id: "claude",
-        name: "Claude Opus 4.5",
-        provider: "Anthropic",
+        name: MODEL_VERSIONS.claude.featuredModel,
+        provider: MODEL_VERSIONS.claude.provider,
         icon: ClaudeIcon,
         color: "#D97757",
         badge: "Most Capable",
         badgeIcon: Zap,
         description: "The most capable Claude model for complex reasoning, extended thinking, and nuanced code generation.",
         code: `const agent = new ClaudeAgent({
-  model: "claude-opus-4-5-20251101",
+  model: "${MODEL_VERSIONS.claude.latestModelId}",
   tools: [fileSystem, git],
   max_tokens: 8192
 });`
     },
     {
         id: "gemini",
-        name: "Gemini 2.0 Flash",
-        provider: "Google",
+        name: MODEL_VERSIONS.gemini.featuredModel,
+        provider: MODEL_VERSIONS.gemini.provider,
         icon: GeminiIcon,
         color: "#4E82EE",
         badge: "Multimodal Native",
         badgeIcon: Sparkles,
         description: "Ultra-fast multimodal AI with agentic capabilities, native tool use, and 1M token context window.",
         code: `const agent = new GeminiAgent({
-  model: "gemini-2.0-flash",
+  model: "${MODEL_VERSIONS.gemini.latestModelId}",
   multimodal: true,
   tools: ["code_execution"]
 });`
     },
     {
         id: "openai",
-        name: "GPT-4o",
-        provider: "OpenAI",
+        name: MODEL_VERSIONS.openai.featuredModel,
+        provider: MODEL_VERSIONS.openai.provider,
         icon: OpenAIIcon,
         color: "#10A37F",
         badge: "Advanced Reasoning",
         badgeIcon: BrainCircuit,
         description: "The industry standard for speed and capability, featuring state-of-the-art function calling.",
         code: `const agent = new OpenAIAgent({
-  model: "gpt-4o",
+  model: "${MODEL_VERSIONS.openai.latestModelId}",
   function_calling: "auto",
   temperature: 0.7
 });`

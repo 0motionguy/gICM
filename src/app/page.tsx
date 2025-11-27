@@ -207,7 +207,7 @@ function CatalogPageContent() {
   const [sort, setSort] = useState("popular");
   const [isStackManagerOpen, setIsStackManagerOpen] = useState(false);
   const [hoverTrendingHeader, setHoverTrendingHeader] = useState(false);
-  const [itemsToShow, setItemsToShow] = useState(24);
+  const [itemsToShow, setItemsToShow] = useState(12);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState<RegistryItem | null>(null);
@@ -263,13 +263,13 @@ function CatalogPageContent() {
 
   const paginatedItems = useMemo(() => filtered.slice(0, itemsToShow), [filtered, itemsToShow]);
 
-  useEffect(() => { setItemsToShow(24); }, [query, menuCategory, sort, platform]);
+  useEffect(() => { setItemsToShow(12); }, [query, menuCategory, sort, platform]);
   useEffect(() => { setIsLoading(false); }, []);
 
   const handleLoadMore = async () => {
     setIsLoadingMore(true);
     await new Promise(resolve => setTimeout(resolve, 300));
-    setItemsToShow(prev => prev + 24);
+    setItemsToShow(prev => prev + 12);
     setIsLoadingMore(false);
   };
 

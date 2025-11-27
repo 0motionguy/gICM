@@ -38,10 +38,21 @@ export function InstallCard({ item }: InstallCardProps) {
 
   const providers = getProviders(item);
 
-  const cliCommand =
-    selectedPlatform === "gemini" && item.implementations?.gemini?.install
-      ? item.implementations.gemini.install
-      : item.install;
+  const cliCommand = (() => {
+    // Check for platform-specific implementation
+    if (selectedPlatform === "gemini" && item.implementations?.gemini?.install) {
+      return item.implementations.gemini.install;
+    }
+    if (selectedPlatform === "openai" && item.implementations?.openai?.install) {
+      return item.implementations.openai.install;
+    }
+    // Use default command, but add --platform flag if not Claude
+    const baseCommand = item.install;
+    if (selectedPlatform !== "claude") {
+      return `${baseCommand} --platform ${selectedPlatform}`;
+    }
+    return baseCommand;
+  })();
 
   function copyCommand() {
     navigator.clipboard?.writeText(cliCommand);
@@ -76,13 +87,25 @@ export function InstallCard({ item }: InstallCardProps) {
             onClick={() => setSelectedPlatform("gemini")}
             className={cn(
               "p-1.5 rounded-md transition-all",
-              selectedPlatform === "gemini" 
-                ? "bg-[#4E82EE]/20 text-[#4E82EE] shadow-[0_0_10px_-5px_#4E82EE]" 
+              selectedPlatform === "gemini"
+                ? "bg-[#4E82EE]/20 text-[#4E82EE] shadow-[0_0_10px_-5px_#4E82EE]"
                 : "text-zinc-600 hover:text-zinc-400"
             )}
             title="Optimized for Gemini"
           >
             <GeminiIcon className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={() => setSelectedPlatform("openai")}
+            className={cn(
+              "p-1.5 rounded-md transition-all",
+              selectedPlatform === "openai"
+                ? "bg-[#10A37F]/20 text-[#10A37F] shadow-[0_0_10px_-5px_#10A37F]"
+                : "text-zinc-600 hover:text-zinc-400"
+            )}
+            title="Optimized for OpenAI"
+          >
+            <OpenAIIcon className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
@@ -111,7 +134,11 @@ export function InstallCard({ item }: InstallCardProps) {
         <div className="mt-3 flex items-center gap-2 text-[10px] text-zinc-500 border-t border-white/5 pt-3">
           <Info size={12} />
           <span>
-            {selectedPlatform === "claude" ? "Installs the standard version for Claude." : "Installs the Gemini-optimized version."}
+            {selectedPlatform === "claude"
+              ? "Installs the standard version for Claude."
+              : selectedPlatform === "gemini"
+                ? "Installs the Gemini-optimized version."
+                : "Installs the OpenAI-optimized version."}
           </span>
         </div>
       </div>
