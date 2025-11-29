@@ -1,0 +1,49 @@
+{
+  "name": "@gicm/growth-engine",
+  "version": "1.0.0",
+  "description": "Automated growth engine for gICM platform - blog, social, SEO",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "gicm-growth": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format esm",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/cli.js start",
+    "growth": "node dist/cli.js",
+    "blog": "node dist/cli.js generate blog",
+    "tweet": "node dist/cli.js generate tweet",
+    "keywords": "node dist/cli.js keywords",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "twitter-api-v2": "^1.17.0",
+    "discord.js": "^14.15.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^12.0.0",
+    "slugify": "^1.6.0",
+    "reading-time": "^1.5.0",
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0",
+    "rss-parser": "^3.13.0",
+    "cron": "^3.1.0",
+    "p-queue": "^8.0.0",
+    "date-fns": "^3.6.0",
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.0",
+    "pino": "^9.0.0",
+    "zod": "^3.23.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.10.0",
+    "vitest": "^1.6.0",
+    "@types/node": "^20.0.0"
+  }
+}

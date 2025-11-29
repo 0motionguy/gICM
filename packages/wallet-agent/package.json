@@ -1,0 +1,48 @@
+{
+  "name": "@gicm/wallet-agent",
+  "version": "1.0.0",
+  "description": "AI-powered wallet operations agent - natural language transactions via Coinbase AgentKit & Solana Agent Kit",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "wallet",
+    "web3",
+    "ai-agent",
+    "coinbase",
+    "solana",
+    "transactions",
+    "gicm"
+  ],
+  "author": "gICM",
+  "license": "MIT",
+  "dependencies": {
+    "@gicm/agent-core": "workspace:*",
+    "@coinbase/coinbase-sdk": "^0.10.0",
+    "solana-agent-kit": "^1.4.0",
+    "@solana/web3.js": "^1.95.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  }
+}

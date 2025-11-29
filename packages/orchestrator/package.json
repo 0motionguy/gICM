@@ -1,0 +1,30 @@
+{
+  "name": "@gicm/orchestrator",
+  "version": "0.1.0",
+  "description": "Multi-agent orchestration - workflow coordination and routing",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gicm/agent-core": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "keywords": ["orchestrator", "multi-agent", "workflow", "coordination", "web3", "agent"],
+  "license": "MIT"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@gicm/decision-agent",
+  "version": "0.1.0",
+  "description": "LLM-powered decision engine for evaluating discoveries in gICM Orchestrator",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gicm/agent-core": "workspace:*",
+    "@gicm/hunter-agent": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "gicm",
+    "decision",
+    "llm",
+    "scoring",
+    "evaluation"
+  ],
+  "license": "MIT"
+}

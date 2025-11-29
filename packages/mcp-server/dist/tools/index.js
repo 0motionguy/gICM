@@ -5,6 +5,7 @@ import { searchComponents } from "./search-components.js";
 import { searchCodebase } from "./search-codebase.js";
 import { getFileContext } from "./get-file-context.js";
 import { indexRepository } from "./index-repository.js";
+import { getMarketData, analyzeToken, tradingTools, } from "./trading/index.js";
 // Tool definitions
 export const tools = {
     search_components: {
@@ -95,6 +96,8 @@ export const tools = {
             },
         },
     },
+    // Trading tools
+    ...tradingTools,
 };
 // Tool handler
 export async function handleToolCall(name, args) {
@@ -112,6 +115,32 @@ export async function handleToolCall(name, args) {
                 break;
             case "index_repository":
                 result = await indexRepository(args.url, args.branch || "main");
+                break;
+            // Trading tools
+            case "get_market_data":
+                result = await getMarketData(args.token, args.chain || "solana");
+                break;
+            case "analyze_token":
+                result = await analyzeToken(args.token, args.chain || "solana", args.mode || "full");
+                break;
+            case "quick_signal":
+                result = await analyzeToken(args.token, args.chain || "solana", "fast");
+                break;
+            case "compare_tokens":
+                const tokens = args.tokens;
+                const chain = args.chain || "solana";
+                const comparisons = await Promise.all(tokens.slice(0, 5).map((t) => analyzeToken(t, chain, "fast")));
+                result = {
+                    tokens: comparisons.map((c) => ({
+                        token: c.token,
+                        sentiment: c.sentiment,
+                        action: c.action,
+                        confidence: c.confidence,
+                    })),
+                    recommendation: comparisons
+                        .filter((c) => c.action === "buy")
+                        .map((c) => c.token),
+                };
                 break;
             default:
                 throw new Error(`Unknown tool: ${name}`);

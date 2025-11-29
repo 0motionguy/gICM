@@ -1,0 +1,52 @@
+{
+  "name": "@gicm/hunter-agent",
+  "version": "0.1.0",
+  "description": "Tech discovery agent for gICM - hunts GitHub, HackerNews, and Twitter for valuable opportunities",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./sources": {
+      "types": "./dist/sources/index.d.ts",
+      "import": "./dist/sources/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gicm/agent-core": "workspace:*",
+    "@gicm/activity-logger": "workspace:*",
+    "cron": "^3.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cron": "^2.4.0",
+    "@types/node": "^20.17.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "gicm",
+    "hunter",
+    "discovery",
+    "github",
+    "hackernews",
+    "twitter"
+  ],
+  "license": "MIT"
+}

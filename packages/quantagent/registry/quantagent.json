@@ -1,0 +1,85 @@
+{
+  "id": "gicm-quantagent",
+  "name": "QuantAgent Trading Signals",
+  "version": "1.0.0",
+  "category": "workflows",
+  "subcategory": "trading",
+  "type": "skill",
+
+  "description": "Multi-agent LLM system for crypto trading signals. Uses 4 specialized AI agents (Indicator, Pattern, Trend, Risk) to analyze market data and generate actionable trade recommendations with entry/exit points and risk management.",
+
+  "features": [
+    "4 specialized AI agents working in parallel",
+    "Technical indicators: RSI, MACD, Stochastic, Bollinger Bands",
+    "Chart pattern recognition (head & shoulders, triangles, etc.)",
+    "Crypto-specific patterns (pump/dump, accumulation/distribution)",
+    "Trend and momentum analysis",
+    "Risk-adjusted trade recommendations",
+    "Stop-loss and take-profit levels",
+    "Works with Solana tokens, memecoins, and major cryptos"
+  ],
+
+  "tags": [
+    "trading",
+    "crypto",
+    "solana",
+    "multi-agent",
+    "llm",
+    "technical-analysis",
+    "signals",
+    "defi",
+    "bonding-curve"
+  ],
+
+  "ai_compatibility": ["claude", "gpt4", "gemini"],
+
+  "pricing": {
+    "type": "premium",
+    "tier": "pro"
+  },
+
+  "installation": {
+    "npm": "@gicm/quantagent",
+    "cdn": "https://unpkg.com/@gicm/quantagent"
+  },
+
+  "usage": {
+    "quick_start": "import { analyzeToken } from '@gicm/quantagent';\n\nconst decision = await analyzeToken('SOL', { timeframe: '4h' });",
+    "component": "<QuantAgentWidget token={{ symbol: 'SOL', chain: 'solana' }} />",
+    "api": "POST /api/quantagent { token, timeframe }",
+    "cli": "quantagent analyze SOL --timeframe 4h"
+  },
+
+  "requirements": {
+    "api_keys": ["ANTHROPIC_API_KEY or OPENAI_API_KEY"],
+    "node": ">=18.0.0"
+  },
+
+  "source": {
+    "original": "https://github.com/Y-Research-SBU/QuantAgent",
+    "license": "MIT",
+    "paper": "https://arxiv.org/abs/2509.09995"
+  },
+
+  "integrations": [
+    {
+      "name": "ICM Motion",
+      "description": "Trading signals for bonding curve tokens"
+    },
+    {
+      "name": "CThunt",
+      "description": "Token analysis for leaderboard entries"
+    }
+  ],
+
+  "preview_url": "https://gicm.dev/preview/quantagent",
+  "documentation_url": "https://gicm.dev/docs/quantagent",
+
+  "author": {
+    "name": "gICM",
+    "attribution": "Based on QuantAgent by Xiong et al. (Stony Brook, CMU, Yale, UBC, Fudan)"
+  },
+
+  "created_at": "2025-01-01",
+  "updated_at": "2025-01-01"
+}

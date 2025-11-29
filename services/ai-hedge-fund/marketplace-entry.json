@@ -1,0 +1,99 @@
+{
+  "plugins": [
+    {
+      "name": "ai-hedge-fund",
+      "source": "github:Kermit457/gICM",
+      "description": "12-agent AI trading system with Warren Buffett, Michael Burry, and crypto-native personas. LangGraph orchestration, backtesting, Jupiter execution.",
+      "category": "Trading & DeFi",
+      "tags": [
+        "AI Agents",
+        "Trading",
+        "LangGraph",
+        "Crypto",
+        "DeFi",
+        "Backtesting",
+        "Jupiter",
+        "Solana"
+      ],
+      "components": {
+        "agents": [
+          ".claude/agents/ai-hedge-fund.md",
+          ".claude/agents/pump-trader.md",
+          ".claude/agents/whale-watcher.md"
+        ],
+        "services": [
+          "services/ai-hedge-fund"
+        ]
+      },
+      "dependencies": [
+        "whale-tracker",
+        "pump-trader",
+        "defi-integration-architect"
+      ],
+      "modelRecommendation": "opus",
+      "envKeys": [
+        "ANTHROPIC_API_KEY",
+        "BIRDEYE_API_KEY",
+        "HELIUS_API_KEY",
+        "TELEGRAM_BOT_TOKEN",
+        "DISCORD_WEBHOOK_URL"
+      ],
+      "endpoints": {
+        "analyze": "POST /analyze",
+        "quickSignal": "POST /quick-signal",
+        "marketData": "GET /market-data/{token}",
+        "health": "GET /health"
+      },
+      "docker": {
+        "image": "gicm/ai-hedge-fund:latest",
+        "port": 8001
+      }
+    },
+    {
+      "name": "pump-trader",
+      "source": "github:Kermit457/gICM",
+      "description": "Elite pump.fun trader modeled after Ansem, GCR, and $40M whale. Win rate > P/L ratio. 5.2x faster signal generation.",
+      "category": "Trading & DeFi",
+      "tags": [
+        "pump.fun",
+        "Memecoin",
+        "Trading",
+        "Solana",
+        "DeFi"
+      ],
+      "components": {
+        "agents": [
+          ".claude/agents/pump-trader.md"
+        ]
+      },
+      "modelRecommendation": "sonnet"
+    },
+    {
+      "name": "whale-watcher",
+      "source": "github:Kermit457/gICM",
+      "description": "Smart money tracker. Detects whale accumulation, copy-trade signals, holder distribution analysis. 4.7x better entry timing.",
+      "category": "Trading & DeFi",
+      "tags": [
+        "Whale Tracking",
+        "Smart Money",
+        "On-Chain",
+        "Trading",
+        "Analytics"
+      ],
+      "components": {
+        "agents": [
+          ".claude/agents/whale-watcher.md"
+        ]
+      },
+      "dependencies": [
+        "helius-api",
+        "birdeye-api"
+      ],
+      "modelRecommendation": "sonnet",
+      "envKeys": [
+        "HELIUS_API_KEY",
+        "BIRDEYE_API_KEY"
+      ]
+    }
+  ]
+}

@@ -6,6 +6,11 @@ import { searchComponents } from "./search-components.js";
 import { searchCodebase } from "./search-codebase.js";
 import { getFileContext } from "./get-file-context.js";
 import { indexRepository } from "./index-repository.js";
+import {
+  getMarketData,
+  analyzeToken,
+  tradingTools,
+} from "./trading/index.js";
 
 // Tool definitions
 export const tools = {
@@ -101,6 +106,9 @@ export const tools = {
       },
     },
   },
+
+  // Trading tools
+  ...tradingTools,
 };
 
 // Tool handler
@@ -144,6 +152,49 @@ export async function handleToolCall(
           args.url as string,
           (args.branch as string) || "main"
         );
+        break;
+
+      // Trading tools
+      case "get_market_data":
+        result = await getMarketData(
+          args.token as string,
+          (args.chain as string) || "solana"
+        );
+        break;
+
+      case "analyze_token":
+        result = await analyzeToken(
+          args.token as string,
+          (args.chain as string) || "solana",
+          (args.mode as "full" | "fast" | "degen") || "full"
+        );
+        break;
+
+      case "quick_signal":
+        result = await analyzeToken(
+          args.token as string,
+          (args.chain as string) || "solana",
+          "fast"
+        );
+        break;
+
+      case "compare_tokens":
+        const tokens = args.tokens as string[];
+        const chain = (args.chain as string) || "solana";
+        const comparisons = await Promise.all(
+          tokens.slice(0, 5).map((t) => analyzeToken(t, chain, "fast"))
+        );
+        result = {
+          tokens: comparisons.map((c) => ({
+            token: c.token,
+            sentiment: c.sentiment,
+            action: c.action,
+            confidence: c.confidence,
+          })),
+          recommendation: comparisons
+            .filter((c) => c.action === "buy")
+            .map((c) => c.token),
+        };
         break;
 
       default:

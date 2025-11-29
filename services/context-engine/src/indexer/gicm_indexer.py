@@ -2,6 +2,7 @@
 
 from typing import List, Dict, Any
 import hashlib
+import uuid
 import httpx
 
 from ..db.qdrant import QdrantDB
@@ -37,11 +38,10 @@ class GICMIndexer:
         return "\n".join(filter(None, parts))
 
     def _generate_id(self, item: Dict[str, Any]) -> str:
-        """Generate stable ID for an item."""
-        # Use the item's ID if available, otherwise hash the name
-        if item_id := item.get("id"):
-            return item_id
-        return hashlib.sha256(item.get("name", "").encode()).hexdigest()[:16]
+        """Generate stable UUID for an item."""
+        # Create UUID from item ID (deterministic via namespace)
+        item_id = item.get("id") or item.get("name", "")
+        return str(uuid.uuid5(uuid.NAMESPACE_DNS, f"gicm.{item_id}"))
 
     async def index_registry(
         self,

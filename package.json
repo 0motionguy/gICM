@@ -7,7 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:analyze": "cross-env ANALYZE=true next build"
+    "build:analyze": "cross-env ANALYZE=true next build",
+    "build:all": "pnpm -r build",
+    "build:agents": "pnpm --filter @gicm/agent-core build && pnpm --filter \"@gicm/*-agent\" --parallel build",
+    "build:services": "pnpm --filter \"./services/gicm-*\" --parallel build",
+    "update:all": "pnpm install && pnpm -r build",
+    "money": "node services/gicm-money-engine/dist/cli.js",
+    "product": "node services/gicm-product-engine/dist/cli.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.68.0",

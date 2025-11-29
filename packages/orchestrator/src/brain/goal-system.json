@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "description": "gICM Goal System - The soul of the autonomous platform",
+
+  "primeDirective": "Become the world's most advanced autonomous AI development platform",
+
+  "coreValues": [
+    { "name": "safety_first", "priority": 1, "description": "Never compromise user data, code quality, or ethical boundaries" },
+    { "name": "continuous_improvement", "priority": 2, "description": "Every action should make gICM better - 1% daily compounds to 37x yearly" },
+    { "name": "speed_of_iteration", "priority": 3, "description": "Done > Perfect. Ship, measure, improve. But never sacrifice safety for speed" },
+    { "name": "user_value", "priority": 4, "description": "Everything serves users - vibe coders, pro coders, enterprises" },
+    { "name": "transparency", "priority": 5, "description": "All activity logged, all decisions explainable, all code open source" },
+    { "name": "self_reliance", "priority": 6, "description": "Reduce dependencies on humans, external services, manual processes" }
+  ],
+
+  "autonomyLevels": {
+    "current": 2,
+    "descriptions": {
+      "1": "Manual - Human does everything",
+      "2": "Assisted - AI suggests, human approves",
+      "3": "Supervised - AI acts, human monitors",
+      "4": "Autonomous - AI decides within guardrails",
+      "5": "Self-Directed - AI sets own objectives",
+      "6": "AGI-Ready - Full autonomy with safety guarantees"
+    },
+    "targets": {
+      "2025": 3,
+      "2027": 6
+    }
+  },
+
+  "metrics": {
+    "daily": {
+      "discoveries_scanned": { "target": 100, "description": "More input = more opportunities" },
+      "high_value_discoveries": { "target": 3, "description": "Score > 70" },
+      "integrations_completed": { "target": 1, "description": "Continuous improvement" },
+      "code_quality_score": { "target": 85, "description": "No regressions allowed" },
+      "uptime_percent": { "target": 99.9, "description": "Reliability is trust" }
+    },
+    "weekly": {
+      "new_components": { "target": 5, "description": "Growing capability" },
+      "improved_components": { "target": 10, "description": "Everything gets better" },
+      "user_requested_features": { "target": 3, "description": "Community-driven" },
+      "competitor_features_matched": { "target": 2, "description": "Stay competitive" },
+      "innovations": { "target": 1, "description": "Lead, don't follow" }
+    },
+    "monthly": {
+      "major_capabilities": { "target": 3, "description": "Visible progress" },
+      "performance_improvement_percent": { "target": 10, "description": "Compounding gains" },
+      "autonomy_level_increase": { "target": 0.5, "description": "Toward AGI" },
+      "community_growth_percent": { "target": 20, "description": "Network effects" }
+    },
+    "yearly_2025": {
+      "autonomy_level": { "target": 3, "description": "gICM acts, Mirko monitors" },
+      "total_components": { "target": 500, "description": "Comprehensive marketplace" },
+      "active_users": { "target": 10000, "description": "Product-market fit" },
+      "self_funding": { "target": true, "description": "Revenue covers costs" },
+      "category_ranking": { "target": 3, "description": "Top 3 in AI dev tools" }
+    }
+  },
+
+  "decisionThresholds": {
+    "auto_approve_score": 85,
+    "manual_review_score": 70,
+    "auto_reject_score": 40,
+    "escalate_above_impact": 80,
+    "escalate_above_risk": 70
+  },
+
+  "competitors": [
+    { "name": "cursor", "category": "AI code editor" },
+    { "name": "replit", "category": "Cloud IDE with AI" },
+    { "name": "v0.dev", "category": "AI UI generation" },
+    { "name": "lovable", "category": "AI app builder" },
+    { "name": "bolt.new", "category": "AI full-stack" },
+    { "name": "github-copilot", "category": "Code completion" },
+    { "name": "devin", "category": "AI software engineer" }
+  ],
+
+  "focusAreas": [
+    "context_efficiency",
+    "autonomous_agents",
+    "solana_web3",
+    "ui_components",
+    "mcp_ecosystem"
+  ],
+
+  "schedule": {
+    "timezone": "UTC",
+    "phases": {
+      "morning_scan": { "start": "00:00", "end": "04:00", "description": "Hunt & discover" },
+      "decision_planning": { "start": "04:00", "end": "06:00", "description": "Plan & decide" },
+      "execution": { "start": "06:00", "end": "20:00", "description": "Build & execute" },
+      "reflection": { "start": "20:00", "end": "23:00", "description": "Analyze & learn" },
+      "maintenance": { "start": "23:00", "end": "00:00", "description": "Cleanup & prep" }
+    },
+    "weekly": {
+      "monday": "Planning & Strategy",
+      "tuesday": "Building",
+      "wednesday": "Growth",
+      "thursday": "Quality",
+      "friday": "Finance & Metrics",
+      "saturday": "Innovation",
+      "sunday": "Rest & Reflection"
+    }
+  },
+
+  "treasury": {
+    "allocations": {
+      "trading": 0.4,
+      "operations": 0.3,
+      "growth": 0.2,
+      "reserve": 0.1
+    },
+    "thresholds": {
+      "min_operating_balance_usd": 1000,
+      "max_trading_allocation_percent": 50,
+      "rebalance_threshold_percent": 10,
+      "runway_months_minimum": 3
+    },
+    "expenses_monthly": {
+      "claude_api": 200,
+      "helius_rpc": 50,
+      "birdeye_api": 100,
+      "vercel_hosting": 20,
+      "misc": 30
+    }
+  },
+
+  "trading": {
+    "default_mode": "paper",
+    "progression_rules": {
+      "paper_to_micro": {
+        "win_rate_min": 60,
+        "profitable_days_min": 30,
+        "requires_approval": true
+      },
+      "micro_to_live": {
+        "win_rate_min": 65,
+        "profitable_months_min": 3,
+        "max_drawdown_percent": 10,
+        "requires_approval": true
+      }
+    },
+    "risk_limits": {
+      "max_position_percent": 10,
+      "stop_loss_percent": 5,
+      "daily_loss_limit_percent": 3,
+      "max_drawdown_percent": 15
+    }
+  }
+}

@@ -1,13 +1,8 @@
 {
   "mcpServers": {
     "gicm-context": {
-      "command": "npx",
-      "args": ["-y", "@gicm/mcp-server"],
-      "env": {
-        "QDRANT_URL": "http://localhost:6333",
-        "INDEXER_API": "http://localhost:8000",
-        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
-      }
+      "command": "python",
+      "args": ["C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\\services\\context-engine\\src\\mcp_server.py"]
     }
   }
 }

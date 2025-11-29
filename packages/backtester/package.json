@@ -1,0 +1,33 @@
+{
+  "name": "@gicm/backtester",
+  "version": "0.1.0",
+  "description": "Trading backtester - strategy testing, risk analytics, Monte Carlo simulation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "gicm-backtest": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gicm/agent-core": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "keywords": ["backtester", "trading", "strategy", "analytics", "monte-carlo", "web3"],
+  "license": "MIT"
+}

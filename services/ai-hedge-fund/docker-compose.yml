@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  ai-hedge-fund:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-hedge-fund
+    ports:
+      - "8001:8001"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - BIRDEYE_API_KEY=${BIRDEYE_API_KEY:-}
+      - HELIUS_API_KEY=${HELIUS_API_KEY:-}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL:-}
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8001/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - gicm-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hedge-fund.rule=Host(`hedge-fund.gicm.local`)"
+      - "traefik.http.services.hedge-fund.loadbalancer.server.port=8001"
+
+  # Optional: Redis for caching market data
+  redis:
+    image: redis:7-alpine
+    container_name: hedge-fund-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - gicm-network
+    profiles:
+      - with-cache
+
+networks:
+  gicm-network:
+    driver: bridge
+
+volumes:
+  redis-data:

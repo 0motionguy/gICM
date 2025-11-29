@@ -1,0 +1,30 @@
+{
+  "name": "@gicm/nft-agent",
+  "version": "0.1.0",
+  "description": "NFT operations agent - Metaplex, OpenSea, Magic Eden integration",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gicm/agent-core": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "keywords": ["nft", "metaplex", "opensea", "magic-eden", "web3", "agent"],
+  "license": "MIT"
+}
