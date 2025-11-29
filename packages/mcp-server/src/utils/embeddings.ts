@@ -1,41 +1,47 @@
 /**
- * OpenAI embeddings
+ * Gemini embeddings
  */
 
-import OpenAI from "openai";
-import { getOpenAIKey } from "./config.js";
+import { GoogleGenerativeAI, TaskType } from "@google/generative-ai";
+import { getGeminiKey } from "./config.js";
 
-let openai: OpenAI | null = null;
+let genAI: GoogleGenerativeAI | null = null;
 
-function getOpenAI(): OpenAI {
-  if (!openai) {
-    const apiKey = getOpenAIKey();
+function getGenAI(): GoogleGenerativeAI {
+  if (!genAI) {
+    const apiKey = getGeminiKey();
     if (!apiKey) {
-      throw new Error("OPENAI_API_KEY environment variable not set");
+      throw new Error("GEMINI_API_KEY environment variable not set");
     }
-    openai = new OpenAI({ apiKey });
+    genAI = new GoogleGenerativeAI(apiKey);
   }
-  return openai;
+  return genAI;
 }
 
 export async function getEmbedding(text: string): Promise<number[]> {
-  const client = getOpenAI();
+  const client = getGenAI();
+  const model = client.getGenerativeModel({ model: "text-embedding-004" });
 
-  const response = await client.embeddings.create({
-    model: "text-embedding-3-small",
-    input: text,
+  const result = await model.embedContent({
+    content: { parts: [{ text }], role: "user" },
+    taskType: TaskType.RETRIEVAL_QUERY,
   });
 
-  return response.data[0].embedding;
+  return result.embedding.values;
 }
 
 export async function getEmbeddings(texts: string[]): Promise<number[][]> {
-  const client = getOpenAI();
+  const client = getGenAI();
+  const model = client.getGenerativeModel({ model: "text-embedding-004" });
 
-  const response = await client.embeddings.create({
-    model: "text-embedding-3-small",
-    input: texts,
-  });
+  const embeddings: number[][] = [];
+  for (const text of texts) {
+    const result = await model.embedContent({
+      content: { parts: [{ text }], role: "user" },
+      taskType: TaskType.RETRIEVAL_DOCUMENT,
+    });
+    embeddings.push(result.embedding.values);
+  }
 
-  return response.data.map((d) => d.embedding);
+  return embeddings;
 }

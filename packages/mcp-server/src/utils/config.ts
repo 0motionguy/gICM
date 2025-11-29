@@ -10,8 +10,8 @@ export function getIndexerUrl(): string {
   return process.env.INDEXER_API || "http://localhost:8000";
 }
 
-export function getOpenAIKey(): string | undefined {
-  return process.env.OPENAI_API_KEY;
+export function getGeminiKey(): string | undefined {
+  return process.env.GEMINI_API_KEY;
 }
 
 export function getGICMApiUrl(): string {

@@ -1,6 +1,6 @@
 {
   "name": "@gicm/mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for gICM marketplace - semantic search for agents, skills, MCPs, and workflows",
   "type": "module",
   "main": "./dist/index.js",
@@ -25,9 +25,9 @@
   "author": "gICM",
   "license": "MIT",
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@qdrant/js-client-rest": "^1.7.0",
-    "openai": "^4.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

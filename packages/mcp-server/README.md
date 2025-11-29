@@ -23,7 +23,7 @@ Add to `~/.config/claude/mcp_servers.json`:
       "args": ["-y", "@gicm/mcp-server"],
       "env": {
         "QDRANT_URL": "http://localhost:6333",
-        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}"
       }
     }
   }
@@ -48,7 +48,7 @@ Add to `.cursor/mcp.json`:
 ## Prerequisites
 
 1. **Qdrant** running on `localhost:6333`
-2. **OpenAI API Key** for embeddings
+2. **Gemini API Key** for embeddings (free tier available)
 3. **Indexed gICM registry** (run the indexer first)
 
 ## Quick Start
@@ -85,7 +85,7 @@ In Claude Code, Cursor, or Windsurf:
 |----------|-------------|---------|
 | `QDRANT_URL` | Qdrant server URL | `http://localhost:6333` |
 | `INDEXER_API` | Indexer service URL | `http://localhost:8000` |
-| `OPENAI_API_KEY` | OpenAI API key | Required |
+| `GEMINI_API_KEY` | Gemini API key (free tier) | Required |
 
 ## Development
 

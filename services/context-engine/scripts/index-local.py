@@ -50,21 +50,23 @@ def parse_ts_objects(content: str) -> list:
     """Parse TypeScript objects more robustly."""
     components = []
 
-    # Find id, name, description patterns
+    # Patterns for all fields
     id_pattern = r'id:\s*["\']([^"\']+)["\']'
     name_pattern = r'name:\s*["\']([^"\']+)["\']'
     desc_pattern = r'description:\s*["\']([^"\']+)["\']'
+    long_desc_pattern = r'longDescription:\s*["\']([^"\']+)["\']'
     cat_pattern = r'category:\s*["\']([^"\']+)["\']'
+    kind_pattern = r'kind:\s*["\']([^"\']+)["\']'
     tags_pattern = r'tags:\s*\[(.*?)\]'
+    install_pattern = r'install:\s*["\']([^"\']+)["\']'
 
-    # Split by object boundaries
+    # Split by object boundaries (handle nested objects)
     blocks = re.split(r'\},\s*\{', content)
 
     for block in blocks:
         id_match = re.search(id_pattern, block)
         name_match = re.search(name_pattern, block)
         desc_match = re.search(desc_pattern, block)
-        cat_match = re.search(cat_pattern, block)
 
         if id_match and name_match and desc_match:
             # Extract tags
@@ -74,13 +76,31 @@ def parse_ts_objects(content: str) -> list:
                 tag_content = tags_match.group(1)
                 tags = re.findall(r'["\']([^"\']+)["\']', tag_content)
 
+            # Extract kind
+            kind_match = re.search(kind_pattern, block)
+            kind = kind_match.group(1) if kind_match else "component"
+
+            # Extract category
+            cat_match = re.search(cat_pattern, block)
+            category = cat_match.group(1) if cat_match else "UI"
+
+            # Extract long description
+            long_desc_match = re.search(long_desc_pattern, block)
+            long_desc = long_desc_match.group(1) if long_desc_match else ""
+
+            # Extract install command
+            install_match = re.search(install_pattern, block)
+            install = install_match.group(1) if install_match else ""
+
             components.append({
                 "id": id_match.group(1),
                 "name": name_match.group(1).replace('/', ''),
                 "description": desc_match.group(1),
-                "category": cat_match.group(1) if cat_match else "UI",
-                "kind": "component",
+                "longDescription": long_desc,
+                "category": category,
+                "kind": kind,
                 "tags": tags,
+                "install": install,
             })
 
     return components
@@ -114,16 +134,32 @@ async def main():
     print("Initializing collections...")
     await init_collections(db)
 
-    # Read TypeScript file - use absolute path
-    ts_file = r"C:\Users\mirko\OneDrive\Desktop\gICM\src\lib\registry-design.ts"
+    # Read ALL registry files
+    registry_files = [
+        r"C:\Users\mirko\OneDrive\Desktop\gICM\src\lib\registry.ts",
+        r"C:\Users\mirko\OneDrive\Desktop\gICM\src\lib\registry-design.ts",
+        r"C:\Users\mirko\OneDrive\Desktop\gICM\src\lib\registry-gemini.ts",
+        r"C:\Users\mirko\OneDrive\Desktop\gICM\src\lib\registry-openai.ts",
+        r"C:\Users\mirko\OneDrive\Desktop\gICM\src\lib\registry-content.ts",
+    ]
 
-    print(f"Reading registry from {ts_file}...")
+    all_components = []
+    seen_ids = set()
 
-    with open(ts_file, 'r', encoding='utf-8') as f:
-        content = f.read()
+    for ts_file in registry_files:
+        print(f"Reading {os.path.basename(ts_file)}...")
+        with open(ts_file, 'r', encoding='utf-8') as f:
+            content = f.read()
 
-    # Parse components
-    components = parse_ts_objects(content)
+        components = parse_ts_objects(content)
+        # Deduplicate by ID
+        for comp in components:
+            if comp["id"] not in seen_ids:
+                seen_ids.add(comp["id"])
+                all_components.append(comp)
+        print(f"  Found {len(components)} items ({len(all_components)} total unique)")
+
+    components = all_components
     print(f"Found {len(components)} components")
 
     if not components:
@@ -140,10 +176,18 @@ async def main():
     for i in range(0, len(components), BATCH_SIZE):
         batch = components[i:i + BATCH_SIZE]
 
-        # Build search texts
+        # Build search texts - include long description for better matching
         texts = []
         for comp in batch:
-            text = f"{comp['name']}\n{comp['description']}\nCategory: {comp['category']}\nTags: {', '.join(comp['tags'])}"
+            parts = [
+                comp['name'],
+                comp['description'],
+                comp.get('longDescription', ''),
+                f"Kind: {comp['kind']}",
+                f"Category: {comp['category']}",
+                f"Tags: {', '.join(comp['tags'])}",
+            ]
+            text = "\n".join(filter(None, parts))
             texts.append(text)
 
         # Generate embeddings
