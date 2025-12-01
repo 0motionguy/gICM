@@ -30,6 +30,7 @@ const workflow_1 = require("./commands/workflow");
 const watch_1 = require("./commands/watch");
 const memory_1 = require("./commands/memory");
 const team_1 = require("./commands/team");
+const commit_1 = require("./commands/commit");
 const program = new commander_1.Command();
 const DEFAULT_API_URL = 'https://gicm-marketplace.vercel.app/api';
 program
@@ -537,6 +538,8 @@ workflowCmd
 (0, memory_1.registerMemoryCommands)(program);
 // Team command group - Collaborative contexts
 (0, team_1.registerTeamCommands)(program);
+// Commit command group - AI-powered git workflow
+(0, commit_1.registerCommitCommands)(program);
 // Show help if no arguments
 if (process.argv.length === 2) {
     program.help();

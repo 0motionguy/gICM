@@ -2,6 +2,96 @@
  * MCP Tools for gICM Context Engine
  */
 export declare const tools: {
+    "dev.git_status": {
+        description: string;
+        parameters: {
+            verbose: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_analyze": {
+        description: string;
+        parameters: {
+            staged: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_commit": {
+        description: string;
+        parameters: {
+            message: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            all: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            amend: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            dry_run: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_push": {
+        description: string;
+        parameters: {
+            force: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            set_upstream: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            branch: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_pr": {
+        description: string;
+        parameters: {
+            title: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            body: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            base: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            draft: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
     "dev.team_create": {
         description: string;
         parameters: {

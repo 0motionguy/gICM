@@ -12,7 +12,8 @@ import { workflowCreate, workflowRun, workflowStatus, workflowList, workflowTool
 import { watchStatus, watchChanges, watchReindex, watchClear, watchTools, } from "./watch.js";
 import { memoryRemember, memoryRecall, memorySearch, memoryForget, memoryStats, memoryTools, } from "./memory.js";
 import { teamCreate, teamList, teamShow, teamAddMember, teamShare, teamShared, teamSync, teamDelete, teamTools, } from "./team.js";
-export { getContextBundle, getStatus, runAgent, listAgents, suggestCapabilities, workflowCreate, workflowRun, workflowStatus, workflowList, watchStatus, watchChanges, watchReindex, watchClear, memoryRemember, memoryRecall, memorySearch, memoryForget, memoryStats, teamCreate, teamList, teamShow, teamAddMember, teamShare, teamShared, teamSync, teamDelete, };
+import { gitStatus, gitAnalyze, gitCommit, gitPush, gitPR, gitTools, } from "./git.js";
+export { getContextBundle, getStatus, runAgent, listAgents, suggestCapabilities, workflowCreate, workflowRun, workflowStatus, workflowList, watchStatus, watchChanges, watchReindex, watchClear, memoryRemember, memoryRecall, memorySearch, memoryForget, memoryStats, teamCreate, teamList, teamShow, teamAddMember, teamShare, teamShared, teamSync, teamDelete, gitStatus, gitAnalyze, gitCommit, gitPush, gitPR, };
 // Tool definitions for dev.* namespace
 export const devTools = {
     "dev.get_context_bundle": {
@@ -86,5 +87,7 @@ export const devTools = {
     ...memoryTools,
     // Team tools
     ...teamTools,
+    // Git tools
+    ...gitTools,
 };
 //# sourceMappingURL=index.js.map

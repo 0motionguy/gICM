@@ -418,4 +418,7 @@ You always:
       result,
       result.error,
       result.message?.confidence,
- 
+      result.message?.reasoning
+    );
+  }
+}

@@ -1641,4 +1641,9 @@ Commit created: ${result.commitHash?.substring(0, 7)}`);
         process.exit(1);
     }
   } catch (error) {
-    console.error
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+}
+main();
+//# sourceMappingURL=cli.js.map

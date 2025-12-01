@@ -12,8 +12,99 @@ import { workflowCreate, workflowRun, workflowStatus, workflowList } from "./wor
 import { watchStatus, watchChanges, watchReindex, watchClear } from "./watch.js";
 import { memoryRemember, memoryRecall, memorySearch, memoryForget, memoryStats } from "./memory.js";
 import { teamCreate, teamList, teamShow, teamAddMember, teamShare, teamShared, teamSync, teamDelete } from "./team.js";
-export { getContextBundle, getStatus, runAgent, listAgents, suggestCapabilities, workflowCreate, workflowRun, workflowStatus, workflowList, watchStatus, watchChanges, watchReindex, watchClear, memoryRemember, memoryRecall, memorySearch, memoryForget, memoryStats, teamCreate, teamList, teamShow, teamAddMember, teamShare, teamShared, teamSync, teamDelete, };
+import { gitStatus, gitAnalyze, gitCommit, gitPush, gitPR } from "./git.js";
+export { getContextBundle, getStatus, runAgent, listAgents, suggestCapabilities, workflowCreate, workflowRun, workflowStatus, workflowList, watchStatus, watchChanges, watchReindex, watchClear, memoryRemember, memoryRecall, memorySearch, memoryForget, memoryStats, teamCreate, teamList, teamShow, teamAddMember, teamShare, teamShared, teamSync, teamDelete, gitStatus, gitAnalyze, gitCommit, gitPush, gitPR, };
 export declare const devTools: {
+    "dev.git_status": {
+        description: string;
+        parameters: {
+            verbose: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_analyze": {
+        description: string;
+        parameters: {
+            staged: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_commit": {
+        description: string;
+        parameters: {
+            message: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            all: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            amend: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            dry_run: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_push": {
+        description: string;
+        parameters: {
+            force: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            set_upstream: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            branch: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
+    "dev.git_pr": {
+        description: string;
+        parameters: {
+            title: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            body: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            base: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+            draft: {
+                type: string;
+                description: string;
+                optional: boolean;
+            };
+        };
+    };
     "dev.team_create": {
         description: string;
         parameters: {

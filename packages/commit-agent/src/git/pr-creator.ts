@@ -125,4 +125,6 @@ export class PRCreator {
       cwd: this.cwd,
       timeout: this.timeout,
     });
-    return stdout.
+    return stdout.trim();
+  }
+}
