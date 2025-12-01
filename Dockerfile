@@ -1,5 +1,9 @@
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
+
+# Add Python and build tools for native modules (node-hid, secp256k1)
+RUN apk add --no-cache python3 make g++ libc-dev linux-headers eudev-dev libusb-dev
+
 RUN corepack enable && corepack prepare pnpm@9.14.4 --activate
 WORKDIR /app
 
