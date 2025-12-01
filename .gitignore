@@ -73,6 +73,8 @@ lpt2
 # packages/ is commented out to allow CLI package in repo
 
 .vercel
-# apps/ - now tracked for Render deployment
+# apps/ - source tracked, build artifacts ignored
+apps/**/.next
+apps/**/node_modules
 .gemini/
 packages/*/node_modules
