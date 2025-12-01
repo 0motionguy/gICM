@@ -620,6 +620,9 @@ importers:
       '@gicm/memory':
         specifier: workspace:*
         version: link:../memory
+      '@gicm/opus67':
+        specifier: workspace:*
+        version: link:../opus67
       '@gicm/watcher':
         specifier: workspace:*
         version: link:../watcher
@@ -1092,6 +1095,9 @@ importers:
       '@gicm/money-engine':
         specifier: ^1.0.0
         version: 1.0.0(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)
+      '@gicm/opus67':
+        specifier: workspace:*
+        version: link:../opus67
       '@gicm/orchestrator':
         specifier: ^0.1.0
         version: 0.1.0(@gicm/activity-logger@0.1.0(@types/node@20.19.25)(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10))(@gicm/social-agent@0.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/api@1.9.0)(@types/node@20.19.25)(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)

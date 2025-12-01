@@ -76,7 +76,7 @@ var EngineManager = class {
       healthCheckInterval: config?.healthCheckInterval ?? 3e4,
       heartbeatTimeout: config?.heartbeatTimeout ?? 6e4
     };
-    const engineIds = ["brain", "money", "growth", "product", "trading"];
+    const engineIds = ["brain", "money", "growth", "product", "trading", "opus67"];
     for (const id of engineIds) {
       this.engines.set(id, {
         id,
@@ -15043,7 +15043,7 @@ async function registerRoutes(fastify, hub) {
       message: "Test webhook triggered"
     };
   });
-  const { getPipelineQueue, createPipelineWorker } = await import("./queue-EOPBIYKY.js");
+  const { getPipelineQueue, createPipelineWorker } = await import("./queue-EOZUI2DA.js");
   const queue = await getPipelineQueue();
   createPipelineWorker(queue, { analytics });
   fastify.get("/api/queue/stats", async () => {
@@ -15281,11 +15281,57 @@ var dailySummaryWorkflow = {
     }
   }
 };
+var opus67ModeChangeWorkflow = {
+  id: "opus67-mode-change",
+  name: "OPUS67 Mode Change",
+  description: "Handle OPUS67 mode changes and adjust engine behavior",
+  trigger: "opus67.mode_changed",
+  enabled: true,
+  execute: async (hub, payload) => {
+    const { from, to, reason } = payload;
+    console.log(`[WORKFLOW] OPUS67 mode changed: ${from} \u2192 ${to} (${reason})`);
+    if (to === "swarm") {
+      console.log("[WORKFLOW] SWARM mode enabled - parallel processing active");
+    }
+    if (to === "audit") {
+      console.log("[WORKFLOW] AUDIT mode enabled - security focus active");
+    }
+    hub.getEventBus().publish("workflow", "engine.heartbeat", {
+      workflow: "opus67-mode-change",
+      mode: to
+    });
+  }
+};
+var opus67QueryProcessedWorkflow = {
+  id: "opus67-query-processed",
+  name: "OPUS67 Query Analytics",
+  description: "Track and analyze OPUS67 query processing",
+  trigger: "opus67.query_processed",
+  enabled: true,
+  execute: async (hub, payload) => {
+    const { query, mode, confidence, skills } = payload;
+    console.log(`[WORKFLOW] OPUS67 processed query in ${mode} mode (${confidence}% confidence)`);
+  }
+};
+var opus67AgentSpawnWorkflow = {
+  id: "opus67-agent-spawn",
+  name: "OPUS67 Agent Monitor",
+  description: "Monitor OPUS67 sub-agent spawning",
+  trigger: "opus67.agent_spawned",
+  enabled: true,
+  execute: async (hub, payload) => {
+    const { agentId, role, mode } = payload;
+    console.log(`[WORKFLOW] OPUS67 spawned agent: ${agentId} (${role}) in ${mode} mode`);
+  }
+};
 var workflows = [
   featureAnnouncementWorkflow,
   profitableTradeWorkflow,
   lowTreasuryAlertWorkflow,
-  dailySummaryWorkflow
+  dailySummaryWorkflow,
+  opus67ModeChangeWorkflow,
+  opus67QueryProcessedWorkflow,
+  opus67AgentSpawnWorkflow
 ];
 function registerWorkflows(hub) {
   const eventBus2 = hub.getEventBus();
@@ -15394,6 +15440,7 @@ var IntegrationHub = class {
   moneyEngine;
   growthEngine;
   productEngine;
+  opus67;
   constructor(config) {
     this.config = {
       apiPort: config?.apiPort ?? 3001,
@@ -15507,6 +15554,18 @@ var IntegrationHub = class {
     this.engineManager.markConnected("product");
     console.log("[HUB] Product Engine connected");
   }
+  /**
+   * Connect OPUS67 Runtime
+   */
+  connectOpus67(runtime) {
+    this.opus67 = runtime;
+    this.engineManager.markConnected("opus67");
+    console.log("[HUB] OPUS67 connected");
+    this.eventBusInstance.publish("opus67", "opus67.boot", {
+      mode: runtime.getMode(),
+      version: "2.0.0"
+    });
+  }
   // =========================================================================
   // GETTERS
   // =========================================================================
@@ -15527,6 +15586,9 @@ var IntegrationHub = class {
   }
   getProductEngine() {
     return this.productEngine;
+  }
+  getOpus67() {
+    return this.opus67;
   }
   /**
    * Get hub status
@@ -15836,4 +15898,4 @@ export {
   setHubInstance,
   getHub
 };
-//# sourceMappingURL=chunk-VB6UXJSW.js.map
+//# sourceMappingURL=chunk-OW2SLFFR.js.map

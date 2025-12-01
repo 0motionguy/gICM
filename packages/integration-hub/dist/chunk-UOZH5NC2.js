@@ -682,7 +682,7 @@ var PipelineWorker = class extends EventEmitter2 {
 };
 function createAgentToolExecutor() {
   return async (tool, inputs, context) => {
-    const { getAgentExecutor } = await import("./agent-executor-MQ5D5PTU.js");
+    const { getAgentExecutor } = await import("./agent-executor-5NHO5W4Y.js");
     const executor = getAgentExecutor();
     const result = await executor.execute(tool, inputs, {
       executionId: context.executionId,
@@ -725,4 +725,4 @@ export {
   createPipelineWorker,
   createAgentWorker
 };
-//# sourceMappingURL=chunk-FPTZ5C6X.js.map
+//# sourceMappingURL=chunk-UOZH5NC2.js.map

@@ -7,7 +7,7 @@ import {
   createPipelineQueue,
   createPipelineWorker,
   getPipelineQueue
-} from "./chunk-FPTZ5C6X.js";
+} from "./chunk-UOZH5NC2.js";
 export {
   BullPipelineQueue,
   PipelineQueue,
@@ -18,4 +18,4 @@ export {
   createPipelineWorker,
   getPipelineQueue
 };
-//# sourceMappingURL=queue-EOPBIYKY.js.map
+//# sourceMappingURL=queue-EOZUI2DA.js.map

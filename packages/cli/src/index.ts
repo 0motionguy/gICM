@@ -36,6 +36,7 @@ import { registerWatchCommands } from './commands/watch';
 import { registerMemoryCommands } from './commands/memory';
 import { registerTeamCommands } from './commands/team';
 import { registerCommitCommands } from './commands/commit';
+import { registerOpus67Commands } from './commands/opus67';
 
 const program = new Command();
 
@@ -554,6 +555,9 @@ registerTeamCommands(program);
 
 // Commit command group - AI-powered git workflow
 registerCommitCommands(program);
+
+// OPUS67 command group - Self-Evolving AI Runtime
+registerOpus67Commands(program);
 
 // Show help if no arguments
 if (process.argv.length === 2) {

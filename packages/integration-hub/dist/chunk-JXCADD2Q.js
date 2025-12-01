@@ -256,6 +256,30 @@ var ToolRegistry = class {
       estimatedCost: 0.01,
       estimatedTokens: 2e3
     });
+    this.register({
+      id: "commit-agent",
+      name: "Commit Agent",
+      description: "AI-powered git commit message generation with full workflow automation (stage, commit, push, PR)",
+      category: "content",
+      package: "@gicm/commit-agent",
+      agentClass: "CommitAgent",
+      defaultConfig: {
+        conventionalCommits: true,
+        includeCoAuthors: true
+      },
+      inputSchema: z.object({
+        action: z.enum(["status", "generate", "commit", "push", "create_pr", "full"]).default("status"),
+        all: z.boolean().optional(),
+        message: z.string().optional(),
+        push: z.boolean().optional(),
+        createPr: z.boolean().optional(),
+        dryRun: z.boolean().optional(),
+        amend: z.boolean().optional()
+      }),
+      estimatedCost: 5e-3,
+      estimatedTokens: 1e3,
+      requiresApiKey: ["ANTHROPIC_API_KEY"]
+    });
     this.initialized = true;
   }
   /**
@@ -668,4 +692,4 @@ export {
   createAgentExecutor,
   getAgentExecutor
 };
-//# sourceMappingURL=chunk-6LHWSEWK.js.map
+//# sourceMappingURL=chunk-JXCADD2Q.js.map

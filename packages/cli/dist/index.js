@@ -31,6 +31,7 @@ const watch_1 = require("./commands/watch");
 const memory_1 = require("./commands/memory");
 const team_1 = require("./commands/team");
 const commit_1 = require("./commands/commit");
+const opus67_1 = require("./commands/opus67");
 const program = new commander_1.Command();
 const DEFAULT_API_URL = 'https://gicm-marketplace.vercel.app/api';
 program
@@ -540,6 +541,8 @@ workflowCmd
 (0, team_1.registerTeamCommands)(program);
 // Commit command group - AI-powered git workflow
 (0, commit_1.registerCommitCommands)(program);
+// OPUS67 command group - Self-Evolving AI Runtime
+(0, opus67_1.registerOpus67Commands)(program);
 // Show help if no arguments
 if (process.argv.length === 2) {
     program.help();

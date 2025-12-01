@@ -46,6 +46,7 @@
   "dependencies": {
     "@gicm/commit-agent": "workspace:*",
     "@gicm/memory": "workspace:*",
+    "@gicm/opus67": "workspace:*",
     "@gicm/watcher": "workspace:*",
     "@gicm/workflow-engine": "workspace:*",
     "axios": "^1.6.2",

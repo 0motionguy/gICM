@@ -19,6 +19,7 @@ export type EventCategory =
   | "trade"
   | "treasury"
   | "pipeline"
+  | "opus67"
   | "error";
 
 export interface HubEvent {
@@ -78,6 +79,13 @@ export interface EventBusEvents {
   "pipeline.paused": (event: HubEvent) => void;
   "pipeline.resumed": (event: HubEvent) => void;
   "pipeline.cancelled": (event: HubEvent) => void;
+
+  // OPUS67 events
+  "opus67.mode_changed": (event: HubEvent) => void;
+  "opus67.skills_loaded": (event: HubEvent) => void;
+  "opus67.query_processed": (event: HubEvent) => void;
+  "opus67.agent_spawned": (event: HubEvent) => void;
+  "opus67.boot": (event: HubEvent) => void;
 
   // Generic catch-all
   "*": (event: HubEvent) => void;

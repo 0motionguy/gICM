@@ -22,6 +22,7 @@
     "@fastify/websocket": "^10.0.0",
     "@gicm/growth-engine": "^1.0.0",
     "@gicm/money-engine": "^1.0.0",
+    "@gicm/opus67": "workspace:*",
     "@gicm/orchestrator": "^0.1.0",
     "@gicm/product-engine": "^1.0.0",
     "bullmq": "^5.0.0",

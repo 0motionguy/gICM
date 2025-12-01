@@ -271,7 +271,7 @@ import {
   validatePipelineYAML,
   workflows,
   yamlToInternal
-} from "./chunk-VB6UXJSW.js";
+} from "./chunk-OW2SLFFR.js";
 import {
   SupabaseStorage,
   getSupabaseStorage,
@@ -293,7 +293,7 @@ import {
   getAgentExecutor,
   getToolRegistry,
   toolRegistry
-} from "./chunk-6LHWSEWK.js";
+} from "./chunk-JXCADD2Q.js";
 import {
   BullPipelineQueue,
   PipelineQueue,
@@ -303,7 +303,7 @@ import {
   createPipelineQueue,
   createPipelineWorker,
   getPipelineQueue
-} from "./chunk-FPTZ5C6X.js";
+} from "./chunk-UOZH5NC2.js";
 
 // src/scheduler/schedule-manager.ts
 import { EventEmitter } from "eventemitter3";

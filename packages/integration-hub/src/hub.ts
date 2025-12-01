@@ -19,6 +19,7 @@ import type { GicmBrain } from "@gicm/orchestrator";
 import type { MoneyEngine } from "@gicm/money-engine";
 import type { GrowthEngine } from "@gicm/growth-engine";
 import type { ProductEngine } from "@gicm/product-engine";
+import type { Opus67 } from "@gicm/opus67";
 
 // ============================================================================
 // TYPES
@@ -57,6 +58,7 @@ export class IntegrationHub {
   private moneyEngine?: MoneyEngine;
   private growthEngine?: GrowthEngine;
   private productEngine?: ProductEngine;
+  private opus67?: Opus67;
 
   constructor(config?: IntegrationHubConfig) {
     this.config = {
@@ -204,6 +206,21 @@ export class IntegrationHub {
     console.log("[HUB] Product Engine connected");
   }
 
+  /**
+   * Connect OPUS67 Runtime
+   */
+  connectOpus67(runtime: Opus67): void {
+    this.opus67 = runtime;
+    this.engineManager.markConnected("opus67");
+    console.log("[HUB] OPUS67 connected");
+
+    // Emit boot event
+    this.eventBusInstance.publish("opus67", "opus67.boot", {
+      mode: runtime.getMode(),
+      version: "2.0.0",
+    });
+  }
+
   // =========================================================================
   // GETTERS
   // =========================================================================
@@ -230,6 +247,10 @@ export class IntegrationHub {
 
   getProductEngine(): ProductEngine | undefined {
     return this.productEngine;
+  }
+
+  getOpus67(): Opus67 | undefined {
+    return this.opus67;
   }
 
   /**

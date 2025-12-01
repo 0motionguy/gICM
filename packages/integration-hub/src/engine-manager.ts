@@ -10,7 +10,7 @@ import { EventBus } from "./event-bus.js";
 // TYPES
 // ============================================================================
 
-export type EngineId = "brain" | "money" | "growth" | "product" | "trading";
+export type EngineId = "brain" | "money" | "growth" | "product" | "trading" | "opus67";
 
 export interface EngineHealth {
   id: EngineId;
@@ -43,7 +43,7 @@ export class EngineManager {
     };
 
     // Initialize engine states
-    const engineIds: EngineId[] = ["brain", "money", "growth", "product", "trading"];
+    const engineIds: EngineId[] = ["brain", "money", "growth", "product", "trading", "opus67"];
     for (const id of engineIds) {
       this.engines.set(id, {
         id,

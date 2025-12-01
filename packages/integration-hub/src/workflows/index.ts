@@ -135,6 +135,88 @@ const dailySummaryWorkflow: Workflow = {
 };
 
 // ============================================================================
+// OPUS67 WORKFLOWS
+// ============================================================================
+
+/**
+ * OPUS67 Mode Change Workflow
+ * Log mode changes and potentially adjust engine behavior
+ */
+const opus67ModeChangeWorkflow: Workflow = {
+  id: "opus67-mode-change",
+  name: "OPUS67 Mode Change",
+  description: "Handle OPUS67 mode changes and adjust engine behavior",
+  trigger: "opus67.mode_changed",
+  enabled: true,
+  execute: async (hub, payload) => {
+    const { from, to, reason } = payload as { from?: string; to?: string; reason?: string };
+
+    console.log(`[WORKFLOW] OPUS67 mode changed: ${from} → ${to} (${reason})`);
+
+    // If switching to SWARM mode, could enable parallel processing
+    if (to === "swarm") {
+      console.log("[WORKFLOW] SWARM mode enabled - parallel processing active");
+    }
+
+    // If switching to AUDIT mode, could trigger security scans
+    if (to === "audit") {
+      console.log("[WORKFLOW] AUDIT mode enabled - security focus active");
+    }
+
+    hub.getEventBus().publish("workflow", "engine.heartbeat", {
+      workflow: "opus67-mode-change",
+      mode: to,
+    });
+  },
+};
+
+/**
+ * OPUS67 Query Processed Workflow
+ * Track query processing for analytics
+ */
+const opus67QueryProcessedWorkflow: Workflow = {
+  id: "opus67-query-processed",
+  name: "OPUS67 Query Analytics",
+  description: "Track and analyze OPUS67 query processing",
+  trigger: "opus67.query_processed",
+  enabled: true,
+  execute: async (hub, payload) => {
+    const { query, mode, confidence, skills } = payload as {
+      query?: string;
+      mode?: string;
+      confidence?: number;
+      skills?: string[];
+    };
+
+    console.log(`[WORKFLOW] OPUS67 processed query in ${mode} mode (${confidence}% confidence)`);
+
+    // Could send analytics to external service
+    // Could trigger content generation based on query patterns
+  },
+};
+
+/**
+ * OPUS67 Agent Spawn Workflow
+ * Track sub-agent spawning for monitoring
+ */
+const opus67AgentSpawnWorkflow: Workflow = {
+  id: "opus67-agent-spawn",
+  name: "OPUS67 Agent Monitor",
+  description: "Monitor OPUS67 sub-agent spawning",
+  trigger: "opus67.agent_spawned",
+  enabled: true,
+  execute: async (hub, payload) => {
+    const { agentId, role, mode } = payload as {
+      agentId?: string;
+      role?: string;
+      mode?: string;
+    };
+
+    console.log(`[WORKFLOW] OPUS67 spawned agent: ${agentId} (${role}) in ${mode} mode`);
+  },
+};
+
+// ============================================================================
 // WORKFLOW REGISTRY
 // ============================================================================
 
@@ -143,6 +225,9 @@ export const workflows: Workflow[] = [
   profitableTradeWorkflow,
   lowTreasuryAlertWorkflow,
   dailySummaryWorkflow,
+  opus67ModeChangeWorkflow,
+  opus67QueryProcessedWorkflow,
+  opus67AgentSpawnWorkflow,
 ];
 
 /**

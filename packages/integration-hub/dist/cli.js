@@ -2,7 +2,7 @@
 import {
   IntegrationHub,
   setHubInstance
-} from "./chunk-VB6UXJSW.js";
+} from "./chunk-OW2SLFFR.js";
 
 // src/cli.ts
 import { Command } from "commander";
