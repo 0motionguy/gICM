@@ -4,7 +4,7 @@ services:
     name: gicm-dashboard
     runtime: node
     region: oregon
-    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @gicm/dashboard build
+    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @gicm/dashboard... build
     startCommand: cd apps/dashboard && npm start
     envVars:
       - key: NODE_ENV
