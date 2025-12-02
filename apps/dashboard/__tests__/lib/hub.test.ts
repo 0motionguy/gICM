@@ -16,7 +16,7 @@ describe("hubApi", () => {
 
   describe("WS_URL", () => {
     it("should derive WebSocket URL from hub URL", () => {
-      // Default HUB_URL is http://localhost:3001
+      // Default HUB_URL is http://localhost:3100
       expect(WS_URL).toMatch(/^ws/);
       expect(WS_URL).toContain("/ws");
     });
@@ -27,7 +27,7 @@ describe("hubApi", () => {
       const mockStatus = {
         running: true,
         startedAt: Date.now(),
-        apiPort: 3001,
+        apiPort: 3100,
         engines: [],
         workflows: 5,
       };
