@@ -1,0 +1,67 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: jest-testing
+
+id: jest-testing
+name: Jest Testing Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement unit and integration tests with Jest"
+  what_it_does:
+    - "Writes unit tests with Jest"
+    - "Implements mocking and spies"
+    - "Configures test environment"
+    - "Sets up code coverage"
+    - "Tests async code"
+  what_it_cannot_do:
+    - "Replace E2E tests"
+    - "Test UI visually"
+    - "Run in browser natively"
+    - "Test multiple runtimes"
+
+capabilities:
+  - action: "write unit tests"
+    confidence: 0.96
+    requires: ["JavaScript/TypeScript code"]
+    produces: ["Jest test files"]
+  - action: "implement mocking"
+    confidence: 0.95
+    requires: ["dependencies to mock"]
+    produces: ["jest.mock usage"]
+  - action: "configure coverage"
+    confidence: 0.94
+    requires: ["coverage requirements"]
+    produces: ["coverage config"]
+  - action: "test async code"
+    confidence: 0.93
+    requires: ["async functions"]
+    produces: ["async test patterns"]
+
+anti_hallucination:
+  never_claim:
+    - "100% coverage means bug-free"
+    - "Mocking is always appropriate"
+    - "Jest tests all scenarios"
+  always_recommend:
+    - "Test behavior not implementation"
+    - "Use describe/it structure"
+    - "Mock external dependencies only"
+  trigger_phrases:
+    - pattern: "Jest"
+      response: "I'll write Jest tests. Need unit tests, integration tests, or both?"
+
+examples:
+  - task: "Test utility functions"
+    approach: "Describe blocks, it statements, expect assertions, edge cases"
+    skills_needed: ["jest-testing"]
+
+synergies:
+  amplifying:
+    - skill: react-typescript-master
+      reason: "Testing React with RTL"
+    - skill: test-automation-expert
+      reason: "Testing strategy"
+  conflicting: []
+  redundant:
+    - skill: vitest-testing
+      reason: "Alternative test runner"

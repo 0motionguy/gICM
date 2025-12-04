@@ -1,0 +1,90 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Access Control Expert
+
+id: access-control-expert
+name: Access Control Expert
+category: security
+version: 1.0.0
+
+description:
+  short: Authorization and permission management
+  what_it_does: |
+    Designs and implements access control systems including RBAC, ABAC,
+    and custom permission schemes. Covers both Web2 (JWT, sessions) and
+    Web3 (on-chain roles, ownership) authorization patterns.
+  what_it_cannot: |
+    Cannot design business rules - only implement them. Cannot guarantee
+    policy correctness. Cannot prevent privilege escalation through
+    business logic flaws.
+
+capabilities:
+  can:
+    - rbac_implementation:
+        confidence: 0.95
+        description: Implement Role-Based Access Control
+    - abac_design:
+        confidence: 0.88
+        description: Design Attribute-Based Access Control
+    - jwt_authorization:
+        confidence: 0.94
+        description: Implement JWT-based auth with scopes
+    - smart_contract_roles:
+        confidence: 0.92
+        description: Implement on-chain access control (Ownable, AccessControl)
+    - permission_hierarchy:
+        confidence: 0.90
+        description: Design permission inheritance structures
+  cannot:
+    - business_rule_design:
+        reason: Requires domain expertise
+    - policy_correctness:
+        reason: Depends on business requirements
+    - social_access:
+        reason: Cannot control human processes
+
+anti_hallucination:
+  rules:
+    - name: principle_of_least_privilege
+      severity: high
+      trigger: "permission|role|access"
+      check: "Grant minimum necessary permissions"
+    - name: default_deny
+      severity: high
+      trigger: "authorize|allow|permit"
+      check: "Default to deny, explicitly allow"
+  common_mistakes:
+    - mistake: Granting admin roles too broadly
+      correction: Use specific roles with minimal permissions
+    - mistake: Not checking authorization on all endpoints
+      correction: Apply auth middleware globally, whitelist public routes
+
+examples:
+  good:
+    - task: "Implement RBAC for admin dashboard"
+      approach: "Define roles (admin, editor, viewer) with specific permissions"
+    - task: "Add role-based access to smart contract"
+      approach: "Use OpenZeppelin AccessControl with custom roles"
+  bad:
+    - task: "Give all users admin access for testing"
+      reason: "Violates principle of least privilege"
+    - task: "Check permissions only on frontend"
+      reason: "Backend must always verify authorization"
+
+synergies:
+  amplifies:
+    - security-best-practices
+    - nodejs-api-architect
+  conflicts: []
+  works_well_with:
+    - code-security-audit
+    - smart-contract-auditor
+
+keywords:
+  - access control
+  - RBAC
+  - ABAC
+  - authorization
+  - permissions
+  - roles
+  - JWT scopes
+  - OpenZeppelin AccessControl

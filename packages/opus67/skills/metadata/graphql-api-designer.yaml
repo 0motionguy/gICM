@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: graphql-api-designer
+id: graphql-api-designer
+name: "GraphQL API Designer"
+tier: 2
+token_cost: 9000
+
+semantic:
+  purpose: "Design and implement GraphQL APIs with best practices"
+  what_it_does:
+    - "Design GraphQL schemas"
+    - "Implement resolvers"
+    - "Design mutations"
+    - "Build subscriptions"
+    - "Implement DataLoader"
+    - "Design pagination (Relay)"
+    - "Handle authentication"
+    - "Implement caching"
+    - "Design federation"
+  what_it_cannot:
+    - "Run GraphQL server"
+    - "Execute queries"
+    - "Test resolvers"
+    - "Access data sources"
+
+capabilities:
+  - action: "Design schemas"
+    confidence: 0.95
+  - action: "Implement resolvers"
+    confidence: 0.92
+  - action: "DataLoader patterns"
+    confidence: 0.90
+  - action: "Relay pagination"
+    confidence: 0.88
+  - action: "Subscriptions"
+    confidence: 0.85
+
+anti_hallucination:
+  - trigger: "run.*query|execute.*mutation"
+    response: "Use GraphQL Playground or Apollo Studio to test queries."
+  - trigger: "actual.*data|query.*result"
+    response: "Start your GraphQL server and use the playground to see results."
+  - trigger: "n\\+1.*problem"
+    response: "Use DataLoader to batch and cache. Check resolver calls in debug mode."
+
+synergies:
+  amplifying:
+    - nodejs-api-architect
+    - typescript-senior
+    - database-schema-expert
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "User posts API"
+    approach: "Type definitions + DataLoader + cursor pagination"
+    outcome: success
+  - task: "Real-time chat"
+    approach: "Subscriptions + PubSub + connection filtering"
+    outcome: success

@@ -1,0 +1,85 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: MLOps Expert
+
+id: mlops-expert
+name: MLOps Expert
+category: ai-ml
+version: 1.0.0
+
+description:
+  short: ML model deployment and operations
+  what_it_does: |
+    Manages the machine learning lifecycle from training to deployment.
+    Covers model versioning, experiment tracking, CI/CD for ML, model
+    monitoring, and infrastructure for ML workloads.
+  what_it_cannot: |
+    Cannot train models - that's ML engineering. Cannot improve model
+    accuracy. Cannot handle data science research tasks.
+
+capabilities:
+  can:
+    - model_deployment:
+        confidence: 0.93
+        description: Deploy ML models to production
+    - experiment_tracking:
+        confidence: 0.92
+        description: Set up MLflow, Weights & Biases, etc.
+    - model_versioning:
+        confidence: 0.94
+        description: Version control for models and data
+    - ml_pipelines:
+        confidence: 0.90
+        description: Build training and inference pipelines
+    - model_monitoring:
+        confidence: 0.88
+        description: Monitor model drift and performance
+  cannot:
+    - model_training:
+        reason: ML engineering task
+    - feature_engineering:
+        reason: Data science task
+    - model_architecture:
+        reason: Research task
+
+anti_hallucination:
+  rules:
+    - name: reproducibility
+      severity: high
+      trigger: "model|train|experiment"
+      check: "Ensure reproducibility with fixed seeds and versioning"
+    - name: resource_management
+      severity: high
+      trigger: "deploy|inference|gpu"
+      check: "Right-size resources for inference workload"
+  common_mistakes:
+    - mistake: No model versioning
+      correction: Version everything - model, data, code, config
+    - mistake: Training in production environment
+      correction: Separate training and inference infrastructure
+
+examples:
+  good:
+    - task: "Deploy LLM to production"
+      approach: "Containerized inference with auto-scaling, model registry"
+    - task: "Set up experiment tracking"
+      approach: "MLflow or W&B with proper tagging conventions"
+  bad:
+    - task: "Train on production GPU"
+      reason: "Will impact production inference"
+
+synergies:
+  amplifies:
+    - ai-agent-builder
+    - embedding-specialist
+  conflicts: []
+  works_well_with:
+    - docker-kubernetes-pro
+    - ci-cd-automation
+
+keywords:
+  - MLOps
+  - model deployment
+  - MLflow
+  - experiment tracking
+  - model registry
+  - ML pipeline

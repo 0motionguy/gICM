@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Analytics Dashboard Expert
+
+id: analytics-dashboard
+name: Analytics Dashboard Expert
+category: data
+version: 1.0.0
+
+description:
+  short: Business intelligence dashboards
+  what_it_does: |
+    Designs and builds analytics dashboards for business intelligence.
+    Implements KPI tracking, metric aggregation, filtering, and drill-down
+    capabilities. Covers both custom dashboards and tools like Grafana.
+  what_it_cannot: |
+    Cannot define business KPIs - requires stakeholder input. Cannot
+    guarantee data accuracy without proper pipelines. Cannot replace
+    dedicated BI tools for complex analysis.
+
+capabilities:
+  can:
+    - dashboard_design:
+        confidence: 0.93
+        description: Design effective dashboard layouts
+    - kpi_implementation:
+        confidence: 0.90
+        description: Implement KPI calculations and displays
+    - grafana_setup:
+        confidence: 0.92
+        description: Configure Grafana dashboards
+    - drill_down:
+        confidence: 0.88
+        description: Implement drill-down and filtering
+    - real_time_updates:
+        confidence: 0.85
+        description: Build real-time updating dashboards
+  cannot:
+    - define_kpis:
+        reason: Requires business stakeholder input
+    - fix_data_quality:
+        reason: Upstream data issue
+    - complex_bi_analysis:
+        reason: Use specialized BI tools
+
+anti_hallucination:
+  rules:
+    - name: kpi_definition
+      severity: medium
+      trigger: "kpi|metric|measure"
+      check: "KPIs must be defined by business stakeholders"
+    - name: performance
+      severity: high
+      trigger: "slow|loading|performance"
+      check: "Pre-aggregate metrics, don't calculate on the fly"
+  common_mistakes:
+    - mistake: Calculating metrics on every page load
+      correction: Pre-compute and cache aggregations
+    - mistake: Too many KPIs on one dashboard
+      correction: Focus on 5-7 key metrics per dashboard
+
+examples:
+  good:
+    - task: "Build trading performance dashboard"
+      approach: "Next.js + Recharts with real-time WebSocket updates"
+    - task: "Create Grafana dashboard for system metrics"
+      approach: "Prometheus data source with alerting"
+  bad:
+    - task: "Show 100 metrics on homepage"
+      reason: "Information overload, prioritize key metrics"
+
+synergies:
+  amplifies:
+    - data-visualization
+    - timeseries-db-expert
+  conflicts: []
+  works_well_with:
+    - nextjs-14-expert
+    - websocket-realtime
+
+keywords:
+  - analytics
+  - dashboard
+  - KPI
+  - Grafana
+  - metrics
+  - business intelligence
+  - real-time

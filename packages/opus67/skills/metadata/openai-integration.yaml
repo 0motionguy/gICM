@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: openai-integration
+
+id: openai-integration
+name: OpenAI Integration Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Integrate OpenAI APIs (GPT, Embeddings, DALL-E) into applications"
+  what_it_does:
+    - "Implements chat completions with GPT models"
+    - "Creates embedding-based search and RAG"
+    - "Implements streaming responses"
+    - "Manages token limits and context windows"
+    - "Implements function calling patterns"
+  what_it_cannot_do:
+    - "Train or fine-tune models (different API)"
+    - "Guarantee specific outputs"
+    - "Bypass content policies"
+    - "Handle non-OpenAI LLMs"
+
+capabilities:
+  - action: "implement chat completions"
+    confidence: 0.95
+    requires: ["OpenAI API key"]
+    produces: ["chat API calls", "response handling"]
+  - action: "create embeddings"
+    confidence: 0.94
+    requires: ["text data"]
+    produces: ["vector embeddings", "similarity search"]
+  - action: "implement streaming"
+    confidence: 0.92
+    requires: ["real-time needs"]
+    produces: ["SSE handling", "incremental display"]
+  - action: "function calling"
+    confidence: 0.93
+    requires: ["tool use needs"]
+    produces: ["function definitions", "call handling"]
+  - action: "manage context"
+    confidence: 0.90
+    requires: ["long conversations"]
+    produces: ["token counting", "truncation"]
+
+anti_hallucination:
+  never_claim:
+    - "AI always gives correct answers"
+    - "No API costs involved"
+    - "Deterministic outputs guaranteed"
+  always_recommend:
+    - "Implement rate limiting"
+    - "Handle API errors gracefully"
+    - "Monitor token usage and costs"
+  trigger_phrases:
+    - pattern: "OpenAI API"
+      response: "I'll implement OpenAI integration with proper error handling and streaming. Which model: GPT-4, GPT-4o, or GPT-3.5?"
+    - pattern: "AI chat"
+      response: "I'll set up chat completions with proper context management. Need function calling for tools or just conversational?"
+
+examples:
+  - task: "Build AI chatbot"
+    approach: "Implement chat completions with streaming, manage conversation history, handle errors"
+    skills_needed: ["openai-integration", "nodejs-api-architect"]
+  - task: "Semantic search feature"
+    approach: "Generate embeddings, store in vector DB, implement similarity search"
+    skills_needed: ["openai-integration", "database-schema-expert"]
+
+synergies:
+  amplifying:
+    - skill: nodejs-api-architect
+      reason: "API design for AI features"
+    - skill: redis-caching-pro
+      reason: "Cache AI responses"
+  conflicting: []
+  redundant: []

@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Load Balancing Expert
+
+id: load-balancing-expert
+name: Load Balancing Expert
+category: infrastructure
+version: 1.0.0
+
+description:
+  short: Traffic distribution and high availability
+  what_it_does: |
+    Designs and implements load balancing solutions for high availability.
+    Covers AWS ALB/NLB, nginx, HAProxy, and cloud load balancers. Implements
+    health checks, sticky sessions, and traffic management.
+  what_it_cannot: |
+    Cannot fix application bugs that cause failures. Cannot scale beyond
+    infrastructure limits. Cannot guarantee 100% uptime without proper
+    multi-region architecture.
+
+capabilities:
+  can:
+    - lb_configuration:
+        confidence: 0.94
+        description: Configure AWS ALB, NLB, nginx, HAProxy
+    - health_checks:
+        confidence: 0.95
+        description: Implement proper health check endpoints
+    - ssl_termination:
+        confidence: 0.92
+        description: Configure SSL/TLS termination
+    - traffic_routing:
+        confidence: 0.90
+        description: Route traffic based on rules, weights
+    - sticky_sessions:
+        confidence: 0.88
+        description: Implement session affinity when needed
+  cannot:
+    - fix_app_bugs:
+        reason: Application-level issue
+    - infinite_scaling:
+        reason: Infrastructure has limits
+    - guarantee_100_uptime:
+        reason: Requires multi-region, proper DR
+
+anti_hallucination:
+  rules:
+    - name: health_check_design
+      severity: high
+      trigger: "health|check|probe"
+      check: "Health checks should verify actual functionality, not just process"
+    - name: session_state
+      severity: medium
+      trigger: "sticky|session|affinity"
+      check: "Prefer stateless design over sticky sessions"
+  common_mistakes:
+    - mistake: Health check only returns 200
+      correction: Actually verify DB connection, dependencies
+    - mistake: Relying on sticky sessions
+      correction: Design stateless applications when possible
+
+examples:
+  good:
+    - task: "Set up ALB for API"
+      approach: "ALB with target groups, health checks, autoscaling"
+    - task: "Configure nginx load balancer"
+      approach: "upstream blocks with health checks, weights"
+  bad:
+    - task: "Use sticky sessions for every request"
+      reason: "Prevents effective load distribution"
+
+synergies:
+  amplifies:
+    - aws-infrastructure
+    - nginx-expert
+  conflicts: []
+  works_well_with:
+    - kubernetes-expert
+    - performance-optimization
+
+keywords:
+  - load balancing
+  - ALB
+  - NLB
+  - nginx
+  - HAProxy
+  - high availability
+  - traffic management

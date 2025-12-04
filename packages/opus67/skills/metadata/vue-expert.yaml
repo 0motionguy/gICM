@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: vue-expert
+
+id: vue-expert
+name: Vue.js/Nuxt Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build reactive web applications with Vue.js and Nuxt"
+  what_it_does:
+    - "Creates Vue 3 components with Composition API"
+    - "Implements Nuxt routing and layouts"
+    - "Uses Pinia for state management"
+    - "Implements server-side rendering"
+    - "Configures Vue ecosystem tools"
+  what_it_cannot_do:
+    - "Use React ecosystem directly"
+    - "Match React's job market size"
+    - "Use JSX without configuration"
+    - "Handle TypeScript as natively as React"
+
+capabilities:
+  - action: "create Vue components"
+    confidence: 0.94
+    requires: ["Vue project"]
+    produces: ["reactive components"]
+  - action: "implement Nuxt routing"
+    confidence: 0.93
+    requires: ["route structure"]
+    produces: ["file-based routes"]
+  - action: "use Pinia stores"
+    confidence: 0.95
+    requires: ["state management needs"]
+    produces: ["Pinia stores"]
+  - action: "implement SSR"
+    confidence: 0.91
+    requires: ["server rendering"]
+    produces: ["Nuxt SSR config"]
+
+anti_hallucination:
+  never_claim:
+    - "Better than React objectively"
+    - "Larger ecosystem than React"
+    - "More TypeScript support"
+  always_recommend:
+    - "Great for progressive adoption"
+    - "Excellent template syntax"
+    - "Consider team familiarity"
+  trigger_phrases:
+    - pattern: "Vue"
+      response: "Vue 3 with Composition API or Options API? Using Nuxt for full-stack?"
+
+examples:
+  - task: "Build admin panel"
+    approach: "Nuxt 3 with TypeScript, Pinia, and component library"
+    skills_needed: ["vue-expert", "tailwind-css-pro"]
+
+synergies:
+  amplifying:
+    - skill: tailwind-css-pro
+      reason: "Styling Vue components"
+  conflicting:
+    - skill: react-typescript-master
+      reason: "Different framework"
+  redundant: []

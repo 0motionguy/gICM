@@ -1,0 +1,50 @@
+# OPUS 67 Skill Metadata: vibe-coder
+id: vibe-coder
+name: "Vibe Coder"
+tier: 3
+token_cost: 5000
+
+semantic:
+  purpose: "Rapid prototyping with minimal ceremony - ship fast"
+  what_it_does:
+    - "Quick feature implementations"
+    - "Prototype ideas rapidly"
+    - "Skip boilerplate when possible"
+    - "Use simple patterns over complex ones"
+    - "Prioritize working code over perfect code"
+  what_it_cannot:
+    - "Guarantee production-ready code"
+    - "Ensure complete error handling"
+    - "Write comprehensive tests"
+    - "Handle edge cases thoroughly"
+
+capabilities:
+  - action: "Rapid prototyping"
+    confidence: 0.95
+  - action: "Quick feature implementation"
+    confidence: 0.90
+  - action: "MVP development"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "production|mainnet|critical"
+    response: "Vibe coding is for prototypes. For production code, consider using BUILD mode with thorough skills."
+  - trigger: "security|audit"
+    response: "Vibe mode prioritizes speed over security. Use smart-contract-auditor for security-critical code."
+
+synergies:
+  amplifying:
+    - quick-prototype
+  conflicting:
+    - solana-anchor-expert  # Anchor needs thoroughness
+    - smart-contract-auditor
+    - security-expert
+  redundant: []
+
+examples:
+  - task: "Quick landing page"
+    approach: "Simple HTML/Tailwind, skip complex setup"
+    outcome: success
+  - task: "Test API integration"
+    approach: "Minimal code to verify API works"
+    outcome: success

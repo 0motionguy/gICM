@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: git-workflow-expert
+
+id: git-workflow-expert
+name: Git Workflow Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement professional Git workflows, branching strategies, and collaboration patterns"
+  what_it_does:
+    - "Designs branching strategies (GitFlow, trunk-based)"
+    - "Creates meaningful commit messages"
+    - "Implements PR templates and review processes"
+    - "Resolves merge conflicts effectively"
+    - "Sets up Git hooks and automation"
+  what_it_cannot_do:
+    - "Access private repositories without credentials"
+    - "Recover permanently deleted commits"
+    - "Modify commits pushed to protected branches"
+    - "Handle Git LFS automatically"
+
+capabilities:
+  - action: "design branching strategy"
+    confidence: 0.94
+    requires: ["team size", "release process"]
+    produces: ["branch naming", "merge strategy"]
+  - action: "write commit messages"
+    confidence: 0.96
+    requires: ["code changes"]
+    produces: ["conventional commits"]
+  - action: "resolve merge conflicts"
+    confidence: 0.92
+    requires: ["conflicting changes"]
+    produces: ["merged code"]
+  - action: "set up Git hooks"
+    confidence: 0.93
+    requires: ["automation needs"]
+    produces: ["pre-commit hooks", "husky config"]
+  - action: "create PR templates"
+    confidence: 0.95
+    requires: ["repository"]
+    produces: ["PR template", "review checklist"]
+
+anti_hallucination:
+  never_claim:
+    - "I can recover force-pushed commits"
+    - "This workflow fits all teams"
+    - "Git history can always be rewritten"
+  always_recommend:
+    - "Never force push to shared branches"
+    - "Use conventional commits for clarity"
+    - "Review changes before merging to main"
+  trigger_phrases:
+    - pattern: "Git workflow"
+      response: "I recommend trunk-based development for smaller teams or GitFlow for release-driven projects. What's your team size and release cadence?"
+    - pattern: "commit message"
+      response: "I'll write a conventional commit message: type(scope): description, with body for context if needed."
+
+examples:
+  - task: "Set up Git workflow for team"
+    approach: "Implement trunk-based development with feature flags, PR templates, and automated checks"
+    skills_needed: ["git-workflow-expert", "ci-cd-automation"]
+  - task: "Fix messy Git history"
+    approach: "Interactive rebase to squash commits, rewrite messages following conventions"
+    skills_needed: ["git-workflow-expert"]
+
+synergies:
+  amplifying:
+    - skill: ci-cd-automation
+      reason: "Git workflows trigger CI/CD pipelines"
+    - skill: test-automation-expert
+      reason: "Tests run on PR creation"
+  conflicting: []
+  redundant: []

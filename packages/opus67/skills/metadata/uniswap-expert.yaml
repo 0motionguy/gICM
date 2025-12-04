@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: uniswap-expert
+
+id: uniswap-expert
+name: Uniswap Integration Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Integrate Uniswap DEX for token swaps and liquidity"
+  what_it_does:
+    - "Implements Uniswap V3 swaps"
+    - "Creates liquidity positions"
+    - "Calculates price impact and slippage"
+    - "Integrates with Uniswap SDK"
+    - "Implements router contracts"
+  what_it_cannot_do:
+    - "Execute swaps without wallet"
+    - "Guarantee swap prices"
+    - "Prevent impermanent loss"
+    - "Access liquidity without TVL"
+
+capabilities:
+  - action: "implement swaps"
+    confidence: 0.93
+    requires: ["EVM wallet", "token addresses"]
+    produces: ["swap transactions"]
+  - action: "calculate quotes"
+    confidence: 0.95
+    requires: ["token pair", "amount"]
+    produces: ["price quotes", "routes"]
+  - action: "manage liquidity"
+    confidence: 0.89
+    requires: ["LP position needs"]
+    produces: ["LP position management"]
+  - action: "integrate SDK"
+    confidence: 0.92
+    requires: ["project setup"]
+    produces: ["Uniswap SDK integration"]
+
+anti_hallucination:
+  never_claim:
+    - "Guaranteed best prices"
+    - "No slippage possible"
+    - "Risk-free liquidity"
+  always_recommend:
+    - "Always set slippage tolerance"
+    - "Check price impact"
+    - "Understand impermanent loss"
+  trigger_phrases:
+    - pattern: "Uniswap"
+      response: "I'll integrate Uniswap V3. Building swaps, liquidity provision, or both?"
+
+examples:
+  - task: "Add token swap feature"
+    approach: "Uniswap SDK, quote fetching, swap router, slippage handling"
+    skills_needed: ["uniswap-expert", "viem-wagmi-expert"]
+
+synergies:
+  amplifying:
+    - skill: viem-wagmi-expert
+      reason: "Web3 wallet integration"
+    - skill: evm-solidity-expert
+      reason: "Contract interactions"
+  conflicting: []
+  redundant: []

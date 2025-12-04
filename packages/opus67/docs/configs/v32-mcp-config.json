@@ -1,0 +1,579 @@
+{
+  "version": "3.2.0",
+  "codename": "The Solana Stack",
+  "releaseDate": "2025-12-02",
+  "description": "Solana-native AI development system with universal infrastructure",
+  
+  "mcpServers": {
+    "tier1_universal": {
+      "github": {
+        "source": "github.com/github/github-mcp-server",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github@latest"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
+        },
+        "tools": [
+          "search_repositories",
+          "get_file_contents",
+          "create_issue",
+          "update_issue",
+          "create_pull_request",
+          "list_commits",
+          "search_code",
+          "create_branch",
+          "push_files"
+        ],
+        "cost": "FREE",
+        "effort": "low",
+        "docs": "https://github.com/github/github-mcp-server"
+      },
+      
+      "mem0": {
+        "source": "github.com/coleam00/mcp-mem0",
+        "command": "docker",
+        "args": ["run", "--rm", "-i", "-e", "TRANSPORT", "-e", "LLM_PROVIDER", "-e", "LLM_API_KEY", "-e", "DATABASE_URL", "mcp/mem0"],
+        "env": {
+          "TRANSPORT": "stdio",
+          "LLM_PROVIDER": "openai",
+          "LLM_API_KEY": "${OPENAI_API_KEY}",
+          "DATABASE_URL": "${POSTGRES_URL}"
+        },
+        "tools": [
+          "save_memory",
+          "get_all_memories",
+          "search_memories",
+          "delete_memory"
+        ],
+        "cost": "FREE (self-hosted) or $20/mo cloud",
+        "effort": "medium",
+        "docs": "https://github.com/coleam00/mcp-mem0"
+      },
+      
+      "qdrant": {
+        "source": "github.com/qdrant/mcp-server-qdrant",
+        "command": "uvx",
+        "args": ["mcp-server-qdrant"],
+        "env": {
+          "QDRANT_URL": "http://localhost:6333",
+          "COLLECTION_NAME": "opus67",
+          "EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "tools": [
+          "qdrant-store",
+          "qdrant-find"
+        ],
+        "cost": "FREE (self-hosted)",
+        "effort": "medium",
+        "docs": "https://github.com/qdrant/mcp-server-qdrant"
+      },
+      
+      "supabase": {
+        "source": "github.com/supabase-community/supabase-mcp",
+        "command": "npx",
+        "args": ["-y", "@supabase/mcp-server"],
+        "env": {
+          "SUPABASE_ACCESS_TOKEN": "${SUPABASE_PAT}"
+        },
+        "tools": [
+          "list_projects",
+          "execute_sql",
+          "apply_migration",
+          "list_tables",
+          "get_logs",
+          "generate_typescript_types",
+          "create_project",
+          "create_branch"
+        ],
+        "cost": "FREE (Supabase free tier)",
+        "effort": "low",
+        "docs": "https://supabase.com/docs/guides/getting-started/mcp"
+      },
+      
+      "docker": {
+        "source": "github.com/QuantGeekDev/docker-mcp",
+        "command": "uvx",
+        "args": ["docker-mcp"],
+        "tools": [
+          "create_container",
+          "list_containers",
+          "get_logs",
+          "deploy_compose",
+          "stop_container"
+        ],
+        "cost": "FREE",
+        "effort": "low",
+        "docs": "https://github.com/QuantGeekDev/docker-mcp"
+      }
+    },
+    
+    "tier2_solana": {
+      "jupiter": {
+        "source": "github.com/kukapay/jupiter-mcp",
+        "command": "node",
+        "args": ["./mcp/jupiter-mcp/server/index.js"],
+        "env": {
+          "SOLANA_RPC_URL": "${HELIUS_RPC_URL}",
+          "PRIVATE_KEY": "${SOLANA_PRIVATE_KEY}"
+        },
+        "tools": [
+          "get_swap_quote",
+          "execute_swap",
+          "get_token_info"
+        ],
+        "cost": "FREE (network fees only)",
+        "effort": "medium",
+        "docs": "https://github.com/kukapay/jupiter-mcp"
+      },
+      
+      "solana": {
+        "source": "github.com/sendaifun/solana-mcp",
+        "command": "npx",
+        "args": ["solana-mcp"],
+        "env": {
+          "RPC_URL": "${HELIUS_RPC_URL}",
+          "SOLANA_PRIVATE_KEY": "${SOLANA_PRIVATE_KEY}"
+        },
+        "tools": [
+          "get_balance",
+          "get_token_accounts",
+          "get_transaction",
+          "get_account_info",
+          "get_recent_blockhash",
+          "send_transaction"
+        ],
+        "cost": "FREE (RPC costs)",
+        "effort": "low",
+        "docs": "https://github.com/sendaifun/solana-mcp"
+      },
+      
+      "solana-web3": {
+        "source": "github.com/FrankGenGo/solana-web3js-mcp-server",
+        "command": "node",
+        "args": ["./mcp/solana-web3js/dist/index.js"],
+        "tools": [
+          "generate_keypair",
+          "deploy_program",
+          "create_token",
+          "mint_tokens",
+          "transfer"
+        ],
+        "cost": "FREE (network fees)",
+        "effort": "medium",
+        "docs": "https://github.com/FrankGenGo/solana-web3js-mcp-server"
+      },
+      
+      "anchor": {
+        "type": "custom_build",
+        "description": "Parse Anchor IDLs and generate instructions from natural language",
+        "command": "node",
+        "args": ["./mcp/anchor-mcp/index.js"],
+        "env": {
+          "IDL_PATH": "./target/idl/",
+          "PROGRAM_ID": "${ICM_PROGRAM_ID}",
+          "RPC_URL": "${HELIUS_RPC_URL}"
+        },
+        "tools": [
+          "parse_idl",
+          "generate_instruction",
+          "execute_instruction",
+          "get_account_data",
+          "simulate_transaction"
+        ],
+        "cost": "FREE (build yourself)",
+        "effort": "high",
+        "unique": true,
+        "note": "KILLER FEATURE - No competitor has this"
+      },
+      
+      "chainstack-solana": {
+        "source": "Chainstack MCP",
+        "command": "npx",
+        "args": ["-y", "@chainstacklabs/solana-mcp"],
+        "env": {
+          "CHAINSTACK_API_KEY": "${CHAINSTACK_KEY}",
+          "SOLANA_ENDPOINT": "${CHAINSTACK_SOLANA_URL}"
+        },
+        "tools": [
+          "get_signatures",
+          "get_token_largest_accounts",
+          "get_program_accounts",
+          "subscribe_logs"
+        ],
+        "cost": "$29/mo (Growth tier)",
+        "effort": "low",
+        "docs": "https://chainstack.com/mcp-for-web3-builders-solana-evm-and-documentation-server-by-chainstack/"
+      }
+    },
+    
+    "tier3_devops": {
+      "notion": {
+        "source": "github.com/makenotion/notion-mcp-server",
+        "command": "npx",
+        "args": ["-y", "@notionhq/notion-mcp-server"],
+        "env": {
+          "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ${NOTION_TOKEN}\", \"Notion-Version\": \"2022-06-28\"}"
+        },
+        "tools": [
+          "search",
+          "create_page",
+          "update_page",
+          "query_database",
+          "create_database"
+        ],
+        "cost": "FREE",
+        "effort": "low",
+        "docs": "https://developers.notion.com/docs/mcp"
+      },
+      
+      "sentry": {
+        "source": "Sentry Official",
+        "type": "http",
+        "url": "https://mcp.sentry.dev/mcp",
+        "tools": [
+          "list_projects",
+          "list_issues",
+          "get_issue",
+          "list_events",
+          "trigger_seer"
+        ],
+        "cost": "FREE (free tier)",
+        "effort": "very_low",
+        "docs": "https://docs.sentry.io/product/sentry-mcp/"
+      }
+    }
+  },
+  
+  "agents": {
+    "infrastructure": [
+      {
+        "name": "Repo Master",
+        "icon": "🐙",
+        "role": "GitHub automation",
+        "mcps": ["github"],
+        "capabilities": ["PR creation", "Issue management", "Code search", "Branch management"]
+      },
+      {
+        "name": "Memory Keeper",
+        "icon": "🧠",
+        "role": "Persistent context management",
+        "mcps": ["mem0"],
+        "capabilities": ["Store context", "Recall information", "Semantic search", "Cross-session memory"]
+      },
+      {
+        "name": "Vector Wizard",
+        "icon": "🔍",
+        "role": "Semantic search and RAG",
+        "mcps": ["qdrant"],
+        "capabilities": ["Store embeddings", "Similarity search", "Code retrieval", "Documentation search"]
+      },
+      {
+        "name": "DB Commander",
+        "icon": "🗄️",
+        "role": "Database operations",
+        "mcps": ["supabase"],
+        "capabilities": ["SQL queries", "Schema migrations", "Type generation", "Log retrieval"]
+      },
+      {
+        "name": "Container Chief",
+        "icon": "🐳",
+        "role": "Docker management",
+        "mcps": ["docker"],
+        "capabilities": ["Container spawn", "Compose deployment", "Log access", "Stack management"]
+      }
+    ],
+    "solana": [
+      {
+        "name": "Jupiter Trader",
+        "icon": "⚡",
+        "role": "Token swaps via Jupiter",
+        "mcps": ["jupiter"],
+        "capabilities": ["Get quotes", "Execute swaps", "Route optimization", "Price comparison"]
+      },
+      {
+        "name": "Chain Reader",
+        "icon": "🔗",
+        "role": "Blockchain queries",
+        "mcps": ["solana"],
+        "capabilities": ["Balance checks", "Transaction history", "Account info", "Token accounts"]
+      },
+      {
+        "name": "Program Builder",
+        "icon": "🛠️",
+        "role": "Solana development",
+        "mcps": ["solana-web3"],
+        "capabilities": ["Keypair generation", "Program deployment", "Token creation", "Transfers"]
+      },
+      {
+        "name": "Anchor Architect",
+        "icon": "🔧",
+        "role": "Anchor program interaction",
+        "mcps": ["anchor"],
+        "capabilities": ["IDL parsing", "Instruction generation", "Account decoding", "Transaction simulation"],
+        "unique": true
+      },
+      {
+        "name": "DeFi Analyst",
+        "icon": "📊",
+        "role": "On-chain analytics",
+        "mcps": ["chainstack-solana"],
+        "capabilities": ["Top holders", "Program state", "Transaction signatures", "Real-time logs"]
+      }
+    ],
+    "devops": [
+      {
+        "name": "Notion Navigator",
+        "icon": "📝",
+        "role": "Documentation management",
+        "mcps": ["notion"],
+        "capabilities": ["Page creation", "Database queries", "Content updates", "Workspace search"]
+      },
+      {
+        "name": "Error Hunter",
+        "icon": "🐛",
+        "role": "Bug tracking and resolution",
+        "mcps": ["sentry"],
+        "capabilities": ["Issue listing", "Stack traces", "Root cause analysis", "Error events"]
+      },
+      {
+        "name": "CI/CD Automator",
+        "icon": "🔄",
+        "role": "Deployment automation",
+        "mcps": ["github", "docker"],
+        "capabilities": ["PR workflows", "Container deployment", "Branch management", "Release automation"]
+      }
+    ],
+    "composite": [
+      {
+        "name": "Full Stack Builder",
+        "icon": "🏗️",
+        "role": "End-to-end development",
+        "mcps": ["github", "supabase", "docker"],
+        "workflow": ["Clone repo", "Setup DB", "Deploy containers", "Create PR"]
+      },
+      {
+        "name": "Solana Stack",
+        "icon": "🪙",
+        "role": "Complete Solana operations",
+        "mcps": ["jupiter", "solana", "anchor"],
+        "workflow": ["Query chain", "Parse IDL", "Execute instructions", "Swap tokens"]
+      },
+      {
+        "name": "Research Synth",
+        "icon": "🔬",
+        "role": "Deep research with memory",
+        "mcps": ["mem0", "qdrant", "tavily", "exa"],
+        "workflow": ["Search web", "Store findings", "Build knowledge", "Synthesize report"]
+      }
+    ]
+  },
+  
+  "modes": {
+    "SOLANA": {
+      "emoji": "🪙",
+      "description": "Solana-native development mode",
+      "activates": ["jupiter", "solana", "anchor", "chainstack-solana"],
+      "commands": ["/swap", "/balance", "/deploy", "/curve"],
+      "workflow": "Natural language → Solana transactions"
+    },
+    "INFRA": {
+      "emoji": "🏗️",
+      "description": "Infrastructure management mode",
+      "activates": ["github", "docker", "supabase"],
+      "commands": ["/repo", "/deploy", "/db"],
+      "workflow": "Infrastructure as conversation"
+    },
+    "MEMORY": {
+      "emoji": "🧠",
+      "description": "Persistent context mode",
+      "activates": ["mem0", "qdrant"],
+      "commands": ["/remember", "/recall", "/forget"],
+      "workflow": "Context management across sessions"
+    },
+    "DEBUG": {
+      "emoji": "🐛",
+      "description": "Error tracking and resolution",
+      "activates": ["sentry", "github"],
+      "commands": ["/errors", "/trace", "/fix"],
+      "workflow": "Error → Root cause → PR"
+    }
+  },
+  
+  "skills": {
+    "new_in_v32": [
+      {
+        "name": "github-workflow",
+        "triggers": ["create PR", "fix issue", "search code"],
+        "mcp": "github"
+      },
+      {
+        "name": "memory-store",
+        "triggers": ["remember this", "save for later", "store context"],
+        "mcp": "mem0"
+      },
+      {
+        "name": "vector-search",
+        "triggers": ["find similar", "search patterns", "semantic search"],
+        "mcp": "qdrant"
+      },
+      {
+        "name": "db-query",
+        "triggers": ["query database", "run SQL", "create table"],
+        "mcp": "supabase"
+      },
+      {
+        "name": "container-ops",
+        "triggers": ["start container", "deploy stack", "docker compose"],
+        "mcp": "docker"
+      },
+      {
+        "name": "token-swap",
+        "triggers": ["swap tokens", "trade SOL", "exchange"],
+        "mcp": "jupiter"
+      },
+      {
+        "name": "chain-query",
+        "triggers": ["check balance", "get transaction", "token accounts"],
+        "mcp": "solana"
+      },
+      {
+        "name": "program-deploy",
+        "triggers": ["deploy program", "create token", "mint NFT"],
+        "mcp": "solana-web3"
+      },
+      {
+        "name": "anchor-interact",
+        "triggers": ["call instruction", "parse IDL", "bonding curve"],
+        "mcp": "anchor"
+      },
+      {
+        "name": "docs-manage",
+        "triggers": ["create doc", "update notion", "search notes"],
+        "mcp": "notion"
+      },
+      {
+        "name": "error-track",
+        "triggers": ["find bugs", "stack trace", "recent errors"],
+        "mcp": "sentry"
+      }
+    ]
+  },
+  
+  "costAnalysis": {
+    "profiles": {
+      "solo_dev": {
+        "description": "Light usage, free tiers only",
+        "monthly": "$10"
+      },
+      "active_builder": {
+        "description": "Regular swaps, DB operations",
+        "monthly": "$25"
+      },
+      "power_user": {
+        "description": "Heavy automation, all features",
+        "monthly": "$50"
+      },
+      "team_5": {
+        "description": "Shared infrastructure, 5 developers",
+        "monthly": "$100"
+      }
+    },
+    "freeStack": {
+      "services": [
+        "GitHub MCP (FREE)",
+        "Mem0 MCP (self-hosted)",
+        "Qdrant MCP (self-hosted)",
+        "Supabase MCP (free tier)",
+        "Docker MCP (FREE)",
+        "Solana RPC MCP (Helius free)",
+        "Jupiter MCP (gas only)",
+        "Notion MCP (FREE)",
+        "Sentry MCP (free tier)"
+      ],
+      "totalMonthly": "$0 + network fees"
+    }
+  },
+  
+  "environmentVariables": {
+    "tier1": {
+      "GITHUB_PAT": "GitHub Personal Access Token",
+      "OPENAI_API_KEY": "For Mem0 embeddings",
+      "POSTGRES_URL": "PostgreSQL connection string",
+      "SUPABASE_ACCESS_TOKEN": "Supabase PAT"
+    },
+    "tier2": {
+      "HELIUS_RPC_URL": "Helius RPC endpoint",
+      "SOLANA_PRIVATE_KEY": "Base58 encoded key",
+      "ICM_PROGRAM_ID": "ICM Motion program ID",
+      "CHAINSTACK_API_KEY": "Chainstack API key"
+    },
+    "tier3": {
+      "NOTION_TOKEN": "Notion integration token",
+      "SENTRY_AUTH_TOKEN": "Sentry auth token"
+    }
+  },
+  
+  "dependencies": {
+    "npm": [
+      "@modelcontextprotocol/server-github@latest",
+      "@supabase/mcp-server",
+      "@notionhq/notion-mcp-server",
+      "solana-mcp",
+      "@solana/web3.js",
+      "@coral-xyz/anchor"
+    ],
+    "python": [
+      "mcp-server-qdrant",
+      "docker-mcp"
+    ],
+    "docker": [
+      "mcp/mem0",
+      "qdrant/qdrant"
+    ]
+  },
+  
+  "killerUseCases": [
+    {
+      "name": "Build Pump.fun Clone",
+      "workflow": [
+        "GitHub MCP → Pull Anchor examples",
+        "Anchor MCP → Parse IDLs, generate client",
+        "Supabase MCP → Setup database",
+        "GRAB Skills → Clone UI",
+        "Jupiter MCP → Integrate swaps",
+        "Mem0 MCP → Remember project state",
+        "Docker MCP → Deploy environment"
+      ],
+      "timeWithOpus67": "Hours",
+      "timeWithoutOpus67": "Weeks"
+    },
+    {
+      "name": "Debug Production Issue",
+      "workflow": [
+        "Sentry MCP → Find recent errors",
+        "GitHub MCP → Locate relevant code",
+        "Mem0 MCP → Recall previous fixes",
+        "GitHub MCP → Create fix PR"
+      ],
+      "timeWithOpus67": "Minutes",
+      "timeWithoutOpus67": "Hours"
+    }
+  ],
+  
+  "roadmap_v33": {
+    "planned": [
+      "Helius Webhooks MCP",
+      "Birdeye API MCP",
+      "Metaplex MCP",
+      "Tensor MCP",
+      "Magic Eden MCP",
+      "Phantom Deeplink MCP"
+    ],
+    "custom_builds": [
+      "ICM Motion MCP",
+      "Pump.fun Monitor MCP",
+      "DEX Analytics MCP",
+      "Whale Alerts MCP"
+    ]
+  }
+}

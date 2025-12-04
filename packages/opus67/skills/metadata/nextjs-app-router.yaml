@@ -1,0 +1,76 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: nextjs-app-router
+
+id: nextjs-app-router
+name: Next.js App Router Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build modern Next.js applications using App Router with server components and streaming"
+  what_it_does:
+    - "Implements App Router file-based routing"
+    - "Designs server and client component architecture"
+    - "Implements server actions and data mutations"
+    - "Sets up streaming and suspense patterns"
+    - "Configures metadata and SEO optimization"
+  what_it_cannot_do:
+    - "Support Pages Router patterns in App Router"
+    - "Make all components server components"
+    - "Handle non-Next.js React applications"
+    - "Replace custom backend APIs entirely"
+
+capabilities:
+  - action: "implement app router structure"
+    confidence: 0.95
+    requires: ["Next.js 13+ project"]
+    produces: ["route segments", "layouts", "pages"]
+  - action: "design server components"
+    confidence: 0.93
+    requires: ["App Router app"]
+    produces: ["RSC components", "data fetching"]
+  - action: "implement server actions"
+    confidence: 0.92
+    requires: ["form mutations needed"]
+    produces: ["server actions", "form handling"]
+  - action: "configure streaming"
+    confidence: 0.90
+    requires: ["slow data sources"]
+    produces: ["loading.tsx", "Suspense boundaries"]
+  - action: "set up parallel routes"
+    confidence: 0.88
+    requires: ["complex layouts"]
+    produces: ["slots", "modal patterns"]
+
+anti_hallucination:
+  never_claim:
+    - "All components should be server components"
+    - "Server actions replace all APIs"
+    - "No need for client components"
+  always_recommend:
+    - "Start with server components, add 'use client' when needed"
+    - "Use server actions for mutations, API routes for webhooks"
+    - "Consider caching strategies carefully"
+  trigger_phrases:
+    - pattern: "Next.js routing"
+      response: "I'll implement App Router with proper layouts, loading states, and error boundaries. Are you using Next.js 13+ with App Router?"
+    - pattern: "server components"
+      response: "I'll design a server-first architecture, using client components only for interactivity and browser APIs."
+
+examples:
+  - task: "Build dashboard with App Router"
+    approach: "Create layout with sidebar, implement parallel routes for modals, use server components for data display"
+    skills_needed: ["nextjs-app-router", "react-typescript-master"]
+  - task: "Add authentication to Next.js app"
+    approach: "Use middleware for auth, server components for protected pages, server actions for login"
+    skills_needed: ["nextjs-app-router", "security-best-practices"]
+
+synergies:
+  amplifying:
+    - skill: react-typescript-master
+      reason: "React knowledge enhances Next.js development"
+    - skill: tailwind-css-pro
+      reason: "Styling for Next.js components"
+  conflicting: []
+  redundant:
+    - skill: nextjs-14-expert
+      reason: "Overlapping Next.js expertise"

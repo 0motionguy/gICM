@@ -1,10 +1,10 @@
 # OPUS 67 Operating Modes
-# Version: 1.0.0
-# 10 Specialized Modes + AUTO
+# Version: 4.1.0 "Learning Layer"
+# 30 Specialized Modes (Complete Suite)
 
 meta:
-  version: "1.0.0"
-  total_modes: 10
+  version: "4.1.0"
+  total_modes: 30
   default_mode: auto
   allow_manual_override: true
   show_mode_indicator: true
@@ -148,7 +148,7 @@ modes:
       - MVP features
       - Proof of concepts
       - Experimental code
-      - Just make it work
+      - "Just make it work"
     
     auto_trigger_when:
       keywords: [quick, fast, prototype, mvp, poc, try, experiment, vibe, ship]
@@ -726,6 +726,653 @@ sub_agents:
 # =============================================================================
 # These rules determine which sub-agents spawn automatically for each mode
 
+# =============================================================================
+# CURSOR-INSPIRED FEATURES (v2.1 Upgrades)
+# =============================================================================
+
+advanced_features:
+  
+  # GIT WORKTREE ISOLATION (from Cursor)
+  # Each agent in SWARM gets its own branch - no conflicts
+  git_worktrees:
+    enabled: true
+    description: "Isolate each agent in its own git worktree to prevent conflicts"
+    applies_to: [swarm]
+    workflow:
+      - create_worktree: "git worktree add .worktrees/agent-{id} -b agent/{id}/{task}"
+      - agent_works_in: ".worktrees/agent-{id}"
+      - on_complete: "git worktree remove .worktrees/agent-{id}"
+      - merge_strategy: "review_then_merge"
+    benefits:
+      - "Agents never overwrite each other's work"
+      - "Easy rollback per agent"
+      - "Parallel execution without locks"
+
+  # PLAN → BUILD SPLIT (from Cursor)
+  # Use expensive model for planning, cheap model for execution
+  plan_build_split:
+    enabled: true
+    description: "Create plan with ULTRA, execute with BUILD"
+    workflow:
+      planning_phase:
+        model: claude-opus
+        mode: ultra
+        output: "structured_plan.json"
+        includes: [architecture, file_list, dependencies, test_strategy]
+      execution_phase:
+        model: claude-sonnet
+        mode: build
+        input: "structured_plan.json"
+        parallel: true
+    command: "plan <task>"
+    example: "plan implement user authentication with OAuth"
+
+  # BACKGROUND AGENTS (from Cursor)
+  # Fire and forget - agents work while you do other things
+  background_agents:
+    enabled: true
+    description: "Run agents in background, get notified on completion"
+    modes: [swarm, build, data]
+    workflow:
+      - user_says: "background: refactor the auth module"
+      - system: "spawns agent in background"
+      - user: "continues working on other tasks"
+      - on_complete: "notification with diff review"
+    status_check: "bg status"
+    cancel: "bg cancel {id}"
+
+  # BROWSER TESTING TOOL (from Cursor)
+  # Live browser for testing web changes
+  browser_tool:
+    enabled: true
+    description: "Native browser for testing web work live"
+    mcp: playwright
+    capabilities:
+      - "Open localhost preview"
+      - "Take screenshots"
+      - "Run DOM inspections"
+      - "Check console errors"
+      - "Performance audit"
+    triggers: ["test this", "preview", "check the ui", "does it work"]
+    auto_test: true  # Agents auto-test their web changes
+
+  # SEMANTIC CODEBASE SEARCH (from Cursor)
+  # Deep understanding of entire codebase
+  semantic_search:
+    enabled: true
+    description: "Codebase-wide semantic understanding"
+    implementation:
+      indexer: "context-engine"
+      embeddings: true
+      scope: ["functions", "classes", "types", "imports", "exports"]
+    queries:
+      - "find all functions that call {x}"
+      - "where is {type} used"
+      - "show me similar code to {snippet}"
+    mcp: context7
+
+  # AGENT DIFF REVIEW (from Cursor)
+  # Easy review of what agents changed
+  diff_review:
+    enabled: true
+    description: "Review all changes agents made before accepting"
+    workflow:
+      - agents_complete_work: true
+      - show_unified_diff: true
+      - group_by_agent: true
+      - allow_partial_accept: true
+      - rollback_per_agent: true
+    commands:
+      - "review: show all pending changes"
+      - "accept all: accept everything"
+      - "accept agent-1: accept specific agent"
+      - "reject agent-2: rollback specific agent"
+      - "diff agent-3: show specific agent's changes"
+
+  # TERMINAL TOOL (enhanced)
+  # Agents can run commands and iterate based on output
+  terminal_tool:
+    enabled: true
+    description: "Run terminal commands, see output, iterate"
+    capabilities:
+      - "npm install"
+      - "npm run build"
+      - "npm test"
+      - "cargo build"
+      - "anchor build"
+      - "git status"
+    safety:
+      sandboxed: true
+      allowed_commands: [npm, pnpm, yarn, cargo, anchor, git, ls, cat, grep]
+      blocked_commands: [rm -rf, sudo, curl | bash]
+    auto_fix: true  # If build fails, agent tries to fix
+
+# =============================================================================
+# NEW MODES (v2.1)
+# =============================================================================
+
+  # BACKGROUND MODE
+  background:
+    icon: "🌙"
+    name: "Background"
+    description: "Fire and forget - agents work while you continue"
+    token_budget: 50000
+    thinking: standard
+    model: claude-sonnet
+    sub_agents:
+      min: 1
+      max: 5
+    features:
+      - async_execution
+      - notification_on_complete
+      - auto_save_results
+    triggers:
+      keywords: [background, async, later, "while I", "in the background"]
+
+  # REVIEW MODE
+  review:
+    icon: "👀"
+    name: "Review"
+    description: "Review and approve agent changes before merge"
+    token_budget: 30000
+    thinking: deep
+    model: claude-opus
+    features:
+      - unified_diff_view
+      - per_agent_review
+      - partial_accept
+      - rollback_support
+    triggers:
+      keywords: [review, check changes, approve, diff, "what changed"]
+
+  # ===========================================================================
+  # v3.1 MODES - "THE EYES UPDATE"
+  # ===========================================================================
+
+  # GRAB MODE - Visual-First Development
+  grab:
+    icon: "👁️"
+    name: "GRAB"
+    description: "Visual-first development - screenshot to code"
+    token_budget: 40000
+    thinking: standard
+    model: claude-sonnet
+
+    characteristics:
+      - Screenshot to code conversion
+      - Theme extraction from URLs
+      - Component cloning
+      - Pattern recognition
+
+    triggers:
+      keywords: [grab, screenshot, clone, copy, "make this", "build this", "like this"]
+
+    skills_priority:
+      - react-grab
+      - theme-grab
+      - form-grab
+      - dashboard-grab
+      - landing-grab
+
+    mcp_priority:
+      - context7
+      - firecrawl
+      - jina
+
+  # CLONE MODE - Full Site Cloning
+  clone:
+    icon: "🔄"
+    name: "CLONE"
+    description: "Full site/component cloning with theme extraction"
+    token_budget: 50000
+    thinking: deep
+    model: claude-opus
+
+    characteristics:
+      - Complete site extraction
+      - Multi-page cloning
+      - Theme system generation
+      - Asset optimization
+
+    triggers:
+      keywords: [clone, "clone this", "replicate", "copy site", "make a copy"]
+
+    skills_priority:
+      - react-grab
+      - theme-grab
+      - web-scraper
+
+    output_structure:
+      - /components
+      - /styles
+      - /pages
+      - /config
+
+  # RESEARCH MODE - Multi-Source Investigation
+  research:
+    icon: "🔍"
+    name: "RESEARCH"
+    description: "Deep research with multi-source synthesis"
+    token_budget: 45000
+    thinking: deep
+    model: claude-opus
+
+    characteristics:
+      - Multi-source investigation
+      - Citation tracking
+      - Synthesis and summarization
+      - Fact verification
+
+    triggers:
+      keywords: [research, investigate, "find out", "deep dive", "learn about"]
+
+    skills_priority:
+      - deep-researcher
+      - docs-expert
+      - web-scraper
+
+    mcp_priority:
+      - tavily
+      - exa
+      - firecrawl
+      - context7
+
+  # CONTEXT MODE - Desktop Awareness
+  context:
+    icon: "🖥️"
+    name: "CONTEXT"
+    description: "Desktop-aware assistance with activity history"
+    token_budget: 30000
+    thinking: standard
+    model: claude-sonnet
+
+    characteristics:
+      - Activity history search
+      - Work session tracking
+      - Context recovery
+      - Pattern recognition
+
+    triggers:
+      keywords: ["what was I doing", "find when", desktop, history, context]
+
+    skills_priority:
+      - desktop-context
+
+    mcp_priority:
+      - screenpipe
+
+  # ===========================================================================
+  # v3.2 MODES - "THE SOLANA STACK"
+  # ===========================================================================
+
+  # SOLANA MODE - Blockchain-Native Development
+  solana:
+    icon: "🪙"
+    name: "SOLANA"
+    description: "Blockchain-native Solana development"
+    token_budget: 50000
+    thinking: deep
+    model: claude-opus
+
+    characteristics:
+      - Token swaps and trading
+      - Program deployment
+      - Account management
+      - Transaction building
+
+    triggers:
+      keywords: [solana, swap, jupiter, anchor, "buy token", "sell token", blockchain]
+
+    skills_priority:
+      - solana-anchor-expert
+      - jupiter-trader
+      - anchor-instructor
+      - solana-reader
+
+    mcp_priority:
+      - jupiter
+      - helius
+      - solana
+      - anchor
+
+    commands:
+      /swap: "Token swap via Jupiter"
+      /balance: "Check wallet balance"
+      /deploy: "Deploy program"
+      /curve: "Bonding curve operations"
+
+  # INFRA MODE - Infrastructure as Conversation
+  infra:
+    icon: "🏗️"
+    name: "INFRA"
+    description: "Infrastructure and DevOps as conversation"
+    token_budget: 40000
+    thinking: standard
+    model: claude-sonnet
+
+    characteristics:
+      - GitHub automation
+      - Database operations
+      - Container management
+      - Deployment pipelines
+
+    triggers:
+      keywords: [infra, deploy, docker, database, repo, github]
+
+    skills_priority:
+      - github-manager
+      - db-commander
+      - container-chief
+      - devops-engineer
+
+    mcp_priority:
+      - github
+      - supabase
+      - docker
+
+    commands:
+      /repo: "Repository operations"
+      /deploy: "Deployment"
+      /db: "Database operations"
+
+  # MEMORY MODE - Persistent Context
+  memory:
+    icon: "🧠"
+    name: "MEMORY"
+    description: "Persistent context and memory management"
+    token_budget: 25000
+    thinking: standard
+    model: claude-sonnet
+
+    characteristics:
+      - Cross-session memory
+      - Context persistence
+      - Knowledge retrieval
+      - Pattern learning
+
+    triggers:
+      keywords: [remember, recall, memory, "you mentioned", forget, "did I say"]
+
+    skills_priority:
+      - memory-keeper
+      - vector-wizard
+
+    mcp_priority:
+      - mem0
+      - qdrant
+
+    commands:
+      /remember: "Store memory"
+      /recall: "Recall memory"
+      /forget: "Delete memory"
+
+  # DEBUG MODE - Error Hunting
+  debug:
+    icon: "🐛"
+    name: "DEBUG"
+    description: "Error tracking, root cause analysis, and fixing"
+    token_budget: 45000
+    thinking: deep
+    model: claude-opus
+
+    characteristics:
+      - Error investigation
+      - Root cause analysis
+      - Fix generation
+      - PR creation
+
+    triggers:
+      keywords: [debug, error, bug, crash, "not working", fix, trace]
+
+    skills_priority:
+      - error-hunter
+      - testing-unit
+      - testing-playwright
+
+    mcp_priority:
+      - sentry
+      - github
+
+    commands:
+      /errors: "Recent errors"
+      /trace: "Stack trace analysis"
+      /fix: "Generate fix"
+
+  # ===========================================================================
+  # v4.1 NEW MODES - "LEARNING LAYER" (10 Additional to reach 30)
+  # ===========================================================================
+
+  # DEEP-RESEARCH MODE - Extended Investigation
+  deep-research:
+    icon: "🔬"
+    name: "DEEP-RESEARCH"
+    description: "Extended multi-hour research with citations and synthesis"
+    token_budget: 80000
+    thinking: maximum
+    model: claude-opus
+    characteristics:
+      - Multi-source verification
+      - Citation tracking
+      - Comprehensive synthesis
+      - Report generation
+      - Fact checking
+    triggers:
+      keywords: [deep research, comprehensive, thorough, exhaustive, "full analysis"]
+    skills_priority:
+      - deep-researcher
+      - academic-researcher
+      - market-researcher
+      - competitor-analyzer
+    mcp_priority:
+      - tavily
+      - exa
+      - firecrawl
+
+  # WEB-SEARCH MODE - Quick Web Queries
+  web-search:
+    icon: "🌐"
+    name: "WEB-SEARCH"
+    description: "Fast web search for current information"
+    token_budget: 15000
+    thinking: minimal
+    model: claude-sonnet
+    characteristics:
+      - Quick web lookups
+      - Current information
+      - Multiple sources
+      - Summary answers
+    triggers:
+      keywords: [search, "look up", "find online", "what is the latest", current]
+    skills_priority:
+      - web-scraper
+      - docs-expert
+    mcp_priority:
+      - tavily
+      - exa
+      - brave_search
+
+  # DESIGN MODE - UI/UX Focused
+  design:
+    icon: "🎨"
+    name: "DESIGN"
+    description: "UI/UX design and user experience optimization"
+    token_budget: 45000
+    thinking: deep
+    model: claude-opus
+    characteristics:
+      - User experience design
+      - Interface patterns
+      - Design system creation
+      - Accessibility focus
+      - Mobile-first approach
+    triggers:
+      keywords: [design, ux, "user experience", interface, wireframe, prototype]
+    skills_priority:
+      - design-system-architect
+      - figma-to-code
+      - tailwind-ui-designer
+      - framer-motion-wizard
+      - a11y-expert
+    sub_agents:
+      enabled: true
+      max_agents: 3
+      types: [designer, animator, styler]
+
+  # CONTENT MODE - Content Creation
+  content:
+    icon: "✍️"
+    name: "CONTENT"
+    description: "Content creation and copywriting"
+    token_budget: 30000
+    thinking: standard
+    model: claude-sonnet
+    characteristics:
+      - Blog posts
+      - Documentation
+      - Marketing copy
+      - Social media
+      - Technical writing
+    triggers:
+      keywords: [content, write, blog, copy, article, documentation]
+    skills_priority:
+      - content-writer
+      - docs-expert
+
+  # BUSINESS MODE - Business Strategy
+  business:
+    icon: "💼"
+    name: "BUSINESS"
+    description: "Business strategy and planning"
+    token_budget: 50000
+    thinking: deep
+    model: claude-opus
+    characteristics:
+      - Business model analysis
+      - Revenue strategies
+      - Competitive analysis
+      - Growth planning
+      - Market positioning
+    triggers:
+      keywords: [business, strategy, revenue, growth, "business model", monetize]
+    skills_priority:
+      - market-researcher
+      - competitor-analyzer
+    sub_agents:
+      enabled: true
+      max_agents: 3
+      types: [researcher, analyst]
+
+  # STRATEGY MODE - Strategic Planning
+  strategy:
+    icon: "♟️"
+    name: "STRATEGY"
+    description: "Long-term strategic planning and roadmaps"
+    token_budget: 60000
+    thinking: maximum
+    model: claude-opus
+    characteristics:
+      - Long-term planning
+      - Roadmap creation
+      - Priority frameworks
+      - Risk assessment
+      - Milestone definition
+    triggers:
+      keywords: [strategy, roadmap, plan, prioritize, milestone, long-term]
+    skills_priority:
+      - market-researcher
+      - competitor-analyzer
+
+  # MARKETING MODE - Marketing Focus
+  marketing:
+    icon: "📣"
+    name: "MARKETING"
+    description: "Marketing strategy and content"
+    token_budget: 35000
+    thinking: standard
+    model: claude-sonnet
+    characteristics:
+      - Marketing campaigns
+      - Landing page copy
+      - Social media strategy
+      - SEO optimization
+      - Conversion optimization
+    triggers:
+      keywords: [marketing, campaign, seo, conversion, "social media", promotion]
+    skills_priority:
+      - content-writer
+      - landing-grab
+      - hero-grab
+      - analytics-tracking
+    mcp_priority:
+      - tavily
+
+  # SECURITY MODE - Security Focus
+  security:
+    icon: "🔒"
+    name: "SECURITY"
+    description: "Security-focused development and auditing"
+    token_budget: 55000
+    thinking: deep
+    model: claude-opus
+    characteristics:
+      - Security auditing
+      - Vulnerability scanning
+      - Penetration testing
+      - Secure coding
+      - Compliance checking
+    triggers:
+      keywords: [security, secure, vulnerability, penetration, audit, compliance]
+    skills_priority:
+      - smart-contract-auditor
+      - auth-security
+      - auth-clerk-nextauth
+    sub_agents:
+      enabled: true
+      max_agents: 3
+      types: [security-auditor, code-reviewer]
+
+  # TEACH MODE - Educational Content
+  teach:
+    icon: "📚"
+    name: "TEACH"
+    description: "Educational mode with detailed explanations"
+    token_budget: 40000
+    thinking: deep
+    model: claude-opus
+    characteristics:
+      - Step-by-step explanations
+      - Code examples with comments
+      - Concept breakdowns
+      - Learning paths
+      - Best practice explanations
+    triggers:
+      keywords: [teach, explain, learn, understand, "how does", tutorial, beginner]
+
+  # SHIP MODE - Production Deployment
+  ship:
+    icon: "🚀"
+    name: "SHIP"
+    description: "Ship to production quickly"
+    token_budget: 35000
+    thinking: standard
+    model: claude-sonnet
+    characteristics:
+      - Production deployment
+      - Final testing
+      - Release preparation
+      - Documentation updates
+      - Monitoring setup
+    triggers:
+      keywords: [ship, deploy, release, production, launch, publish]
+    skills_priority:
+      - devops-engineer
+      - docker-containers
+      - testing-playwright
+      - testing-unit
+    mcp_priority:
+      - github
+      - vercel
+
 auto_spawn_rules:
   # Every task gets 1-3 agents by default based on complexity
   
@@ -807,3 +1454,56 @@ auto_spawn_rules:
       review: [reviewer, code-reviewer]
       deploy: [deployer]
       docs: [documenter]
+
+  # =============================================================================
+  # NEW SUB-AGENTS (v2.1 - Cursor-inspired)
+  # =============================================================================
+
+  # DIFF REVIEWER - Reviews all changes before merge
+  diff-reviewer:
+    role: "Review diffs and summarize changes"
+    skills: [git-expert, code-reviewer]
+    model: claude-opus
+    auto_spawn_for: [review, diff, "what changed", approve]
+    output: "structured diff summary with recommendations"
+
+  # TERMINAL EXECUTOR - Runs commands and reports results  
+  terminal-executor:
+    role: "Execute terminal commands safely"
+    skills: [devops-engineer, node-backend]
+    model: claude-sonnet
+    auto_spawn_for: [run, execute, build, test, install]
+    sandbox: true
+    
+  # BROWSER TESTER - Tests web UI live
+  browser-tester:
+    role: "Test web changes in live browser"
+    skills: [testing-playwright, react-expert]
+    model: claude-sonnet
+    mcp_priority: [playwright]
+    auto_spawn_for: [test ui, preview, "does it work", screenshot]
+    capabilities: [screenshot, dom_inspect, console_check, performance_audit]
+
+  # PLAN ARCHITECT - Creates detailed execution plans
+  plan-architect:
+    role: "Create detailed multi-step execution plans"
+    skills: [architect, typescript-senior]
+    model: claude-opus
+    auto_spawn_for: [plan, design, architect, strategy]
+    output: "structured_plan.json"
+
+  # MERGE COORDINATOR - Handles git operations for SWARM
+  merge-coordinator:
+    role: "Coordinate git worktrees and merges"
+    skills: [git-expert]
+    model: claude-sonnet
+    auto_spawn_for: [merge, worktree, branch, coordinate]
+    git_operations: [worktree_create, worktree_remove, merge, rebase]
+
+  # BACKGROUND MONITOR - Tracks async agent progress
+  background-monitor:
+    role: "Monitor background agents and report status"
+    skills: []
+    model: local-llm
+    auto_spawn_for: [bg status, background check, "what's running"]
+    features: [progress_tracking, notification, status_report]

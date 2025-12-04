@@ -1,0 +1,74 @@
+# Bun Runtime - OPUS 67 v4.0
+# Fast JavaScript runtime
+
+id: bun-runtime
+name: "Bun Runtime Expert"
+tier: 2
+token_cost: 5000
+version: "1.0.0"
+
+semantic:
+  purpose: "Build and run JavaScript/TypeScript with Bun's all-in-one toolkit"
+
+  what_it_does:
+    - "Run TypeScript directly without compilation"
+    - "Use Bun's built-in bundler and test runner"
+    - "Leverage native SQLite with bun:sqlite"
+    - "Use Bun.serve() for high-performance HTTP"
+    - "Manage packages with bun install (faster than npm)"
+    - "Build executables with bun build --compile"
+
+  what_it_cannot:
+    - "Guarantee 100% Node.js API compatibility"
+    - "Run native Node.js addons without recompilation"
+
+capabilities:
+  - action: "Bun HTTP server"
+    confidence: 0.92
+  - action: "Bun SQLite"
+    confidence: 0.90
+  - action: "Bun bundler"
+    confidence: 0.88
+
+auto_load_when:
+  keywords:
+    - bun
+    - bun run
+    - bun.serve
+    - bun:sqlite
+    - bunx
+
+anti_hallucination:
+  - trigger: "node compatible|drop-in"
+    response: "Bun aims for Node compatibility but some APIs differ. Test thoroughly when migrating."
+
+synergies:
+  amplifying: [hono-expert, typescript-senior]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  http_server: |
+    Bun.serve({
+      port: 3000,
+      fetch(request) {
+        const url = new URL(request.url);
+        if (url.pathname === '/api/hello') {
+          return Response.json({ message: 'Hello from Bun!' });
+        }
+        return new Response('Not Found', { status: 404 });
+      },
+    });
+
+  sqlite: |
+    import { Database } from 'bun:sqlite';
+
+    const db = new Database('mydb.sqlite');
+    db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)');
+
+    const insert = db.prepare('INSERT INTO users (name) VALUES (?)');
+    insert.run('Alice');
+
+    const users = db.query('SELECT * FROM users').all();

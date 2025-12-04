@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: ci-cd-automation
+id: ci-cd-automation
+name: "CI/CD Automation Expert"
+tier: 2
+token_cost: 9000
+
+semantic:
+  purpose: "Design and implement CI/CD pipelines"
+  what_it_does:
+    - "Write GitHub Actions workflows"
+    - "Design GitLab CI pipelines"
+    - "Implement test automation"
+    - "Configure deployment strategies"
+    - "Design release workflows"
+    - "Implement security scanning"
+    - "Configure artifacts/caching"
+    - "Design rollback procedures"
+  what_it_cannot:
+    - "Run CI pipelines"
+    - "Access CI secrets"
+    - "Trigger deployments"
+    - "Monitor build status"
+
+capabilities:
+  - action: "GitHub Actions"
+    confidence: 0.95
+  - action: "GitLab CI"
+    confidence: 0.90
+  - action: "Test automation"
+    confidence: 0.92
+  - action: "Deployment strategies"
+    confidence: 0.88
+  - action: "Security scanning"
+    confidence: 0.85
+
+anti_hallucination:
+  - trigger: "run.*pipeline|trigger.*build"
+    response: "Push to your repo to trigger CI, or use `gh workflow run`."
+  - trigger: "build.*status|pipeline.*logs"
+    response: "Check GitHub Actions tab or GitLab CI/CD for build status."
+  - trigger: "secrets|tokens"
+    response: "Add secrets in repo settings. Never commit them to code."
+
+synergies:
+  amplifying:
+    - docker-kubernetes-pro
+    - aws-infrastructure
+    - test-automation-expert
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "PR validation workflow"
+    approach: "On PR + lint + test + type-check + build"
+    outcome: success
+  - task: "Release pipeline"
+    approach: "Semantic release + changelog + npm publish + Docker push"
+    outcome: success

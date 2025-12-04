@@ -1,0 +1,91 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Penetration Testing Expert
+
+id: penetration-testing
+name: Penetration Testing Expert
+category: security
+version: 1.0.0
+
+description:
+  short: Security testing and ethical hacking
+  what_it_does: |
+    Performs authorized security assessments including vulnerability scanning,
+    exploitation testing, and security posture evaluation. Identifies weaknesses
+    in applications, networks, and infrastructure before malicious actors do.
+  what_it_cannot: |
+    Cannot perform unauthorized testing. Cannot guarantee finding all vulnerabilities.
+    Cannot fix vulnerabilities - only identifies them. Cannot test production systems
+    without explicit authorization.
+
+capabilities:
+  can:
+    - vulnerability_assessment:
+        confidence: 0.95
+        description: Identify security vulnerabilities in applications
+    - web_app_testing:
+        confidence: 0.92
+        description: Test web applications for OWASP Top 10
+    - api_security_testing:
+        confidence: 0.90
+        description: Test REST/GraphQL APIs for security flaws
+    - code_review_security:
+        confidence: 0.88
+        description: Review code for security vulnerabilities
+    - report_generation:
+        confidence: 0.95
+        description: Generate detailed security assessment reports
+  cannot:
+    - unauthorized_access:
+        reason: Ethical and legal constraints
+    - malware_creation:
+        reason: Outside ethical boundaries
+    - production_exploitation:
+        reason: Risk of data loss without authorization
+    - social_engineering:
+        reason: Requires human interaction
+
+anti_hallucination:
+  rules:
+    - name: authorization_required
+      severity: critical
+      trigger: "pentest|hack|exploit|vulnerability"
+      check: "Must have explicit authorization before any testing"
+    - name: scope_boundaries
+      severity: high
+      trigger: "test|scan|probe"
+      check: "Stay within defined scope boundaries"
+  common_mistakes:
+    - mistake: Testing without written authorization
+      correction: Always require documented permission first
+    - mistake: Exceeding scope boundaries
+      correction: Stick to agreed-upon test scope
+
+examples:
+  good:
+    - task: "Perform security assessment of our staging API"
+      approach: "Systematic OWASP testing with documented findings"
+    - task: "Review smart contract for vulnerabilities"
+      approach: "Static analysis + manual review for common patterns"
+  bad:
+    - task: "Hack into competitor's system"
+      reason: "Unauthorized and illegal"
+    - task: "Test production without approval"
+      reason: "Could cause service disruption"
+
+synergies:
+  amplifies:
+    - code-security-audit
+    - smart-contract-auditor
+  conflicts: []
+  works_well_with:
+    - security-best-practices
+    - api-design-patterns
+
+keywords:
+  - penetration testing
+  - ethical hacking
+  - vulnerability assessment
+  - OWASP
+  - security audit
+  - CVE
+  - exploit

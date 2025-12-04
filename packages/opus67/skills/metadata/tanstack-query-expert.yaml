@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: tanstack-query-expert
+id: tanstack-query-expert
+name: "TanStack Query Expert"
+tier: 2
+token_cost: 7000
+
+semantic:
+  purpose: "Master server state management with TanStack Query (React Query)"
+  what_it_does:
+    - "Design query patterns"
+    - "Implement mutations"
+    - "Configure caching strategies"
+    - "Build optimistic updates"
+    - "Design prefetching"
+    - "Handle pagination/infinite scroll"
+    - "Implement query invalidation"
+    - "Create typed query hooks"
+  what_it_cannot:
+    - "Make actual API calls"
+    - "Access cache at runtime"
+    - "Debug network requests"
+    - "Measure cache performance"
+
+capabilities:
+  - action: "Design queries"
+    confidence: 0.95
+  - action: "Implement mutations"
+    confidence: 0.95
+  - action: "Configure caching"
+    confidence: 0.90
+  - action: "Optimistic updates"
+    confidence: 0.88
+  - action: "Pagination"
+    confidence: 0.92
+
+anti_hallucination:
+  - trigger: "actual.*cache|current.*data"
+    response: "Use TanStack Query DevTools to inspect cache at runtime."
+  - trigger: "network.*request"
+    response: "Check Network tab in DevTools to see actual API calls."
+  - trigger: "stale.*time|cache.*time"
+    response: "Optimal times depend on your data. Start with defaults and tune based on usage."
+
+synergies:
+  amplifying:
+    - react-typescript-master
+    - nextjs-14-expert
+    - nodejs-api-architect
+  conflicting: []
+  redundant:
+    - swr-expert  # Similar purpose
+
+examples:
+  - task: "Infinite scroll list"
+    approach: "useInfiniteQuery + getNextPageParam + intersection observer"
+    outcome: success
+  - task: "Optimistic todo update"
+    approach: "useMutation + onMutate rollback + invalidateQueries"
+    outcome: success

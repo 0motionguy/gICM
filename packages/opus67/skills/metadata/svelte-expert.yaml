@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: svelte-expert
+
+id: svelte-expert
+name: Svelte/SvelteKit Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build reactive web applications with Svelte and SvelteKit"
+  what_it_does:
+    - "Creates Svelte components with reactivity"
+    - "Implements SvelteKit routing and layouts"
+    - "Uses stores for state management"
+    - "Implements server-side rendering"
+    - "Optimizes for minimal bundle size"
+  what_it_cannot_do:
+    - "Use React ecosystem directly"
+    - "Match React's component library options"
+    - "Handle very large teams easily"
+    - "Use JSX syntax"
+
+capabilities:
+  - action: "create Svelte components"
+    confidence: 0.94
+    requires: ["Svelte project"]
+    produces: ["reactive components"]
+  - action: "implement SvelteKit routing"
+    confidence: 0.93
+    requires: ["route structure"]
+    produces: ["file-based routes", "layouts"]
+  - action: "use Svelte stores"
+    confidence: 0.95
+    requires: ["shared state needs"]
+    produces: ["writable/readable stores"]
+  - action: "implement SSR"
+    confidence: 0.91
+    requires: ["server rendering needs"]
+    produces: ["load functions", "SSR config"]
+
+anti_hallucination:
+  never_claim:
+    - "Better than React for all cases"
+    - "Zero learning curve"
+    - "Massive ecosystem like React"
+  always_recommend:
+    - "Great for smaller to medium projects"
+    - "Excellent performance by default"
+    - "Consider React for larger teams"
+  trigger_phrases:
+    - pattern: "Svelte"
+      response: "Svelte compiles to minimal JS with great DX. Using SvelteKit for full-stack or standalone Svelte?"
+
+examples:
+  - task: "Build interactive dashboard"
+    approach: "SvelteKit with routing, stores for state, transitions for UX"
+    skills_needed: ["svelte-expert", "tailwind-css-pro"]
+
+synergies:
+  amplifying:
+    - skill: tailwind-css-pro
+      reason: "Styling Svelte components"
+  conflicting:
+    - skill: react-typescript-master
+      reason: "Different framework paradigm"
+  redundant: []

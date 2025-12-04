@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: prompt-engineering
+
+id: prompt-engineering
+name: Prompt Engineering Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Design effective prompts for LLMs to achieve desired outputs"
+  what_it_does:
+    - "Designs system prompts for consistent behavior"
+    - "Implements few-shot learning examples"
+    - "Creates chain-of-thought prompts"
+    - "Optimizes prompts for token efficiency"
+    - "Implements prompt templates and variables"
+  what_it_cannot_do:
+    - "Guarantee specific LLM outputs"
+    - "Bypass model limitations"
+    - "Create prompts that work for all models"
+    - "Eliminate hallucinations entirely"
+
+capabilities:
+  - action: "design system prompts"
+    confidence: 0.94
+    requires: ["use case", "desired behavior"]
+    produces: ["system prompt"]
+  - action: "implement few-shot"
+    confidence: 0.93
+    requires: ["example inputs/outputs"]
+    produces: ["few-shot prompt"]
+  - action: "optimize tokens"
+    confidence: 0.91
+    requires: ["existing prompt"]
+    produces: ["optimized prompt"]
+  - action: "create templates"
+    confidence: 0.95
+    requires: ["variable requirements"]
+    produces: ["prompt templates"]
+
+anti_hallucination:
+  never_claim:
+    - "This prompt will always work"
+    - "Perfect output guaranteed"
+    - "Works on all models"
+  always_recommend:
+    - "Test prompts with various inputs"
+    - "Iterate based on outputs"
+    - "Consider model-specific behaviors"
+  trigger_phrases:
+    - pattern: "prompt design"
+      response: "I'll design a prompt with clear instructions, examples, and output format. Which LLM and use case?"
+
+examples:
+  - task: "Create code review prompt"
+    approach: "System role, review criteria, few-shot examples, structured output"
+    skills_needed: ["prompt-engineering"]
+
+synergies:
+  amplifying:
+    - skill: openai-integration
+      reason: "Prompts for OpenAI models"
+    - skill: anthropic-integration
+      reason: "Prompts for Claude"
+  conflicting: []
+  redundant: []

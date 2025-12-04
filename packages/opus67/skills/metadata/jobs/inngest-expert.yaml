@@ -1,0 +1,116 @@
+# Inngest Expert - OPUS 67 v4.0
+# Event-driven background jobs
+
+id: inngest-expert
+name: "Inngest Background Jobs Expert"
+tier: 2
+token_cost: 5500
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build reliable background jobs with Inngest's event-driven system"
+
+  what_it_does:
+    - "Create event-driven functions with automatic retries"
+    - "Implement multi-step workflows with steps API"
+    - "Schedule cron jobs and delayed functions"
+    - "Handle fan-out and parallel execution"
+    - "Use Inngest Dev Server for local testing"
+    - "Deploy to Vercel, Netlify, or any serverless"
+
+  what_it_cannot:
+    - "Replace real-time systems (use WebSockets)"
+    - "Handle sub-second latency requirements"
+
+capabilities:
+  - action: "Background functions"
+    confidence: 0.92
+  - action: "Multi-step workflows"
+    confidence: 0.90
+  - action: "Event handling"
+    confidence: 0.89
+
+auto_load_when:
+  keywords:
+    - inngest
+    - createFunction
+    - inngest.send
+    - step.run
+    - step.sleep
+
+anti_hallucination:
+  - trigger: "real-time|instant"
+    response: "Inngest is for background jobs with eventual consistency. For real-time, use WebSockets or SSE."
+
+synergies:
+  amplifying: [nextjs-14-expert, vercel-expert]
+  conflicting: []
+  redundant: [trigger-dev-expert]
+
+mcp_connections: []
+
+code_patterns:
+  basic_function: |
+    // inngest/client.ts
+    import { Inngest } from "inngest";
+    export const inngest = new Inngest({ id: "my-app" });
+
+    // inngest/functions.ts
+    import { inngest } from "./client";
+
+    export const processOrder = inngest.createFunction(
+      { id: "process-order", retries: 3 },
+      { event: "order/created" },
+      async ({ event, step }) => {
+        // Step 1: Validate inventory
+        const inventory = await step.run("validate-inventory", async () => {
+          return await checkInventory(event.data.items);
+        });
+
+        // Step 2: Charge payment
+        const payment = await step.run("charge-payment", async () => {
+          return await stripe.charges.create({
+            amount: event.data.total,
+            customer: event.data.customerId,
+          });
+        });
+
+        // Step 3: Send confirmation (with delay)
+        await step.sleep("wait-for-processing", "5s");
+
+        await step.run("send-confirmation", async () => {
+          await sendEmail(event.data.email, "Order confirmed!");
+        });
+
+        return { orderId: event.data.id, paymentId: payment.id };
+      }
+    );
+
+  api_route: |
+    // app/api/inngest/route.ts
+    import { serve } from "inngest/next";
+    import { inngest } from "@/inngest/client";
+    import { processOrder } from "@/inngest/functions";
+
+    export const { GET, POST, PUT } = serve({
+      client: inngest,
+      functions: [processOrder],
+    });
+
+  trigger_event: |
+    // Trigger from anywhere
+    import { inngest } from "@/inngest/client";
+
+    await inngest.send({
+      name: "order/created",
+      data: {
+        id: "order_123",
+        customerId: "cus_abc",
+        items: [{ sku: "WIDGET", qty: 2 }],
+        total: 4999,
+        email: "customer@example.com",
+      },
+    });

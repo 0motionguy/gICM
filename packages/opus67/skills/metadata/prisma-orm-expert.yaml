@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: prisma-orm-expert
+
+id: prisma-orm-expert
+name: Prisma ORM Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Design and implement type-safe database access with Prisma ORM"
+  what_it_does:
+    - "Designs Prisma schemas with relations"
+    - "Implements type-safe database queries"
+    - "Manages migrations and schema changes"
+    - "Optimizes Prisma queries for performance"
+    - "Sets up Prisma with various databases"
+  what_it_cannot_do:
+    - "Replace raw SQL for complex analytics"
+    - "Handle databases Prisma doesn't support"
+    - "Optimize database engine internals"
+    - "Manage database infrastructure"
+
+capabilities:
+  - action: "design Prisma schema"
+    confidence: 0.95
+    requires: ["data model requirements"]
+    produces: ["schema.prisma", "relations"]
+  - action: "implement CRUD operations"
+    confidence: 0.96
+    requires: ["Prisma client", "schema"]
+    produces: ["type-safe queries"]
+  - action: "manage migrations"
+    confidence: 0.93
+    requires: ["schema changes"]
+    produces: ["migration files", "database sync"]
+  - action: "optimize queries"
+    confidence: 0.88
+    requires: ["slow queries", "schema"]
+    produces: ["select optimization", "includes"]
+  - action: "implement transactions"
+    confidence: 0.92
+    requires: ["multi-operation needs"]
+    produces: ["atomic operations"]
+
+anti_hallucination:
+  never_claim:
+    - "Prisma handles all SQL needs"
+    - "No N+1 queries possible"
+    - "Unlimited scalability"
+  always_recommend:
+    - "Use Prisma's query logging in dev"
+    - "Consider raw queries for complex analytics"
+    - "Monitor query performance"
+  trigger_phrases:
+    - pattern: "set up database"
+      response: "I'll create a Prisma schema with proper relations. Which database: PostgreSQL, MySQL, or SQLite?"
+    - pattern: "complex query"
+      response: "Let me check if this is best done with Prisma Client or if we need $queryRaw for complex SQL."
+
+examples:
+  - task: "Set up database for user auth"
+    approach: "Create Prisma schema with User, Session, Account models and proper relations"
+    skills_needed: ["prisma-orm-expert", "database-schema-expert"]
+  - task: "Add soft delete to all models"
+    approach: "Add deletedAt field, create middleware for filtering, update queries"
+    skills_needed: ["prisma-orm-expert"]
+
+synergies:
+  amplifying:
+    - skill: database-schema-expert
+      reason: "Schema design knowledge improves Prisma models"
+    - skill: typescript-advanced
+      reason: "Better type utilization with Prisma"
+  conflicting: []
+  redundant: []

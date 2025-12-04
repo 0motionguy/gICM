@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: anthropic-integration
+
+id: anthropic-integration
+name: Anthropic Claude Integration Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Integrate Anthropic Claude APIs for AI-powered applications"
+  what_it_does:
+    - "Implements Claude message API calls"
+    - "Designs effective prompts with system/user roles"
+    - "Implements streaming responses"
+    - "Manages context windows and token limits"
+    - "Implements tool use and function calling"
+  what_it_cannot_do:
+    - "Train or fine-tune Claude models"
+    - "Guarantee specific outputs"
+    - "Bypass content policies"
+    - "Access Claude's internal state"
+
+capabilities:
+  - action: "implement Claude API calls"
+    confidence: 0.96
+    requires: ["Anthropic API key"]
+    produces: ["message API integration"]
+  - action: "design prompts"
+    confidence: 0.94
+    requires: ["use case requirements"]
+    produces: ["system prompts", "user prompts"]
+  - action: "implement streaming"
+    confidence: 0.93
+    requires: ["real-time needs"]
+    produces: ["SSE handling"]
+  - action: "implement tool use"
+    confidence: 0.92
+    requires: ["tool definitions"]
+    produces: ["function calling setup"]
+
+anti_hallucination:
+  never_claim:
+    - "Claude always gives correct answers"
+    - "No API costs"
+    - "Deterministic outputs"
+  always_recommend:
+    - "Implement rate limiting"
+    - "Handle API errors gracefully"
+    - "Monitor token usage"
+  trigger_phrases:
+    - pattern: "Claude API"
+      response: "I'll implement Anthropic's message API with proper error handling. Using Claude 3.5 Sonnet or another model?"
+
+examples:
+  - task: "Build AI assistant with Claude"
+    approach: "Message API with streaming, system prompt design, error handling"
+    skills_needed: ["anthropic-integration", "nodejs-api-architect"]
+
+synergies:
+  amplifying:
+    - skill: nodejs-api-architect
+      reason: "API design for AI features"
+  conflicting: []
+  redundant:
+    - skill: openai-integration
+      reason: "Different LLM provider"

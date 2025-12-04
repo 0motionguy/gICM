@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: NFT Metadata Expert
+
+id: nft-metadata-expert
+name: NFT Metadata Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: NFT metadata standards and storage
+  what_it_does: |
+    Implements NFT metadata according to standards (ERC-721, Metaplex).
+    Handles metadata storage (IPFS, Arweave, on-chain), dynamic metadata,
+    and reveal mechanics. Ensures marketplace compatibility.
+  what_it_cannot: |
+    Cannot guarantee IPFS availability. Cannot change on-chain metadata
+    without proper contract design. Cannot make all metadata decentralized
+    without trade-offs.
+
+capabilities:
+  can:
+    - metadata_standards:
+        confidence: 0.95
+        description: Implement OpenSea, Metaplex metadata standards
+    - ipfs_storage:
+        confidence: 0.92
+        description: Store and pin metadata on IPFS
+    - arweave_storage:
+        confidence: 0.88
+        description: Permanent storage on Arweave
+    - dynamic_metadata:
+        confidence: 0.85
+        description: Implement updateable/dynamic NFT metadata
+    - reveal_mechanics:
+        confidence: 0.90
+        description: Build delayed reveal for NFT drops
+  cannot:
+    - guarantee_ipfs:
+        reason: IPFS requires pinning for availability
+    - change_immutable:
+        reason: Immutable metadata cannot be updated
+    - fully_decentralize:
+        reason: Trade-offs between cost, speed, permanence
+
+anti_hallucination:
+  rules:
+    - name: metadata_url
+      severity: high
+      trigger: "tokenURI|metadata|uri"
+      check: "Use IPFS or Arweave for decentralized metadata"
+    - name: image_hosting
+      severity: medium
+      trigger: "image|media|asset"
+      check: "Host images permanently, not on centralized servers"
+  common_mistakes:
+    - mistake: Hosting metadata on centralized servers
+      correction: Use IPFS/Arweave for decentralization
+    - mistake: Not pinning IPFS content
+      correction: Use Pinata, Infura, or self-hosted pinning
+
+examples:
+  good:
+    - task: "Create NFT collection metadata"
+      approach: "Metaplex standard JSON + Arweave storage + proper attributes"
+    - task: "Implement reveal mechanism"
+      approach: "Placeholder URI + owner-callable reveal function"
+  bad:
+    - task: "Store metadata on AWS S3"
+      reason: "Centralized, can be taken down"
+
+synergies:
+  amplifies:
+    - nft-agent
+    - solana-anchor-expert
+  conflicts: []
+  works_well_with:
+    - erc-standards-implementer
+    - token-launch-expert
+
+keywords:
+  - NFT metadata
+  - IPFS
+  - Arweave
+  - Metaplex
+  - ERC-721
+  - reveal
+  - tokenURI

@@ -1,0 +1,55 @@
+# OPUS 67 Skill Metadata: jupiter-trader
+id: jupiter-trader
+name: "Jupiter Trader"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Integrate with Jupiter aggregator for optimal token swaps on Solana"
+  what_it_does:
+    - "Generate swap quotes via Jupiter API"
+    - "Find best routes across DEXes"
+    - "Calculate slippage and price impact"
+    - "Build swap transactions"
+    - "Implement DCA strategies"
+    - "Handle limit orders"
+  what_it_cannot:
+    - "Execute swaps (requires wallet)"
+    - "Access funds or manage wallets"
+    - "Guarantee best execution"
+    - "Predict price movements"
+    - "Access real-time data without MCP"
+
+capabilities:
+  - action: "Get swap quotes"
+    confidence: 0.95
+    requires_mcp: [jupiter]
+  - action: "Build swap transactions"
+    confidence: 0.90
+    requires_mcp: [jupiter]
+  - action: "Calculate price impact"
+    confidence: 0.90
+  - action: "Find optimal routes"
+    confidence: 0.85
+    requires_mcp: [jupiter]
+
+anti_hallucination:
+  - trigger: "execute.*swap|buy.*now|sell.*now"
+    response: "I can build the swap transaction, but you need to sign and submit it with your wallet."
+  - trigger: "best price|current rate"
+    response: "I need Jupiter MCP connected to fetch real-time quotes."
+  - trigger: "getTokenList|getPriceHistory|getLiquidity"
+    response: "Jupiter API doesn't have these endpoints. Use /quote, /swap, and /tokens endpoints."
+
+synergies:
+  amplifying:
+    - solana-anchor-expert
+    - bonding-curve-master
+    - defi-analyst
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Swap 1 SOL to USDC"
+    approach: "Get quote from Jupiter API, build transaction with slippage protection"
+    outcome: success

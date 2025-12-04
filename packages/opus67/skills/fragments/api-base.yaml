@@ -1,0 +1,41 @@
+# API Base Fragment - OPUS 67 v4.0
+# Inherited by skills that work with REST APIs
+
+id: api-base
+type: fragment
+version: "1.0.0"
+
+semantic:
+  purpose: "Foundation for API integration and development skills"
+
+capabilities:
+  - REST API design patterns (resource naming, versioning, pagination)
+  - Error handling with proper HTTP status codes (4xx/5xx)
+  - Rate limiting awareness and backoff strategies
+  - Authentication patterns (API key, Bearer, OAuth 2.0)
+  - Request/response validation with schemas
+  - API documentation (OpenAPI/Swagger)
+  - Caching strategies (ETag, Cache-Control)
+  - CORS configuration
+
+anti_hallucination:
+  - trigger: "no auth|public api|free api"
+    response: "Most production APIs require authentication. Always check the API docs for auth requirements."
+  - trigger: "unlimited|no rate limit"
+    response: "All APIs have rate limits. Implement exponential backoff for production use."
+  - trigger: "real.?time|instant"
+    response: "REST APIs are request/response. For real-time updates, consider WebSockets or SSE."
+
+common_patterns:
+  error_handling: |
+    Always handle: 400 (bad request), 401 (unauthorized), 403 (forbidden),
+    404 (not found), 429 (rate limited), 500 (server error)
+
+  authentication: |
+    - API Key: X-API-Key header or query param
+    - Bearer: Authorization: Bearer <token>
+    - OAuth: Multi-step flow with access/refresh tokens
+
+  pagination: |
+    Common patterns: cursor-based, offset/limit, page number
+    Always check for next_page or has_more indicators

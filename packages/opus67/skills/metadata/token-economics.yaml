@@ -1,0 +1,60 @@
+# OPUS 67 Skill Metadata: token-economics
+id: token-economics
+name: "Token Economics Designer"
+tier: 2
+token_cost: 10000
+
+semantic:
+  purpose: "Design sustainable token economics and incentive mechanisms"
+  what_it_does:
+    - "Design token distribution models"
+    - "Create vesting schedules"
+    - "Model inflation/deflation mechanics"
+    - "Design staking rewards"
+    - "Calculate APY/APR projections"
+    - "Design governance token mechanics"
+    - "Model liquidity incentives"
+    - "Analyze token velocity"
+  what_it_cannot:
+    - "Predict token prices"
+    - "Guarantee economic success"
+    - "Execute token launches"
+    - "Access market data in real-time"
+    - "Provide financial advice"
+
+capabilities:
+  - action: "Design tokenomics"
+    confidence: 0.92
+  - action: "Create vesting schedules"
+    confidence: 0.95
+  - action: "Model staking rewards"
+    confidence: 0.90
+  - action: "Calculate projections"
+    confidence: 0.85
+  - action: "Design governance"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "price.*predict|will.*moon"
+    response: "I design economic models, not price predictions. Token prices depend on market conditions."
+  - trigger: "guaranteed.*returns|safe.*investment"
+    response: "No tokenomics guarantees returns. This is economic modeling, not financial advice."
+  - trigger: "current.*price|market.*cap"
+    response: "I need Helius/Jupiter MCP for real-time market data."
+
+synergies:
+  amplifying:
+    - bonding-curve-master
+    - solana-anchor-expert
+    - evm-solidity-expert
+    - defi-data-analyst
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Design token distribution"
+    approach: "Team 15% (4yr vest), Community 40%, Treasury 25%, Liquidity 20%"
+    outcome: success
+  - task: "Model staking rewards"
+    approach: "Decreasing emission curve + lock multipliers + compound rewards"
+    outcome: success

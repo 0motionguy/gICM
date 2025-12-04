@@ -1,0 +1,157 @@
+# Monorepo Build Stack - OPUS 67 v4.0
+# Tier 2 Skill Pack - Consolidates monorepo tooling
+# Token cost: 8,000 (vs 16,000 for 3 individual skills)
+
+id: monorepo-build-stack
+name: "Monorepo Build Stack"
+tier: 2
+token_cost: 8000
+version: "1.0.0"
+
+extends:
+  - devops-base
+
+semantic:
+  purpose: "Manage monorepo projects with efficient builds and workspaces"
+
+  what_it_does:
+    # Turborepo
+    - "Configure turbo.json for task pipelines"
+    - "Set up remote caching with Vercel"
+    - "Define task dependencies and outputs"
+    - "Implement incremental builds"
+    - "Configure pruned deployments"
+
+    # pnpm Workspaces
+    - "Configure pnpm-workspace.yaml"
+    - "Manage workspace dependencies with workspace:*"
+    - "Use pnpm filtering for targeted operations"
+    - "Set up shared configurations"
+    - "Handle peer dependencies correctly"
+
+    # Build Optimization
+    - "Configure tsup for library builds"
+    - "Set up TypeScript project references"
+    - "Implement build caching strategies"
+    - "Optimize bundle sizes with tree shaking"
+
+  what_it_cannot:
+    - "Fix fundamental architecture issues"
+    - "Make slow builds fast without proper caching"
+    - "Handle circular dependencies automatically"
+
+capabilities:
+  - action: "Turborepo configuration"
+    confidence: 0.93
+    examples:
+      - "Set up turbo.json"
+      - "Configure remote caching"
+      - "Define task pipelines"
+
+  - action: "pnpm workspace management"
+    confidence: 0.94
+    examples:
+      - "Configure workspaces"
+      - "Manage dependencies"
+      - "Use filtering"
+
+  - action: "Build optimization"
+    confidence: 0.90
+    examples:
+      - "Configure tsup"
+      - "Set up tree shaking"
+      - "Optimize TypeScript"
+
+auto_load_when:
+  keywords:
+    - turborepo
+    - turbo
+    - monorepo
+    - pnpm workspace
+    - workspace
+    - nx
+    - lerna
+    - build cache
+    - remote cache
+  file_types:
+    - turbo.json
+    - pnpm-workspace.yaml
+  directories:
+    - packages/
+    - apps/
+
+anti_hallucination:
+  - trigger: "instant build|no cache"
+    response: "First builds are always slow. Enable caching (local or remote) for subsequent speed improvements."
+
+  - trigger: "all packages|everything"
+    response: "Use Turborepo filtering to build only affected packages. Full builds should be rare."
+
+  - trigger: "circular dependency"
+    response: "Circular dependencies break builds. Refactor to extract shared code into a separate package."
+
+synergies:
+  amplifying:
+    - typescript-senior       # Type-safe builds
+    - devops-automation-stack # CI/CD integration
+  conflicting: []
+  redundant:
+    - turborepo-expert       # Included in this pack
+
+mcp_connections: []
+
+code_patterns:
+  turbo_json: |
+    {
+      "$schema": "https://turbo.build/schema.json",
+      "globalDependencies": ["**/.env.*local"],
+      "tasks": {
+        "build": {
+          "dependsOn": ["^build"],
+          "outputs": ["dist/**", ".next/**"]
+        },
+        "test": {
+          "dependsOn": ["build"],
+          "outputs": []
+        },
+        "lint": {
+          "outputs": []
+        },
+        "dev": {
+          "cache": false,
+          "persistent": true
+        }
+      }
+    }
+
+  pnpm_workspace: |
+    packages:
+      - 'packages/*'
+      - 'apps/*'
+      - 'services/*'
+
+  package_json_filter: |
+    # Build specific package
+    pnpm --filter @myorg/ui build
+
+    # Build package and dependencies
+    pnpm --filter @myorg/web... build
+
+    # Build all packages matching pattern
+    pnpm --filter "@myorg/*" build
+
+    # Run in all packages
+    pnpm -r build
+
+  tsconfig_references: |
+    {
+      "compilerOptions": {
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true
+      },
+      "references": [
+        { "path": "../shared" },
+        { "path": "../types" }
+      ]
+    }

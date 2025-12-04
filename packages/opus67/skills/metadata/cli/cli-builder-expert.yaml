@@ -1,0 +1,164 @@
+# CLI Builder Expert - OPUS 67 v4.0
+# Command-line tool development
+
+id: cli-builder-expert
+name: "CLI Builder Expert"
+tier: 2
+token_cost: 5000
+version: "1.0.0"
+
+semantic:
+  purpose: "Build professional CLI tools with modern patterns"
+
+  what_it_does:
+    - "Use Commander.js for command parsing"
+    - "Add interactive prompts with Inquirer/Prompts"
+    - "Style output with Chalk and ora spinners"
+    - "Implement subcommands and options"
+    - "Handle configuration files"
+    - "Create installable npm packages"
+
+  what_it_cannot:
+    - "Create GUI applications"
+    - "Handle complex TUI layouts (use Ink)"
+
+capabilities:
+  - action: "Command parsing"
+    confidence: 0.93
+  - action: "Interactive prompts"
+    confidence: 0.91
+  - action: "Styled output"
+    confidence: 0.90
+
+auto_load_when:
+  keywords:
+    - cli
+    - commander
+    - inquirer
+    - chalk
+    - ora
+    - bin
+    - yargs
+
+anti_hallucination:
+  - trigger: "gui|graphical"
+    response: "For terminal GUIs, use Ink (React for CLI) or Blessed. Commander is for traditional CLI parsing."
+
+synergies:
+  amplifying: [typescript-senior, bun-runtime]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  basic_cli: |
+    #!/usr/bin/env node
+    // src/cli.ts
+    import { Command } from "commander";
+    import chalk from "chalk";
+    import ora from "ora";
+    import { input, select, confirm } from "@inquirer/prompts";
+
+    const program = new Command();
+
+    program
+      .name("mycli")
+      .description("A helpful CLI tool")
+      .version("1.0.0");
+
+    program
+      .command("init")
+      .description("Initialize a new project")
+      .option("-t, --template <name>", "Template to use", "default")
+      .action(async (options) => {
+        const projectName = await input({
+          message: "Project name:",
+          default: "my-project",
+        });
+
+        const framework = await select({
+          message: "Select framework:",
+          choices: [
+            { value: "next", name: "Next.js" },
+            { value: "remix", name: "Remix" },
+            { value: "astro", name: "Astro" },
+          ],
+        });
+
+        const useTypeScript = await confirm({
+          message: "Use TypeScript?",
+          default: true,
+        });
+
+        const spinner = ora("Creating project...").start();
+        await createProject({ projectName, framework, useTypeScript });
+        spinner.succeed(chalk.green("Project created!"));
+
+        console.log(chalk.blue(`\nNext steps:`));
+        console.log(`  cd ${projectName}`);
+        console.log(`  npm install`);
+        console.log(`  npm run dev`);
+      });
+
+    program
+      .command("build")
+      .description("Build the project")
+      .option("-w, --watch", "Watch mode")
+      .action(async (options) => {
+        const spinner = ora("Building...").start();
+        try {
+          await buildProject(options.watch);
+          spinner.succeed("Build complete!");
+        } catch (error) {
+          spinner.fail(chalk.red("Build failed"));
+          console.error(error.message);
+          process.exit(1);
+        }
+      });
+
+    program.parse();
+
+  package_json: |
+    // package.json
+    {
+      "name": "mycli",
+      "version": "1.0.0",
+      "type": "module",
+      "bin": {
+        "mycli": "./dist/cli.js"
+      },
+      "files": ["dist"],
+      "scripts": {
+        "build": "tsup src/cli.ts --format esm --dts",
+        "dev": "tsx src/cli.ts"
+      },
+      "dependencies": {
+        "commander": "^12.0.0",
+        "@inquirer/prompts": "^4.0.0",
+        "chalk": "^5.3.0",
+        "ora": "^8.0.0"
+      }
+    }
+
+  config_file: |
+    // src/config.ts
+    import { cosmiconfig } from "cosmiconfig";
+    import { z } from "zod";
+
+    const ConfigSchema = z.object({
+      projectName: z.string(),
+      outputDir: z.string().default("dist"),
+      plugins: z.array(z.string()).default([]),
+    });
+
+    export async function loadConfig() {
+      const explorer = cosmiconfig("mycli");
+      const result = await explorer.search();
+
+      if (!result) {
+        return ConfigSchema.parse({});
+      }
+
+      return ConfigSchema.parse(result.config);
+    }

@@ -1,0 +1,560 @@
+{
+  "version": "3.1.0",
+  "codename": "The Eyes Update",
+  "released": "2025-12-02",
+  "description": "Visual-first + Data-first development upgrade with 35+ new integrations",
+  
+  "summary": {
+    "skills": { "total": 78, "new": 30 },
+    "agents": { "total": 66, "new": 16 },
+    "modes": { "total": 26, "new": 4 },
+    "mcps": { "total": 62, "new": 22 }
+  },
+
+  "mcpServers": {
+    "firecrawl": {
+      "description": "Production-grade web scraping and crawling",
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": { "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}" },
+      "tools": ["scrape", "crawl", "map", "extract"],
+      "cost": "$16/month or self-host",
+      "docs": "https://docs.firecrawl.dev"
+    },
+    
+    "tavily": {
+      "description": "AI-optimized web search for agents",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.tavily.com/mcp/?tavilyApiKey=${TAVILY_API_KEY}"],
+      "tools": ["tavily-search", "tavily-extract", "tavily-news", "tavily-crawl"],
+      "cost": "1000 free/month, then $0.01/search",
+      "docs": "https://docs.tavily.com/documentation/mcp"
+    },
+    
+    "exa": {
+      "description": "Semantic search + code context + company research",
+      "command": "npx",
+      "args": ["-y", "exa-mcp-server", "tools=web_search_exa,get_code_context_exa,deep_search_exa,company_research_exa,linkedin_search_exa,crawling_exa"],
+      "env": { "EXA_API_KEY": "${EXA_API_KEY}" },
+      "tools": ["web_search_exa", "deep_search_exa", "get_code_context_exa", "company_research_exa", "linkedin_search_exa", "crawling_exa"],
+      "cost": "Free tier + usage-based",
+      "docs": "https://docs.exa.ai/reference/exa-mcp"
+    },
+    
+    "playwright": {
+      "description": "Official Microsoft browser automation MCP",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest", "--headless"],
+      "tools": ["browser_navigate", "browser_click", "browser_type", "browser_screenshot", "browser_pdf", "browser_execute_js", "browser_wait"],
+      "cost": "FREE",
+      "docs": "https://github.com/microsoft/playwright-mcp"
+    },
+    
+    "stagehand": {
+      "description": "AI browser framework with act/extract/observe",
+      "command": "npx",
+      "args": ["-y", "@browserbasehq/stagehand-mcp"],
+      "tools": ["act", "extract", "observe", "agent_execute", "goto", "screenshot"],
+      "cost": "FREE local, Browserbase cloud pricing",
+      "docs": "https://docs.stagehand.dev"
+    },
+    
+    "context7": {
+      "description": "Up-to-date library documentation injection",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "tools": ["resolve-library-id", "get-library-docs"],
+      "cost": "FREE",
+      "docs": "https://github.com/upstash/context7"
+    },
+    
+    "screenpipe": {
+      "description": "24/7 desktop recording with searchable history",
+      "command": "uv",
+      "args": ["run", "screenpipe-mcp"],
+      "tools": ["search_screen", "search_audio", "get_timeline", "search_ocr", "get_context"],
+      "cost": "FREE (local)",
+      "docs": "https://docs.screenpi.pe/mcp-server"
+    },
+    
+    "jina": {
+      "description": "FREE URL to markdown conversion",
+      "type": "http",
+      "baseUrl": "https://r.jina.ai",
+      "tools": ["read_url", "search_web", "read_pdf"],
+      "cost": "FREE",
+      "docs": "https://jina.ai/reader"
+    },
+    
+    "brightdata": {
+      "description": "Enterprise-grade web data infrastructure",
+      "command": "npx",
+      "args": ["-y", "@anthropic/brightdata-mcp"],
+      "tools": ["serp_search", "web_scraper", "proxy_rotate", "dataset_download"],
+      "cost": "Enterprise pricing",
+      "docs": "https://brightdata.com"
+    },
+    
+    "browserbase": {
+      "description": "Cloud browser infrastructure",
+      "command": "npx",
+      "args": ["-y", "@browserbasehq/mcp"],
+      "env": { "BROWSERBASE_API_KEY": "${BROWSERBASE_API_KEY}" },
+      "tools": ["create_session", "control_browser", "live_view", "session_replay"],
+      "cost": "Usage-based",
+      "docs": "https://browserbase.com"
+    }
+  },
+
+  "skills": {
+    "grab": [
+      {
+        "id": "react-grab",
+        "name": "React Component Grab",
+        "triggers": ["grab this", "grab component", "screenshot to react"],
+        "input": "image/screenshot",
+        "output": "Component.tsx",
+        "cost": "$0.01",
+        "workflow": ["gemini_vision_analyze", "deepseek_generate", "claude_review_optional"]
+      },
+      {
+        "id": "theme-grab",
+        "name": "Theme Extraction",
+        "triggers": ["grab theme", "extract theme", "clone design system"],
+        "input": "url/screenshot",
+        "output": "tailwind.config.js, globals.css",
+        "cost": "$0.01"
+      },
+      {
+        "id": "db-grab",
+        "name": "Database Schema Grab",
+        "triggers": ["grab database", "grab schema", "erd to prisma"],
+        "input": "ERD diagram/description",
+        "output": "schema.prisma, migrations/, seed.ts",
+        "cost": "$0.02"
+      },
+      {
+        "id": "api-grab",
+        "name": "API Client Grab",
+        "triggers": ["grab api", "generate sdk", "api client"],
+        "input": "OpenAPI spec/Swagger/Postman",
+        "output": "api-client.ts, types.ts, hooks.ts",
+        "cost": "$0.02"
+      },
+      {
+        "id": "form-grab",
+        "name": "Form Component Grab",
+        "triggers": ["grab form", "form to code"],
+        "input": "screenshot/description",
+        "output": "FormComponent.tsx, schema.ts (Zod)",
+        "cost": "$0.01"
+      },
+      {
+        "id": "chart-grab",
+        "name": "Chart Component Grab",
+        "triggers": ["grab chart", "chart to code"],
+        "input": "chart screenshot",
+        "output": "Chart.tsx, data.ts",
+        "cost": "$0.01"
+      },
+      {
+        "id": "icon-grab",
+        "name": "Icon Extraction",
+        "triggers": ["grab icons", "extract icons"],
+        "input": "screenshot with icons",
+        "output": "icons/*.tsx (SVG components)",
+        "cost": "$0.005"
+      },
+      {
+        "id": "dashboard-grab",
+        "name": "Dashboard Clone",
+        "triggers": ["grab dashboard", "admin panel"],
+        "input": "dashboard screenshot",
+        "output": "Layout.tsx, Sidebar.tsx, Header.tsx, widgets/",
+        "cost": "$0.05"
+      },
+      {
+        "id": "landing-grab",
+        "name": "Landing Page Clone",
+        "triggers": ["grab landing", "landing page", "clone page"],
+        "input": "landing page screenshot/URL",
+        "output": "page.tsx, components/",
+        "cost": "$0.05"
+      },
+      {
+        "id": "wireframe-grab",
+        "name": "Wireframe to UI",
+        "triggers": ["grab wireframe", "sketch to code"],
+        "input": "hand-drawn sketch/wireframe",
+        "output": "Component.tsx (polished UI)",
+        "cost": "$0.02"
+      },
+      {
+        "id": "figma-grab",
+        "name": "Figma Import",
+        "triggers": ["grab figma", "figma to code"],
+        "input": "Figma URL",
+        "output": "components/, styles/, stories/",
+        "cost": "$0.05",
+        "requires": ["FIGMA_ACCESS_TOKEN"]
+      },
+      {
+        "id": "animation-grab",
+        "name": "Animation Extraction",
+        "triggers": ["grab animation", "animate this"],
+        "input": "GIF/video/description",
+        "output": "AnimatedComponent.tsx (Framer Motion)",
+        "cost": "$0.02"
+      },
+      {
+        "id": "email-grab",
+        "name": "Email Template Grab",
+        "triggers": ["grab email", "email template"],
+        "input": "email screenshot",
+        "output": "EmailTemplate.tsx (React Email)",
+        "cost": "$0.01"
+      },
+      {
+        "id": "pdf-grab",
+        "name": "PDF Template Grab",
+        "triggers": ["grab pdf", "document template"],
+        "input": "document screenshot",
+        "output": "PDFDocument.tsx (React-PDF)",
+        "cost": "$0.02"
+      },
+      {
+        "id": "mobile-grab",
+        "name": "Mobile Component Grab",
+        "triggers": ["grab mobile", "mobile component"],
+        "input": "mobile screenshot",
+        "output": "Component.tsx (React Native)",
+        "cost": "$0.02"
+      }
+    ],
+    
+    "search": [
+      {
+        "id": "web-search",
+        "name": "AI Web Search",
+        "triggers": ["search web", "find online"],
+        "mcp": "tavily",
+        "cost": "$0.01"
+      },
+      {
+        "id": "code-search",
+        "name": "Code Context Search",
+        "triggers": ["find code", "library docs"],
+        "mcp": "exa",
+        "tool": "get_code_context_exa",
+        "cost": "usage-based"
+      },
+      {
+        "id": "company-research",
+        "name": "Company Research",
+        "triggers": ["research company", "competitor analysis"],
+        "mcp": "exa",
+        "tool": "company_research_exa",
+        "cost": "usage-based"
+      }
+    ],
+    
+    "browser": [
+      {
+        "id": "page-scrape",
+        "name": "Page Scraping",
+        "triggers": ["scrape page", "extract data"],
+        "mcp": "firecrawl",
+        "cost": "$0.001/page"
+      },
+      {
+        "id": "site-crawl",
+        "name": "Site Crawling",
+        "triggers": ["crawl site", "spider website"],
+        "mcp": "firecrawl",
+        "cost": "$0.001/page"
+      },
+      {
+        "id": "browser-automate",
+        "name": "Browser Automation",
+        "triggers": ["automate browser", "click this"],
+        "mcp": "playwright",
+        "cost": "FREE"
+      },
+      {
+        "id": "e2e-test",
+        "name": "E2E Test Generation",
+        "triggers": ["generate tests", "test this page"],
+        "mcp": "playwright",
+        "cost": "FREE"
+      }
+    ],
+    
+    "context": [
+      {
+        "id": "lib-docs",
+        "name": "Library Documentation",
+        "triggers": ["use context7", "library docs"],
+        "mcp": "context7",
+        "cost": "FREE"
+      },
+      {
+        "id": "desktop-search",
+        "name": "Desktop History Search",
+        "triggers": ["what was I doing", "find on screen"],
+        "mcp": "screenpipe",
+        "cost": "FREE"
+      }
+    ]
+  },
+
+  "agents": {
+    "vision": [
+      {
+        "id": "grabber-agent",
+        "name": "👁️ Grabber",
+        "role": "Master grab router",
+        "skills": ["react-grab", "theme-grab", "form-grab", "chart-grab"],
+        "behavior": "Auto-detect grab type, route to appropriate skill, store results in memory"
+      },
+      {
+        "id": "cloner-agent",
+        "name": "🔄 Cloner",
+        "role": "Full page cloning specialist",
+        "skills": ["landing-grab", "dashboard-grab", "mobile-grab"],
+        "behavior": "Break page into sections, grab each in parallel (SWARM), assemble"
+      },
+      {
+        "id": "theme-agent",
+        "name": "🎨 Theme Extractor",
+        "role": "Design system specialist",
+        "skills": ["theme-grab", "icon-grab"],
+        "behavior": "Extract complete design system, apply consistently"
+      },
+      {
+        "id": "schema-agent",
+        "name": "🗄️ Schema Builder",
+        "role": "Backend from visuals",
+        "skills": ["db-grab", "api-grab"],
+        "behavior": "Generate Prisma schema + API client in one workflow"
+      },
+      {
+        "id": "form-agent",
+        "name": "📝 Form Wizard",
+        "role": "Complex form specialist",
+        "skills": ["form-grab"],
+        "behavior": "Detect multi-step forms, generate full validation"
+      },
+      {
+        "id": "chart-agent",
+        "name": "📊 Chart Master",
+        "role": "Data visualization",
+        "skills": ["chart-grab"],
+        "behavior": "Detect chart type, generate matching Recharts component"
+      },
+      {
+        "id": "email-agent",
+        "name": "📧 Email Builder",
+        "role": "Email template specialist",
+        "skills": ["email-grab"],
+        "behavior": "Ensure cross-client compatibility, generate plain text"
+      },
+      {
+        "id": "animation-agent",
+        "name": "🎬 Animator",
+        "role": "Motion design",
+        "skills": ["animation-grab"],
+        "behavior": "Analyze motion precisely, generate Framer Motion code"
+      }
+    ],
+    
+    "data": [
+      {
+        "id": "researcher-agent",
+        "name": "🔍 Deep Researcher",
+        "role": "Comprehensive research",
+        "mcps": ["tavily", "exa", "firecrawl"],
+        "behavior": "Multi-source synthesis, fact-checking, citations"
+      },
+      {
+        "id": "spider-agent",
+        "name": "🕷️ Web Spider",
+        "role": "Site crawling specialist",
+        "mcps": ["firecrawl", "jina"],
+        "behavior": "Full site extraction, structured data output"
+      },
+      {
+        "id": "docs-agent",
+        "name": "📚 Docs Expert",
+        "role": "Library documentation",
+        "mcps": ["context7"],
+        "behavior": "Always fetch current docs, version-specific examples"
+      },
+      {
+        "id": "desktop-agent",
+        "name": "🖥️ Desktop Oracle",
+        "role": "Desktop context",
+        "mcps": ["screenpipe"],
+        "behavior": "Search screen history, provide temporal context"
+      }
+    ],
+    
+    "browser": [
+      {
+        "id": "browser-agent",
+        "name": "🌐 Browser Controller",
+        "role": "Browser automation",
+        "mcps": ["playwright"],
+        "behavior": "Accessibility-first, snapshot mode default"
+      },
+      {
+        "id": "stagehand-agent",
+        "name": "🎭 Stagehand",
+        "role": "Natural browser use",
+        "mcps": ["stagehand"],
+        "behavior": "act/extract/observe primitives, self-healing"
+      },
+      {
+        "id": "test-agent",
+        "name": "🧪 Test Generator",
+        "role": "E2E test creation",
+        "mcps": ["playwright"],
+        "behavior": "Generate Playwright tests, run and verify"
+      },
+      {
+        "id": "auth-agent",
+        "name": "🔐 Auth Agent",
+        "role": "Login automation",
+        "mcps": ["playwright", "stagehand"],
+        "behavior": "Handle auth flows, session management"
+      }
+    ]
+  },
+
+  "modes": {
+    "GRAB": {
+      "emoji": "👁️",
+      "description": "Visual-first development mode",
+      "commands": [
+        { "trigger": "grab this", "action": "auto-detect and grab" },
+        { "trigger": "grab theme from [url]", "action": "theme-grab" },
+        { "trigger": "grab all", "action": "batch grab with SWARM" }
+      ],
+      "behavior": "Any image triggers grab detection, preview before generating, store in memory",
+      "integrations": ["SWARM", "COUNCIL", "MEMORY"]
+    },
+    
+    "CLONE": {
+      "emoji": "🔄",
+      "description": "Clone entire websites/apps",
+      "commands": [
+        { "trigger": "clone [url]", "action": "full page clone" },
+        { "trigger": "clone mobile [screenshot]", "action": "mobile clone" },
+        { "trigger": "clone with my theme", "action": "grab + apply custom theme" }
+      ],
+      "workflow": [
+        "Capture full page / all screenshots",
+        "Extract theme first",
+        "Grab all sections in parallel (SWARM)",
+        "Apply consistent theme",
+        "Generate project structure"
+      ],
+      "output": "/clone-output/{components,styles,pages,tailwind.config.js,package.json}"
+    },
+    
+    "RESEARCH": {
+      "emoji": "🔍",
+      "description": "Deep web research with synthesis",
+      "commands": [
+        { "trigger": "research [topic]", "action": "multi-source investigation" },
+        { "trigger": "find all about [company]", "action": "company intel" },
+        { "trigger": "summarize recent [topic]", "action": "news synthesis" }
+      ],
+      "tools": ["tavily", "exa", "firecrawl", "context7"],
+      "output": "Markdown report with citations"
+    },
+    
+    "CONTEXT": {
+      "emoji": "🖥️",
+      "description": "Desktop-aware AI assistance",
+      "commands": [
+        { "trigger": "what was I doing?", "action": "recent activity" },
+        { "trigger": "find when I worked on [x]", "action": "search history" },
+        { "trigger": "summarize my day", "action": "daily report" }
+      ],
+      "tools": ["screenpipe"],
+      "behavior": "Searches local screen recordings, respects privacy"
+    }
+  },
+
+  "dependencies": {
+    "npm": [
+      "@mendable/firecrawl-js",
+      "@browserbasehq/stagehand",
+      "puppeteer",
+      "sharp",
+      "@react-pdf/renderer",
+      "@react-email/components",
+      "gifuct-js"
+    ],
+    "python": [
+      "crawl4ai",
+      "screenpipe-mcp"
+    ]
+  },
+
+  "costs": {
+    "perGrab": {
+      "react-grab": 0.01,
+      "theme-grab": 0.01,
+      "db-grab": 0.02,
+      "api-grab": 0.02,
+      "form-grab": 0.01,
+      "chart-grab": 0.01,
+      "icon-grab": 0.005,
+      "dashboard-grab": 0.05,
+      "landing-grab": 0.05,
+      "wireframe-grab": 0.02,
+      "figma-grab": 0.05,
+      "animation-grab": 0.02,
+      "email-grab": 0.01,
+      "pdf-grab": 0.02,
+      "mobile-grab": 0.02
+    },
+    "monthly": {
+      "light": { "grabs": 50, "searches": 100, "browser": 50, "total": "$3" },
+      "medium": { "grabs": 200, "searches": 500, "browser": 200, "total": "$10" },
+      "heavy": { "grabs": 500, "searches": 2000, "browser": 500, "total": "$25" },
+      "gicm_populate": { "grabs": 1000, "searches": 5000, "browser": 1000, "total": "$50" }
+    },
+    "free": [
+      "Jina Reader - URL to markdown",
+      "Context7 - Library docs",
+      "Playwright MCP - Browser automation",
+      "ScreenPipe - Desktop context (local)",
+      "Crawl4AI - Web crawling (local)"
+    ]
+  },
+
+  "gicmIntegration": {
+    "autoPublish": {
+      "workflow": [
+        "User grabs component",
+        "COUNCIL reviews quality",
+        "If approved: auto-format for marketplace",
+        "Generate preview + docs",
+        "Add to GICM registry"
+      ],
+      "qualityGates": {
+        "accessibility": 90,
+        "responsive": ["mobile", "desktop"],
+        "typescript": true,
+        "council_approval": true
+      }
+    },
+    "batchCommands": [
+      "populate marketplace from [source]",
+      "grab top N UI from [source]",
+      "batch grab [folder]"
+    ]
+  }
+}

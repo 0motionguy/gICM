@@ -1,0 +1,75 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: security-best-practices
+
+id: security-best-practices
+name: Security Best Practices Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement comprehensive security measures across web applications, APIs, and infrastructure"
+  what_it_does:
+    - "Implements OWASP Top 10 protections"
+    - "Configures authentication and authorization systems"
+    - "Sets up secure headers and CSP policies"
+    - "Implements input validation and sanitization"
+    - "Configures secure session management"
+  what_it_cannot_do:
+    - "Perform penetration testing"
+    - "Guarantee 100% security"
+    - "Handle compliance certifications"
+    - "Implement hardware security modules"
+
+capabilities:
+  - action: "implement authentication"
+    confidence: 0.92
+    requires: ["backend framework", "database"]
+    produces: ["auth system", "session management"]
+  - action: "configure security headers"
+    confidence: 0.95
+    requires: ["web server or framework"]
+    produces: ["hardened HTTP headers"]
+  - action: "implement input validation"
+    confidence: 0.93
+    requires: ["application code"]
+    produces: ["validated inputs", "sanitized data"]
+  - action: "set up rate limiting"
+    confidence: 0.90
+    requires: ["API or web server"]
+    produces: ["rate limiter", "DDoS protection"]
+  - action: "implement CORS policies"
+    confidence: 0.94
+    requires: ["API server"]
+    produces: ["CORS configuration"]
+
+anti_hallucination:
+  never_claim:
+    - "This is unhackable"
+    - "100% secure implementation"
+    - "No vulnerabilities exist"
+  always_recommend:
+    - "Regular security audits"
+    - "Penetration testing by professionals"
+    - "Keeping dependencies updated"
+    - "Security monitoring and logging"
+  trigger_phrases:
+    - pattern: "make it secure"
+      response: "I'll implement security best practices including input validation, secure headers, and authentication, but recommend professional security auditing for production systems."
+    - pattern: "prevent all attacks"
+      response: "I can implement defense-in-depth measures that significantly reduce attack surface, but no system is 100% secure. Regular audits are essential."
+
+examples:
+  - task: "Add authentication to my Express API"
+    approach: "Implement JWT-based auth with secure token storage, refresh tokens, and proper session management"
+    skills_needed: ["security-best-practices", "nodejs-api-architect"]
+  - task: "Protect my React app from XSS"
+    approach: "Configure CSP headers, sanitize user inputs, use React's built-in XSS protections"
+    skills_needed: ["security-best-practices", "react-typescript-master"]
+
+synergies:
+  amplifying:
+    - skill: nodejs-api-architect
+      reason: "Combines security with API architecture"
+    - skill: database-schema-expert
+      reason: "Secure data modeling and access control"
+  conflicting: []
+  redundant: []

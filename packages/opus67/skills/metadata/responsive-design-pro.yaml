@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: responsive-design-pro
+id: responsive-design-pro
+name: "Responsive Design Pro"
+tier: 2
+token_cost: 6000
+
+semantic:
+  purpose: "Create fluid, accessible responsive layouts for all devices"
+  what_it_does:
+    - "Design mobile-first layouts"
+    - "Implement breakpoint strategies"
+    - "Create fluid typography"
+    - "Build responsive grids"
+    - "Design touch-friendly UIs"
+    - "Implement container queries"
+    - "Create responsive images"
+    - "Design adaptive navigation"
+  what_it_cannot:
+    - "Test on real devices"
+    - "Measure actual viewport"
+    - "Preview responsive behavior"
+    - "Access browser DevTools"
+
+capabilities:
+  - action: "Mobile-first design"
+    confidence: 0.95
+  - action: "Breakpoint strategy"
+    confidence: 0.92
+  - action: "Fluid typography"
+    confidence: 0.88
+  - action: "Responsive grids"
+    confidence: 0.95
+  - action: "Container queries"
+    confidence: 0.85
+
+anti_hallucination:
+  - trigger: "test.*device|real.*phone"
+    response: "Test on actual devices or use Chrome DevTools device mode."
+  - trigger: "actual.*width|viewport.*size"
+    response: "Use DevTools responsive mode to test different viewports."
+  - trigger: "performance.*mobile"
+    response: "Use Lighthouse mobile audit to measure mobile performance."
+
+synergies:
+  amplifying:
+    - tailwind-css-pro
+    - shadcn-ui-expert
+    - nextjs-14-expert
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Responsive navbar"
+    approach: "Mobile hamburger + desktop horizontal + smooth transition"
+    outcome: success
+  - task: "Fluid hero section"
+    approach: "clamp() typography + aspect-ratio images + container queries"
+    outcome: success

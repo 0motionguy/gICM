@@ -1,0 +1,76 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: viem-wagmi-expert
+
+id: viem-wagmi-expert
+name: Viem & Wagmi Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build Web3 applications with Viem and Wagmi for EVM chain interactions"
+  what_it_does:
+    - "Implements wallet connections with Wagmi"
+    - "Reads and writes to smart contracts"
+    - "Handles transactions and gas estimation"
+    - "Implements account abstraction patterns"
+    - "Manages chain switching and multi-chain"
+  what_it_cannot_do:
+    - "Handle non-EVM chains (use Solana skills)"
+    - "Deploy smart contracts"
+    - "Audit smart contract security"
+    - "Manage private keys securely"
+
+capabilities:
+  - action: "implement wallet connection"
+    confidence: 0.95
+    requires: ["React app"]
+    produces: ["WagmiConfig", "ConnectButton"]
+  - action: "read contract data"
+    confidence: 0.96
+    requires: ["contract ABI", "address"]
+    produces: ["useReadContract hooks"]
+  - action: "write transactions"
+    confidence: 0.94
+    requires: ["connected wallet", "contract"]
+    produces: ["useWriteContract", "transaction flow"]
+  - action: "handle multiple chains"
+    confidence: 0.92
+    requires: ["multi-chain requirements"]
+    produces: ["chain config", "switching logic"]
+  - action: "estimate gas"
+    confidence: 0.91
+    requires: ["transaction params"]
+    produces: ["gas estimates", "fee display"]
+
+anti_hallucination:
+  never_claim:
+    - "Transactions are instant"
+    - "No gas fees required"
+    - "Works with Solana"
+  always_recommend:
+    - "Always simulate transactions first"
+    - "Handle all transaction states"
+    - "Show clear loading and error states"
+  trigger_phrases:
+    - pattern: "Web3 app"
+      response: "I'll use Wagmi for wallet connections and Viem for contract interactions. Which chains do you need to support?"
+    - pattern: "connect wallet"
+      response: "I'll implement Wagmi with your preferred connectors (MetaMask, WalletConnect, Coinbase). Using RainbowKit for UI?"
+
+examples:
+  - task: "Build NFT minting dApp"
+    approach: "Wagmi for connection, useWriteContract for mint, useReadContract for supply"
+    skills_needed: ["viem-wagmi-expert", "react-typescript-master"]
+  - task: "Add token swap feature"
+    approach: "Connect to DEX contracts, estimate gas, handle approval flow"
+    skills_needed: ["viem-wagmi-expert", "evm-solidity-expert"]
+
+synergies:
+  amplifying:
+    - skill: evm-solidity-expert
+      reason: "Understanding contracts being called"
+    - skill: react-typescript-master
+      reason: "React hooks integration"
+  conflicting:
+    - skill: solana-anchor-expert
+      reason: "Different blockchain ecosystem"
+  redundant: []

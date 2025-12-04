@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: react-native-expert
+
+id: react-native-expert
+name: React Native Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build cross-platform mobile apps with React Native"
+  what_it_does:
+    - "Creates React Native components and screens"
+    - "Implements navigation with React Navigation"
+    - "Handles native modules and bridges"
+    - "Implements platform-specific code"
+    - "Optimizes mobile performance"
+  what_it_cannot_do:
+    - "Access all native APIs without bridges"
+    - "Match native app performance in all cases"
+    - "Handle complex native animations"
+    - "Build without native toolchain"
+
+capabilities:
+  - action: "create RN components"
+    confidence: 0.94
+    requires: ["React Native project"]
+    produces: ["mobile components"]
+  - action: "implement navigation"
+    confidence: 0.93
+    requires: ["screen structure"]
+    produces: ["React Navigation setup"]
+  - action: "handle platform code"
+    confidence: 0.90
+    requires: ["platform-specific needs"]
+    produces: ["Platform.select", "native modules"]
+  - action: "optimize performance"
+    confidence: 0.88
+    requires: ["performance issues"]
+    produces: ["FlatList", "memo optimizations"]
+
+anti_hallucination:
+  never_claim:
+    - "Identical to native performance"
+    - "Works on all devices"
+    - "No native code needed"
+  always_recommend:
+    - "Test on real devices"
+    - "Use Flipper for debugging"
+    - "Consider Expo for simpler projects"
+  trigger_phrases:
+    - pattern: "React Native"
+      response: "I'll build with React Native. Using Expo (simpler) or bare React Native (more control)?"
+
+examples:
+  - task: "Build mobile app"
+    approach: "Expo or bare RN, navigation setup, component library, state management"
+    skills_needed: ["react-native-expert", "react-typescript-master"]
+
+synergies:
+  amplifying:
+    - skill: react-typescript-master
+      reason: "React knowledge transfers"
+    - skill: expo-expert
+      reason: "Simplified RN development"
+  conflicting: []
+  redundant: []

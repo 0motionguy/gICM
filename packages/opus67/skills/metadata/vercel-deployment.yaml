@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: vercel-deployment
+
+id: vercel-deployment
+name: Vercel Deployment Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Deploy and optimize applications on Vercel with proper configuration and performance tuning"
+  what_it_does:
+    - "Configures Vercel deployments and projects"
+    - "Sets up environment variables and secrets"
+    - "Implements preview deployments and branches"
+    - "Configures custom domains and SSL"
+    - "Optimizes Edge and Serverless functions"
+  what_it_cannot_do:
+    - "Deploy non-supported frameworks"
+    - "Manage underlying infrastructure"
+    - "Bypass Vercel platform limits"
+    - "Handle long-running processes"
+
+capabilities:
+  - action: "configure deployment"
+    confidence: 0.95
+    requires: ["supported framework"]
+    produces: ["vercel.json", "deployment"]
+  - action: "set up environment variables"
+    confidence: 0.96
+    requires: ["Vercel project"]
+    produces: ["env config", "secrets"]
+  - action: "configure domains"
+    confidence: 0.94
+    requires: ["domain ownership"]
+    produces: ["custom domain", "SSL"]
+  - action: "optimize functions"
+    confidence: 0.90
+    requires: ["serverless functions"]
+    produces: ["edge functions", "optimized config"]
+  - action: "set up preview deployments"
+    confidence: 0.95
+    requires: ["Git integration"]
+    produces: ["PR previews", "branch deployments"]
+
+anti_hallucination:
+  never_claim:
+    - "Unlimited function execution time"
+    - "Can deploy any application type"
+    - "Free tier has no limits"
+  always_recommend:
+    - "Use environment variables for secrets"
+    - "Test in preview before production"
+    - "Monitor function execution times"
+  trigger_phrases:
+    - pattern: "deploy to Vercel"
+      response: "I'll configure Vercel deployment with proper env vars, domain setup, and preview deployments. Is this a Next.js app?"
+    - pattern: "Vercel functions"
+      response: "I'll optimize the functions for Edge or Serverless depending on requirements. Edge is faster but has runtime limitations."
+
+examples:
+  - task: "Deploy Next.js app to Vercel"
+    approach: "Configure vercel.json, set up env vars, configure custom domain"
+    skills_needed: ["vercel-deployment", "nextjs-app-router"]
+  - task: "Optimize API routes"
+    approach: "Convert to Edge functions where possible, configure function regions"
+    skills_needed: ["vercel-deployment", "performance-optimization"]
+
+synergies:
+  amplifying:
+    - skill: nextjs-app-router
+      reason: "Vercel optimizes for Next.js"
+    - skill: ci-cd-automation
+      reason: "Automated deployments"
+  conflicting: []
+  redundant: []

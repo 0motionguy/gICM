@@ -94,9 +94,15 @@ export class MCPHub extends EventEmitter<MCPHubEvents> {
       await this.loadConfig();
     }
 
-    // Connect "always" MCPs
-    for (const mcpId of this.config!.auto_connect.always) {
+    // Connect "always" MCPs (handle missing auto_connect gracefully)
+    const alwaysConnect = this.config?.auto_connect?.always || [];
+    for (const mcpId of alwaysConnect) {
       await this.connect(mcpId);
+    }
+
+    // If no explicit "always" list, just log and continue
+    if (alwaysConnect.length === 0) {
+      console.log("[MCPHub] No auto-connect MCPs configured (this is OK)");
     }
   }
 

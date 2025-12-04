@@ -1,0 +1,124 @@
+# OPUS 67 LLM Council Configuration
+# 3-Stage Peer Review Deliberation
+
+meta:
+  version: "1.0.0"
+  description: "Multi-model deliberation for high-stakes decisions"
+  estimated_cost_per_deliberation: 0.13
+
+# Council Members
+# Stage 1 contributors - diverse perspectives
+members:
+  gemini:
+    name: "Gemini Flash"
+    model: gemini-2.0-flash
+    role: contributor
+    specialty: speed
+    description: "Fast analysis with good breadth"
+
+  deepseek:
+    name: "DeepSeek"
+    model: deepseek-chat
+    role: contributor
+    specialty: code
+    description: "Strong technical and coding expertise"
+
+  claude-haiku:
+    name: "Claude Haiku"
+    model: claude-haiku-3.5
+    role: contributor
+    specialty: concise
+    description: "Concise, accurate responses"
+
+# Chairman - Final synthesis
+chairman:
+  id: chairman
+  name: "Claude Sonnet (Chairman)"
+  model: claude-sonnet-4
+  role: chairman
+  specialty: synthesis
+  description: "Expert at synthesizing diverse perspectives"
+
+# Deliberation Settings
+settings:
+  require_unanimity: false
+  min_confidence: 0.7
+  max_rounds: 1
+  timeout_ms: 60000
+  parallel_stage1: true
+  parallel_stage2: true
+
+# Stage Configuration
+stages:
+  stage1:
+    name: "Independent Analysis"
+    description: "Each member provides their analysis independently"
+    parallel: true
+    timeout_ms: 30000
+
+  stage2:
+    name: "Peer Review"
+    description: "Members rank each other's responses"
+    parallel: true
+    timeout_ms: 20000
+
+  stage3:
+    name: "Chairman Synthesis"
+    description: "Chairman synthesizes the final answer"
+    parallel: false
+    timeout_ms: 30000
+
+# Ranking Criteria
+ranking_criteria:
+  - name: accuracy
+    weight: 0.30
+    description: "Correctness of the response"
+
+  - name: completeness
+    weight: 0.25
+    description: "Thoroughness of coverage"
+
+  - name: clarity
+    weight: 0.20
+    description: "Clear and understandable"
+
+  - name: reasoning
+    weight: 0.15
+    description: "Quality of reasoning/logic"
+
+  - name: creativity
+    weight: 0.10
+    description: "Novel insights or approaches"
+
+# Consensus Thresholds
+consensus:
+  unanimous: 1.0      # All agree on #1
+  strong: 0.75        # 75%+ agree on #1
+  moderate: 0.5       # 50%+ agree on #1
+  weak: 0.25          # 25%+ agree on #1
+  split: 0.0          # No clear winner
+
+# Use Cases
+# When to invoke council deliberation
+use_cases:
+  - architecture_decisions
+  - security_reviews
+  - complex_refactoring
+  - api_design
+  - performance_optimization
+  - code_review_conflicts
+
+# Cost Estimation
+# Approximate tokens per stage
+cost_estimation:
+  stage1_tokens_per_member: 500
+  stage2_tokens_per_member: 300
+  stage3_tokens: 1000
+  total_estimated: 3100  # 3 members * 500 + 3 * 300 + 1000
+
+# Fallback Behavior
+fallback:
+  on_member_failure: continue  # Continue with remaining members
+  on_no_consensus: chairman_decides
+  on_timeout: return_best_available
+  min_members: 2  # Minimum members needed for valid deliberation

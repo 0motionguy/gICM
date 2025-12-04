@@ -1,0 +1,162 @@
+# OPUS 67 Storage Layer - Docker Compose
+# One-command startup for complete 5-storage architecture
+#
+# Usage:
+#   docker-compose up -d          # Start all services
+#   docker-compose down           # Stop all services
+#   docker-compose logs -f        # View logs
+#
+# Services:
+#   - Qdrant (vectors) - port 6333
+#   - Neo4j (graphs) - ports 7474, 7687
+#   - PostgreSQL (structured) - port 5432
+#   - Redis (cache) - port 6379
+
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # QDRANT - Vector Database for Embeddings & RAG
+  # ==========================================================================
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: opus67-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==========================================================================
+  # NEO4J - Graph Database for Relationships & Dependencies
+  # ==========================================================================
+  neo4j:
+    image: neo4j:5.15-community
+    container_name: opus67-neo4j
+    ports:
+      - "7474:7474"  # Browser UI
+      - "7687:7687"  # Bolt protocol
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_plugins:/plugins
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:-opus67secret}
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_dbms_memory_heap_initial__size=512m
+      - NEO4J_dbms_memory_heap_max__size=1G
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7474"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==========================================================================
+  # POSTGRESQL - Structured Data (Supabase compatible)
+  # ==========================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: opus67-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-opus67}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-opus67secret}
+      - POSTGRES_DB=${POSTGRES_DB:-opus67}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-opus67}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==========================================================================
+  # REDIS - Caching & Pub/Sub
+  # ==========================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: opus67-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ==========================================================================
+  # MEM0 - Semantic Memory (Optional - requires Docker image)
+  # ==========================================================================
+  # Uncomment when mem0 Docker image is available
+  # mem0:
+  #   image: mcp/mem0:latest
+  #   container_name: opus67-mem0
+  #   environment:
+  #     - LLM_PROVIDER=openai
+  #     - LLM_API_KEY=${OPENAI_API_KEY}
+  #     - DATABASE_URL=postgresql://${POSTGRES_USER:-opus67}:${POSTGRES_PASSWORD:-opus67secret}@postgres:5432/${POSTGRES_DB:-opus67}
+  #   depends_on:
+  #     - postgres
+  #   restart: unless-stopped
+
+  # ==========================================================================
+  # ACONTEXT - Self-Learning Agent Platform (v4.1)
+  # Auto-generates SOPs from successful task completions
+  # Dashboard: http://localhost:3001
+  # ==========================================================================
+  acontext:
+    image: memodb/acontext:latest
+    container_name: opus67-acontext
+    restart: unless-stopped
+    ports:
+      - "8029:8029"  # API
+      - "3001:3000"  # Dashboard
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - acontext_data:/app/db
+    depends_on:
+      - postgres
+      - qdrant
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8029/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  qdrant_data:
+    name: opus67_qdrant_data
+  neo4j_data:
+    name: opus67_neo4j_data
+  neo4j_logs:
+    name: opus67_neo4j_logs
+  neo4j_plugins:
+    name: opus67_neo4j_plugins
+  postgres_data:
+    name: opus67_postgres_data
+  redis_data:
+    name: opus67_redis_data
+  acontext_data:
+    name: opus67_acontext_data
+
+networks:
+  default:
+    name: opus67_network

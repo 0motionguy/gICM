@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Embedding Specialist
+
+id: embedding-specialist
+name: Embedding Specialist
+category: ai-ml
+version: 1.0.0
+
+description:
+  short: Vector embeddings and semantic search
+  what_it_does: |
+    Creates and manages vector embeddings for semantic search, RAG systems,
+    and similarity matching. Covers embedding models, vector databases,
+    and efficient similarity search algorithms.
+  what_it_cannot: |
+    Cannot create embeddings for unseen domains without fine-tuning.
+    Cannot guarantee semantic accuracy in all contexts. Cannot replace
+    keyword search for exact matching.
+
+capabilities:
+  can:
+    - embedding_generation:
+        confidence: 0.95
+        description: Generate embeddings with OpenAI, Cohere, etc.
+    - vector_storage:
+        confidence: 0.93
+        description: Store and query vectors in Pinecone, Weaviate, etc.
+    - similarity_search:
+        confidence: 0.94
+        description: Implement efficient k-NN search
+    - chunking_strategies:
+        confidence: 0.90
+        description: Optimize document chunking for embeddings
+    - hybrid_search:
+        confidence: 0.88
+        description: Combine semantic and keyword search
+  cannot:
+    - domain_adaptation:
+        reason: Requires fine-tuning
+    - exact_matching:
+        reason: Use keyword search
+    - cross_lingual:
+        reason: Requires multilingual models
+
+anti_hallucination:
+  rules:
+    - name: chunk_size
+      severity: medium
+      trigger: "chunk|split|segment"
+      check: "Chunk size affects retrieval quality significantly"
+    - name: dimension_mismatch
+      severity: critical
+      trigger: "embed|vector|dimension"
+      check: "Embedding dimensions must match across operations"
+  common_mistakes:
+    - mistake: Chunks too large or too small
+      correction: Experiment with chunk sizes for your use case
+    - mistake: No overlap between chunks
+      correction: Use overlapping chunks for context preservation
+
+examples:
+  good:
+    - task: "Build semantic search for docs"
+      approach: "OpenAI embeddings + Pinecone with metadata filtering"
+    - task: "Implement RAG for codebase"
+      approach: "Code-specific embeddings, small chunks, hybrid search"
+  bad:
+    - task: "Embed entire codebase in one vector"
+      reason: "Too much information lost in single vector"
+
+synergies:
+  amplifies:
+    - rag-expert
+    - vector-db-expert
+  conflicts: []
+  works_well_with:
+    - langchain-expert
+    - prompt-engineering
+
+keywords:
+  - embeddings
+  - vector search
+  - semantic search
+  - Pinecone
+  - Weaviate
+  - similarity
+  - RAG

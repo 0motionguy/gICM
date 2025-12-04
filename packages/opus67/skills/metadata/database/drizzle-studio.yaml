@@ -1,0 +1,102 @@
+# Drizzle ORM Expert - OPUS 67 v4.0
+# Type-safe SQL ORM
+
+id: drizzle-studio
+name: "Drizzle ORM Expert"
+tier: 2
+token_cost: 6000
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build type-safe database queries with Drizzle ORM"
+
+  what_it_does:
+    - "Define schemas with TypeScript-first syntax"
+    - "Write type-safe queries with full autocomplete"
+    - "Use Drizzle Kit for migrations"
+    - "Connect to PostgreSQL, MySQL, SQLite"
+    - "Use relational queries with joins"
+    - "Integrate with serverless (Neon, PlanetScale, Turso)"
+
+  what_it_cannot:
+    - "Replace raw SQL for complex analytics queries"
+    - "Handle NoSQL databases"
+
+capabilities:
+  - action: "Schema definition"
+    confidence: 0.93
+  - action: "Type-safe queries"
+    confidence: 0.92
+  - action: "Migrations"
+    confidence: 0.89
+
+auto_load_when:
+  keywords:
+    - drizzle
+    - drizzle-orm
+    - drizzle-kit
+    - pgTable
+    - sqliteTable
+
+anti_hallucination:
+  - trigger: "prisma|typeorm"
+    response: "Drizzle is SQL-first, unlike Prisma's abstraction. Migrations are SQL files, not auto-generated."
+
+synergies:
+  amplifying: [neon-postgres, typescript-senior]
+  conflicting: []
+  redundant: [prisma-expert]
+
+mcp_connections: [supabase]
+
+code_patterns:
+  schema: |
+    import { pgTable, serial, text, timestamp, integer } from "drizzle-orm/pg-core";
+    import { relations } from "drizzle-orm";
+
+    export const users = pgTable("users", {
+      id: serial("id").primaryKey(),
+      name: text("name").notNull(),
+      email: text("email").notNull().unique(),
+      createdAt: timestamp("created_at").defaultNow(),
+    });
+
+    export const posts = pgTable("posts", {
+      id: serial("id").primaryKey(),
+      title: text("title").notNull(),
+      content: text("content"),
+      authorId: integer("author_id").references(() => users.id),
+    });
+
+    export const usersRelations = relations(users, ({ many }) => ({
+      posts: many(posts),
+    }));
+
+  queries: |
+    import { drizzle } from "drizzle-orm/neon-http";
+    import { neon } from "@neondatabase/serverless";
+    import { eq, and, desc } from "drizzle-orm";
+    import * as schema from "./schema";
+
+    const sql = neon(process.env.DATABASE_URL!);
+    const db = drizzle(sql, { schema });
+
+    // Insert
+    const newUser = await db.insert(schema.users).values({
+      name: "Alice",
+      email: "alice@example.com",
+    }).returning();
+
+    // Select with relations
+    const usersWithPosts = await db.query.users.findMany({
+      with: { posts: true },
+      where: eq(schema.users.id, 1),
+    });
+
+    // Update
+    await db.update(schema.users)
+      .set({ name: "Bob" })
+      .where(eq(schema.users.id, 1));

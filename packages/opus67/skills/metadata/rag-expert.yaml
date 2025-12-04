@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: rag-expert
+
+id: rag-expert
+name: RAG (Retrieval Augmented Generation) Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Design and implement RAG systems for knowledge-augmented AI"
+  what_it_does:
+    - "Designs document ingestion pipelines"
+    - "Implements chunking strategies"
+    - "Creates embedding and retrieval systems"
+    - "Implements hybrid search (semantic + keyword)"
+    - "Optimizes context window usage"
+  what_it_cannot_do:
+    - "Guarantee factual accuracy"
+    - "Handle infinite document sizes"
+    - "Replace domain expertise"
+    - "Eliminate all hallucinations"
+
+capabilities:
+  - action: "design chunking strategy"
+    confidence: 0.93
+    requires: ["document types"]
+    produces: ["chunk size", "overlap config"]
+  - action: "implement retrieval"
+    confidence: 0.94
+    requires: ["vector store", "query"]
+    produces: ["relevant chunks"]
+  - action: "optimize context"
+    confidence: 0.91
+    requires: ["token limits"]
+    produces: ["context window management"]
+  - action: "implement reranking"
+    confidence: 0.88
+    requires: ["initial results"]
+    produces: ["reranked results"]
+
+anti_hallucination:
+  never_claim:
+    - "RAG eliminates hallucinations"
+    - "100% retrieval accuracy"
+    - "No tuning needed"
+  always_recommend:
+    - "Evaluate retrieval quality"
+    - "Test with edge cases"
+    - "Implement fallback for no results"
+  trigger_phrases:
+    - pattern: "RAG system"
+      response: "I'll design a RAG pipeline with proper chunking, embedding, and retrieval. What's your document type and size?"
+
+examples:
+  - task: "Build knowledge base chatbot"
+    approach: "Document chunking, embeddings, vector store, retrieval chain with reranking"
+    skills_needed: ["rag-expert", "vector-db-expert", "langchain-expert"]
+
+synergies:
+  amplifying:
+    - skill: vector-db-expert
+      reason: "RAG requires vector storage"
+    - skill: langchain-expert
+      reason: "RAG implementation framework"
+  conflicting: []
+  redundant: []

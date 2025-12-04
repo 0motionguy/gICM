@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Reentrancy Guard Expert
+
+id: reentrancy-guard
+name: Reentrancy Guard Expert
+category: security
+version: 1.0.0
+
+description:
+  short: Smart contract reentrancy attack prevention
+  what_it_does: |
+    Identifies and prevents reentrancy vulnerabilities in smart contracts.
+    Implements checks-effects-interactions pattern, mutex guards, and
+    safe external call patterns. Critical for DeFi security.
+  what_it_cannot: |
+    Cannot protect against all attack vectors. Cannot fix architectural
+    issues that enable reentrancy. Cannot guarantee protection in complex
+    cross-contract scenarios without full audit.
+
+capabilities:
+  can:
+    - reentrancy_detection:
+        confidence: 0.95
+        description: Identify reentrancy vulnerabilities in code
+    - guard_implementation:
+        confidence: 0.94
+        description: Implement nonReentrant modifiers
+    - cei_pattern:
+        confidence: 0.96
+        description: Apply Checks-Effects-Interactions pattern
+    - cross_function_analysis:
+        confidence: 0.88
+        description: Detect cross-function reentrancy
+    - flash_loan_safety:
+        confidence: 0.85
+        description: Secure against flash loan attacks
+  cannot:
+    - complex_cross_contract:
+        reason: Requires full system audit
+    - runtime_detection:
+        reason: Prevention is at compile/deploy time
+    - architectural_fixes:
+        reason: May require redesign
+
+anti_hallucination:
+  rules:
+    - name: state_before_external
+      severity: critical
+      trigger: "external call|transfer|send|call"
+      check: "State changes MUST happen before external calls"
+    - name: nonreentrant_modifier
+      severity: high
+      trigger: "withdraw|claim|transfer"
+      check: "Use ReentrancyGuard on all external-facing functions"
+  common_mistakes:
+    - mistake: State changes after external calls
+      correction: Follow CEI pattern strictly
+    - mistake: Assuming single-function safety
+      correction: Check cross-function reentrancy paths
+
+examples:
+  good:
+    - task: "Secure this withdrawal function"
+      approach: "CEI pattern + nonReentrant modifier + pull payment"
+    - task: "Audit for reentrancy vulnerabilities"
+      approach: "Trace all external calls, verify state order"
+  bad:
+    - task: "Call external contract then update balance"
+      reason: "Classic reentrancy vulnerability pattern"
+
+synergies:
+  amplifies:
+    - smart-contract-auditor
+    - evm-solidity-expert
+  conflicts: []
+  works_well_with:
+    - security-best-practices
+    - gas-optimization
+
+keywords:
+  - reentrancy
+  - ReentrancyGuard
+  - CEI pattern
+  - smart contract security
+  - nonReentrant
+  - flash loan

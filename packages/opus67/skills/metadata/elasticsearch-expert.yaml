@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Elasticsearch Expert
+
+id: elasticsearch-expert
+name: Elasticsearch Expert
+category: data
+version: 1.0.0
+
+description:
+  short: Search and analytics with Elasticsearch
+  what_it_does: |
+    Designs and implements Elasticsearch clusters, indices, and queries.
+    Covers full-text search, aggregations, mappings, and performance
+    optimization. Includes OpenSearch compatibility.
+  what_it_cannot: |
+    Cannot replace relational databases for transactional workloads.
+    Cannot guarantee real-time consistency. Cannot handle complex joins
+    like SQL databases.
+
+capabilities:
+  can:
+    - index_design:
+        confidence: 0.94
+        description: Design efficient index mappings
+    - query_optimization:
+        confidence: 0.92
+        description: Optimize search queries and aggregations
+    - full_text_search:
+        confidence: 0.96
+        description: Implement full-text search with analyzers
+    - aggregations:
+        confidence: 0.90
+        description: Build complex analytics aggregations
+    - cluster_management:
+        confidence: 0.85
+        description: Configure and manage ES clusters
+  cannot:
+    - acid_transactions:
+        reason: ES is eventually consistent
+    - complex_joins:
+        reason: Not designed for relational operations
+    - replace_primary_db:
+        reason: Best as secondary/search index
+
+anti_hallucination:
+  rules:
+    - name: mapping_immutability
+      severity: high
+      trigger: "mapping|field|type"
+      check: "Existing mappings cannot be changed, only added to"
+    - name: near_real_time
+      severity: medium
+      trigger: "immediate|instant|real-time"
+      check: "ES has 1s refresh interval by default"
+  common_mistakes:
+    - mistake: Using ES as primary data store
+      correction: Use ES as search index, keep source of truth elsewhere
+    - mistake: Deep pagination with from/size
+      correction: Use search_after for deep pagination
+
+examples:
+  good:
+    - task: "Build token search for marketplace"
+      approach: "ES index with proper analyzers, autocomplete, filters"
+    - task: "Aggregate trading volume by time"
+      approach: "Date histogram aggregation with metric sub-aggs"
+  bad:
+    - task: "Store all user data in Elasticsearch"
+      reason: "Use a proper database, ES as search layer"
+
+synergies:
+  amplifies:
+    - data-pipeline-expert
+    - analytics-dashboard
+  conflicts: []
+  works_well_with:
+    - nodejs-api-architect
+    - database-schema-expert
+
+keywords:
+  - Elasticsearch
+  - OpenSearch
+  - full-text search
+  - aggregations
+  - index mapping
+  - analyzers

@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: helius-integration
+id: helius-integration
+name: "Helius API Integration"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Integrate Helius RPC and DAS API for Solana data"
+  what_it_does:
+    - "Query wallet assets (DAS API)"
+    - "Fetch token metadata"
+    - "Get transaction history"
+    - "Set up webhooks"
+    - "Parse transaction data"
+    - "Query NFT collections"
+    - "Get token balances"
+    - "Enhanced RPC calls"
+  what_it_cannot:
+    - "Make actual API calls"
+    - "Access your Helius API key"
+    - "Execute transactions"
+    - "Modify blockchain state"
+    - "Sign messages"
+
+capabilities:
+  - action: "Query DAS API"
+    confidence: 0.95
+    requires_mcp: ["helius"]
+  - action: "Fetch metadata"
+    confidence: 0.92
+    requires_mcp: ["helius"]
+  - action: "Set up webhooks"
+    confidence: 0.88
+  - action: "Parse transactions"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "call.*api|fetch.*data"
+    response: "I generate the API integration code. Use Helius MCP or run the code to fetch actual data."
+  - trigger: "api.*key"
+    response: "Store your HELIUS_API_KEY in .env. Never commit it to git."
+  - trigger: "execute|send|sign"
+    response: "Helius is read-only. Use your wallet for transactions."
+
+synergies:
+  amplifying:
+    - solana-anchor-expert
+    - jupiter-trader
+    - wallet-integration
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Get wallet NFTs"
+    approach: "getAssetsByOwner with DAS API + pagination"
+    outcome: success
+  - task: "Set up tx webhook"
+    approach: "Helius webhook API + transaction type filter"
+    outcome: success

@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Time Series Database Expert
+
+id: timeseries-db-expert
+name: Time Series Database Expert
+category: data
+version: 1.0.0
+
+description:
+  short: Time series data storage and analysis
+  what_it_does: |
+    Designs and implements time series data solutions using InfluxDB,
+    TimescaleDB, QuestDB, or ClickHouse. Optimizes for high-throughput
+    writes, efficient time-based queries, and downsampling.
+  what_it_cannot: |
+    Cannot handle complex relational queries. Cannot provide strong
+    consistency guarantees in all cases. Not suitable for non-temporal
+    data patterns.
+
+capabilities:
+  can:
+    - schema_design:
+        confidence: 0.93
+        description: Design time series schemas with tags/fields
+    - query_optimization:
+        confidence: 0.91
+        description: Optimize time-range queries and aggregations
+    - downsampling:
+        confidence: 0.94
+        description: Implement continuous aggregation/downsampling
+    - retention_policies:
+        confidence: 0.95
+        description: Configure data retention and compaction
+    - high_throughput:
+        confidence: 0.90
+        description: Handle millions of writes per second
+  cannot:
+    - complex_joins:
+        reason: TSDBs optimize for time-series patterns
+    - transactional_updates:
+        reason: Append-only by design
+    - non_temporal_queries:
+        reason: Optimized for time-based access
+
+anti_hallucination:
+  rules:
+    - name: cardinality_awareness
+      severity: high
+      trigger: "tag|label|dimension"
+      check: "High cardinality tags can destroy performance"
+    - name: append_only
+      severity: medium
+      trigger: "update|modify|change"
+      check: "TSDBs are append-only, updates are rewrites"
+  common_mistakes:
+    - mistake: High cardinality tags (user IDs, UUIDs)
+      correction: Use fields for high cardinality data
+    - mistake: Unbounded time queries
+      correction: Always specify time range in queries
+
+examples:
+  good:
+    - task: "Store token price history"
+      approach: "TimescaleDB hypertable with continuous aggregates"
+    - task: "Track trading metrics"
+      approach: "InfluxDB with 1s precision, hourly downsampling"
+  bad:
+    - task: "Use wallet address as tag"
+      reason: "Millions of unique values = cardinality explosion"
+
+synergies:
+  amplifies:
+    - data-pipeline-expert
+    - analytics-dashboard
+  conflicts: []
+  works_well_with:
+    - data-visualization
+    - performance-optimization
+
+keywords:
+  - time series
+  - InfluxDB
+  - TimescaleDB
+  - QuestDB
+  - ClickHouse
+  - downsampling
+  - retention

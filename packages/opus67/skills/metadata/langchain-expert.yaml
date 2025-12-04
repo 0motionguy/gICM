@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: langchain-expert
+
+id: langchain-expert
+name: LangChain Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build LLM applications using LangChain framework"
+  what_it_does:
+    - "Implements chains and agents"
+    - "Sets up document loaders and text splitters"
+    - "Implements vector stores and retrievers"
+    - "Creates custom tools and agents"
+    - "Implements memory patterns"
+  what_it_cannot_do:
+    - "Replace proper prompt engineering"
+    - "Train underlying LLM models"
+    - "Guarantee agent reliability"
+    - "Handle all edge cases automatically"
+
+capabilities:
+  - action: "implement chains"
+    confidence: 0.93
+    requires: ["LangChain setup"]
+    produces: ["chain pipelines"]
+  - action: "create agents"
+    confidence: 0.90
+    requires: ["tool definitions"]
+    produces: ["agent executors"]
+  - action: "set up RAG"
+    confidence: 0.92
+    requires: ["documents", "vector store"]
+    produces: ["retrieval chain"]
+  - action: "implement memory"
+    confidence: 0.91
+    requires: ["conversation needs"]
+    produces: ["memory buffers"]
+
+anti_hallucination:
+  never_claim:
+    - "Agents always succeed"
+    - "No hallucinations with RAG"
+    - "Zero latency possible"
+  always_recommend:
+    - "Test agents thoroughly"
+    - "Implement fallback logic"
+    - "Monitor token usage"
+  trigger_phrases:
+    - pattern: "LangChain"
+      response: "I'll implement using LangChain with proper error handling. Using LangChain.js or Python?"
+
+examples:
+  - task: "Build document Q&A system"
+    approach: "Document loaders, text splitting, vector store, retrieval QA chain"
+    skills_needed: ["langchain-expert", "vector-db-expert"]
+
+synergies:
+  amplifying:
+    - skill: vector-db-expert
+      reason: "RAG requires vector storage"
+    - skill: openai-integration
+      reason: "Common LLM provider for LangChain"
+  conflicting: []
+  redundant: []

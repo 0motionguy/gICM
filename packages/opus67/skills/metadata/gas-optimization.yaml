@@ -1,0 +1,89 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Gas Optimization Expert
+
+id: gas-optimization
+name: Gas Optimization Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: Smart contract gas efficiency
+  what_it_does: |
+    Optimizes smart contract gas consumption on EVM and Solana. Covers
+    storage patterns, computation efficiency, batch operations, and
+    gas-efficient data structures.
+  what_it_cannot: |
+    Cannot bypass fundamental computation costs. Cannot optimize beyond
+    EVM limits. Cannot make complex operations free. Cannot sacrifice
+    security for gas savings.
+
+capabilities:
+  can:
+    - storage_optimization:
+        confidence: 0.95
+        description: Optimize storage slot packing
+    - computation_efficiency:
+        confidence: 0.92
+        description: Reduce computational gas costs
+    - batch_operations:
+        confidence: 0.94
+        description: Batch multiple operations efficiently
+    - data_structures:
+        confidence: 0.88
+        description: Use gas-efficient data structures
+    - assembly_optimization:
+        confidence: 0.80
+        description: Use inline assembly for critical paths
+  cannot:
+    - bypass_gas_cost:
+        reason: Fundamental EVM mechanics
+    - exceed_limits:
+        reason: Block gas limit constraints
+    - free_complexity:
+        reason: Computation has inherent cost
+    - unsafe_optimization:
+        reason: Security must not be compromised
+
+anti_hallucination:
+  rules:
+    - name: security_first
+      severity: critical
+      trigger: "optimize|gas|efficient"
+      check: "Never sacrifice security for gas savings"
+    - name: measure_first
+      severity: high
+      trigger: "optimize|improve|reduce"
+      check: "Profile gas usage before optimizing"
+  common_mistakes:
+    - mistake: Premature optimization
+      correction: Measure gas usage first, then optimize hotspots
+    - mistake: Unsafe assembly
+      correction: Only use assembly when necessary and audit carefully
+
+examples:
+  good:
+    - task: "Reduce contract deployment cost"
+      approach: "Pack storage, optimize loops, remove dead code"
+    - task: "Batch NFT mints"
+      approach: "ERC721A or batch mint pattern"
+  bad:
+    - task: "Use assembly everywhere"
+      reason: "Increases audit burden, risk of bugs"
+
+synergies:
+  amplifies:
+    - evm-solidity-expert
+    - smart-contract-auditor
+  conflicts: []
+  works_well_with:
+    - solana-anchor-expert
+    - performance-optimization
+
+keywords:
+  - gas optimization
+  - storage packing
+  - EVM
+  - Solidity
+  - assembly
+  - batch operations
+  - efficiency

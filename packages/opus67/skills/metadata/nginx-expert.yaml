@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: nginx-expert
+
+id: nginx-expert
+name: Nginx Configuration Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Configure Nginx as reverse proxy, load balancer, and web server"
+  what_it_does:
+    - "Configures reverse proxy settings"
+    - "Sets up SSL/TLS termination"
+    - "Implements load balancing"
+    - "Configures caching and compression"
+    - "Writes location blocks and rewrites"
+  what_it_cannot_do:
+    - "Replace application logic"
+    - "Handle all CDN features"
+    - "Auto-generate SSL certificates"
+    - "Debug application code"
+
+capabilities:
+  - action: "configure reverse proxy"
+    confidence: 0.95
+    requires: ["backend services"]
+    produces: ["proxy_pass config"]
+  - action: "set up SSL"
+    confidence: 0.94
+    requires: ["certificates"]
+    produces: ["SSL configuration"]
+  - action: "implement load balancing"
+    confidence: 0.93
+    requires: ["multiple backends"]
+    produces: ["upstream config"]
+  - action: "configure caching"
+    confidence: 0.91
+    requires: ["caching needs"]
+    produces: ["proxy_cache config"]
+
+anti_hallucination:
+  never_claim:
+    - "Handles all traffic types"
+    - "No configuration testing needed"
+    - "Instant SSL setup"
+  always_recommend:
+    - "Test config with nginx -t"
+    - "Use certbot for Let's Encrypt"
+    - "Monitor access and error logs"
+  trigger_phrases:
+    - pattern: "Nginx"
+      response: "I'll configure Nginx. Need reverse proxy, load balancing, SSL, or static file serving?"
+
+examples:
+  - task: "Set up reverse proxy with SSL"
+    approach: "Server blocks, proxy_pass, SSL config, security headers"
+    skills_needed: ["nginx-expert", "security-best-practices"]
+
+synergies:
+  amplifying:
+    - skill: docker-kubernetes-pro
+      reason: "Nginx in containers"
+    - skill: security-best-practices
+      reason: "Secure configuration"
+  conflicting: []
+  redundant: []

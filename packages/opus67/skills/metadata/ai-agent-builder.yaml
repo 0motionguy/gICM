@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: AI Agent Builder
+
+id: ai-agent-builder
+name: AI Agent Builder
+category: ai-ml
+version: 1.0.0
+
+description:
+  short: Build autonomous AI agents
+  what_it_does: |
+    Designs and implements autonomous AI agents with tool use, reasoning,
+    and memory. Covers agent frameworks like LangChain, AutoGPT patterns,
+    and custom agent architectures with proper guardrails.
+  what_it_cannot: |
+    Cannot guarantee agent reliability without proper testing. Cannot
+    prevent all edge cases in autonomous behavior. Cannot replace
+    human oversight for critical decisions.
+
+capabilities:
+  can:
+    - agent_architecture:
+        confidence: 0.92
+        description: Design multi-step agent architectures
+    - tool_integration:
+        confidence: 0.94
+        description: Integrate tools and APIs with agents
+    - memory_systems:
+        confidence: 0.88
+        description: Implement short and long-term agent memory
+    - guardrails:
+        confidence: 0.90
+        description: Add safety guardrails and limits
+    - multi_agent:
+        confidence: 0.85
+        description: Build multi-agent collaborative systems
+  cannot:
+    - guarantee_reliability:
+        reason: AI agents are probabilistic
+    - prevent_all_failures:
+        reason: Edge cases always exist
+    - critical_automation:
+        reason: Requires human oversight
+
+anti_hallucination:
+  rules:
+    - name: action_limits
+      severity: critical
+      trigger: "agent|autonomous|action"
+      check: "Always limit agent actions and add confirmation for risky ops"
+    - name: loop_prevention
+      severity: high
+      trigger: "loop|iteration|retry"
+      check: "Prevent infinite loops with max iterations"
+  common_mistakes:
+    - mistake: No action limits
+      correction: Always cap iterations, costs, and action scope
+    - mistake: No human-in-the-loop for critical actions
+      correction: Require approval for irreversible actions
+
+examples:
+  good:
+    - task: "Build code review agent"
+      approach: "LangChain agent with file read tools, PR comment actions"
+    - task: "Create research agent"
+      approach: "Multi-step reasoning with web search, summarization"
+  bad:
+    - task: "Let agent deploy to production autonomously"
+      reason: "Critical action requires human approval"
+
+synergies:
+  amplifies:
+    - langchain-expert
+    - prompt-engineering
+  conflicts: []
+  works_well_with:
+    - mlops-expert
+    - nodejs-api-architect
+
+keywords:
+  - AI agents
+  - autonomous
+  - LangChain
+  - tool use
+  - multi-agent
+  - reasoning

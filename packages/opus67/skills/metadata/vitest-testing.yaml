@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: vitest-testing
+
+id: vitest-testing
+name: Vitest Testing Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement fast unit and integration tests with Vitest"
+  what_it_does:
+    - "Writes unit tests with Vitest"
+    - "Implements mocking and spies"
+    - "Sets up test configuration and coverage"
+    - "Integrates with Vite for fast execution"
+    - "Implements testing library patterns"
+  what_it_cannot_do:
+    - "Replace E2E tests for user flows"
+    - "Test without proper isolation"
+    - "Automatically generate meaningful tests"
+    - "Test non-JavaScript code"
+
+capabilities:
+  - action: "write unit tests"
+    confidence: 0.96
+    requires: ["TypeScript/JavaScript code"]
+    produces: ["test files", "assertions"]
+  - action: "implement mocking"
+    confidence: 0.94
+    requires: ["dependencies to mock"]
+    produces: ["vi.mock", "vi.spyOn"]
+  - action: "configure coverage"
+    confidence: 0.93
+    requires: ["coverage requirements"]
+    produces: ["c8/istanbul config"]
+  - action: "test React components"
+    confidence: 0.92
+    requires: ["React components"]
+    produces: ["RTL tests", "user-event"]
+  - action: "set up test utilities"
+    confidence: 0.91
+    requires: ["common test patterns"]
+    produces: ["test helpers", "fixtures"]
+
+anti_hallucination:
+  never_claim:
+    - "100% coverage means no bugs"
+    - "Tests are always correct"
+    - "Mocking is always the answer"
+  always_recommend:
+    - "Test behavior, not implementation"
+    - "Keep tests fast and isolated"
+    - "Use testing library for components"
+  trigger_phrases:
+    - pattern: "unit testing"
+      response: "I'll implement Vitest tests focusing on behavior and edge cases. Using React Testing Library for components?"
+    - pattern: "test coverage"
+      response: "I'll set up coverage reporting. Focus on meaningful tests over coverage numbers - 80% coverage with good tests beats 100% with poor tests."
+
+examples:
+  - task: "Test utility functions"
+    approach: "Write tests for edge cases, error handling, and normal operations"
+    skills_needed: ["vitest-testing"]
+  - task: "Test React hooks"
+    approach: "Use renderHook from testing-library, test state changes and effects"
+    skills_needed: ["vitest-testing", "react-typescript-master"]
+
+synergies:
+  amplifying:
+    - skill: react-typescript-master
+      reason: "Testing React components"
+    - skill: test-automation-expert
+      reason: "Overall testing strategy"
+  conflicting: []
+  redundant: []

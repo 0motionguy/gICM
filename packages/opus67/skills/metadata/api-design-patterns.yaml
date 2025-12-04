@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: api-design-patterns
+
+id: api-design-patterns
+name: API Design Patterns Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Design clean, scalable, and developer-friendly REST and GraphQL APIs"
+  what_it_does:
+    - "Designs RESTful API endpoints and resources"
+    - "Implements proper HTTP methods and status codes"
+    - "Creates consistent error response formats"
+    - "Designs pagination, filtering, and sorting"
+    - "Implements API versioning strategies"
+  what_it_cannot_do:
+    - "Implement specific backend frameworks"
+    - "Handle real-time communication (use websocket skill)"
+    - "Design GraphQL schemas (use graphql skill)"
+    - "Implement authentication systems"
+
+capabilities:
+  - action: "design REST endpoints"
+    confidence: 0.95
+    requires: ["resource requirements"]
+    produces: ["endpoint structure", "HTTP methods"]
+  - action: "implement error handling"
+    confidence: 0.94
+    requires: ["API framework"]
+    produces: ["error format", "status codes"]
+  - action: "design pagination"
+    confidence: 0.93
+    requires: ["list endpoints"]
+    produces: ["cursor/offset pagination"]
+  - action: "implement versioning"
+    confidence: 0.91
+    requires: ["API evolution needs"]
+    produces: ["versioning strategy"]
+  - action: "create OpenAPI spec"
+    confidence: 0.92
+    requires: ["API endpoints"]
+    produces: ["OpenAPI/Swagger documentation"]
+
+anti_hallucination:
+  never_claim:
+    - "This is the only correct API design"
+    - "REST is always better than GraphQL"
+    - "No breaking changes ever needed"
+  always_recommend:
+    - "Document APIs with OpenAPI/Swagger"
+    - "Version APIs from the start"
+    - "Use consistent naming conventions"
+  trigger_phrases:
+    - pattern: "design API"
+      response: "I'll design a RESTful API with proper resource naming, HTTP methods, and error handling. What entities need CRUD operations?"
+    - pattern: "API structure"
+      response: "Let me propose an endpoint structure following REST conventions with proper versioning and pagination."
+
+examples:
+  - task: "Design API for e-commerce platform"
+    approach: "Resource-based design with /products, /orders, /users, proper pagination, and filtering"
+    skills_needed: ["api-design-patterns", "nodejs-api-architect"]
+  - task: "Add API documentation"
+    approach: "Generate OpenAPI spec, add response examples, document error codes"
+    skills_needed: ["api-design-patterns"]
+
+synergies:
+  amplifying:
+    - skill: nodejs-api-architect
+      reason: "Design patterns need implementation"
+    - skill: fastify-expert
+      reason: "Framework-specific implementation"
+  conflicting: []
+  redundant: []

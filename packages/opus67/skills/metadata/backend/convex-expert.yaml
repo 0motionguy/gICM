@@ -1,0 +1,125 @@
+# Convex Expert - OPUS 67 v4.0
+# Real-time backend platform
+
+id: convex-expert
+name: "Convex Backend Expert"
+tier: 2
+token_cost: 6500
+version: "1.0.0"
+
+semantic:
+  purpose: "Build real-time applications with Convex's reactive backend"
+
+  what_it_does:
+    - "Create reactive queries that auto-update"
+    - "Write mutations with ACID transactions"
+    - "Define actions for external API calls"
+    - "Use scheduled functions (cron)"
+    - "Implement file storage"
+    - "Add authentication with Clerk/Auth0"
+
+  what_it_cannot:
+    - "Run raw SQL queries"
+    - "Work outside Convex's runtime"
+
+capabilities:
+  - action: "Reactive queries"
+    confidence: 0.93
+  - action: "Mutations"
+    confidence: 0.92
+  - action: "Real-time sync"
+    confidence: 0.91
+
+auto_load_when:
+  keywords:
+    - convex
+    - useQuery
+    - useMutation
+    - convex/values
+    - _generated
+
+anti_hallucination:
+  - trigger: "sql|raw query"
+    response: "Convex uses its own query language, not SQL. Queries are TypeScript functions with built-in indexes."
+
+synergies:
+  amplifying: [react-19-expert, clerk-auth-expert]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  schema: |
+    // convex/schema.ts
+    import { defineSchema, defineTable } from "convex/server";
+    import { v } from "convex/values";
+
+    export default defineSchema({
+      messages: defineTable({
+        author: v.string(),
+        body: v.string(),
+        channelId: v.id("channels"),
+      }).index("by_channel", ["channelId"]),
+
+      channels: defineTable({
+        name: v.string(),
+      }),
+    });
+
+  query_mutation: |
+    // convex/messages.ts
+    import { query, mutation } from "./_generated/server";
+    import { v } from "convex/values";
+
+    export const list = query({
+      args: { channelId: v.id("channels") },
+      handler: async (ctx, args) => {
+        return await ctx.db
+          .query("messages")
+          .withIndex("by_channel", (q) => q.eq("channelId", args.channelId))
+          .order("desc")
+          .take(50);
+      },
+    });
+
+    export const send = mutation({
+      args: {
+        channelId: v.id("channels"),
+        author: v.string(),
+        body: v.string(),
+      },
+      handler: async (ctx, args) => {
+        await ctx.db.insert("messages", {
+          channelId: args.channelId,
+          author: args.author,
+          body: args.body,
+        });
+      },
+    });
+
+  react_usage: |
+    "use client";
+    import { useQuery, useMutation } from "convex/react";
+    import { api } from "@/convex/_generated/api";
+
+    export function Chat({ channelId }: { channelId: string }) {
+      // Auto-updates when data changes!
+      const messages = useQuery(api.messages.list, { channelId });
+      const sendMessage = useMutation(api.messages.send);
+
+      return (
+        <div>
+          {messages?.map((msg) => (
+            <div key={msg._id}>{msg.author}: {msg.body}</div>
+          ))}
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            sendMessage({ channelId, author: "User", body: e.target.body.value });
+          }}>
+            <input name="body" />
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      );
+    }

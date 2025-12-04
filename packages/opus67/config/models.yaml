@@ -1,0 +1,182 @@
+# OPUS 67 Model Routing Configuration
+# v3.0 - Multi-Model Router
+
+meta:
+  version: "3.0.0"
+  description: "Intelligent model routing for cost optimization"
+  default_tier: cheap
+  budget_warning_threshold: 0.8
+
+# Routing Rules
+# Task types → Model selection
+rules:
+  # FREE tier - Gemini
+  - name: "scanning"
+    task_types:
+      - scan
+      - index
+      - search
+      - list
+    model: gemini-2.0-flash
+    tier: free
+    fallback: deepseek-chat
+    description: "Fast scanning and indexing operations"
+
+  - name: "analysis"
+    task_types:
+      - analyze
+      - check
+      - monitor
+      - inspect
+    model: gemini-2.0-flash
+    tier: free
+    fallback: deepseek-chat
+    description: "Analysis and monitoring operations"
+
+  # CHEAP tier - DeepSeek
+  - name: "generation"
+    task_types:
+      - generate
+      - create
+      - build
+      - implement
+    model: deepseek-chat
+    tier: cheap
+    fallback: claude-haiku-3.5
+    description: "Code and content generation"
+
+  - name: "refactoring"
+    task_types:
+      - refactor
+      - improve
+      - optimize
+      - fix
+    model: deepseek-coder
+    tier: cheap
+    fallback: claude-haiku-3.5
+    description: "Code refactoring and improvements"
+
+  - name: "coding"
+    task_types:
+      - code
+      - debug
+      - test
+      - migrate
+    model: deepseek-coder
+    tier: cheap
+    fallback: claude-haiku-3.5
+    description: "General coding tasks"
+
+  # QUALITY tier - Claude
+  - name: "review"
+    task_types:
+      - review
+      - audit
+      - verify
+      - validate
+    model: claude-sonnet-4
+    tier: quality
+    fallback: claude-opus-4
+    description: "Code review and auditing"
+
+  - name: "synthesis"
+    task_types:
+      - synthesize
+      - summarize
+      - conclude
+      - decide
+    model: claude-sonnet-4
+    tier: quality
+    fallback: claude-opus-4
+    description: "Information synthesis and decision making"
+
+  - name: "chairman"
+    task_types:
+      - chairman
+      - arbitrate
+      - judge
+      - final_review
+    model: claude-sonnet-4
+    tier: quality
+    fallback: claude-opus-4
+    description: "Council chairman and final arbitration"
+
+  - name: "reasoning"
+    task_types:
+      - reason
+      - plan
+      - architect
+      - design
+    model: deepseek-reasoner
+    tier: cheap
+    fallback: claude-opus-4
+    description: "Deep reasoning and planning"
+    requires_thinking: true
+
+# Fallback Chain
+# When primary model fails, try these in order
+fallback_chain:
+  - gemini-2.0-flash      # Try free first
+  - deepseek-chat         # Then cheap
+  - claude-haiku-3.5      # Then fast quality
+  - claude-sonnet-4       # Then quality
+  - gpt-4o-mini           # Then OpenAI fallback
+
+# Budget Defaults
+budgets:
+  daily: 10.00        # $10/day
+  session: 5.00       # $5/session
+  per_operation: 0.50 # $0.50/operation
+  monthly: 150.00     # $150/month
+
+# Cost Optimization Settings
+optimization:
+  prefer_cached: true              # Use cached responses when available
+  batch_similar_requests: true     # Batch similar requests together
+  upgrade_threshold: 3             # Retry count before upgrading tier
+  downgrade_on_simple: true        # Use cheaper model for simple tasks
+
+# Task Complexity Hints
+# Keywords that indicate task complexity
+complexity_hints:
+  simple:
+    - "quick"
+    - "simple"
+    - "basic"
+    - "just"
+    - "only"
+  complex:
+    - "architecture"
+    - "system design"
+    - "security audit"
+    - "comprehensive"
+    - "thorough"
+  reasoning:
+    - "why"
+    - "explain"
+    - "reasoning"
+    - "think through"
+    - "step by step"
+
+# Provider Settings
+providers:
+  gemini:
+    api_base: "https://generativelanguage.googleapis.com/v1beta"
+    env_key: "GOOGLE_AI_API_KEY"
+    alt_env_key: "GEMINI_API_KEY"
+    rate_limit_rpm: 60
+
+  deepseek:
+    api_base: "https://api.deepseek.com/v1"
+    env_key: "DEEPSEEK_API_KEY"
+    rate_limit_rpm: 60
+
+  anthropic:
+    api_base: "https://api.anthropic.com/v1"
+    env_key: "ANTHROPIC_API_KEY"
+    rate_limit_rpm: 60
+
+  openai:
+    api_base: "https://api.openai.com/v1"
+    env_key: "OPENAI_API_KEY"
+    rate_limit_rpm: 60

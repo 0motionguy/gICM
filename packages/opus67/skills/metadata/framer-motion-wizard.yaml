@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: framer-motion-wizard
+id: framer-motion-wizard
+name: "Framer Motion Wizard"
+tier: 2
+token_cost: 7000
+
+semantic:
+  purpose: "Create fluid animations and interactions with Framer Motion"
+  what_it_does:
+    - "Create enter/exit animations"
+    - "Design gesture interactions"
+    - "Build shared layout animations"
+    - "Implement scroll-triggered animations"
+    - "Create staggered children"
+    - "Design spring physics"
+    - "Build drag interactions"
+    - "Animate SVG paths"
+  what_it_cannot:
+    - "Preview animations"
+    - "Test performance"
+    - "Access browser APIs"
+    - "Run JavaScript"
+
+capabilities:
+  - action: "Create animations"
+    confidence: 0.95
+  - action: "Design interactions"
+    confidence: 0.92
+  - action: "Shared layout"
+    confidence: 0.88
+  - action: "Scroll animations"
+    confidence: 0.90
+  - action: "Spring physics"
+    confidence: 0.85
+
+anti_hallucination:
+  - trigger: "preview|see.*animation"
+    response: "Start your dev server to see animations. I can't preview visually."
+  - trigger: "performance|fps"
+    response: "Use Chrome DevTools Performance tab to measure animation FPS."
+  - trigger: "actual.*timing"
+    response: "Animation timing varies by device. Test on target devices."
+
+synergies:
+  amplifying:
+    - react-typescript-master
+    - tailwind-css-pro
+    - nextjs-14-expert
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Page transition"
+    approach: "AnimatePresence + motion.div with exit animations"
+    outcome: success
+  - task: "Card hover effect"
+    approach: "whileHover + scale + spring physics"
+    outcome: success

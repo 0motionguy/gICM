@@ -1,0 +1,76 @@
+# Hono Expert - OPUS 67 v4.0
+# Lightweight web framework for edge
+
+id: hono-expert
+name: "Hono Web Framework Expert"
+tier: 2
+token_cost: 6000
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build ultrafast web APIs with Hono for edge runtimes"
+
+  what_it_does:
+    - "Create REST APIs with Hono's minimal syntax"
+    - "Deploy to Cloudflare Workers, Deno, Bun, Node.js"
+    - "Use middleware for auth, CORS, compression"
+    - "Implement RPC-style endpoints with hono/client"
+    - "Build type-safe APIs with Zod validation"
+    - "Handle file uploads and streaming"
+
+  what_it_cannot:
+    - "Replace full-stack frameworks for complex apps"
+    - "Handle database connections on its own"
+
+capabilities:
+  - action: "Hono API routes"
+    confidence: 0.93
+  - action: "Edge deployment"
+    confidence: 0.91
+  - action: "Middleware patterns"
+    confidence: 0.90
+
+auto_load_when:
+  keywords:
+    - hono
+    - honojs
+    - edge api
+    - ultrafast
+    - cloudflare workers api
+
+anti_hallucination:
+  - trigger: "full framework|everything"
+    response: "Hono is minimal by design. For full-stack, combine with a database ORM and frontend framework."
+
+synergies:
+  amplifying: [cloudflare-workers, typescript-senior, bun-runtime]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  basic_api: |
+    import { Hono } from 'hono';
+    import { cors } from 'hono/cors';
+    import { zValidator } from '@hono/zod-validator';
+    import { z } from 'zod';
+
+    const app = new Hono();
+
+    app.use('/*', cors());
+
+    app.get('/api/health', (c) => c.json({ status: 'ok' }));
+
+    app.post('/api/users',
+      zValidator('json', z.object({ name: z.string(), email: z.string().email() })),
+      async (c) => {
+        const { name, email } = c.req.valid('json');
+        return c.json({ id: crypto.randomUUID(), name, email });
+      }
+    );
+
+    export default app;

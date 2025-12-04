@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: chainlink-expert
+
+id: chainlink-expert
+name: Chainlink Integration Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Integrate Chainlink oracles for price feeds, VRF, and automation"
+  what_it_does:
+    - "Implements price feed consumers"
+    - "Integrates VRF for randomness"
+    - "Sets up Chainlink Automation"
+    - "Uses Chainlink Functions"
+    - "Implements CCIP cross-chain"
+  what_it_cannot_do:
+    - "Guarantee oracle uptime"
+    - "Create custom price feeds"
+    - "Bypass oracle costs"
+    - "Access off-chain data directly"
+
+capabilities:
+  - action: "implement price feeds"
+    confidence: 0.95
+    requires: ["Solidity contract"]
+    produces: ["AggregatorV3Interface usage"]
+  - action: "integrate VRF"
+    confidence: 0.92
+    requires: ["randomness needs"]
+    produces: ["VRF consumer contract"]
+  - action: "set up automation"
+    confidence: 0.90
+    requires: ["upkeep needs"]
+    produces: ["Automation compatible contract"]
+  - action: "use Functions"
+    confidence: 0.88
+    requires: ["off-chain API needs"]
+    produces: ["Functions consumer"]
+
+anti_hallucination:
+  never_claim:
+    - "Free oracle services"
+    - "Instant updates"
+    - "100% uptime"
+  always_recommend:
+    - "Check oracle heartbeat settings"
+    - "Implement fallbacks"
+    - "Fund LINK for requests"
+  trigger_phrases:
+    - pattern: "Chainlink"
+      response: "Which Chainlink service: Price Feeds, VRF (randomness), Automation, or Functions?"
+
+examples:
+  - task: "Add price oracle to DeFi contract"
+    approach: "AggregatorV3Interface, staleness checks, price validation"
+    skills_needed: ["chainlink-expert", "evm-solidity-expert"]
+
+synergies:
+  amplifying:
+    - skill: evm-solidity-expert
+      reason: "Solidity contract integration"
+    - skill: smart-contract-auditor
+      reason: "Oracle security review"
+  conflicting: []
+  redundant: []

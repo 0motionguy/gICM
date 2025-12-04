@@ -1,0 +1,109 @@
+# Trigger.dev Expert - OPUS 67 v4.0
+# Background jobs with long-running support
+
+id: trigger-dev-expert
+name: "Trigger.dev Background Jobs Expert"
+tier: 2
+token_cost: 5500
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build background jobs with Trigger.dev's task-based system"
+
+  what_it_does:
+    - "Create tasks that run for up to 2 hours"
+    - "Use SDK for type-safe task definitions"
+    - "Implement scheduled (cron) tasks"
+    - "Handle webhooks with automatic verification"
+    - "View runs in real-time dashboard"
+    - "Deploy with self-hosting or cloud"
+
+  what_it_cannot:
+    - "Replace queues for extreme throughput"
+    - "Work without Node.js runtime"
+
+capabilities:
+  - action: "Long-running tasks"
+    confidence: 0.91
+  - action: "Scheduled jobs"
+    confidence: 0.89
+  - action: "Webhook handling"
+    confidence: 0.87
+
+auto_load_when:
+  keywords:
+    - trigger.dev
+    - @trigger.dev
+    - task
+    - schedules.task
+    - runs.trigger
+
+anti_hallucination:
+  - trigger: "millions|high throughput"
+    response: "For very high throughput, consider dedicated queues (BullMQ, SQS). Trigger.dev optimizes for reliability."
+
+synergies:
+  amplifying: [nextjs-14-expert, typescript-senior]
+  conflicting: []
+  redundant: [inngest-expert]
+
+mcp_connections: []
+
+code_patterns:
+  basic_task: |
+    // trigger/tasks.ts
+    import { task } from "@trigger.dev/sdk/v3";
+
+    export const processVideo = task({
+      id: "process-video",
+      retry: { maxAttempts: 3 },
+      run: async (payload: { videoId: string; userId: string }) => {
+        // Long-running process (up to 2 hours)
+        const video = await downloadVideo(payload.videoId);
+        const transcoded = await transcodeVideo(video);
+        const thumbnail = await generateThumbnail(transcoded);
+
+        await saveResults({
+          videoId: payload.videoId,
+          transcodedUrl: transcoded.url,
+          thumbnailUrl: thumbnail.url,
+        });
+
+        return { success: true, thumbnailUrl: thumbnail.url };
+      },
+    });
+
+  scheduled_task: |
+    import { schedules } from "@trigger.dev/sdk/v3";
+
+    export const dailyReport = schedules.task({
+      id: "daily-report",
+      cron: "0 9 * * *", // 9 AM daily
+      run: async () => {
+        const metrics = await gatherDailyMetrics();
+        await sendReportEmail(metrics);
+        return { sent: true, date: new Date().toISOString() };
+      },
+    });
+
+  trigger_from_api: |
+    // app/api/process/route.ts
+    import { processVideo } from "@/trigger/tasks";
+
+    export async function POST(req: Request) {
+      const { videoId, userId } = await req.json();
+
+      // Trigger the task (non-blocking)
+      const handle = await processVideo.trigger({
+        videoId,
+        userId,
+      });
+
+      return Response.json({
+        message: "Processing started",
+        runId: handle.id,
+      });
+    }

@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Data Visualization Expert
+
+id: data-visualization
+name: Data Visualization Expert
+category: data
+version: 1.0.0
+
+description:
+  short: Charts, graphs, and data storytelling
+  what_it_does: |
+    Creates effective data visualizations using Chart.js, D3.js, Recharts,
+    or similar libraries. Designs dashboards, implements real-time charts,
+    and follows data visualization best practices.
+  what_it_cannot: |
+    Cannot determine what data to visualize - requires business context.
+    Cannot fix underlying data quality issues. Cannot guarantee
+    accessibility without proper implementation.
+
+capabilities:
+  can:
+    - chart_implementation:
+        confidence: 0.95
+        description: Build charts with Chart.js, Recharts, Visx
+    - d3_visualization:
+        confidence: 0.88
+        description: Create custom D3.js visualizations
+    - real_time_charts:
+        confidence: 0.90
+        description: Implement streaming/real-time data charts
+    - responsive_design:
+        confidence: 0.92
+        description: Create responsive, mobile-friendly charts
+    - accessibility:
+        confidence: 0.85
+        description: Implement accessible data visualizations
+  cannot:
+    - data_analysis:
+        reason: Requires statistical expertise
+    - business_insights:
+        reason: Requires domain knowledge
+    - fix_bad_data:
+        reason: Garbage in, garbage out
+
+anti_hallucination:
+  rules:
+    - name: chart_type_selection
+      severity: medium
+      trigger: "chart|graph|visualization"
+      check: "Choose chart type based on data relationship, not aesthetics"
+    - name: data_density
+      severity: medium
+      trigger: "too many|all data|every point"
+      check: "Aggregate or sample for large datasets"
+  common_mistakes:
+    - mistake: Pie charts for more than 5 categories
+      correction: Use bar charts for many categories
+    - mistake: 3D charts for 2D data
+      correction: Avoid 3D unless data is truly 3-dimensional
+
+examples:
+  good:
+    - task: "Build trading dashboard with price charts"
+      approach: "TradingView lightweight-charts or Recharts"
+    - task: "Visualize token distribution"
+      approach: "Treemap or horizontal bar chart"
+  bad:
+    - task: "Show 1M data points in line chart"
+      reason: "Browser will crash, aggregate first"
+
+synergies:
+  amplifies:
+    - analytics-dashboard
+    - defi-data-analyst
+  conflicts: []
+  works_well_with:
+    - react-typescript-master
+    - responsive-design-pro
+
+keywords:
+  - data visualization
+  - Chart.js
+  - D3.js
+  - Recharts
+  - dashboards
+  - charts
+  - graphs

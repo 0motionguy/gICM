@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Liquidity Pools Expert
+
+id: liquidity-pools
+name: Liquidity Pools Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: AMM liquidity pool management
+  what_it_does: |
+    Manages liquidity pools on AMMs like Uniswap, Raydium, and Orca.
+    Handles LP token mechanics, concentrated liquidity (V3), impermanent
+    loss calculations, and optimal position management.
+  what_it_cannot: |
+    Cannot eliminate impermanent loss. Cannot predict optimal ranges
+    perfectly. Cannot guarantee LP profitability in all market conditions.
+
+capabilities:
+  can:
+    - pool_creation:
+        confidence: 0.94
+        description: Create and initialize AMM pools
+    - concentrated_liquidity:
+        confidence: 0.88
+        description: Manage Uniswap V3, Orca Whirlpool positions
+    - impermanent_loss:
+        confidence: 0.92
+        description: Calculate and explain impermanent loss
+    - lp_strategies:
+        confidence: 0.85
+        description: Optimize LP positions for yield
+    - range_management:
+        confidence: 0.82
+        description: Set and adjust liquidity ranges
+  cannot:
+    - eliminate_il:
+        reason: Fundamental AMM characteristic
+    - predict_ranges:
+        reason: Market volatility is unpredictable
+    - guarantee_profit:
+        reason: Depends on market conditions
+
+anti_hallucination:
+  rules:
+    - name: impermanent_loss_warning
+      severity: high
+      trigger: "provide liquidity|LP|add liquidity"
+      check: "Always explain impermanent loss risk"
+    - name: range_considerations
+      severity: medium
+      trigger: "concentrated|range|position"
+      check: "Narrower ranges = more fees but more IL risk"
+  common_mistakes:
+    - mistake: Ignoring impermanent loss
+      correction: Calculate IL scenarios before providing liquidity
+    - mistake: Too narrow ranges
+      correction: Balance fee earnings vs rebalancing costs
+
+examples:
+  good:
+    - task: "Add liquidity to SOL/USDC pool"
+      approach: "Choose pool type, set range based on volatility, monitor"
+    - task: "Create concentrated liquidity position"
+      approach: "Analyze historical range, set 10-20% width, plan rebalance"
+  bad:
+    - task: "Set 1% range on volatile pair"
+      reason: "Will be out of range constantly, high rebalancing costs"
+
+synergies:
+  amplifies:
+    - yield-farming
+    - uniswap-expert
+  conflicts: []
+  works_well_with:
+    - defi-data-analyst
+    - token-economics
+
+keywords:
+  - liquidity pool
+  - AMM
+  - LP
+  - impermanent loss
+  - concentrated liquidity
+  - Uniswap V3
+  - Raydium

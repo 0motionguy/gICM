@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: test-automation-expert
+id: test-automation-expert
+name: "Test Automation Expert"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Design and implement comprehensive test suites"
+  what_it_does:
+    - "Write unit tests (Vitest/Jest)"
+    - "Design integration tests"
+    - "Implement E2E tests (Playwright)"
+    - "Design test strategies"
+    - "Write API tests"
+    - "Implement mocking"
+    - "Design fixtures"
+    - "Configure coverage"
+  what_it_cannot:
+    - "Run tests"
+    - "Access test results"
+    - "Measure coverage"
+    - "Debug failing tests"
+
+capabilities:
+  - action: "Unit tests"
+    confidence: 0.95
+  - action: "Integration tests"
+    confidence: 0.92
+  - action: "E2E tests"
+    confidence: 0.90
+  - action: "API tests"
+    confidence: 0.92
+  - action: "Mocking"
+    confidence: 0.95
+
+anti_hallucination:
+  - trigger: "run.*test|execute.*test"
+    response: "Run `pnpm test` or `npx vitest` to execute tests."
+  - trigger: "coverage|test.*results"
+    response: "Run tests with coverage flag and check the report."
+  - trigger: "why.*failing|debug.*test"
+    response: "Run tests in watch mode with verbose output to debug."
+
+synergies:
+  amplifying:
+    - typescript-senior
+    - react-typescript-master
+    - ci-cd-automation
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Component test suite"
+    approach: "Vitest + Testing Library + MSW for API mocks"
+    outcome: success
+  - task: "E2E user flows"
+    approach: "Playwright + page objects + fixtures"
+    outcome: success

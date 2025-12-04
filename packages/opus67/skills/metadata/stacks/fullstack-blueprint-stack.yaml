@@ -1,0 +1,197 @@
+# Fullstack Blueprint Stack - OPUS 67 v4.0
+# Tier 2 Skill Pack - Consolidates popular full-stack patterns
+# Token cost: 10,000 (vs 27,000 for 4 individual skills)
+
+id: fullstack-blueprint-stack
+name: "Fullstack Blueprint Stack"
+tier: 2
+token_cost: 10000
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build production-ready full-stack applications with proven patterns"
+
+  what_it_does:
+    # T3 Stack
+    - "Scaffold with create-t3-app (Next.js + tRPC + Prisma + Tailwind)"
+    - "Implement type-safe API routes with tRPC"
+    - "Set up Prisma with proper schema design"
+    - "Configure NextAuth.js authentication"
+    - "Use Tailwind with shadcn/ui components"
+
+    # SaaS Patterns
+    - "Implement Stripe subscription billing"
+    - "Build multi-tenant architecture"
+    - "Set up role-based access control"
+    - "Create onboarding flows"
+    - "Implement usage-based billing"
+
+    # Telegram Bots
+    - "Build Telegram bots with grammy/telegraf"
+    - "Implement inline keyboards and callbacks"
+    - "Handle webhook vs polling modes"
+    - "Create conversation flows with scenes"
+    - "Integrate with external APIs"
+
+    # Discord Bots
+    - "Build Discord bots with discord.js"
+    - "Implement slash commands"
+    - "Handle events and interactions"
+    - "Create embeds and components"
+    - "Set up bot permissions and intents"
+
+  what_it_cannot:
+    - "Handle payment disputes automatically"
+    - "Guarantee bot uptime without infrastructure"
+    - "Scale infinitely without proper architecture"
+    - "Fix fundamental security issues"
+
+capabilities:
+  - action: "T3 Stack development"
+    confidence: 0.94
+    examples:
+      - "Create tRPC router"
+      - "Set up Prisma schema"
+      - "Configure NextAuth"
+
+  - action: "SaaS billing patterns"
+    confidence: 0.91
+    examples:
+      - "Implement Stripe checkout"
+      - "Build subscription management"
+      - "Handle webhooks"
+
+  - action: "Telegram bot development"
+    confidence: 0.89
+    examples:
+      - "Create bot commands"
+      - "Handle callbacks"
+      - "Build conversation flow"
+
+  - action: "Discord bot development"
+    confidence: 0.90
+    examples:
+      - "Create slash commands"
+      - "Handle interactions"
+      - "Build embeds"
+
+auto_load_when:
+  keywords:
+    - t3 stack
+    - t3-stack
+    - create-t3-app
+    - trpc
+    - saas
+    - subscription
+    - billing
+    - telegram bot
+    - grammy
+    - telegraf
+    - discord bot
+    - discord.js
+    - stripe
+    - multi-tenant
+  file_types:
+    - .prisma
+  directories:
+    - src/server/
+    - src/trpc/
+
+anti_hallucination:
+  - trigger: "free stripe|no fees"
+    response: "Stripe charges 2.9% + 30¢ per transaction. Test mode is free, production has fees."
+
+  - trigger: "bot hosting free"
+    response: "Bots need hosting. Options: Railway ($5/mo), Fly.io (free tier), or self-hosted VPS."
+
+  - trigger: "unlimited users|infinite scale"
+    response: "All systems have limits. Plan for database connections, API rate limits, and memory constraints."
+
+  - trigger: "secure by default"
+    response: "Security requires explicit implementation: rate limiting, input validation, CSRF protection."
+
+synergies:
+  amplifying:
+    - nextjs-14-expert        # Next.js expertise
+    - typescript-senior       # Type-safe code
+    - supabase-expert         # Database alternative
+  conflicting: []
+  redundant:
+    - t3-stack-expert         # Included in this pack
+    - telegram-bot-expert     # Included in this pack
+
+mcp_connections:
+  - stripe
+  - clerk
+  - discord
+
+code_patterns:
+  trpc_router: |
+    import { z } from 'zod';
+    import { createTRPCRouter, protectedProcedure, publicProcedure } from '~/server/api/trpc';
+
+    export const postRouter = createTRPCRouter({
+      getAll: publicProcedure.query(({ ctx }) => {
+        return ctx.db.post.findMany();
+      }),
+
+      create: protectedProcedure
+        .input(z.object({ title: z.string(), content: z.string() }))
+        .mutation(({ ctx, input }) => {
+          return ctx.db.post.create({
+            data: { ...input, authorId: ctx.session.user.id },
+          });
+        }),
+    });
+
+  stripe_checkout: |
+    import Stripe from 'stripe';
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+    export async function createCheckout(priceId: string, userId: string) {
+      const session = await stripe.checkout.sessions.create({
+        mode: 'subscription',
+        payment_method_types: ['card'],
+        line_items: [{ price: priceId, quantity: 1 }],
+        success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
+        cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
+        metadata: { userId },
+      });
+      return session;
+    }
+
+  telegram_bot: |
+    import { Bot, Context, session } from 'grammy';
+    import { conversations, createConversation } from '@grammyjs/conversations';
+
+    const bot = new Bot<Context>(process.env.BOT_TOKEN!);
+
+    bot.command('start', (ctx) => ctx.reply('Welcome!'));
+
+    bot.on('message:text', (ctx) => {
+      ctx.reply(`You said: ${ctx.message.text}`);
+    });
+
+    bot.start();
+
+  discord_bot: |
+    import { Client, GatewayIntentBits, SlashCommandBuilder } from 'discord.js';
+
+    const client = new Client({
+      intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+    });
+
+    client.on('ready', () => console.log(`Logged in as ${client.user?.tag}`));
+
+    client.on('interactionCreate', async (interaction) => {
+      if (!interaction.isChatInputCommand()) return;
+      if (interaction.commandName === 'ping') {
+        await interaction.reply('Pong!');
+      }
+    });
+
+    client.login(process.env.DISCORD_TOKEN);

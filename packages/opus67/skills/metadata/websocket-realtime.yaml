@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: websocket-realtime
+id: websocket-realtime
+name: "WebSocket Realtime Expert"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Build real-time features with WebSockets and Socket.io"
+  what_it_does:
+    - "Design WebSocket protocols"
+    - "Implement Socket.io servers"
+    - "Build real-time notifications"
+    - "Design chat systems"
+    - "Implement presence detection"
+    - "Handle reconnection"
+    - "Design room/channel patterns"
+    - "Implement message queuing"
+  what_it_cannot:
+    - "Start WebSocket servers"
+    - "Test connections"
+    - "Measure latency"
+    - "Access live connections"
+
+capabilities:
+  - action: "Design protocols"
+    confidence: 0.92
+  - action: "Socket.io servers"
+    confidence: 0.95
+  - action: "Chat systems"
+    confidence: 0.90
+  - action: "Presence detection"
+    confidence: 0.88
+  - action: "Reconnection logic"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "test.*connection|connect.*ws"
+    response: "Start your server and use wscat or browser DevTools to test."
+  - trigger: "actual.*latency|connection.*status"
+    response: "Use browser DevTools Network tab (WS filter) to inspect connections."
+  - trigger: "current.*users|active.*connections"
+    response: "Implement server-side metrics to track active connections."
+
+synergies:
+  amplifying:
+    - nodejs-api-architect
+    - redis-caching-pro
+    - react-typescript-master
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Live notifications"
+    approach: "Socket.io rooms + Redis adapter + event-driven"
+    outcome: success
+  - task: "Collaborative editor"
+    approach: "CRDT/OT + WebSocket sync + conflict resolution"
+    outcome: success

@@ -1,0 +1,65 @@
+# DevOps Base Fragment - OPUS 67 v4.0
+# Inherited by skills that work with CI/CD, deployment, infrastructure
+
+id: devops-base
+type: fragment
+version: "1.0.0"
+
+semantic:
+  purpose: "Foundation for DevOps, CI/CD, and infrastructure skills"
+
+capabilities:
+  - CI/CD pipeline design and optimization
+  - Environment variable management and secrets
+  - Docker containerization patterns
+  - Deployment strategies (blue-green, canary, rolling)
+  - Infrastructure as Code concepts
+  - Monitoring and logging setup
+  - Build caching and optimization
+  - Multi-environment management (dev, staging, prod)
+
+anti_hallucination:
+  - trigger: "secret|password|api.?key in code"
+    response: "Never hardcode secrets. Use environment variables or secret managers (Vault, AWS Secrets)."
+  - trigger: "deploy to prod|production deploy"
+    response: "Production deployments should go through staging first with proper approval gates."
+  - trigger: "skip tests|bypass ci"
+    response: "Skipping tests increases risk. If urgent, document the reason and add tests immediately after."
+  - trigger: "root|sudo|admin"
+    response: "Avoid running as root. Use principle of least privilege for all services."
+  - trigger: "latest tag|no version"
+    response: "Always pin specific versions in production. 'latest' tags can break deployments unexpectedly."
+
+common_patterns:
+  ci_pipeline: |
+    1. Install dependencies (with caching)
+    2. Lint and type check
+    3. Run unit tests
+    4. Run integration tests
+    5. Build artifacts
+    6. Deploy to staging
+    7. Run E2E tests
+    8. Deploy to production (with approval)
+
+  environment_strategy: |
+    - Development: Local or preview environments
+    - Staging: Production-like for final testing
+    - Production: Live traffic with monitoring
+    - Use environment-specific .env files (.env.development, .env.production)
+
+  docker_best_practices: |
+    - Use multi-stage builds for smaller images
+    - Pin base image versions (node:20-alpine, not node:latest)
+    - Run as non-root user
+    - Use .dockerignore to exclude unnecessary files
+    - Layer ordering: least changing → most changing
+
+secrets_management:
+  local: ".env files (git-ignored)"
+  ci_cd: "Platform secrets (GitHub Secrets, GitLab Variables)"
+  production: "Secret managers (Vault, AWS Secrets, Doppler)"
+
+caching_strategies:
+  npm: "Cache node_modules based on package-lock.json hash"
+  docker: "Layer caching with BuildKit"
+  build: "Cache build outputs between runs"

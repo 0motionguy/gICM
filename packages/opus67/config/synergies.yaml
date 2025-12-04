@@ -1,0 +1,240 @@
+# OPUS 67 v4.0 - Synergy Definitions
+# Cross-category skill relationships for optimal combinations
+
+version: "1.0.0"
+
+# Category definitions with internal synergies
+categories:
+  blockchain:
+    skills:
+      - solana-anchor-expert
+      - bonding-curve-master
+      - jupiter-trader
+      - evm-solidity-expert
+      - smart-contract-auditor
+      - token-economics
+      - defi-data-analyst
+      - wallet-integration
+    internal_synergies:
+      - solana-anchor-expert + jupiter-trader
+      - bonding-curve-master + token-economics
+
+  frontend:
+    skills:
+      - nextjs-14-expert
+      - react-typescript-master
+      - tailwind-css-pro
+      - shadcn-ui-expert
+      - framer-motion-wizard
+      - wallet-integration
+      - vibe-coder
+    internal_synergies:
+      - nextjs-14-expert + tailwind-css-pro
+      - shadcn-ui-expert + tailwind-css-pro
+      - react-typescript-master + shadcn-ui-expert
+
+  backend:
+    skills:
+      - nodejs-api-architect
+      - database-schema-expert
+      - redis-caching-pro
+      - graphql-api-designer
+      - websocket-realtime
+    internal_synergies:
+      - nodejs-api-architect + database-schema-expert
+      - nodejs-api-architect + redis-caching-pro
+
+  devops:
+    skills:
+      - docker-kubernetes-pro
+      - ci-cd-automation
+      - aws-infrastructure
+    internal_synergies:
+      - docker-kubernetes-pro + ci-cd-automation
+
+  core:
+    skills:
+      - typescript-senior
+      - javascript-expert
+    internal_synergies: []
+
+# Cross-category synergies
+cross_category:
+  # Blockchain + Frontend (Web3 dApps)
+  - from: solana-anchor-expert
+    to: nextjs-14-expert
+    type: amplifying
+    weight: 0.9
+    reason: "Full-stack Solana dApp development"
+
+  - from: solana-anchor-expert
+    to: wallet-integration
+    type: amplifying
+    weight: 0.95
+    reason: "Complete wallet + program integration"
+
+  - from: jupiter-trader
+    to: wallet-integration
+    type: amplifying
+    weight: 0.9
+    reason: "Swap UI with wallet connection"
+
+  - from: bonding-curve-master
+    to: nextjs-14-expert
+    type: amplifying
+    weight: 0.85
+    reason: "Bonding curve dApp frontend"
+
+  # Frontend + Core
+  - from: nextjs-14-expert
+    to: typescript-senior
+    type: amplifying
+    weight: 0.9
+    reason: "Type-safe Next.js development"
+
+  - from: react-typescript-master
+    to: typescript-senior
+    type: amplifying
+    weight: 0.95
+    reason: "Complete React + TypeScript expertise"
+
+  - from: shadcn-ui-expert
+    to: tailwind-css-pro
+    type: amplifying
+    weight: 0.95
+    reason: "shadcn requires Tailwind mastery"
+
+  # Backend + Frontend
+  - from: nodejs-api-architect
+    to: nextjs-14-expert
+    type: amplifying
+    weight: 0.85
+    reason: "Full-stack Node.js + Next.js"
+
+  - from: graphql-api-designer
+    to: nextjs-14-expert
+    type: amplifying
+    weight: 0.8
+    reason: "GraphQL API with Next.js frontend"
+
+  - from: websocket-realtime
+    to: nextjs-14-expert
+    type: amplifying
+    weight: 0.75
+    reason: "Real-time features in Next.js"
+
+  # Backend + Core
+  - from: nodejs-api-architect
+    to: typescript-senior
+    type: amplifying
+    weight: 0.9
+    reason: "Type-safe Node.js APIs"
+
+  - from: database-schema-expert
+    to: typescript-senior
+    type: amplifying
+    weight: 0.8
+    reason: "Type-safe database operations"
+
+  # DevOps + Backend
+  - from: docker-kubernetes-pro
+    to: nodejs-api-architect
+    type: amplifying
+    weight: 0.8
+    reason: "Containerized Node.js services"
+
+  - from: ci-cd-automation
+    to: nodejs-api-architect
+    type: amplifying
+    weight: 0.75
+    reason: "Automated deployment pipelines"
+
+  # Blockchain + Backend
+  - from: solana-anchor-expert
+    to: nodejs-api-architect
+    type: amplifying
+    weight: 0.7
+    reason: "Backend services for Solana programs"
+
+  # Conflicts
+  - from: vibe-coder
+    to: smart-contract-auditor
+    type: conflicting
+    weight: 0.9
+    reason: "Vibe coding conflicts with security auditing rigor"
+
+  - from: vibe-coder
+    to: solana-anchor-expert
+    type: conflicting
+    weight: 0.7
+    reason: "Anchor programs need thoroughness, not quick prototypes"
+
+  - from: shadcn-ui-expert
+    to: material-ui-expert
+    type: conflicting
+    weight: 0.85
+    reason: "Different design systems - choose one"
+
+  # Redundancies
+  - from: typescript-senior
+    to: javascript-expert
+    type: redundant
+    weight: 0.8
+    reason: "TypeScript includes JavaScript expertise"
+
+  - from: react-typescript-master
+    to: javascript-expert
+    type: redundant
+    weight: 0.6
+    reason: "React TS includes JS basics"
+
+# Skill combination templates
+templates:
+  solana_dapp:
+    name: "Solana dApp Stack"
+    skills:
+      - solana-anchor-expert
+      - nextjs-14-expert
+      - tailwind-css-pro
+      - wallet-integration
+      - typescript-senior
+    synergy_score: 0.92
+
+  defi_trading:
+    name: "DeFi Trading Platform"
+    skills:
+      - solana-anchor-expert
+      - jupiter-trader
+      - bonding-curve-master
+      - defi-data-analyst
+      - wallet-integration
+    synergy_score: 0.95
+
+  fullstack_web3:
+    name: "Full-Stack Web3"
+    skills:
+      - nextjs-14-expert
+      - nodejs-api-architect
+      - wallet-integration
+      - typescript-senior
+      - tailwind-css-pro
+    synergy_score: 0.88
+
+  rapid_prototype:
+    name: "Rapid Prototyping"
+    skills:
+      - vibe-coder
+      - tailwind-css-pro
+      - nextjs-14-expert
+    synergy_score: 0.75
+    warning: "Not for production or security-critical code"
+
+  enterprise_backend:
+    name: "Enterprise Backend"
+    skills:
+      - nodejs-api-architect
+      - typescript-senior
+      - database-schema-expert
+      - redis-caching-pro
+      - docker-kubernetes-pro
+    synergy_score: 0.9

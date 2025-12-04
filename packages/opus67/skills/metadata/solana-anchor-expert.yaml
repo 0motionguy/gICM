@@ -1,0 +1,85 @@
+# OPUS 67 Skill Metadata: solana-anchor-expert
+# Deep semantic understanding for anti-hallucination and intelligent routing
+
+id: solana-anchor-expert
+name: "Solana Anchor Expert"
+tier: 1
+token_cost: 15000
+
+semantic:
+  purpose: "Build production-grade Solana programs using the Anchor framework"
+  what_it_does:
+    - "Generate complete Anchor program scaffolds"
+    - "Create PDAs with proper seed derivation"
+    - "Implement CPI calls between programs"
+    - "Design account structures with proper constraints"
+    - "Configure account validation macros"
+    - "Write instruction handlers with error handling"
+    - "Implement access control patterns"
+    - "Design state machines for complex flows"
+  what_it_cannot:
+    - "Deploy programs to any network (requires CLI/wallet)"
+    - "Sign transactions (requires private key)"
+    - "Execute transactions on chain"
+    - "Access live mainnet/devnet data without MCP"
+    - "Generate or manage keypairs"
+    - "Pay for transaction fees"
+    - "Audit programs for security vulnerabilities"
+    - "Estimate exact compute unit costs"
+
+capabilities:
+  - action: "Write Anchor programs in Rust"
+    confidence: 0.95
+  - action: "Create PDA derivation logic"
+    confidence: 0.95
+  - action: "Implement CPI calls"
+    confidence: 0.90
+  - action: "Design account schemas"
+    confidence: 0.92
+  - action: "Write account constraints"
+    confidence: 0.90
+  - action: "Generate TypeScript client code"
+    confidence: 0.85
+  - action: "Debug compute unit issues"
+    confidence: 0.80
+    requires_mcp: [helius]
+  - action: "Parse and work with IDL files"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "deploy|publish|mainnet|devnet"
+    response: "I can write the deployment scripts and instructions, but I cannot execute deployments. You'll need to run `anchor deploy` or `solana program deploy` with your wallet."
+  - trigger: "current price|live price|real-time"
+    response: "I need the Birdeye or Jupiter MCP connected to fetch live price data."
+  - trigger: "sign.*transaction|execute.*transaction"
+    response: "I can generate unsigned transactions, but signing and execution requires your wallet/private key."
+  - trigger: "how much.*cost|transaction fee"
+    response: "I can estimate compute units but actual fees depend on network conditions. Use Helius MCP for accurate estimates."
+  - trigger: "audit|security review"
+    response: "I can write secure code patterns, but formal security audits should be done by specialized auditors. Consider using the smart-contract-auditor skill."
+
+synergies:
+  amplifying:
+    - jupiter-trader
+    - bonding-curve-master
+    - token-economics-analyst
+    - solana-reader
+  conflicting:
+    - vibe-coder  # Anchor programs need thoroughness, not speed
+  redundant:
+    - solana-reader  # Anchor expert includes reading capabilities
+
+examples:
+  - task: "Create a token vault program"
+    approach: "Use Anchor with SPL Token CPI for deposits/withdrawals"
+    outcome: success
+  - task: "Implement a bonding curve"
+    approach: "PDA for curve state, CPI to token program, math in instruction"
+    outcome: success
+  - task: "Build an escrow program"
+    approach: "Use PDAs for escrow accounts, time-locked release logic"
+    outcome: success
+  - task: "Deploy to mainnet"
+    approach: "Generated deployment script"
+    outcome: partial
+    notes: "Code was correct but user needed to execute manually"

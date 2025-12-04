@@ -1,0 +1,96 @@
+# Effect-TS Expert - OPUS 67 v4.0
+# Type-safe functional programming
+
+id: effect-ts
+name: "Effect-TS Expert"
+tier: 2
+token_cost: 7000
+version: "1.0.0"
+
+semantic:
+  purpose: "Build type-safe, composable applications with Effect-TS"
+
+  what_it_does:
+    - "Use Effect for error handling without exceptions"
+    - "Compose effects with pipe and generators"
+    - "Implement dependency injection with Layers"
+    - "Handle concurrent operations with Fibers"
+    - "Use Schema for runtime validation"
+    - "Build resilient services with retries and timeouts"
+
+  what_it_cannot:
+    - "Replace simpler patterns for basic apps"
+    - "Work without TypeScript strict mode"
+
+capabilities:
+  - action: "Effect composition"
+    confidence: 0.91
+  - action: "Error handling"
+    confidence: 0.90
+  - action: "Dependency injection"
+    confidence: 0.88
+
+auto_load_when:
+  keywords:
+    - effect-ts
+    - effect/io
+    - pipe
+    - Effect.gen
+    - Layer
+    - Schema
+
+anti_hallucination:
+  - trigger: "simple app|basic"
+    response: "Effect has overhead. For simple apps, consider plain TypeScript or fp-ts for lighter FP."
+
+synergies:
+  amplifying: [typescript-senior, zod-expert]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  basic_effect: |
+    import { Effect, pipe } from "effect";
+
+    const program = pipe(
+      Effect.succeed(42),
+      Effect.map((n) => n * 2),
+      Effect.flatMap((n) =>
+        n > 50
+          ? Effect.succeed(`Large: ${n}`)
+          : Effect.fail(new Error("Too small"))
+      )
+    );
+
+    // Run the effect
+    Effect.runPromise(program).then(console.log);
+
+  service_layer: |
+    import { Effect, Layer, Context } from "effect";
+
+    // Define service interface
+    class UserService extends Context.Tag("UserService")<
+      UserService,
+      { getUser: (id: string) => Effect.Effect<User, NotFoundError> }
+    >() {}
+
+    // Implementation layer
+    const UserServiceLive = Layer.succeed(UserService, {
+      getUser: (id) =>
+        Effect.tryPromise({
+          try: () => db.users.findUnique({ where: { id } }),
+          catch: () => new NotFoundError(id),
+        }),
+    });
+
+    // Use the service
+    const program = Effect.gen(function* () {
+      const userService = yield* UserService;
+      const user = yield* userService.getUser("123");
+      return user;
+    });
+
+    // Provide layer and run
+    pipe(program, Effect.provide(UserServiceLive), Effect.runPromise);

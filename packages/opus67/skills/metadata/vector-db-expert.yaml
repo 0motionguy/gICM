@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: vector-db-expert
+
+id: vector-db-expert
+name: Vector Database Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Design and implement vector databases for similarity search and AI applications"
+  what_it_does:
+    - "Sets up Pinecone, Weaviate, Qdrant, or Chroma"
+    - "Designs embedding schemas and indexes"
+    - "Implements similarity search queries"
+    - "Optimizes vector search performance"
+    - "Implements filtering and metadata queries"
+  what_it_cannot_do:
+    - "Generate embeddings (use embedding models)"
+    - "Replace traditional databases entirely"
+    - "Handle arbitrary query types"
+    - "Scale infinitely without cost"
+
+capabilities:
+  - action: "set up vector store"
+    confidence: 0.94
+    requires: ["vector DB choice"]
+    produces: ["configured index"]
+  - action: "implement upsert"
+    confidence: 0.95
+    requires: ["embeddings", "metadata"]
+    produces: ["stored vectors"]
+  - action: "implement search"
+    confidence: 0.94
+    requires: ["query vector"]
+    produces: ["similar results"]
+  - action: "implement filtering"
+    confidence: 0.91
+    requires: ["metadata schema"]
+    produces: ["filtered search"]
+
+anti_hallucination:
+  never_claim:
+    - "Instant search at any scale"
+    - "Perfect similarity matching"
+    - "No cost considerations"
+  always_recommend:
+    - "Choose DB based on scale and features"
+    - "Implement proper indexing"
+    - "Monitor query latency"
+  trigger_phrases:
+    - pattern: "vector database"
+      response: "Which vector DB: Pinecone (managed), Qdrant (self-hosted), Chroma (local), or Supabase pgvector?"
+
+examples:
+  - task: "Set up semantic search"
+    approach: "Choose vector DB, design schema, implement upsert and query"
+    skills_needed: ["vector-db-expert", "rag-expert"]
+
+synergies:
+  amplifying:
+    - skill: rag-expert
+      reason: "RAG requires vector storage"
+    - skill: openai-integration
+      reason: "Embeddings from OpenAI"
+  conflicting: []
+  redundant: []

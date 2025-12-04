@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.68.0",
+    "@gicm/opus67": "^4.1.1",
     "@heroicons/react": "^2.2.0",
     "@next/bundle-analyzer": "^16.0.1",
     "@radix-ui/react-avatar": "^1.1.11",

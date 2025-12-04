@@ -1,0 +1,91 @@
+# Playwright Pro - OPUS 67 v4.0
+# E2E testing expert
+
+id: playwright-pro
+name: "Playwright E2E Testing Pro"
+tier: 2
+token_cost: 6000
+version: "1.0.0"
+
+semantic:
+  purpose: "Write reliable end-to-end tests with Playwright"
+
+  what_it_does:
+    - "Write cross-browser E2E tests (Chromium, Firefox, WebKit)"
+    - "Use locators with auto-waiting and retries"
+    - "Generate tests with codegen"
+    - "Implement page object model patterns"
+    - "Handle authentication with storage state"
+    - "Test API endpoints alongside UI"
+    - "Visual regression with screenshots"
+    - "Trace viewer for debugging"
+
+  what_it_cannot:
+    - "Replace unit tests for business logic"
+    - "Test native mobile apps"
+
+capabilities:
+  - action: "E2E tests"
+    confidence: 0.94
+  - action: "Page objects"
+    confidence: 0.91
+  - action: "Visual testing"
+    confidence: 0.88
+
+auto_load_when:
+  keywords:
+    - playwright
+    - e2e
+    - end to end
+    - browser test
+    - integration test
+    - codegen
+
+anti_hallucination:
+  - trigger: "unit test|fast"
+    response: "E2E tests are slower. Use Vitest for unit tests, Playwright for user flows."
+
+synergies:
+  amplifying: [vitest-expert, nextjs-14-expert]
+  conflicting: []
+  redundant: [testing-playwright]
+
+mcp_connections: [playwright]
+
+code_patterns:
+  basic_test: |
+    import { test, expect } from '@playwright/test';
+
+    test('user can sign in', async ({ page }) => {
+      await page.goto('/login');
+
+      await page.getByLabel('Email').fill('test@example.com');
+      await page.getByLabel('Password').fill('password123');
+      await page.getByRole('button', { name: 'Sign In' }).click();
+
+      await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+    });
+
+  page_object: |
+    // pages/login.page.ts
+    import { Page, Locator } from '@playwright/test';
+
+    export class LoginPage {
+      readonly page: Page;
+      readonly emailInput: Locator;
+      readonly passwordInput: Locator;
+      readonly submitButton: Locator;
+
+      constructor(page: Page) {
+        this.page = page;
+        this.emailInput = page.getByLabel('Email');
+        this.passwordInput = page.getByLabel('Password');
+        this.submitButton = page.getByRole('button', { name: 'Sign In' });
+      }
+
+      async login(email: string, password: string) {
+        await this.emailInput.fill(email);
+        await this.passwordInput.fill(password);
+        await this.submitButton.click();
+      }
+    }

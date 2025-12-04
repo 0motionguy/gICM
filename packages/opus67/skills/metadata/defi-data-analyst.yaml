@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: defi-data-analyst
+id: defi-data-analyst
+name: "DeFi Data Analyst"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Analyze DeFi protocols, TVL, yields, and on-chain metrics"
+  what_it_does:
+    - "Analyze protocol TVL trends"
+    - "Calculate yield farming APY"
+    - "Assess impermanent loss risk"
+    - "Compare protocol metrics"
+    - "Identify yield opportunities"
+    - "Analyze liquidity depth"
+    - "Track whale movements"
+    - "Model risk-adjusted returns"
+  what_it_cannot:
+    - "Fetch real-time on-chain data"
+    - "Execute trades"
+    - "Guarantee yield predictions"
+    - "Access private analytics"
+    - "Provide financial advice"
+
+capabilities:
+  - action: "Analyze TVL"
+    confidence: 0.88
+  - action: "Calculate APY"
+    confidence: 0.92
+  - action: "Assess IL risk"
+    confidence: 0.85
+  - action: "Compare protocols"
+    confidence: 0.90
+  - action: "Model returns"
+    confidence: 0.82
+
+anti_hallucination:
+  - trigger: "current.*tvl|live.*data"
+    response: "I need Helius or DeFiLlama API for real-time TVL data."
+  - trigger: "guaranteed.*yield|safe.*farm"
+    response: "All DeFi yields carry risk. Past performance doesn't guarantee future returns."
+  - trigger: "best.*protocol|should.*invest"
+    response: "I analyze metrics but don't give financial advice. DYOR."
+
+synergies:
+  amplifying:
+    - jupiter-trader
+    - token-economics
+    - bonding-curve-master
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Analyze LP position"
+    approach: "Calculate IL at price ranges + fees earned + net APY"
+    outcome: success
+  - task: "Compare yield farms"
+    approach: "Risk-adjusted APY + protocol age + audit status + TVL stability"
+    outcome: success

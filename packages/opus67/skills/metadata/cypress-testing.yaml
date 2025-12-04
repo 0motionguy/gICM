@@ -1,0 +1,67 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: cypress-testing
+
+id: cypress-testing
+name: Cypress Testing Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement end-to-end and component testing with Cypress"
+  what_it_does:
+    - "Writes E2E tests with Cypress"
+    - "Implements component testing"
+    - "Creates custom commands"
+    - "Handles network interception"
+    - "Implements visual testing"
+  what_it_cannot_do:
+    - "Test non-browser applications"
+    - "Replace unit tests"
+    - "Test multiple browsers simultaneously"
+    - "Handle native mobile apps"
+
+capabilities:
+  - action: "write E2E tests"
+    confidence: 0.95
+    requires: ["web application"]
+    produces: ["Cypress specs"]
+  - action: "implement component tests"
+    confidence: 0.92
+    requires: ["React/Vue components"]
+    produces: ["component specs"]
+  - action: "create custom commands"
+    confidence: 0.93
+    requires: ["reusable patterns"]
+    produces: ["Cypress commands"]
+  - action: "intercept network"
+    confidence: 0.94
+    requires: ["API mocking needs"]
+    produces: ["cy.intercept usage"]
+
+anti_hallucination:
+  never_claim:
+    - "Replaces all other tests"
+    - "Tests are never flaky"
+    - "Works for all apps"
+  always_recommend:
+    - "Focus on critical user paths"
+    - "Use data-cy attributes"
+    - "Implement retry logic"
+  trigger_phrases:
+    - pattern: "Cypress"
+      response: "I'll set up Cypress for E2E or component testing. Which approach do you prefer?"
+
+examples:
+  - task: "Test user authentication flow"
+    approach: "Custom login command, session handling, route interception"
+    skills_needed: ["cypress-testing"]
+
+synergies:
+  amplifying:
+    - skill: ci-cd-automation
+      reason: "Run in CI pipelines"
+    - skill: test-automation-expert
+      reason: "Testing strategy"
+  conflicting: []
+  redundant:
+    - skill: playwright-testing
+      reason: "Alternative E2E framework"

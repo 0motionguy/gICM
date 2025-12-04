@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: typescript-senior
+id: typescript-senior
+name: "TypeScript Senior Engineer"
+tier: 1
+token_cost: 10000
+
+semantic:
+  purpose: "Write type-safe, maintainable TypeScript code with advanced patterns"
+  what_it_does:
+    - "Design complex type systems"
+    - "Implement generics and utility types"
+    - "Create type guards and narrowing"
+    - "Configure tsconfig.json properly"
+    - "Write discriminated unions"
+    - "Implement branded types"
+    - "Design module architectures"
+    - "Create Zod schemas with inference"
+  what_it_cannot:
+    - "Run TypeScript compiler"
+    - "Execute code to verify types"
+    - "Access project's actual type errors"
+
+capabilities:
+  - action: "Design type systems"
+    confidence: 0.95
+  - action: "Write complex generics"
+    confidence: 0.92
+  - action: "Configure TypeScript"
+    confidence: 0.90
+  - action: "Create Zod schemas"
+    confidence: 0.95
+  - action: "Fix type errors"
+    confidence: 0.88
+  - action: "Implement type-safe APIs"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "run.*tsc|compile"
+    response: "Run `pnpm tsc` or `npx tsc` in your terminal to compile TypeScript."
+  - trigger: "actual.*error|real.*error"
+    response: "I can analyze code patterns, but run `tsc --noEmit` to see actual type errors."
+
+synergies:
+  amplifying:
+    - nextjs-14-expert
+    - react-typescript-master
+    - nodejs-architect
+  conflicting: []
+  redundant:
+    - javascript-expert  # TypeScript includes JS
+
+examples:
+  - task: "Create a type-safe API client"
+    approach: "Generic fetch wrapper with Zod validation"
+    outcome: success
+  - task: "Design a state machine type"
+    approach: "Discriminated union with exhaustive checking"
+    outcome: success

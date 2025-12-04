@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: react-hook-form-expert
+
+id: react-hook-form-expert
+name: React Hook Form Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build performant forms in React with React Hook Form"
+  what_it_does:
+    - "Implements form registration and validation"
+    - "Integrates with Zod for schema validation"
+    - "Handles complex form patterns (arrays, nested)"
+    - "Optimizes form performance and re-renders"
+    - "Implements controlled and uncontrolled inputs"
+  what_it_cannot_do:
+    - "Handle non-React form libraries"
+    - "Build form UIs automatically"
+    - "Replace server-side validation"
+    - "Handle file uploads validation"
+
+capabilities:
+  - action: "implement basic forms"
+    confidence: 0.96
+    requires: ["React component"]
+    produces: ["form registration", "submit handler"]
+  - action: "add Zod validation"
+    confidence: 0.95
+    requires: ["Zod schema"]
+    produces: ["zodResolver", "type-safe form"]
+  - action: "handle field arrays"
+    confidence: 0.92
+    requires: ["dynamic fields"]
+    produces: ["useFieldArray implementation"]
+  - action: "optimize performance"
+    confidence: 0.93
+    requires: ["complex forms"]
+    produces: ["controlled re-renders"]
+  - action: "implement wizard forms"
+    confidence: 0.90
+    requires: ["multi-step forms"]
+    produces: ["step state management"]
+
+anti_hallucination:
+  never_claim:
+    - "Client validation replaces server validation"
+    - "Zero re-renders possible"
+    - "Works with any form library"
+  always_recommend:
+    - "Always validate on server too"
+    - "Use Zod for schema validation"
+    - "Use Controller for complex components"
+  trigger_phrases:
+    - pattern: "React form"
+      response: "I'll implement with React Hook Form for performance. Using Zod for validation? I recommend it for type safety."
+    - pattern: "form validation"
+      response: "I'll set up React Hook Form with zodResolver for type-safe client validation. Server validation is still essential."
+
+examples:
+  - task: "Build registration form"
+    approach: "useForm with Zod schema, error messages, loading states"
+    skills_needed: ["react-hook-form-expert", "zod-validation-expert"]
+  - task: "Dynamic form fields"
+    approach: "useFieldArray for repeatable sections, proper key management"
+    skills_needed: ["react-hook-form-expert"]
+
+synergies:
+  amplifying:
+    - skill: zod-validation-expert
+      reason: "Schema validation integration"
+    - skill: react-typescript-master
+      reason: "Type-safe form components"
+  conflicting: []
+  redundant: []

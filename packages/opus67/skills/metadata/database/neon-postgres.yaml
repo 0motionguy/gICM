@@ -1,0 +1,97 @@
+# Neon Postgres Expert - OPUS 67 v4.0
+# Serverless PostgreSQL
+
+id: neon-postgres
+name: "Neon Serverless Postgres Expert"
+tier: 2
+token_cost: 5000
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build serverless applications with Neon's serverless PostgreSQL"
+
+  what_it_does:
+    - "Use @neondatabase/serverless for edge deployments"
+    - "Leverage branching for dev/preview environments"
+    - "Configure connection pooling for serverless"
+    - "Use Neon's autoscaling (scale to zero)"
+    - "Integrate with Drizzle, Prisma, or raw SQL"
+
+  what_it_cannot:
+    - "Replace self-hosted PostgreSQL for on-prem"
+    - "Handle workloads needing always-on connections"
+
+capabilities:
+  - action: "Serverless PostgreSQL"
+    confidence: 0.92
+  - action: "Database branching"
+    confidence: 0.89
+  - action: "Edge deployment"
+    confidence: 0.88
+
+auto_load_when:
+  keywords:
+    - neon
+    - neondb
+    - serverless postgres
+    - @neondatabase
+
+anti_hallucination:
+  - trigger: "always on|persistent connection"
+    response: "Neon scales to zero. For persistent connections, use pooled mode or consider dedicated PostgreSQL."
+
+synergies:
+  amplifying: [drizzle-studio, vercel-expert]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  serverless_client: |
+    import { neon } from "@neondatabase/serverless";
+
+    // HTTP-based queries (best for serverless/edge)
+    const sql = neon(process.env.DATABASE_URL!);
+
+    export async function getUsers() {
+      const users = await sql`SELECT * FROM users LIMIT 10`;
+      return users;
+    }
+
+    export async function createUser(name: string, email: string) {
+      const [user] = await sql`
+        INSERT INTO users (name, email)
+        VALUES (${name}, ${email})
+        RETURNING *
+      `;
+      return user;
+    }
+
+  pooled_connection: |
+    import { Pool } from "@neondatabase/serverless";
+
+    // WebSocket-based pool (for multiple queries in one request)
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+    export async function transactionalInsert(items: Item[]) {
+      const client = await pool.connect();
+      try {
+        await client.query("BEGIN");
+        for (const item of items) {
+          await client.query(
+            "INSERT INTO items (name, price) VALUES ($1, $2)",
+            [item.name, item.price]
+          );
+        }
+        await client.query("COMMIT");
+      } catch (e) {
+        await client.query("ROLLBACK");
+        throw e;
+      } finally {
+        client.release();
+      }
+    }

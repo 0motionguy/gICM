@@ -1,0 +1,217 @@
+# Solana 2025 Stack - OPUS 67 v4.0
+# Tier 1 Skill Pack - Consolidates modern Solana development
+# Token cost: 12,000 (vs 47,000 for 7 individual skills)
+
+id: solana-2025-stack
+name: "Solana 2025 Stack"
+tier: 1
+token_cost: 12000
+version: "1.0.0"
+
+extends:
+  - blockchain-base
+
+semantic:
+  purpose: "Build modern Solana applications with 2024-2025 tooling and patterns"
+
+  what_it_does:
+    # Solana Kit (@solana/web3.js v2)
+    - "Use @solana/web3.js v2 with new codec-based architecture"
+    - "Build transactions with TransactionMessage and VersionedTransaction"
+    - "Work with address lookup tables for optimized transactions"
+    - "Implement proper compute budget and priority fees"
+
+    # Token Extensions (Token-2022)
+    - "Create tokens with transfer fees, interest-bearing, and confidential transfers"
+    - "Implement permanent delegate, non-transferable, and transfer hook extensions"
+    - "Build NFTs with metadata pointer and group extensions"
+    - "Configure token with multiple extensions simultaneously"
+
+    # Metaplex Umi Framework
+    - "Build NFT operations with Umi's composable architecture"
+    - "Create collections with Metaplex Core (not legacy Token Metadata)"
+    - "Implement candy machines with guards and phases"
+    - "Work with compressed NFTs via Bubblegum"
+
+    # Blinks and Actions
+    - "Create Solana Actions (actions.json + API endpoints)"
+    - "Build Blinks (shareable transaction links)"
+    - "Implement unfurling for Twitter/Discord previews"
+    - "Design action chains for multi-step flows"
+
+    # Squads v4 Multisig
+    - "Create and manage Squads multisig vaults"
+    - "Build transaction proposals and approvals"
+    - "Implement spending limits and permissions"
+    - "Integrate Squads with Anchor programs"
+
+    # Pump.fun Patterns
+    - "Understand bonding curve mathematics"
+    - "Build token launch flows with fair distribution"
+    - "Implement migration to Raydium after graduation"
+
+  what_it_cannot:
+    - "Deploy programs without wallet signing"
+    - "Execute transactions without user approval"
+    - "Access mainnet without RPC credentials"
+    - "Guarantee transaction success (network dependent)"
+    - "Create illegal token schemes"
+
+capabilities:
+  - action: "Solana Kit (web3.js v2)"
+    confidence: 0.93
+    examples:
+      - "Build versioned transactions"
+      - "Use address lookup tables"
+      - "Set priority fees"
+
+  - action: "Token Extensions (Token-2022)"
+    confidence: 0.92
+    examples:
+      - "Create token with transfer fees"
+      - "Build interest-bearing token"
+      - "Implement transfer hooks"
+
+  - action: "Metaplex Umi"
+    confidence: 0.91
+    examples:
+      - "Create NFT collection"
+      - "Build candy machine"
+      - "Mint compressed NFTs"
+
+  - action: "Solana Actions/Blinks"
+    confidence: 0.90
+    examples:
+      - "Create actions.json manifest"
+      - "Build shareable Blink URL"
+      - "Implement action chain"
+
+  - action: "Squads v4 Multisig"
+    confidence: 0.88
+    examples:
+      - "Create multisig vault"
+      - "Build approval flow"
+      - "Set spending limits"
+
+auto_load_when:
+  keywords:
+    - solana kit
+    - web3.js v2
+    - "@solana/web3.js"
+    - token extensions
+    - token-2022
+    - token 2022
+    - metaplex
+    - umi
+    - metaplex core
+    - blinks
+    - solana actions
+    - actions.json
+    - squads
+    - multisig
+    - pump.fun
+    - bonding curve
+    - compressed nft
+    - bubblegum
+    - candy machine
+  file_types:
+    - .rs
+  directories:
+    - programs/
+    - anchor/
+    - solana/
+  task_patterns:
+    - "create.*token"
+    - "build.*nft"
+    - "launch.*token"
+    - "create.*blink"
+
+anti_hallucination:
+  - trigger: "sign|send|execute transaction"
+    response: "I can build transactions, but signing requires the user's wallet. Use wallet adapter for frontend or CLI for scripts."
+
+  - trigger: "mainnet|production"
+    response: "Always test on devnet first. Mainnet deployments require funded wallets and careful testing."
+
+  - trigger: "free|no fee"
+    response: "All Solana transactions require SOL for fees. Current base fee is ~0.000005 SOL plus priority fees."
+
+  - trigger: "instant|immediate"
+    response: "Solana confirmations: processed (~400ms), confirmed (~2s), finalized (~12s). Always await confirmation."
+
+  - trigger: "token-metadata|old nft"
+    response: "Use Metaplex Core for new NFTs, not legacy Token Metadata. Core is simpler and cheaper."
+
+synergies:
+  amplifying:
+    - solana-anchor-expert   # Full program development
+    - jupiter-trader         # Token swaps
+    - typescript-senior      # Type-safe Solana code
+    - nextjs-14-expert       # Solana web apps
+  conflicting: []
+  redundant:
+    - solana-reader          # Included in this pack
+    - token-extensions       # Included in this pack
+
+mcp_connections:
+  - helius
+  - jupiter
+  - anchor
+  - pump_fun
+
+code_patterns:
+  web3js_v2_transaction: |
+    import { pipe } from '@solana/functional';
+    import {
+      createTransactionMessage,
+      setTransactionMessageFeePayer,
+      appendTransactionMessageInstruction,
+      compileTransaction,
+    } from '@solana/web3.js';
+
+    const transaction = pipe(
+      createTransactionMessage({ version: 0 }),
+      tx => setTransactionMessageFeePayer(feePayer, tx),
+      tx => appendTransactionMessageInstruction(instruction, tx),
+    );
+
+  token_extensions: |
+    import {
+      createInitializeMintInstruction,
+      createInitializeTransferFeeConfigInstruction,
+      ExtensionType,
+      getMintLen,
+      TOKEN_2022_PROGRAM_ID,
+    } from '@solana/spl-token';
+
+    const extensions = [ExtensionType.TransferFeeConfig];
+    const mintLen = getMintLen(extensions);
+
+  umi_nft: |
+    import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+    import { create, mplCore } from '@metaplex-foundation/mpl-core';
+
+    const umi = createUmi(rpcUrl).use(mplCore());
+
+    await create(umi, {
+      asset: generateSigner(umi),
+      name: 'My NFT',
+      uri: 'https://...',
+    }).sendAndConfirm(umi);
+
+  solana_action: |
+    // actions.json
+    {
+      "rules": [{ "pathPattern": "/api/actions/**", "apiPath": "/api/actions/**" }]
+    }
+
+    // API route
+    export async function GET() {
+      const payload: ActionGetResponse = {
+        icon: 'https://...',
+        title: 'My Action',
+        description: 'Do something',
+        label: 'Execute',
+      };
+      return Response.json(payload);
+    }

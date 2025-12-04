@@ -1,0 +1,90 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Crypto Wallet Security Expert
+
+id: crypto-wallet-security
+name: Crypto Wallet Security Expert
+category: security
+version: 1.0.0
+
+description:
+  short: Cryptocurrency wallet security and key management
+  what_it_does: |
+    Secures cryptocurrency wallets, implements proper key management,
+    reviews wallet integrations, and ensures safe transaction signing.
+    Covers hot/cold wallets, multisig, hardware wallets, and key derivation.
+  what_it_cannot: |
+    Cannot recover lost private keys. Cannot guarantee protection against
+    all attack vectors. Cannot audit hardware wallet firmware. Cannot
+    prevent social engineering attacks.
+
+capabilities:
+  can:
+    - key_management:
+        confidence: 0.95
+        description: Implement secure key generation and storage
+    - wallet_integration:
+        confidence: 0.93
+        description: Integrate wallets securely (Phantom, MetaMask, etc.)
+    - transaction_security:
+        confidence: 0.92
+        description: Secure transaction signing and validation
+    - multisig_setup:
+        confidence: 0.90
+        description: Configure multisignature wallets
+    - seed_phrase_handling:
+        confidence: 0.95
+        description: Secure mnemonic/seed phrase management
+  cannot:
+    - key_recovery:
+        reason: Cryptographically impossible without backup
+    - hardware_audit:
+        reason: Requires physical device analysis
+    - firmware_verification:
+        reason: Hardware wallet specific
+    - phishing_prevention:
+        reason: Requires user education
+
+anti_hallucination:
+  rules:
+    - name: never_log_keys
+      severity: critical
+      trigger: "private key|seed|mnemonic|secret"
+      check: "NEVER log, print, or expose private keys"
+    - name: secure_storage
+      severity: critical
+      trigger: "store|save|persist"
+      check: "Use secure enclaves or encrypted storage only"
+  common_mistakes:
+    - mistake: Storing private keys in plain text
+      correction: Always encrypt keys at rest
+    - mistake: Logging transaction data with keys
+      correction: Sanitize all logs
+
+examples:
+  good:
+    - task: "Implement secure wallet connection"
+      approach: "Use @solana/wallet-adapter with proper signature validation"
+    - task: "Set up multisig treasury"
+      approach: "Squads Protocol with time-locked transactions"
+  bad:
+    - task: "Store private key in localStorage"
+      reason: "Accessible to any script on the page"
+    - task: "Log wallet private key for debugging"
+      reason: "Critical security violation"
+
+synergies:
+  amplifies:
+    - wallet-integration
+    - solana-anchor-expert
+  conflicts: []
+  works_well_with:
+    - security-best-practices
+    - smart-contract-auditor
+
+keywords:
+  - wallet security
+  - key management
+  - private key
+  - multisig
+  - seed phrase
+  - transaction signing

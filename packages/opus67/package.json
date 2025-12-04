@@ -1,12 +1,14 @@
 {
   "name": "@gicm/opus67",
-  "version": "3.0.0",
-  "description": "OPUS 67 - Self-Evolving AI Runtime for gICM",
+  "version": "4.1.1",
+  "description": "OPUS 67 v4.1 Learning Layer - Self-Evolving AI Runtime with AContext integration, vector skill search, and auto-SOP generation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "opus67-server": "./dist/brain/server.js"
+    "opus67": "./dist/cli.js",
+    "opus67-server": "./dist/brain/server.js",
+    "opus67-mcp": "./dist/mcp-server.js"
   },
   "scripts": {
     "build": "tsup",
@@ -45,12 +47,17 @@
   },
   "files": [
     "dist",
+    "docs",
     "skills",
     "mcp",
     "modes",
     "config",
+    "scripts",
     "door",
-    "THE_DOOR.md"
+    "docker",
+    "agents",
+    "THE_DOOR.md",
+    ".env.example"
   ],
   "publishConfig": {
     "access": "public"

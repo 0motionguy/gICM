@@ -1,0 +1,69 @@
+# DSPy Prompting - OPUS 67 v4.0
+# AI-related individual skill (HIGH PRIORITY)
+
+id: dspy-prompting
+name: "DSPy Prompt Optimization"
+tier: 2
+token_cost: 6000
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Optimize prompts programmatically using Stanford's DSPy framework"
+
+  what_it_does:
+    - "Define signatures for LLM tasks (input → output)"
+    - "Build modular pipelines with ChainOfThought, ReAct, ProgramOfThought"
+    - "Optimize prompts with bootstrapped few-shot examples"
+    - "Compile prompts for specific models (Claude, GPT-4, Llama)"
+    - "Evaluate prompt performance with metrics"
+    - "Use retrieval-augmented modules"
+
+  what_it_cannot:
+    - "Train or fine-tune models"
+    - "Work without example data for optimization"
+    - "Guarantee improved performance without iteration"
+
+capabilities:
+  - action: "DSPy signatures"
+    confidence: 0.90
+  - action: "ChainOfThought modules"
+    confidence: 0.88
+  - action: "Prompt optimization/compilation"
+    confidence: 0.85
+
+auto_load_when:
+  keywords:
+    - dspy
+    - prompt optimization
+    - prompt engineering
+    - signature
+    - chainofthought
+    - bootstrap
+  file_types:
+    - .py
+
+anti_hallucination:
+  - trigger: "automatic|no examples"
+    response: "DSPy optimization requires labeled examples. Start with at least 10-20 examples."
+
+synergies:
+  amplifying: [ai-native-stack, python-developer]
+  conflicting: []
+  redundant: []
+
+mcp_connections: [langsmith]
+
+code_patterns:
+  basic_signature: |
+    import dspy
+
+    class QA(dspy.Signature):
+        """Answer questions with short factoid answers."""
+        question = dspy.InputField()
+        answer = dspy.OutputField(desc="often 1-5 words")
+
+    qa = dspy.ChainOfThought(QA)
+    result = qa(question="What is the capital of France?")

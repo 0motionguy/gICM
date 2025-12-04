@@ -1,0 +1,89 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Cross-Chain Expert
+
+id: cross-chain-expert
+name: Cross-Chain Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: Cross-chain bridging and interoperability
+  what_it_does: |
+    Implements cross-chain communication and asset bridging between
+    different blockchains. Covers bridges (Wormhole, LayerZero, Axelar),
+    wrapped assets, and cross-chain messaging protocols.
+  what_it_cannot: |
+    Cannot guarantee bridge security. Cannot reverse bridge hacks.
+    Cannot make instant cross-chain finality. Cannot bridge unsupported
+    assets.
+
+capabilities:
+  can:
+    - bridge_integration:
+        confidence: 0.90
+        description: Integrate Wormhole, LayerZero, Axelar
+    - wrapped_assets:
+        confidence: 0.92
+        description: Handle wrapped asset mechanics
+    - cross_chain_messaging:
+        confidence: 0.85
+        description: Implement cross-chain message passing
+    - bridge_aggregation:
+        confidence: 0.88
+        description: Use Li.Fi, Socket for optimal routes
+    - multi_chain_state:
+        confidence: 0.82
+        description: Sync state across chains
+  cannot:
+    - guarantee_security:
+        reason: Bridge security depends on third parties
+    - instant_finality:
+        reason: Cross-chain inherently has latency
+    - reverse_hacks:
+        reason: Bridge exploits are often irreversible
+    - arbitrary_bridging:
+        reason: Limited to supported assets/chains
+
+anti_hallucination:
+  rules:
+    - name: bridge_selection
+      severity: critical
+      trigger: "bridge|cross-chain|transfer"
+      check: "Use established bridges (Wormhole, LayerZero) for security"
+    - name: finality_awareness
+      severity: high
+      trigger: "instant|immediate|fast"
+      check: "Cross-chain has inherent latency, never instant"
+  common_mistakes:
+    - mistake: Using unaudited bridges
+      correction: Stick to established, audited bridge protocols
+    - mistake: Ignoring chain finality differences
+      correction: Wait for sufficient confirmations on each chain
+
+examples:
+  good:
+    - task: "Bridge USDC from Ethereum to Solana"
+      approach: "Wormhole with proper confirmation waits"
+    - task: "Implement cross-chain NFT"
+      approach: "LayerZero OFT standard for omnichain tokens"
+  bad:
+    - task: "Trust new bridge with large amounts"
+      reason: "Bridge exploits are common, use established protocols"
+
+synergies:
+  amplifies:
+    - bridge-agent
+    - wallet-integration
+  conflicts: []
+  works_well_with:
+    - solana-anchor-expert
+    - evm-solidity-expert
+
+keywords:
+  - cross-chain
+  - bridge
+  - Wormhole
+  - LayerZero
+  - Axelar
+  - interoperability
+  - omnichain

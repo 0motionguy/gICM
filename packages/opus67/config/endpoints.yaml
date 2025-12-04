@@ -1,0 +1,462 @@
+# OPUS 67 v4.0 - MCP Endpoint Registry
+# Pre-indexed knowledge of all MCP server capabilities
+
+version: "1.0.0"
+
+servers:
+  # ============================================================================
+  # HELIUS MCP - Solana RPC & Data
+  # ============================================================================
+  - id: helius
+    name: "Helius MCP"
+    version: "1.0.0"
+    description: "Solana RPC, DAS API, webhooks, and enhanced data"
+    category: blockchain
+
+    endpoints:
+      - name: getAssetsByOwner
+        description: "Get all assets (tokens, NFTs) owned by a wallet"
+        parameters:
+          - name: ownerAddress
+            type: string
+            required: true
+            description: "Solana wallet address"
+            validation: "^[1-9A-HJ-NP-Za-km-z]{32,44}$"
+          - name: page
+            type: number
+            required: false
+            description: "Page number for pagination"
+            default: 1
+          - name: limit
+            type: number
+            required: false
+            description: "Results per page (max 1000)"
+            default: 100
+        returns: "Array of asset objects with metadata"
+        examples:
+          - description: "Get wallet assets"
+            input: { ownerAddress: "ABC123..." }
+            output: "List of tokens and NFTs"
+
+      - name: getAsset
+        description: "Get detailed asset information by mint address"
+        parameters:
+          - name: id
+            type: string
+            required: true
+            description: "Asset mint address"
+        returns: "Detailed asset metadata including royalties, creators"
+
+      - name: getSignaturesForAsset
+        description: "Get transaction signatures for an asset"
+        parameters:
+          - name: id
+            type: string
+            required: true
+            description: "Asset mint address"
+          - name: page
+            type: number
+            required: false
+            default: 1
+        returns: "Array of transaction signatures"
+
+      - name: searchAssets
+        description: "Search assets by various criteria"
+        parameters:
+          - name: ownerAddress
+            type: string
+            required: false
+            description: "Filter by owner"
+          - name: grouping
+            type: string
+            required: false
+            description: "Group by collection"
+          - name: burnt
+            type: boolean
+            required: false
+            default: false
+        returns: "Matching assets"
+
+      - name: getBalance
+        description: "Get SOL balance for a wallet"
+        parameters:
+          - name: address
+            type: string
+            required: true
+            description: "Wallet address"
+        returns: "SOL balance in lamports"
+
+      - name: getTokenAccounts
+        description: "Get all token accounts for a wallet"
+        parameters:
+          - name: ownerAddress
+            type: string
+            required: true
+        returns: "Token account balances"
+
+    common_errors:
+      - code: "RATE_LIMIT"
+        message: "Rate limit exceeded"
+        resolution: "Wait and retry, or upgrade Helius plan"
+      - code: "INVALID_ADDRESS"
+        message: "Invalid Solana address format"
+        resolution: "Verify address is valid base58"
+
+    anti_hallucination:
+      - "execute transactions"
+      - "sign messages"
+      - "transfer tokens"
+      - "modify blockchain state"
+      - "access private keys"
+
+  # ============================================================================
+  # JUPITER MCP - Token Swaps
+  # ============================================================================
+  - id: jupiter
+    name: "Jupiter MCP"
+    version: "1.0.0"
+    description: "Jupiter aggregator for optimal token swaps"
+    category: defi
+
+    endpoints:
+      - name: getQuote
+        description: "Get swap quote with optimal routing"
+        parameters:
+          - name: inputMint
+            type: string
+            required: true
+            description: "Input token mint address"
+          - name: outputMint
+            type: string
+            required: true
+            description: "Output token mint address"
+          - name: amount
+            type: number
+            required: true
+            description: "Amount in smallest units (lamports)"
+          - name: slippageBps
+            type: number
+            required: false
+            description: "Slippage tolerance in basis points"
+            default: 50
+        returns: "Quote with routes, price impact, fees"
+        rate_limit: "10 requests/second"
+
+      - name: getSwapTransaction
+        description: "Get serialized swap transaction"
+        parameters:
+          - name: quoteResponse
+            type: object
+            required: true
+            description: "Quote from getQuote"
+          - name: userPublicKey
+            type: string
+            required: true
+            description: "User's wallet address"
+        returns: "Serialized transaction (base64)"
+        requires_auth: false
+
+      - name: getTokenList
+        description: "Get list of supported tokens"
+        parameters: []
+        returns: "Array of token metadata"
+
+      - name: getPrice
+        description: "Get token price in USD"
+        parameters:
+          - name: ids
+            type: string
+            required: true
+            description: "Comma-separated mint addresses"
+        returns: "Price data for each token"
+
+    common_errors:
+      - code: "NO_ROUTE"
+        message: "No swap route found"
+        resolution: "Check token mints are valid and have liquidity"
+      - code: "SLIPPAGE_EXCEEDED"
+        message: "Price moved beyond slippage tolerance"
+        resolution: "Increase slippageBps or retry"
+
+    anti_hallucination:
+      - "execute swap automatically"
+      - "sign transactions"
+      - "access user funds"
+      - "guarantee exact output"
+      - "bypass slippage protection"
+
+  # ============================================================================
+  # FILESYSTEM MCP - Local File Operations
+  # ============================================================================
+  - id: filesystem
+    name: "Filesystem MCP"
+    version: "1.0.0"
+    description: "Read and write local files"
+    category: system
+
+    endpoints:
+      - name: read_file
+        description: "Read contents of a file"
+        parameters:
+          - name: path
+            type: string
+            required: true
+            description: "Absolute or relative file path"
+        returns: "File contents as string"
+
+      - name: write_file
+        description: "Write content to a file"
+        parameters:
+          - name: path
+            type: string
+            required: true
+            description: "File path to write"
+          - name: content
+            type: string
+            required: true
+            description: "Content to write"
+        returns: "Success confirmation"
+
+      - name: list_directory
+        description: "List files in a directory"
+        parameters:
+          - name: path
+            type: string
+            required: true
+            description: "Directory path"
+        returns: "Array of file/folder names"
+
+      - name: create_directory
+        description: "Create a new directory"
+        parameters:
+          - name: path
+            type: string
+            required: true
+            description: "Directory path to create"
+        returns: "Success confirmation"
+
+      - name: delete_file
+        description: "Delete a file"
+        parameters:
+          - name: path
+            type: string
+            required: true
+            description: "File path to delete"
+        returns: "Success confirmation"
+
+    common_errors:
+      - code: "ENOENT"
+        message: "File or directory not found"
+        resolution: "Check path exists"
+      - code: "EACCES"
+        message: "Permission denied"
+        resolution: "Check file permissions"
+
+    anti_hallucination:
+      - "access files outside allowed directories"
+      - "execute files"
+      - "modify system files"
+      - "access network drives without permission"
+
+  # ============================================================================
+  # GITHUB MCP - Repository Operations
+  # ============================================================================
+  - id: github
+    name: "GitHub MCP"
+    version: "1.0.0"
+    description: "GitHub API operations"
+    category: development
+
+    endpoints:
+      - name: search_repositories
+        description: "Search GitHub repositories"
+        parameters:
+          - name: query
+            type: string
+            required: true
+            description: "Search query"
+          - name: sort
+            type: string
+            required: false
+            enum: ["stars", "forks", "updated"]
+        returns: "Repository search results"
+
+      - name: get_file_contents
+        description: "Get file contents from a repo"
+        parameters:
+          - name: owner
+            type: string
+            required: true
+          - name: repo
+            type: string
+            required: true
+          - name: path
+            type: string
+            required: true
+        returns: "File content (base64 encoded)"
+
+      - name: create_issue
+        description: "Create a GitHub issue"
+        parameters:
+          - name: owner
+            type: string
+            required: true
+          - name: repo
+            type: string
+            required: true
+          - name: title
+            type: string
+            required: true
+          - name: body
+            type: string
+            required: false
+        returns: "Created issue object"
+        requires_auth: true
+
+      - name: create_pull_request
+        description: "Create a pull request"
+        parameters:
+          - name: owner
+            type: string
+            required: true
+          - name: repo
+            type: string
+            required: true
+          - name: title
+            type: string
+            required: true
+          - name: head
+            type: string
+            required: true
+          - name: base
+            type: string
+            required: true
+          - name: body
+            type: string
+            required: false
+        returns: "Created PR object"
+        requires_auth: true
+
+    common_errors:
+      - code: "NOT_FOUND"
+        message: "Repository not found"
+        resolution: "Check owner/repo names"
+      - code: "UNAUTHORIZED"
+        message: "Authentication required"
+        resolution: "Provide valid GitHub token"
+
+    anti_hallucination:
+      - "push directly to repos without permission"
+      - "delete repositories"
+      - "access private repos without auth"
+      - "bypass branch protection"
+
+  # ============================================================================
+  # BRAVE SEARCH MCP - Web Search
+  # ============================================================================
+  - id: brave-search
+    name: "Brave Search MCP"
+    version: "1.0.0"
+    description: "Web search via Brave Search API"
+    category: search
+
+    endpoints:
+      - name: brave_web_search
+        description: "Search the web"
+        parameters:
+          - name: query
+            type: string
+            required: true
+            description: "Search query"
+          - name: count
+            type: number
+            required: false
+            default: 10
+            description: "Number of results"
+        returns: "Search results with titles, URLs, snippets"
+        rate_limit: "1 request/second"
+
+      - name: brave_local_search
+        description: "Search for local businesses"
+        parameters:
+          - name: query
+            type: string
+            required: true
+          - name: count
+            type: number
+            required: false
+            default: 5
+        returns: "Local business results"
+
+    common_errors:
+      - code: "RATE_LIMITED"
+        message: "Too many requests"
+        resolution: "Wait before next request"
+
+    anti_hallucination:
+      - "access pages directly"
+      - "scrape websites"
+      - "bypass paywalls"
+      - "access cached/deleted content"
+
+  # ============================================================================
+  # MEMORY MCP - Persistent Memory
+  # ============================================================================
+  - id: memory
+    name: "Memory MCP"
+    version: "1.0.0"
+    description: "Persistent memory storage (Mem0)"
+    category: system
+
+    endpoints:
+      - name: store_memory
+        description: "Store a memory"
+        parameters:
+          - name: content
+            type: string
+            required: true
+            description: "Memory content"
+          - name: metadata
+            type: object
+            required: false
+            description: "Additional metadata"
+        returns: "Stored memory ID"
+
+      - name: search_memories
+        description: "Search stored memories"
+        parameters:
+          - name: query
+            type: string
+            required: true
+            description: "Search query"
+          - name: limit
+            type: number
+            required: false
+            default: 10
+        returns: "Matching memories"
+
+      - name: get_memory
+        description: "Get a specific memory"
+        parameters:
+          - name: id
+            type: string
+            required: true
+        returns: "Memory content and metadata"
+
+      - name: delete_memory
+        description: "Delete a memory"
+        parameters:
+          - name: id
+            type: string
+            required: true
+        returns: "Success confirmation"
+
+    common_errors:
+      - code: "NOT_FOUND"
+        message: "Memory not found"
+        resolution: "Check memory ID is valid"
+
+    anti_hallucination:
+      - "access other users' memories"
+      - "modify system memories"
+      - "guarantee memory persistence forever"

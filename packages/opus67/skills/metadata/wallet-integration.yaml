@@ -1,0 +1,51 @@
+# OPUS 67 Skill Metadata: wallet-integration
+id: wallet-integration
+name: "Web3 Wallet Integration"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Integrate wallet connectivity into Web3 applications"
+  what_it_does:
+    - "Set up wallet adapters (Solana, EVM)"
+    - "Implement connect/disconnect flows"
+    - "Handle wallet state management"
+    - "Sign messages and transactions"
+    - "Display wallet information"
+    - "Support multiple wallet providers"
+  what_it_cannot:
+    - "Access user's actual wallet"
+    - "Sign transactions for users"
+    - "Access private keys"
+    - "Execute real transactions"
+
+capabilities:
+  - action: "Set up wallet adapter"
+    confidence: 0.95
+  - action: "Implement connect flow"
+    confidence: 0.92
+  - action: "Handle transaction signing UI"
+    confidence: 0.88
+  - action: "Display wallet state"
+    confidence: 0.95
+
+anti_hallucination:
+  - trigger: "sign.*transaction|execute"
+    response: "I can generate the transaction and UI, but the user must approve in their wallet."
+  - trigger: "private.*key|seed.*phrase"
+    response: "I never access or handle private keys. Wallet signing happens client-side."
+  - trigger: "balance|holdings"
+    response: "I need Helius or RPC MCP to fetch actual balance data."
+
+synergies:
+  amplifying:
+    - nextjs-14-expert
+    - solana-anchor-expert
+    - jupiter-trader
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Add Phantom wallet support"
+    approach: "@solana/wallet-adapter with Phantom adapter"
+    outcome: success

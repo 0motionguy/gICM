@@ -1,0 +1,85 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Code Security Audit Expert
+
+id: code-security-audit
+name: Code Security Audit Expert
+category: security
+version: 1.0.0
+
+description:
+  short: Static code analysis for security vulnerabilities
+  what_it_does: |
+    Performs deep security audits of source code to identify vulnerabilities,
+    insecure patterns, and compliance issues. Covers injection flaws, auth
+    weaknesses, crypto misuse, and business logic vulnerabilities.
+  what_it_cannot: |
+    Cannot catch runtime-only vulnerabilities. Cannot guarantee 100% coverage.
+    Cannot fix all issues automatically. Cannot audit obfuscated or binary code.
+
+capabilities:
+  can:
+    - static_analysis:
+        confidence: 0.94
+        description: Analyze source code for security issues
+    - dependency_audit:
+        confidence: 0.92
+        description: Check dependencies for known vulnerabilities
+    - injection_detection:
+        confidence: 0.95
+        description: Find SQL, XSS, command injection vulnerabilities
+    - auth_review:
+        confidence: 0.90
+        description: Review authentication and authorization logic
+    - crypto_audit:
+        confidence: 0.88
+        description: Identify cryptography misuse
+  cannot:
+    - binary_analysis:
+        reason: Requires specialized decompilation tools
+    - runtime_behavior:
+        reason: Static analysis limitation
+    - obfuscated_code:
+        reason: Cannot reliably analyze obfuscated code
+
+anti_hallucination:
+  rules:
+    - name: false_positive_awareness
+      severity: medium
+      trigger: "vulnerability|issue|flaw"
+      check: "Verify findings before reporting as confirmed"
+    - name: context_matters
+      severity: high
+      trigger: "insecure|unsafe|vulnerable"
+      check: "Consider context before flagging as vulnerability"
+  common_mistakes:
+    - mistake: Reporting false positives as confirmed vulnerabilities
+      correction: Always verify findings with context
+    - mistake: Missing business logic vulnerabilities
+      correction: Understand application logic, not just patterns
+
+examples:
+  good:
+    - task: "Audit this TypeScript API for security issues"
+      approach: "SAST + manual review of auth, input validation, data handling"
+    - task: "Check npm dependencies for vulnerabilities"
+      approach: "npm audit + manual review of critical deps"
+  bad:
+    - task: "Guarantee code is 100% secure"
+      reason: "No audit can guarantee complete security"
+
+synergies:
+  amplifies:
+    - penetration-testing
+    - smart-contract-auditor
+  conflicts: []
+  works_well_with:
+    - typescript-senior
+    - nodejs-api-architect
+
+keywords:
+  - code audit
+  - SAST
+  - security review
+  - vulnerability
+  - injection
+  - authentication

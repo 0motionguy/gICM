@@ -1,0 +1,130 @@
+# UploadThing Expert - OPUS 67 v4.0
+# File uploads for modern apps
+
+id: uploadthing-expert
+name: "UploadThing File Upload Expert"
+tier: 2
+token_cost: 4500
+version: "1.0.0"
+
+semantic:
+  purpose: "Add file uploads to your app with UploadThing"
+
+  what_it_does:
+    - "Configure file routes with type safety"
+    - "Use pre-built React components"
+    - "Handle images, videos, and documents"
+    - "Implement file size/type validation"
+    - "Add authentication to uploads"
+    - "Use callbacks for post-upload processing"
+
+  what_it_cannot:
+    - "Store files locally (uses cloud storage)"
+    - "Process files during upload"
+
+capabilities:
+  - action: "File upload routes"
+    confidence: 0.93
+  - action: "Upload components"
+    confidence: 0.91
+  - action: "File validation"
+    confidence: 0.89
+
+auto_load_when:
+  keywords:
+    - uploadthing
+    - createUploadthing
+    - UploadButton
+    - UploadDropzone
+    - UTApi
+
+anti_hallucination:
+  - trigger: "local storage|disk"
+    response: "UploadThing uses cloud storage. For local uploads, use multer or formidable with your own storage."
+
+synergies:
+  amplifying: [nextjs-14-expert, clerk-auth-expert]
+  conflicting: []
+  redundant: []
+
+mcp_connections: []
+
+code_patterns:
+  file_router: |
+    // app/api/uploadthing/core.ts
+    import { createUploadthing, type FileRouter } from "uploadthing/next";
+    import { auth } from "@clerk/nextjs/server";
+
+    const f = createUploadthing();
+
+    export const ourFileRouter = {
+      imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 4 } })
+        .middleware(async () => {
+          const { userId } = await auth();
+          if (!userId) throw new Error("Unauthorized");
+          return { userId };
+        })
+        .onUploadComplete(async ({ metadata, file }) => {
+          console.log("Upload complete for:", metadata.userId);
+          console.log("File URL:", file.url);
+          // Save to database
+          await db.image.create({
+            data: { url: file.url, userId: metadata.userId },
+          });
+          return { url: file.url };
+        }),
+
+      documentUploader: f({
+        pdf: { maxFileSize: "16MB" },
+        "application/msword": { maxFileSize: "16MB" },
+      })
+        .middleware(async () => {
+          const { userId } = await auth();
+          if (!userId) throw new Error("Unauthorized");
+          return { userId };
+        })
+        .onUploadComplete(async ({ file }) => {
+          return { url: file.url };
+        }),
+    } satisfies FileRouter;
+
+    export type OurFileRouter = typeof ourFileRouter;
+
+  api_route: |
+    // app/api/uploadthing/route.ts
+    import { createRouteHandler } from "uploadthing/next";
+    import { ourFileRouter } from "./core";
+
+    export const { GET, POST } = createRouteHandler({
+      router: ourFileRouter,
+    });
+
+  react_component: |
+    "use client";
+    import { UploadButton, UploadDropzone } from "@uploadthing/react";
+    import type { OurFileRouter } from "@/app/api/uploadthing/core";
+
+    export function ImageUpload() {
+      return (
+        <UploadButton<OurFileRouter, "imageUploader">
+          endpoint="imageUploader"
+          onClientUploadComplete={(res) => {
+            console.log("Files:", res);
+            alert("Upload complete!");
+          }}
+          onUploadError={(error: Error) => {
+            alert(`ERROR! ${error.message}`);
+          }}
+        />
+      );
+    }
+
+    // Or use dropzone
+    export function DocumentUpload() {
+      return (
+        <UploadDropzone<OurFileRouter, "documentUploader">
+          endpoint="documentUploader"
+          onClientUploadComplete={(res) => console.log(res)}
+        />
+      );
+    }

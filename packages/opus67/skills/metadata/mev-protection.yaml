@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: MEV Protection Expert
+
+id: mev-protection
+name: MEV Protection Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: MEV protection and transaction ordering
+  what_it_does: |
+    Protects transactions from MEV (Maximal Extractable Value) attacks
+    including front-running, sandwich attacks, and back-running. Implements
+    private mempools, commit-reveal schemes, and MEV-aware transaction routing.
+  what_it_cannot: |
+    Cannot guarantee complete MEV protection in all cases. Cannot protect
+    against all forms of information leakage. Cannot prevent MEV from
+    on-chain data once revealed.
+
+capabilities:
+  can:
+    - flashbots_integration:
+        confidence: 0.92
+        description: Route transactions through Flashbots Protect
+    - private_mempool:
+        confidence: 0.90
+        description: Use private transaction submission
+    - commit_reveal:
+        confidence: 0.88
+        description: Implement commit-reveal schemes
+    - slippage_protection:
+        confidence: 0.94
+        description: Set appropriate slippage and deadline
+    - jito_bundles:
+        confidence: 0.85
+        description: Use Jito bundles on Solana
+  cannot:
+    - complete_protection:
+        reason: Some MEV is unavoidable
+    - prevent_on_chain_mev:
+        reason: Once on-chain, data is public
+    - hide_all_intent:
+        reason: Some information always leaks
+
+anti_hallucination:
+  rules:
+    - name: slippage_settings
+      severity: critical
+      trigger: "swap|trade|dex"
+      check: "Always set tight slippage tolerance (0.5-1%) and deadline"
+    - name: private_submission
+      severity: high
+      trigger: "large|whale|significant"
+      check: "Use private mempool for large transactions"
+  common_mistakes:
+    - mistake: High slippage tolerance (5%+)
+      correction: Use 0.5-1% slippage, split large trades
+    - mistake: Public mempool for large swaps
+      correction: Use Flashbots, Jito, or private RPC
+
+examples:
+  good:
+    - task: "Execute large swap safely"
+      approach: "Flashbots Protect, tight slippage, split into chunks"
+    - task: "Protect DeFi interaction from front-running"
+      approach: "Private mempool + commit-reveal for sensitive operations"
+  bad:
+    - task: "Swap $100k with 10% slippage"
+      reason: "Will be sandwiched immediately"
+
+synergies:
+  amplifies:
+    - jupiter-trader
+    - uniswap-expert
+  conflicts: []
+  works_well_with:
+    - gas-optimization
+    - defi-integration-architect
+
+keywords:
+  - MEV
+  - front-running
+  - sandwich attack
+  - Flashbots
+  - Jito
+  - private mempool
+  - slippage

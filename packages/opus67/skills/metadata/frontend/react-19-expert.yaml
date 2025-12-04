@@ -1,0 +1,114 @@
+# React 19 Expert - OPUS 67 v4.0
+# Latest React features
+
+id: react-19-expert
+name: "React 19 Expert"
+tier: 2
+token_cost: 8000
+version: "1.0.0"
+
+semantic:
+  purpose: "Build modern React applications with React 19 features"
+
+  what_it_does:
+    - "Use React Server Components (RSC)"
+    - "Implement Server Actions for mutations"
+    - "Use the new use() hook for promises and context"
+    - "Leverage useOptimistic for optimistic updates"
+    - "Use useFormStatus for form states"
+    - "Implement useActionState for action results"
+    - "Use ref as a prop (no forwardRef needed)"
+    - "Context as a provider (no .Provider)"
+    - "Document metadata with <title>, <meta>"
+
+  what_it_cannot:
+    - "Work without a compatible framework (Next.js 14+)"
+    - "Use RSC in client-only apps"
+
+capabilities:
+  - action: "Server Components"
+    confidence: 0.92
+  - action: "Server Actions"
+    confidence: 0.91
+  - action: "New hooks (use, useOptimistic)"
+    confidence: 0.89
+
+auto_load_when:
+  keywords:
+    - react 19
+    - server components
+    - server actions
+    - useOptimistic
+    - useFormStatus
+    - useActionState
+    - use hook
+
+anti_hallucination:
+  - trigger: "client component|useState in RSC"
+    response: "Server Components can't use useState/useEffect. Add 'use client' for interactive components."
+  - trigger: "any react|all versions"
+    response: "React 19 features require React 19+. Check your version with npm list react."
+
+synergies:
+  amplifying: [nextjs-14-expert, typescript-senior]
+  conflicting: []
+  redundant: [react-expert]
+
+mcp_connections: [context7]
+
+code_patterns:
+  server_action: |
+    // app/actions.ts
+    'use server';
+
+    import { revalidatePath } from 'next/cache';
+
+    export async function createPost(formData: FormData) {
+      const title = formData.get('title') as string;
+      const content = formData.get('content') as string;
+
+      await db.post.create({ data: { title, content } });
+      revalidatePath('/posts');
+    }
+
+  use_optimistic: |
+    'use client';
+    import { useOptimistic } from 'react';
+
+    function Messages({ messages }: { messages: Message[] }) {
+      const [optimisticMessages, addOptimisticMessage] = useOptimistic(
+        messages,
+        (state, newMessage: string) => [
+          ...state,
+          { id: crypto.randomUUID(), text: newMessage, sending: true },
+        ]
+      );
+
+      async function sendMessage(formData: FormData) {
+        const text = formData.get('text') as string;
+        addOptimisticMessage(text);
+        await submitMessage(text);
+      }
+
+      return (
+        <form action={sendMessage}>
+          {optimisticMessages.map(m => (
+            <div key={m.id} style={{ opacity: m.sending ? 0.5 : 1 }}>{m.text}</div>
+          ))}
+          <input name="text" />
+        </form>
+      );
+    }
+
+  use_hook: |
+    import { use, Suspense } from 'react';
+
+    function UserProfile({ userPromise }: { userPromise: Promise<User> }) {
+      const user = use(userPromise); // Suspends until resolved
+      return <div>{user.name}</div>;
+    }
+
+    // Usage
+    <Suspense fallback={<Loading />}>
+      <UserProfile userPromise={fetchUser(id)} />
+    </Suspense>

@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: astro-expert
+
+id: astro-expert
+name: Astro Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build content-focused websites with Astro framework"
+  what_it_does:
+    - "Creates Astro components and layouts"
+    - "Implements content collections"
+    - "Integrates React/Vue/Svelte islands"
+    - "Configures static and SSR rendering"
+    - "Optimizes for Core Web Vitals"
+  what_it_cannot_do:
+    - "Build highly interactive SPAs efficiently"
+    - "Replace React for complex state"
+    - "Handle real-time features natively"
+    - "Match Next.js for full-stack apps"
+
+capabilities:
+  - action: "create Astro site"
+    confidence: 0.95
+    requires: ["content structure"]
+    produces: ["Astro project", "components"]
+  - action: "implement content collections"
+    confidence: 0.94
+    requires: ["content files"]
+    produces: ["typed collections", "queries"]
+  - action: "add UI islands"
+    confidence: 0.93
+    requires: ["interactive components"]
+    produces: ["React/Vue/Svelte islands"]
+  - action: "configure deployment"
+    confidence: 0.92
+    requires: ["hosting choice"]
+    produces: ["adapter config"]
+
+anti_hallucination:
+  never_claim:
+    - "Best for all web apps"
+    - "Zero JavaScript always"
+    - "Replaces Next.js entirely"
+  always_recommend:
+    - "Use for content-heavy sites"
+    - "Islands for interactivity"
+    - "Consider Next.js for full-stack"
+  trigger_phrases:
+    - pattern: "Astro"
+      response: "Astro is great for content sites with minimal JavaScript. Building a blog, docs, or marketing site?"
+
+examples:
+  - task: "Build documentation site"
+    approach: "Astro with content collections, MDX support, static generation"
+    skills_needed: ["astro-expert"]
+
+synergies:
+  amplifying:
+    - skill: tailwind-css-pro
+      reason: "Styling Astro components"
+    - skill: react-typescript-master
+      reason: "React islands in Astro"
+  conflicting: []
+  redundant: []

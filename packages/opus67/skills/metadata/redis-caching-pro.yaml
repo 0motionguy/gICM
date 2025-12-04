@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: redis-caching-pro
+id: redis-caching-pro
+name: "Redis Caching Pro"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Design and implement Redis caching strategies"
+  what_it_does:
+    - "Design cache invalidation"
+    - "Implement cache-aside pattern"
+    - "Design TTL strategies"
+    - "Build pub/sub systems"
+    - "Implement rate limiting"
+    - "Design session storage"
+    - "Build leaderboards"
+    - "Implement distributed locks"
+  what_it_cannot:
+    - "Connect to Redis"
+    - "Execute Redis commands"
+    - "Monitor cache hits"
+    - "Measure memory usage"
+
+capabilities:
+  - action: "Design caching"
+    confidence: 0.95
+  - action: "Cache invalidation"
+    confidence: 0.90
+  - action: "Rate limiting"
+    confidence: 0.92
+  - action: "Pub/sub systems"
+    confidence: 0.88
+  - action: "Session storage"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "connect.*redis|redis.*status"
+    response: "Run `redis-cli ping` to check connection. I can't connect directly."
+  - trigger: "cache.*hit|memory.*usage"
+    response: "Use `redis-cli info stats` to see hit rates and memory."
+  - trigger: "actual.*data|current.*keys"
+    response: "Use `redis-cli` or RedisInsight to inspect your data."
+
+synergies:
+  amplifying:
+    - nodejs-api-architect
+    - database-schema-expert
+    - websocket-realtime
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "API response caching"
+    approach: "Cache-aside + TTL + ETag validation"
+    outcome: success
+  - task: "Rate limiter"
+    approach: "Sliding window + Redis MULTI/EXEC"
+    outcome: success

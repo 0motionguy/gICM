@@ -9,7 +9,12 @@ import { MCPHub } from "./mcp/hub.js";
 import { AutonomyEngine } from "./autonomy/engine.js";
 import { EventEmitter } from "eventemitter3";
 import { readFileSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+// ESM-compatible __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // =============================================================================
 // TYPES

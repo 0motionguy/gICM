@@ -1,0 +1,89 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Token Launch Expert
+
+id: token-launch-expert
+name: Token Launch Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: Token creation and launch strategies
+  what_it_does: |
+    Launches new tokens with proper tokenomics, liquidity provision,
+    and distribution mechanics. Covers fair launches, liquidity
+    bootstrapping, vesting schedules, and anti-bot measures.
+  what_it_cannot: |
+    Cannot guarantee token success. Cannot prevent all sniping/botting.
+    Cannot provide legal/regulatory guidance. Cannot control market
+    behavior post-launch.
+
+capabilities:
+  can:
+    - token_creation:
+        confidence: 0.95
+        description: Create SPL/ERC20 tokens with proper config
+    - liquidity_provision:
+        confidence: 0.92
+        description: Add and lock initial liquidity
+    - vesting_schedules:
+        confidence: 0.90
+        description: Implement token vesting contracts
+    - fair_launch:
+        confidence: 0.88
+        description: Design fair launch mechanisms
+    - anti_bot:
+        confidence: 0.82
+        description: Implement anti-snipe/bot measures
+  cannot:
+    - guarantee_success:
+        reason: Market determines value
+    - prevent_all_bots:
+        reason: Sophisticated bots adapt
+    - legal_advice:
+        reason: Requires legal expertise
+    - control_post_launch:
+        reason: Decentralized after launch
+
+anti_hallucination:
+  rules:
+    - name: liquidity_lock
+      severity: critical
+      trigger: "launch|liquidity|pool"
+      check: "Always lock or burn initial liquidity"
+    - name: vesting_for_team
+      severity: high
+      trigger: "team|allocation|distribution"
+      check: "Team tokens must have vesting"
+  common_mistakes:
+    - mistake: No liquidity lock
+      correction: Lock LP tokens for minimum 6-12 months
+    - mistake: Large team allocation without vesting
+      correction: Vest team tokens over 2-4 years
+
+examples:
+  good:
+    - task: "Launch token on Raydium"
+      approach: "Create pool, add liquidity, lock LP, gradual release"
+    - task: "Fair launch with no presale"
+      approach: "All tokens in LP, locked, no team allocation"
+  bad:
+    - task: "Launch with 50% team tokens unlocked"
+      reason: "Rug pull risk, destroys trust"
+
+synergies:
+  amplifies:
+    - bonding-curve-master
+    - token-economics
+  conflicts: []
+  works_well_with:
+    - liquidity-pools
+    - jupiter-trader
+
+keywords:
+  - token launch
+  - liquidity
+  - fair launch
+  - vesting
+  - LP lock
+  - tokenomics
+  - anti-bot

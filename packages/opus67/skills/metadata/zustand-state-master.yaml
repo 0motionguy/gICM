@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: zustand-state-master
+id: zustand-state-master
+name: "Zustand State Master"
+tier: 2
+token_cost: 6000
+
+semantic:
+  purpose: "Design and implement state management with Zustand"
+  what_it_does:
+    - "Create typed Zustand stores"
+    - "Implement slices pattern"
+    - "Design persist middleware"
+    - "Build computed selectors"
+    - "Implement devtools"
+    - "Create async actions"
+    - "Design store subscriptions"
+    - "Handle hydration"
+  what_it_cannot:
+    - "Execute store actions"
+    - "Access actual state"
+    - "Debug runtime state"
+    - "Preview state changes"
+
+capabilities:
+  - action: "Create Zustand stores"
+    confidence: 0.95
+  - action: "Implement slices"
+    confidence: 0.92
+  - action: "Add persistence"
+    confidence: 0.90
+  - action: "Build selectors"
+    confidence: 0.95
+  - action: "Async actions"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "current.*state|actual.*value"
+    response: "Use Zustand devtools or React DevTools to inspect runtime state."
+  - trigger: "debug.*store"
+    response: "Add devtools middleware and use Redux DevTools extension."
+  - trigger: "persist.*error"
+    response: "Check localStorage/sessionStorage access and JSON serialization."
+
+synergies:
+  amplifying:
+    - react-typescript-master
+    - typescript-senior
+    - nextjs-14-expert
+  conflicting: []
+  redundant:
+    - redux-toolkit-expert  # Similar purpose
+
+examples:
+  - task: "Auth store with persist"
+    approach: "Zustand + persist middleware + secure storage"
+    outcome: success
+  - task: "Multi-slice store"
+    approach: "Slices pattern + combine + typed selectors"
+    outcome: success

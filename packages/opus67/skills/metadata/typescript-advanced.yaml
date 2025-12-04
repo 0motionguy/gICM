@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: typescript-advanced
+
+id: typescript-advanced
+name: Advanced TypeScript Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Master advanced TypeScript patterns including generics, conditional types, and type-level programming"
+  what_it_does:
+    - "Designs complex generic type systems"
+    - "Implements conditional and mapped types"
+    - "Creates type-safe APIs with inference"
+    - "Builds advanced utility types"
+    - "Implements branded types and type guards"
+  what_it_cannot_do:
+    - "Make runtime checks from types alone"
+    - "Solve Turing-complete type problems"
+    - "Guarantee runtime type safety without runtime validation"
+    - "Fix fundamental JavaScript limitations"
+
+capabilities:
+  - action: "design generic types"
+    confidence: 0.95
+    requires: ["TypeScript codebase"]
+    produces: ["reusable generic types", "type inference"]
+  - action: "implement conditional types"
+    confidence: 0.93
+    requires: ["complex type requirements"]
+    produces: ["conditional type logic"]
+  - action: "create mapped types"
+    confidence: 0.94
+    requires: ["object type transformation needs"]
+    produces: ["transformed types", "utility types"]
+  - action: "implement type guards"
+    confidence: 0.96
+    requires: ["union types", "runtime checks"]
+    produces: ["type narrowing", "type predicates"]
+  - action: "design branded types"
+    confidence: 0.92
+    requires: ["type safety requirements"]
+    produces: ["nominal typing", "branded primitives"]
+
+anti_hallucination:
+  never_claim:
+    - "Types guarantee runtime safety"
+    - "This type cannot be bypassed"
+    - "Zero runtime errors possible"
+  always_recommend:
+    - "Combine with Zod for runtime validation"
+    - "Use strict mode always"
+    - "Keep types readable for team"
+  trigger_phrases:
+    - pattern: "type-safe API"
+      response: "I'll design types with proper generics and inference. For runtime safety, combine with Zod or similar validation."
+    - pattern: "advanced types"
+      response: "I can implement conditional types, mapped types, and template literals. Let's ensure they remain maintainable."
+
+examples:
+  - task: "Create type-safe event emitter"
+    approach: "Use generic constraints and mapped types for event name to handler type mapping"
+    skills_needed: ["typescript-advanced"]
+  - task: "Build type-safe API client"
+    approach: "Infer types from API schema, use conditional types for response types"
+    skills_needed: ["typescript-advanced", "nodejs-api-architect"]
+
+synergies:
+  amplifying:
+    - skill: react-typescript-master
+      reason: "Advanced types improve React component APIs"
+    - skill: nodejs-api-architect
+      reason: "Type-safe API design"
+  conflicting: []
+  redundant: []

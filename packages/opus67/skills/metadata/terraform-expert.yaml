@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: terraform-expert
+
+id: terraform-expert
+name: Terraform Infrastructure Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Define and manage cloud infrastructure using Terraform"
+  what_it_does:
+    - "Writes Terraform configurations"
+    - "Manages state files and backends"
+    - "Creates reusable modules"
+    - "Implements multi-environment setups"
+    - "Manages infrastructure lifecycle"
+  what_it_cannot_do:
+    - "Execute without cloud credentials"
+    - "Manage cost automatically"
+    - "Handle all provider-specific features"
+    - "Replace cloud console for debugging"
+
+capabilities:
+  - action: "write Terraform configs"
+    confidence: 0.94
+    requires: ["infrastructure requirements"]
+    produces: ["HCL configuration"]
+  - action: "configure state backend"
+    confidence: 0.93
+    requires: ["state storage needs"]
+    produces: ["S3/GCS backend config"]
+  - action: "create modules"
+    confidence: 0.92
+    requires: ["reusable patterns"]
+    produces: ["Terraform modules"]
+  - action: "manage workspaces"
+    confidence: 0.90
+    requires: ["multi-environment"]
+    produces: ["workspace config"]
+
+anti_hallucination:
+  never_claim:
+    - "No credentials needed"
+    - "Zero cost infrastructure"
+    - "Instant provisioning"
+  always_recommend:
+    - "Use remote state"
+    - "Implement state locking"
+    - "Plan before apply"
+  trigger_phrases:
+    - pattern: "Terraform"
+      response: "I'll write Terraform configs. Which cloud provider: AWS, GCP, Azure, or multi-cloud?"
+
+examples:
+  - task: "Set up AWS infrastructure"
+    approach: "VPC, ECS/EKS, RDS, with modules and remote state"
+    skills_needed: ["terraform-expert", "aws-infrastructure"]
+
+synergies:
+  amplifying:
+    - skill: aws-infrastructure
+      reason: "AWS-specific resources"
+    - skill: docker-kubernetes-pro
+      reason: "Container infrastructure"
+  conflicting: []
+  redundant: []

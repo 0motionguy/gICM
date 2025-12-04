@@ -23,7 +23,7 @@ export interface MCPConnection {
     command?: string;
     args?: string[];
   };
-  auth: {
+  auth?: {
     type: string;
     env_var?: string;
     header?: string;
@@ -86,11 +86,16 @@ export function getAllConnections(): Array<{ id: string; connection: MCPConnecti
   const registry = loadMCPRegistry();
   const connections: Array<{ id: string; connection: MCPConnection }> = [];
 
-  for (const category of ['blockchain', 'social', 'data', 'productivity'] as const) {
-    const categoryConnections = registry[category];
-    if (categoryConnections) {
+  // All MCP categories from the registry
+  const categories = ['blockchain', 'social', 'data', 'productivity', 'documentation', 'testing', 'ai_search', 'persistence', 'reasoning'] as const;
+
+  for (const category of categories) {
+    const categoryConnections = (registry as Record<string, Record<string, MCPConnection>>)[category];
+    if (categoryConnections && typeof categoryConnections === 'object') {
       for (const [id, connection] of Object.entries(categoryConnections)) {
-        connections.push({ id, connection });
+        if (connection && connection.name) {
+          connections.push({ id, connection });
+        }
       }
     }
   }
@@ -158,7 +163,6 @@ export function getConnectionGroup(groupId: string): Array<{ id: string; connect
  * Check if required env vars are set for a connection
  */
 export function checkConnectionAuth(connection: MCPConnection): { ready: boolean; missing?: string } {
-  // Guard against missing auth config
   if (!connection.auth || connection.auth.type === 'none') {
     return { ready: true };
   }
@@ -216,19 +220,19 @@ export function generateConnectionCode(id: string): string {
 // ${connection.name} REST API
 const ${id}Client = {
   baseUrl: '${connection.base_url}',
-  ${connection.auth.env_var ? `apiKey: process.env.${connection.auth.env_var},` : ''}
-  
+  ${connection.auth?.env_var ? `apiKey: process.env.${connection.auth.env_var},` : ''}
+
   async fetch(endpoint: string, options?: RequestInit) {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ${connection.auth.header ? `'${connection.auth.header}': this.apiKey,` : ''}
+      ${connection.auth?.header ? `'${connection.auth.header}': this.apiKey,` : ''}
     };
-    
+
     const response = await fetch(\`\${this.baseUrl}\${endpoint}\`, {
       ...options,
       headers: { ...headers, ...options?.headers }
     });
-    
+
     if (!response.ok) throw new Error(\`${connection.name} error: \${response.status}\`);
     return response.json();
   },
@@ -243,18 +247,18 @@ const ${id}Client = {
 // ${connection.name} GraphQL API
 const ${id}Client = {
   endpoint: '${connection.base_url}',
-  ${connection.auth.env_var ? `apiKey: process.env.${connection.auth.env_var},` : ''}
-  
+  ${connection.auth?.env_var ? `apiKey: process.env.${connection.auth.env_var},` : ''}
+
   async query(query: string, variables?: Record<string, unknown>) {
     const response = await fetch(this.endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ${connection.auth.header ? `'${connection.auth.header}': this.apiKey,` : ''}
+        ${connection.auth?.header ? `'${connection.auth.header}': this.apiKey,` : ''}
       },
       body: JSON.stringify({ query, variables })
     });
-    
+
     const { data, errors } = await response.json();
     if (errors) throw new Error(errors[0].message);
     return data;
@@ -267,7 +271,7 @@ const ${id}Client = {
     return `
 // ${connection.name} MCP Server
 // Start with: ${connection.connection.command} ${connection.connection.args?.join(' ')}
-// Requires: ${connection.auth.env_var || 'no auth'}
+// Requires: ${connection.auth?.env_var || 'no auth'}
 `.trim();
   }
 

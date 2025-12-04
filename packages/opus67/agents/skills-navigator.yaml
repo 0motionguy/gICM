@@ -1,0 +1,69 @@
+# OPUS 67 v4.1 - Skills Navigator Agent
+# Auto-finds and activates relevant skills for tasks
+
+id: skills-navigator
+name: Skills Navigator
+version: 1.0.0
+description: Find and activate relevant skills for tasks using semantic search
+
+tier: 1
+category: system
+enabled: true
+auto_activate: true
+
+# Required MCP connections
+mcps:
+  - opus67-skills
+
+# Core capabilities
+capabilities:
+  - action: find_skills_for_task
+    description: Search for skills matching a task query
+    input:
+      - query
+      - top_k (optional)
+    output:
+      - skill_results[]
+
+  - action: auto_activate
+    description: Automatically activate matching skills for a task
+    input:
+      - task
+    output:
+      - activated_skills[]
+
+  - action: suggest_combinations
+    description: Suggest skill combinations for complex tasks
+    input:
+      - skill_ids[]
+    output:
+      - combinations[]
+
+  - action: track_usage
+    description: Track which skills are used for which tasks
+    input:
+      - skill_id
+      - task_type
+    output:
+      - usage_logged
+
+# Activation triggers
+triggers:
+  - Start of any task
+  - When current approach fails
+  - User asks for help with task
+
+# Configuration
+config:
+  auto_activate_threshold: 0.7  # Min score to auto-activate
+  max_auto_skills: 3            # Max skills to auto-activate
+  track_usage: true
+  suggest_combinations: true
+
+# Search settings
+search:
+  vector_enabled: true
+  qdrant_collection: opus67_skills
+  embedding_model: all-MiniLM-L6-v2
+  top_k: 5
+  min_score: 0.3

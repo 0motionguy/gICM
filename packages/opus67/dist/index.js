@@ -1,358 +1,330 @@
-import { generateBootScreen, detectMode, getMode, getConnectionsForSkills, modeSelector, formatConnectionsForPrompt, generateInlineStatus } from './chunk-D5BFFK4G.js';
-export { ModeSelector, detectMode, formatConnectionsForPrompt, formatModeDisplay, generateAgentSpawnNotification, generateBootScreen, generateConnectionCode, generateHelpScreen, generateInlineStatus, generateModeSwitchNotification, generateStatusLine, getAllConnections, getAllModes, getConnectionsForKeywords, getConnectionsForSkills, getMode, loadModeRegistry, modeSelector } from './chunk-D5BFFK4G.js';
-import { readFileSync } from 'fs';
-import { parse } from 'yaml';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
-import { EventEmitter } from 'eventemitter3';
+export { BrainAPI, BrainRuntime, CodeImprover, ComparisonRunner, ContextEnhancer, CostTracker, DEFAULT_LEVELS, EvolutionLoop, LLMCouncil, MODELS, MultiModelRouter, PatternDetector, SYNTHESIS_PROMPTS, StressTest, aggregateRankings, brainAPI, brainRuntime, codeImprover, comparisonRunner, contextEnhancer, costTracker, council, createBrainAPI, createBrainRuntime, createBrainServer, createCodeImprover, createComparisonRunner, createContextEnhancer, createCouncil, createEvolutionLoop, createPatternDetector, createStressTest, enhancePrompt, evolutionLoop, formatModelList, formatSynthesis, generateRankingReport, generateSynthesisPrompt, getAvailableModels, getContextFor, getModelConfig, getModelsForProvider, getModelsForTier, hasApiKey, parseRankingText, parseSynthesisResponse, patternDetector, routeToModel, router, runComparisonCLI, runStressTestCLI, startBrainServer, stressTest, validateEnv } from './chunk-KNERRYPO.js';
+export { AgentSpawner, GraphitiMemory, LatencyProfiler, MODEL_COSTS, MetricsCollector, TokenTracker, agentSpawner, createMemory, createSpawner, latencyProfiler, memory, metricsCollector, timed, tokenTracker } from './chunk-L2REBJ7Q.js';
+import { getSkillSearch } from './chunk-JSMRUXZR.js';
+export { CapabilityMatrix, ConfidenceScorer, KnowledgeStore, MCPValidator, SQLiteStore, SimilaritySearch, SkillMetadataLoader, SkillSearch, SynergyGraph, TFIDFVectorizer, canDo, findBestSkills, findSimilarSkills, getCapabilityMatrix, getConfidenceScorer, getIntelligenceStats, getKnowledgeStore, getMCPValidator, getSQLiteStore, getSimilaritySearch, getSkillMetadataLoader, getSkillSearch, getSynergy, getSynergyGraph, initIntelligence, lookupSkill, preFlightCheck, resetCapabilityMatrix, resetConfidenceScorer, resetKnowledgeStore, resetMCPValidator, resetSQLiteStore, resetSimilaritySearch, resetSkillMetadataLoader, resetSkillSearch, resetSynergyGraph, scoreConfidence, validateMCP } from './chunk-JSMRUXZR.js';
+export { CloudSync, getCloudSync, resetCloudSync } from './chunk-2C2XO4QK.js';
+import { getLearningObserver } from './chunk-KUOFDOUY.js';
+export { LearningLoop, LearningObserverAgent, getLearningLoop, getLearningObserver, resetLearningLoop, resetLearningObserver } from './chunk-KUOFDOUY.js';
+export { AutonomyLogger, autonomyLogger } from './chunk-JJWKCL7R.js';
+import { generateBootScreen, generateInlineStatus } from './chunk-KRJAO3QU.js';
+export { generateAgentSpawnNotification, generateBootScreen, generateHelpScreen, generateInlineStatus, generateModeSwitchNotification, generateStatusLine } from './chunk-KRJAO3QU.js';
+export { AutonomyEngine, ContextIndexer, MCPHub, SkillLoader, loader_default as SkillLoaderDefault } from './chunk-F3FXQMHP.js';
+import { getConnectionsForSkills, formatConnectionsForPrompt } from './chunk-WHBX6V2T.js';
+export { formatConnectionsForPrompt, generateConnectionCode, getAllConnections, getConnectionsForKeywords, getConnectionsForSkills } from './chunk-WHBX6V2T.js';
+import { modeSelector } from './chunk-Z7YWWTEP.js';
+export { ModeSelector, formatModeDisplay, modeSelector } from './chunk-Z7YWWTEP.js';
+import { detectMode } from './chunk-JD6NEK3D.js';
+export { detectMode } from './chunk-JD6NEK3D.js';
+import { getMode } from './chunk-J7GF6OJU.js';
+export { getAllModes, getMode, loadModeRegistry } from './chunk-J7GF6OJU.js';
+import { loadSkills } from './chunk-L3KXA3WY.js';
+export { extractKeywords, loadCombination, loadRegistry, loadSkillMetadata, loadSkills, skillMatchesContext } from './chunk-L3KXA3WY.js';
+import { formatSkillsForPrompt } from './chunk-YINZDDDM.js';
+export { clearFragmentCache, formatSkillsForPrompt, loadFragment, resolveInheritance } from './chunk-YINZDDDM.js';
+import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
 
-var __dirname$1 = dirname(fileURLToPath(import.meta.url));
-function loadRegistry() {
-  const registryPath = join(__dirname$1, "..", "skills", "registry.yaml");
-  const content = readFileSync(registryPath, "utf-8");
-  return parse(content);
-}
-function extractKeywords(query) {
-  return query.toLowerCase().replace(/[^\w\s]/g, " ").split(/\s+/).filter((word) => word.length > 2);
-}
-function skillMatchesContext(skill, context) {
-  const queryKeywords = extractKeywords(context.query);
-  const autoLoad = skill.auto_load_when;
-  if (autoLoad.keywords) {
-    for (const keyword of autoLoad.keywords) {
-      const keywordParts = keyword.toLowerCase().split(" ");
-      if (keywordParts.every((part) => queryKeywords.includes(part) || context.query.toLowerCase().includes(part))) {
-        return { matches: true, reason: `keyword: "${keyword}"` };
-      }
-    }
+// src/agents/skills-navigator.ts
+var DEFAULT_CONFIG = {
+  autoActivateThreshold: 0.7,
+  maxAutoSkills: 3,
+  trackUsage: true,
+  suggestCombinations: true,
+  vectorEnabled: true,
+  topK: 5,
+  minScore: 0.3
+};
+var SKILL_COMBINATIONS = [
+  {
+    id: "solana-dapp",
+    name: "Solana DApp Stack",
+    skills: ["solana-anchor-expert", "nextjs-14-expert", "wallet-integration"],
+    description: "Full Solana dApp development",
+    useCase: "Build decentralized applications on Solana",
+    confidence: 0.9
+  },
+  {
+    id: "ai-chatbot",
+    name: "AI Chatbot Stack",
+    skills: ["ai-native-stack", "nextjs-14-expert", "api-integration"],
+    description: "AI-powered chatbot with streaming",
+    useCase: "Build conversational AI applications",
+    confidence: 0.9
+  },
+  {
+    id: "saas-starter",
+    name: "SaaS Starter Stack",
+    skills: ["fullstack-blueprint-stack", "supabase-expert", "stripe-payments"],
+    description: "Full SaaS application with payments",
+    useCase: "Build subscription-based web apps",
+    confidence: 0.85
+  },
+  {
+    id: "data-pipeline",
+    name: "Data Pipeline Stack",
+    skills: ["sql-database", "api-integration", "typescript-senior"],
+    description: "ETL and data processing",
+    useCase: "Build data ingestion and transformation pipelines",
+    confidence: 0.8
+  },
+  {
+    id: "defi-trading",
+    name: "DeFi Trading Stack",
+    skills: ["bonding-curve-master", "defi-data-analyst", "solana-anchor-expert"],
+    description: "DeFi trading and analytics",
+    useCase: "Build trading bots and analytics dashboards",
+    confidence: 0.85
+  },
+  {
+    id: "nft-marketplace",
+    name: "NFT Marketplace Stack",
+    skills: ["metaplex-core", "nextjs-14-expert", "wallet-integration"],
+    description: "NFT minting and marketplace",
+    useCase: "Build NFT collections and marketplaces",
+    confidence: 0.85
   }
-  if (autoLoad.file_types && context.activeFiles) {
-    for (const file of context.activeFiles) {
-      for (const fileType of autoLoad.file_types) {
-        if (file.endsWith(fileType)) {
-          return { matches: true, reason: `file_type: "${fileType}"` };
-        }
-      }
-    }
-  }
-  if (autoLoad.directories && context.currentDirectory) {
-    for (const dir of autoLoad.directories) {
-      if (context.currentDirectory.includes(dir.replace("/", ""))) {
-        return { matches: true, reason: `directory: "${dir}"` };
-      }
-    }
-  }
-  if (autoLoad.task_patterns) {
-    for (const pattern of autoLoad.task_patterns) {
-      const regex = new RegExp(pattern.replace(/\.\*/, ".*"), "i");
-      if (regex.test(context.query)) {
-        return { matches: true, reason: `pattern: "${pattern}"` };
-      }
-    }
-  }
-  return { matches: false, reason: "" };
-}
-function loadSkills(context) {
-  const registry = loadRegistry();
-  const matchedSkills = [];
-  for (const skill of registry.skills) {
-    const { matches, reason } = skillMatchesContext(skill, context);
-    if (matches) {
-      matchedSkills.push({ skill, reason });
-    }
-  }
-  matchedSkills.sort((a, b) => {
-    if (a.skill.tier !== b.skill.tier) return a.skill.tier - b.skill.tier;
-    return a.skill.token_cost - b.skill.token_cost;
-  });
-  const selectedSkills = [];
-  const reasons = [];
-  let totalCost = 0;
-  const seenMcps = /* @__PURE__ */ new Set();
-  for (const { skill, reason } of matchedSkills) {
-    if (selectedSkills.length >= registry.meta.max_skills_per_session) break;
-    if (totalCost + skill.token_cost > registry.meta.token_budget) continue;
-    selectedSkills.push(skill);
-    reasons.push(`${skill.id} (${reason})`);
-    totalCost += skill.token_cost;
-    for (const mcp of skill.mcp_connections) {
-      seenMcps.add(mcp);
-    }
-  }
-  return {
-    skills: selectedSkills,
-    totalTokenCost: totalCost,
-    mcpConnections: Array.from(seenMcps),
-    reason: reasons
-  };
-}
-function loadCombination(combinationId) {
-  const registry = loadRegistry();
-  const combination = registry.combinations[combinationId];
-  if (!combination) {
-    return {
-      skills: [],
-      totalTokenCost: 0,
-      mcpConnections: [],
-      reason: [`Combination "${combinationId}" not found`]
-    };
-  }
-  const skills = registry.skills.filter((s) => combination.skills.includes(s.id));
-  const mcps = /* @__PURE__ */ new Set();
-  for (const skill of skills) {
-    for (const mcp of skill.mcp_connections) {
-      mcps.add(mcp);
-    }
-  }
-  return {
-    skills,
-    totalTokenCost: combination.token_cost,
-    mcpConnections: Array.from(mcps),
-    reason: [`combination: ${combinationId}`]
-  };
-}
-function formatSkillsForPrompt(result) {
-  if (result.skills.length === 0) {
-    return "<!-- No specific skills loaded -->";
-  }
-  let output = `<!-- OPUS 67: ${result.skills.length} skills loaded (${result.totalTokenCost} tokens) -->
-`;
-  output += "<loaded_skills>\n";
-  for (const skill of result.skills) {
-    output += `
-## ${skill.name}
-`;
-    output += `Capabilities:
-`;
-    for (const cap of skill.capabilities) {
-      output += `- ${cap}
-`;
-    }
-  }
-  output += "\n</loaded_skills>\n";
-  output += `<!-- MCPs available: ${result.mcpConnections.join(", ")} -->`;
-  return output;
-}
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const testContext = {
-    query: process.argv[2] || "build anchor program for bonding curve",
-    activeFiles: [".rs", ".tsx"],
-    currentDirectory: "programs/curve"
-  };
-  console.log("Testing skill loader with context:", testContext);
-  console.log("---");
-  const result = loadSkills(testContext);
-  console.log("Loaded skills:", result.skills.map((s) => s.id));
-  console.log("Token cost:", result.totalTokenCost);
-  console.log("MCP connections:", result.mcpConnections);
-  console.log("Reasons:", result.reason);
-  console.log("---");
-  console.log(formatSkillsForPrompt(result));
-}
-var AutonomyLogger = class extends EventEmitter {
-  logs = [];
+];
+var SkillsNavigatorAgent = class {
   config;
-  currentInteraction = null;
+  usageHistory = [];
+  activatedSkills = /* @__PURE__ */ new Set();
+  skillUsageStats = /* @__PURE__ */ new Map();
   constructor(config = {}) {
-    super();
-    this.config = {
-      maxLogs: config.maxLogs ?? 1e3,
-      persistPath: config.persistPath,
-      enableAnalytics: config.enableAnalytics ?? true
-    };
+    this.config = { ...DEFAULT_CONFIG, ...config };
   }
   /**
-   * Start tracking an interaction
+   * Find skills matching a task query
    */
-  startInteraction(task, taskType) {
-    const id = `int_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-    this.currentInteraction = {
-      id,
-      timestamp: /* @__PURE__ */ new Date(),
-      task,
-      taskType,
-      skillsLoaded: [],
-      skillsUsed: [],
-      mcpsConnected: [],
-      mcpsUsed: [],
-      success: false,
-      executionTimeMs: 0,
-      tokenCost: 0
-    };
-    this.emit("interaction:start", { id, task, taskType });
-    return id;
-  }
-  /**
-   * Record skills loaded for current interaction
-   */
-  recordSkillsLoaded(skills) {
-    if (this.currentInteraction) {
-      this.currentInteraction.skillsLoaded = skills;
+  async findSkillsForTask(query, topK) {
+    const search = getSkillSearch();
+    const k = topK || this.config.topK;
+    try {
+      const results = await search.searchSkills(query, k);
+      return results.filter((r) => r.score >= this.config.minScore);
+    } catch (error) {
+      console.error("[SkillsNavigator] Search failed:", error);
+      return [];
     }
   }
   /**
-   * Record a skill being used
+   * Auto-activate skills for a task
    */
-  recordSkillUsed(skill) {
-    if (this.currentInteraction && !this.currentInteraction.skillsUsed?.includes(skill)) {
-      this.currentInteraction.skillsUsed?.push(skill);
-    }
-  }
-  /**
-   * Record MCPs connected
-   */
-  recordMcpsConnected(mcps) {
-    if (this.currentInteraction) {
-      this.currentInteraction.mcpsConnected = mcps;
-    }
-  }
-  /**
-   * Record an MCP being used
-   */
-  recordMcpUsed(mcp) {
-    if (this.currentInteraction && !this.currentInteraction.mcpsUsed?.includes(mcp)) {
-      this.currentInteraction.mcpsUsed?.push(mcp);
-    }
-  }
-  /**
-   * Complete the interaction
-   */
-  completeInteraction(options) {
-    if (!this.currentInteraction) return null;
-    const startTime = this.currentInteraction.timestamp?.getTime() ?? Date.now();
-    const log = {
-      ...this.currentInteraction,
-      success: options.success,
-      executionTimeMs: Date.now() - startTime,
-      tokenCost: options.tokenCost ?? 0,
-      errorMessage: options.errorMessage,
-      metadata: options.metadata
-    };
-    this.logs.push(log);
-    this.currentInteraction = null;
-    if (this.logs.length > this.config.maxLogs) {
-      this.logs = this.logs.slice(-this.config.maxLogs);
-    }
-    this.emit("interaction:complete", log);
-    return log;
-  }
-  /**
-   * Record user feedback for a past interaction
-   */
-  recordFeedback(interactionId, feedback) {
-    const log = this.logs.find((l) => l.id === interactionId);
-    if (log) {
-      log.userFeedback = feedback;
-      this.emit("feedback:recorded", { id: interactionId, feedback });
-    }
-  }
-  /**
-   * Get all logs
-   */
-  getLogs(filter) {
-    let result = [...this.logs];
-    if (filter?.taskType) {
-      result = result.filter((l) => l.taskType === filter.taskType);
-    }
-    if (filter?.success !== void 0) {
-      result = result.filter((l) => l.success === filter.success);
-    }
-    return result;
-  }
-  /**
-   * Analyze patterns from logs
-   */
-  analyzePatterns() {
-    const skillUsage = /* @__PURE__ */ new Map();
-    const mcpUsage = /* @__PURE__ */ new Map();
-    const taskFailures = /* @__PURE__ */ new Map();
-    for (const log of this.logs) {
-      for (const skill of log.skillsUsed) {
-        const current = skillUsage.get(skill) || { count: 0, successes: 0, totalTime: 0 };
-        current.count++;
-        if (log.success) current.successes++;
-        current.totalTime += log.executionTimeMs;
-        skillUsage.set(skill, current);
-      }
-      for (const mcp of log.mcpsUsed) {
-        const current = mcpUsage.get(mcp) || { count: 0, errors: 0 };
-        current.count++;
-        if (!log.success) current.errors++;
-        mcpUsage.set(mcp, current);
-      }
-      if (!log.success) {
-        const taskKey = log.taskType;
-        const current = taskFailures.get(taskKey) || { count: 0, errors: [] };
-        current.count++;
-        if (log.errorMessage) current.errors.push(log.errorMessage);
-        taskFailures.set(taskKey, current);
-      }
-    }
-    const skillUsagePatterns = Array.from(skillUsage.entries()).map(([skill, data]) => ({
-      skill,
-      usageCount: data.count,
-      successRate: data.count > 0 ? data.successes / data.count : 0,
-      avgExecutionTime: data.count > 0 ? data.totalTime / data.count : 0
-    })).sort((a, b) => b.usageCount - a.usageCount);
-    const mcpUsagePatterns = Array.from(mcpUsage.entries()).map(([mcp, data]) => ({
-      mcp,
-      usageCount: data.count,
-      errorRate: data.count > 0 ? data.errors / data.count : 0
-    })).sort((a, b) => b.usageCount - a.usageCount);
-    const failurePatterns = Array.from(taskFailures.entries()).map(([taskPattern, data]) => ({
-      taskPattern,
-      failureCount: data.count,
-      commonErrors: [...new Set(data.errors)].slice(0, 5),
-      suggestedSkills: []
-      // Would be populated by skill suggester
-    }));
-    const suggestions = [];
-    for (const pattern of skillUsagePatterns) {
-      if (pattern.usageCount > 3 && pattern.successRate < 0.5) {
-        suggestions.push(`Skill "${pattern.skill}" has low success rate (${(pattern.successRate * 100).toFixed(0)}%). Consider reviewing or improving.`);
-      }
-    }
-    const loadedNotUsed = /* @__PURE__ */ new Map();
-    for (const log of this.logs) {
-      for (const skill of log.skillsLoaded) {
-        if (!log.skillsUsed.includes(skill)) {
-          loadedNotUsed.set(skill, (loadedNotUsed.get(skill) || 0) + 1);
+  async autoActivate(task) {
+    const results = await this.findSkillsForTask(task, this.config.maxAutoSkills * 2);
+    const activations = [];
+    let activated = 0;
+    for (const result of results) {
+      const shouldActivate = result.score >= this.config.autoActivateThreshold && activated < this.config.maxAutoSkills && !this.activatedSkills.has(result.skillId);
+      activations.push({
+        skillId: result.skillId,
+        name: result.name,
+        score: result.score,
+        activated: shouldActivate,
+        reason: shouldActivate ? `Score ${(result.score * 100).toFixed(0)}% >= threshold` : result.score < this.config.autoActivateThreshold ? `Score ${(result.score * 100).toFixed(0)}% < threshold` : this.activatedSkills.has(result.skillId) ? "Already activated" : `Max skills (${this.config.maxAutoSkills}) reached`
+      });
+      if (shouldActivate) {
+        this.activatedSkills.add(result.skillId);
+        activated++;
+        if (this.config.trackUsage) {
+          this.recordUsage(result.skillId, this.classifyTask(task));
         }
       }
     }
-    for (const [skill, count] of loadedNotUsed) {
-      if (count > 5) {
-        suggestions.push(`Skill "${skill}" loaded ${count} times but rarely used. Consider adjusting auto-load triggers.`);
+    return activations;
+  }
+  /**
+   * Suggest skill combinations for complex tasks
+   */
+  async suggestCombinations(skillIds) {
+    if (!this.config.suggestCombinations) {
+      return [];
+    }
+    const suggestions = [];
+    const skillSet = new Set(skillIds);
+    for (const combo of SKILL_COMBINATIONS) {
+      const matchCount = combo.skills.filter((s) => skillSet.has(s)).length;
+      const coverage = matchCount / combo.skills.length;
+      if (coverage >= 0.3) {
+        suggestions.push({
+          ...combo,
+          confidence: coverage * combo.confidence
+        });
       }
     }
+    suggestions.sort((a, b) => b.confidence - a.confidence);
+    return suggestions.slice(0, 3);
+  }
+  /**
+   * Get recommended skills based on usage patterns
+   */
+  async getRecommendations(taskType) {
+    const sortedSkills = Array.from(this.skillUsageStats.entries()).map(([skillId, stats]) => ({
+      skillId,
+      successRate: stats.successes / stats.uses,
+      uses: stats.uses
+    })).filter((s) => s.uses >= 3).sort((a, b) => b.successRate - a.successRate).slice(0, 5);
+    const search = getSkillSearch();
+    const recommendations = [];
+    for (const skill of sortedSkills) {
+      const result = await search.getSkillById(skill.skillId);
+      if (result) {
+        recommendations.push({
+          ...result,
+          score: skill.successRate
+        });
+      }
+    }
+    return recommendations;
+  }
+  /**
+   * Classify a task into a category
+   */
+  classifyTask(task) {
+    const lower = task.toLowerCase();
+    if (lower.includes("solana") || lower.includes("anchor") || lower.includes("blockchain")) {
+      return "blockchain";
+    }
+    if (lower.includes("api") || lower.includes("backend") || lower.includes("server")) {
+      return "backend";
+    }
+    if (lower.includes("react") || lower.includes("next") || lower.includes("frontend") || lower.includes("ui")) {
+      return "frontend";
+    }
+    if (lower.includes("database") || lower.includes("sql") || lower.includes("data")) {
+      return "data";
+    }
+    if (lower.includes("ai") || lower.includes("llm") || lower.includes("chat") || lower.includes("agent")) {
+      return "ai";
+    }
+    if (lower.includes("test") || lower.includes("e2e") || lower.includes("unit")) {
+      return "testing";
+    }
+    if (lower.includes("deploy") || lower.includes("devops") || lower.includes("ci")) {
+      return "devops";
+    }
+    return "general";
+  }
+  /**
+   * Record skill usage
+   */
+  recordUsage(skillId, taskType) {
+    this.usageHistory.push({
+      skillId,
+      taskType,
+      timestamp: Date.now()
+    });
+    if (this.usageHistory.length > 1e3) {
+      this.usageHistory = this.usageHistory.slice(-1e3);
+    }
+  }
+  /**
+   * Mark a skill usage as successful or failed
+   */
+  markUsageResult(skillId, success) {
+    const stats = this.skillUsageStats.get(skillId) || { uses: 0, successes: 0 };
+    stats.uses++;
+    if (success) {
+      stats.successes++;
+    }
+    this.skillUsageStats.set(skillId, stats);
+    const observer = getLearningObserver();
+    if (success) {
+      observer.recordSuccess(skillId);
+    }
+  }
+  /**
+   * Get currently activated skills
+   */
+  getActivatedSkills() {
+    return Array.from(this.activatedSkills);
+  }
+  /**
+   * Deactivate a skill
+   */
+  deactivateSkill(skillId) {
+    return this.activatedSkills.delete(skillId);
+  }
+  /**
+   * Clear all activated skills
+   */
+  clearActivatedSkills() {
+    this.activatedSkills.clear();
+  }
+  /**
+   * Get usage statistics
+   */
+  getUsageStats() {
+    const taskTypes = {};
+    for (const record of this.usageHistory) {
+      taskTypes[record.taskType] = (taskTypes[record.taskType] || 0) + 1;
+    }
+    const topSkills = Array.from(this.skillUsageStats.entries()).map(([skillId, stats]) => ({
+      skillId,
+      uses: stats.uses,
+      successRate: stats.uses > 0 ? stats.successes / stats.uses : 0
+    })).sort((a, b) => b.uses - a.uses).slice(0, 10);
     return {
-      skillUsagePatterns,
-      mcpUsagePatterns,
-      failurePatterns,
-      suggestions
+      totalUsages: this.usageHistory.length,
+      uniqueSkills: new Set(this.usageHistory.map((r) => r.skillId)).size,
+      topSkills,
+      taskTypeDistribution: taskTypes
     };
   }
   /**
-   * Get summary stats
+   * Get agent statistics
    */
-  getSummary() {
-    const total = this.logs.length;
-    const successes = this.logs.filter((l) => l.success).length;
-    const totalTokens = this.logs.reduce((sum, l) => sum + l.tokenCost, 0);
-    const avgTime = total > 0 ? this.logs.reduce((sum, l) => sum + l.executionTimeMs, 0) / total : 0;
+  getStats() {
     return {
-      totalInteractions: total,
-      successRate: total > 0 ? successes / total : 0,
-      totalTokensUsed: totalTokens,
-      avgExecutionTimeMs: avgTime,
-      positiveFeedback: this.logs.filter((l) => l.userFeedback === "positive").length,
-      negativeFeedback: this.logs.filter((l) => l.userFeedback === "negative").length
+      activatedSkills: this.activatedSkills.size,
+      usageHistory: this.usageHistory.length,
+      trackedSkills: this.skillUsageStats.size,
+      config: this.config
     };
   }
 };
-var autonomyLogger = new AutonomyLogger();
+var instance = null;
+function getSkillsNavigator() {
+  if (!instance) {
+    instance = new SkillsNavigatorAgent();
+  }
+  return instance;
+}
+function resetSkillsNavigator() {
+  instance = null;
+}
 
 // src/index.ts
+var perfLogPath = join(process.cwd(), ".gicm", "opus67-perf.log");
+function ensureLogDir() {
+  const dir = join(process.cwd(), ".gicm");
+  if (!existsSync(dir)) {
+    try {
+      mkdirSync(dir, { recursive: true });
+    } catch {
+    }
+  }
+}
+function perfLog(event, data) {
+  ensureLogDir();
+  const entry = {
+    timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+    event,
+    runtime: "opus67",
+    ...data
+  };
+  console.log(`[OPUS67] ${event}:`, JSON.stringify(data));
+  try {
+    appendFileSync(perfLogPath, JSON.stringify(entry) + "\n");
+  } catch {
+  }
+}
+function withTiming(name, fn) {
+  const start = performance.now();
+  const result = fn();
+  const duration = performance.now() - start;
+  perfLog(name, { durationMs: Math.round(duration * 100) / 100 });
+  return result;
+}
 var Opus67 = class {
   config;
   currentMode;
@@ -370,29 +342,56 @@ var Opus67 = class {
    * Boot OPUS 67 and return boot screen
    */
   boot() {
-    return generateBootScreen({ defaultMode: this.currentMode });
+    const start = performance.now();
+    const result = generateBootScreen({ defaultMode: this.currentMode });
+    const bootTime = performance.now() - start;
+    perfLog("boot", {
+      durationMs: Math.round(bootTime * 100) / 100,
+      mode: this.currentMode,
+      config: this.config
+    });
+    return result;
   }
   /**
    * Process a query with automatic mode detection
    */
   process(query, context) {
+    const startTotal = performance.now();
+    const startDetect = performance.now();
     const detection = detectMode({
       query,
       ...context,
       userPreference: this.currentMode !== "auto" ? this.currentMode : void 0
     });
+    const detectTime = performance.now() - startDetect;
     const modeConfig = getMode(detection.mode);
+    const startSkills = performance.now();
     const skills = loadSkills({
       query,
       activeFiles: context?.activeFiles
     });
+    const skillsTime = performance.now() - startSkills;
     modeConfig.skills_priority || [];
+    const startMcps = performance.now();
     let mcpConnections = [];
     if (this.config.autoConnectMcps) {
       const skillIds = skills.skills.map((s) => s.id);
       mcpConnections = getConnectionsForSkills(skillIds);
     }
+    const mcpsTime = performance.now() - startMcps;
     const prompt = this.generatePrompt(detection, skills, mcpConnections);
+    const totalTime = performance.now() - startTotal;
+    perfLog("process", {
+      totalMs: Math.round(totalTime * 100) / 100,
+      detectMs: Math.round(detectTime * 100) / 100,
+      skillsMs: Math.round(skillsTime * 100) / 100,
+      mcpsMs: Math.round(mcpsTime * 100) / 100,
+      mode: detection.mode,
+      confidence: detection.confidence,
+      complexity: detection.complexity_score,
+      skillsLoaded: skills.skills.length,
+      mcpsConnected: mcpConnections.length
+    });
     return {
       mode: detection.mode,
       modeConfig,
@@ -456,4 +455,4 @@ if (process.argv[1]?.endsWith("index.ts") || process.argv[1]?.endsWith("index.js
   console.log(`Skills: ${session.skills.skills.map((s) => s.id).join(", ")}`);
 }
 
-export { AutonomyLogger, Opus67, autonomyLogger, formatSkillsForPrompt, loadCombination, loadSkills, opus67 };
+export { Opus67, SkillsNavigatorAgent, getSkillsNavigator, opus67, perfLog, resetSkillsNavigator, withTiming };

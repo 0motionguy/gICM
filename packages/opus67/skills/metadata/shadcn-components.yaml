@@ -1,0 +1,76 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: shadcn-components
+
+id: shadcn-components
+name: shadcn/ui Components Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build beautiful UIs using shadcn/ui component library with Radix primitives"
+  what_it_does:
+    - "Implements shadcn/ui components with customization"
+    - "Designs consistent UI themes with CSS variables"
+    - "Extends components with additional variants"
+    - "Implements accessible patterns with Radix"
+    - "Creates custom components following shadcn patterns"
+  what_it_cannot_do:
+    - "Handle non-React frameworks"
+    - "Create completely custom design systems"
+    - "Replace proper UX design"
+    - "Animate complex interactions (use Framer)"
+
+capabilities:
+  - action: "install shadcn components"
+    confidence: 0.97
+    requires: ["Next.js or React with Tailwind"]
+    produces: ["component files", "configuration"]
+  - action: "customize themes"
+    confidence: 0.94
+    requires: ["shadcn setup"]
+    produces: ["CSS variables", "theme config"]
+  - action: "extend components"
+    confidence: 0.92
+    requires: ["existing component"]
+    produces: ["custom variants", "additional props"]
+  - action: "implement forms"
+    confidence: 0.95
+    requires: ["form requirements"]
+    produces: ["form components", "validation UI"]
+  - action: "create data tables"
+    confidence: 0.91
+    requires: ["data display needs"]
+    produces: ["tanstack table integration"]
+
+anti_hallucination:
+  never_claim:
+    - "shadcn is a component library you install"
+    - "Components are pre-built npm packages"
+    - "No customization needed"
+  always_recommend:
+    - "Copy components into your project"
+    - "Customize to match design system"
+    - "Use CLI for adding components"
+  trigger_phrases:
+    - pattern: "shadcn/ui"
+      response: "shadcn/ui copies components into your project - you own and customize them. Which components do you need?"
+    - pattern: "UI components"
+      response: "I'll implement with shadcn/ui for accessible, customizable components. Have you initialized shadcn in your project?"
+
+examples:
+  - task: "Build dashboard UI"
+    approach: "Use shadcn card, data-table, charts components with custom theme"
+    skills_needed: ["shadcn-components", "react-typescript-master"]
+  - task: "Create form with shadcn"
+    approach: "Use Form component with React Hook Form, add Input, Select, Button"
+    skills_needed: ["shadcn-components", "react-hook-form-expert"]
+
+synergies:
+  amplifying:
+    - skill: tailwind-css-pro
+      reason: "shadcn uses Tailwind for styling"
+    - skill: react-typescript-master
+      reason: "React component patterns"
+  conflicting: []
+  redundant:
+    - skill: shadcn-ui-expert
+      reason: "Same component library"

@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Edge Computing Expert
+
+id: edge-computing
+name: Edge Computing Expert
+category: infrastructure
+version: 1.0.0
+
+description:
+  short: Edge deployment and CDN optimization
+  what_it_does: |
+    Deploys computation to edge locations for low-latency responses.
+    Covers Cloudflare Workers, Vercel Edge, Deno Deploy, and edge
+    caching strategies. Optimizes for global performance.
+  what_it_cannot: |
+    Cannot run heavy computation at the edge. Cannot access databases
+    directly from edge without proper patterns. Cannot replace origin
+    servers entirely.
+
+capabilities:
+  can:
+    - edge_functions:
+        confidence: 0.93
+        description: Deploy edge functions to global locations
+    - cache_strategies:
+        confidence: 0.92
+        description: Implement edge caching strategies
+    - request_routing:
+        confidence: 0.90
+        description: Route requests based on geo, headers, etc.
+    - edge_middleware:
+        confidence: 0.94
+        description: Implement Next.js/Vercel middleware
+    - ab_testing:
+        confidence: 0.88
+        description: Implement edge-based A/B testing
+  cannot:
+    - heavy_computation:
+        reason: Edge has CPU/memory limits
+    - direct_db_access:
+        reason: Latency to database, use caching
+    - replace_origin:
+        reason: Edge augments, doesn't replace
+
+anti_hallucination:
+  rules:
+    - name: execution_limits
+      severity: high
+      trigger: "edge|worker|middleware"
+      check: "Edge functions have strict CPU time limits"
+    - name: cold_start
+      severity: medium
+      trigger: "latency|fast|quick"
+      check: "Edge still has cold start, though minimal"
+  common_mistakes:
+    - mistake: Database calls from edge
+      correction: Use edge caching or regional functions for DB access
+    - mistake: Heavy computation at edge
+      correction: Move heavy work to origin or serverless functions
+
+examples:
+  good:
+    - task: "Add auth middleware at edge"
+      approach: "Vercel middleware for JWT validation, geo-blocking"
+    - task: "Implement edge caching"
+      approach: "Cloudflare Workers KV for global cache"
+  bad:
+    - task: "Query PostgreSQL from edge function"
+      reason: "High latency, connection pool exhaustion"
+
+synergies:
+  amplifies:
+    - cloudflare-expert
+    - vercel-deployment
+  conflicts: []
+  works_well_with:
+    - serverless-expert
+    - cdn-optimization
+
+keywords:
+  - edge computing
+  - Cloudflare Workers
+  - Vercel Edge
+  - middleware
+  - global deployment
+  - low latency

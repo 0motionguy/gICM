@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: supabase-expert
+
+id: supabase-expert
+name: Supabase Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build applications using Supabase for auth, database, storage, and realtime features"
+  what_it_does:
+    - "Implements Supabase Auth with various providers"
+    - "Designs PostgreSQL schemas with RLS policies"
+    - "Sets up Supabase Storage with access control"
+    - "Implements Realtime subscriptions"
+    - "Creates Edge Functions for serverless logic"
+  what_it_cannot_do:
+    - "Modify Supabase core infrastructure"
+    - "Handle non-PostgreSQL databases"
+    - "Bypass Row Level Security"
+    - "Run compute-heavy workloads"
+
+capabilities:
+  - action: "implement authentication"
+    confidence: 0.95
+    requires: ["Supabase project"]
+    produces: ["auth system", "user management"]
+  - action: "design RLS policies"
+    confidence: 0.92
+    requires: ["data model", "access requirements"]
+    produces: ["row level security"]
+  - action: "set up realtime"
+    confidence: 0.91
+    requires: ["Supabase tables"]
+    produces: ["realtime subscriptions"]
+  - action: "configure storage"
+    confidence: 0.93
+    requires: ["file upload needs"]
+    produces: ["storage buckets", "policies"]
+  - action: "create edge functions"
+    confidence: 0.89
+    requires: ["serverless logic needs"]
+    produces: ["Deno edge functions"]
+
+anti_hallucination:
+  never_claim:
+    - "RLS replaces all backend validation"
+    - "Supabase handles all use cases"
+    - "No need for custom backend"
+  always_recommend:
+    - "Always enable RLS on tables"
+    - "Use service role key only server-side"
+    - "Test RLS policies thoroughly"
+  trigger_phrases:
+    - pattern: "Supabase auth"
+      response: "I'll set up Supabase Auth with email/password and social providers. Need magic links or phone auth too?"
+    - pattern: "Supabase database"
+      response: "I'll design the schema with proper RLS policies. What data needs to be protected and who should access it?"
+
+examples:
+  - task: "Build SaaS with Supabase"
+    approach: "Auth with organizations, RLS for multi-tenancy, realtime for collaboration"
+    skills_needed: ["supabase-expert", "nextjs-app-router"]
+  - task: "Add file uploads"
+    approach: "Create storage bucket, set up policies, implement signed URLs"
+    skills_needed: ["supabase-expert"]
+
+synergies:
+  amplifying:
+    - skill: nextjs-app-router
+      reason: "Common stack for full-stack apps"
+    - skill: database-schema-expert
+      reason: "PostgreSQL schema design"
+  conflicting: []
+  redundant: []

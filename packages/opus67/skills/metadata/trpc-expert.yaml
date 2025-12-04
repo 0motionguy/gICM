@@ -1,0 +1,76 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: trpc-expert
+
+id: trpc-expert
+name: tRPC Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build end-to-end type-safe APIs with tRPC"
+  what_it_does:
+    - "Designs tRPC routers and procedures"
+    - "Implements type-safe client-server communication"
+    - "Sets up authentication context and middleware"
+    - "Integrates tRPC with React Query"
+    - "Implements optimistic updates and caching"
+  what_it_cannot_do:
+    - "Create REST APIs for external consumers"
+    - "Work with non-TypeScript clients"
+    - "Replace GraphQL for complex schemas"
+    - "Handle file uploads natively"
+
+capabilities:
+  - action: "design tRPC router"
+    confidence: 0.95
+    requires: ["API requirements"]
+    produces: ["routers", "procedures"]
+  - action: "implement middleware"
+    confidence: 0.93
+    requires: ["auth/logging needs"]
+    produces: ["middleware chain"]
+  - action: "set up client"
+    confidence: 0.94
+    requires: ["React frontend"]
+    produces: ["tRPC React client"]
+  - action: "implement subscriptions"
+    confidence: 0.88
+    requires: ["realtime needs"]
+    produces: ["WebSocket subscriptions"]
+  - action: "configure context"
+    confidence: 0.92
+    requires: ["auth/user data"]
+    produces: ["typed context"]
+
+anti_hallucination:
+  never_claim:
+    - "tRPC works with any client"
+    - "REST is always worse than tRPC"
+    - "No need for API documentation"
+  always_recommend:
+    - "Use tRPC for TypeScript-only projects"
+    - "Consider REST for public APIs"
+    - "Document procedures with JSDoc"
+  trigger_phrases:
+    - pattern: "type-safe API"
+      response: "tRPC provides full type safety between client and server. Is this a TypeScript-only project? For public APIs, REST might be better."
+    - pattern: "tRPC setup"
+      response: "I'll set up tRPC with routers, procedures, and React Query integration. Using Next.js or standalone backend?"
+
+examples:
+  - task: "Build full-stack app with tRPC"
+    approach: "Create routers, set up context with auth, integrate with React Query"
+    skills_needed: ["trpc-expert", "nextjs-app-router"]
+  - task: "Add authentication to tRPC"
+    approach: "Create auth middleware, add user to context, protect procedures"
+    skills_needed: ["trpc-expert", "security-best-practices"]
+
+synergies:
+  amplifying:
+    - skill: nextjs-app-router
+      reason: "Common full-stack combo"
+    - skill: zod-validation-expert
+      reason: "tRPC uses Zod for input validation"
+  conflicting:
+    - skill: graphql-api-designer
+      reason: "Different API paradigms"
+  redundant: []

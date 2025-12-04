@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: playwright-testing
+
+id: playwright-testing
+name: Playwright Testing Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement end-to-end testing with Playwright for web applications"
+  what_it_does:
+    - "Writes E2E tests with Playwright Test"
+    - "Implements page object models"
+    - "Sets up test fixtures and hooks"
+    - "Configures cross-browser testing"
+    - "Implements visual regression testing"
+  what_it_cannot_do:
+    - "Test non-web applications"
+    - "Replace unit and integration tests"
+    - "Test mobile native apps"
+    - "Guarantee test stability without proper design"
+
+capabilities:
+  - action: "write E2E tests"
+    confidence: 0.95
+    requires: ["web application"]
+    produces: ["test files", "assertions"]
+  - action: "implement page objects"
+    confidence: 0.93
+    requires: ["complex UI"]
+    produces: ["POM classes", "reusable selectors"]
+  - action: "configure browsers"
+    confidence: 0.94
+    requires: ["cross-browser needs"]
+    produces: ["playwright.config.ts"]
+  - action: "set up CI testing"
+    confidence: 0.92
+    requires: ["CI pipeline"]
+    produces: ["CI config", "artifacts"]
+  - action: "implement visual testing"
+    confidence: 0.89
+    requires: ["visual regression needs"]
+    produces: ["screenshot comparisons"]
+
+anti_hallucination:
+  never_claim:
+    - "E2E tests replace all other tests"
+    - "Tests will never be flaky"
+    - "100% coverage is achievable"
+  always_recommend:
+    - "Use testing pyramid (more unit, fewer E2E)"
+    - "Implement proper waiting strategies"
+    - "Run in CI with artifacts"
+  trigger_phrases:
+    - pattern: "E2E testing"
+      response: "I'll set up Playwright with proper selectors, page objects, and CI integration. What are your critical user flows?"
+    - pattern: "test automation"
+      response: "For E2E, Playwright is excellent. I'll focus on critical paths - E2E tests should complement unit tests, not replace them."
+
+examples:
+  - task: "Test authentication flow"
+    approach: "Page objects for login page, test happy path and error cases, store auth state"
+    skills_needed: ["playwright-testing"]
+  - task: "Set up visual regression"
+    approach: "Configure screenshot comparisons, handle dynamic content, set up baseline management"
+    skills_needed: ["playwright-testing", "ci-cd-automation"]
+
+synergies:
+  amplifying:
+    - skill: ci-cd-automation
+      reason: "E2E tests run in CI pipelines"
+    - skill: test-automation-expert
+      reason: "Overall testing strategy"
+  conflicting: []
+  redundant: []

@@ -1,0 +1,238 @@
+# AI Native Development Stack - OPUS 67 v4.0
+# Tier 1 Skill Pack - Consolidates AI/LLM development expertise
+# Token cost: 10,000 (vs 41,000 for 5 individual skills)
+
+id: ai-native-stack
+name: "AI Native Development Stack"
+tier: 1
+token_cost: 10000
+version: "1.0.0"
+
+extends:
+  - api-base
+
+semantic:
+  purpose: "Build AI-powered applications with modern LLM tooling and best practices"
+
+  what_it_does:
+    # Anthropic Claude SDK
+    - "Implement Claude Messages API with streaming responses"
+    - "Design tool use schemas for function calling"
+    - "Handle multi-turn conversations with context management"
+    - "Implement computer use capabilities (vision, browser, code)"
+    - "Build streaming UIs with proper chunk handling"
+
+    # Claude Agent SDK
+    - "Build agents with bash and editor tools"
+    - "Design agentic workflows with checkpoints"
+    - "Implement tool chaining and orchestration patterns"
+    - "Create custom tools with proper type definitions"
+    - "Handle agent loops with proper termination conditions"
+
+    # Cursor Rules (.cursorrules)
+    - "Author .cursorrules files for project context"
+    - "Define code style and architecture preferences"
+    - "Set up file patterns and ignore rules"
+    - "Configure AI behavior for specific codebases"
+
+    # LangChain + LangSmith
+    - "Build chains with LCEL (LangChain Expression Language)"
+    - "Implement LangSmith tracing and evaluation"
+    - "Create RAG pipelines with document loaders"
+    - "Design memory systems for conversation history"
+    - "Implement callbacks for observability"
+
+    # LlamaIndex
+    - "Build RAG pipelines with document ingestion"
+    - "Implement vector store retrievers"
+    - "Design query engines with re-ranking"
+    - "Create chat engines with conversation memory"
+    - "Implement node postprocessors for refinement"
+
+  what_it_cannot:
+    - "Train or fine-tune foundation models"
+    - "Guarantee deterministic LLM outputs"
+    - "Bypass content policies or safety filters"
+    - "Access model weights or internals"
+    - "Provide real-time market data (use DeFi MCPs)"
+
+capabilities:
+  - action: "Anthropic Messages API"
+    confidence: 0.95
+    examples:
+      - "Create streaming chat completion"
+      - "Implement tool use with schema"
+      - "Handle vision/image inputs"
+
+  - action: "Claude tool use / function calling"
+    confidence: 0.93
+    examples:
+      - "Define tool schemas with Zod"
+      - "Handle tool calls in conversation loop"
+      - "Implement parallel tool execution"
+
+  - action: "Claude Agent SDK patterns"
+    confidence: 0.90
+    examples:
+      - "Build code editing agent"
+      - "Create bash command agent"
+      - "Implement multi-step workflows"
+
+  - action: "LangChain LCEL chains"
+    confidence: 0.92
+    examples:
+      - "Build retrieval chain"
+      - "Create structured output chain"
+      - "Implement branching logic"
+
+  - action: "LlamaIndex RAG pipelines"
+    confidence: 0.91
+    examples:
+      - "Create VectorStoreIndex"
+      - "Implement SubQuestionQueryEngine"
+      - "Build chat memory"
+
+  - action: "Cursor rules authoring"
+    confidence: 0.94
+    examples:
+      - "Write .cursorrules for TypeScript project"
+      - "Define coding conventions"
+      - "Set up file include/exclude patterns"
+
+  - action: "Vercel AI SDK (streaming)"
+    confidence: 0.92
+    examples:
+      - "Implement useChat hook"
+      - "Build streaming UI components"
+      - "Handle tool calls in frontend"
+
+auto_load_when:
+  keywords:
+    - anthropic
+    - claude sdk
+    - claude api
+    - messages api
+    - tool use
+    - function calling
+    - cursor
+    - cursorrules
+    - langchain
+    - langsmith
+    - llamaindex
+    - rag
+    - rag pipeline
+    - retrieval
+    - agent
+    - agentic
+    - ai sdk
+    - vercel ai
+    - useChat
+    - useCompletion
+    - streaming
+    - llm
+    - embedding
+  file_types:
+    - .cursorrules
+  directories:
+    - agents/
+    - llm/
+    - ai/
+  task_patterns:
+    - "build.*agent"
+    - "implement.*rag"
+    - "create.*chat"
+    - "add.*ai"
+
+anti_hallucination:
+  - trigger: "always correct|never wrong|100% accurate"
+    response: "LLMs can hallucinate. Always implement validation and fact-checking for critical outputs."
+
+  - trigger: "free api|no cost|unlimited"
+    response: "All LLM APIs have usage costs. Anthropic, OpenAI, and others charge per token. Budget accordingly."
+
+  - trigger: "real.?time|live data|current"
+    response: "LLMs have knowledge cutoffs. For real-time data, use MCP tools (Jupiter, Helius, etc.)."
+
+  - trigger: "fine.?tune|train|customize model"
+    response: "Fine-tuning requires specialized infrastructure. Consider RAG or prompt engineering first."
+
+  - trigger: "deterministic|same output|reproducible"
+    response: "LLM outputs are probabilistic. Set temperature=0 for more consistency, but exact reproduction isn't guaranteed."
+
+  - trigger: "context.?window|max tokens"
+    response: "Claude: 200K context. GPT-4: 128K. Plan chunking strategy for large documents."
+
+synergies:
+  amplifying:
+    - typescript-senior       # Type-safe AI code
+    - supabase-expert        # Vector storage
+    - vector-wizard          # Embedding management
+    - nextjs-14-expert       # AI-powered web apps
+  conflicting: []
+  redundant:
+    - langchain-expert       # Included in this pack
+    - rag-expert            # Included in this pack
+
+mcp_connections:
+  - langsmith               # LLM observability
+  - context7                # Documentation lookup
+
+code_patterns:
+  anthropic_streaming: |
+    import Anthropic from '@anthropic-ai/sdk';
+
+    const client = new Anthropic();
+
+    const stream = await client.messages.stream({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1024,
+      messages: [{ role: 'user', content: prompt }],
+    });
+
+    for await (const chunk of stream) {
+      if (chunk.type === 'content_block_delta') {
+        process.stdout.write(chunk.delta.text);
+      }
+    }
+
+  tool_use_schema: |
+    const tools = [{
+      name: 'get_weather',
+      description: 'Get current weather for a location',
+      input_schema: {
+        type: 'object',
+        properties: {
+          location: { type: 'string', description: 'City name' },
+          unit: { type: 'string', enum: ['celsius', 'fahrenheit'] }
+        },
+        required: ['location']
+      }
+    }];
+
+  langchain_rag: |
+    import { ChatAnthropic } from '@langchain/anthropic';
+    import { createRetrievalChain } from 'langchain/chains/retrieval';
+    import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
+
+    const llm = new ChatAnthropic({ model: 'claude-sonnet-4-20250514' });
+    const retriever = vectorStore.asRetriever();
+
+    const chain = await createRetrievalChain({
+      combineDocsChain: await createStuffDocumentsChain({ llm, prompt }),
+      retriever,
+    });
+
+  vercel_ai_chat: |
+    'use client';
+    import { useChat } from 'ai/react';
+
+    export function Chat() {
+      const { messages, input, handleInputChange, handleSubmit } = useChat();
+
+      return (
+        <form onSubmit={handleSubmit}>
+          {messages.map(m => <div key={m.id}>{m.content}</div>)}
+          <input value={input} onChange={handleInputChange} />
+        </form>
+      );
+    }

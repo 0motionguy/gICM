@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: expo-expert
+
+id: expo-expert
+name: Expo Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build and deploy React Native apps using Expo framework"
+  what_it_does:
+    - "Sets up Expo projects with TypeScript"
+    - "Implements Expo Router for navigation"
+    - "Uses Expo SDK modules (camera, location, etc.)"
+    - "Configures EAS Build and Submit"
+    - "Implements OTA updates"
+  what_it_cannot_do:
+    - "Access all native modules without dev clients"
+    - "Reduce bundle size beyond Expo's limits"
+    - "Bypass App Store review"
+    - "Handle unsupported native features"
+
+capabilities:
+  - action: "set up Expo project"
+    confidence: 0.96
+    requires: ["project requirements"]
+    produces: ["Expo app", "TypeScript config"]
+  - action: "implement Expo Router"
+    confidence: 0.94
+    requires: ["navigation needs"]
+    produces: ["file-based routing"]
+  - action: "use Expo SDK"
+    confidence: 0.95
+    requires: ["feature needs"]
+    produces: ["SDK module usage"]
+  - action: "configure EAS"
+    confidence: 0.92
+    requires: ["build/deploy needs"]
+    produces: ["eas.json", "build profiles"]
+
+anti_hallucination:
+  never_claim:
+    - "All native features available"
+    - "No build configuration needed"
+    - "Instant app store approval"
+  always_recommend:
+    - "Use Expo Go for development"
+    - "Create dev client for custom natives"
+    - "Test EAS builds before submission"
+  trigger_phrases:
+    - pattern: "Expo"
+      response: "I'll set up with Expo. Using Expo Go (quick dev) or Development Build (custom natives)?"
+
+examples:
+  - task: "Build app with camera and maps"
+    approach: "Expo SDK camera and map modules, Expo Router, EAS Build"
+    skills_needed: ["expo-expert", "react-native-expert"]
+
+synergies:
+  amplifying:
+    - skill: react-native-expert
+      reason: "Expo is built on React Native"
+    - skill: react-typescript-master
+      reason: "React patterns apply"
+  conflicting: []
+  redundant: []

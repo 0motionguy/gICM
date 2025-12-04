@@ -4,7 +4,7 @@
  */
 
 import { loadModeRegistry, getAllModes, type ModeName } from './mode-selector.js';
-import { loadSkills } from './skill-loader.js';
+import { loadRegistry } from './skill-loader.js';
 import { getAllConnections } from './mcp-hub.js';
 
 export interface BootConfig {
@@ -23,6 +23,7 @@ export interface SystemStatus {
   context: { indexed: boolean; files: number };
   subAgents: { available: number };
   combinations: { available: number };
+  learning?: { enabled: boolean; acontext: 'online' | 'offline' | 'unknown'; sopsGenerated: number };
 }
 
 /**
@@ -31,13 +32,20 @@ export interface SystemStatus {
 export function generateBootScreen(config: BootConfig = {}): string {
   const modes = getAllModes();
   const mcps = getAllConnections();
-  const registry = loadModeRegistry();
-  
+  const modeRegistry = loadModeRegistry();
+  const skillRegistry = loadRegistry();
+
   const currentMode = config.defaultMode || 'auto';
-  const modeConfig = registry.modes[currentMode];
-  const version = config.version || '2.0.0';
+  const modeConfig = modeRegistry.modes[currentMode];
+  const version = config.version || '4.1.0';
   const projectName = config.projectName || 'gICM';
-  
+
+  // Dynamic counts
+  const skillCount = skillRegistry.skills.length;
+  const mcpCount = mcps.length;
+  const modeCount = modes.length;
+  const agentCount = Object.keys(modeRegistry.sub_agents || {}).length;
+
   const ascii = `
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                                                                           ║
@@ -58,10 +66,10 @@ export function generateBootScreen(config: BootConfig = {}): string {
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
-║   ┌─────────────┬─────────────┬─────────────┬─────────────┐               ║
-║   │  SKILLS     │  MCPs       │  MODES      │  AGENTS     │               ║
-║   │     48      │     21      │     10      │     44      │               ║
-║   └─────────────┴─────────────┴─────────────┴─────────────┘               ║
+║   ┌─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐ ║
+║   │  SKILLS     │  MCPs       │  MODES      │  AGENTS     │  LEARNING   │ ║
+║   │    ${String(skillCount).padStart(3)}      │     ${String(mcpCount).padStart(2)}      │     ${String(modeCount).padStart(2)}      │     ${String(agentCount).padStart(2)}      │     ON      │ ║
+║   └─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘ ║
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
@@ -81,16 +89,23 @@ export function generateBootScreen(config: BootConfig = {}): string {
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
-║   MODES                                                                   ║
+║   MODES (${String(modeCount).padStart(2)} available)                                                   ║
 ║   ───────────────────────────────────────────────────────────────────     ║
-║   🧠 ULTRA   💭 THINK   🔨 BUILD   ⚡ VIBE   💡 LIGHT                      ║
-║   🎨 CREATIVE   📊 DATA   🛡️ AUDIT   🐝 SWARM   🤖 AUTO                    ║
+║   🧠 ULTRA   💭 THINK   🔨 BUILD   ⚡ VIBE   💡 LIGHT   🎨 CREATIVE       ║
+║   📊 DATA    🛡️ AUDIT   🐝 SWARM   🤖 AUTO   🌙 BG     👀 REVIEW         ║
+║   👁️ GRAB   🔄 CLONE   🔍 RESEARCH  🪙 SOLANA  🏗️ INFRA  🔬 DEEP-RESEARCH ║
+║   🎨 DESIGN  ✍️ CONTENT  💼 BUSINESS  ♟️ STRATEGY  📣 MARKETING  🚀 SHIP   ║
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
 ║   "set mode <n>" to switch  │  "help" for commands  │  AUTO by default   ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  OPUS 67 ≠ Separate AI  │  OPUS 67 = Claude + Enhancement Layer        │
+  │  Claude IS the brain. OPUS 67 = skills + MCPs + modes + memory.        │
+  └─────────────────────────────────────────────────────────────────────────┘
 
   Ready. Type anything to begin.
 
@@ -105,7 +120,7 @@ export function generateBootScreen(config: BootConfig = {}): string {
 export function generateStatusLine(status: SystemStatus): string {
   const modeEmoji: Record<string, string> = {
     ultra: '🧠', think: '💭', build: '🔨', vibe: '⚡', light: '💡',
-    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖'
+    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖', background: '🌙', review: '👀'
   };
 
   return `${modeEmoji[status.modes.current]} OPUS 67 │ ${status.modes.current.toUpperCase()} │ Skills: ${status.skills.loaded}/${status.skills.available} │ MCPs: ${status.mcps.connected}/${status.mcps.available} │ Context: ${status.context.indexed ? '●' : '○'}`;
@@ -193,7 +208,7 @@ export function generateHelpScreen(): string {
 export function generateInlineStatus(mode: ModeName, confidence?: number): string {
   const modeEmoji: Record<string, string> = {
     ultra: '🧠', think: '💭', build: '🔨', vibe: '⚡', light: '💡',
-    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖'
+    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖', background: '🌙', review: '👀'
   };
 
   const confStr = confidence ? ` ${(confidence * 100).toFixed(0)}%` : '';
@@ -206,7 +221,7 @@ export function generateInlineStatus(mode: ModeName, confidence?: number): strin
 export function generateStatusPanel(status: SystemStatus): string {
   const modeEmoji: Record<string, string> = {
     ultra: '🧠', think: '💭', build: '🔨', vibe: '⚡', light: '💡',
-    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖'
+    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖', background: '🌙', review: '👀'
   };
 
   return `

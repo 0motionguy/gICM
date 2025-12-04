@@ -56,6 +56,130 @@ export async function createBrainServer(config?: Partial<ServerConfig>): Promise
     };
   });
 
+  // ===== Hub API compatibility endpoints =====
+
+  // Hub status (for dashboard compatibility)
+  fastify.get('/api/status', async () => {
+    const status = await api.handleRequest({ method: 'status' });
+    return {
+      ok: true,
+      timestamp: Date.now(),
+      running: true,
+      apiPort: serverConfig.port,
+      workflows: 0,
+      engines: {
+        status: { healthy: 1, degraded: 0, offline: 0, total: 1 },
+        details: [{
+          id: 'brain',
+          connected: true,
+          lastHeartbeat: Date.now(),
+          status: 'healthy'
+        }]
+      },
+      brain: status.data
+    };
+  });
+
+  // Autonomy status (stub)
+  fastify.get('/api/autonomy/status', async () => {
+    return {
+      ok: true,
+      level: 2,
+      queue: { pending: 0, approved: 0, rejected: 0 },
+      audit: { total: 0, auto: 0, queued: 0, escalated: 0, successRate: 100 },
+      today: { autoExecuted: 0, queued: 0, escalated: 0, cost: 0, revenue: 0 },
+      stats: { autoExecuted: 0, queued: 0, pending: 0 }
+    };
+  });
+
+  // Events endpoints (stubs)
+  fastify.get<{ Querystring: { limit?: string; category?: string; severity?: string } }>(
+    '/api/events/enriched', async (request) => {
+      const limit = request.query.limit ? parseInt(request.query.limit) : 30;
+      return { ok: true, events: [], count: 0 };
+    }
+  );
+
+  fastify.get('/api/events/categories', async () => {
+    return {
+      ok: true,
+      categories: [
+        { id: 'brain', name: 'Brain', icon: 'brain' },
+        { id: 'system', name: 'System', icon: 'cog' },
+        { id: 'trading', name: 'Trading', icon: 'chart' }
+      ]
+    };
+  });
+
+  // Brain stats endpoint
+  fastify.get('/api/brain/stats', async () => {
+    const metrics = await api.handleRequest({ method: 'metrics' });
+    return {
+      ok: true,
+      knowledge: { total: 0, bySource: {}, byTopic: {}, recent24h: 0 },
+      patterns: { total: 0, byType: {}, avgConfidence: 0 },
+      predictions: { total: 0, pending: 0, accuracy: 0 },
+      uptime: Date.now(),
+      lastIngestion: Date.now(),
+      ...metrics.data
+    };
+  });
+
+  // Brain recent knowledge
+  fastify.get<{ Querystring: { limit?: string } }>('/api/brain/recent', async (request) => {
+    const limit = request.query.limit ? parseInt(request.query.limit) : 20;
+    return { ok: true, items: [], count: 0 };
+  });
+
+  // Brain patterns
+  fastify.get('/api/brain/patterns', async () => {
+    return { ok: true, patterns: [], count: 0 };
+  });
+
+  // Brain predictions
+  fastify.get('/api/brain/predictions', async () => {
+    return { ok: true, predictions: [], count: 0 };
+  });
+
+  // Root WebSocket endpoint (for dashboard compatibility)
+  fastify.get('/ws', { websocket: true }, (socket) => {
+    fastify.log.info('Dashboard WebSocket client connected');
+
+    const unsubscribe = api.subscribe((msg: WebSocketMessage) => {
+      try {
+        socket.send(JSON.stringify(msg));
+      } catch (error) {
+        fastify.log.error('WebSocket send error:', error);
+      }
+    });
+
+    socket.on('message', async (data: Buffer) => {
+      try {
+        const message = JSON.parse(data.toString());
+        if (message.type === 'ping') {
+          socket.send(JSON.stringify({ type: 'pong', timestamp: new Date() }));
+          return;
+        }
+        if (message.method) {
+          const response = await api.handleRequest(message);
+          socket.send(JSON.stringify({ type: 'response', payload: response, timestamp: new Date() }));
+        }
+      } catch (error) {
+        fastify.log.error('WebSocket message error:', error);
+      }
+    });
+
+    socket.on('close', () => {
+      fastify.log.info('Dashboard WebSocket client disconnected');
+      unsubscribe();
+    });
+
+    socket.on('error', (error) => {
+      fastify.log.error('WebSocket error:', error);
+      unsubscribe();
+    });
+  });
+
   // OpenAPI spec
   fastify.get('/api/brain/openapi', async () => {
     return api.getOpenAPISpec();

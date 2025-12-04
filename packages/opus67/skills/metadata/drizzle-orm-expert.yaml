@@ -1,0 +1,76 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: drizzle-orm-expert
+
+id: drizzle-orm-expert
+name: Drizzle ORM Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build type-safe database access with Drizzle ORM"
+  what_it_does:
+    - "Designs Drizzle schemas with relations"
+    - "Implements type-safe queries with query builder"
+    - "Manages migrations with drizzle-kit"
+    - "Optimizes queries for performance"
+    - "Supports PostgreSQL, MySQL, SQLite"
+  what_it_cannot_do:
+    - "Handle ORMs other than Drizzle"
+    - "Automatically optimize all queries"
+    - "Replace raw SQL for complex analytics"
+    - "Support non-SQL databases"
+
+capabilities:
+  - action: "design Drizzle schema"
+    confidence: 0.94
+    requires: ["data model requirements"]
+    produces: ["schema tables", "relations"]
+  - action: "implement queries"
+    confidence: 0.95
+    requires: ["Drizzle schema"]
+    produces: ["type-safe queries"]
+  - action: "manage migrations"
+    confidence: 0.92
+    requires: ["schema changes"]
+    produces: ["migration files"]
+  - action: "optimize query performance"
+    confidence: 0.89
+    requires: ["slow queries"]
+    produces: ["optimized selects", "indexes"]
+  - action: "implement transactions"
+    confidence: 0.93
+    requires: ["atomic operations"]
+    produces: ["transaction blocks"]
+
+anti_hallucination:
+  never_claim:
+    - "Drizzle is always better than Prisma"
+    - "No SQL knowledge needed"
+    - "Zero overhead ORM"
+  always_recommend:
+    - "Use relational queries for complex joins"
+    - "Profile queries in development"
+    - "Consider raw SQL for analytics"
+  trigger_phrases:
+    - pattern: "Drizzle setup"
+      response: "I'll set up Drizzle with proper schema design. Which database: PostgreSQL, MySQL, or SQLite?"
+    - pattern: "Drizzle vs Prisma"
+      response: "Drizzle is lighter and closer to SQL, Prisma is more abstracted. Drizzle for SQL-savvy teams, Prisma for ORM convenience."
+
+examples:
+  - task: "Set up Drizzle with PostgreSQL"
+    approach: "Create schema file, configure drizzle.config.ts, run migrations"
+    skills_needed: ["drizzle-orm-expert", "database-schema-expert"]
+  - task: "Complex queries with Drizzle"
+    approach: "Use query builder with joins, subqueries, and proper typing"
+    skills_needed: ["drizzle-orm-expert"]
+
+synergies:
+  amplifying:
+    - skill: database-schema-expert
+      reason: "Schema design enhances Drizzle usage"
+    - skill: typescript-advanced
+      reason: "Better type utilization"
+  conflicting:
+    - skill: prisma-orm-expert
+      reason: "Different ORM choice"
+  redundant: []

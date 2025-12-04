@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: fastify-expert
+id: fastify-expert
+name: "Fastify Expert"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Build high-performance APIs with Fastify"
+  what_it_does:
+    - "Design Fastify servers"
+    - "Implement plugins"
+    - "Configure validation (Zod/TypeBox)"
+    - "Build typed routes"
+    - "Implement hooks"
+    - "Design error handling"
+    - "Configure serialization"
+    - "Implement authentication"
+  what_it_cannot:
+    - "Start Fastify server"
+    - "Test endpoints"
+    - "Measure performance"
+    - "Access request context"
+
+capabilities:
+  - action: "Design servers"
+    confidence: 0.95
+  - action: "Implement plugins"
+    confidence: 0.92
+  - action: "Zod validation"
+    confidence: 0.95
+  - action: "Typed routes"
+    confidence: 0.90
+  - action: "Error handling"
+    confidence: 0.92
+
+anti_hallucination:
+  - trigger: "start.*server|run.*fastify"
+    response: "Run `pnpm dev` or `node server.js` to start your Fastify server."
+  - trigger: "test.*endpoint|actual.*response"
+    response: "Use curl, Postman, or your test suite to test endpoints."
+  - trigger: "performance|benchmark"
+    response: "Use autocannon or wrk to benchmark your Fastify server."
+
+synergies:
+  amplifying:
+    - typescript-senior
+    - database-schema-expert
+    - redis-caching-pro
+  conflicting: []
+  redundant:
+    - express-expert  # Similar purpose, Fastify is preferred
+
+examples:
+  - task: "REST API with validation"
+    approach: "Fastify + @fastify/type-provider-zod + routes"
+    outcome: success
+  - task: "Auth plugin"
+    approach: "fastify-plugin + JWT + decorators"
+    outcome: success

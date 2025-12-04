@@ -1,238 +1,310 @@
 # OPUS 67
 
-> Self-Evolving AI Runtime - The AI that learns you
-
-<div align="center">
-
-```
-╔═══════════════════════════════════════════════════════════════╗
-║                        OPUS 67                                 ║
-║              Self-Evolving AI Runtime                          ║
-╚═══════════════════════════════════════════════════════════════╝
-```
-
-**100 Skills • 50+ MCPs • Pre-loaded Context • Self-Improving**
-
-</div>
+> Self-Evolving AI Runtime v4.1 - 95 Skills • 84 MCPs • 30 Modes • 190 Tests
 
 ---
 
 ## What is OPUS 67?
 
-OPUS 67 is an AI runtime that:
-- **Pre-indexes your entire codebase** (no more "can you share the code?")
-- **Auto-loads 100 specialist skills** based on your task
-- **Connects to 50+ live data sources** via MCP
-- **Learns from every interaction** and improves over time
-- **Routes to the best model** for each task (Claude, local LLM, etc.)
+> **OPUS 67 is NOT a separate AI.** It's Claude with superpowers.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  OPUS 67 ≠ Separate AI                                      │
+│  OPUS 67 = Claude + Enhancement Layer                       │
+│                                                             │
+│  Claude IS the brain.                                       │
+│  OPUS 67 gives Claude superpowers (skills, MCPs, memory).   │
+│                                                             │
+│  Same driver, better race car.                              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**OPUS 67** wraps Claude with:
+- **95 specialist skills** (auto-loaded based on task)
+- **84 MCP connections** (live data, APIs, blockchain)
+- **30 optimized modes** (right context for each task)
+- **Persistent memory** (remembers across sessions)
+- **Multi-model routing** (Opus/Sonnet/Haiku for cost optimization)
+
+**You ARE the AI. OPUS 67 just makes you faster, cheaper, and more capable.**
+
+See [docs/WHAT-IS-OPUS67.md](./docs/WHAT-IS-OPUS67.md) for the full explanation.
+
+---
+
+<div align="center">
+
+```
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║   ██████╗ ██████╗ ██╗   ██╗███████╗     ██████╗ ███████╗                  ║
+║  ██╔═══██╗██╔══██╗██║   ██║██╔════╝    ██╔════╝ ╚════██║                  ║
+║  ██║   ██║██████╔╝██║   ██║███████╗    ███████╗     ██╔╝                  ║
+║  ██║   ██║██╔═══╝ ██║   ██║╚════██║    ██╔═══██╗   ██╔╝                   ║
+║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║                    ║
+║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝                    ║
+║                                                                           ║
+║                    Self-Evolving AI Runtime v4.1                          ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+```
+
+**95 Skills • 84 MCPs • 30 Modes • Multi-Model Router • 190 Tests**
+
+</div>
+
+---
 
 ## Installation
 
 ```bash
-# From npm
+# Global install (recommended)
 npm install -g @gicm/opus67
 
-# Or in your project
-pnpm add @gicm/opus67
+# Or with pnpm
+pnpm add -g @gicm/opus67
+
+# Or as project dependency
+npm install @gicm/opus67
 ```
 
 ## Quick Start
 
+### 1. Start the BRAIN Server
+
 ```bash
-# Initialize OPUS 67 in your project
-opus67 boot .
+# Start server on port 3100
+opus67-server
+
+# Or with custom port
+PORT=8080 opus67-server
+```
+
+### 2. Use the API
+
+```bash
+# Health check
+curl http://localhost:3100/health
+
+# Get boot screen
+curl http://localhost:3100/api/brain/boot
 
 # Check status
-opus67 status
+curl http://localhost:3100/api/brain/status
 
-# List loaded skills
-opus67 skills
+# Process a query
+curl -X POST http://localhost:3100/api/brain/query \
+  -H "Content-Type: application/json" \
+  -d '{"query": "Build a REST API with authentication"}'
 
-# List MCP connections
-opus67 mcp
+# Get current mode
+curl http://localhost:3100/api/brain/mode
+
+# Set mode
+curl -X POST http://localhost:3100/api/brain/mode \
+  -H "Content-Type: application/json" \
+  -d '{"mode": "build"}'
+```
+
+### 3. WebSocket Real-time Updates
+
+```javascript
+const ws = new WebSocket('ws://localhost:3100/api/brain/ws');
+
+ws.onmessage = (event) => {
+  const msg = JSON.parse(event.data);
+  console.log(msg.type, msg.payload);
+};
+
+// Send query via WebSocket
+ws.send(JSON.stringify({
+  method: 'query',
+  payload: { query: 'Optimize this function' }
+}));
 ```
 
 ## Programmatic Usage
 
 ```typescript
-import { createOPUS67 } from "@gicm/opus67";
+import {
+  Opus67,
+  brainRuntime,
+  router,
+  council,
+  memory,
+  evolutionLoop
+} from '@gicm/opus67';
 
-// Boot OPUS 67
-const opus = await createOPUS67("./my-project");
+// Simple usage
+const opus = new Opus67();
+console.log(opus.boot());
 
-// Process a task (auto-loads skills, connects MCPs, retrieves context)
-const context = await opus.processTask("Implement bonding curve buy function");
+const session = opus.process('design a microservices architecture');
+console.log(session.mode);        // 'architect'
+console.log(session.skills);      // loaded skills
+console.log(session.prompt);      // generated context prompt
 
-// context.theDoor    - Master orchestrator prompt
-// context.skills     - Loaded specialist skills
-// context.mcpTools   - Available live data tools
-// context.context    - Relevant project files
+// Advanced: Use BRAIN Runtime
+const brain = brainRuntime;
+brain.boot();
+
+const response = await brain.process({
+  query: 'Build a trading bot',
+  forceCouncil: true  // Use LLM council for complex decisions
+});
+
+console.log(response.response);   // AI response
+console.log(response.model);      // Model used
+console.log(response.cost);       // Cost in $
+console.log(response.latencyMs);  // Response time
 ```
+
+## Environment Variables
+
+```bash
+# Required: At least one AI provider
+ANTHROPIC_API_KEY=sk-ant-...     # Claude (primary)
+
+# Optional: Additional providers for routing
+GEMINI_API_KEY=...               # Google Gemini
+DEEPSEEK_API_KEY=...             # DeepSeek (cheapest)
+
+# Server config
+PORT=3100                        # Server port
+HOST=0.0.0.0                     # Server host
+LOG_LEVEL=info                   # Logging level
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Health check |
+| GET | `/api/brain/boot` | Boot screen |
+| GET | `/api/brain/status` | Runtime status |
+| GET | `/api/brain/metrics` | Comprehensive metrics |
+| GET | `/api/brain/history` | Query history |
+| GET | `/api/brain/mode` | Get current mode |
+| POST | `/api/brain/mode` | Set mode |
+| POST | `/api/brain/query` | Process query |
+| POST | `/api/brain/evolution` | Control evolution engine |
+| POST | `/api/brain/deliberate` | Invoke LLM council |
+| WS | `/api/brain/ws` | Real-time updates |
+
+## 12 Operating Modes
+
+| Mode | Icon | Description |
+|------|------|-------------|
+| AUTO | 🤖 | Auto-detect best mode |
+| SCAN | 👀 | Quick file scanning |
+| BUILD | 🔨 | Code generation |
+| REVIEW | 📊 | Code review |
+| ARCHITECT | 🧠 | System design |
+| DEBUG | 🐛 | Debugging |
+| ULTRA | ⚡ | Maximum power |
+| THINK | 💭 | Deep reasoning |
+| VIBE | 🎨 | Creative mode |
+| LIGHT | 💡 | Fast/cheap mode |
+| SWARM | 🐝 | Multi-agent |
+| BG | 🌙 | Background tasks |
 
 ## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         OPUS 67                                  │
+│                      OPUS 67 v4 BRAIN                           │
 ├─────────────────────────────────────────────────────────────────┤
-│  THE DOOR (Master Orchestrator Prompt)                           │
-│       ↓                                                          │
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐            │
-│  │ Context │  │  Skills │  │   MCP   │  │  Self   │            │
-│  │ Indexer │  │  Loader │  │   Hub   │  │Improve  │            │
-│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘            │
-│       │ 50K tokens  │ 100 skills │ 50 MCPs   │ Learns           │
-│       ▼            ▼            ▼            ▼                   │
+│                                                                 │
 │  ┌─────────────────────────────────────────────────────────┐   │
-│  │              Unified AI Interface                        │   │
+│  │              BRAIN Runtime (Orchestrator)                │   │
 │  └─────────────────────────────────────────────────────────┘   │
+│       │              │              │              │            │
+│       ▼              ▼              ▼              ▼            │
+│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐        │
+│  │  Multi  │   │   LLM   │   │ Graphiti│   │Evolution│        │
+│  │  Model  │   │ Council │   │ Memory  │   │  Loop   │        │
+│  │ Router  │   │         │   │         │   │         │        │
+│  └─────────┘   └─────────┘   └─────────┘   └─────────┘        │
+│       │              │              │              │            │
+│       ▼              ▼              ▼              ▼            │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │ Claude │ Gemini │ DeepSeek │ Local LLM │ Fallback Chain │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  95 Skills │ 84 MCPs │ 30 Modes │ Cost Tracking │ 190 Tests    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Core Components
+## v4 Features
 
-### 1. Context Indexer
-Pre-indexes all project files for instant retrieval.
+### Multi-Model Router
+Automatically routes to the best model based on task type:
+- **Claude Opus** - Complex reasoning
+- **Claude Sonnet** - Balanced tasks
+- **Claude Haiku** - Fast/cheap queries
+- **Gemini Flash** - Ultra-fast scanning
+- **DeepSeek** - Cost-effective coding
 
+### LLM Council
+For high-complexity decisions, multiple models deliberate:
 ```typescript
-import { ContextIndexer } from "@gicm/opus67/context";
+const result = await brain.deliberate(
+  'Should we use microservices or monolith?'
+);
+console.log(result.finalAnswer);     // Synthesized answer
+console.log(result.responses);       // Individual model responses
+console.log(result.consensus);       // Agreement level
+```
 
-const indexer = new ContextIndexer({
-  indexPaths: ["./src"],
-  excludePatterns: ["node_modules"],
-  maxTokens: 50000,
-  vectorDbPath: "./.opus67/vectors"
+### Graphiti Memory
+Persistent memory across sessions:
+```typescript
+import { memory } from '@gicm/opus67';
+
+await memory.addEpisode({
+  name: 'user-preference',
+  content: 'User prefers functional programming',
+  type: 'preference'
 });
 
-await indexer.index("./my-project");
-const context = await indexer.retrieve("bonding curve");
+const context = await memory.search('programming style');
 ```
 
-### 2. Skill Loader
-100 specialist skills that auto-load based on task.
+### Evolution Engine
+Self-improvement through pattern detection:
+```typescript
+import { evolutionLoop } from '@gicm/opus67';
+
+evolutionLoop.start();
+
+// Detects patterns and suggests improvements
+const opportunities = evolutionLoop.getPendingOpportunities();
+```
+
+## Benchmarks
+
+Run benchmarks to compare OPUS 67 vs raw model:
 
 ```typescript
-import { SkillLoader } from "@gicm/opus67/skills";
+import { runComparisonCLI, runStressTestCLI } from '@gicm/opus67';
 
-const loader = new SkillLoader("./skills/registry.yaml");
-await loader.loadRegistry();
+// Compare runtimes
+await runComparisonCLI();
 
-// Auto-detect and load skills
-const skills = loader.detectSkills("implement anchor program");
-// → ["solana-anchor-expert", "rust-systems"]
-
-await loader.loadForTask(skills);
+// Stress test
+await runStressTestCLI();
 ```
-
-### 3. MCP Hub
-50+ live data connections.
-
-```typescript
-import { MCPHub } from "@gicm/opus67/mcp";
-
-const hub = new MCPHub("./mcp/connections.yaml");
-await hub.connectAll();
-
-// Call a tool
-const price = await hub.callTool("jupiter", "jupiter_price", {
-  ids: ["SOL"]
-});
-```
-
-### 4. Autonomy Engine
-Self-improvement through interaction logging.
-
-```typescript
-import { AutonomyEngine } from "@gicm/opus67/autonomy";
-
-const autonomy = new AutonomyEngine({ level: 2 });
-await autonomy.initialize();
-
-// Log interaction
-autonomy.logInteraction({
-  taskType: "code",
-  input: "implement buy function",
-  skillsUsed: ["solana-anchor-expert"],
-  mcpsUsed: ["helius"],
-  tokensIn: 1500,
-  tokensOut: 2000,
-  executionTimeMs: 5000,
-  success: true
-});
-
-// Analyze patterns
-const patterns = autonomy.analyzePatterns();
-const suggestions = autonomy.generateSkillSuggestions();
-```
-
-## Skills Registry
-
-Skills are defined in `skills/registry.yaml`:
-
-```yaml
-skills:
-  - id: solana-anchor-expert
-    name: "Solana Anchor Expert"
-    category: blockchain
-    tokens: 15000
-    priority: 1
-    triggers:
-      extensions: [".rs"]
-      keywords: ["anchor", "solana", "program"]
-    mcp_connections:
-      - helius
-      - solscan
-    capabilities:
-      - Anchor program architecture
-      - PDA derivation
-      - CPI patterns
-```
-
-## MCP Connections
-
-Connections are defined in `mcp/connections.yaml`:
-
-```yaml
-connections:
-  - id: helius
-    name: "Helius RPC"
-    category: blockchain
-    transport: http
-    base_url: "https://api.helius.xyz/v0"
-    auth:
-      type: api_key
-      env_var: HELIUS_API_KEY
-    tools:
-      - name: helius_get_assets
-        description: "Get NFTs/tokens for wallet"
-```
-
-## Environment Variables
-
-Create `.env` with your API keys:
-
-```bash
-# Blockchain
-HELIUS_API_KEY=
-BIRDEYE_API_KEY=
-
-# Social Intelligence
-SANTIMENT_API_KEY=
-TWEETSCOUT_API_KEY=
-NEYNAR_API_KEY=
-
-# AI
-ANTHROPIC_API_KEY=
-```
-
-## Roadmap
-
-- [x] v1.0 - Core runtime (context, skills, MCP)
-- [ ] v1.1 - Vector embeddings for semantic retrieval
-- [ ] v1.2 - Local LLM integration (Ollama)
-- [ ] v1.3 - Auto skill generation
-- [ ] v2.0 - Full self-improvement loop
 
 ## License
 
 MIT © Mirko Basil Dölger
+
+---
+
+<div align="center">
+
+**[Documentation](./docs)** • **[Examples](./examples)** • **[Discord](https://discord.gg/gicm)**
+
+</div>

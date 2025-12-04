@@ -1,0 +1,68 @@
+# OPUS 67 v4.1 - Learning Observer Agent
+# Auto-tracks successful workflows and generates SOPs
+
+id: learning-observer
+name: Learning Observer
+version: 1.0.0
+description: Track successful workflows and auto-generate SOPs from tool call patterns
+
+tier: 1
+category: system
+enabled: true
+auto_activate: true
+
+# Required MCP connections
+mcps:
+  - acontext
+
+# Core capabilities
+capabilities:
+  - action: observe_completion
+    description: Observe when a complex task completes successfully
+    triggers:
+      - task_complete
+      - user_positive_feedback
+
+  - action: extract_sop
+    description: Extract SOP from a sequence of tool calls
+    input:
+      - tool_chain
+      - task_context
+    output:
+      - sop_document
+
+  - action: record_success
+    description: Record a successful skill usage
+    input:
+      - skill_id
+      - task_type
+    output:
+      - success_count
+
+  - action: get_success_rate
+    description: Get success rate for a skill
+    input:
+      - skill_id
+    output:
+      - rate (0-1)
+      - total_uses
+      - successes
+
+# Activation triggers
+triggers:
+  - After complex task completion
+  - On user positive feedback (thumbs up)
+  - When skill chain > 3 tools
+
+# Configuration
+config:
+  min_complexity: medium  # Only learn from non-trivial tasks
+  min_tool_chain_length: 3
+  auto_sop_threshold: 0.8  # Success rate before suggesting SOP
+  feedback_window_hours: 24
+
+# Learning settings
+learning:
+  enabled: true
+  batch_size: 10
+  sync_interval_minutes: 5

@@ -1,0 +1,58 @@
+# OPUS 67 Skill Metadata: bonding-curve-master
+id: bonding-curve-master
+name: "Bonding Curve Master"
+tier: 1
+token_cost: 12000
+
+semantic:
+  purpose: "Design and implement bonding curve mechanisms for token pricing"
+  what_it_does:
+    - "Implement linear, exponential, and sigmoid bonding curves"
+    - "Calculate buy/sell prices based on supply"
+    - "Design curve parameters for desired price dynamics"
+    - "Implement slippage protection mechanisms"
+    - "Create reserve ratio calculations"
+    - "Design migration strategies (curve to DEX)"
+    - "Implement anti-snipe mechanisms"
+  what_it_cannot:
+    - "Execute actual token purchases"
+    - "Manage real liquidity pools"
+    - "Predict actual market behavior"
+    - "Guarantee specific price outcomes"
+    - "Access live curve state without MCP"
+
+capabilities:
+  - action: "Design bonding curve formulas"
+    confidence: 0.95
+  - action: "Calculate price impact"
+    confidence: 0.90
+  - action: "Implement curve in Anchor/Rust"
+    confidence: 0.90
+  - action: "Simulate curve behavior"
+    confidence: 0.85
+  - action: "Design curve migration to DEX"
+    confidence: 0.85
+
+anti_hallucination:
+  - trigger: "guaranteed.*profit|risk.?free"
+    response: "Bonding curves don't guarantee profits. They provide deterministic pricing but market dynamics still apply."
+  - trigger: "current.*price|live.*state"
+    response: "I need Helius or Solana RPC MCP to fetch live curve state."
+  - trigger: "buy.*token|sell.*token"
+    response: "I can calculate what a transaction would look like, but execution requires your wallet."
+
+synergies:
+  amplifying:
+    - solana-anchor-expert
+    - jupiter-trader
+    - token-economics-analyst
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Create pump.fun style bonding curve"
+    approach: "Exponential curve with 80/20 reserve ratio, migration at market cap threshold"
+    outcome: success
+  - task: "Calculate price after large buy"
+    approach: "Integrate curve formula over token amount"
+    outcome: success

@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: CDN Optimization Expert
+
+id: cdn-optimization
+name: CDN Optimization Expert
+category: infrastructure
+version: 1.0.0
+
+description:
+  short: Content delivery and caching optimization
+  what_it_does: |
+    Optimizes content delivery through CDNs like Cloudflare, AWS CloudFront,
+    and Fastly. Implements caching strategies, cache invalidation, and
+    edge optimization for static and dynamic content.
+  what_it_cannot: |
+    Cannot cache non-cacheable content. Cannot eliminate origin requests
+    entirely. Cannot fix slow origin servers.
+
+capabilities:
+  can:
+    - cdn_configuration:
+        confidence: 0.94
+        description: Configure Cloudflare, CloudFront, Fastly
+    - cache_strategies:
+        confidence: 0.93
+        description: Implement optimal caching headers and rules
+    - cache_invalidation:
+        confidence: 0.90
+        description: Design efficient cache purging strategies
+    - image_optimization:
+        confidence: 0.92
+        description: Implement image CDN optimization
+    - performance_tuning:
+        confidence: 0.88
+        description: Optimize Time to First Byte (TTFB)
+  cannot:
+    - cache_uncacheable:
+        reason: Some content must be fresh
+    - eliminate_origin:
+        reason: Cache misses hit origin
+    - fix_slow_origin:
+        reason: Origin performance is separate concern
+
+anti_hallucination:
+  rules:
+    - name: cache_control
+      severity: high
+      trigger: "cache|ttl|expire"
+      check: "Set appropriate cache-control headers for content type"
+    - name: invalidation_cost
+      severity: medium
+      trigger: "purge|invalidate|clear"
+      check: "Cache invalidation has costs, design for it"
+  common_mistakes:
+    - mistake: Caching user-specific content
+      correction: Use Vary headers or don't cache personalized content
+    - mistake: Aggressive caching without invalidation plan
+      correction: Design cache keys and invalidation strategy upfront
+
+examples:
+  good:
+    - task: "Optimize static assets delivery"
+      approach: "CloudFront with long TTL, versioned assets, compression"
+    - task: "Set up image CDN"
+      approach: "Cloudflare Images or imgix with responsive sizing"
+  bad:
+    - task: "Cache API responses with user data"
+      reason: "Will serve wrong user data"
+
+synergies:
+  amplifies:
+    - cloudflare-expert
+    - performance-optimization
+  conflicts: []
+  works_well_with:
+    - edge-computing
+    - nextjs-14-expert
+
+keywords:
+  - CDN
+  - Cloudflare
+  - CloudFront
+  - caching
+  - cache invalidation
+  - content delivery
+  - TTFB

@@ -1,0 +1,126 @@
+# Clerk Auth Expert - OPUS 67 v4.0
+# Modern authentication
+
+id: clerk-auth-expert
+name: "Clerk Authentication Expert"
+tier: 2
+token_cost: 6000
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement complete authentication with Clerk"
+
+  what_it_does:
+    - "Add sign-in/sign-up with pre-built components"
+    - "Protect routes with middleware"
+    - "Use webhooks for user sync"
+    - "Implement organizations/multi-tenancy"
+    - "Configure social OAuth providers"
+    - "Handle session management"
+
+  what_it_cannot:
+    - "Work without Clerk account/API keys"
+    - "Replace custom auth for specific compliance needs"
+
+capabilities:
+  - action: "Authentication UI"
+    confidence: 0.94
+  - action: "Route protection"
+    confidence: 0.92
+  - action: "Organizations"
+    confidence: 0.88
+
+auto_load_when:
+  keywords:
+    - clerk
+    - @clerk/nextjs
+    - clerkMiddleware
+    - SignIn
+    - SignUp
+    - currentUser
+
+anti_hallucination:
+  - trigger: "free|self-hosted"
+    response: "Clerk is a paid service. For self-hosted auth, consider Auth.js (NextAuth) or Lucia."
+
+synergies:
+  amplifying: [nextjs-14-expert, typescript-senior]
+  conflicting: []
+  redundant: [nextauth-expert]
+
+mcp_connections: [clerk]
+
+code_patterns:
+  middleware: |
+    // middleware.ts
+    import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+    const isPublicRoute = createRouteMatcher([
+      "/",
+      "/sign-in(.*)",
+      "/sign-up(.*)",
+      "/api/webhooks(.*)",
+    ]);
+
+    export default clerkMiddleware((auth, req) => {
+      if (!isPublicRoute(req)) {
+        auth().protect();
+      }
+    });
+
+    export const config = {
+      matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+    };
+
+  protected_page: |
+    // app/dashboard/page.tsx
+    import { auth, currentUser } from "@clerk/nextjs/server";
+    import { redirect } from "next/navigation";
+
+    export default async function DashboardPage() {
+      const { userId } = await auth();
+
+      if (!userId) {
+        redirect("/sign-in");
+      }
+
+      const user = await currentUser();
+
+      return (
+        <div>
+          <h1>Welcome, {user?.firstName}!</h1>
+          <p>Email: {user?.emailAddresses[0].emailAddress}</p>
+        </div>
+      );
+    }
+
+  webhook: |
+    // app/api/webhooks/clerk/route.ts
+    import { Webhook } from "svix";
+    import { headers } from "next/headers";
+    import { WebhookEvent } from "@clerk/nextjs/server";
+
+    export async function POST(req: Request) {
+      const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET!;
+      const headerPayload = headers();
+      const svix_id = headerPayload.get("svix-id");
+      const svix_timestamp = headerPayload.get("svix-timestamp");
+      const svix_signature = headerPayload.get("svix-signature");
+
+      const payload = await req.json();
+      const body = JSON.stringify(payload);
+
+      const wh = new Webhook(WEBHOOK_SECRET);
+      const evt = wh.verify(body, {
+        "svix-id": svix_id!,
+        "svix-timestamp": svix_timestamp!,
+        "svix-signature": svix_signature!,
+      }) as WebhookEvent;
+
+      if (evt.type === "user.created") {
+        // Sync user to database
+        await db.user.create({ data: { clerkId: evt.data.id, email: evt.data.email_addresses[0].email_address }});
+      }
+
+      return new Response("OK", { status: 200 });
+    }

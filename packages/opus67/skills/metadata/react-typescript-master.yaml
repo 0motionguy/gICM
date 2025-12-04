@@ -1,0 +1,61 @@
+# OPUS 67 Skill Metadata: react-typescript-master
+id: react-typescript-master
+name: "React TypeScript Master"
+tier: 1
+token_cost: 10000
+
+semantic:
+  purpose: "Build type-safe React applications with advanced patterns"
+  what_it_does:
+    - "Write typed React components"
+    - "Implement custom hooks"
+    - "Design state management (Zustand/Jotai)"
+    - "Create typed context providers"
+    - "Build compound components"
+    - "Implement render props"
+    - "Design HOC patterns"
+    - "Type event handlers"
+    - "Create generic components"
+  what_it_cannot:
+    - "Run React dev server"
+    - "Preview components visually"
+    - "Execute JavaScript"
+    - "Access browser APIs directly"
+
+capabilities:
+  - action: "Write React components"
+    confidence: 0.95
+  - action: "Create custom hooks"
+    confidence: 0.95
+  - action: "Design state management"
+    confidence: 0.92
+  - action: "Type components"
+    confidence: 0.95
+  - action: "Build compound components"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "run.*server|start.*dev"
+    response: "Run `pnpm dev` or `npm run dev` to start your dev server."
+  - trigger: "preview|see.*component"
+    response: "Start your dev server to preview. I can't render React visually."
+  - trigger: "actual.*state|current.*value"
+    response: "Use React DevTools to inspect actual state at runtime."
+
+synergies:
+  amplifying:
+    - typescript-senior
+    - nextjs-14-expert
+    - tailwind-css-pro
+    - shadcn-ui-expert
+  conflicting: []
+  redundant:
+    - javascript-expert
+
+examples:
+  - task: "Create typed form hook"
+    approach: "useForm<T> with Zod validation + typed onChange handlers"
+    outcome: success
+  - task: "Build compound select"
+    approach: "Context + compound pattern + generic types for options"
+    outcome: success

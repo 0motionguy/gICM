@@ -1,0 +1,51 @@
+# OPUS 67 Skill Metadata: shadcn-ui-expert
+id: shadcn-ui-expert
+name: "shadcn/ui Expert"
+tier: 2
+token_cost: 8000
+
+semantic:
+  purpose: "Build beautiful, accessible UIs with shadcn/ui components"
+  what_it_does:
+    - "Install and configure shadcn/ui components"
+    - "Customize components with Tailwind"
+    - "Implement dark mode theming"
+    - "Create compound component patterns"
+    - "Design form layouts with validation"
+    - "Build data tables with sorting/filtering"
+  what_it_cannot:
+    - "Run npx shadcn-ui commands"
+    - "Access the component registry"
+    - "Preview components visually"
+
+capabilities:
+  - action: "Configure shadcn/ui"
+    confidence: 0.95
+  - action: "Customize components"
+    confidence: 0.92
+  - action: "Implement theming"
+    confidence: 0.90
+  - action: "Build forms"
+    confidence: 0.92
+  - action: "Create data tables"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "install.*component|add.*component"
+    response: "Run `npx shadcn-ui@latest add [component]` to install components."
+  - trigger: "preview|see.*component"
+    response: "Start your dev server to see components. I can't preview visually."
+
+synergies:
+  amplifying:
+    - tailwind-css-pro
+    - nextjs-14-expert
+    - framer-motion-wizard
+  conflicting:
+    - material-ui-expert  # Different design system
+  redundant: []
+
+examples:
+  - task: "Create a settings form"
+    approach: "shadcn Form + Input + Select with react-hook-form"
+    outcome: success

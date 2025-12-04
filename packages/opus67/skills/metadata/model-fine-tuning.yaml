@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Model Fine-Tuning Expert
+
+id: model-fine-tuning
+name: Model Fine-Tuning Expert
+category: ai-ml
+version: 1.0.0
+
+description:
+  short: LLM and model fine-tuning
+  what_it_does: |
+    Fine-tunes pre-trained models for specific tasks. Covers LoRA, QLoRA,
+    full fine-tuning, RLHF, and efficient adaptation techniques. Works
+    with OpenAI, Anthropic fine-tuning APIs, and open-source models.
+  what_it_cannot: |
+    Cannot pre-train models from scratch. Cannot guarantee model
+    improvements without proper data. Cannot fix fundamental model
+    limitations through fine-tuning.
+
+capabilities:
+  can:
+    - lora_finetuning:
+        confidence: 0.92
+        description: Implement LoRA/QLoRA fine-tuning
+    - openai_finetuning:
+        confidence: 0.94
+        description: Fine-tune OpenAI models via API
+    - dataset_preparation:
+        confidence: 0.90
+        description: Prepare and format training datasets
+    - evaluation:
+        confidence: 0.88
+        description: Evaluate fine-tuned model performance
+    - hyperparameter_tuning:
+        confidence: 0.85
+        description: Optimize training hyperparameters
+  cannot:
+    - pretraining:
+        reason: Requires massive compute
+    - architecture_design:
+        reason: Research task
+    - fix_base_model_issues:
+        reason: Fundamental limitations
+
+anti_hallucination:
+  rules:
+    - name: data_quality
+      severity: critical
+      trigger: "finetune|train|data"
+      check: "Model quality depends entirely on data quality"
+    - name: overfitting_risk
+      severity: high
+      trigger: "small dataset|few samples"
+      check: "Small datasets risk overfitting"
+  common_mistakes:
+    - mistake: Fine-tuning on low-quality data
+      correction: Clean and validate training data first
+    - mistake: No validation set
+      correction: Always hold out validation data
+
+examples:
+  good:
+    - task: "Fine-tune GPT for code review"
+      approach: "OpenAI fine-tuning with curated code review examples"
+    - task: "Adapt Llama for crypto analysis"
+      approach: "QLoRA with crypto-specific instruction dataset"
+  bad:
+    - task: "Fine-tune on 10 examples"
+      reason: "Insufficient data, will overfit"
+
+synergies:
+  amplifies:
+    - prompt-engineering
+    - langchain-expert
+  conflicts: []
+  works_well_with:
+    - mlops-expert
+    - embedding-specialist
+
+keywords:
+  - fine-tuning
+  - LoRA
+  - QLoRA
+  - RLHF
+  - model adaptation
+  - transfer learning

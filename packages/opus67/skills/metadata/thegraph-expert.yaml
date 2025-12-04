@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: thegraph-expert
+
+id: thegraph-expert
+name: The Graph Protocol Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Build and deploy subgraphs for blockchain data indexing"
+  what_it_does:
+    - "Designs subgraph schemas"
+    - "Implements mapping handlers"
+    - "Deploys to Graph Network or hosted service"
+    - "Queries subgraphs with GraphQL"
+    - "Optimizes indexing performance"
+  what_it_cannot_do:
+    - "Index non-EVM chains (different setup)"
+    - "Query real-time data"
+    - "Store arbitrary data"
+    - "Modify blockchain state"
+
+capabilities:
+  - action: "design subgraph schema"
+    confidence: 0.94
+    requires: ["contract ABIs", "data needs"]
+    produces: ["GraphQL schema", "entities"]
+  - action: "implement mappings"
+    confidence: 0.93
+    requires: ["event handlers"]
+    produces: ["AssemblyScript handlers"]
+  - action: "deploy subgraph"
+    confidence: 0.91
+    requires: ["subgraph code"]
+    produces: ["deployed subgraph"]
+  - action: "query subgraph"
+    confidence: 0.95
+    requires: ["subgraph endpoint"]
+    produces: ["GraphQL queries"]
+
+anti_hallucination:
+  never_claim:
+    - "Real-time indexing"
+    - "Free unlimited queries"
+    - "Any chain supported"
+  always_recommend:
+    - "Plan schema carefully"
+    - "Test locally with graph-node"
+    - "Monitor indexing status"
+  trigger_phrases:
+    - pattern: "The Graph"
+      response: "I'll help with subgraph development. Indexing which contracts on which chain?"
+
+examples:
+  - task: "Index NFT transfers"
+    approach: "Schema for transfers, mappings for Transfer events, GraphQL queries"
+    skills_needed: ["thegraph-expert", "evm-solidity-expert"]
+
+synergies:
+  amplifying:
+    - skill: evm-solidity-expert
+      reason: "Understanding contracts being indexed"
+    - skill: graphql-api-designer
+      reason: "Query design"
+  conflicting: []
+  redundant: []

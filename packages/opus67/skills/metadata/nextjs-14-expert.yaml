@@ -1,0 +1,63 @@
+# OPUS 67 Skill Metadata: nextjs-14-expert
+id: nextjs-14-expert
+name: "Next.js 14+ Expert"
+tier: 1
+token_cost: 12000
+
+semantic:
+  purpose: "Build production-grade Next.js applications with App Router"
+  what_it_does:
+    - "Create App Router file structures"
+    - "Implement Server Components and Client Components"
+    - "Design layouts, pages, and loading states"
+    - "Set up API routes and server actions"
+    - "Configure middleware and authentication"
+    - "Implement streaming and Suspense patterns"
+    - "Optimize with static generation and ISR"
+    - "Configure next.config.js properly"
+  what_it_cannot:
+    - "Deploy applications (requires Vercel/hosting)"
+    - "Set up actual domains or SSL"
+    - "Access production environment variables"
+    - "Run the dev server"
+
+capabilities:
+  - action: "Create Next.js App Router structure"
+    confidence: 0.95
+  - action: "Implement Server Components"
+    confidence: 0.95
+  - action: "Write API routes"
+    confidence: 0.92
+  - action: "Configure authentication"
+    confidence: 0.88
+  - action: "Optimize performance"
+    confidence: 0.85
+  - action: "Set up middleware"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "pages router|getServerSideProps|getStaticProps"
+    response: "For Next.js 14+, I recommend App Router patterns. Are you working with Pages Router specifically?"
+  - trigger: "deploy|vercel.*deploy"
+    response: "I can generate the vercel.json config, but actual deployment requires the Vercel CLI or dashboard."
+  - trigger: "start.*server|run.*dev"
+    response: "Run `pnpm dev` or `npm run dev` in your terminal to start the development server."
+
+synergies:
+  amplifying:
+    - react-typescript-master
+    - tailwind-css-pro
+    - shadcn-ui-expert
+    - wallet-integration
+  conflicting:
+    - remix-expert  # Different framework
+  redundant:
+    - react-expert  # Next.js includes React knowledge
+
+examples:
+  - task: "Create a dashboard with auth"
+    approach: "App Router with layout, middleware auth, Server Components for data"
+    outcome: success
+  - task: "Build a Web3 dApp frontend"
+    approach: "Client Components for wallet, Server Components for static content"
+    outcome: success

@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Multimodal AI Expert
+
+id: multimodal-ai-expert
+name: Multimodal AI Expert
+category: ai-ml
+version: 1.0.0
+
+description:
+  short: Vision, audio, and multimodal AI
+  what_it_does: |
+    Implements multimodal AI solutions combining text, images, audio,
+    and video. Covers vision-language models, image generation (DALL-E,
+    Midjourney), speech-to-text, and multimodal embeddings.
+  what_it_cannot: |
+    Cannot generate real-time video. Cannot process extremely large
+    images/videos efficiently. Cannot guarantee content appropriateness
+    without moderation.
+
+capabilities:
+  can:
+    - vision_language:
+        confidence: 0.92
+        description: Use GPT-4V, Claude vision, etc.
+    - image_generation:
+        confidence: 0.90
+        description: Generate images with DALL-E, Stable Diffusion
+    - image_analysis:
+        confidence: 0.93
+        description: Analyze and describe images
+    - speech_to_text:
+        confidence: 0.94
+        description: Transcribe audio with Whisper
+    - multimodal_embeddings:
+        confidence: 0.85
+        description: Create CLIP-style multimodal embeddings
+  cannot:
+    - real_time_video:
+        reason: Latency constraints
+    - large_media_processing:
+        reason: API limits
+    - content_moderation:
+        reason: Requires specialized models
+
+anti_hallucination:
+  rules:
+    - name: image_accuracy
+      severity: medium
+      trigger: "analyze|describe|ocr"
+      check: "Vision models can misread text, always verify"
+    - name: generation_limits
+      severity: medium
+      trigger: "generate|create|image"
+      check: "Image generation has content policy limits"
+  common_mistakes:
+    - mistake: Trusting OCR without verification
+      correction: Always verify extracted text for critical data
+    - mistake: No image size optimization
+      correction: Resize images before API calls
+
+examples:
+  good:
+    - task: "Analyze NFT artwork for traits"
+      approach: "GPT-4V for description, CLIP for similarity"
+    - task: "Generate marketing images"
+      approach: "DALL-E with detailed prompts, human review"
+  bad:
+    - task: "OCR private keys from screenshots"
+      reason: "Security risk, never trust automated extraction"
+
+synergies:
+  amplifies:
+    - prompt-engineering
+    - ai-agent-builder
+  conflicts: []
+  works_well_with:
+    - openai-integration
+    - anthropic-integration
+
+keywords:
+  - multimodal
+  - vision
+  - GPT-4V
+  - DALL-E
+  - image analysis
+  - speech to text
+  - Whisper

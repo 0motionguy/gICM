@@ -1,0 +1,64 @@
+# OPUS 67 Skill Metadata: evm-solidity-expert
+id: evm-solidity-expert
+name: "EVM Solidity Expert"
+tier: 1
+token_cost: 12000
+
+semantic:
+  purpose: "Write secure, gas-optimized Solidity smart contracts for EVM chains"
+  what_it_does:
+    - "Write Solidity contracts (0.8.x)"
+    - "Implement ERC standards (20/721/1155/4626)"
+    - "Design upgradeable contracts (UUPS/Transparent)"
+    - "Optimize gas consumption"
+    - "Write Foundry/Hardhat tests"
+    - "Implement access control patterns"
+    - "Design secure token economics"
+    - "Handle reentrancy protection"
+  what_it_cannot:
+    - "Deploy contracts to mainnet"
+    - "Sign transactions"
+    - "Access private keys"
+    - "Execute real transactions"
+    - "Interact with live contracts"
+
+capabilities:
+  - action: "Write Solidity contracts"
+    confidence: 0.95
+  - action: "Implement ERC standards"
+    confidence: 0.95
+  - action: "Gas optimization"
+    confidence: 0.90
+  - action: "Write Foundry tests"
+    confidence: 0.92
+  - action: "Upgradeable patterns"
+    confidence: 0.88
+  - action: "Security patterns"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "deploy.*mainnet|production"
+    response: "I generate contract code only. Use Foundry/Hardhat to deploy to testnet first."
+  - trigger: "sign|execute|send"
+    response: "I can't execute transactions. Use your wallet or deployment script."
+  - trigger: "private.*key|seed"
+    response: "Never share private keys. I don't need them to write contracts."
+  - trigger: "gas.*price|current.*gas"
+    response: "Check etherscan.io/gastracker for current gas prices."
+
+synergies:
+  amplifying:
+    - smart-contract-auditor
+    - token-economics
+    - defi-data-analyst
+  conflicting:
+    - solana-anchor-expert  # Different VM architecture
+  redundant: []
+
+examples:
+  - task: "Create an ERC-20 token with burn"
+    approach: "OpenZeppelin ERC20 + ERC20Burnable extension"
+    outcome: success
+  - task: "Build a staking contract"
+    approach: "ReentrancyGuard + time-locked rewards + SafeERC20"
+    outcome: success

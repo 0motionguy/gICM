@@ -1,0 +1,61 @@
+# Blockchain Base Fragment - OPUS 67 v4.0
+# Inherited by skills that work with blockchain/Web3
+
+id: blockchain-base
+type: fragment
+version: "1.0.0"
+
+semantic:
+  purpose: "Foundation for blockchain and Web3 development skills"
+
+capabilities:
+  - Transaction construction and serialization
+  - Wallet interaction patterns (connect, sign, disconnect)
+  - Gas/compute unit estimation and optimization
+  - RPC endpoint usage and failover
+  - Address validation and formatting
+  - Block/slot monitoring and confirmation
+  - Token balance and transfer operations
+  - Program/contract interaction patterns
+
+anti_hallucination:
+  - trigger: "sign|execute|send transaction"
+    response: "I can generate unsigned transactions, but signing requires the user's private key via their wallet."
+  - trigger: "deploy|publish|mainnet"
+    response: "I can write deployment scripts, but execution requires wallet approval and network fees."
+  - trigger: "private key|secret key|seed phrase"
+    response: "Never expose private keys in code. Use environment variables and secure key management."
+  - trigger: "free|no fee|gasless"
+    response: "Blockchain transactions require fees. Some protocols offer relayers, but someone always pays."
+  - trigger: "instant|immediate confirmation"
+    response: "Blockchain confirmations take time. Solana ~400ms, Ethereum ~12s. Always await confirmation."
+
+common_patterns:
+  transaction_flow: |
+    1. Build transaction (instructions/calls)
+    2. Simulate to estimate compute/gas
+    3. Sign with wallet
+    4. Submit to network
+    5. Await confirmation
+
+  wallet_connection: |
+    - Detect wallet provider (window.solana, window.ethereum)
+    - Request connection (wallet.connect())
+    - Handle disconnection and account changes
+    - Store connection state (not keys!)
+
+  rpc_best_practices: |
+    - Use dedicated RPC endpoints (not public defaults)
+    - Implement retry logic with exponential backoff
+    - Consider RPC providers: Helius, QuickNode, Alchemy
+    - Monitor rate limits and quota usage
+
+solana_specifics:
+  compute_units: "Default 200k, max 1.4M per tx"
+  priority_fees: "Micro-lamports per compute unit"
+  confirmation: "processed → confirmed → finalized"
+
+evm_specifics:
+  gas_estimation: "Always pad by 10-20% for safety"
+  nonce_management: "Track locally to avoid stuck txs"
+  chain_id: "Always verify to prevent replay attacks"

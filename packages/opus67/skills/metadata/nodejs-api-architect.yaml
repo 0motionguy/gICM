@@ -1,0 +1,69 @@
+# OPUS 67 Skill Metadata: nodejs-api-architect
+id: nodejs-api-architect
+name: "Node.js API Architect"
+tier: 1
+token_cost: 12000
+
+semantic:
+  purpose: "Design and build scalable Node.js APIs with best practices"
+  what_it_does:
+    - "Design RESTful API architectures"
+    - "Implement Express/Fastify servers"
+    - "Set up authentication (JWT, OAuth)"
+    - "Configure middleware patterns"
+    - "Design database schemas"
+    - "Implement caching strategies"
+    - "Write API documentation"
+    - "Set up error handling"
+    - "Configure rate limiting"
+    - "Design WebSocket integrations"
+  what_it_cannot:
+    - "Run or start servers"
+    - "Make actual HTTP requests"
+    - "Access databases directly"
+    - "Deploy to production"
+    - "Monitor live traffic"
+
+capabilities:
+  - action: "Design REST APIs"
+    confidence: 0.95
+  - action: "Implement Express/Fastify"
+    confidence: 0.95
+  - action: "Set up authentication"
+    confidence: 0.90
+  - action: "Configure middleware"
+    confidence: 0.92
+  - action: "Design database schemas"
+    confidence: 0.88
+  - action: "Implement caching"
+    confidence: 0.85
+  - action: "Write OpenAPI specs"
+    confidence: 0.90
+
+anti_hallucination:
+  - trigger: "start.*server|run.*api|deploy"
+    response: "I can generate the server code, but run `node server.js` or `pnpm dev` to start it."
+  - trigger: "connect.*database|query.*db"
+    response: "I can write the connection code. Ensure your DATABASE_URL env var is set."
+  - trigger: "test.*endpoint|curl|postman"
+    response: "Use curl, Postman, or your preferred tool to test. I can't make HTTP requests."
+  - trigger: "production|live|deploy"
+    response: "I generate code only. Use your deployment pipeline for production."
+
+synergies:
+  amplifying:
+    - typescript-senior
+    - database-schema-expert
+    - redis-caching-pro
+    - docker-kubernetes-pro
+  conflicting: []
+  redundant:
+    - express-expert  # Subset of this skill
+
+examples:
+  - task: "Create a user authentication API"
+    approach: "JWT + bcrypt + refresh tokens + middleware"
+    outcome: success
+  - task: "Build a rate-limited API"
+    approach: "express-rate-limit + Redis store + tiered limits"
+    outcome: success

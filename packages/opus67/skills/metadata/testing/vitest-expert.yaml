@@ -1,0 +1,91 @@
+# Vitest Expert - OPUS 67 v4.0
+# Modern testing framework
+
+id: vitest-expert
+name: "Vitest Testing Expert"
+tier: 2
+token_cost: 5000
+version: "1.0.0"
+
+semantic:
+  purpose: "Write fast, modern tests with Vitest for Vite-powered projects"
+
+  what_it_does:
+    - "Write unit tests with Jest-compatible API"
+    - "Run tests in parallel with worker threads"
+    - "Use in-source testing for utilities"
+    - "Mock modules and functions"
+    - "Generate coverage reports"
+    - "Test TypeScript without configuration"
+    - "Use snapshot testing"
+
+  what_it_cannot:
+    - "Replace E2E testing tools (use Playwright)"
+    - "Test browser-specific APIs without jsdom/happy-dom"
+
+capabilities:
+  - action: "Unit tests"
+    confidence: 0.94
+  - action: "Mocking"
+    confidence: 0.92
+  - action: "Coverage"
+    confidence: 0.90
+
+auto_load_when:
+  keywords:
+    - vitest
+    - test
+    - unit test
+    - coverage
+    - mock
+    - describe
+    - it
+    - expect
+
+anti_hallucination:
+  - trigger: "e2e|browser test"
+    response: "For E2E testing, use Playwright. Vitest is for unit/integration tests."
+
+synergies:
+  amplifying: [typescript-senior, react-expert]
+  conflicting: []
+  redundant: [testing-unit]
+
+mcp_connections: []
+
+code_patterns:
+  basic_test: |
+    import { describe, it, expect, vi } from 'vitest';
+    import { calculateTotal } from './calculator';
+
+    describe('calculateTotal', () => {
+      it('should sum items correctly', () => {
+        const items = [{ price: 10 }, { price: 20 }];
+        expect(calculateTotal(items)).toBe(30);
+      });
+
+      it('should apply discount', () => {
+        const items = [{ price: 100 }];
+        expect(calculateTotal(items, 0.1)).toBe(90);
+      });
+    });
+
+  mocking: |
+    import { vi, describe, it, expect, beforeEach } from 'vitest';
+    import { fetchUser } from './api';
+
+    vi.mock('./api', () => ({
+      fetchUser: vi.fn(),
+    }));
+
+    describe('UserService', () => {
+      beforeEach(() => {
+        vi.clearAllMocks();
+      });
+
+      it('should fetch user', async () => {
+        vi.mocked(fetchUser).mockResolvedValue({ id: 1, name: 'Alice' });
+        const user = await fetchUser(1);
+        expect(user.name).toBe('Alice');
+      });
+    });

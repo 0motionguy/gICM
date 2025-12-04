@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: zod-validation-expert
+
+id: zod-validation-expert
+name: Zod Validation Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement type-safe runtime validation with Zod schemas"
+  what_it_does:
+    - "Designs Zod schemas for data validation"
+    - "Implements form validation with Zod"
+    - "Creates API request/response validation"
+    - "Generates TypeScript types from schemas"
+    - "Implements custom validators and transforms"
+  what_it_cannot_do:
+    - "Replace database constraints"
+    - "Validate at compile time only"
+    - "Handle non-JavaScript runtimes"
+    - "Validate file contents"
+
+capabilities:
+  - action: "design validation schemas"
+    confidence: 0.96
+    requires: ["data structure requirements"]
+    produces: ["Zod schemas", "TypeScript types"]
+  - action: "validate API inputs"
+    confidence: 0.95
+    requires: ["API endpoints"]
+    produces: ["validated inputs", "error messages"]
+  - action: "implement form validation"
+    confidence: 0.94
+    requires: ["form data"]
+    produces: ["form schema", "validation logic"]
+  - action: "create custom validators"
+    confidence: 0.92
+    requires: ["custom validation rules"]
+    produces: ["refine", "transform"]
+  - action: "generate types from schema"
+    confidence: 0.97
+    requires: ["Zod schema"]
+    produces: ["z.infer types"]
+
+anti_hallucination:
+  never_claim:
+    - "Zod validates at compile time"
+    - "No runtime overhead"
+    - "Replaces all type checking"
+  always_recommend:
+    - "Use z.infer for type inference"
+    - "Combine with TypeScript for full safety"
+    - "Add meaningful error messages"
+  trigger_phrases:
+    - pattern: "validate input"
+      response: "I'll create a Zod schema for runtime validation with proper error messages and TypeScript inference."
+    - pattern: "type-safe validation"
+      response: "Zod provides runtime validation with automatic TypeScript type inference. Let me design the schema."
+
+examples:
+  - task: "Validate API request body"
+    approach: "Create Zod schema, use safeParse for validation, return typed errors"
+    skills_needed: ["zod-validation-expert", "nodejs-api-architect"]
+  - task: "Form validation with React Hook Form"
+    approach: "Design Zod schema, integrate with zodResolver, display field errors"
+    skills_needed: ["zod-validation-expert", "react-typescript-master"]
+
+synergies:
+  amplifying:
+    - skill: typescript-advanced
+      reason: "Type inference from schemas"
+    - skill: nodejs-api-architect
+      reason: "API input validation"
+  conflicting: []
+  redundant: []

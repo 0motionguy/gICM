@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: pnpm-monorepo-expert
+
+id: pnpm-monorepo-expert
+name: pnpm Monorepo Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Design and manage pnpm workspaces for efficient monorepo development"
+  what_it_does:
+    - "Configures pnpm workspaces and package structure"
+    - "Manages workspace dependencies and protocols"
+    - "Optimizes build pipelines with filtering"
+    - "Implements changesets for versioning"
+    - "Configures shared configurations across packages"
+  what_it_cannot_do:
+    - "Convert npm/yarn lockfiles automatically"
+    - "Handle non-pnpm package managers"
+    - "Manage external monorepo tools (Nx, Turborepo)"
+    - "Fix circular dependencies automatically"
+
+capabilities:
+  - action: "configure workspace"
+    confidence: 0.95
+    requires: ["monorepo structure"]
+    produces: ["pnpm-workspace.yaml", "package structure"]
+  - action: "manage dependencies"
+    confidence: 0.94
+    requires: ["workspace packages"]
+    produces: ["workspace: protocol", "shared deps"]
+  - action: "optimize builds"
+    confidence: 0.92
+    requires: ["multiple packages"]
+    produces: ["filtered builds", "parallel execution"]
+  - action: "set up changesets"
+    confidence: 0.91
+    requires: ["versioning needs"]
+    produces: ["changeset config", "release workflow"]
+  - action: "configure shared tooling"
+    confidence: 0.93
+    requires: ["multiple packages"]
+    produces: ["shared configs", "tool setup"]
+
+anti_hallucination:
+  never_claim:
+    - "pnpm solves all monorepo problems"
+    - "No build coordination needed"
+    - "Works identically to npm/yarn"
+  always_recommend:
+    - "Use workspace: protocol for internal deps"
+    - "Configure proper build order"
+    - "Use --filter for targeted operations"
+  trigger_phrases:
+    - pattern: "pnpm workspace"
+      response: "I'll configure pnpm-workspace.yaml with proper package structure. What packages do you need: apps, packages, services?"
+    - pattern: "monorepo"
+      response: "I'll set up a pnpm monorepo with shared configurations and proper dependency management."
+
+examples:
+  - task: "Set up TypeScript monorepo"
+    approach: "Configure pnpm workspace, shared tsconfig, build order, changesets"
+    skills_needed: ["pnpm-monorepo-expert", "typescript-advanced"]
+  - task: "Add new package to monorepo"
+    approach: "Create package structure, configure workspace deps, update build pipeline"
+    skills_needed: ["pnpm-monorepo-expert"]
+
+synergies:
+  amplifying:
+    - skill: typescript-advanced
+      reason: "TypeScript config sharing in monorepos"
+    - skill: ci-cd-automation
+      reason: "Monorepo CI/CD patterns"
+  conflicting: []
+  redundant: []

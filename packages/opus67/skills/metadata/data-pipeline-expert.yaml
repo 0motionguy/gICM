@@ -1,0 +1,87 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Data Pipeline Expert
+
+id: data-pipeline-expert
+name: Data Pipeline Expert
+category: data
+version: 1.0.0
+
+description:
+  short: ETL and data pipeline architecture
+  what_it_does: |
+    Designs and implements data pipelines for ETL/ELT workflows, streaming
+    data processing, and batch jobs. Covers Apache Airflow, dbt, Kafka,
+    and cloud-native data tools.
+  what_it_cannot: |
+    Cannot design business data models - only implement them. Cannot
+    guarantee data quality without proper validation rules. Cannot
+    optimize queries without understanding access patterns.
+
+capabilities:
+  can:
+    - etl_design:
+        confidence: 0.94
+        description: Design Extract-Transform-Load pipelines
+    - streaming_pipelines:
+        confidence: 0.88
+        description: Build real-time streaming data pipelines
+    - airflow_dags:
+        confidence: 0.92
+        description: Create Apache Airflow DAGs
+    - dbt_models:
+        confidence: 0.90
+        description: Build dbt transformation models
+    - data_validation:
+        confidence: 0.86
+        description: Implement data quality checks
+  cannot:
+    - business_modeling:
+        reason: Requires domain expertise
+    - ml_feature_engineering:
+        reason: Requires ML expertise
+    - real_time_analytics:
+        reason: Different skill set
+
+anti_hallucination:
+  rules:
+    - name: idempotency
+      severity: high
+      trigger: "pipeline|etl|transform"
+      check: "Ensure pipeline operations are idempotent"
+    - name: schema_evolution
+      severity: medium
+      trigger: "schema|migrate|change"
+      check: "Handle schema evolution gracefully"
+  common_mistakes:
+    - mistake: Non-idempotent transformations
+      correction: Design all transforms to be safely re-runnable
+    - mistake: Ignoring late-arriving data
+      correction: Implement watermarks and late data handling
+
+examples:
+  good:
+    - task: "Build ETL pipeline for blockchain data"
+      approach: "Airflow DAG with incremental loads, dbt transforms"
+    - task: "Stream Solana transactions to analytics"
+      approach: "Kafka + Flink for real-time processing"
+  bad:
+    - task: "Process all historical data in one batch"
+      reason: "Will likely timeout or OOM"
+
+synergies:
+  amplifies:
+    - database-schema-expert
+    - analytics-dashboard
+  conflicts: []
+  works_well_with:
+    - elasticsearch-expert
+    - timeseries-db-expert
+
+keywords:
+  - ETL
+  - data pipeline
+  - Airflow
+  - dbt
+  - Kafka
+  - streaming
+  - batch processing

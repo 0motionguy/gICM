@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Kubernetes Expert
+
+id: kubernetes-expert
+name: Kubernetes Expert
+category: infrastructure
+version: 1.0.0
+
+description:
+  short: Container orchestration with Kubernetes
+  what_it_does: |
+    Deploys and manages containerized applications on Kubernetes. Covers
+    deployments, services, ingress, Helm charts, operators, and cluster
+    management. Works with EKS, GKE, AKS, and self-managed clusters.
+  what_it_cannot: |
+    Cannot write application code. Cannot fix poorly containerized apps.
+    Cannot guarantee zero downtime without proper application design.
+
+capabilities:
+  can:
+    - deployment_management:
+        confidence: 0.94
+        description: Create and manage Kubernetes deployments
+    - helm_charts:
+        confidence: 0.92
+        description: Write and manage Helm charts
+    - service_mesh:
+        confidence: 0.85
+        description: Configure Istio, Linkerd service meshes
+    - autoscaling:
+        confidence: 0.90
+        description: Configure HPA, VPA, cluster autoscaling
+    - security_policies:
+        confidence: 0.88
+        description: Implement RBAC, network policies, pod security
+  cannot:
+    - application_code:
+        reason: Infrastructure focus
+    - fix_bad_containers:
+        reason: Application design issue
+    - guarantee_uptime:
+        reason: Requires app-level resilience
+
+anti_hallucination:
+  rules:
+    - name: resource_limits
+      severity: high
+      trigger: "deploy|pod|container"
+      check: "Always set resource requests and limits"
+    - name: health_probes
+      severity: high
+      trigger: "deployment|service"
+      check: "Configure liveness and readiness probes"
+  common_mistakes:
+    - mistake: No resource limits
+      correction: Always set CPU/memory requests and limits
+    - mistake: Missing health probes
+      correction: Add liveness and readiness probes
+
+examples:
+  good:
+    - task: "Deploy API to Kubernetes"
+      approach: "Deployment + Service + Ingress + HPA with proper probes"
+    - task: "Create Helm chart for app"
+      approach: "Parameterized chart with values for different envs"
+  bad:
+    - task: "Run DB in K8s without StatefulSet"
+      reason: "Databases need persistent storage and stable network identity"
+
+synergies:
+  amplifies:
+    - docker-kubernetes-pro
+    - ci-cd-automation
+  conflicts: []
+  works_well_with:
+    - terraform-expert
+    - aws-infrastructure
+
+keywords:
+  - Kubernetes
+  - K8s
+  - container orchestration
+  - Helm
+  - EKS
+  - GKE
+  - deployment

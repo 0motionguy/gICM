@@ -1,0 +1,85 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Serverless Expert
+
+id: serverless-expert
+name: Serverless Expert
+category: infrastructure
+version: 1.0.0
+
+description:
+  short: Serverless architecture and deployment
+  what_it_does: |
+    Designs and deploys serverless applications on AWS Lambda, Vercel,
+    Cloudflare Workers, and similar platforms. Covers event-driven
+    architecture, cold starts, and serverless patterns.
+  what_it_cannot: |
+    Cannot run long-running processes. Cannot handle real-time bidirectional
+    communication well. Cannot replace containers for all workloads.
+
+capabilities:
+  can:
+    - lambda_functions:
+        confidence: 0.94
+        description: Deploy AWS Lambda functions
+    - vercel_serverless:
+        confidence: 0.95
+        description: Deploy Vercel serverless functions
+    - edge_functions:
+        confidence: 0.90
+        description: Deploy Cloudflare Workers, Vercel Edge
+    - event_architecture:
+        confidence: 0.88
+        description: Design event-driven serverless systems
+    - cost_optimization:
+        confidence: 0.85
+        description: Optimize serverless costs and cold starts
+  cannot:
+    - long_running:
+        reason: Execution time limits (15min Lambda max)
+    - websockets:
+        reason: Limited support, better with dedicated servers
+    - stateful_processing:
+        reason: Serverless is stateless by design
+
+anti_hallucination:
+  rules:
+    - name: cold_start_awareness
+      severity: medium
+      trigger: "lambda|serverless|function"
+      check: "Consider cold start impact for latency-sensitive apps"
+    - name: timeout_limits
+      severity: high
+      trigger: "long|process|batch"
+      check: "Serverless has execution time limits"
+  common_mistakes:
+    - mistake: Ignoring cold starts
+      correction: Use provisioned concurrency or keep-warm for critical paths
+    - mistake: Large deployment packages
+      correction: Minimize bundle size for faster cold starts
+
+examples:
+  good:
+    - task: "Deploy API to Vercel"
+      approach: "Next.js API routes or standalone serverless functions"
+    - task: "Process webhook events"
+      approach: "Lambda + SQS for reliable event processing"
+  bad:
+    - task: "Run ML inference in 512MB Lambda"
+      reason: "ML models need more memory and time"
+
+synergies:
+  amplifies:
+    - nextjs-14-expert
+    - vercel-deployment
+  conflicts: []
+  works_well_with:
+    - aws-infrastructure
+    - edge-computing
+
+keywords:
+  - serverless
+  - Lambda
+  - Vercel
+  - Cloudflare Workers
+  - FaaS
+  - edge functions

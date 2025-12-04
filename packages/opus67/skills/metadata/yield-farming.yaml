@@ -1,0 +1,90 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: Yield Farming Expert
+
+id: yield-farming
+name: Yield Farming Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: DeFi yield optimization strategies
+  what_it_does: |
+    Optimizes yield farming strategies across DeFi protocols. Covers
+    yield aggregators (Yearn, Beefy), farming mechanics, compounding
+    strategies, and risk-adjusted returns.
+  what_it_cannot: |
+    Cannot guarantee yields. Cannot predict protocol failures. Cannot
+    eliminate smart contract risks. Cannot provide sustainable yields
+    from unsustainable tokenomics.
+
+capabilities:
+  can:
+    - yield_optimization:
+        confidence: 0.90
+        description: Find and compare yield opportunities
+    - compound_strategies:
+        confidence: 0.92
+        description: Implement auto-compounding strategies
+    - yield_aggregator_integration:
+        confidence: 0.88
+        description: Integrate Yearn, Beefy, Tulip
+    - risk_assessment:
+        confidence: 0.85
+        description: Evaluate protocol and smart contract risks
+    - apr_calculation:
+        confidence: 0.94
+        description: Calculate APR/APY accurately
+  cannot:
+    - guarantee_yields:
+        reason: Yields vary with market conditions
+    - predict_failures:
+        reason: Protocol exploits are unpredictable
+    - eliminate_risk:
+        reason: DeFi has inherent risks
+    - sustainable_ponzinomics:
+        reason: Unsustainable yields eventually collapse
+
+anti_hallucination:
+  rules:
+    - name: yield_sustainability
+      severity: critical
+      trigger: "high yield|APY|APR"
+      check: "Question where yield comes from - is it sustainable?"
+    - name: smart_contract_risk
+      severity: high
+      trigger: "farm|stake|deposit"
+      check: "Check if contracts are audited"
+  common_mistakes:
+    - mistake: Chasing highest APY blindly
+      correction: Evaluate risk-adjusted returns
+    - mistake: Not accounting for gas/fees
+      correction: Include all costs in yield calculations
+
+examples:
+  good:
+    - task: "Optimize stablecoin yields"
+      approach: "Compare lending rates, pick audited protocols, auto-compound"
+    - task: "Set up auto-compounding farm"
+      approach: "Use Beefy vault or implement custom compounder"
+  bad:
+    - task: "Farm 1000% APY on new protocol"
+      reason: "Unsustainable, likely high risk or scam"
+
+synergies:
+  amplifies:
+    - liquidity-pools
+    - defi-integration-architect
+  conflicts: []
+  works_well_with:
+    - defi-data-analyst
+    - smart-contract-auditor
+
+keywords:
+  - yield farming
+  - DeFi
+  - APY
+  - APR
+  - auto-compound
+  - Yearn
+  - Beefy
+  - staking

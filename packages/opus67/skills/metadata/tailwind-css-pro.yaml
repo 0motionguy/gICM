@@ -1,0 +1,49 @@
+# OPUS 67 Skill Metadata: tailwind-css-pro
+id: tailwind-css-pro
+name: "Tailwind CSS Pro"
+tier: 2
+token_cost: 6000
+
+semantic:
+  purpose: "Build responsive, beautiful UIs with Tailwind CSS"
+  what_it_does:
+    - "Write utility-first CSS"
+    - "Create responsive layouts"
+    - "Design custom color schemes"
+    - "Configure tailwind.config.js"
+    - "Create reusable component patterns"
+    - "Implement dark mode"
+    - "Optimize for production"
+  what_it_cannot:
+    - "Run Tailwind CLI"
+    - "Preview styles visually"
+    - "Access browser DevTools"
+
+capabilities:
+  - action: "Write Tailwind classes"
+    confidence: 0.95
+  - action: "Create responsive layouts"
+    confidence: 0.92
+  - action: "Configure Tailwind"
+    confidence: 0.90
+  - action: "Design color schemes"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "preview|see.*style"
+    response: "Start your dev server to preview. I can't see the visual output."
+  - trigger: "purge|build.*css"
+    response: "Run your build command to generate optimized CSS."
+
+synergies:
+  amplifying:
+    - shadcn-ui-expert
+    - nextjs-14-expert
+    - framer-motion-wizard
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Create a responsive navbar"
+    approach: "Flex + responsive breakpoints + mobile menu"
+    outcome: success

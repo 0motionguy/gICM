@@ -1,0 +1,1561 @@
+{
+  "version": "1.0.0",
+  "indexed": "2025-12-04T05:54:36.764Z",
+  "files": [
+    {
+      "path": "agents\\learning-observer.yaml",
+      "hash": "c67f8d96c86361a37494d0c6bb049e0b",
+      "tokens": 372,
+      "lastModified": "2025-12-04T03:57:46.681Z"
+    },
+    {
+      "path": "agents\\skills-navigator.yaml",
+      "hash": "31d6d1400ec7ff68d7acc317efdea670",
+      "tokens": 377,
+      "lastModified": "2025-12-04T03:58:45.584Z"
+    },
+    {
+      "path": "BENCHMARK_RESULTS.md",
+      "hash": "04b8fb3ab917b0b8f36c0bcc76bbd371",
+      "tokens": 2853,
+      "lastModified": "2025-12-04T05:14:18.874Z"
+    },
+    {
+      "path": "COMPETITOR_COMPARISON.md",
+      "hash": "bbfd24b07378301e5ab33553bf2c2b10",
+      "tokens": 5948,
+      "lastModified": "2025-12-04T05:25:56.688Z"
+    },
+    {
+      "path": "config\\council.yaml",
+      "hash": "d1ce28bb57794a2f7ed996caee85e3e8",
+      "tokens": 736,
+      "lastModified": "2025-12-02T05:11:24.202Z"
+    },
+    {
+      "path": "config\\endpoints.yaml",
+      "hash": "2bb8aac28811166fa4ce89671d416116",
+      "tokens": 3481,
+      "lastModified": "2025-12-02T10:46:18.113Z"
+    },
+    {
+      "path": "config\\models.yaml",
+      "hash": "266c0a73cd42b082b8533522de82cd59",
+      "tokens": 1024,
+      "lastModified": "2025-12-02T04:59:10.344Z"
+    },
+    {
+      "path": "config\\synergies.yaml",
+      "hash": "144f2f5f9716f82e0ec997449fb1b052",
+      "tokens": 1424,
+      "lastModified": "2025-12-02T10:44:37.719Z"
+    },
+    {
+      "path": "docker\\docker-compose.yml",
+      "hash": "714432284622ee2bb8b301b7e7273a2e",
+      "tokens": 1252,
+      "lastModified": "2025-12-04T03:47:14.831Z"
+    },
+    {
+      "path": "docker-compose.yml",
+      "hash": "5bb9ccb575c4e47718632458d5b799ce",
+      "tokens": 262,
+      "lastModified": "2025-12-02T05:49:00.000Z"
+    },
+    {
+      "path": "docs\\AUTO_EVOLUTION_ENGINE.md",
+      "hash": "b103f757e713a9d7269e1679916bb979",
+      "tokens": 6105,
+      "lastModified": "2025-12-02T03:12:22.211Z"
+    },
+    {
+      "path": "docs\\COMPETITIVE_ANALYSIS_50.md",
+      "hash": "3c0403fdfa714362f1f21cff5bbe99b8",
+      "tokens": 3749,
+      "lastModified": "2025-12-02T03:12:22.223Z"
+    },
+    {
+      "path": "docs\\COMPETITIVE_VISUAL_SUMMARY.md",
+      "hash": "4795fa7253be3918bb4a75ffd2b4116a",
+      "tokens": 2025,
+      "lastModified": "2025-12-02T03:12:22.231Z"
+    },
+    {
+      "path": "docs\\configs\\v31-mcp-config.json",
+      "hash": "fd0c25452e863e7f3585dc60c79953ba",
+      "tokens": 4482,
+      "lastModified": "2025-12-02T08:08:16.660Z"
+    },
+    {
+      "path": "docs\\configs\\v32-mcp-config.json",
+      "hash": "633be3d8c41a858a6e2914fba5d1cc15",
+      "tokens": 4256,
+      "lastModified": "2025-12-02T08:08:16.684Z"
+    },
+    {
+      "path": "docs\\EXECUTIVE_SUMMARY.md",
+      "hash": "33c97b09318943c9330caca914bf3779",
+      "tokens": 1754,
+      "lastModified": "2025-12-02T03:12:22.239Z"
+    },
+    {
+      "path": "docs\\FUTURE_VISION_v3.md",
+      "hash": "26f7718ef7087e6ecb8a218e4d20172d",
+      "tokens": 5603,
+      "lastModified": "2025-12-02T03:12:22.240Z"
+    },
+    {
+      "path": "docs\\GAP_COVERAGE_ANALYSIS.md",
+      "hash": "3adbedc59c19d008c06826e3654433e4",
+      "tokens": 1830,
+      "lastModified": "2025-12-02T03:12:22.248Z"
+    },
+    {
+      "path": "docs\\GICM_HYPER_BRAIN.md",
+      "hash": "26dab372e9913dc18cd1b96e57b9d587",
+      "tokens": 4347,
+      "lastModified": "2025-12-02T03:12:22.256Z"
+    },
+    {
+      "path": "docs\\OPUS67-COMPLETE.md",
+      "hash": "2e91a99f13349a2581b645529e32cc9c",
+      "tokens": 4093,
+      "lastModified": "2025-12-04T04:32:39.659Z"
+    },
+    {
+      "path": "docs\\OPUS67-ONE-PAGER.md",
+      "hash": "6a58e685a0959dafeb3ae71ce29c2291",
+      "tokens": 1073,
+      "lastModified": "2025-12-04T04:33:08.597Z"
+    },
+    {
+      "path": "docs\\README.md",
+      "hash": "6bd46813c270958efb3b244daeba16f2",
+      "tokens": 1418,
+      "lastModified": "2025-12-02T03:12:22.268Z"
+    },
+    {
+      "path": "docs\\SKILL-EXPANSION-PLAN-v4.md",
+      "hash": "a3fa1b7bec7723f176b1b71c0f59be45",
+      "tokens": 6353,
+      "lastModified": "2025-12-02T12:13:31.410Z"
+    },
+    {
+      "path": "docs\\THE_DOOR.md",
+      "hash": "63fdc16632cd082eaabf4e5d56329a9e",
+      "tokens": 2732,
+      "lastModified": "2025-12-02T03:12:22.269Z"
+    },
+    {
+      "path": "docs\\v31-eyes-update.md",
+      "hash": "43491af918c8a2f4a1c9172e5c622eb6",
+      "tokens": 5152,
+      "lastModified": "2025-12-02T08:08:16.613Z"
+    },
+    {
+      "path": "docs\\v32-solana-stack.md",
+      "hash": "f6b0710eb34ae873c44e3c56e1ad5e51",
+      "tokens": 4571,
+      "lastModified": "2025-12-02T08:08:16.637Z"
+    },
+    {
+      "path": "docs\\v41-learning-layer.md",
+      "hash": "e4bc18ff1e6bc257f7a998e5d54b2677",
+      "tokens": 1753,
+      "lastModified": "2025-12-04T04:18:33.738Z"
+    },
+    {
+      "path": "docs\\VERSION-HISTORY.md",
+      "hash": "f5b782b25ae4cf91b09e049ebdc14b19",
+      "tokens": 1658,
+      "lastModified": "2025-12-04T05:45:03.810Z"
+    },
+    {
+      "path": "docs\\WHAT-IS-OPUS67.md",
+      "hash": "254e736a649be25bc5f88ad3a24e17a5",
+      "tokens": 1961,
+      "lastModified": "2025-12-02T08:07:42.768Z"
+    },
+    {
+      "path": "door\\THE_DOOR.md",
+      "hash": "199553e639b89c9e6d72008b2c4f5a8a",
+      "tokens": 1401,
+      "lastModified": "2025-12-02T03:12:16.675Z"
+    },
+    {
+      "path": "mcp\\anchor-mcp\\package-lock.json",
+      "hash": "e76b281c7ada1d2a51807d6f3d9c6b83",
+      "tokens": 21454,
+      "lastModified": "2025-12-02T09:50:19.909Z"
+    },
+    {
+      "path": "mcp\\anchor-mcp\\package.json",
+      "hash": "01ea80beb7edcd5c45f724e4de108262",
+      "tokens": 149,
+      "lastModified": "2025-12-02T09:47:33.089Z"
+    },
+    {
+      "path": "mcp\\anchor-mcp\\src\\index.ts",
+      "hash": "a91be5e4fa76f2fd20ff8078744aa709",
+      "tokens": 4539,
+      "lastModified": "2025-12-02T09:53:47.329Z"
+    },
+    {
+      "path": "mcp\\anchor-mcp\\tsconfig.json",
+      "hash": "30fa488eb78b5a81dfad5ef8f323224e",
+      "tokens": 96,
+      "lastModified": "2025-12-02T09:47:42.199Z"
+    },
+    {
+      "path": "mcp\\connections.yaml",
+      "hash": "d03b53abeb5f0d17b0550ef776db283b",
+      "tokens": 9611,
+      "lastModified": "2025-12-04T03:55:02.349Z"
+    },
+    {
+      "path": "modes\\registry.yaml",
+      "hash": "36083a5925018e38c710fb3e203e5a2f",
+      "tokens": 10506,
+      "lastModified": "2025-12-04T04:44:35.524Z"
+    },
+    {
+      "path": "OPUS67_EXPLAINED.md",
+      "hash": "5b8c4de71c50644b246a8078229a9528",
+      "tokens": 3536,
+      "lastModified": "2025-12-01T09:03:08.317Z"
+    },
+    {
+      "path": "OPUS67_SELF_TEST_REPORT.md",
+      "hash": "afd48d5524e693d3e4d355ff2676c049",
+      "tokens": 1742,
+      "lastModified": "2025-12-04T05:40:22.660Z"
+    },
+    {
+      "path": "package.json",
+      "hash": "22e469e35c7f9aac478a3a4b55f994fe",
+      "tokens": 351,
+      "lastModified": "2025-12-04T05:40:38.283Z"
+    },
+    {
+      "path": "README.md",
+      "hash": "b64fd7557900dee5c239243aa11c4a81",
+      "tokens": 2282,
+      "lastModified": "2025-12-04T05:45:48.517Z"
+    },
+    {
+      "path": "scripts\\efficiency-calculator.js",
+      "hash": "c0c17208d2fcf522e3be5f681972edbc",
+      "tokens": 3102,
+      "lastModified": "2025-12-04T05:26:55.976Z"
+    },
+    {
+      "path": "scripts\\model-comparison.js",
+      "hash": "314255e2f2bc27a03fcb325a02af061f",
+      "tokens": 2362,
+      "lastModified": "2025-12-04T05:14:03.556Z"
+    },
+    {
+      "path": "scripts\\upgrade-v31.sh",
+      "hash": "cfaa4ab0f731ecc8f6663d01ef5f309d",
+      "tokens": 1115,
+      "lastModified": "2025-12-02T08:08:16.708Z"
+    },
+    {
+      "path": "scripts\\upgrade-v32.sh",
+      "hash": "bbc469fef674a1a96b82a4d51049dd34",
+      "tokens": 2314,
+      "lastModified": "2025-12-02T08:08:16.732Z"
+    },
+    {
+      "path": "skills\\definitions\\bonding-curve-master.md",
+      "hash": "f86e129411f94e4c6f493ec382e00cf0",
+      "tokens": 2452,
+      "lastModified": "2025-12-02T03:12:19.822Z"
+    },
+    {
+      "path": "skills\\definitions\\nextjs-14-expert.md",
+      "hash": "c4f54536f1b736c99db57dab7e881c2e",
+      "tokens": 2678,
+      "lastModified": "2025-12-02T03:12:19.823Z"
+    },
+    {
+      "path": "skills\\definitions\\solana-anchor-expert.md",
+      "hash": "0a97a6c33a265c55c715538cb1a15ac2",
+      "tokens": 1518,
+      "lastModified": "2025-12-02T03:12:19.822Z"
+    },
+    {
+      "path": "skills\\fragments\\api-base.yaml",
+      "hash": "1b36830e3ab760ec5cfa9bb90e85cbdb",
+      "tokens": 381,
+      "lastModified": "2025-12-04T03:21:58.162Z"
+    },
+    {
+      "path": "skills\\fragments\\blockchain-base.yaml",
+      "hash": "a5af3865d83fd169fb154d0af70c5378",
+      "tokens": 595,
+      "lastModified": "2025-12-04T03:21:59.342Z"
+    },
+    {
+      "path": "skills\\fragments\\devops-base.yaml",
+      "hash": "2accc0f460d874cf4143c190ce34e8ec",
+      "tokens": 618,
+      "lastModified": "2025-12-04T03:22:00.807Z"
+    },
+    {
+      "path": "skills\\metadata\\access-control-expert.yaml",
+      "hash": "3e5e014fade3f47e7dfb7621ffe063b6",
+      "tokens": 706,
+      "lastModified": "2025-12-02T11:48:24.721Z"
+    },
+    {
+      "path": "skills\\metadata\\ai\\ai-native-stack.yaml",
+      "hash": "5aa626b4d197ebd169b94b50f315306e",
+      "tokens": 1806,
+      "lastModified": "2025-12-04T03:24:41.360Z"
+    },
+    {
+      "path": "skills\\metadata\\ai\\dspy-prompting.yaml",
+      "hash": "0d43f32d17c19378e600f3a54fbd150e",
+      "tokens": 447,
+      "lastModified": "2025-12-04T03:32:13.630Z"
+    },
+    {
+      "path": "skills\\metadata\\ai-agent-builder.yaml",
+      "hash": "26bebc81215a1db0184f468509ab252f",
+      "tokens": 643,
+      "lastModified": "2025-12-02T11:50:40.285Z"
+    },
+    {
+      "path": "skills\\metadata\\analytics-dashboard.yaml",
+      "hash": "779f30e408460684d8002db1c4bf6b81",
+      "tokens": 650,
+      "lastModified": "2025-12-02T11:49:31.309Z"
+    },
+    {
+      "path": "skills\\metadata\\anthropic-integration.yaml",
+      "hash": "860c2966048c2cec8e30259ae17ff2cc",
+      "tokens": 509,
+      "lastModified": "2025-12-02T11:39:49.173Z"
+    },
+    {
+      "path": "skills\\metadata\\api-design-patterns.yaml",
+      "hash": "f67dc8068c0e0ffa8cd2732fefae7aa9",
+      "tokens": 671,
+      "lastModified": "2025-12-02T11:31:04.975Z"
+    },
+    {
+      "path": "skills\\metadata\\astro-expert.yaml",
+      "hash": "6dbd22cefa25501bada3dd05dc40ad81",
+      "tokens": 488,
+      "lastModified": "2025-12-02T11:40:48.890Z"
+    },
+    {
+      "path": "skills\\metadata\\auth\\clerk-auth-expert.yaml",
+      "hash": "c7c90d2f083e3dff67934ddbc5289c7a",
+      "tokens": 830,
+      "lastModified": "2025-12-04T03:34:24.998Z"
+    },
+    {
+      "path": "skills\\metadata\\aws-infrastructure.yaml",
+      "hash": "6d104d6a29a4d23ae301d44a4e9db1d2",
+      "tokens": 394,
+      "lastModified": "2025-12-02T11:16:00.222Z"
+    },
+    {
+      "path": "skills\\metadata\\backend\\convex-expert.yaml",
+      "hash": "706bb97ad59a42c60455fc52d92eb1fd",
+      "tokens": 802,
+      "lastModified": "2025-12-04T03:35:25.687Z"
+    },
+    {
+      "path": "skills\\metadata\\bonding-curve-master.yaml",
+      "hash": "b3d8927fa8bf126d4376d6ea481009da",
+      "tokens": 505,
+      "lastModified": "2025-12-02T10:36:26.216Z"
+    },
+    {
+      "path": "skills\\metadata\\cdn-optimization.yaml",
+      "hash": "c7720198d0df4966dc71c7faa63c5305",
+      "tokens": 647,
+      "lastModified": "2025-12-02T11:51:49.690Z"
+    },
+    {
+      "path": "skills\\metadata\\chainlink-expert.yaml",
+      "hash": "e1b6c782b3e60fe0b3ae89c9bbea9d34",
+      "tokens": 475,
+      "lastModified": "2025-12-02T11:41:42.382Z"
+    },
+    {
+      "path": "skills\\metadata\\ci-cd-automation.yaml",
+      "hash": "527d81d566e7c1c6307d8782963fb6ab",
+      "tokens": 409,
+      "lastModified": "2025-12-02T11:15:57.951Z"
+    },
+    {
+      "path": "skills\\metadata\\cli\\cli-builder-expert.yaml",
+      "hash": "0410de0b6f8df64c0a46d18c939fef9e",
+      "tokens": 1034,
+      "lastModified": "2025-12-04T03:36:19.662Z"
+    },
+    {
+      "path": "skills\\metadata\\cloudflare-expert.yaml",
+      "hash": "a72c4c68178e258057bcc4f447a6dcb4",
+      "tokens": 481,
+      "lastModified": "2025-12-02T11:42:33.476Z"
+    },
+    {
+      "path": "skills\\metadata\\code-security-audit.yaml",
+      "hash": "ec9c3109e5a3891d7da36d25ee93b34f",
+      "tokens": 685,
+      "lastModified": "2025-12-02T11:48:19.383Z"
+    },
+    {
+      "path": "skills\\metadata\\cross-chain-expert.yaml",
+      "hash": "90569901e1c9a8313f5a958e68ff7e32",
+      "tokens": 672,
+      "lastModified": "2025-12-02T11:53:30.171Z"
+    },
+    {
+      "path": "skills\\metadata\\crypto-wallet-security.yaml",
+      "hash": "1aa443e41b69a3d35ce95e4636b0110d",
+      "tokens": 714,
+      "lastModified": "2025-12-02T11:48:21.353Z"
+    },
+    {
+      "path": "skills\\metadata\\cypress-testing.yaml",
+      "hash": "9228a7e2d0ea0b5b59ec4946192ca218",
+      "tokens": 478,
+      "lastModified": "2025-12-02T11:42:35.122Z"
+    },
+    {
+      "path": "skills\\metadata\\dao-governance.yaml",
+      "hash": "e4388f9804cb21fabfe19af1cd74b33b",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:53:32.052Z"
+    },
+    {
+      "path": "skills\\metadata\\data-pipeline-expert.yaml",
+      "hash": "d3d592a9dbdfcc1b09614a78cfea197e",
+      "tokens": 634,
+      "lastModified": "2025-12-02T11:49:24.169Z"
+    },
+    {
+      "path": "skills\\metadata\\data-visualization.yaml",
+      "hash": "099c13477c7ee878c5fb26028209cd06",
+      "tokens": 654,
+      "lastModified": "2025-12-02T11:49:29.597Z"
+    },
+    {
+      "path": "skills\\metadata\\database\\drizzle-studio.yaml",
+      "hash": "2f17e6c7f07d768d0c69a5408e2dd825",
+      "tokens": 670,
+      "lastModified": "2025-12-04T03:34:22.383Z"
+    },
+    {
+      "path": "skills\\metadata\\database\\neon-postgres.yaml",
+      "hash": "bd67724b9cc2df9edc52fcedd40862f7",
+      "tokens": 635,
+      "lastModified": "2025-12-04T03:34:23.691Z"
+    },
+    {
+      "path": "skills\\metadata\\database-schema-expert.yaml",
+      "hash": "21b3b5d0e7471bcd31cc15a058b67c25",
+      "tokens": 426,
+      "lastModified": "2025-12-02T11:15:08.443Z"
+    },
+    {
+      "path": "skills\\metadata\\defi-data-analyst.yaml",
+      "hash": "cbe4057c9f5090e59bc766074d60a50b",
+      "tokens": 430,
+      "lastModified": "2025-12-02T11:13:20.079Z"
+    },
+    {
+      "path": "skills\\metadata\\devops\\devops-automation-stack.yaml",
+      "hash": "eeda1a9fb8bdcc06a3f27c0c1a8113fe",
+      "tokens": 1088,
+      "lastModified": "2025-12-04T03:27:46.192Z"
+    },
+    {
+      "path": "skills\\metadata\\devops\\monorepo-build-stack.yaml",
+      "hash": "2c29c5fdad4fdb6bb1f116f2d9677a6c",
+      "tokens": 952,
+      "lastModified": "2025-12-04T03:27:47.608Z"
+    },
+    {
+      "path": "skills\\metadata\\docker-kubernetes-pro.yaml",
+      "hash": "1958ca654a1e850e1198e44520902b47",
+      "tokens": 415,
+      "lastModified": "2025-12-02T11:15:55.946Z"
+    },
+    {
+      "path": "skills\\metadata\\drizzle-orm-expert.yaml",
+      "hash": "9881a8a01592931e97f304381872934e",
+      "tokens": 645,
+      "lastModified": "2025-12-02T11:32:16.558Z"
+    },
+    {
+      "path": "skills\\metadata\\edge-computing.yaml",
+      "hash": "1ff4571116bdd6b57ad7db52a3fa255a",
+      "tokens": 638,
+      "lastModified": "2025-12-02T11:51:46.211Z"
+    },
+    {
+      "path": "skills\\metadata\\elasticsearch-expert.yaml",
+      "hash": "87f749c148742041d0c74aebaeb54087",
+      "tokens": 655,
+      "lastModified": "2025-12-02T11:49:25.913Z"
+    },
+    {
+      "path": "skills\\metadata\\email\\resend-email.yaml",
+      "hash": "01ebf469c88a0ec989e57f909a9769ad",
+      "tokens": 890,
+      "lastModified": "2025-12-04T03:36:17.089Z"
+    },
+    {
+      "path": "skills\\metadata\\embedding-specialist.yaml",
+      "hash": "a892948b3b678d5a124ea390ff43b8da",
+      "tokens": 651,
+      "lastModified": "2025-12-02T11:50:38.563Z"
+    },
+    {
+      "path": "skills\\metadata\\error-handling-expert.yaml",
+      "hash": "6e258bab62665cb97fc0316c8bede7f0",
+      "tokens": 694,
+      "lastModified": "2025-12-02T11:29:57.783Z"
+    },
+    {
+      "path": "skills\\metadata\\evm-solidity-expert.yaml",
+      "hash": "c6e89ab7f86247cc2567cefbe2c19560",
+      "tokens": 511,
+      "lastModified": "2025-12-02T11:13:14.949Z"
+    },
+    {
+      "path": "skills\\metadata\\expo-expert.yaml",
+      "hash": "f2e1beeb24a34b5bd16724f3d569c29e",
+      "tokens": 497,
+      "lastModified": "2025-12-02T11:40:46.860Z"
+    },
+    {
+      "path": "skills\\metadata\\extensions\\chrome-extension-expert.yaml",
+      "hash": "95fdc849bf55d13d22ea93c86a08550c",
+      "tokens": 936,
+      "lastModified": "2025-12-04T03:36:18.344Z"
+    },
+    {
+      "path": "skills\\metadata\\fastify-expert.yaml",
+      "hash": "08569a9c7856fcf4b7d1dfeaffb5fedc",
+      "tokens": 407,
+      "lastModified": "2025-12-02T11:15:15.408Z"
+    },
+    {
+      "path": "skills\\metadata\\framer-motion-wizard.yaml",
+      "hash": "1d2408546435ab83f45312feafba8449",
+      "tokens": 406,
+      "lastModified": "2025-12-02T11:14:20.881Z"
+    },
+    {
+      "path": "skills\\metadata\\frontend\\react-19-expert.yaml",
+      "hash": "4eda2b8dea6acd78de8b27c81d6a6995",
+      "tokens": 792,
+      "lastModified": "2025-12-04T03:32:19.596Z"
+    },
+    {
+      "path": "skills\\metadata\\gas-optimization.yaml",
+      "hash": "89d1c204ca45998ba2a57f57e6150df8",
+      "tokens": 644,
+      "lastModified": "2025-12-02T11:53:41.332Z"
+    },
+    {
+      "path": "skills\\metadata\\git-workflow-expert.yaml",
+      "hash": "8dc43e3ad318e97cbc01ce028f2aca85",
+      "tokens": 674,
+      "lastModified": "2025-12-02T11:31:07.024Z"
+    },
+    {
+      "path": "skills\\metadata\\graphql-api-designer.yaml",
+      "hash": "bfe438239e4c043263e33fb404505ce1",
+      "tokens": 407,
+      "lastModified": "2025-12-02T11:15:11.930Z"
+    },
+    {
+      "path": "skills\\metadata\\helius-integration.yaml",
+      "hash": "b90605e8ff6be0febae53792e669a0f8",
+      "tokens": 407,
+      "lastModified": "2025-12-02T11:13:21.885Z"
+    },
+    {
+      "path": "skills\\metadata\\jest-testing.yaml",
+      "hash": "81a8547f07019f5ffe99dcfda6526729",
+      "tokens": 467,
+      "lastModified": "2025-12-02T11:42:37.097Z"
+    },
+    {
+      "path": "skills\\metadata\\jobs\\inngest-expert.yaml",
+      "hash": "63bb26251978d5fa8524fa7fa3ea8b65",
+      "tokens": 782,
+      "lastModified": "2025-12-04T03:35:23.282Z"
+    },
+    {
+      "path": "skills\\metadata\\jobs\\trigger-dev-expert.yaml",
+      "hash": "b58c8fa6d22f586ea087ccffd845058b",
+      "tokens": 717,
+      "lastModified": "2025-12-04T03:35:24.426Z"
+    },
+    {
+      "path": "skills\\metadata\\jupiter-trader.yaml",
+      "hash": "c733afcc5f9eb96c49120958947edd8a",
+      "tokens": 422,
+      "lastModified": "2025-12-02T10:36:46.202Z"
+    },
+    {
+      "path": "skills\\metadata\\kubernetes-expert.yaml",
+      "hash": "6e2ff922a253d867200115b5b3bb1014",
+      "tokens": 632,
+      "lastModified": "2025-12-02T11:51:42.375Z"
+    },
+    {
+      "path": "skills\\metadata\\langchain-expert.yaml",
+      "hash": "36f35fc410214cda69de95964cfb553c",
+      "tokens": 477,
+      "lastModified": "2025-12-02T11:39:51.073Z"
+    },
+    {
+      "path": "skills\\metadata\\liquidity-pools.yaml",
+      "hash": "e0090abf3b1cee39288dd15f6cf46d29",
+      "tokens": 647,
+      "lastModified": "2025-12-02T11:53:37.707Z"
+    },
+    {
+      "path": "skills\\metadata\\load-balancing-expert.yaml",
+      "hash": "d4baa4c29ac0ade36cc5689ac7e412da",
+      "tokens": 653,
+      "lastModified": "2025-12-02T11:51:47.938Z"
+    },
+    {
+      "path": "skills\\metadata\\mev-protection.yaml",
+      "hash": "a6020499c7f392e3839f944ee60460a9",
+      "tokens": 654,
+      "lastModified": "2025-12-02T11:53:28.348Z"
+    },
+    {
+      "path": "skills\\metadata\\mlops-expert.yaml",
+      "hash": "ed6731032541af58b4348bd21e1e57b1",
+      "tokens": 615,
+      "lastModified": "2025-12-02T11:50:34.705Z"
+    },
+    {
+      "path": "skills\\metadata\\model-fine-tuning.yaml",
+      "hash": "aeb0ce832b198c8bd1e379313fe80d28",
+      "tokens": 622,
+      "lastModified": "2025-12-02T11:50:36.505Z"
+    },
+    {
+      "path": "skills\\metadata\\multimodal-ai-expert.yaml",
+      "hash": "aaaa64a8292f2a80516f5b809098d28e",
+      "tokens": 631,
+      "lastModified": "2025-12-02T11:50:42.086Z"
+    },
+    {
+      "path": "skills\\metadata\\nextjs-14-expert.yaml",
+      "hash": "367de56c59183d6cb0573f4513f7f110",
+      "tokens": 548,
+      "lastModified": "2025-12-02T10:37:06.209Z"
+    },
+    {
+      "path": "skills\\metadata\\nextjs-app-router.yaml",
+      "hash": "2d553c5760a8a92a5f3c093d26b8ec17",
+      "tokens": 742,
+      "lastModified": "2025-12-02T11:31:03.272Z"
+    },
+    {
+      "path": "skills\\metadata\\nft-metadata-expert.yaml",
+      "hash": "81ba98cb647682ba66895c5923ddab0b",
+      "tokens": 647,
+      "lastModified": "2025-12-02T11:53:33.970Z"
+    },
+    {
+      "path": "skills\\metadata\\nginx-expert.yaml",
+      "hash": "fcbe2c33b862bb0f1d4ec0d3001790b4",
+      "tokens": 476,
+      "lastModified": "2025-12-02T11:41:47.817Z"
+    },
+    {
+      "path": "skills\\metadata\\nodejs-api-architect.yaml",
+      "hash": "2a628fe4b90294223086247f9fdce60d",
+      "tokens": 550,
+      "lastModified": "2025-12-02T10:40:29.839Z"
+    },
+    {
+      "path": "skills\\metadata\\openai-integration.yaml",
+      "hash": "cb21eca4cb1afd169d562c71b2a8f407",
+      "tokens": 645,
+      "lastModified": "2025-12-02T11:33:32.783Z"
+    },
+    {
+      "path": "skills\\metadata\\penetration-testing.yaml",
+      "hash": "72ce7a3fd41888c5b953c35a83e4b568",
+      "tokens": 739,
+      "lastModified": "2025-12-02T11:48:17.588Z"
+    },
+    {
+      "path": "skills\\metadata\\performance-optimization.yaml",
+      "hash": "cd7866f0b097cee862967e88571255ac",
+      "tokens": 713,
+      "lastModified": "2025-12-02T11:29:59.699Z"
+    },
+    {
+      "path": "skills\\metadata\\playwright-testing.yaml",
+      "hash": "580ec1b1af16fe381106d48eee9c3541",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:33:29.003Z"
+    },
+    {
+      "path": "skills\\metadata\\pnpm-monorepo-expert.yaml",
+      "hash": "52d66252476c0ac6d8cd13124e7d16d6",
+      "tokens": 670,
+      "lastModified": "2025-12-02T11:32:11.105Z"
+    },
+    {
+      "path": "skills\\metadata\\prisma-orm-expert.yaml",
+      "hash": "7265304e4746a2afb861dca2fc8348cb",
+      "tokens": 648,
+      "lastModified": "2025-12-02T11:30:03.780Z"
+    },
+    {
+      "path": "skills\\metadata\\prompt-engineering.yaml",
+      "hash": "e07f4c2952f0b0a283fb9dc03afcf56b",
+      "tokens": 501,
+      "lastModified": "2025-12-02T11:39:57.404Z"
+    },
+    {
+      "path": "skills\\metadata\\rag-expert.yaml",
+      "hash": "71c026085c8e75aac23e0accb9948ca1",
+      "tokens": 507,
+      "lastModified": "2025-12-02T11:39:53.113Z"
+    },
+    {
+      "path": "skills\\metadata\\react-hook-form-expert.yaml",
+      "hash": "d6fab864de914fbc487004a34d8a6c2b",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:32:18.409Z"
+    },
+    {
+      "path": "skills\\metadata\\react-native-expert.yaml",
+      "hash": "a54e22a534557dae537ad4abb4986559",
+      "tokens": 510,
+      "lastModified": "2025-12-02T11:40:44.998Z"
+    },
+    {
+      "path": "skills\\metadata\\react-typescript-master.yaml",
+      "hash": "4f9f174d32a5b1b3c0c1cf6d87a68cbc",
+      "tokens": 450,
+      "lastModified": "2025-12-02T11:14:19.274Z"
+    },
+    {
+      "path": "skills\\metadata\\redis-caching-pro.yaml",
+      "hash": "7ea87aff39570b8ce051a4b0b6aa6a49",
+      "tokens": 397,
+      "lastModified": "2025-12-02T11:15:10.014Z"
+    },
+    {
+      "path": "skills\\metadata\\reentrancy-guard.yaml",
+      "hash": "11d64c7b6b1e71491506593df9443ffe",
+      "tokens": 675,
+      "lastModified": "2025-12-02T11:48:22.999Z"
+    },
+    {
+      "path": "skills\\metadata\\responsive-design-pro.yaml",
+      "hash": "90fe0ec819d2d82de06290cf776a0079",
+      "tokens": 424,
+      "lastModified": "2025-12-02T11:14:26.251Z"
+    },
+    {
+      "path": "skills\\metadata\\runtime\\bun-runtime.yaml",
+      "hash": "14bf40eb68ac319705b5a5891dc47b7e",
+      "tokens": 470,
+      "lastModified": "2025-12-04T03:32:16.002Z"
+    },
+    {
+      "path": "skills\\metadata\\security-best-practices.yaml",
+      "hash": "533f234b6a99e1ed1f4295fb91030357",
+      "tokens": 723,
+      "lastModified": "2025-12-02T11:29:56.042Z"
+    },
+    {
+      "path": "skills\\metadata\\serverless-expert.yaml",
+      "hash": "229bb93a6758c95480bf9078ecc9ef7f",
+      "tokens": 637,
+      "lastModified": "2025-12-02T11:51:44.178Z"
+    },
+    {
+      "path": "skills\\metadata\\shadcn-components.yaml",
+      "hash": "41f378ccf83e0fddeb85780731f0d190",
+      "tokens": 686,
+      "lastModified": "2025-12-02T11:33:25.475Z"
+    },
+    {
+      "path": "skills\\metadata\\shadcn-ui-expert.yaml",
+      "hash": "68d3181a7b50d8b6cca7df9253afa564",
+      "tokens": 369,
+      "lastModified": "2025-12-02T10:37:42.042Z"
+    },
+    {
+      "path": "skills\\metadata\\smart-contract-auditor.yaml",
+      "hash": "af66b49c2e9ea778b8728b008298c96f",
+      "tokens": 507,
+      "lastModified": "2025-12-02T11:13:16.514Z"
+    },
+    {
+      "path": "skills\\metadata\\solana-2025\\solana-2025-stack.yaml",
+      "hash": "ae1211b91ffc44689435dce905835834",
+      "tokens": 1601,
+      "lastModified": "2025-12-04T03:27:44.965Z"
+    },
+    {
+      "path": "skills\\metadata\\solana-anchor-expert.yaml",
+      "hash": "b6265af53ad698cc891f8dc73fa5bccc",
+      "tokens": 852,
+      "lastModified": "2025-12-02T10:35:52.816Z"
+    },
+    {
+      "path": "skills\\metadata\\stacks\\fullstack-blueprint-stack.yaml",
+      "hash": "dcb2977b6c32eb5deb3d21e4e15d0dff",
+      "tokens": 1407,
+      "lastModified": "2025-12-04T03:27:48.925Z"
+    },
+    {
+      "path": "skills\\metadata\\supabase-expert.yaml",
+      "hash": "ae6cb4866a6133c25781fed2ef9c28a2",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:31:09.044Z"
+    },
+    {
+      "path": "skills\\metadata\\svelte-expert.yaml",
+      "hash": "b6a6000c084bd10f81aaba5b1039196a",
+      "tokens": 505,
+      "lastModified": "2025-12-02T11:40:51.234Z"
+    },
+    {
+      "path": "skills\\metadata\\tailwind-css-pro.yaml",
+      "hash": "c2644daa7cb331fa12d52d4343ef584f",
+      "tokens": 324,
+      "lastModified": "2025-12-02T10:38:16.006Z"
+    },
+    {
+      "path": "skills\\metadata\\tanstack-query-expert.yaml",
+      "hash": "4f08bab5b4355e4f7166506429126876",
+      "tokens": 433,
+      "lastModified": "2025-12-02T11:14:24.527Z"
+    },
+    {
+      "path": "skills\\metadata\\terraform-expert.yaml",
+      "hash": "0499aa394a47d3c4c84994bcb4e1a658",
+      "tokens": 481,
+      "lastModified": "2025-12-02T11:41:46.085Z"
+    },
+    {
+      "path": "skills\\metadata\\test-automation-expert.yaml",
+      "hash": "9f76f8666e61b162d1b1bc5cbffb5660",
+      "tokens": 384,
+      "lastModified": "2025-12-02T11:16:02.470Z"
+    },
+    {
+      "path": "skills\\metadata\\testing\\playwright-pro.yaml",
+      "hash": "22ce3c6b07330d36cc0978d732f2c520",
+      "tokens": 613,
+      "lastModified": "2025-12-04T03:32:18.368Z"
+    },
+    {
+      "path": "skills\\metadata\\testing\\vitest-expert.yaml",
+      "hash": "ee8ea77af97621258a7c3d370fd367a8",
+      "tokens": 554,
+      "lastModified": "2025-12-04T03:32:17.184Z"
+    },
+    {
+      "path": "skills\\metadata\\thegraph-expert.yaml",
+      "hash": "ef76cd18393fc332a420e3ec9ea93442",
+      "tokens": 475,
+      "lastModified": "2025-12-02T11:41:44.424Z"
+    },
+    {
+      "path": "skills\\metadata\\timeseries-db-expert.yaml",
+      "hash": "7580731d429d66bf52aed7eb0416d939",
+      "tokens": 652,
+      "lastModified": "2025-12-02T11:49:27.909Z"
+    },
+    {
+      "path": "skills\\metadata\\token-economics.yaml",
+      "hash": "08b9cb27a3e5f78a0595f4df01f6bd1d",
+      "tokens": 470,
+      "lastModified": "2025-12-02T11:13:18.398Z"
+    },
+    {
+      "path": "skills\\metadata\\token-launch-expert.yaml",
+      "hash": "d9f1c5e0ef60039a7a13c965fef32680",
+      "tokens": 634,
+      "lastModified": "2025-12-02T11:53:35.795Z"
+    },
+    {
+      "path": "skills\\metadata\\trpc-expert.yaml",
+      "hash": "43f2c0f8270e100ad745d81bc65fab13",
+      "tokens": 646,
+      "lastModified": "2025-12-02T11:32:14.690Z"
+    },
+    {
+      "path": "skills\\metadata\\typescript\\effect-ts.yaml",
+      "hash": "9f81357329122ee772f23ba7fcc699b6",
+      "tokens": 609,
+      "lastModified": "2025-12-04T03:34:21.116Z"
+    },
+    {
+      "path": "skills\\metadata\\typescript-advanced.yaml",
+      "hash": "54c298faa3d02bd6ba9ee0b0a0c721c6",
+      "tokens": 690,
+      "lastModified": "2025-12-02T11:30:01.703Z"
+    },
+    {
+      "path": "skills\\metadata\\typescript-senior.yaml",
+      "hash": "548fbe36402b92be9e9846660342b707",
+      "tokens": 434,
+      "lastModified": "2025-12-02T10:37:23.597Z"
+    },
+    {
+      "path": "skills\\metadata\\uniswap-expert.yaml",
+      "hash": "8469331f6a6736321c3e495d2cac8322",
+      "tokens": 467,
+      "lastModified": "2025-12-02T11:41:40.793Z"
+    },
+    {
+      "path": "skills\\metadata\\upload\\uploadthing-expert.yaml",
+      "hash": "92c5538dbe91fcae796b9826e8af4d65",
+      "tokens": 915,
+      "lastModified": "2025-12-04T03:35:27.120Z"
+    },
+    {
+      "path": "skills\\metadata\\vector-db-expert.yaml",
+      "hash": "0d1d1a482ae038efd36428663255c234",
+      "tokens": 501,
+      "lastModified": "2025-12-02T11:39:55.241Z"
+    },
+    {
+      "path": "skills\\metadata\\vercel-deployment.yaml",
+      "hash": "808f81749c7947221758a7c10c8b39ea",
+      "tokens": 661,
+      "lastModified": "2025-12-02T11:31:10.918Z"
+    },
+    {
+      "path": "skills\\metadata\\vibe-coder.yaml",
+      "hash": "26e1d8a0fc424aef5991ba194781eb6c",
+      "tokens": 370,
+      "lastModified": "2025-12-02T10:37:59.380Z"
+    },
+    {
+      "path": "skills\\metadata\\viem-wagmi-expert.yaml",
+      "hash": "d39515f4a903f963900b0248da135de0",
+      "tokens": 669,
+      "lastModified": "2025-12-02T11:33:27.147Z"
+    },
+    {
+      "path": "skills\\metadata\\vitest-testing.yaml",
+      "hash": "5bd6a1ab155515c991a787f74a1f5d6b",
+      "tokens": 628,
+      "lastModified": "2025-12-02T11:33:30.916Z"
+    },
+    {
+      "path": "skills\\metadata\\vue-expert.yaml",
+      "hash": "fc6b1bb70a54d6de2cfb6624a3d9d470",
+      "tokens": 470,
+      "lastModified": "2025-12-02T11:40:53.035Z"
+    },
+    {
+      "path": "skills\\metadata\\wallet-integration.yaml",
+      "hash": "c7d25edceb9ca084c3343b0e9d1bfb10",
+      "tokens": 381,
+      "lastModified": "2025-12-02T10:38:29.767Z"
+    },
+    {
+      "path": "skills\\metadata\\web\\hono-expert.yaml",
+      "hash": "0fffcb822abac791fbda529bc72c0137",
+      "tokens": 473,
+      "lastModified": "2025-12-04T03:32:14.780Z"
+    },
+    {
+      "path": "skills\\metadata\\websocket-realtime.yaml",
+      "hash": "2d835226996357fcc66acf3573565ab6",
+      "tokens": 422,
+      "lastModified": "2025-12-02T11:15:13.658Z"
+    },
+    {
+      "path": "skills\\metadata\\yield-farming.yaml",
+      "hash": "6e8f912aeb3c969d821d36196174790f",
+      "tokens": 659,
+      "lastModified": "2025-12-02T11:53:39.533Z"
+    },
+    {
+      "path": "skills\\metadata\\zod-validation-expert.yaml",
+      "hash": "a4fd1e8a4f3597e9683abe88e0553d9e",
+      "tokens": 645,
+      "lastModified": "2025-12-02T11:32:12.864Z"
+    },
+    {
+      "path": "skills\\metadata\\zustand-state-master.yaml",
+      "hash": "f0652d173f3d454446ce85861b25059e",
+      "tokens": 415,
+      "lastModified": "2025-12-02T11:14:22.840Z"
+    },
+    {
+      "path": "skills\\registry.yaml",
+      "hash": "de38da01d2d41dc6d77daf28f6a43049",
+      "tokens": 15794,
+      "lastModified": "2025-12-04T04:33:45.270Z"
+    },
+    {
+      "path": "src\\agents\\index.ts",
+      "hash": "c2014f06e43c81dedf75d9caab320c04",
+      "tokens": 127,
+      "lastModified": "2025-12-04T03:59:00.074Z"
+    },
+    {
+      "path": "src\\agents\\learning-observer.ts",
+      "hash": "8d3dd1f4b4f504e112ec90fbf57f8f06",
+      "tokens": 2710,
+      "lastModified": "2025-12-04T03:57:47.592Z"
+    },
+    {
+      "path": "src\\agents\\skills-navigator.ts",
+      "hash": "4db13c7dd70fc73e5760c161b7f9ea61",
+      "tokens": 2873,
+      "lastModified": "2025-12-04T03:58:46.526Z"
+    },
+    {
+      "path": "src\\autonomy\\engine.ts",
+      "hash": "1907733bebe97b2370088c75229e867e",
+      "tokens": 2373,
+      "lastModified": "2025-12-02T03:12:19.125Z"
+    },
+    {
+      "path": "src\\autonomy\\index.ts",
+      "hash": "e921cc085eb73f4bff2344ba3c05024d",
+      "tokens": 26,
+      "lastModified": "2025-12-04T05:20:48.266Z"
+    },
+    {
+      "path": "src\\autonomy-logger.ts",
+      "hash": "2d9cedef0646a0ddcd73cf6b0f78db33",
+      "tokens": 2160,
+      "lastModified": "2025-12-02T03:12:19.126Z"
+    },
+    {
+      "path": "src\\benchmark\\agent-spawner.ts",
+      "hash": "4861e08902c812292419dbd0146a8086",
+      "tokens": 2684,
+      "lastModified": "2025-12-02T05:04:13.211Z"
+    },
+    {
+      "path": "src\\benchmark\\comparison-runner.ts",
+      "hash": "d4f6180c622fe928a73b4f8ef15c540b",
+      "tokens": 3225,
+      "lastModified": "2025-12-02T05:04:15.229Z"
+    },
+    {
+      "path": "src\\benchmark\\index.ts",
+      "hash": "b8f070a397cf5862a0fed3e4c80e5f44",
+      "tokens": 318,
+      "lastModified": "2025-12-02T05:04:36.486Z"
+    },
+    {
+      "path": "src\\benchmark\\latency-profiler.ts",
+      "hash": "60ee5f416672bb402c9f29f3d7f15f9e",
+      "tokens": 2266,
+      "lastModified": "2025-12-02T04:58:22.199Z"
+    },
+    {
+      "path": "src\\benchmark\\metrics-collector.ts",
+      "hash": "9e21981f1624d1e5d84bdc125ed49fa1",
+      "tokens": 2928,
+      "lastModified": "2025-12-02T04:58:19.705Z"
+    },
+    {
+      "path": "src\\benchmark\\stress-test.ts",
+      "hash": "88c365a0a3e2d9b60f1389b9247d5fc7",
+      "tokens": 2900,
+      "lastModified": "2025-12-02T05:04:14.221Z"
+    },
+    {
+      "path": "src\\benchmark\\token-tracker.ts",
+      "hash": "43e55de4b8042e95dde31948e183b8d9",
+      "tokens": 2503,
+      "lastModified": "2025-12-02T04:58:20.908Z"
+    },
+    {
+      "path": "src\\boot-sequence.ts",
+      "hash": "b10e2eb67c2119e065acd0ec0ee9774c",
+      "tokens": 3228,
+      "lastModified": "2025-12-04T04:30:52.344Z"
+    },
+    {
+      "path": "src\\boot.ts",
+      "hash": "18f0d994a9109f14a308274b00489add",
+      "tokens": 2510,
+      "lastModified": "2025-12-02T07:26:17.085Z"
+    },
+    {
+      "path": "src\\brain\\brain-api.ts",
+      "hash": "7544bacabeb1766e706cf1cfb989c6a7",
+      "tokens": 3168,
+      "lastModified": "2025-12-02T05:28:08.417Z"
+    },
+    {
+      "path": "src\\brain\\brain-runtime.ts",
+      "hash": "5e870bda29cba6d0b70b01cd77b3bc69",
+      "tokens": 4855,
+      "lastModified": "2025-12-02T10:50:46.771Z"
+    },
+    {
+      "path": "src\\brain\\index.ts",
+      "hash": "4f5feecbafce0bda752124be72c3d8a6",
+      "tokens": 123,
+      "lastModified": "2025-12-02T05:47:27.048Z"
+    },
+    {
+      "path": "src\\brain\\server.ts",
+      "hash": "49287fa9c95e8600f6e5951fe450fe52",
+      "tokens": 2768,
+      "lastModified": "2025-12-02T07:24:36.632Z"
+    },
+    {
+      "path": "src\\cli.ts",
+      "hash": "bfadeb67a6903062193e2fb878bad0bd",
+      "tokens": 5061,
+      "lastModified": "2025-12-02T11:28:18.444Z"
+    },
+    {
+      "path": "src\\context\\index.ts",
+      "hash": "84a3150decc1466baa777e7abc92cd36",
+      "tokens": 26,
+      "lastModified": "2025-12-04T05:20:49.147Z"
+    },
+    {
+      "path": "src\\context\\indexer.ts",
+      "hash": "3162781deb828e49e5f174d38de9559a",
+      "tokens": 2708,
+      "lastModified": "2025-12-02T03:12:19.180Z"
+    },
+    {
+      "path": "src\\council\\council.ts",
+      "hash": "2cb985fca00fe0a65dc041088d79418d",
+      "tokens": 4006,
+      "lastModified": "2025-12-02T05:10:44.945Z"
+    },
+    {
+      "path": "src\\council\\index.ts",
+      "hash": "f11fe7369afb1b3fe1df72b16a281dba",
+      "tokens": 188,
+      "lastModified": "2025-12-02T05:11:23.064Z"
+    },
+    {
+      "path": "src\\council\\ranking.ts",
+      "hash": "234f19e30ae4c5f9b0a59b474cdfd16b",
+      "tokens": 2122,
+      "lastModified": "2025-12-02T05:10:46.105Z"
+    },
+    {
+      "path": "src\\council\\synthesis.ts",
+      "hash": "de7825f58c24675d04b263afdbd8e952",
+      "tokens": 2413,
+      "lastModified": "2025-12-02T05:10:47.330Z"
+    },
+    {
+      "path": "src\\evolution\\code-improver.ts",
+      "hash": "f392a437b28414d7df293daa63ed6931",
+      "tokens": 2764,
+      "lastModified": "2025-12-02T05:24:25.133Z"
+    },
+    {
+      "path": "src\\evolution\\evolution-loop.ts",
+      "hash": "fef856e57512b09c9431956e445d6b43",
+      "tokens": 3913,
+      "lastModified": "2025-12-02T05:22:29.849Z"
+    },
+    {
+      "path": "src\\evolution\\index.ts",
+      "hash": "935b83f03f3daf5554846a8080bf4349",
+      "tokens": 158,
+      "lastModified": "2025-12-02T05:24:34.790Z"
+    },
+    {
+      "path": "src\\evolution\\pattern-detector.ts",
+      "hash": "3b4fe11af14aa160b364881336c87a69",
+      "tokens": 2956,
+      "lastModified": "2025-12-02T05:23:29.871Z"
+    },
+    {
+      "path": "src\\index.ts",
+      "hash": "b60d20e931a0252a08440589f2c3c602",
+      "tokens": 3888,
+      "lastModified": "2025-12-04T05:21:15.465Z"
+    },
+    {
+      "path": "src\\intelligence\\capability-matrix.ts",
+      "hash": "940f68f50b350270371e01b7e3738536",
+      "tokens": 4144,
+      "lastModified": "2025-12-02T12:13:49.561Z"
+    },
+    {
+      "path": "src\\intelligence\\cloud-sync.ts",
+      "hash": "05b16254ec07bde04b7887ccd1cc27b0",
+      "tokens": 3002,
+      "lastModified": "2025-12-02T11:25:14.875Z"
+    },
+    {
+      "path": "src\\intelligence\\confidence-scorer.ts",
+      "hash": "0a2903be1c09fd647ca0b30a43b9b1d1",
+      "tokens": 2865,
+      "lastModified": "2025-12-02T11:19:10.437Z"
+    },
+    {
+      "path": "src\\intelligence\\index.ts",
+      "hash": "0cf805e68151a85e95a4f98cac341113",
+      "tokens": 1435,
+      "lastModified": "2025-12-04T04:04:16.361Z"
+    },
+    {
+      "path": "src\\intelligence\\knowledge-store.ts",
+      "hash": "8cb5b0921b65acc20aa6f6b5a9bacf97",
+      "tokens": 3639,
+      "lastModified": "2025-12-02T10:47:29.640Z"
+    },
+    {
+      "path": "src\\intelligence\\learning-loop.ts",
+      "hash": "4ba3345cd35d8bc7668bacb40d4e49af",
+      "tokens": 6095,
+      "lastModified": "2025-12-04T04:03:55.190Z"
+    },
+    {
+      "path": "src\\intelligence\\mcp-validator.ts",
+      "hash": "2e7a662409fe062c106b7349239c602e",
+      "tokens": 2800,
+      "lastModified": "2025-12-02T10:45:25.512Z"
+    },
+    {
+      "path": "src\\intelligence\\similarity-search.ts",
+      "hash": "349c0b069a0e7568ae77bf80166f8ca2",
+      "tokens": 2668,
+      "lastModified": "2025-12-02T12:06:28.801Z"
+    },
+    {
+      "path": "src\\intelligence\\skill-metadata.ts",
+      "hash": "3a7ad28d2d0a5f6dcb31ba0fb7c48b68",
+      "tokens": 3789,
+      "lastModified": "2025-12-02T12:12:35.130Z"
+    },
+    {
+      "path": "src\\intelligence\\skill-search.ts",
+      "hash": "6e43f41b870dd25c5cf1a9830ccf1a9a",
+      "tokens": 3864,
+      "lastModified": "2025-12-04T03:56:36.577Z"
+    },
+    {
+      "path": "src\\intelligence\\sqlite-store.ts",
+      "hash": "304adf64cd2318cba82431aec1e0750a",
+      "tokens": 3724,
+      "lastModified": "2025-12-02T11:17:51.800Z"
+    },
+    {
+      "path": "src\\intelligence\\synergy-graph.ts",
+      "hash": "e7a67684971fd3172d754a747652173b",
+      "tokens": 3359,
+      "lastModified": "2025-12-02T10:44:06.111Z"
+    },
+    {
+      "path": "src\\mcp\\hub.ts",
+      "hash": "d126d65c26b141aca92af8462784c435",
+      "tokens": 3139,
+      "lastModified": "2025-12-02T07:27:29.016Z"
+    },
+    {
+      "path": "src\\mcp\\index.ts",
+      "hash": "76254bc137f6a0d648c198f67c519414",
+      "tokens": 22,
+      "lastModified": "2025-12-04T05:20:54.129Z"
+    },
+    {
+      "path": "src\\mcp-hub.ts",
+      "hash": "5aacfd6de8a7f67a067042d27f91baa5",
+      "tokens": 2136,
+      "lastModified": "2025-12-02T04:34:12.182Z"
+    },
+    {
+      "path": "src\\mcp-server\\handlers.ts",
+      "hash": "2e40732321884dd902c739b2776d2025",
+      "tokens": 2863,
+      "lastModified": "2025-12-04T05:26:48.470Z"
+    },
+    {
+      "path": "src\\mcp-server\\index.ts",
+      "hash": "9bfa509a2831db1d476103df0b5b3235",
+      "tokens": 52,
+      "lastModified": "2025-12-04T05:27:12.248Z"
+    },
+    {
+      "path": "src\\mcp-server\\registry.ts",
+      "hash": "70a40d8a80aa635cb4c529a2e2725148",
+      "tokens": 846,
+      "lastModified": "2025-12-04T05:26:43.518Z"
+    },
+    {
+      "path": "src\\mcp-server\\tools.ts",
+      "hash": "b35e765f93fee767746cfbc54d0d2f0f",
+      "tokens": 796,
+      "lastModified": "2025-12-04T05:26:45.974Z"
+    },
+    {
+      "path": "src\\mcp-server\\types.ts",
+      "hash": "def10fa12cc2a5de167f706904f73aa1",
+      "tokens": 192,
+      "lastModified": "2025-12-04T05:26:42.625Z"
+    },
+    {
+      "path": "src\\mcp-server.ts",
+      "hash": "d1dad89ac8f36b8b880c6fbad6880d3a",
+      "tokens": 841,
+      "lastModified": "2025-12-04T05:27:13.412Z"
+    },
+    {
+      "path": "src\\memory\\cache.ts",
+      "hash": "8d792fee2f40a042ec00e205e1460894",
+      "tokens": 820,
+      "lastModified": "2025-12-04T05:23:27.531Z"
+    },
+    {
+      "path": "src\\memory\\context.ts",
+      "hash": "a146d097599f72594f35c0163d5f9603",
+      "tokens": 2104,
+      "lastModified": "2025-12-02T05:15:56.123Z"
+    },
+    {
+      "path": "src\\memory\\embeddings.ts",
+      "hash": "55a94bbbdf740214643390f17a6a176d",
+      "tokens": 326,
+      "lastModified": "2025-12-04T05:23:24.748Z"
+    },
+    {
+      "path": "src\\memory\\graphiti.ts",
+      "hash": "3be0ba039cc84294173133fc43a0f97c",
+      "tokens": 3699,
+      "lastModified": "2025-12-04T05:24:29.962Z"
+    },
+    {
+      "path": "src\\memory\\index.ts",
+      "hash": "13d7f286f046ef62855f7c59b25f73a3",
+      "tokens": 293,
+      "lastModified": "2025-12-04T05:24:49.385Z"
+    },
+    {
+      "path": "src\\memory\\search.ts",
+      "hash": "c914ef3a7df885797ccdcc329bd38287",
+      "tokens": 904,
+      "lastModified": "2025-12-04T05:23:30.594Z"
+    },
+    {
+      "path": "src\\memory\\types.ts",
+      "hash": "093d65b2d859383f2e0f5b56f63b3c01",
+      "tokens": 523,
+      "lastModified": "2025-12-04T05:23:23.564Z"
+    },
+    {
+      "path": "src\\mode-selector.ts",
+      "hash": "d56c2ae395949f77a446cdb6d362777b",
+      "tokens": 480,
+      "lastModified": "2025-12-04T05:29:30.220Z"
+    },
+    {
+      "path": "src\\models\\config.ts",
+      "hash": "9c3925776cecbc0325299d64df34caf6",
+      "tokens": 2422,
+      "lastModified": "2025-12-02T04:58:24.864Z"
+    },
+    {
+      "path": "src\\models\\cost-tracker.ts",
+      "hash": "5a1c200bb6a5e0006a8674cfeda7853e",
+      "tokens": 2700,
+      "lastModified": "2025-12-02T04:58:26.205Z"
+    },
+    {
+      "path": "src\\models\\index.ts",
+      "hash": "e574e30e1ceeb36248b4bca6cc2deefb",
+      "tokens": 290,
+      "lastModified": "2025-12-04T05:33:16.010Z"
+    },
+    {
+      "path": "src\\models\\model-client.ts",
+      "hash": "8b0ff32780c0246448344c4384892233",
+      "tokens": 1415,
+      "lastModified": "2025-12-04T05:33:00.885Z"
+    },
+    {
+      "path": "src\\models\\pricing.ts",
+      "hash": "a6e308bb103eb4108626f59ecda53541",
+      "tokens": 480,
+      "lastModified": "2025-12-04T05:32:17.263Z"
+    },
+    {
+      "path": "src\\models\\providers.ts",
+      "hash": "bb3ff9150634ee8afbf6ad191891050c",
+      "tokens": 1047,
+      "lastModified": "2025-12-04T05:32:34.979Z"
+    },
+    {
+      "path": "src\\models\\router.ts",
+      "hash": "54c009687392eed906572ca58c9ee1e0",
+      "tokens": 3109,
+      "lastModified": "2025-12-02T04:58:23.525Z"
+    },
+    {
+      "path": "src\\models\\types.ts",
+      "hash": "ad5d2cb5d59a94b62371796cbb207d04",
+      "tokens": 249,
+      "lastModified": "2025-12-04T05:32:04.736Z"
+    },
+    {
+      "path": "src\\modes\\complexity.ts",
+      "hash": "16fdf182787431b18fc151c6f6b3a45c",
+      "tokens": 621,
+      "lastModified": "2025-12-04T05:28:42.474Z"
+    },
+    {
+      "path": "src\\modes\\detection.ts",
+      "hash": "e4c961c43b81935bf4fc5f41c0757120",
+      "tokens": 1336,
+      "lastModified": "2025-12-04T05:28:46.154Z"
+    },
+    {
+      "path": "src\\modes\\display.ts",
+      "hash": "8a94d5bcb074bd4c6835d340b06cd814",
+      "tokens": 463,
+      "lastModified": "2025-12-04T05:29:24.797Z"
+    },
+    {
+      "path": "src\\modes\\index.ts",
+      "hash": "f9a1cb142a8fcf5deaa5e7e74ebc9475",
+      "tokens": 168,
+      "lastModified": "2025-12-04T05:29:27.335Z"
+    },
+    {
+      "path": "src\\modes\\registry.ts",
+      "hash": "ff71d45bb64daa731262f3ac685aef98",
+      "tokens": 541,
+      "lastModified": "2025-12-04T05:31:02.330Z"
+    },
+    {
+      "path": "src\\modes\\selector.ts",
+      "hash": "c9362f73086e530aeb2a8d75f7392f8a",
+      "tokens": 632,
+      "lastModified": "2025-12-04T05:29:23.897Z"
+    },
+    {
+      "path": "src\\modes\\types.ts",
+      "hash": "50d5cf5f54b084864e9db06fe2a184a1",
+      "tokens": 535,
+      "lastModified": "2025-12-04T05:28:38.010Z"
+    },
+    {
+      "path": "src\\skill-hints.ts",
+      "hash": "dd215729ff6ada23e027d5dc4230197d",
+      "tokens": 2511,
+      "lastModified": "2025-12-04T03:23:50.858Z"
+    },
+    {
+      "path": "src\\skill-loader.ts",
+      "hash": "ac009ef27840e92054373c47c3c023af",
+      "tokens": 1003,
+      "lastModified": "2025-12-04T05:39:56.518Z"
+    },
+    {
+      "path": "src\\skills\\formatter.ts",
+      "hash": "6686eae9a556673392377e389def2a8c",
+      "tokens": 449,
+      "lastModified": "2025-12-04T05:39:32.702Z"
+    },
+    {
+      "path": "src\\skills\\fragment.ts",
+      "hash": "5ec3bfb8250a435a86d7c25d181f8490",
+      "tokens": 620,
+      "lastModified": "2025-12-04T05:38:50.091Z"
+    },
+    {
+      "path": "src\\skills\\index.ts",
+      "hash": "97c427a9590bc8a33e3d0cf7a4c225ac",
+      "tokens": 188,
+      "lastModified": "2025-12-04T05:40:06.388Z"
+    },
+    {
+      "path": "src\\skills\\loader.ts",
+      "hash": "b2adb08bf88069c26c1390d02da3896e",
+      "tokens": 2062,
+      "lastModified": "2025-12-02T03:12:19.250Z"
+    },
+    {
+      "path": "src\\skills\\matcher.ts",
+      "hash": "8e05a46ed26e7758e593e9498287611e",
+      "tokens": 484,
+      "lastModified": "2025-12-04T05:39:18.800Z"
+    },
+    {
+      "path": "src\\skills\\registry.ts",
+      "hash": "3105cea4ca9c1d3c8705caf083c91f06",
+      "tokens": 714,
+      "lastModified": "2025-12-04T05:39:06.502Z"
+    },
+    {
+      "path": "src\\skills\\types.ts",
+      "hash": "83dc7cd52ff258a0fc65e3916902a470",
+      "tokens": 415,
+      "lastModified": "2025-12-04T05:38:34.817Z"
+    },
+    {
+      "path": "src\\tests\\comprehensive.test.ts",
+      "hash": "8f12667b75207d51efcaf3368c20918e",
+      "tokens": 5387,
+      "lastModified": "2025-12-02T07:57:41.158Z"
+    },
+    {
+      "path": "src\\tests\\modules.test.ts",
+      "hash": "3044b10e698b3934fcedef78c76b9795",
+      "tokens": 1366,
+      "lastModified": "2025-12-04T05:44:22.564Z"
+    },
+    {
+      "path": "src\\tests\\opus67-self-test.ts",
+      "hash": "53208c65d2d5b855c2df2a16ba54b69b",
+      "tokens": 14133,
+      "lastModified": "2025-12-04T05:10:45.382Z"
+    },
+    {
+      "path": "THE_DOOR.md",
+      "hash": "63fdc16632cd082eaabf4e5d56329a9e",
+      "tokens": 2732,
+      "lastModified": "2025-12-01T07:14:39.654Z"
+    },
+    {
+      "path": "tsconfig.json",
+      "hash": "102ef970342fa58b258b40e8bf2409a6",
+      "tokens": 125,
+      "lastModified": "2025-12-02T03:14:18.423Z"
+    },
+    {
+      "path": "tsup.config.ts",
+      "hash": "8ef8a8d2fabb9af05e882630818b7099",
+      "tokens": 160,
+      "lastModified": "2025-12-04T04:59:30.598Z"
+    },
+    {
+      "path": "vitest.config.ts",
+      "hash": "d8273ab865d3ff0d0ece1914124aed9f",
+      "tokens": 62,
+      "lastModified": "2025-12-04T05:42:51.627Z"
+    }
+  ],
+  "totalTokens": 427392
+}

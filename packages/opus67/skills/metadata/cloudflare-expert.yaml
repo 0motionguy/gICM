@@ -1,0 +1,65 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: cloudflare-expert
+
+id: cloudflare-expert
+name: Cloudflare Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Configure Cloudflare for CDN, security, and edge computing"
+  what_it_does:
+    - "Configures DNS and proxying"
+    - "Sets up Cloudflare Workers"
+    - "Implements Page Rules and caching"
+    - "Configures security settings (WAF, DDoS)"
+    - "Uses Cloudflare D1 and R2"
+  what_it_cannot_do:
+    - "Access without Cloudflare account"
+    - "Bypass enterprise-only features"
+    - "Replace application logic entirely"
+    - "Handle unlimited workers execution"
+
+capabilities:
+  - action: "configure DNS"
+    confidence: 0.96
+    requires: ["domain"]
+    produces: ["DNS records", "proxy settings"]
+  - action: "create Workers"
+    confidence: 0.93
+    requires: ["edge logic needs"]
+    produces: ["Worker scripts"]
+  - action: "set up caching"
+    confidence: 0.94
+    requires: ["caching rules"]
+    produces: ["cache config", "Page Rules"]
+  - action: "configure security"
+    confidence: 0.92
+    requires: ["security needs"]
+    produces: ["WAF rules", "rate limiting"]
+
+anti_hallucination:
+  never_claim:
+    - "Unlimited free tier"
+    - "Blocks all attacks"
+    - "No configuration needed"
+  always_recommend:
+    - "Use development mode for testing"
+    - "Configure appropriate security level"
+    - "Monitor analytics for issues"
+  trigger_phrases:
+    - pattern: "Cloudflare"
+      response: "I'll help with Cloudflare setup. Need CDN, Workers, Pages, or security configuration?"
+
+examples:
+  - task: "Set up CDN for website"
+    approach: "DNS proxying, caching rules, security settings, performance optimization"
+    skills_needed: ["cloudflare-expert"]
+
+synergies:
+  amplifying:
+    - skill: vercel-deployment
+      reason: "Cloudflare can front Vercel"
+    - skill: security-best-practices
+      reason: "Security layer"
+  conflicting: []
+  redundant: []

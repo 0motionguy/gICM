@@ -1,0 +1,60 @@
+# OPUS 67 Skill Metadata: database-schema-expert
+id: database-schema-expert
+name: "Database Schema Expert"
+tier: 1
+token_cost: 10000
+
+semantic:
+  purpose: "Design optimized database schemas and queries"
+  what_it_does:
+    - "Design normalized schemas"
+    - "Write SQL migrations"
+    - "Optimize query performance"
+    - "Design indexes"
+    - "Model relationships"
+    - "Write Prisma/Drizzle schemas"
+    - "Design partitioning strategies"
+    - "Implement soft deletes"
+    - "Design audit trails"
+  what_it_cannot:
+    - "Execute SQL queries"
+    - "Access live databases"
+    - "Run migrations"
+    - "Measure query performance"
+    - "Access your data"
+
+capabilities:
+  - action: "Design schemas"
+    confidence: 0.95
+  - action: "Write migrations"
+    confidence: 0.92
+  - action: "Optimize queries"
+    confidence: 0.88
+  - action: "Design indexes"
+    confidence: 0.90
+  - action: "Prisma/Drizzle schemas"
+    confidence: 0.95
+
+anti_hallucination:
+  - trigger: "run.*migration|execute.*sql"
+    response: "Run migrations with `prisma migrate dev` or your ORM's CLI."
+  - trigger: "query.*performance|actual.*time"
+    response: "Use EXPLAIN ANALYZE to measure actual query performance."
+  - trigger: "current.*data|live.*database"
+    response: "I can't access your database. Use your DB client to query."
+
+synergies:
+  amplifying:
+    - nodejs-api-architect
+    - typescript-senior
+    - redis-caching-pro
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Design user auth schema"
+    approach: "Users + Sessions + Roles + composite indexes"
+    outcome: success
+  - task: "Optimize slow query"
+    approach: "Analyze plan + add covering index + restructure joins"
+    outcome: success

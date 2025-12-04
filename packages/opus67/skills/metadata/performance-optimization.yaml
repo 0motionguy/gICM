@@ -1,0 +1,75 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: performance-optimization
+
+id: performance-optimization
+name: Performance Optimization Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Optimize application performance across frontend, backend, and database layers"
+  what_it_does:
+    - "Profiles and identifies performance bottlenecks"
+    - "Optimizes React rendering and bundle size"
+    - "Implements caching strategies"
+    - "Optimizes database queries and indexes"
+    - "Reduces API latency"
+  what_it_cannot_do:
+    - "Fix fundamental architecture issues instantly"
+    - "Optimize without profiling data"
+    - "Guarantee specific performance numbers"
+    - "Optimize hardware limitations"
+
+capabilities:
+  - action: "optimize React rendering"
+    confidence: 0.93
+    requires: ["React application"]
+    produces: ["memo", "useMemo", "useCallback optimizations"]
+  - action: "reduce bundle size"
+    confidence: 0.91
+    requires: ["JavaScript/TypeScript app"]
+    produces: ["code splitting", "tree shaking"]
+  - action: "implement caching"
+    confidence: 0.92
+    requires: ["API or data layer"]
+    produces: ["cache layer", "invalidation strategy"]
+  - action: "optimize database queries"
+    confidence: 0.90
+    requires: ["database schema", "slow queries"]
+    produces: ["indexes", "query optimization"]
+  - action: "implement lazy loading"
+    confidence: 0.94
+    requires: ["frontend application"]
+    produces: ["lazy components", "deferred loading"]
+
+anti_hallucination:
+  never_claim:
+    - "This will be 10x faster"
+    - "Zero latency achieved"
+    - "No performance issues remain"
+  always_recommend:
+    - "Measure before and after optimization"
+    - "Use profiling tools (Lighthouse, Chrome DevTools)"
+    - "Monitor production performance"
+    - "Set performance budgets"
+  trigger_phrases:
+    - pattern: "make it faster"
+      response: "Let me first identify bottlenecks through profiling, then apply targeted optimizations. What specific areas feel slow?"
+    - pattern: "optimize everything"
+      response: "I recommend focusing on measured bottlenecks first. Premature optimization can add complexity without benefit."
+
+examples:
+  - task: "My React app is slow"
+    approach: "Profile with React DevTools, identify unnecessary re-renders, implement memo/useMemo, check bundle size"
+    skills_needed: ["performance-optimization", "react-typescript-master"]
+  - task: "API responses are too slow"
+    approach: "Profile queries, add indexes, implement caching, consider pagination"
+    skills_needed: ["performance-optimization", "database-schema-expert", "redis-caching-pro"]
+
+synergies:
+  amplifying:
+    - skill: redis-caching-pro
+      reason: "Caching is key performance strategy"
+    - skill: database-schema-expert
+      reason: "Query optimization requires schema knowledge"
+  conflicting: []
+  redundant: []

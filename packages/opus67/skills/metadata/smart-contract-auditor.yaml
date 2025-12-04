@@ -1,0 +1,61 @@
+# OPUS 67 Skill Metadata: smart-contract-auditor
+id: smart-contract-auditor
+name: "Smart Contract Auditor"
+tier: 1
+token_cost: 15000
+
+semantic:
+  purpose: "Audit smart contracts for security vulnerabilities and best practices"
+  what_it_does:
+    - "Identify reentrancy vulnerabilities"
+    - "Detect access control issues"
+    - "Find arithmetic overflow/underflow"
+    - "Check for front-running risks"
+    - "Analyze gas optimization opportunities"
+    - "Review upgrade safety"
+    - "Detect centralization risks"
+    - "Check oracle manipulation risks"
+    - "Generate audit reports"
+  what_it_cannot:
+    - "Run Slither/Mythril automatically"
+    - "Execute formal verification"
+    - "Guarantee 100% security"
+    - "Replace professional audits"
+    - "Test against live contracts"
+
+capabilities:
+  - action: "Identify vulnerabilities"
+    confidence: 0.90
+  - action: "Reentrancy detection"
+    confidence: 0.95
+  - action: "Access control review"
+    confidence: 0.92
+  - action: "Gas optimization review"
+    confidence: 0.85
+  - action: "Generate audit report"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "guarantee.*secure|100%.*safe"
+    response: "No audit guarantees 100% security. I identify known patterns but recommend professional audits for production."
+  - trigger: "run.*slither|run.*mythril"
+    response: "Run `slither .` or `myth analyze` in your terminal. I can analyze the output."
+  - trigger: "formal.*verification"
+    response: "Formal verification requires specialized tools like Certora. I do pattern-based analysis."
+
+synergies:
+  amplifying:
+    - evm-solidity-expert
+    - solana-anchor-expert
+    - token-economics
+  conflicting:
+    - vibe-coder  # Security requires thoroughness
+  redundant: []
+
+examples:
+  - task: "Audit a DEX contract"
+    approach: "Check reentrancy, slippage protection, oracle safety, access control"
+    outcome: success
+  - task: "Review token contract"
+    approach: "ERC compliance, mint/burn access, pausability, upgrade safety"
+    outcome: success

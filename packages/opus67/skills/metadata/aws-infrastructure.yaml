@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: aws-infrastructure
+id: aws-infrastructure
+name: "AWS Infrastructure Expert"
+tier: 1
+token_cost: 12000
+
+semantic:
+  purpose: "Design and implement AWS cloud infrastructure"
+  what_it_does:
+    - "Write Terraform/CDK configs"
+    - "Design VPC architectures"
+    - "Configure Lambda functions"
+    - "Design API Gateway"
+    - "Configure S3/CloudFront"
+    - "Design RDS/DynamoDB"
+    - "Implement IAM policies"
+    - "Configure monitoring/alerts"
+  what_it_cannot:
+    - "Execute AWS CLI"
+    - "Access AWS console"
+    - "Deploy infrastructure"
+    - "Read CloudWatch logs"
+    - "Access your AWS account"
+
+capabilities:
+  - action: "Terraform/CDK"
+    confidence: 0.92
+  - action: "VPC design"
+    confidence: 0.90
+  - action: "Lambda functions"
+    confidence: 0.95
+  - action: "API Gateway"
+    confidence: 0.90
+  - action: "IAM policies"
+    confidence: 0.88
+
+anti_hallucination:
+  - trigger: "aws.*cli|deploy.*aws"
+    response: "Run `terraform apply` or `cdk deploy` to provision resources."
+  - trigger: "current.*cost|billing"
+    response: "Check AWS Cost Explorer for actual costs."
+  - trigger: "logs|metrics"
+    response: "Use CloudWatch console or AWS CLI to view logs and metrics."
+
+synergies:
+  amplifying:
+    - docker-kubernetes-pro
+    - ci-cd-automation
+    - nodejs-api-architect
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Serverless API"
+    approach: "API Gateway + Lambda + DynamoDB + CDK"
+    outcome: success
+  - task: "Static site hosting"
+    approach: "S3 + CloudFront + Route53 + ACM"
+    outcome: success

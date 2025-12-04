@@ -1,0 +1,86 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: DAO Governance Expert
+
+id: dao-governance
+name: DAO Governance Expert
+category: web3
+version: 1.0.0
+
+description:
+  short: Decentralized governance implementation
+  what_it_does: |
+    Implements DAO governance systems including voting mechanisms, proposal
+    lifecycles, treasury management, and on-chain governance. Works with
+    Realms (Solana), Governor (EVM), and custom governance solutions.
+  what_it_cannot: |
+    Cannot prevent governance attacks. Cannot ensure voter participation.
+    Cannot fix fundamental tokenomics issues through governance.
+
+capabilities:
+  can:
+    - governance_contracts:
+        confidence: 0.92
+        description: Implement OpenZeppelin Governor, Realms
+    - voting_mechanisms:
+        confidence: 0.90
+        description: Token voting, quadratic voting, conviction voting
+    - proposal_lifecycle:
+        confidence: 0.94
+        description: Design proposal creation, voting, execution
+    - treasury_governance:
+        confidence: 0.88
+        description: DAO treasury management with multisig
+    - delegation:
+        confidence: 0.86
+        description: Implement vote delegation systems
+  cannot:
+    - prevent_governance_attacks:
+        reason: Depends on token distribution
+    - ensure_participation:
+        reason: Community engagement issue
+    - fix_tokenomics:
+        reason: Fundamental design issue
+
+anti_hallucination:
+  rules:
+    - name: timelock_required
+      severity: critical
+      trigger: "governance|proposal|execute"
+      check: "Always use timelock for governance execution"
+    - name: quorum_setting
+      severity: high
+      trigger: "vote|quorum|threshold"
+      check: "Set appropriate quorum to prevent attacks"
+  common_mistakes:
+    - mistake: No timelock on governance
+      correction: Add timelock for users to exit before execution
+    - mistake: Low quorum requirements
+      correction: Set quorum based on realistic participation
+
+examples:
+  good:
+    - task: "Build DAO governance for protocol"
+      approach: "Governor + Timelock + token voting with delegation"
+    - task: "Implement Solana DAO"
+      approach: "Realms with SPL governance program"
+  bad:
+    - task: "Execute proposals immediately"
+      reason: "No time for community to react to malicious proposals"
+
+synergies:
+  amplifies:
+    - dao-agent
+    - smart-contract-auditor
+  conflicts: []
+  works_well_with:
+    - access-control-expert
+    - token-economics
+
+keywords:
+  - DAO
+  - governance
+  - voting
+  - proposals
+  - treasury
+  - Realms
+  - Governor

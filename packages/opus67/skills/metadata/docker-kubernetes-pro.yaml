@@ -1,0 +1,59 @@
+# OPUS 67 Skill Metadata: docker-kubernetes-pro
+id: docker-kubernetes-pro
+name: "Docker & Kubernetes Pro"
+tier: 1
+token_cost: 12000
+
+semantic:
+  purpose: "Design and deploy containerized applications"
+  what_it_does:
+    - "Write Dockerfiles"
+    - "Design multi-stage builds"
+    - "Create docker-compose configs"
+    - "Write Kubernetes manifests"
+    - "Design Helm charts"
+    - "Configure health checks"
+    - "Design resource limits"
+    - "Implement secrets management"
+    - "Configure ingress/networking"
+  what_it_cannot:
+    - "Run Docker commands"
+    - "Deploy to clusters"
+    - "Access running containers"
+    - "Monitor cluster state"
+
+capabilities:
+  - action: "Write Dockerfiles"
+    confidence: 0.95
+  - action: "Docker Compose"
+    confidence: 0.95
+  - action: "K8s manifests"
+    confidence: 0.92
+  - action: "Helm charts"
+    confidence: 0.88
+  - action: "Resource planning"
+    confidence: 0.85
+
+anti_hallucination:
+  - trigger: "docker.*build|docker.*run"
+    response: "Run `docker build` and `docker run` in your terminal."
+  - trigger: "kubectl.*apply|deploy.*cluster"
+    response: "Use `kubectl apply -f` to deploy manifests to your cluster."
+  - trigger: "container.*status|pod.*logs"
+    response: "Use `docker ps` or `kubectl get pods` to check status."
+
+synergies:
+  amplifying:
+    - ci-cd-automation
+    - aws-infrastructure
+    - nodejs-api-architect
+  conflicting: []
+  redundant: []
+
+examples:
+  - task: "Multi-stage Node.js image"
+    approach: "Build stage + prune dev deps + distroless runtime"
+    outcome: success
+  - task: "K8s deployment"
+    approach: "Deployment + Service + HPA + ConfigMap"
+    outcome: success

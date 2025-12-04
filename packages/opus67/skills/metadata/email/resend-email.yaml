@@ -1,0 +1,141 @@
+# Resend Email Expert - OPUS 67 v4.0
+# Modern email API
+
+id: resend-email
+name: "Resend Email Expert"
+tier: 2
+token_cost: 4000
+version: "1.0.0"
+
+semantic:
+  purpose: "Send beautiful emails with Resend and React Email"
+
+  what_it_does:
+    - "Send transactional emails with Resend API"
+    - "Build email templates with React Email"
+    - "Handle webhooks for delivery status"
+    - "Use domains and email validation"
+    - "Implement batch sending"
+    - "Track email analytics"
+
+  what_it_cannot:
+    - "Send marketing emails at scale (use dedicated ESP)"
+    - "Replace full email marketing platforms"
+
+capabilities:
+  - action: "Transactional email"
+    confidence: 0.94
+  - action: "React Email templates"
+    confidence: 0.91
+  - action: "Email webhooks"
+    confidence: 0.87
+
+auto_load_when:
+  keywords:
+    - resend
+    - react-email
+    - @react-email
+    - resend.emails.send
+
+anti_hallucination:
+  - trigger: "marketing|newsletter"
+    response: "Resend is for transactional emails. For marketing campaigns, consider Mailchimp, ConvertKit, or Loops."
+
+synergies:
+  amplifying: [nextjs-14-expert, react-19-expert]
+  conflicting: []
+  redundant: []
+
+mcp_connections: [resend]
+
+code_patterns:
+  send_email: |
+    import { Resend } from "resend";
+    import WelcomeEmail from "@/emails/welcome";
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    export async function sendWelcomeEmail(user: { email: string; name: string }) {
+      const { data, error } = await resend.emails.send({
+        from: "welcome@yourdomain.com",
+        to: user.email,
+        subject: "Welcome to Our App!",
+        react: WelcomeEmail({ name: user.name }),
+      });
+
+      if (error) {
+        console.error("Failed to send email:", error);
+        throw error;
+      }
+
+      return data;
+    }
+
+  react_email_template: |
+    // emails/welcome.tsx
+    import {
+      Body,
+      Button,
+      Container,
+      Head,
+      Heading,
+      Html,
+      Preview,
+      Section,
+      Text,
+    } from "@react-email/components";
+
+    interface WelcomeEmailProps {
+      name: string;
+    }
+
+    export default function WelcomeEmail({ name }: WelcomeEmailProps) {
+      return (
+        <Html>
+          <Head />
+          <Preview>Welcome to our platform!</Preview>
+          <Body style={{ fontFamily: "sans-serif" }}>
+            <Container>
+              <Heading>Welcome, {name}!</Heading>
+              <Text>
+                We're excited to have you on board. Get started by exploring
+                your dashboard.
+              </Text>
+              <Section>
+                <Button
+                  href="https://yourdomain.com/dashboard"
+                  style={{
+                    backgroundColor: "#000",
+                    color: "#fff",
+                    padding: "12px 20px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Go to Dashboard
+                </Button>
+              </Section>
+            </Container>
+          </Body>
+        </Html>
+      );
+    }
+
+  webhook_handler: |
+    // app/api/webhooks/resend/route.ts
+    export async function POST(req: Request) {
+      const payload = await req.json();
+
+      switch (payload.type) {
+        case "email.delivered":
+          await logDelivery(payload.data.email_id);
+          break;
+        case "email.bounced":
+          await handleBounce(payload.data.to);
+          break;
+        case "email.complained":
+          await handleComplaint(payload.data.to);
+          break;
+      }
+
+      return new Response("OK");
+    }

@@ -1,0 +1,74 @@
+# OPUS 67 v4.0 - Deep Skill Metadata
+# Skill: error-handling-expert
+
+id: error-handling-expert
+name: Error Handling Expert
+version: "1.0.0"
+
+semantic:
+  purpose: "Implement robust error handling, logging, and recovery strategies across applications"
+  what_it_does:
+    - "Designs error hierarchies and custom error classes"
+    - "Implements try-catch strategies with proper recovery"
+    - "Sets up centralized error handling middleware"
+    - "Configures error logging and monitoring"
+    - "Implements graceful degradation patterns"
+  what_it_cannot_do:
+    - "Predict all possible errors"
+    - "Automatically fix business logic bugs"
+    - "Handle hardware failures"
+    - "Replace proper testing"
+
+capabilities:
+  - action: "design error hierarchy"
+    confidence: 0.94
+    requires: ["application architecture"]
+    produces: ["error classes", "error codes"]
+  - action: "implement error middleware"
+    confidence: 0.95
+    requires: ["web framework"]
+    produces: ["centralized error handler"]
+  - action: "set up error logging"
+    confidence: 0.92
+    requires: ["logging library"]
+    produces: ["structured error logs"]
+  - action: "implement retry logic"
+    confidence: 0.91
+    requires: ["async operations"]
+    produces: ["retry with backoff"]
+  - action: "create error boundaries"
+    confidence: 0.93
+    requires: ["React application"]
+    produces: ["React error boundaries"]
+
+anti_hallucination:
+  never_claim:
+    - "This catches all errors"
+    - "No errors will reach the user"
+    - "Perfect error recovery"
+  always_recommend:
+    - "Comprehensive error testing"
+    - "Production error monitoring (Sentry, etc.)"
+    - "Error documentation for API consumers"
+  trigger_phrases:
+    - pattern: "handle all errors"
+      response: "I'll implement comprehensive error handling with custom error classes, centralized handling, and proper logging, but always test edge cases thoroughly."
+    - pattern: "never crash"
+      response: "I can implement graceful degradation and error recovery, but critical errors may still require process restart in production."
+
+examples:
+  - task: "Add proper error handling to my API"
+    approach: "Create custom error classes, add error middleware, implement structured logging with context"
+    skills_needed: ["error-handling-expert", "nodejs-api-architect"]
+  - task: "Handle React component errors gracefully"
+    approach: "Implement error boundaries, fallback UIs, and error reporting"
+    skills_needed: ["error-handling-expert", "react-typescript-master"]
+
+synergies:
+  amplifying:
+    - skill: nodejs-api-architect
+      reason: "Combines robust error handling with API design"
+    - skill: test-automation-expert
+      reason: "Error scenarios need thorough testing"
+  conflicting: []
+  redundant: []

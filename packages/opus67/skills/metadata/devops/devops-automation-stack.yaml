@@ -1,0 +1,163 @@
+# DevOps Automation Stack - OPUS 67 v4.0
+# Tier 2 Skill Pack - Consolidates CI/CD and edge deployment
+# Token cost: 9,000 (vs 19,000 for 3 individual skills)
+
+id: devops-automation-stack
+name: "DevOps Automation Stack"
+tier: 2
+token_cost: 9000
+version: "1.0.0"
+
+extends:
+  - devops-base
+
+semantic:
+  purpose: "Automate CI/CD pipelines and edge deployments for modern applications"
+
+  what_it_does:
+    # GitHub Actions
+    - "Write production-grade GitHub Actions workflows"
+    - "Configure matrix builds for multiple Node/OS versions"
+    - "Set up caching for npm, pnpm, and Docker layers"
+    - "Implement reusable workflows and composite actions"
+    - "Configure secrets and environment variables"
+    - "Set up deployment protection rules and approvals"
+
+    # Cloudflare Workers
+    - "Build edge functions with Cloudflare Workers"
+    - "Configure KV, R2, D1 bindings"
+    - "Implement Durable Objects for stateful edge"
+    - "Set up custom domains and routing"
+    - "Use wrangler for local development and deployment"
+
+    # Vercel Edge Functions
+    - "Build Vercel Edge Functions and Middleware"
+    - "Configure Edge Config for feature flags"
+    - "Implement ISR and on-demand revalidation"
+    - "Set up preview deployments and environments"
+    - "Configure Vercel Cron Jobs"
+
+  what_it_cannot:
+    - "Access production secrets without configuration"
+    - "Deploy without proper repository permissions"
+    - "Bypass branch protection rules"
+    - "Execute destructive operations without confirmation"
+
+capabilities:
+  - action: "GitHub Actions workflows"
+    confidence: 0.94
+    examples:
+      - "Create CI/CD pipeline"
+      - "Set up matrix builds"
+      - "Configure caching"
+
+  - action: "Cloudflare Workers"
+    confidence: 0.91
+    examples:
+      - "Build edge API"
+      - "Configure KV storage"
+      - "Set up Durable Objects"
+
+  - action: "Vercel Edge Functions"
+    confidence: 0.92
+    examples:
+      - "Create middleware"
+      - "Set up ISR"
+      - "Configure cron jobs"
+
+auto_load_when:
+  keywords:
+    - github actions
+    - workflow
+    - ci/cd
+    - cicd
+    - cloudflare workers
+    - workers
+    - edge function
+    - vercel edge
+    - middleware
+    - wrangler
+    - deploy
+    - pipeline
+  file_types:
+    - .yaml
+    - .yml
+  directories:
+    - .github/
+    - .github/workflows/
+
+anti_hallucination:
+  - trigger: "secret|password|token in code"
+    response: "Never hardcode secrets. Use GitHub Secrets, Cloudflare secrets, or Vercel environment variables."
+
+  - trigger: "push to main|direct deploy"
+    response: "Production deployments should go through PR review and staging first."
+
+  - trigger: "skip tests|no ci"
+    response: "Skipping CI increases risk. If urgent, document the reason and follow up with tests."
+
+synergies:
+  amplifying:
+    - github-manager         # Repository management
+    - typescript-senior      # Type-safe configs
+    - nextjs-14-expert       # Vercel deployment
+  conflicting: []
+  redundant:
+    - github-actions-expert  # Included in this pack
+
+mcp_connections:
+  - github
+  - vercel
+
+code_patterns:
+  github_action: |
+    name: CI/CD
+    on:
+      push:
+        branches: [main]
+      pull_request:
+        branches: [main]
+
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - uses: pnpm/action-setup@v2
+            with:
+              version: 9
+          - uses: actions/setup-node@v4
+            with:
+              node-version: 20
+              cache: 'pnpm'
+          - run: pnpm install
+          - run: pnpm test
+          - run: pnpm build
+
+  cloudflare_worker: |
+    export default {
+      async fetch(request: Request, env: Env): Promise<Response> {
+        const url = new URL(request.url);
+
+        if (url.pathname === '/api/data') {
+          const data = await env.KV.get('key');
+          return Response.json({ data });
+        }
+
+        return new Response('Not found', { status: 404 });
+      },
+    };
+
+  vercel_middleware: |
+    import { NextResponse } from 'next/server';
+    import type { NextRequest } from 'next/server';
+
+    export function middleware(request: NextRequest) {
+      const response = NextResponse.next();
+      response.headers.set('x-custom-header', 'value');
+      return response;
+    }
+
+    export const config = {
+      matcher: '/api/:path*',
+    };
