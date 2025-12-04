@@ -18,6 +18,10 @@
     "./llm": {
       "import": "./dist/llm/index.js",
       "types": "./dist/llm/index.d.ts"
+    },
+    "./security/auth": {
+      "import": "./dist/security/auth.js",
+      "types": "./dist/security/auth.d.ts"
     }
   },
   "files": [
@@ -55,6 +59,14 @@
   },
   "dependencies": {
     "@langchain/core": "^0.3.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.67.2",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.208.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.208.0",
+    "@opentelemetry/resources": "^2.2.0",
+    "@opentelemetry/sdk-metrics": "^2.2.0",
+    "@opentelemetry/sdk-node": "^0.208.0",
+    "@opentelemetry/semantic-conventions": "^1.38.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {

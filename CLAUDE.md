@@ -19,13 +19,12 @@
 - ✅ 13B: Rate Limiter (`@gicm/agent-core/src/security/rate-limiter.ts`)
 - ✅ 13C: API Authentication (`@gicm/agent-core/src/security/auth.ts`)
 - ✅ 13D: Security Headers (`@gicm/agent-core/src/security/headers.ts`)
+- ✅ 14A: OpenTelemetry (`@gicm/agent-core/src/observability/telemetry.ts`)
+- ✅ 14B: Log Aggregator (`@gicm/agent-core/src/observability/log-aggregator.ts`)
+- ✅ 14C: Metrics Registry (`@gicm/agent-core/src/observability/metrics-registry.ts`)
+- ✅ 14D: SLO Manager (`@gicm/agent-core/src/observability/slo-manager.ts`)
 
 ### In Progress
-**Phase 14 - Observability**
-- 14A: OpenTelemetry
-- 14B: Log Aggregator
-- 14C: Metrics Registry
-- 14D: SLO Manager
 
 **Phase 15 - Operations**
 - 15A: Feature Flags
@@ -933,6 +932,53 @@ cd packages/<package-name>
 npm version patch  # or minor/major
 pnpm publish --access public --no-git-checks
 ```
+
+---
+
+## OPUS 67 - Enhancement Layer (NOT a separate AI)
+
+> **OPUS 67 is NOT a separate AI.** It's Claude with superpowers.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  OPUS 67 ≠ Separate AI                                      │
+│  OPUS 67 = Claude + Enhancement Layer                       │
+│                                                             │
+│  Claude IS the brain.                                       │
+│  OPUS 67 gives Claude superpowers (skills, MCPs, memory).   │
+│                                                             │
+│  Same driver, better race car.                              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Location:** `packages/opus67/`
+**Package:** `@gicm/opus67`
+**Version:** v3.3.0 "Unified"
+
+**Stats:**
+- **95 Skills** | **84 MCPs** | **30 Modes** | **82 Agents**
+
+**Key Documentation:**
+- `packages/opus67/docs/WHAT-IS-OPUS67.md` - Full explanation
+- `packages/opus67/docs/VERSION-HISTORY.md` - Version changelog
+- `packages/opus67/docs/v31-eyes-update.md` - v3.1 features
+- `packages/opus67/docs/v32-solana-stack.md` - v3.2 features
+
+**What It Provides:**
+1. **MCP Servers (84)** - GitHub, Jupiter, Supabase, Sentry, etc.
+2. **Skills (95)** - GRAB skills, Solana skills, Research skills
+3. **Modes (30)** - AUTO, BUILD, SOLANA, GRAB, CLONE, RESEARCH
+4. **Memory** - Persistent context via Mem0 and Qdrant
+
+**CLI:**
+```bash
+opus67 init              # Register with Claude Code
+opus67 boot              # Show boot screen
+opus67 status            # System status
+opus67-server            # Start BRAIN HTTP server
+```
+
+**Remember: Claude IS the brain. OPUS 67 just makes Claude faster, cheaper, and more capable.**
 
 ---
 

@@ -78,9 +78,9 @@ declare const TransactionSchema: z.ZodObject<{
     chain: "evm" | "solana";
     network: string;
     from: string;
+    to?: string | undefined;
     value?: string | undefined;
     data?: string | undefined;
-    to?: string | undefined;
     blockNumber?: number | undefined;
     gasUsed?: string | undefined;
 }, {
@@ -89,9 +89,9 @@ declare const TransactionSchema: z.ZodObject<{
     chain: "evm" | "solana";
     network: string;
     from: string;
+    to?: string | undefined;
     value?: string | undefined;
     data?: string | undefined;
-    to?: string | undefined;
     blockNumber?: number | undefined;
     gasUsed?: string | undefined;
 }>;
@@ -105,16 +105,16 @@ declare const TokenSchema: z.ZodObject<{
     logoURI: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     symbol: string;
-    name: string;
     chain: "evm" | "solana";
     address: string;
+    name: string;
     decimals: number;
     logoURI?: string | undefined;
 }, {
     symbol: string;
-    name: string;
     chain: "evm" | "solana";
     address: string;
+    name: string;
     decimals: number;
     logoURI?: string | undefined;
 }>;
@@ -133,16 +133,16 @@ declare const WalletBalanceSchema: z.ZodObject<{
             logoURI: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             symbol: string;
-            name: string;
             chain: "evm" | "solana";
             address: string;
+            name: string;
             decimals: number;
             logoURI?: string | undefined;
         }, {
             symbol: string;
-            name: string;
             chain: "evm" | "solana";
             address: string;
+            name: string;
             decimals: number;
             logoURI?: string | undefined;
         }>;
@@ -151,9 +151,9 @@ declare const WalletBalanceSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         token: {
             symbol: string;
-            name: string;
             chain: "evm" | "solana";
             address: string;
+            name: string;
             decimals: number;
             logoURI?: string | undefined;
         };
@@ -162,9 +162,9 @@ declare const WalletBalanceSchema: z.ZodObject<{
     }, {
         token: {
             symbol: string;
-            name: string;
             chain: "evm" | "solana";
             address: string;
+            name: string;
             decimals: number;
             logoURI?: string | undefined;
         };
@@ -178,9 +178,9 @@ declare const WalletBalanceSchema: z.ZodObject<{
     tokens: {
         token: {
             symbol: string;
-            name: string;
             chain: "evm" | "solana";
             address: string;
+            name: string;
             decimals: number;
             logoURI?: string | undefined;
         };
@@ -194,9 +194,9 @@ declare const WalletBalanceSchema: z.ZodObject<{
     tokens: {
         token: {
             symbol: string;
-            name: string;
             chain: "evm" | "solana";
             address: string;
+            name: string;
             decimals: number;
             logoURI?: string | undefined;
         };
