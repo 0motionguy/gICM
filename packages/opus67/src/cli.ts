@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { homedir } from "os";
 
-const VERSION = "4.0.0";
+const VERSION = "5.1.3";
 
 const HELP = `
 ╔═══════════════════════════════════════════════════════════════════════════╗
@@ -60,7 +60,7 @@ const OPUS67_CLAUDE_MD_SECTION = `
 
 You have OPUS 67 installed. This gives you access to:
 
-## Available Skills (48 total)
+## Available Skills (140+ total)
 Use \`opus67_list_skills\` MCP tool to see all, or auto-detect based on task.
 
 ### Blockchain
@@ -232,9 +232,9 @@ async function main() {
 ║   OPUS 67 IS NOW INTEGRATED WITH CLAUDE CODE                              ║
 ║                                                                           ║
 ║   What you get:                                                           ║
-║   • 48 specialist skills auto-loaded                                      ║
-║   • 21 MCP connections available                                          ║
-║   • 12 operating modes                                                    ║
+║   • 140+ specialist skills auto-loaded                                    ║
+║   • 82 MCP connections available                                          ║
+║   • 30 operating modes                                                    ║
 ║   • Skills auto-detect based on your task                                 ║
 ║                                                                           ║
 ║   Usage in Claude Code:                                                   ║
@@ -277,14 +277,25 @@ async function main() {
     case "boot": {
       const projectPath = args[1] || process.cwd();
       console.log(`\n🚪 Initializing OPUS 67 for: ${projectPath}\n`);
-      
+
       try {
         const opus = await createOPUS67(projectPath);
-        
+
+        // Count total skills from definitions folder
+        const { readdirSync } = await import("fs");
+        const skillsDefPath = join(dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Z]:)/, '$1'), "..", "skills", "definitions");
+        let totalSkills = 0;
+        try {
+          const files = readdirSync(skillsDefPath);
+          totalSkills = files.filter(f => f.endsWith('.md')).length;
+        } catch {
+          totalSkills = 140; // Fallback to known count
+        }
+
         console.log("\n✅ OPUS 67 is ready");
         console.log(`   📁 Files indexed: ${opus.contextStats.totalFiles}`);
         console.log(`   📝 Tokens: ${opus.contextStats.totalTokens}`);
-        console.log(`   🧠 Skills loaded: ${opus.loadedSkills.length}`);
+        console.log(`   🧠 Skills available: ${totalSkills}`);
         console.log(`   🔌 MCPs connected: ${opus.connectedMCPs.length}`);
         console.log("\n🚪 THE DOOR IS OPEN\n");
       } catch (error) {

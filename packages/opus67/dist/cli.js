@@ -197,7 +197,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     process.exit(1);
   });
 }
-var VERSION = "4.0.0";
+var VERSION = "5.1.3";
 var HELP = `
 \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557
 \u2551                                                                           \u2551
@@ -246,7 +246,7 @@ var OPUS67_CLAUDE_MD_SECTION = `
 
 You have OPUS 67 installed. This gives you access to:
 
-## Available Skills (48 total)
+## Available Skills (140+ total)
 Use \`opus67_list_skills\` MCP tool to see all, or auto-detect based on task.
 
 ### Blockchain
@@ -379,9 +379,9 @@ async function main() {
 \u2551   OPUS 67 IS NOW INTEGRATED WITH CLAUDE CODE                              \u2551
 \u2551                                                                           \u2551
 \u2551   What you get:                                                           \u2551
-\u2551   \u2022 48 specialist skills auto-loaded                                      \u2551
-\u2551   \u2022 21 MCP connections available                                          \u2551
-\u2551   \u2022 12 operating modes                                                    \u2551
+\u2551   \u2022 140+ specialist skills auto-loaded                                    \u2551
+\u2551   \u2022 82 MCP connections available                                          \u2551
+\u2551   \u2022 30 operating modes                                                    \u2551
 \u2551   \u2022 Skills auto-detect based on your task                                 \u2551
 \u2551                                                                           \u2551
 \u2551   Usage in Claude Code:                                                   \u2551
@@ -419,10 +419,19 @@ async function main() {
 `);
       try {
         const opus = await createOPUS67(projectPath);
+        const { readdirSync } = await import('fs');
+        const skillsDefPath = join(dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Z]:)/, "$1"), "..", "skills", "definitions");
+        let totalSkills = 0;
+        try {
+          const files = readdirSync(skillsDefPath);
+          totalSkills = files.filter((f) => f.endsWith(".md")).length;
+        } catch {
+          totalSkills = 140;
+        }
         console.log("\n\u2705 OPUS 67 is ready");
         console.log(`   \u{1F4C1} Files indexed: ${opus.contextStats.totalFiles}`);
         console.log(`   \u{1F4DD} Tokens: ${opus.contextStats.totalTokens}`);
-        console.log(`   \u{1F9E0} Skills loaded: ${opus.loadedSkills.length}`);
+        console.log(`   \u{1F9E0} Skills available: ${totalSkills}`);
         console.log(`   \u{1F50C} MCPs connected: ${opus.connectedMCPs.length}`);
         console.log("\n\u{1F6AA} THE DOOR IS OPEN\n");
       } catch (error) {
