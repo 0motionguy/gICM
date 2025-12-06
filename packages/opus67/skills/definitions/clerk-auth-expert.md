@@ -1,111 +1,99 @@
-# Clerk Authentication Expert
+# Clerk Auth Expert
 
 > **ID:** `clerk-auth-expert`
 > **Tier:** 2
-> **Token Cost:** 6000
-> **MCP Connections:** clerk
+> **Token Cost:** 5500
+> **MCP Connections:** None
 
-## 🎯 What This Skill Does
+## What This Skill Does
 
-Master production-grade authentication and user management with Clerk. This skill covers everything from basic auth flows to advanced multi-tenant architectures, RBAC, webhook synchronization, and edge-compatible middleware patterns.
+This skill provides deep expertise in implementing authentication and user management using Clerk in Next.js applications. It covers everything from basic setup to advanced patterns including organizations, role-based access control, webhook synchronization, and custom UI implementations.
 
-**Core Capabilities:**
-- Pre-built auth components and customization
-- Route protection middleware (App Router & Pages Router)
-- Organizations and multi-tenancy patterns
-- Webhook event handling and user sync
-- Role-based access control (RBAC)
-- Edge-compatible authentication
-- Session management and token handling
-- SSO and OAuth integrations
+Clerk is a complete user management platform that provides authentication, user profiles, and organization management out of the box. This skill teaches you how to leverage Clerk's full power while maintaining control over your data and user experience.
 
-## 📚 When to Use
+## When to Use
 
-This skill is automatically loaded when:
+Use this skill when you need to:
 
-- **Keywords:** clerk, @clerk/nextjs, clerkMiddleware, currentUser, auth(), SignIn, SignUp, UserButton
-- **File Types:** middleware.ts, layout.tsx, route.ts
-- **Directories:** app/, api/webhooks/clerk
+- **Set up authentication** in a Next.js app (App Router or Pages Router)
+- **Implement multi-tenancy** with organizations and teams
+- **Protect routes and API endpoints** with middleware
+- **Sync user data** to your database via webhooks
+- **Customize authentication UI** while keeping Clerk's backend
+- **Add role-based permissions** and access control
+- **Implement social login** (Google, GitHub, etc.)
+- **Handle user sessions** across client and server components
+- **Build SaaS applications** with team/workspace features
 
-## 🚀 Core Capabilities
+## Core Capabilities
 
-### 1. Installation & Setup
+### 1. Authentication Setup
 
-**Next.js 13+ App Router (Recommended):**
+#### Basic Next.js App Router Setup
+
+First, install Clerk and set up environment variables:
 
 ```bash
 npm install @clerk/nextjs
 ```
 
-**Environment Variables:**
-
-```bash
+```env
 # .env.local
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-CLERK_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxx
+CLERK_SECRET_KEY=sk_test_xxxxx
 
-# Redirect URLs (optional)
+# Optional: Customize URLs
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
-
-# Webhook secret
-CLERK_WEBHOOK_SECRET=whsec_...
 ```
 
-**Root Layout Provider:**
+#### Root Layout with ClerkProvider
 
 ```typescript
 // app/layout.tsx
-import { ClerkProvider } from '@clerk/nextjs';
-import { dark } from '@clerk/themes';
+import { ClerkProvider } from '@clerk/nextjs'
+import { Inter } from 'next/font/google'
+import './globals.css'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <ClerkProvider
       appearance={{
-        baseTheme: dark, // or light, or your custom theme
+        baseTheme: undefined,
         variables: {
-          colorPrimary: '#6366f1',
-          borderRadius: '0.5rem',
+          colorPrimary: '#3b82f6',
+          colorText: '#0f172a',
+          colorBackground: '#ffffff',
+          colorInputBackground: '#f8fafc',
+          colorInputText: '#0f172a',
         },
         elements: {
-          formButtonPrimary: 'bg-indigo-600 hover:bg-indigo-700',
-          card: 'shadow-xl',
+          formButtonPrimary: 'bg-blue-500 hover:bg-blue-600',
+          card: 'shadow-lg',
         },
       }}
     >
       <html lang="en">
-        <body>{children}</body>
+        <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
-  );
+  )
 }
 ```
 
-**Best Practices:**
-- Always use environment variables for API keys
-- Set explicit redirect URLs to control user flow
-- Use appearance customization to match brand identity
-- Enable development instance for testing
-
-**Gotchas:**
-- ClerkProvider must wrap your entire app at root layout
-- Publishable key is safe for client-side, secret key must stay server-side only
-- Redirect URLs must be absolute in production, relative in development
-
-### 2. Pre-built Authentication Components
-
-**Sign In & Sign Up Pages:**
+#### Sign In Page
 
 ```typescript
 // app/sign-in/[[...sign-in]]/page.tsx
-import { SignIn } from '@clerk/nextjs';
+import { SignIn } from '@clerk/nextjs'
 
 export default function SignInPage() {
   return (
@@ -120,13 +108,18 @@ export default function SignInPage() {
         routing="path"
         path="/sign-in"
         signUpUrl="/sign-up"
+        redirectUrl="/dashboard"
       />
     </div>
-  );
+  )
 }
+```
 
+#### Sign Up Page
+
+```typescript
 // app/sign-up/[[...sign-up]]/page.tsx
-import { SignUp } from '@clerk/nextjs';
+import { SignUp } from '@clerk/nextjs'
 
 export default function SignUpPage() {
   return (
@@ -141,17 +134,20 @@ export default function SignUpPage() {
         routing="path"
         path="/sign-up"
         signInUrl="/sign-in"
+        redirectUrl="/onboarding"
       />
     </div>
-  );
+  )
 }
 ```
 
-**User Button (Profile Menu):**
+#### User Button Component
 
 ```typescript
-// components/user-nav.tsx
-import { UserButton } from '@clerk/nextjs';
+// components/user-button.tsx
+'use client'
+
+import { UserButton } from '@clerk/nextjs'
 
 export function UserNav() {
   return (
@@ -164,1034 +160,1754 @@ export function UserNav() {
         },
       }}
       userProfileMode="navigation"
-      userProfileUrl="/user-profile"
+      userProfileUrl="/profile"
     />
-  );
+  )
 }
 ```
 
-**Organization Switcher:**
+### 2. Session Management
+
+#### Using Auth Hooks in Client Components
+
+```typescript
+// components/dashboard-header.tsx
+'use client'
+
+import { useAuth, useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+
+export function DashboardHeader() {
+  const { isLoaded, userId, sessionId, getToken } = useAuth()
+  const { isSignedIn, user } = useUser()
+  const router = useRouter()
+
+  // Loading state
+  if (!isLoaded) {
+    return <div>Loading...</div>
+  }
+
+  // Not authenticated
+  if (!userId) {
+    router.push('/sign-in')
+    return null
+  }
+
+  // Get custom JWT token
+  const handleAPICall = async () => {
+    const token = await getToken({ template: 'supabase' })
+    // Use token for API calls
+  }
+
+  return (
+    <header className="border-b">
+      <div className="flex items-center justify-between p-4">
+        <div>
+          <h1 className="text-2xl font-bold">
+            Welcome, {user?.firstName || 'there'}!
+          </h1>
+          <p className="text-sm text-gray-600">
+            {user?.emailAddresses[0]?.emailAddress}
+          </p>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-gray-500">
+            Session: {sessionId?.slice(0, 8)}...
+          </span>
+          <button onClick={handleAPICall}>Call API</button>
+        </div>
+      </div>
+    </header>
+  )
+}
+```
+
+#### Server Component Auth
+
+```typescript
+// app/dashboard/page.tsx
+import { auth, currentUser } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+
+export default async function DashboardPage() {
+  const { userId } = auth()
+
+  if (!userId) {
+    redirect('/sign-in')
+  }
+
+  const user = await currentUser()
+
+  return (
+    <div className="p-8">
+      <h1>Dashboard</h1>
+      <p>User ID: {userId}</p>
+      <p>Email: {user?.emailAddresses[0]?.emailAddress}</p>
+      <p>Created: {user?.createdAt.toLocaleDateString()}</p>
+
+      {/* Metadata stored in Clerk */}
+      <pre className="mt-4 rounded bg-gray-100 p-4">
+        {JSON.stringify(user?.publicMetadata, null, 2)}
+      </pre>
+    </div>
+  )
+}
+```
+
+#### Session Claims and Metadata
+
+```typescript
+// lib/auth/session.ts
+import { auth, clerkClient } from '@clerk/nextjs'
+
+export async function getUserRole(): Promise<'admin' | 'user' | null> {
+  const { userId } = auth()
+  if (!userId) return null
+
+  const user = await clerkClient.users.getUser(userId)
+  return (user.publicMetadata.role as 'admin' | 'user') || 'user'
+}
+
+export async function setUserRole(userId: string, role: 'admin' | 'user') {
+  await clerkClient.users.updateUser(userId, {
+    publicMetadata: {
+      role,
+    },
+  })
+}
+
+export async function getUserMetadata<T = Record<string, unknown>>(
+  userId: string
+): Promise<T> {
+  const user = await clerkClient.users.getUser(userId)
+  return user.publicMetadata as T
+}
+
+export async function updateUserMetadata(
+  userId: string,
+  metadata: Record<string, unknown>
+) {
+  await clerkClient.users.updateUser(userId, {
+    publicMetadata: metadata,
+  })
+}
+```
+
+### 3. Organization Management
+
+#### Organization Switcher
 
 ```typescript
 // components/org-switcher.tsx
-import { OrganizationSwitcher } from '@clerk/nextjs';
+'use client'
+
+import { OrganizationSwitcher } from '@clerk/nextjs'
 
 export function OrgSwitcher() {
   return (
     <OrganizationSwitcher
       hidePersonal={false}
-      afterCreateOrganizationUrl="/org/:slug"
-      afterSelectOrganizationUrl="/org/:slug"
       appearance={{
         elements: {
-          rootBox: 'flex items-center justify-center',
-          organizationSwitcherTrigger: 'px-4 py-2 border rounded-lg',
+          rootBox: 'flex items-center',
+          organizationSwitcherTrigger: 'rounded-lg border px-4 py-2',
         },
       }}
+      createOrganizationMode="navigation"
+      createOrganizationUrl="/orgs/new"
+      organizationProfileMode="navigation"
+      organizationProfileUrl="/orgs/profile"
+      afterCreateOrganizationUrl="/orgs/:id"
+      afterSelectOrganizationUrl="/orgs/:id"
+      afterSelectPersonalUrl="/dashboard"
     />
-  );
+  )
 }
 ```
 
-**User Profile Component:**
+#### Using Organization Data
 
 ```typescript
-// app/user-profile/[[...user-profile]]/page.tsx
-import { UserProfile } from '@clerk/nextjs';
+// app/orgs/[orgId]/page.tsx
+import { auth, clerkClient } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
 
-export default function UserProfilePage() {
+export default async function OrganizationPage({
+  params,
+}: {
+  params: { orgId: string }
+}) {
+  const { userId, orgId } = auth()
+
+  if (!userId) {
+    redirect('/sign-in')
+  }
+
+  // Verify user has access to this org
+  if (orgId !== params.orgId) {
+    redirect('/orgs')
+  }
+
+  const organization = await clerkClient.organizations.getOrganization({
+    organizationId: params.orgId,
+  })
+
+  const members = await clerkClient.organizations.getOrganizationMembershipList({
+    organizationId: params.orgId,
+  })
+
   return (
-    <div className="flex justify-center py-8">
-      <UserProfile
-        routing="path"
-        path="/user-profile"
-        appearance={{
-          elements: {
-            rootBox: 'w-full max-w-4xl',
-            card: 'shadow-none',
-          },
-        }}
-      />
+    <div className="p-8">
+      <h1 className="text-3xl font-bold">{organization.name}</h1>
+      <p className="text-gray-600">{organization.slug}</p>
+
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold">Members</h2>
+        <ul className="mt-4 space-y-2">
+          {members.map((member) => (
+            <li key={member.id} className="flex items-center gap-4 rounded border p-4">
+              <img
+                src={member.publicUserData.imageUrl}
+                alt={member.publicUserData.firstName || 'User'}
+                className="h-10 w-10 rounded-full"
+              />
+              <div>
+                <p className="font-medium">
+                  {member.publicUserData.firstName} {member.publicUserData.lastName}
+                </p>
+                <p className="text-sm text-gray-600">{member.role}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-  );
+  )
 }
 ```
 
-**Best Practices:**
-- Use `routing="path"` for App Router consistency
-- Always provide fallback URLs (signInUrl, signUpUrl, afterSignOutUrl)
-- Customize appearance to match your design system
-- Use UserButton in navigation for consistent UX
-
-**Common Patterns:**
+#### Organization Roles and Permissions
 
 ```typescript
-// Custom auth modal with dialog
-'use client';
+// lib/auth/permissions.ts
+import { auth, clerkClient } from '@clerk/nextjs'
 
-import { SignIn } from '@clerk/nextjs';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { useRouter, useSearchParams } from 'next/navigation';
+export type OrgRole = 'admin' | 'member'
 
-export function SignInModal() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const isOpen = searchParams.get('sign-in') === 'true';
+export async function getOrgMembership(orgId: string) {
+  const { userId } = auth()
+  if (!userId) return null
 
-  return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(open) => {
-        if (!open) router.back();
-      }}
-    >
-      <DialogContent className="p-0">
-        <SignIn routing="virtual" />
-      </DialogContent>
-    </Dialog>
-  );
+  const memberships = await clerkClient.users.getOrganizationMembershipList({
+    userId,
+  })
+
+  return memberships.find((m) => m.organization.id === orgId)
+}
+
+export async function hasOrgPermission(
+  orgId: string,
+  requiredRole: OrgRole = 'member'
+): Promise<boolean> {
+  const membership = await getOrgMembership(orgId)
+  if (!membership) return false
+
+  if (requiredRole === 'admin') {
+    return membership.role === 'admin'
+  }
+
+  return true
+}
+
+export async function requireOrgAdmin(orgId: string) {
+  const isAdmin = await hasOrgPermission(orgId, 'admin')
+  if (!isAdmin) {
+    throw new Error('Admin access required')
+  }
 }
 ```
 
-**Gotchas:**
-- Catch-all routes [[...sign-in]] must be used for Clerk's routing to work
-- User profile pages need proper routing setup to avoid conflicts
-- Organization features require enablement in Clerk Dashboard
+#### Creating Organizations Programmatically
 
-### 3. Route Protection Middleware
+```typescript
+// app/actions/organizations.ts
+'use server'
 
-**App Router Middleware (Edge-Compatible):**
+import { auth, clerkClient } from '@clerk/nextjs'
+import { revalidatePath } from 'next/cache'
+import { requireOrgAdmin } from '@/lib/auth/permissions'
+
+export async function createOrganization(name: string, slug?: string) {
+  const { userId } = auth()
+
+  if (!userId) {
+    throw new Error('Not authenticated')
+  }
+
+  const organization = await clerkClient.organizations.createOrganization({
+    name,
+    slug,
+    createdBy: userId,
+    publicMetadata: {
+      plan: 'free',
+      createdAt: new Date().toISOString(),
+    },
+  })
+
+  revalidatePath('/orgs')
+  return organization
+}
+
+export async function updateOrganizationMetadata(
+  orgId: string,
+  metadata: Record<string, unknown>
+) {
+  await requireOrgAdmin(orgId)
+
+  await clerkClient.organizations.updateOrganization(orgId, {
+    publicMetadata: metadata,
+  })
+
+  revalidatePath(`/orgs/${orgId}`)
+}
+
+export async function inviteMember(orgId: string, email: string, role: OrgRole) {
+  await requireOrgAdmin(orgId)
+
+  const invitation = await clerkClient.organizations.createOrganizationInvitation({
+    organizationId: orgId,
+    emailAddress: email,
+    role,
+  })
+
+  return invitation
+}
+```
+
+### 4. Middleware & Route Protection
+
+#### Basic Middleware Setup
 
 ```typescript
 // middleware.ts
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { authMiddleware } from '@clerk/nextjs'
 
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/webhooks(.*)',
-  '/api/public(.*)',
-]);
+export default authMiddleware({
+  // Public routes that don't require authentication
+  publicRoutes: [
+    '/',
+    '/about',
+    '/pricing',
+    '/blog(.*)',
+    '/api/webhooks(.*)',
+  ],
 
-const isAdminRoute = createRouteMatcher([
-  '/admin(.*)',
-]);
-
-const isOrgRoute = createRouteMatcher([
-  '/org/:orgId(.*)',
-]);
-
-export default clerkMiddleware((auth, request) => {
-  const { userId, orgId, orgRole } = auth();
-
-  // Allow public routes
-  if (isPublicRoute(request)) {
-    return NextResponse.next();
-  }
-
-  // Require authentication for protected routes
-  if (!userId) {
-    return auth().redirectToSignIn({ returnBackUrl: request.url });
-  }
-
-  // Admin routes - check for admin role
-  if (isAdminRoute(request)) {
-    if (auth().sessionClaims?.metadata?.role !== 'admin') {
-      return NextResponse.redirect(new URL('/unauthorized', request.url));
-    }
-  }
-
-  // Organization routes - require org membership
-  if (isOrgRoute(request)) {
-    if (!orgId) {
-      return NextResponse.redirect(new URL('/select-org', request.url));
-    }
-
-    // Check org permissions
-    if (request.nextUrl.pathname.includes('/settings') && orgRole !== 'org:admin') {
-      return NextResponse.redirect(new URL('/unauthorized', request.url));
-    }
-  }
-
-  return NextResponse.next();
-});
+  // Routes that are ignored by auth middleware
+  ignoredRoutes: [
+    '/api/public(.*)',
+    '/_next(.*)',
+    '/favicon.ico',
+  ],
+})
 
 export const config = {
-  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
-};
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+}
 ```
 
-**Advanced Middleware with Rate Limiting:**
+#### Advanced Middleware with Custom Logic
 
 ```typescript
 // middleware.ts
-import { clerkMiddleware } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { authMiddleware, clerkClient } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
 
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, '10 s'),
-});
+export default authMiddleware({
+  publicRoutes: ['/', '/pricing'],
 
-export default clerkMiddleware(async (auth, request) => {
-  const { userId } = auth();
-
-  // Rate limiting for API routes
-  if (request.nextUrl.pathname.startsWith('/api/')) {
-    const identifier = userId || request.ip || 'anonymous';
-    const { success } = await ratelimit.limit(identifier);
-
-    if (!success) {
-      return NextResponse.json(
-        { error: 'Rate limit exceeded' },
-        { status: 429 }
-      );
+  async afterAuth(auth, req) {
+    // Handle unauthenticated users
+    if (!auth.userId && !auth.isPublicRoute) {
+      const signInUrl = new URL('/sign-in', req.url)
+      signInUrl.searchParams.set('redirect_url', req.url)
+      return NextResponse.redirect(signInUrl)
     }
-  }
 
-  return NextResponse.next();
-});
+    // Handle authenticated users on public routes
+    if (auth.userId && req.nextUrl.pathname === '/') {
+      const dashboard = new URL('/dashboard', req.url)
+      return NextResponse.redirect(dashboard)
+    }
+
+    // Org-only routes
+    if (req.nextUrl.pathname.startsWith('/orgs/')) {
+      if (!auth.orgId && auth.userId) {
+        return NextResponse.redirect(new URL('/select-org', req.url))
+      }
+    }
+
+    // Admin-only routes
+    if (req.nextUrl.pathname.startsWith('/admin')) {
+      const user = await clerkClient.users.getUser(auth.userId!)
+      const isAdmin = user.publicMetadata.role === 'admin'
+
+      if (!isAdmin) {
+        return NextResponse.redirect(new URL('/unauthorized', req.url))
+      }
+    }
+
+    return NextResponse.next()
+  },
+})
+
+export const config = {
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+}
 ```
 
-**Server Component Auth Checks:**
+#### API Route Protection
 
 ```typescript
-// app/dashboard/page.tsx
-import { auth, currentUser } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
+// app/api/protected/route.ts
+import { auth } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
 
-export default async function DashboardPage() {
-  const { userId } = auth();
+export async function GET() {
+  const { userId } = auth()
 
   if (!userId) {
-    redirect('/sign-in');
+    return NextResponse.json(
+      { error: 'Unauthorized' },
+      { status: 401 }
+    )
   }
 
-  const user = await currentUser();
-
-  return (
-    <div>
-      <h1>Welcome, {user?.firstName}!</h1>
-    </div>
-  );
+  // Protected logic
+  return NextResponse.json({
+    message: 'Protected data',
+    userId
+  })
 }
 ```
-
-**Client Component Auth Checks:**
 
 ```typescript
-// components/protected-content.tsx
-'use client';
+// app/api/admin/route.ts
+import { auth, clerkClient } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
 
-import { useUser, useAuth } from '@clerk/nextjs';
-import { Loader2 } from 'lucide-react';
+export async function POST(req: Request) {
+  const { userId } = auth()
 
-export function ProtectedContent() {
-  const { isLoaded, isSignedIn, user } = useUser();
-  const { getToken } = useAuth();
-
-  if (!isLoaded) {
-    return <Loader2 className="animate-spin" />;
+  if (!userId) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  if (!isSignedIn) {
-    return <div>Please sign in to view this content</div>;
+  const user = await clerkClient.users.getUser(userId)
+  const isAdmin = user.publicMetadata.role === 'admin'
+
+  if (!isAdmin) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  return (
-    <div>
-      <p>Protected content for {user.firstName}</p>
-      <button
-        onClick={async () => {
-          const token = await getToken();
-          // Use token for API calls
-        }}
-      >
-        Make Authenticated Request
-      </button>
-    </div>
-  );
+  // Admin-only logic
+  const body = await req.json()
+
+  return NextResponse.json({ success: true, data: body })
 }
 ```
 
-**Best Practices:**
-- Use middleware for edge-compatible auth checks
-- Leverage createRouteMatcher for readable route patterns
-- Always provide returnBackUrl for better UX
-- Check both authentication and authorization
-- Use auth() in Server Components, useUser() in Client Components
-
-**Gotchas:**
-- Middleware runs on edge runtime - no Node.js APIs
-- sessionClaims must be added via Clerk Dashboard metadata
-- redirectToSignIn must include returnBackUrl for post-login redirect
-- Matcher regex must exclude _next and static files
-
-### 4. Organizations & Multi-Tenancy
-
-**Organization Schema:**
+#### Server Action Protection
 
 ```typescript
-// lib/types/organization.ts
-import { z } from 'zod';
+// app/actions/admin.ts
+'use server'
 
-export const organizationSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  imageUrl: z.string().optional(),
-  createdAt: z.date(),
-  membersCount: z.number(),
-  role: z.enum(['org:admin', 'org:member']),
-});
+import { auth, clerkClient } from '@clerk/nextjs'
 
-export type Organization = z.infer<typeof organizationSchema>;
-```
+async function requireAdmin() {
+  const { userId } = auth()
 
-**Organization Context Provider:**
-
-```typescript
-// providers/organization-provider.tsx
-'use client';
-
-import { useOrganization, useOrganizationList } from '@clerk/nextjs';
-import { createContext, useContext, ReactNode } from 'react';
-
-interface OrganizationContextValue {
-  organization: any;
-  isLoaded: boolean;
-  isAdmin: boolean;
-  memberships: any[];
-  setActive: (orgId: string) => Promise<void>;
-}
-
-const OrganizationContext = createContext<OrganizationContextValue | null>(null);
-
-export function OrganizationProvider({ children }: { children: ReactNode }) {
-  const { organization, isLoaded, membership } = useOrganization();
-  const { setActive, userMemberships } = useOrganizationList({
-    userMemberships: { infinite: true },
-  });
-
-  const isAdmin = membership?.role === 'org:admin';
-
-  const handleSetActive = async (orgId: string) => {
-    if (!setActive) return;
-    await setActive({ organization: orgId });
-  };
-
-  return (
-    <OrganizationContext.Provider
-      value={{
-        organization,
-        isLoaded,
-        isAdmin,
-        memberships: userMemberships.data || [],
-        setActive: handleSetActive,
-      }}
-    >
-      {children}
-    </OrganizationContext.Provider>
-  );
-}
-
-export const useOrgContext = () => {
-  const context = useContext(OrganizationContext);
-  if (!context) {
-    throw new Error('useOrgContext must be used within OrganizationProvider');
-  }
-  return context;
-};
-```
-
-**Organization Invitation Flow:**
-
-```typescript
-// app/org/[orgId]/members/invite/page.tsx
-'use client';
-
-import { useOrganization } from '@clerk/nextjs';
-import { useState } from 'react';
-import { toast } from 'sonner';
-
-export default function InviteMembersPage() {
-  const { organization, invitations } = useOrganization({
-    invitations: { infinite: true, keepPreviousData: true },
-  });
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState<'org:admin' | 'org:member'>('org:member');
-
-  const handleInvite = async () => {
-    if (!organization) return;
-
-    try {
-      await organization.inviteMember({
-        emailAddress: email,
-        role,
-      });
-      toast.success('Invitation sent!');
-      setEmail('');
-    } catch (error) {
-      toast.error('Failed to send invitation');
-    }
-  };
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h2>Invite Members</h2>
-        <div className="flex gap-2">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email@example.com"
-          />
-          <select value={role} onChange={(e) => setRole(e.target.value as any)}>
-            <option value="org:member">Member</option>
-            <option value="org:admin">Admin</option>
-          </select>
-          <button onClick={handleInvite}>Send Invite</button>
-        </div>
-      </div>
-
-      <div>
-        <h3>Pending Invitations</h3>
-        {invitations.data?.map((invite) => (
-          <div key={invite.id} className="flex justify-between">
-            <span>{invite.emailAddress}</span>
-            <span>{invite.role}</span>
-            <button onClick={() => invite.revoke()}>Revoke</button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-```
-
-**Multi-Tenant Data Isolation:**
-
-```typescript
-// lib/db/organization-queries.ts
-import { auth } from '@clerk/nextjs/server';
-import { db } from './drizzle';
-import { projects } from './schema';
-import { eq, and } from 'drizzle-orm';
-
-export async function getOrganizationProjects() {
-  const { orgId } = auth();
-
-  if (!orgId) {
-    throw new Error('No organization selected');
+  if (!userId) {
+    throw new Error('Not authenticated')
   }
 
-  // All queries automatically scoped to organization
-  return db.query.projects.findMany({
-    where: eq(projects.organizationId, orgId),
-  });
-}
+  const user = await clerkClient.users.getUser(userId)
 
-export async function createProject(data: { name: string; description: string }) {
-  const { orgId, userId } = auth();
-
-  if (!orgId) {
-    throw new Error('No organization selected');
+  if (user.publicMetadata.role !== 'admin') {
+    throw new Error('Admin access required')
   }
 
-  return db.insert(projects).values({
-    ...data,
-    organizationId: orgId,
-    createdBy: userId,
-  });
+  return userId
+}
+
+export async function deleteUser(targetUserId: string) {
+  await requireAdmin()
+
+  await clerkClient.users.deleteUser(targetUserId)
+
+  return { success: true }
+}
+
+export async function updateUserRole(targetUserId: string, role: string) {
+  await requireAdmin()
+
+  await clerkClient.users.updateUser(targetUserId, {
+    publicMetadata: { role },
+  })
+
+  return { success: true }
 }
 ```
 
-**Best Practices:**
-- Always validate orgId on server before database operations
-- Use organization slug in URLs for better UX
-- Implement proper role-based permissions
-- Handle edge cases (no org selected, pending invites)
-- Provide clear organization switching UI
+### 5. Webhooks
 
-**Common Patterns:**
-
-```typescript
-// Organization permission guard
-export function requireOrgAdmin() {
-  const { orgRole } = auth();
-
-  if (orgRole !== 'org:admin') {
-    throw new Error('Unauthorized: Admin access required');
-  }
-}
-
-// Usage in API route
-export async function DELETE(req: Request) {
-  requireOrgAdmin();
-
-  // Delete operation
-}
-```
-
-**Gotchas:**
-- Organization features must be enabled in Clerk Dashboard
-- Default roles are org:admin and org:member (custom roles require enterprise)
-- Organization changes may require page refresh
-- Invitations have expiry (configurable in dashboard)
-
-### 5. Webhook Event Handling
-
-**Webhook Route Setup:**
+#### Webhook Handler Setup
 
 ```typescript
 // app/api/webhooks/clerk/route.ts
-import { Webhook } from 'svix';
-import { headers } from 'next/headers';
-import { WebhookEvent } from '@clerk/nextjs/server';
-import { db } from '@/lib/db';
-import { users } from '@/lib/db/schema';
+import { Webhook } from 'svix'
+import { headers } from 'next/headers'
+import { WebhookEvent } from '@clerk/nextjs/server'
+import { db } from '@/lib/db'
 
 export async function POST(req: Request) {
-  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
 
   if (!WEBHOOK_SECRET) {
-    throw new Error('Missing CLERK_WEBHOOK_SECRET');
+    throw new Error('Missing CLERK_WEBHOOK_SECRET')
   }
 
   // Get headers
-  const headerPayload = headers();
-  const svix_id = headerPayload.get('svix-id');
-  const svix_timestamp = headerPayload.get('svix-timestamp');
-  const svix_signature = headerPayload.get('svix-signature');
+  const headerPayload = headers()
+  const svix_id = headerPayload.get('svix-id')
+  const svix_timestamp = headerPayload.get('svix-timestamp')
+  const svix_signature = headerPayload.get('svix-signature')
 
   if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response('Missing svix headers', { status: 400 });
+    return new Response('Missing svix headers', { status: 400 })
   }
 
   // Get body
-  const payload = await req.json();
-  const body = JSON.stringify(payload);
+  const payload = await req.json()
+  const body = JSON.stringify(payload)
 
   // Verify webhook
-  const wh = new Webhook(WEBHOOK_SECRET);
-  let evt: WebhookEvent;
+  const wh = new Webhook(WEBHOOK_SECRET)
+  let evt: WebhookEvent
 
   try {
     evt = wh.verify(body, {
       'svix-id': svix_id,
       'svix-timestamp': svix_timestamp,
       'svix-signature': svix_signature,
-    }) as WebhookEvent;
+    }) as WebhookEvent
   } catch (err) {
-    console.error('Webhook verification failed:', err);
-    return new Response('Invalid signature', { status: 400 });
+    console.error('Webhook verification failed:', err)
+    return new Response('Webhook verification failed', { status: 400 })
   }
 
   // Handle events
-  const eventType = evt.type;
+  const eventType = evt.type
 
   switch (eventType) {
     case 'user.created':
-      await handleUserCreated(evt.data);
-      break;
+      await handleUserCreated(evt.data)
+      break
+
     case 'user.updated':
-      await handleUserUpdated(evt.data);
-      break;
+      await handleUserUpdated(evt.data)
+      break
+
     case 'user.deleted':
-      await handleUserDeleted(evt.data);
-      break;
+      await handleUserDeleted(evt.data)
+      break
+
     case 'organization.created':
-      await handleOrganizationCreated(evt.data);
-      break;
+      await handleOrgCreated(evt.data)
+      break
+
+    case 'organization.updated':
+      await handleOrgUpdated(evt.data)
+      break
+
+    case 'organization.deleted':
+      await handleOrgDeleted(evt.data)
+      break
+
     case 'organizationMembership.created':
-      await handleMembershipCreated(evt.data);
-      break;
-    case 'session.created':
-      await handleSessionCreated(evt.data);
-      break;
+      await handleMembershipCreated(evt.data)
+      break
+
+    case 'organizationMembership.deleted':
+      await handleMembershipDeleted(evt.data)
+      break
+
     default:
-      console.log(`Unhandled event type: ${eventType}`);
+      console.log(`Unhandled event type: ${eventType}`)
   }
 
-  return new Response('Webhook processed', { status: 200 });
+  return new Response('Webhook processed', { status: 200 })
 }
 
+// Event handlers
 async function handleUserCreated(data: any) {
-  await db.insert(users).values({
-    id: data.id,
-    email: data.email_addresses[0]?.email_address,
-    firstName: data.first_name,
-    lastName: data.last_name,
-    imageUrl: data.image_url,
-    createdAt: new Date(data.created_at),
-  });
-}
-
-async function handleUserUpdated(data: any) {
-  await db
-    .update(users)
-    .set({
+  await db.user.create({
+    data: {
+      clerkId: data.id,
       email: data.email_addresses[0]?.email_address,
       firstName: data.first_name,
       lastName: data.last_name,
       imageUrl: data.image_url,
-      updatedAt: new Date(),
-    })
-    .where(eq(users.id, data.id));
+      createdAt: new Date(data.created_at),
+      updatedAt: new Date(data.updated_at),
+    },
+  })
+
+  console.log('User created:', data.id)
+}
+
+async function handleUserUpdated(data: any) {
+  await db.user.update({
+    where: { clerkId: data.id },
+    data: {
+      email: data.email_addresses[0]?.email_address,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      imageUrl: data.image_url,
+      updatedAt: new Date(data.updated_at),
+    },
+  })
+
+  console.log('User updated:', data.id)
 }
 
 async function handleUserDeleted(data: any) {
-  await db.delete(users).where(eq(users.id, data.id));
+  await db.user.delete({
+    where: { clerkId: data.id },
+  })
+
+  console.log('User deleted:', data.id)
+}
+
+async function handleOrgCreated(data: any) {
+  await db.organization.create({
+    data: {
+      clerkId: data.id,
+      name: data.name,
+      slug: data.slug,
+      imageUrl: data.image_url,
+      createdAt: new Date(data.created_at),
+      updatedAt: new Date(data.updated_at),
+    },
+  })
+
+  console.log('Organization created:', data.id)
+}
+
+async function handleOrgUpdated(data: any) {
+  await db.organization.update({
+    where: { clerkId: data.id },
+    data: {
+      name: data.name,
+      slug: data.slug,
+      imageUrl: data.image_url,
+      updatedAt: new Date(data.updated_at),
+    },
+  })
+
+  console.log('Organization updated:', data.id)
+}
+
+async function handleOrgDeleted(data: any) {
+  await db.organization.delete({
+    where: { clerkId: data.id },
+  })
+
+  console.log('Organization deleted:', data.id)
+}
+
+async function handleMembershipCreated(data: any) {
+  await db.organizationMember.create({
+    data: {
+      clerkId: data.id,
+      organizationId: data.organization.id,
+      userId: data.public_user_data.user_id,
+      role: data.role,
+      createdAt: new Date(data.created_at),
+      updatedAt: new Date(data.updated_at),
+    },
+  })
+
+  console.log('Membership created:', data.id)
+}
+
+async function handleMembershipDeleted(data: any) {
+  await db.organizationMember.delete({
+    where: { clerkId: data.id },
+  })
+
+  console.log('Membership deleted:', data.id)
 }
 ```
 
-**Webhook Event Types:**
+#### Prisma Schema for Webhook Sync
 
-```typescript
-// lib/types/webhook-events.ts
-export type ClerkWebhookEvent =
-  | 'user.created'
-  | 'user.updated'
-  | 'user.deleted'
-  | 'email.created'
-  | 'sms.created'
-  | 'session.created'
-  | 'session.ended'
-  | 'session.removed'
-  | 'session.revoked'
-  | 'organization.created'
-  | 'organization.updated'
-  | 'organization.deleted'
-  | 'organizationMembership.created'
-  | 'organizationMembership.updated'
-  | 'organizationMembership.deleted'
-  | 'organizationInvitation.accepted'
-  | 'organizationInvitation.created'
-  | 'organizationInvitation.revoked';
+```prisma
+// prisma/schema.prisma
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  firstName String?
+  lastName  String?
+  imageUrl  String?
 
-export interface WebhookEventHandler {
-  (data: any): Promise<void>;
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  organizations OrganizationMember[]
+  posts         Post[]
+}
+
+model Organization {
+  id       String   @id @default(cuid())
+  clerkId  String   @unique
+  name     String
+  slug     String   @unique
+  imageUrl String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members OrganizationMember[]
+  posts   Post[]
+}
+
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  clerkId        String   @unique
+  role           String
+
+  userId         String
+  user           User     @relation(fields: [userId], references: [clerkId], onDelete: Cascade)
+
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [clerkId], onDelete: Cascade)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([userId, organizationId])
+}
+
+model Post {
+  id             String   @id @default(cuid())
+  title          String
+  content        String
+
+  authorId       String
+  author         User     @relation(fields: [authorId], references: [clerkId], onDelete: Cascade)
+
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [clerkId], onDelete: Cascade)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 ```
 
-**Webhook Testing with ngrok:**
-
-```bash
-# Install ngrok
-npm install -g ngrok
-
-# Start your Next.js app
-npm run dev
-
-# In another terminal, expose localhost
-ngrok http 3000
-
-# Copy the https URL and add to Clerk Dashboard:
-# https://dashboard.clerk.com > Webhooks > Add Endpoint
-# URL: https://your-ngrok-url.ngrok.io/api/webhooks/clerk
-```
-
-**Best Practices:**
-- Always verify webhook signatures (Svix handles this)
-- Use webhook secret from environment variables
-- Handle all event types gracefully (log unknown events)
-- Implement idempotency for duplicate events
-- Use database transactions for complex operations
-- Return 200 quickly, process async if needed
-
-**Common Patterns:**
+#### Testing Webhooks Locally
 
 ```typescript
-// Idempotent webhook processing
-const processedEvents = new Set<string>();
+// scripts/test-webhook.ts
+import { Webhook } from 'svix'
 
-export async function POST(req: Request) {
-  const evt = await verifyWebhook(req);
+const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET!
+const WEBHOOK_URL = 'http://localhost:3000/api/webhooks/clerk'
 
-  // Check if already processed
-  const eventId = req.headers.get('svix-id');
-  if (processedEvents.has(eventId)) {
-    return new Response('Already processed', { status: 200 });
+async function testWebhook() {
+  const payload = {
+    type: 'user.created',
+    data: {
+      id: 'user_test123',
+      email_addresses: [
+        {
+          email_address: 'test@example.com',
+        },
+      ],
+      first_name: 'Test',
+      last_name: 'User',
+      image_url: 'https://example.com/avatar.jpg',
+      created_at: Date.now(),
+      updated_at: Date.now(),
+    },
   }
 
-  await handleEvent(evt);
-  processedEvents.add(eventId);
+  const wh = new Webhook(WEBHOOK_SECRET)
+  const headers = wh.sign(JSON.stringify(payload))
 
-  return new Response('OK', { status: 200 });
+  const response = await fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...headers,
+    },
+    body: JSON.stringify(payload),
+  })
+
+  console.log('Response:', response.status, await response.text())
+}
+
+testWebhook()
+```
+
+### 6. Custom UI Components
+
+#### Custom Sign In Form
+
+```typescript
+// app/custom-sign-in/page.tsx
+'use client'
+
+import { useSignIn } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+import { FormEvent, useState } from 'react'
+
+export default function CustomSignInPage() {
+  const { isLoaded, signIn, setActive } = useSignIn()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const router = useRouter()
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+
+    if (!isLoaded) return
+
+    try {
+      const result = await signIn.create({
+        identifier: email,
+        password,
+      })
+
+      if (result.status === 'complete') {
+        await setActive({ session: result.createdSessionId })
+        router.push('/dashboard')
+      } else {
+        console.error('Sign in not complete:', result)
+      }
+    } catch (err: any) {
+      setError(err.errors?.[0]?.message || 'Sign in failed')
+      console.error('Sign in error:', err)
+    }
+  }
+
+  async function handleGoogleSignIn() {
+    if (!isLoaded) return
+
+    try {
+      await signIn.authenticateWithRedirect({
+        strategy: 'oauth_google',
+        redirectUrl: '/sso-callback',
+        redirectUrlComplete: '/dashboard',
+      })
+    } catch (err) {
+      console.error('Google sign in error:', err)
+    }
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg">
+        <div>
+          <h2 className="text-center text-3xl font-bold">Sign in</h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <a href="/sign-up" className="text-blue-600 hover:text-blue-500">
+              create a new account
+            </a>
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          {error && (
+            <div className="rounded bg-red-50 p-3 text-sm text-red-600">
+              {error}
+            </div>
+          )}
+
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email address
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="mt-1 w-full rounded-lg border px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="mt-1 w-full rounded-lg border px-3 py-2"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300"
+              />
+              <label htmlFor="remember-me" className="ml-2 text-sm">
+                Remember me
+              </label>
+            </div>
+
+            <a href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-500">
+              Forgot password?
+            </a>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-2 text-gray-500">Or continue with</span>
+            </div>
+          </div>
+
+          <button
+            onClick={handleGoogleSignIn}
+            className="mt-4 w-full rounded-lg border px-4 py-2 font-medium hover:bg-gray-50"
+          >
+            <svg className="mr-2 inline h-5 w-5" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="currentColor"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="currentColor"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="currentColor"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            Sign in with Google
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
 ```
 
-**Gotchas:**
-- Webhooks must be publicly accessible (use ngrok for local dev)
-- Webhook secret is different from API keys
-- Events may arrive out of order
-- Failed webhooks will retry (implement idempotency)
-
-### 6. Role-Based Access Control (RBAC)
-
-**Custom Roles with Metadata:**
+#### Custom Sign Up with Email Verification
 
 ```typescript
-// lib/auth/roles.ts
-export const ROLES = {
-  ADMIN: 'admin',
-  MANAGER: 'manager',
-  MEMBER: 'member',
-} as const;
+// app/custom-sign-up/page.tsx
+'use client'
 
-export type Role = (typeof ROLES)[keyof typeof ROLES];
+import { useSignUp } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+import { FormEvent, useState } from 'react'
 
-export const PERMISSIONS = {
-  users: {
-    create: ['admin'],
-    read: ['admin', 'manager', 'member'],
-    update: ['admin', 'manager'],
-    delete: ['admin'],
-  },
-  projects: {
-    create: ['admin', 'manager'],
-    read: ['admin', 'manager', 'member'],
-    update: ['admin', 'manager'],
-    delete: ['admin'],
-  },
-} as const;
+export default function CustomSignUpPage() {
+  const { isLoaded, signUp, setActive } = useSignUp()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [verifying, setVerifying] = useState(false)
+  const [code, setCode] = useState('')
+  const [error, setError] = useState('')
+  const router = useRouter()
 
-export function hasPermission(
-  role: Role,
-  resource: keyof typeof PERMISSIONS,
-  action: 'create' | 'read' | 'update' | 'delete'
-): boolean {
-  return PERMISSIONS[resource][action].includes(role);
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+
+    if (!isLoaded) return
+
+    try {
+      await signUp.create({
+        emailAddress: email,
+        password,
+        firstName,
+        lastName,
+      })
+
+      // Send verification email
+      await signUp.prepareEmailAddressVerification({
+        strategy: 'email_code',
+      })
+
+      setVerifying(true)
+    } catch (err: any) {
+      setError(err.errors?.[0]?.message || 'Sign up failed')
+      console.error('Sign up error:', err)
+    }
+  }
+
+  async function handleVerify(e: FormEvent) {
+    e.preventDefault()
+
+    if (!isLoaded) return
+
+    try {
+      const result = await signUp.attemptEmailAddressVerification({
+        code,
+      })
+
+      if (result.status === 'complete') {
+        await setActive({ session: result.createdSessionId })
+        router.push('/onboarding')
+      } else {
+        console.error('Verification not complete:', result)
+      }
+    } catch (err: any) {
+      setError(err.errors?.[0]?.message || 'Verification failed')
+      console.error('Verification error:', err)
+    }
+  }
+
+  if (verifying) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg">
+          <div>
+            <h2 className="text-center text-3xl font-bold">Verify your email</h2>
+            <p className="mt-2 text-center text-sm text-gray-600">
+              We sent a code to {email}
+            </p>
+          </div>
+
+          <form onSubmit={handleVerify} className="mt-8 space-y-6">
+            {error && (
+              <div className="rounded bg-red-50 p-3 text-sm text-red-600">
+                {error}
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="code" className="block text-sm font-medium">
+                Verification code
+              </label>
+              <input
+                id="code"
+                type="text"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                required
+                className="mt-1 w-full rounded-lg border px-3 py-2 text-center text-2xl tracking-widest"
+                placeholder="000000"
+                maxLength={6}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+            >
+              Verify email
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setVerifying(false)}
+              className="w-full text-sm text-gray-600 hover:text-gray-900"
+            >
+              Back to sign up
+            </button>
+          </form>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg">
+        <div>
+          <h2 className="text-center text-3xl font-bold">Create your account</h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <a href="/sign-in" className="text-blue-600 hover:text-blue-500">
+              sign in to existing account
+            </a>
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          {error && (
+            <div className="rounded bg-red-50 p-3 text-sm text-red-600">
+              {error}
+            </div>
+          )}
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium">
+                First name
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                className="mt-1 w-full rounded-lg border px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium">
+                Last name
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+                className="mt-1 w-full rounded-lg border px-3 py-2"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium">
+              Email address
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 w-full rounded-lg border px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 w-full rounded-lg border px-3 py-2"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Must be at least 8 characters
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+          >
+            Create account
+          </button>
+        </form>
+      </div>
+    </div>
+  )
 }
 ```
 
-**Server-Side Permission Check:**
+#### Multi-Step Onboarding Flow
 
 ```typescript
-// lib/auth/permissions.ts
-import { auth } from '@clerk/nextjs/server';
-import { hasPermission, Role } from './roles';
+// app/onboarding/page.tsx
+'use client'
 
-export async function requirePermission(
-  resource: string,
-  action: string
-): Promise<void> {
-  const { userId, sessionClaims } = auth();
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+
+export default function OnboardingPage() {
+  const { user, isLoaded } = useUser()
+  const router = useRouter()
+  const [step, setStep] = useState(1)
+  const [formData, setFormData] = useState({
+    role: '',
+    company: '',
+    teamSize: '',
+    goals: [] as string[],
+  })
+
+  if (!isLoaded) return <div>Loading...</div>
+
+  async function handleComplete() {
+    if (!user) return
+
+    // Save onboarding data to user metadata
+    await user.update({
+      unsafeMetadata: {
+        onboarding: {
+          completed: true,
+          ...formData,
+          completedAt: new Date().toISOString(),
+        },
+      },
+    })
+
+    router.push('/dashboard')
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-2xl space-y-8 rounded-lg bg-white p-8 shadow-lg">
+        <div>
+          <h2 className="text-center text-3xl font-bold">Welcome to the platform!</h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Let's get you set up (Step {step} of 3)
+          </p>
+        </div>
+
+        <div className="mb-8">
+          <div className="flex gap-2">
+            {[1, 2, 3].map((s) => (
+              <div
+                key={s}
+                className={`h-2 flex-1 rounded ${
+                  s <= step ? 'bg-blue-600' : 'bg-gray-200'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {step === 1 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium">What's your role?</label>
+              <select
+                value={formData.role}
+                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                className="mt-1 w-full rounded-lg border px-3 py-2"
+              >
+                <option value="">Select a role</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="product">Product Manager</option>
+                <option value="founder">Founder</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium">Company name</label>
+              <input
+                type="text"
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                className="mt-1 w-full rounded-lg border px-3 py-2"
+              />
+            </div>
+
+            <button
+              onClick={() => setStep(2)}
+              disabled={!formData.role}
+              className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            >
+              Continue
+            </button>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium">Team size</label>
+              <div className="mt-2 grid grid-cols-2 gap-4">
+                {['1-10', '11-50', '51-200', '200+'].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setFormData({ ...formData, teamSize: size })}
+                    className={`rounded-lg border px-4 py-3 text-center ${
+                      formData.teamSize === size
+                        ? 'border-blue-600 bg-blue-50'
+                        : 'border-gray-300'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => setStep(1)}
+                className="w-full rounded-lg border px-4 py-2 font-medium hover:bg-gray-50"
+              >
+                Back
+              </button>
+              <button
+                onClick={() => setStep(3)}
+                disabled={!formData.teamSize}
+                className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium">What are your goals?</label>
+              <div className="mt-2 space-y-2">
+                {[
+                  'Improve team collaboration',
+                  'Increase productivity',
+                  'Better project management',
+                  'Track progress',
+                ].map((goal) => (
+                  <label key={goal} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={formData.goals.includes(goal)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setFormData({
+                            ...formData,
+                            goals: [...formData.goals, goal],
+                          })
+                        } else {
+                          setFormData({
+                            ...formData,
+                            goals: formData.goals.filter((g) => g !== goal),
+                          })
+                        }
+                      }}
+                      className="h-4 w-4 rounded border-gray-300"
+                    />
+                    <span>{goal}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => setStep(2)}
+                className="w-full rounded-lg border px-4 py-2 font-medium hover:bg-gray-50"
+              >
+                Back
+              </button>
+              <button
+                onClick={handleComplete}
+                disabled={formData.goals.length === 0}
+                className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+              >
+                Complete setup
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+```
+
+## Real-World Examples
+
+### Example 1: SaaS App with Organizations
+
+This example shows a complete SaaS application with team workspaces, role-based access, and Prisma database sync.
+
+#### Project Structure
+
+```
+app/
+├── (auth)/
+│   ├── sign-in/[[...sign-in]]/page.tsx
+│   ├── sign-up/[[...sign-up]]/page.tsx
+│   └── sso-callback/page.tsx
+├── (dashboard)/
+│   ├── layout.tsx
+│   ├── dashboard/page.tsx
+│   ├── settings/page.tsx
+│   └── orgs/
+│       ├── page.tsx
+│       ├── new/page.tsx
+│       └── [orgId]/
+│           ├── page.tsx
+│           ├── settings/page.tsx
+│           └── members/page.tsx
+├── api/
+│   ├── webhooks/clerk/route.ts
+│   └── orgs/[orgId]/
+│       ├── route.ts
+│       └── members/route.ts
+└── actions/
+    ├── organizations.ts
+    └── members.ts
+```
+
+#### Dashboard Layout with Org Switcher
+
+```typescript
+// app/(dashboard)/layout.tsx
+import { auth } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+import { OrgSwitcher } from '@/components/org-switcher'
+import { UserNav } from '@/components/user-button'
+
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const { userId } = auth()
 
   if (!userId) {
-    throw new Error('Unauthorized');
+    redirect('/sign-in')
   }
 
-  const role = sessionClaims?.metadata?.role as Role;
-
-  if (!role || !hasPermission(role, resource as any, action as any)) {
-    throw new Error('Forbidden: Insufficient permissions');
-  }
-}
-
-// Usage in API route
-export async function DELETE(req: Request) {
-  await requirePermission('projects', 'delete');
-
-  // Delete project
-}
-```
-
-**Client-Side Permission Hook:**
-
-```typescript
-// hooks/use-permissions.ts
-'use client';
-
-import { useUser } from '@clerk/nextjs';
-import { hasPermission, Role } from '@/lib/auth/roles';
-
-export function usePermissions() {
-  const { user } = useUser();
-  const role = user?.publicMetadata?.role as Role;
-
-  return {
-    can: (resource: string, action: string) => {
-      if (!role) return false;
-      return hasPermission(role, resource as any, action as any);
-    },
-    isAdmin: role === 'admin',
-    isManager: role === 'manager',
-    role,
-  };
-}
-
-// Usage in component
-export function DeleteButton({ projectId }: { projectId: string }) {
-  const { can } = usePermissions();
-
-  if (!can('projects', 'delete')) {
-    return null;
-  }
-
-  return <button onClick={() => deleteProject(projectId)}>Delete</button>;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <header className="border-b">
+        <div className="flex h-16 items-center gap-4 px-8">
+          <div className="font-bold text-xl">YourApp</div>
+          <OrgSwitcher />
+          <div className="ml-auto flex items-center gap-4">
+            <UserNav />
+          </div>
+        </div>
+      </header>
+      <main className="flex-1">{children}</main>
+    </div>
+  )
 }
 ```
 
-**Setting User Roles via API:**
+#### Organization Dashboard
 
 ```typescript
-// app/api/admin/users/[userId]/role/route.ts
-import { clerkClient } from '@clerk/nextjs/server';
-import { requirePermission } from '@/lib/auth/permissions';
+// app/(dashboard)/orgs/[orgId]/page.tsx
+import { auth, clerkClient } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+import { db } from '@/lib/db'
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { userId: string } }
-) {
-  await requirePermission('users', 'update');
-
-  const { role } = await req.json();
-
-  await clerkClient.users.updateUser(params.userId, {
-    publicMetadata: { role },
-  });
-
-  return Response.json({ success: true });
-}
-```
-
-**Best Practices:**
-- Store roles in publicMetadata for client access
-- Use privateMetadata for sensitive permissions
-- Implement both client and server-side checks
-- Design granular permissions (resource + action)
-- Audit role changes via webhooks
-
-**Gotchas:**
-- Metadata updates require page refresh on client
-- Public metadata is visible to all users
-- Custom roles require enterprise plan
-- Session claims update on next token refresh
-
-### 7. Advanced Patterns
-
-**Custom Session Claims:**
-
-```typescript
-// lib/auth/session-claims.ts
-import { clerkClient } from '@clerk/nextjs/server';
-
-export async function setCustomClaims(userId: string, claims: Record<string, any>) {
-  await clerkClient.users.updateUser(userId, {
-    privateMetadata: claims,
-  });
-}
-
-// Access in middleware or API routes
-const { sessionClaims } = auth();
-const customData = sessionClaims?.metadata;
-```
-
-**Token Management:**
-
-```typescript
-// Get JWT token for external API calls
-'use client';
-
-import { useAuth } from '@clerk/nextjs';
-
-export function useAuthToken() {
-  const { getToken } = useAuth();
-
-  async function fetchWithAuth(url: string, options?: RequestInit) {
-    const token = await getToken();
-
-    return fetch(url, {
-      ...options,
-      headers: {
-        ...options?.headers,
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  return { fetchWithAuth };
-}
-```
-
-**SSO Integration:**
-
-```typescript
-// Enable SSO in Clerk Dashboard first
-// No code changes needed - Clerk handles SAML/OAuth automatically
-
-// Optional: Redirect enterprise users to SSO
-export default clerkMiddleware((auth, req) => {
-  const { userId, sessionClaims } = auth();
-
-  if (sessionClaims?.email?.endsWith('@enterprise.com')) {
-    // Redirect to SSO if not already authenticated
-  }
-});
-```
-
-**Multi-Factor Authentication:**
-
-```typescript
-// Enable MFA in Clerk Dashboard
-// Users can enable it in their profile
-
-// Require MFA for sensitive operations
-export async function POST(req: Request) {
-  const { userId, sessionClaims } = auth();
-
-  if (!sessionClaims?.twoFactorEnabled) {
-    return Response.json(
-      { error: 'MFA required for this operation' },
-      { status: 403 }
-    );
-  }
-
-  // Proceed with sensitive operation
-}
-```
-
-## 💡 Real-World Examples
-
-### Example 1: Multi-Tenant SaaS Application
-
-```typescript
-// Complete setup for a multi-tenant SaaS app
-
-// middleware.ts
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-
-const isPublic = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)']);
-const isOrgRequired = createRouteMatcher(['/app/:orgSlug(.*)']);
-
-export default clerkMiddleware((auth, req) => {
-  if (!isPublic(req) && !auth().userId) {
-    return auth().redirectToSignIn({ returnBackUrl: req.url });
-  }
-
-  if (isOrgRequired(req) && !auth().orgId) {
-    return Response.redirect(new URL('/select-org', req.url));
-  }
-});
-
-// app/app/[orgSlug]/layout.tsx
-export default async function OrgLayout({
-  children,
+export default async function OrgDashboardPage({
   params,
 }: {
-  children: React.ReactNode;
-  params: { orgSlug: string };
+  params: { orgId: string }
 }) {
-  const { orgSlug } = params;
-  const { orgId } = auth();
+  const { userId, orgId } = auth()
 
-  // Verify org slug matches active org
-  const org = await clerkClient.organizations.getOrganization({
-    organizationId: orgId!,
-  });
-
-  if (org.slug !== orgSlug) {
-    redirect('/select-org');
+  if (!userId || !orgId || orgId !== params.orgId) {
+    redirect('/orgs')
   }
+
+  const organization = await clerkClient.organizations.getOrganization({
+    organizationId: params.orgId,
+  })
+
+  const members = await clerkClient.organizations.getOrganizationMembershipList({
+    organizationId: params.orgId,
+  })
+
+  // Get org-specific data from your database
+  const projects = await db.project.findMany({
+    where: { organizationId: params.orgId },
+    include: {
+      author: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: 10,
+  })
 
   return (
-    <div>
-      <header>
-        <OrganizationSwitcher />
-      </header>
-      {children}
+    <div className="p-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold">{organization.name}</h1>
+        <p className="text-gray-600">{members.length} members</p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="rounded-lg border p-6">
+          <h3 className="font-semibold">Projects</h3>
+          <p className="text-3xl font-bold">{projects.length}</p>
+        </div>
+
+        <div className="rounded-lg border p-6">
+          <h3 className="font-semibold">Members</h3>
+          <p className="text-3xl font-bold">{members.length}</p>
+        </div>
+
+        <div className="rounded-lg border p-6">
+          <h3 className="font-semibold">Plan</h3>
+          <p className="text-3xl font-bold">
+            {(organization.publicMetadata.plan as string) || 'Free'}
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="mb-4 text-xl font-semibold">Recent Projects</h2>
+        <div className="space-y-4">
+          {projects.map((project) => (
+            <div key={project.id} className="rounded-lg border p-4">
+              <h3 className="font-medium">{project.title}</h3>
+              <p className="text-sm text-gray-600">
+                Created by {project.author.firstName} {project.author.lastName}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  );
-}
-
-// lib/db/tenant-isolation.ts
-export async function getTenantDb() {
-  const { orgId } = auth();
-
-  if (!orgId) {
-    throw new Error('No organization context');
-  }
-
-  return db.$with('tenant_filter', (qb) =>
-    qb.where(eq(schema.organizationId, orgId))
-  );
+  )
 }
 ```
 
-### Example 2: Admin Dashboard with RBAC
+#### Member Management
 
 ```typescript
-// app/admin/layout.tsx
-import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
+// app/actions/members.ts
+'use server'
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { userId, sessionClaims } = auth();
+import { auth, clerkClient } from '@clerk/nextjs'
+import { revalidatePath } from 'next/cache'
+import { requireOrgAdmin } from '@/lib/auth/permissions'
 
-  if (!userId || sessionClaims?.metadata?.role !== 'admin') {
-    redirect('/unauthorized');
-  }
+export async function inviteMember(
+  orgId: string,
+  email: string,
+  role: 'admin' | 'member'
+) {
+  await requireOrgAdmin(orgId)
 
-  return (
-    <div className="admin-layout">
-      <AdminSidebar />
-      <main>{children}</main>
-    </div>
-  );
+  const invitation = await clerkClient.organizations.createOrganizationInvitation({
+    organizationId: orgId,
+    emailAddress: email,
+    role,
+  })
+
+  revalidatePath(`/orgs/${orgId}/members`)
+  return invitation
 }
 
-// components/admin/user-management.tsx
-'use client';
+export async function removeMember(orgId: string, userId: string) {
+  await requireOrgAdmin(orgId)
 
-import { useState } from 'react';
-import { clerkClient } from '@clerk/nextjs/server';
+  await clerkClient.organizations.deleteOrganizationMembership({
+    organizationId: orgId,
+    userId,
+  })
 
-export function UserManagement() {
-  const [users, setUsers] = useState([]);
+  revalidatePath(`/orgs/${orgId}/members`)
+}
 
-  async function updateUserRole(userId: string, role: string) {
-    await fetch(`/api/admin/users/${userId}/role`, {
-      method: 'PATCH',
-      body: JSON.stringify({ role }),
-    });
-  }
+export async function updateMemberRole(
+  orgId: string,
+  userId: string,
+  role: 'admin' | 'member'
+) {
+  await requireOrgAdmin(orgId)
 
-  return (
-    <div>
-      {users.map((user) => (
-        <UserRow key={user.id} user={user} onRoleChange={updateUserRole} />
-      ))}
-    </div>
-  );
+  await clerkClient.organizations.updateOrganizationMembership({
+    organizationId: orgId,
+    userId,
+    role,
+  })
+
+  revalidatePath(`/orgs/${orgId}/members`)
 }
 ```
 
-## 🔗 Related Skills
+### Example 2: API Route Protection
 
-- **tanstack-query-expert** - Cache Clerk user data and organization lists
-- **zustand-jotai-state** - Store active organization state globally
-- **react-hook-form-zod** - Build user profile update forms with validation
-- **neon-postgres** - Sync Clerk users to PostgreSQL via webhooks
-- **uploadthing-expert** - Integrate with Clerk for authenticated file uploads
-- **inngest-expert** - Process Clerk webhooks asynchronously
-- **convex-expert** - Use Clerk auth with Convex backend
+Complete API authentication with rate limiting and logging.
 
-## 📖 Further Reading
+```typescript
+// lib/api/auth.ts
+import { auth } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
 
+export interface AuthContext {
+  userId: string
+  orgId?: string
+  role?: string
+}
+
+export async function requireAuth(): Promise<AuthContext> {
+  const { userId, orgId } = auth()
+
+  if (!userId) {
+    throw new Error('Unauthorized')
+  }
+
+  return { userId, orgId: orgId || undefined }
+}
+
+export async function requireOrgAuth(): Promise<Required<AuthContext>> {
+  const { userId, orgId } = auth()
+
+  if (!userId || !orgId) {
+    throw new Error('Organization context required')
+  }
+
+  return { userId, orgId, role: 'member' }
+}
+
+export function withAuth<T>(
+  handler: (req: Request, context: AuthContext) => Promise<T>
+) {
+  return async (req: Request) => {
+    try {
+      const context = await requireAuth()
+      return await handler(req, context)
+    } catch (error) {
+      if (error instanceof Error && error.message === 'Unauthorized') {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      }
+      console.error('API error:', error)
+      return NextResponse.json(
+        { error: 'Internal server error' },
+        { status: 500 }
+      )
+    }
+  }
+}
+```
+
+```typescript
+// app/api/projects/route.ts
+import { NextResponse } from 'next/server'
+import { withAuth } from '@/lib/api/auth'
+import { db } from '@/lib/db'
+import { z } from 'zod'
+
+const createProjectSchema = z.object({
+  title: z.string().min(1).max(100),
+  description: z.string().optional(),
+  organizationId: z.string().optional(),
+})
+
+export const GET = withAuth(async (req, { userId, orgId }) => {
+  const projects = await db.project.findMany({
+    where: {
+      OR: [
+        { authorId: userId },
+        { organizationId: orgId },
+      ],
+    },
+    include: {
+      author: {
+        select: {
+          firstName: true,
+          lastName: true,
+          imageUrl: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  })
+
+  return NextResponse.json({ projects })
+})
+
+export const POST = withAuth(async (req, { userId, orgId }) => {
+  const body = await req.json()
+  const data = createProjectSchema.parse(body)
+
+  const project = await db.project.create({
+    data: {
+      ...data,
+      authorId: userId,
+      organizationId: data.organizationId || orgId,
+    },
+    include: {
+      author: {
+        select: {
+          firstName: true,
+          lastName: true,
+          imageUrl: true,
+        },
+      },
+    },
+  })
+
+  return NextResponse.json({ project }, { status: 201 })
+})
+```
+
+## Related Skills
+
+- **next14-app-router** - Next.js App Router patterns and conventions
+- **prisma-advanced** - Database modeling and migrations with Prisma
+- **react-server-components** - Server and client component patterns
+- **zod-validation** - Type-safe schema validation
+- **tailwind-ui-patterns** - Building beautiful UIs with Tailwind CSS
+- **stripe-integration** - Payment processing for SaaS apps
+- **vercel-deployment** - Deploying Next.js apps to production
+
+## Further Reading
+
+### Official Documentation
 - [Clerk Documentation](https://clerk.com/docs)
-- [Next.js Integration Guide](https://clerk.com/docs/quickstarts/nextjs)
-- [Middleware Reference](https://clerk.com/docs/references/nextjs/clerk-middleware)
-- [Organizations & RBAC](https://clerk.com/docs/organizations/overview)
-- [Webhook Events](https://clerk.com/docs/integrations/webhooks/overview)
-- [Custom Session Claims](https://clerk.com/docs/backend-requests/making/custom-session-token)
-- [Multi-Tenancy Guide](https://clerk.com/blog/multi-tenancy-in-nextjs)
+- [Clerk Next.js SDK](https://clerk.com/docs/references/nextjs/overview)
+- [Clerk Organizations](https://clerk.com/docs/organizations/overview)
+- [Clerk Webhooks](https://clerk.com/docs/integrations/webhooks)
 
----
+### Guides
+- [Next.js 14 App Router with Clerk](https://clerk.com/docs/quickstarts/nextjs)
+- [Multi-tenant SaaS with Organizations](https://clerk.com/docs/organizations/verified-domains)
+- [Custom Authentication Flows](https://clerk.com/docs/custom-flows/overview)
+- [Syncing Users to Your Database](https://clerk.com/docs/integrations/databases/sync-data)
 
-*This skill is part of OPUS 67 v5.1 - "The Precision Update"*
+### Advanced Topics
+- [JWT Templates](https://clerk.com/docs/backend-requests/making/jwt-templates)
+- [Session Management](https://clerk.com/docs/references/nextjs/current-user)
+- [SAML SSO](https://clerk.com/docs/authentication/saml/overview)
+- [Role-Based Access Control](https://clerk.com/docs/organizations/roles-permissions)
+
+### Community Resources
+- [Clerk Discord](https://clerk.com/discord)
+- [Clerk GitHub](https://github.com/clerkinc/javascript)
+- [Example Applications](https://github.com/clerkinc/clerk-nextjs-examples)
