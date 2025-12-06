@@ -1,0 +1,227 @@
+/**
+ * OPUS 67 LLM Benchmark - Model Comparison
+ * Compares Gemini 2.0 Flash vs DeepSeek Chat (FREE tiers)
+ */
+
+import { describe, it, expect, beforeAll } from 'vitest';
+import type { ModelMetrics, LLMBenchmarkReport } from './types.js';
+import { runHumanEvalBenchmark } from './humaneval.bench.js';
+import { runMemoryTierBenchmarks } from './memory-tiers.bench.js';
+import { runPromptCacheBenchmarks } from './prompt-cache.bench.js';
+import { runHallucinationBenchmark } from './hallucination.bench.js';
+
+export interface ComparisonResult {
+  metric: string;
+  gemini: number | string;
+  deepseek: number | string;
+  winner: 'gemini' | 'deepseek' | 'tie';
+  notes?: string;
+}
+
+export function compareModels(
+  geminiMetrics: ModelMetrics,
+  deepseekMetrics: ModelMetrics
+): ComparisonResult[] {
+  const results: ComparisonResult[] = [];
+
+  // pass@1 comparison
+  results.push({
+    metric: 'pass@1 (%)',
+    gemini: geminiMetrics.pass_at_1.toFixed(1),
+    deepseek: deepseekMetrics.pass_at_1.toFixed(1),
+    winner: geminiMetrics.pass_at_1 > deepseekMetrics.pass_at_1 ? 'gemini' :
+            deepseekMetrics.pass_at_1 > geminiMetrics.pass_at_1 ? 'deepseek' : 'tie'
+  });
+
+  // Average latency comparison
+  results.push({
+    metric: 'Avg Latency (ms)',
+    gemini: Math.round(geminiMetrics.avg_latency_ms),
+    deepseek: Math.round(deepseekMetrics.avg_latency_ms),
+    winner: geminiMetrics.avg_latency_ms < deepseekMetrics.avg_latency_ms ? 'gemini' :
+            deepseekMetrics.avg_latency_ms < geminiMetrics.avg_latency_ms ? 'deepseek' : 'tie',
+    notes: 'Lower is better'
+  });
+
+  // Token efficiency
+  results.push({
+    metric: 'Avg Tokens',
+    gemini: Math.round(geminiMetrics.avg_tokens),
+    deepseek: Math.round(deepseekMetrics.avg_tokens),
+    winner: geminiMetrics.avg_tokens < deepseekMetrics.avg_tokens ? 'gemini' :
+            deepseekMetrics.avg_tokens < geminiMetrics.avg_tokens ? 'deepseek' : 'tie',
+    notes: 'Lower is better'
+  });
+
+  // Syntax error rate
+  const geminiSyntaxRate = (geminiMetrics.syntax_errors / geminiMetrics.total_problems) * 100;
+  const deepseekSyntaxRate = (deepseekMetrics.syntax_errors / deepseekMetrics.total_problems) * 100;
+  results.push({
+    metric: 'Syntax Errors (%)',
+    gemini: geminiSyntaxRate.toFixed(1),
+    deepseek: deepseekSyntaxRate.toFixed(1),
+    winner: geminiSyntaxRate < deepseekSyntaxRate ? 'gemini' :
+            deepseekSyntaxRate < geminiSyntaxRate ? 'deepseek' : 'tie',
+    notes: 'Lower is better'
+  });
+
+  // Runtime error rate
+  const geminiRuntimeRate = (geminiMetrics.runtime_errors / geminiMetrics.total_problems) * 100;
+  const deepseekRuntimeRate = (deepseekMetrics.runtime_errors / deepseekMetrics.total_problems) * 100;
+  results.push({
+    metric: 'Runtime Errors (%)',
+    gemini: geminiRuntimeRate.toFixed(1),
+    deepseek: deepseekRuntimeRate.toFixed(1),
+    winner: geminiRuntimeRate < deepseekRuntimeRate ? 'gemini' :
+            deepseekRuntimeRate < geminiRuntimeRate ? 'deepseek' : 'tie',
+    notes: 'Lower is better'
+  });
+
+  // Cost (both FREE)
+  results.push({
+    metric: 'Cost per 1M tokens',
+    gemini: '$0.00 (FREE)',
+    deepseek: '$0.14-0.28',
+    winner: 'gemini',
+    notes: 'Gemini 2.0 Flash has free tier'
+  });
+
+  return results;
+}
+
+export function generateComparisonMarkdown(
+  results: ComparisonResult[],
+  geminiMetrics: ModelMetrics,
+  deepseekMetrics: ModelMetrics
+): string {
+  const geminiWins = results.filter(r => r.winner === 'gemini').length;
+  const deepseekWins = results.filter(r => r.winner === 'deepseek').length;
+  const ties = results.filter(r => r.winner === 'tie').length;
+
+  let md = `# Model Comparison: Gemini 2.0 Flash vs DeepSeek Chat
+
+## Summary
+
+| Metric | Gemini 2.0 Flash | DeepSeek Chat | Winner |
+|--------|-----------------|---------------|--------|
+`;
+
+  for (const result of results) {
+    const winnerIcon = result.winner === 'gemini' ? '🏆' :
+                       result.winner === 'deepseek' ? '🏆' : '🤝';
+    md += `| ${result.metric} | ${result.gemini} | ${result.deepseek} | ${winnerIcon} ${result.winner} |\n`;
+  }
+
+  md += `
+## Verdict
+
+- **Gemini Wins**: ${geminiWins}
+- **DeepSeek Wins**: ${deepseekWins}
+- **Ties**: ${ties}
+
+### Overall Winner: ${geminiWins > deepseekWins ? '🏆 Gemini 2.0 Flash' : deepseekWins > geminiWins ? '🏆 DeepSeek Chat' : '🤝 Tie'}
+
+## Detailed Metrics
+
+### Gemini 2.0 Flash
+- pass@1: ${geminiMetrics.pass_at_1.toFixed(1)}%
+- Solved: ${geminiMetrics.passed}/${geminiMetrics.total_problems} problems
+- Avg Latency: ${Math.round(geminiMetrics.avg_latency_ms)}ms
+- Avg Tokens: ${Math.round(geminiMetrics.avg_tokens)}
+- Cost: FREE (API quota limits apply)
+
+### DeepSeek Chat
+- pass@1: ${deepseekMetrics.pass_at_1.toFixed(1)}%
+- Solved: ${deepseekMetrics.passed}/${deepseekMetrics.total_problems} problems
+- Avg Latency: ${Math.round(deepseekMetrics.avg_latency_ms)}ms
+- Avg Tokens: ${Math.round(deepseekMetrics.avg_tokens)}
+- Cost: $0.14/M input, $0.28/M output
+
+---
+
+*Generated by OPUS 67 LLM Benchmark Suite v5.1.9*
+`;
+
+  return md;
+}
+
+export async function runFullComparison(): Promise<{
+  comparison: ComparisonResult[];
+  gemini: ModelMetrics;
+  deepseek: ModelMetrics;
+}> {
+  console.log('Running full model comparison...\n');
+
+  const modelResults = await runHumanEvalBenchmark(['gemini', 'deepseek'], 5);
+
+  const gemini = modelResults.find(m => m.model === 'gemini')!;
+  const deepseek = modelResults.find(m => m.model === 'deepseek')!;
+
+  const comparison = compareModels(gemini, deepseek);
+
+  return { comparison, gemini, deepseek };
+}
+
+// Vitest test suite
+describe('Model Comparison Benchmarks', () => {
+  let geminiMetrics: ModelMetrics;
+  let deepseekMetrics: ModelMetrics;
+
+  beforeAll(() => {
+    // Use simulated metrics for testing
+    geminiMetrics = {
+      model: 'gemini',
+      pass_at_1: 72.0,
+      total_problems: 50,
+      passed: 36,
+      syntax_errors: 2,
+      runtime_errors: 5,
+      timeout_errors: 1,
+      assertion_errors: 6,
+      avg_tokens: 150,
+      avg_latency_ms: 800,
+      total_cost: 0
+    };
+
+    deepseekMetrics = {
+      model: 'deepseek',
+      pass_at_1: 68.0,
+      total_problems: 50,
+      passed: 34,
+      syntax_errors: 3,
+      runtime_errors: 6,
+      timeout_errors: 2,
+      assertion_errors: 5,
+      avg_tokens: 180,
+      avg_latency_ms: 1200,
+      total_cost: 0
+    };
+  });
+
+  it('should compare all metrics', () => {
+    const results = compareModels(geminiMetrics, deepseekMetrics);
+    expect(results.length).toBeGreaterThan(0);
+  });
+
+  it('should identify correct winners', () => {
+    const results = compareModels(geminiMetrics, deepseekMetrics);
+
+    // Gemini should win pass@1 (72 > 68)
+    const passAt1 = results.find(r => r.metric === 'pass@1 (%)');
+    expect(passAt1?.winner).toBe('gemini');
+
+    // Gemini should win latency (800 < 1200)
+    const latency = results.find(r => r.metric === 'Avg Latency (ms)');
+    expect(latency?.winner).toBe('gemini');
+  });
+
+  it('should generate valid markdown report', () => {
+    const results = compareModels(geminiMetrics, deepseekMetrics);
+    const markdown = generateComparisonMarkdown(results, geminiMetrics, deepseekMetrics);
+
+    expect(markdown).toContain('# Model Comparison');
+    expect(markdown).toContain('Gemini 2.0 Flash');
+    expect(markdown).toContain('DeepSeek Chat');
+    expect(markdown).toContain('Winner');
+  });
+});

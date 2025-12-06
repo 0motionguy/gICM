@@ -52,22 +52,41 @@ export function loadRegistries(packageRoot: string): {
   mcpConnections: MCPConnection[];
   modes: Mode[];
 } {
-  // Load skills
-  const skillsRegistry = loadYaml<{ skills: Skill[] }>('skills/registry.yaml', packageRoot);
-  const skills = skillsRegistry?.skills || [];
+  // Load skills - merge all skills keys (skills, skills_v31, skills_v41, etc.)
+  const skillsRegistryRaw = loadYaml<Record<string, unknown>>('skills/registry.yaml', packageRoot);
+  let skills: Skill[] = [];
 
-  // Load MCP connections
-  const mcpRegistryRaw = loadYaml<Record<string, Record<string, MCPConnection>>>('mcp/connections.yaml', packageRoot);
+  if (skillsRegistryRaw) {
+    // Find all keys that start with "skills"
+    const skillsKeys = Object.keys(skillsRegistryRaw).filter(key => key.startsWith('skills'));
+
+    for (const key of skillsKeys) {
+      const skillsData = skillsRegistryRaw[key];
+      if (Array.isArray(skillsData)) {
+        skills.push(...(skillsData as Skill[]));
+      } else if (skillsData && typeof skillsData === 'object') {
+        // Object format - convert to array
+        for (const [id, skill] of Object.entries(skillsData as Record<string, unknown>)) {
+          if (skill && typeof skill === 'object') {
+            skills.push({ id, ...(skill as Omit<Skill, 'id'>) });
+          }
+        }
+      }
+    }
+  }
+
+  // Load MCP connections - dynamically iterate ALL categories
+  const mcpRegistryRaw = loadYaml<Record<string, unknown>>('mcp/connections.yaml', packageRoot);
   const mcpConnections: MCPConnection[] = [];
 
   if (mcpRegistryRaw) {
-    const categoryKeys = ['blockchain', 'social', 'data', 'documentation', 'testing', 'productivity', 'ai_search', 'persistence', 'reasoning'];
-    for (const category of categoryKeys) {
-      const categoryData = mcpRegistryRaw[category];
-      if (categoryData && typeof categoryData === 'object') {
-        for (const [id, conn] of Object.entries(categoryData)) {
-          if (conn && typeof conn === 'object' && 'name' in conn) {
-            mcpConnections.push({ ...conn, id, category });
+    // Skip meta key, iterate all other keys as categories
+    for (const [category, categoryData] of Object.entries(mcpRegistryRaw)) {
+      if (category === 'meta' || category === 'groups') continue;
+      if (categoryData && typeof categoryData === 'object' && !Array.isArray(categoryData)) {
+        for (const [id, conn] of Object.entries(categoryData as Record<string, unknown>)) {
+          if (conn && typeof conn === 'object' && 'name' in (conn as Record<string, unknown>)) {
+            mcpConnections.push({ ...(conn as MCPConnection), id, category });
           }
         }
       }

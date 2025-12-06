@@ -1,3 +1,11 @@
+# OPUS 67 v6.0.0 - Unified System
+
+> Run `opus67` for unified boot. All skills, agents, MCPs, and modes load automatically.
+
+See root `CLAUDE.md` for OPUS 67 master documentation.
+
+---
+
 ## gICM Integration
 
 Enhanced AI development with deep autonomy integration.

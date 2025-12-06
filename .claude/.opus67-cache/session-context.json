@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-12-06T13:02:36.225Z",
+  "projectDir": "C:\\Users\\mirko\\OneDrive\\Desktop\\gICM",
+  "projectTypes": [
+    "react",
+    "nextjs",
+    "node"
+  ],
+  "preloadedSkills": [
+    "react-component-builder",
+    "typescript-patterns",
+    "tailwind-styling",
+    "nextjs-14-expert",
+    "app-router-patterns"
+  ],
+  "reminder": "ALWAYS call opus67_detect_skills before responding to code tasks"
+}

@@ -8,7 +8,9 @@ import { createOPUS67 } from "./boot.js";
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { homedir } from "os";
+import { spawn } from "child_process";
 import { VERSION } from "./version.js";
+import { generateBootScreen } from "./boot-sequence.js";
 
 const HELP = `
 ╔═══════════════════════════════════════════════════════════════════════════╗
@@ -57,10 +59,27 @@ Examples:
 const OPUS67_CLAUDE_MD_SECTION = `
 # OPUS 67 - Self-Evolving AI Runtime
 
-You have OPUS 67 installed. This gives you access to:
+> **OPUS 67 is NOT a separate AI.** It's YOU (Claude) with superpowers.
+
+## MANDATORY AUTOPILOT PROTOCOL
+
+**On EVERY code-related message, you MUST automatically:**
+
+1. **Call \`mcp__opus67__opus67_detect_skills\`** with the user's query
+   - This finds relevant domain expertise for the task
+   - Takes <1ms - negligible overhead
+
+2. **Call \`mcp__opus67__opus67_get_skill\`** for top 1-3 matches
+   - Loads full skill prompts into your context
+   - Each skill adds domain expertise you don't have by default
+
+3. **Apply the loaded skills** in your response
+   - Use the patterns, best practices, and knowledge
+   - This is what the user paid for - USE IT
+
+**This is NON-NEGOTIABLE. Skipping degrades response quality.**
 
 ## Available Skills (141 total)
-Use \`opus67_list_skills\` MCP tool to see all, or auto-detect based on task.
 
 ### Blockchain
 - solana-anchor-expert, bonding-curve-master, defi-data-analyst
@@ -77,28 +96,21 @@ Use \`opus67_list_skills\` MCP tool to see all, or auto-detect based on task.
 ### DevOps
 - docker-kubernetes-pro, ci-cd-automation, aws-infrastructure
 
-## Auto-Detect Skills
-When user asks a question, automatically detect relevant skills using \`opus67_detect_skills\` MCP tool.
+## MCP Tools (use these automatically)
+- \`mcp__opus67__opus67_detect_skills\` - **CALL THIS FIRST** on code tasks
+- \`mcp__opus67__opus67_get_skill\` - Load a specific skill
+- \`mcp__opus67__opus67_get_context\` - Enhanced context bundle
+- \`mcp__opus67__opus67_list_skills\` - List all available skills
+- \`mcp__opus67__opus67_boot\` - Show boot screen
 
-## Operating Modes
-- **AUTO** - Auto-detect best mode
-- **BUILD** - Code generation
-- **REVIEW** - Code review
-- **ARCHITECT** - System design
-- **DEBUG** - Debugging
+## Slash Commands
+- \`/mcp__opus67__solana\` - Blockchain expertise
+- \`/mcp__opus67__react\` - Frontend patterns
+- \`/mcp__opus67__typescript\` - Type safety
+- \`/mcp__opus67__security\` - Security audit
+- \`/mcp__opus67__backend\` - API patterns
 
-## MCP Tools Available
-- \`opus67_boot\` - Show boot screen
-- \`opus67_list_skills\` - List all skills
-- \`opus67_get_skill <id>\` - Get full skill prompt
-- \`opus67_detect_skills <query>\` - Auto-detect skills
-- \`opus67_get_context <task>\` - Enhanced context
-- \`opus67_status\` - System status
-
-## Automatic Behavior
-1. On every task, run \`opus67_detect_skills\` to find relevant skills
-2. Load detected skills with \`opus67_get_skill\`
-3. Apply skill knowledge to the task
+**Remember: YOU are the brain. OPUS 67 just makes you faster and more capable.**
 `;
 
 /**
@@ -114,13 +126,23 @@ function injectIntoCLAUDEmd(): { success: boolean; path: string } {
     content = readFileSync(claudeMdPath, 'utf-8');
   }
 
-  // Check if already injected
-  if (content.includes('# OPUS 67 - Self-Evolving AI Runtime')) {
-    return { success: true, path: claudeMdPath };
+  // Remove old OPUS 67 section if exists (to allow updates)
+  const opus67Marker = '# OPUS 67 - Self-Evolving AI Runtime';
+  if (content.includes(opus67Marker)) {
+    // Find and remove the old section
+    const startIdx = content.indexOf('---\n' + opus67Marker);
+    if (startIdx !== -1) {
+      content = content.substring(0, startIdx).trim();
+    } else {
+      const altStartIdx = content.indexOf(opus67Marker);
+      if (altStartIdx !== -1) {
+        content = content.substring(0, altStartIdx).trim();
+      }
+    }
   }
 
-  // Append OPUS 67 section
-  const newContent = content + '\n---\n' + OPUS67_CLAUDE_MD_SECTION;
+  // Append updated OPUS 67 section
+  const newContent = content + '\n\n---\n' + OPUS67_CLAUDE_MD_SECTION;
 
   // Ensure directory exists
   const dir = dirname(claudeMdPath);
@@ -181,14 +203,15 @@ function registerWithClaudeCode(): { success: boolean; message: string } {
   // Always update to latest config
   const isWindows = process.platform === 'win32';
 
+  // Use opus67-mcp binary directly for proper stdio communication
   mcpServers.opus67 = isWindows
     ? {
         command: 'cmd',
-        args: ['/c', 'npx', '-y', '@gicm/opus67', 'mcp-serve'],
+        args: ['/c', 'npx', '-y', '-p', '@gicm/opus67', 'opus67-mcp'],
       }
     : {
         command: 'npx',
-        args: ['-y', '@gicm/opus67', 'mcp-serve'],
+        args: ['-y', '-p', '@gicm/opus67', 'opus67-mcp'],
       };
 
   // Save settings
@@ -224,28 +247,43 @@ async function main() {
       const result = registerWithClaudeCode();
 
       if (result.success) {
-        console.log(`✅ ${result.message}`);
+        // Show the full boot screen with dynamic counts
+        console.log(generateBootScreen({
+          defaultMode: 'auto',
+          version: VERSION,
+          projectName: 'Claude Code'
+        }));
+
         console.log(`
 ╔═══════════════════════════════════════════════════════════════════════════╗
+║  ✅ OPUS 67 REGISTERED SUCCESSFULLY                                       ║
+╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
-║   OPUS 67 IS NOW INTEGRATED WITH CLAUDE CODE                              ║
+║  MCP Server:  ${result.message.split('\n')[0].replace('OPUS 67 registered!', '').trim().padEnd(58)}║
 ║                                                                           ║
-║   What you get:                                                           ║
-║   • 141 specialist skills auto-loaded                                     ║
-║   • 82 MCP connections available                                          ║
-║   • 30 operating modes • 107 agents                                       ║
-║   • Skills auto-detect based on your task                                 ║
+║  Available MCP Tools:                                                     ║
+║  • opus67_boot            - Show boot screen                              ║
+║  • opus67_detect_skills   - Auto-detect skills for your task              ║
+║  • opus67_get_skill       - Load a specific skill                         ║
+║  • opus67_get_context     - Get enhanced context bundle                   ║
+║  • opus67_list_skills     - List all available skills                     ║
 ║                                                                           ║
-║   Usage in Claude Code:                                                   ║
-║   • opus67_boot - Show boot screen                                        ║
-║   • opus67_get_skill <id> - Load a skill                                  ║
-║   • opus67_detect_skills <query> - Auto-detect skills                     ║
-║   • opus67_get_context <task> - Get enhanced context                      ║
-║                                                                           ║
-║   Restart Claude Code to activate!                                        ║
+║  Slash Commands:                                                          ║
+║  /mcp__opus67__solana, /mcp__opus67__react, /mcp__opus67__typescript...   ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 `);
+
+        // Auto-launch Claude Code in the same terminal
+        console.log("🚀 Launching Claude Code...\n");
+
+        // Use exec to replace current process with claude
+        const { execSync } = await import('child_process');
+        try {
+          execSync('claude', { stdio: 'inherit' });
+        } catch {
+          // Claude exited or wasn't found
+        }
       } else {
         console.log(`❌ ${result.message}`);
       }
@@ -255,11 +293,14 @@ async function main() {
     case "mcp-serve": {
       // This is called by Claude Code - run the MCP server
       const { spawn } = await import('child_process');
-      const serverPath = join(dirname(new URL(import.meta.url).pathname), 'mcp-server.js');
+      const { fileURLToPath } = await import('url');
 
-      // On Windows, we need to handle the path differently
+      // Use fileURLToPath for proper Windows path handling
+      const currentFilePath = fileURLToPath(import.meta.url);
+      const serverPath = join(dirname(currentFilePath), 'mcp-server.js');
+
       const nodePath = process.execPath;
-      const child = spawn(nodePath, [serverPath.replace(/^\/([A-Z]:)/, '$1')], {
+      const child = spawn(nodePath, [serverPath], {
         stdio: 'inherit'
       });
 

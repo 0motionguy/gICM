@@ -5,14 +5,23 @@
 export interface Skill {
   id: string;
   name: string;
-  category: string;
-  tokens: number;
-  priority: number;
+  tier?: number;
+  token_cost?: number;
+  capabilities?: string[];
+  auto_load_when?: {
+    keywords?: string[];
+    file_types?: string[];
+    directories?: string[];
+  };
+  mcp_connections?: string[];
+  // Legacy fields for backward compatibility
+  category?: string;
+  tokens?: number;
+  priority?: number;
   triggers?: {
     extensions?: string[];
     keywords?: string[];
   };
-  capabilities?: string[];
   prompt?: string;
 }
 

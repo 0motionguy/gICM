@@ -6,9 +6,11 @@
  * - Logs successful builds/tests/deploys
  * - Records wins for significant events
  * - Sends notifications on important completions
+ *
+ * FIXED: Using CommonJS require() instead of ES module imports
  */
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+const { appendFileSync, existsSync, mkdirSync } = require('fs');
+const { join } = require('path');
 
 let input = '';
 process.stdin.setEncoding('utf8');

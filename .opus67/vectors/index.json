@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "indexed": "2025-12-02T07:27:40.207Z",
+  "indexed": "2025-12-06T13:53:09.737Z",
   "files": [
     {
       "path": "AGENTS.md",
@@ -12,7 +12,7 @@
       "path": "apps\\dashboard\\app\\agents\\page.tsx",
       "hash": "050fa78ee719407bcc912cf4be58970e",
       "tokens": 4155,
-      "lastModified": "2025-12-02T02:19:09.124Z"
+      "lastModified": "2025-12-06T13:04:48.432Z"
     },
     {
       "path": "apps\\dashboard\\app\\analytics\\page.tsx",
@@ -240,7 +240,7 @@
       "path": "apps\\dashboard\\app\\brain\\page.tsx",
       "hash": "1ea0bfa93ea68ef68ba2250e8ce0f970",
       "tokens": 8653,
-      "lastModified": "2025-12-02T06:00:16.027Z"
+      "lastModified": "2025-12-06T13:04:48.432Z"
     },
     {
       "path": "apps\\dashboard\\app\\brainstorm\\page.tsx",
@@ -256,9 +256,9 @@
     },
     {
       "path": "apps\\dashboard\\app\\command\\page.tsx",
-      "hash": "841fe8df3624f899cd58efc7643d630e",
+      "hash": "ee33113e9dd4fef8b357f812ce2be45d",
       "tokens": 6829,
-      "lastModified": "2025-12-01T09:29:05.702Z"
+      "lastModified": "2025-12-02T08:03:56.942Z"
     },
     {
       "path": "apps\\dashboard\\app\\content-engine\\agents\\page.tsx",
@@ -672,7 +672,7 @@
       "path": "apps\\dashboard\\lib\\api\\hub.ts",
       "hash": "beacfc4bed5070d692d843d824276d29",
       "tokens": 2739,
-      "lastModified": "2025-12-02T04:31:58.174Z"
+      "lastModified": "2025-12-06T13:04:48.430Z"
     },
     {
       "path": "apps\\dashboard\\lib\\api\\marketplace.ts",
@@ -1059,10 +1059,16 @@
       "lastModified": "2025-11-29T06:32:16.969Z"
     },
     {
+      "path": "apps\\hedge-fund-dashboard\\package-lock.json",
+      "hash": "fe6ca020bca939131e1870e677ab90ed",
+      "tokens": 21684,
+      "lastModified": "2025-12-06T12:58:31.984Z"
+    },
+    {
       "path": "apps\\hedge-fund-dashboard\\package.json",
-      "hash": "95272dd171889562cc70bc8ea09147ed",
+      "hash": "a7a28be99be3c403544464aa0daa6e5c",
       "tokens": 171,
-      "lastModified": "2025-11-29T06:32:00.834Z"
+      "lastModified": "2025-12-06T12:58:31.951Z"
     },
     {
       "path": "apps\\hedge-fund-dashboard\\src\\app\\globals.css",
@@ -1198,9 +1204,9 @@
     },
     {
       "path": "CLAUDE.md",
-      "hash": "f0ea967a26cbd624beeb2a42b55860e8",
-      "tokens": 7641,
-      "lastModified": "2025-12-01T05:42:08.547Z"
+      "hash": "c2c870dc376b0bad8efe4a0ca582aefc",
+      "tokens": 599,
+      "lastModified": "2025-12-06T13:48:12.743Z"
     },
     {
       "path": "color-analysis\\colors.json",
@@ -1275,6 +1281,18 @@
       "lastModified": "2025-11-09T04:19:46.966Z"
     },
     {
+      "path": "expand-grab-skills.py",
+      "hash": "fcfa6df2e1d242e0ea8db8f8ff48321d",
+      "tokens": 5215,
+      "lastModified": "2025-12-04T11:48:53.053Z"
+    },
+    {
+      "path": "expand-skills.sh",
+      "hash": "a0ae44da146851eee9f4b883106240aa",
+      "tokens": 180,
+      "lastModified": "2025-12-04T11:26:42.432Z"
+    },
+    {
       "path": "FILE_CREATION_REPORT.md",
       "hash": "2ce7887017bc71805ff2efe3bbfc2cd4",
       "tokens": 1024,
@@ -1285,6 +1303,18 @@
       "hash": "3bdd5655fe5a57f5b7affa908af230e6",
       "tokens": 594,
       "lastModified": "2025-11-09T12:23:20.298Z"
+    },
+    {
+      "path": "generate-skills.py",
+      "hash": "53672eba772da9daa9d07894ebc22c95",
+      "tokens": 5409,
+      "lastModified": "2025-12-04T11:45:11.468Z"
+    },
+    {
+      "path": "GRAB-SKILLS-EXPANSION-COMPLETE.md",
+      "hash": "fa6814cd7e0f7f64793c41497ad052cf",
+      "tokens": 2029,
+      "lastModified": "2025-12-04T11:51:10.147Z"
     },
     {
       "path": "IMPROVEMENTS_LOG.md",
@@ -1383,10 +1413,136 @@
       "lastModified": "2025-11-09T05:36:10.637Z"
     },
     {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-ALL-PLATFORMS.md",
+      "hash": "8aa5d8b91952999ac1345cf283d0869a",
+      "tokens": 3398,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-NPX-INSTALLER.md",
+      "hash": "9788c6c0e734440593a4055c38c37e04",
+      "tokens": 5999,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-STANDALONE-IDE.md",
+      "hash": "a14c1009bd1a496916440e03f609b0b2",
+      "tokens": 6994,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-STANDALONE-PRODUCT-MASTERPLAN.md",
+      "hash": "4c957a624894fa5fe11cf3f4b8545770",
+      "tokens": 9300,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-VSCODE-EXTENSION.md",
+      "hash": "91f3a24991d94428f5886307d0d981e4",
+      "tokens": 7331,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-VSCODE-IMPLEMENTATION.md",
+      "hash": "c428888feefc5a5ee104a0d50f046889",
+      "tokens": 9046,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "OPUS67-STANDALONE-COMPLETE\\OPUS67-WEBSITE-SPECIFICATION.md",
+      "hash": "589ce6957255c7d94ad34e72ddf486a0",
+      "tokens": 6664,
+      "lastModified": "2025-12-03T21:53:54.000Z"
+    },
+    {
+      "path": "opus67-website\\app\\globals.css",
+      "hash": "26c668673c09e75a7f2f1bd10dbe40ed",
+      "tokens": 313,
+      "lastModified": "2025-12-04T08:25:26.071Z"
+    },
+    {
+      "path": "opus67-website\\app\\layout.tsx",
+      "hash": "cc648800c701089775e712d7d8954578",
+      "tokens": 261,
+      "lastModified": "2025-12-04T07:46:33.838Z"
+    },
+    {
+      "path": "opus67-website\\app\\page.tsx",
+      "hash": "94d3d18b7531120776b7a39fa671e1a8",
+      "tokens": 2914,
+      "lastModified": "2025-12-04T08:22:53.823Z"
+    },
+    {
+      "path": "opus67-website\\components\\skill-galaxy.tsx",
+      "hash": "fc878582c734d6f6c1a897f43f342bb1",
+      "tokens": 1329,
+      "lastModified": "2025-12-04T08:25:01.072Z"
+    },
+    {
+      "path": "opus67-website\\data\\benchmarks.json",
+      "hash": "e9f19405f1cc8572991271a104696c57",
+      "tokens": 1092,
+      "lastModified": "2025-12-04T07:55:08.497Z"
+    },
+    {
+      "path": "opus67-website\\data\\mcps.json",
+      "hash": "746793d119139f0040a9c39b4fd98baa",
+      "tokens": 1505,
+      "lastModified": "2025-12-04T07:55:06.699Z"
+    },
+    {
+      "path": "opus67-website\\data\\skills.json",
+      "hash": "1ffeb01d0e9e28ae9b9e772f75a1c744",
+      "tokens": 1339,
+      "lastModified": "2025-12-04T07:54:14.635Z"
+    },
+    {
+      "path": "opus67-website\\DESIGN-SYSTEM.md",
+      "hash": "4e87b8d34fa99300c3cede2171cd7b02",
+      "tokens": 6896,
+      "lastModified": "2025-12-04T08:18:16.863Z"
+    },
+    {
+      "path": "opus67-website\\next-env.d.ts",
+      "hash": "d0f8375ae1199dc7acd3977fc33b78b8",
+      "tokens": 63,
+      "lastModified": "2025-12-04T07:47:37.304Z"
+    },
+    {
+      "path": "opus67-website\\next.config.ts",
+      "hash": "9b77af189a21a7a64e4bd7a426f64176",
+      "tokens": 34,
+      "lastModified": "2025-12-04T06:01:49.422Z"
+    },
+    {
+      "path": "opus67-website\\package.json",
+      "hash": "18a373180c28066cd6bac100c9a4f40a",
+      "tokens": 227,
+      "lastModified": "2025-12-04T07:46:11.591Z"
+    },
+    {
+      "path": "opus67-website\\README.md",
+      "hash": "f15aaa42d5d299d091b1171097ea56ad",
+      "tokens": 363,
+      "lastModified": "2025-12-04T06:01:49.363Z"
+    },
+    {
+      "path": "opus67-website\\tsconfig.json",
+      "hash": "02fc19ad21338c2ab820a70136310db4",
+      "tokens": 167,
+      "lastModified": "2025-12-04T07:45:15.011Z"
+    },
+    {
+      "path": "OPUS67_SKILLS_EXPANSION_COMPLETE.md",
+      "hash": "bd4018907d63e1fced8e2d6345118446",
+      "tokens": 2642,
+      "lastModified": "2025-12-04T11:32:08.822Z"
+    },
+    {
       "path": "package.json",
-      "hash": "ee8119342d16b508af0c32888b18ab36",
+      "hash": "4f55844dfd4292194f9ec87d38067617",
       "tokens": 1164,
-      "lastModified": "2025-12-02T07:03:22.183Z"
+      "lastModified": "2025-12-04T05:53:49.256Z"
     },
     {
       "path": "packages\\activity-logger\\package.json",
@@ -1468,9 +1624,9 @@
     },
     {
       "path": "packages\\agent-core\\package.json",
-      "hash": "5fe8faf5947947c0975891ee979ef1d6",
-      "tokens": 378,
-      "lastModified": "2025-11-30T06:51:07.070Z"
+      "hash": "6ae52836207f40a4556592d21fdfdbd2",
+      "tokens": 507,
+      "lastModified": "2025-12-04T06:59:38.798Z"
     },
     {
       "path": "packages\\agent-core\\README.md",
@@ -1543,6 +1699,36 @@
       "hash": "7746c59c55a7a8ee19d528a8bbe19f7b",
       "tokens": 820,
       "lastModified": "2025-11-30T07:36:52.970Z"
+    },
+    {
+      "path": "packages\\agent-core\\src\\observability\\index.ts",
+      "hash": "86797f0d84332b117a0f9e8a05743302",
+      "tokens": 967,
+      "lastModified": "2025-12-04T06:44:27.015Z"
+    },
+    {
+      "path": "packages\\agent-core\\src\\observability\\log-aggregator.ts",
+      "hash": "c1a24c2d9b90d4717b7679c0d60aefc6",
+      "tokens": 2318,
+      "lastModified": "2025-12-04T06:42:21.659Z"
+    },
+    {
+      "path": "packages\\agent-core\\src\\observability\\metrics-registry.ts",
+      "hash": "f163737ac00a4dcb572f97df38877165",
+      "tokens": 2529,
+      "lastModified": "2025-12-04T06:43:08.874Z"
+    },
+    {
+      "path": "packages\\agent-core\\src\\observability\\slo-manager.ts",
+      "hash": "000dda0b0af508c120f8e7eaec7a61b9",
+      "tokens": 2678,
+      "lastModified": "2025-12-04T06:43:59.753Z"
+    },
+    {
+      "path": "packages\\agent-core\\src\\observability\\telemetry.ts",
+      "hash": "edb8697bce2a39bb9480e69d229b9d2e",
+      "tokens": 2291,
+      "lastModified": "2025-12-04T07:01:34.136Z"
     },
     {
       "path": "packages\\agent-core\\src\\resilience\\circuit-breaker.ts",
@@ -1678,9 +1864,9 @@
     },
     {
       "path": "packages\\agent-core\\tsup.config.ts",
-      "hash": "85c72b96ad7a26b238e9acdfb21681e2",
-      "tokens": 90,
-      "lastModified": "2025-12-01T02:51:12.265Z"
+      "hash": "785a5f24a5a1417f1090f6fb4f93e83a",
+      "tokens": 104,
+      "lastModified": "2025-12-04T06:45:46.747Z"
     },
     {
       "path": "packages\\agent-core\\vitest.config.ts",
@@ -2043,6 +2229,18 @@
       "lastModified": "2025-11-29T06:10:49.591Z"
     },
     {
+      "path": "packages\\benchmark-results\\benchmark-results.json",
+      "hash": "f813440af1352baf88a76447a413903f",
+      "tokens": 1808,
+      "lastModified": "2025-12-06T13:47:01.796Z"
+    },
+    {
+      "path": "packages\\benchmark-results\\benchmark-results.md",
+      "hash": "43adc65dcf0e9730bd8460a2ccb17f66",
+      "tokens": 629,
+      "lastModified": "2025-12-06T13:47:01.845Z"
+    },
+    {
       "path": "packages\\brain-config\\package.json",
       "hash": "7b6e8ec401703c1ccc98d8c125fb6417",
       "tokens": 383,
@@ -2244,7 +2442,7 @@
       "path": "packages\\cli\\src\\commands\\dev.ts",
       "hash": "a5449967114be9a82ce013dafa88c6cd",
       "tokens": 3527,
-      "lastModified": "2025-12-02T02:19:09.120Z"
+      "lastModified": "2025-12-06T13:04:48.429Z"
     },
     {
       "path": "packages\\cli\\src\\commands\\health.ts",
@@ -2499,6 +2697,78 @@
       "lastModified": "2025-12-01T06:33:53.499Z"
     },
     {
+      "path": "packages\\create-opus67\\bin\\create-opus67.js",
+      "hash": "a9f5268799a2642130e90c9c0e5b0134",
+      "tokens": 142,
+      "lastModified": "2025-12-06T09:51:22.470Z"
+    },
+    {
+      "path": "packages\\create-opus67\\package.json",
+      "hash": "bc787aef01e81dba95018a7e61bc2a81",
+      "tokens": 327,
+      "lastModified": "2025-12-06T10:19:19.319Z"
+    },
+    {
+      "path": "packages\\create-opus67\\README.md",
+      "hash": "37d642f946df18ad2a9d17d325eceb20",
+      "tokens": 1079,
+      "lastModified": "2025-12-04T10:09:47.556Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\banner.ts",
+      "hash": "7f726a65bc1b18cd91f1461e8cb831f6",
+      "tokens": 746,
+      "lastModified": "2025-12-06T09:52:14.058Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\codespaces.ts",
+      "hash": "532df317ed5de60d709afbd54c48d7ef",
+      "tokens": 1385,
+      "lastModified": "2025-12-04T10:08:50.699Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\config.ts",
+      "hash": "40611c0d51b9a3e83dd11328057d61c8",
+      "tokens": 3170,
+      "lastModified": "2025-12-06T09:53:21.402Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\detect.ts",
+      "hash": "390782e734fba75d1dae1c6e195da149",
+      "tokens": 1873,
+      "lastModified": "2025-12-06T09:52:55.960Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\index.ts",
+      "hash": "2ab71ab0a05b2ff56a477ed3d0c486b6",
+      "tokens": 3047,
+      "lastModified": "2025-12-04T10:08:34.569Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\install.ts",
+      "hash": "3c14a392814a62ef6dc4185dd3007d58",
+      "tokens": 1285,
+      "lastModified": "2025-12-06T09:52:08.187Z"
+    },
+    {
+      "path": "packages\\create-opus67\\src\\stats.ts",
+      "hash": "36ede8378dd8475a2af730704e574ad6",
+      "tokens": 71,
+      "lastModified": "2025-12-06T10:19:20.444Z"
+    },
+    {
+      "path": "packages\\create-opus67\\tsconfig.json",
+      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
+      "tokens": 108,
+      "lastModified": "2025-12-04T06:03:57.500Z"
+    },
+    {
+      "path": "packages\\create-opus67\\tsup.config.ts",
+      "hash": "cc554dd24af814cf53ffeef3c7b4d24c",
+      "tokens": 64,
+      "lastModified": "2025-12-04T06:07:56.045Z"
+    },
+    {
       "path": "packages\\dao-agent\\package.json",
       "hash": "c974361942221ae270e5dcacbade12d7",
       "tokens": 282,
@@ -2707,180 +2977,6 @@
       "hash": "d4d1b62f6c938069913cd1390b44872d",
       "tokens": 34,
       "lastModified": "2025-11-29T06:58:05.577Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\data\\boundaries.json",
-      "hash": "7d94a7b7254b81a839c65b6cca359306",
-      "tokens": 237,
-      "lastModified": "2025-11-29T09:11:15.103Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\package.json",
-      "hash": "43d372e2968a3f6a82ce0d65b753b676",
-      "tokens": 298,
-      "lastModified": "2025-11-30T06:56:15.436Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\README.md",
-      "hash": "091984ace015af8103e74e95cdd756d5",
-      "tokens": 274,
-      "lastModified": "2025-11-30T07:06:23.416Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\approval\\index.ts",
-      "hash": "1deaf41d27df2ca87e4165772f4f810a",
-      "tokens": 39,
-      "lastModified": "2025-11-29T09:17:07.881Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\approval\\notifications.ts",
-      "hash": "a56ee12a9a9f6368c60b67d5e6a457f0",
-      "tokens": 1491,
-      "lastModified": "2025-11-29T09:17:00.364Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\approval\\queue.ts",
-      "hash": "ce394ee8fa4593927b178ce83e03c484",
-      "tokens": 1501,
-      "lastModified": "2025-11-29T09:16:28.067Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\audit\\index.ts",
-      "hash": "212213ed5e462c0ebb751be898179741",
-      "tokens": 1211,
-      "lastModified": "2025-11-29T09:17:35.632Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\cli.ts",
-      "hash": "fd08663f50cc721560d19eee49b4cbf0",
-      "tokens": 2444,
-      "lastModified": "2025-11-29T09:21:52.232Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\core\\config.ts",
-      "hash": "e58098730e67317c7556172e30ad9c0c",
-      "tokens": 374,
-      "lastModified": "2025-11-29T09:11:36.083Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\core\\types.ts",
-      "hash": "e9b7506fdec8ffa9f8e1e5c405210709",
-      "tokens": 1508,
-      "lastModified": "2025-11-29T09:11:02.956Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\executor\\index.ts",
-      "hash": "5c6bb27b004a83531d301a198385ba45",
-      "tokens": 958,
-      "lastModified": "2025-11-29T09:15:30.567Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\executor\\rollback.ts",
-      "hash": "c63342c9ee06b48484162ebf6ebe6eab",
-      "tokens": 941,
-      "lastModified": "2025-11-29T09:15:02.441Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\executor\\safe-actions.ts",
-      "hash": "34edf1d5c7ce0b189145334dcffed9f4",
-      "tokens": 931,
-      "lastModified": "2025-11-29T09:14:06.669Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\index.ts",
-      "hash": "90e98bde2c290ea4d031dc82e3251f88",
-      "tokens": 1659,
-      "lastModified": "2025-11-29T09:18:51.941Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\router\\boundaries.ts",
-      "hash": "4e7372eb939d69ff1566208c83a66e23",
-      "tokens": 1875,
-      "lastModified": "2025-11-29T09:12:38.277Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\router\\classifier.ts",
-      "hash": "d8346bc5fe41b8ba1a556992d3631d8d",
-      "tokens": 1070,
-      "lastModified": "2025-11-29T09:12:02.121Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\router\\escalation.ts",
-      "hash": "ab5ce26413de4ab7e3411fa3bc69b69c",
-      "tokens": 826,
-      "lastModified": "2025-11-29T09:12:59.430Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\router\\index.ts",
-      "hash": "9c93c9415432236ed4dc71967baf2d2b",
-      "tokens": 1166,
-      "lastModified": "2025-11-29T09:13:24.029Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\src\\utils\\logger.ts",
-      "hash": "896f6cad4767d5930aa5e7fd35dc8e76",
-      "tokens": 131,
-      "lastModified": "2025-11-29T09:11:23.757Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\tsconfig.json",
-      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
-      "tokens": 108,
-      "lastModified": "2025-11-29T09:10:27.536Z"
-    },
-    {
-      "path": "packages\\gicm-autonomy\\tsup.config.ts",
-      "hash": "e91613b01cf873f77e4e32abb073239d",
-      "tokens": 50,
-      "lastModified": "2025-11-29T09:10:27.568Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\package.json",
-      "hash": "28d3107bb8ca86b8d4ec7093aed131c4",
-      "tokens": 415,
-      "lastModified": "2025-11-30T07:35:10.960Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\README.md",
-      "hash": "76f78fa98e10da91ace6bdd161973455",
-      "tokens": 334,
-      "lastModified": "2025-11-30T07:06:24.469Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\src\\cli.ts",
-      "hash": "9b51c529dbce0ca8a4213f3689b36db6",
-      "tokens": 2252,
-      "lastModified": "2025-11-29T07:00:30.142Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\src\\index.ts",
-      "hash": "34d610cc4aa7f1637a0142416747a6b0",
-      "tokens": 153,
-      "lastModified": "2025-11-29T07:00:45.791Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\src\\orchestrator.ts",
-      "hash": "aaa75a3ec42e964deac3ef4dac85551f",
-      "tokens": 3027,
-      "lastModified": "2025-11-29T07:08:11.949Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\src\\types.ts",
-      "hash": "df4751149d43f9339eb63a88e0411cc6",
-      "tokens": 472,
-      "lastModified": "2025-11-29T06:58:55.616Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\tsconfig.json",
-      "hash": "3840493d6d9ca2db759200a407eb41f7",
-      "tokens": 125,
-      "lastModified": "2025-11-29T06:58:37.850Z"
-    },
-    {
-      "path": "packages\\gicm-orchestrator\\tsup.config.ts",
-      "hash": "5eda457e94d5d005c30a3cae0d8dc2b8",
-      "tokens": 45,
-      "lastModified": "2025-11-29T07:09:26.926Z"
     },
     {
       "path": "packages\\growth-engine\\package.json",
@@ -3592,9 +3688,9 @@
     },
     {
       "path": "packages\\integration-hub\\package.json",
-      "hash": "bc516d0300d37480d8bb98d2651d5bdd",
-      "tokens": 452,
-      "lastModified": "2025-12-02T02:32:23.294Z"
+      "hash": "73484bccde83ad1d56f1bbc5a574a0c6",
+      "tokens": 472,
+      "lastModified": "2025-12-06T13:41:44.121Z"
     },
     {
       "path": "packages\\integration-hub\\PROJECT_STATUS.md",
@@ -3669,6 +3765,12 @@
       "lastModified": "2025-11-30T10:31:10.046Z"
     },
     {
+      "path": "packages\\integration-hub\\src\\api\\auth-plugin.ts",
+      "hash": "7866b9f661336951e265ecf644506fe5",
+      "tokens": 1908,
+      "lastModified": "2025-12-02T08:13:54.363Z"
+    },
+    {
       "path": "packages\\integration-hub\\src\\api\\bot-routes.ts",
       "hash": "d614e573ced7d0292dcbb5a3f3b066c3",
       "tokens": 3045,
@@ -3718,15 +3820,15 @@
     },
     {
       "path": "packages\\integration-hub\\src\\api\\routes.ts",
-      "hash": "ece487d0b7dafa3feed03916762a8732",
-      "tokens": 13565,
-      "lastModified": "2025-12-02T02:35:28.807Z"
+      "hash": "cf6c6680ac5fe46f0fab4d5a50a4d8ab",
+      "tokens": 13686,
+      "lastModified": "2025-12-06T13:04:48.433Z"
     },
     {
       "path": "packages\\integration-hub\\src\\api\\server.ts",
-      "hash": "039ab0e46bcb26c6540c73b97105b3c6",
-      "tokens": 1002,
-      "lastModified": "2025-12-02T03:54:56.959Z"
+      "hash": "95b5ce8cbd38d2bf01997a677b338c02",
+      "tokens": 1403,
+      "lastModified": "2025-12-06T13:04:48.432Z"
     },
     {
       "path": "packages\\integration-hub\\src\\api\\terraform-routes.ts",
@@ -3900,7 +4002,7 @@
       "path": "packages\\integration-hub\\src\\chat\\types.ts",
       "hash": "980e337b0500ec701c792ae100060981",
       "tokens": 3177,
-      "lastModified": "2025-12-02T02:19:09.120Z"
+      "lastModified": "2025-12-06T13:04:48.422Z"
     },
     {
       "path": "packages\\integration-hub\\src\\cli.ts",
@@ -5193,16 +5295,76 @@
       "lastModified": "2025-11-29T06:10:30.889Z"
     },
     {
+      "path": "packages\\opus67\\agents\\learning-observer.yaml",
+      "hash": "c67f8d96c86361a37494d0c6bb049e0b",
+      "tokens": 372,
+      "lastModified": "2025-12-04T03:57:46.681Z"
+    },
+    {
+      "path": "packages\\opus67\\agents\\skills-navigator.yaml",
+      "hash": "31d6d1400ec7ff68d7acc317efdea670",
+      "tokens": 377,
+      "lastModified": "2025-12-04T03:58:45.584Z"
+    },
+    {
+      "path": "packages\\opus67\\benchmark-results\\benchmark-results.json",
+      "hash": "98535624b9e2ecf26d8ed2e9b92900ec",
+      "tokens": 927,
+      "lastModified": "2025-12-06T10:36:18.366Z"
+    },
+    {
+      "path": "packages\\opus67\\benchmark-results\\benchmark-results.md",
+      "hash": "1b408bd9caca6610f4b99b94c00c7323",
+      "tokens": 696,
+      "lastModified": "2025-12-06T10:35:51.078Z"
+    },
+    {
+      "path": "packages\\opus67\\BENCHMARK_RESULTS.md",
+      "hash": "04b8fb3ab917b0b8f36c0bcc76bbd371",
+      "tokens": 2853,
+      "lastModified": "2025-12-04T05:14:18.874Z"
+    },
+    {
+      "path": "packages\\opus67\\COMPETITOR_COMPARISON.md",
+      "hash": "bbfd24b07378301e5ab33553bf2c2b10",
+      "tokens": 5948,
+      "lastModified": "2025-12-04T05:25:56.688Z"
+    },
+    {
       "path": "packages\\opus67\\config\\council.yaml",
       "hash": "d1ce28bb57794a2f7ed996caee85e3e8",
       "tokens": 736,
       "lastModified": "2025-12-02T05:11:24.202Z"
     },
     {
+      "path": "packages\\opus67\\config\\endpoints.yaml",
+      "hash": "2bb8aac28811166fa4ce89671d416116",
+      "tokens": 3481,
+      "lastModified": "2025-12-02T10:46:18.113Z"
+    },
+    {
       "path": "packages\\opus67\\config\\models.yaml",
       "hash": "266c0a73cd42b082b8533522de82cd59",
       "tokens": 1024,
       "lastModified": "2025-12-02T04:59:10.344Z"
+    },
+    {
+      "path": "packages\\opus67\\config\\synergies.yaml",
+      "hash": "144f2f5f9716f82e0ec997449fb1b052",
+      "tokens": 1424,
+      "lastModified": "2025-12-02T10:44:37.719Z"
+    },
+    {
+      "path": "packages\\opus67\\docker\\docker-compose.yml",
+      "hash": "714432284622ee2bb8b301b7e7273a2e",
+      "tokens": 1252,
+      "lastModified": "2025-12-04T03:47:14.831Z"
+    },
+    {
+      "path": "packages\\opus67\\docker\\python-sandbox\\executor.py",
+      "hash": "e338f4e7855e563de01806671630d0b8",
+      "tokens": 654,
+      "lastModified": "2025-12-06T10:49:10.973Z"
     },
     {
       "path": "packages\\opus67\\docker-compose.yml",
@@ -5229,6 +5391,18 @@
       "lastModified": "2025-12-02T03:12:22.231Z"
     },
     {
+      "path": "packages\\opus67\\docs\\configs\\v31-mcp-config.json",
+      "hash": "fd0c25452e863e7f3585dc60c79953ba",
+      "tokens": 4482,
+      "lastModified": "2025-12-02T08:08:16.660Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\configs\\v32-mcp-config.json",
+      "hash": "633be3d8c41a858a6e2914fba5d1cc15",
+      "tokens": 4256,
+      "lastModified": "2025-12-02T08:08:16.684Z"
+    },
+    {
       "path": "packages\\opus67\\docs\\EXECUTIVE_SUMMARY.md",
       "hash": "33c97b09318943c9330caca914bf3779",
       "tokens": 1754,
@@ -5253,34 +5427,112 @@
       "lastModified": "2025-12-02T03:12:22.256Z"
     },
     {
+      "path": "packages\\opus67\\docs\\OPUS67-COMPLETE.md",
+      "hash": "2e91a99f13349a2581b645529e32cc9c",
+      "tokens": 4093,
+      "lastModified": "2025-12-04T04:32:39.659Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\OPUS67-ONE-PAGER.md",
+      "hash": "6a58e685a0959dafeb3ae71ce29c2291",
+      "tokens": 1073,
+      "lastModified": "2025-12-04T04:33:08.597Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\OPUS67_BENCHMARK_REPORT.md",
+      "hash": "a947d510d96207606697ce2b5a6ed1e0",
+      "tokens": 2928,
+      "lastModified": "2025-12-06T11:16:14.961Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\OPUS67_EXPLAINED.md",
+      "hash": "c9e24566e4f4cf746f7993f2cb374864",
+      "tokens": 7625,
+      "lastModified": "2025-12-06T11:20:23.503Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\OPUS67_WHAT_IT_REALLY_DOES.md",
+      "hash": "cbe9853d48e49adda519d59ad68ef1c4",
+      "tokens": 3059,
+      "lastModified": "2025-12-06T11:38:38.186Z"
+    },
+    {
       "path": "packages\\opus67\\docs\\README.md",
       "hash": "6bd46813c270958efb3b244daeba16f2",
       "tokens": 1418,
       "lastModified": "2025-12-02T03:12:22.268Z"
     },
     {
-      "path": "packages\\opus67\\docs\\THE_DOOR.md",
-      "hash": "63fdc16632cd082eaabf4e5d56329a9e",
-      "tokens": 2732,
-      "lastModified": "2025-12-02T03:12:22.269Z"
+      "path": "packages\\opus67\\docs\\SKILL-EXPANSION-PLAN-v4.md",
+      "hash": "a3fa1b7bec7723f176b1b71c0f59be45",
+      "tokens": 6353,
+      "lastModified": "2025-12-02T12:13:31.410Z"
     },
     {
-      "path": "packages\\opus67\\door\\THE_DOOR.md",
-      "hash": "199553e639b89c9e6d72008b2c4f5a8a",
-      "tokens": 1401,
-      "lastModified": "2025-12-02T03:12:16.675Z"
+      "path": "packages\\opus67\\docs\\v31-eyes-update.md",
+      "hash": "43491af918c8a2f4a1c9172e5c622eb6",
+      "tokens": 5152,
+      "lastModified": "2025-12-02T08:08:16.613Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\v32-solana-stack.md",
+      "hash": "f6b0710eb34ae873c44e3c56e1ad5e51",
+      "tokens": 4571,
+      "lastModified": "2025-12-02T08:08:16.637Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\v41-learning-layer.md",
+      "hash": "e4bc18ff1e6bc257f7a998e5d54b2677",
+      "tokens": 1753,
+      "lastModified": "2025-12-04T04:18:33.738Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\VERSION-HISTORY.md",
+      "hash": "60d718116460c287ea3549a4ce9992ea",
+      "tokens": 2015,
+      "lastModified": "2025-12-04T10:06:46.288Z"
+    },
+    {
+      "path": "packages\\opus67\\docs\\WHAT-IS-OPUS67.md",
+      "hash": "1084b33f236d84307b518c45baca8cc5",
+      "tokens": 1961,
+      "lastModified": "2025-12-04T10:06:03.341Z"
+    },
+    {
+      "path": "packages\\opus67\\mcp\\anchor-mcp\\package-lock.json",
+      "hash": "e76b281c7ada1d2a51807d6f3d9c6b83",
+      "tokens": 21454,
+      "lastModified": "2025-12-02T09:50:19.909Z"
+    },
+    {
+      "path": "packages\\opus67\\mcp\\anchor-mcp\\package.json",
+      "hash": "01ea80beb7edcd5c45f724e4de108262",
+      "tokens": 149,
+      "lastModified": "2025-12-02T09:47:33.089Z"
+    },
+    {
+      "path": "packages\\opus67\\mcp\\anchor-mcp\\src\\index.ts",
+      "hash": "a91be5e4fa76f2fd20ff8078744aa709",
+      "tokens": 4539,
+      "lastModified": "2025-12-02T09:53:47.329Z"
+    },
+    {
+      "path": "packages\\opus67\\mcp\\anchor-mcp\\tsconfig.json",
+      "hash": "30fa488eb78b5a81dfad5ef8f323224e",
+      "tokens": 96,
+      "lastModified": "2025-12-02T09:47:42.199Z"
     },
     {
       "path": "packages\\opus67\\mcp\\connections.yaml",
-      "hash": "48b89a56c5c77662ab8f315cb4f8b58d",
-      "tokens": 4172,
-      "lastModified": "2025-12-02T03:12:21.806Z"
+      "hash": "bba40edb1cab1ad376b869254a50077a",
+      "tokens": 15498,
+      "lastModified": "2025-12-06T07:43:08.694Z"
     },
     {
       "path": "packages\\opus67\\modes\\registry.yaml",
-      "hash": "72cc8bdaa98c540da3c03f78eaf2baf6",
-      "tokens": 7512,
-      "lastModified": "2025-12-02T03:16:11.924Z"
+      "hash": "df3f3158d78da39b7db02101936d645c",
+      "tokens": 10530,
+      "lastModified": "2025-12-06T13:42:55.703Z"
     },
     {
       "path": "packages\\opus67\\OPUS67_EXPLAINED.md",
@@ -5289,16 +5541,118 @@
       "lastModified": "2025-12-01T09:03:08.317Z"
     },
     {
+      "path": "packages\\opus67\\OPUS67_SELF_TEST_REPORT.md",
+      "hash": "afd48d5524e693d3e4d355ff2676c049",
+      "tokens": 1742,
+      "lastModified": "2025-12-04T05:40:22.660Z"
+    },
+    {
       "path": "packages\\opus67\\package.json",
-      "hash": "6084482ca39dc1f1dd74ca99db146e96",
-      "tokens": 304,
-      "lastModified": "2025-12-02T07:10:47.430Z"
+      "hash": "d340fc4dea2b4da1f986ef88008ac30d",
+      "tokens": 460,
+      "lastModified": "2025-12-06T13:46:53.101Z"
     },
     {
       "path": "packages\\opus67\\README.md",
-      "hash": "6bd46813c270958efb3b244daeba16f2",
-      "tokens": 1418,
-      "lastModified": "2025-12-01T07:14:39.653Z"
+      "hash": "429b14c9ebe377fe43fdd368a22b352d",
+      "tokens": 2295,
+      "lastModified": "2025-12-04T10:05:29.013Z"
+    },
+    {
+      "path": "packages\\opus67\\registry\\MASTER.yaml",
+      "hash": "e4bdcf03c82b001f60a2dc551a336a0b",
+      "tokens": 1033,
+      "lastModified": "2025-12-06T13:42:27.040Z"
+    },
+    {
+      "path": "packages\\opus67\\scripts\\efficiency-calculator.js",
+      "hash": "c0c17208d2fcf522e3be5f681972edbc",
+      "tokens": 3102,
+      "lastModified": "2025-12-04T05:26:55.976Z"
+    },
+    {
+      "path": "packages\\opus67\\scripts\\generate-skills.ts",
+      "hash": "8c81e02c1472c374f35fd1f8a8c983a7",
+      "tokens": 1285,
+      "lastModified": "2025-12-04T10:41:16.155Z"
+    },
+    {
+      "path": "packages\\opus67\\scripts\\model-comparison.js",
+      "hash": "314255e2f2bc27a03fcb325a02af061f",
+      "tokens": 2362,
+      "lastModified": "2025-12-04T05:14:03.556Z"
+    },
+    {
+      "path": "packages\\opus67\\scripts\\upgrade-v31.sh",
+      "hash": "cfaa4ab0f731ecc8f6663d01ef5f309d",
+      "tokens": 1115,
+      "lastModified": "2025-12-02T08:08:16.708Z"
+    },
+    {
+      "path": "packages\\opus67\\scripts\\upgrade-v32.sh",
+      "hash": "bbc469fef674a1a96b82a4d51049dd34",
+      "tokens": 2314,
+      "lastModified": "2025-12-02T08:08:16.732Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\a11y-expert.md",
+      "hash": "33645aa9dd468577f7ea0deff7955f72",
+      "tokens": 5904,
+      "lastModified": "2025-12-04T12:39:41.155Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\academic-researcher.md",
+      "hash": "4019a62c3d3d3bdf5b7838611101416b",
+      "tokens": 5203,
+      "lastModified": "2025-12-06T05:14:31.477Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\ai-integration.md",
+      "hash": "4eb18049041ab73f83094eb27f48a980",
+      "tokens": 7492,
+      "lastModified": "2025-12-04T11:48:27.800Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\ai-native-stack.md",
+      "hash": "0b0e4101cb6700c1d8006b0efa91dc03",
+      "tokens": 13772,
+      "lastModified": "2025-12-04T11:41:23.214Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\analytics-tracking.md",
+      "hash": "b64d11cde8141e35adeb289cca8b4032",
+      "tokens": 8710,
+      "lastModified": "2025-12-04T13:03:23.624Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\anchor-instructor.md",
+      "hash": "4613c4a46e4f165f4c314554e9d695a2",
+      "tokens": 10582,
+      "lastModified": "2025-12-04T13:01:52.301Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\animation-grab.md",
+      "hash": "39865207a209e31d8ef0a3270539f435",
+      "tokens": 3360,
+      "lastModified": "2025-12-04T11:49:49.741Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\api-grab.md",
+      "hash": "370655168434480105b45cf3e10db824",
+      "tokens": 3356,
+      "lastModified": "2025-12-04T11:49:49.736Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\auth-clerk-nextauth.md",
+      "hash": "0d23d133fb9e987aad386605a1e884df",
+      "tokens": 4625,
+      "lastModified": "2025-12-06T04:47:00.278Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\auth-security.md",
+      "hash": "7c03a9798d0bae003ae0931093b33540",
+      "tokens": 8299,
+      "lastModified": "2025-12-04T10:59:41.223Z"
     },
     {
       "path": "packages\\opus67\\skills\\definitions\\bonding-curve-master.md",
@@ -5307,10 +5661,868 @@
       "lastModified": "2025-12-02T03:12:19.822Z"
     },
     {
+      "path": "packages\\opus67\\skills\\definitions\\bridge-expert.md",
+      "hash": "39951839a88468a4d6d101333f8f792b",
+      "tokens": 7498,
+      "lastModified": "2025-12-04T13:05:13.657Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\browser-automator.md",
+      "hash": "4e0c20d07206def14062b1e9e0d4d02f",
+      "tokens": 3681,
+      "lastModified": "2025-12-04T11:09:25.766Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\bun-runtime.md",
+      "hash": "9383f899192cde2aed54874dbbc340da",
+      "tokens": 617,
+      "lastModified": "2025-12-04T11:09:10.000Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\caching-expert.md",
+      "hash": "94354b528df87d01efbd3aa209d91374",
+      "tokens": 4816,
+      "lastModified": "2025-12-04T12:41:21.222Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\card-grab.md",
+      "hash": "b89a8983a378af9a2e544eea453ecaec",
+      "tokens": 12973,
+      "lastModified": "2025-12-04T12:07:14.343Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\chart-grab.md",
+      "hash": "64395f458fb2a79b804ab7fe44f6274f",
+      "tokens": 3357,
+      "lastModified": "2025-12-04T11:49:49.733Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\chart-visualization-expert.md",
+      "hash": "aeb29a05647f7c06d43c8c12d22fc68a",
+      "tokens": 10253,
+      "lastModified": "2025-12-04T12:41:21.524Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\chrome-extension-expert.md",
+      "hash": "188b7f34a43298c5b315e04b5fdf0d0c",
+      "tokens": 6213,
+      "lastModified": "2025-12-04T12:58:29.120Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\clerk-auth-expert.md",
+      "hash": "68cc5cdebaba3ccb13bab28516369c21",
+      "tokens": 12657,
+      "lastModified": "2025-12-05T07:44:04.746Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\cli-builder-expert.md",
+      "hash": "3a5d639d8fbbfac2d293c703e6b94f10",
+      "tokens": 14066,
+      "lastModified": "2025-12-05T07:23:37.654Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\competitor-analyzer.md",
+      "hash": "4acf96c0d3c483d15278db1683c64731",
+      "tokens": 10906,
+      "lastModified": "2025-12-04T12:01:46.068Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\card-grab.md",
+      "hash": "311b0cc41efb5ac8e59c60c9d417f089",
+      "tokens": 3445,
+      "lastModified": "2025-12-04T11:10:03.263Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\ecommerce-grab.md",
+      "hash": "ec79c40dcebd10dca94eb208312f1671",
+      "tokens": 5178,
+      "lastModified": "2025-12-04T11:15:29.439Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\footer-grab.md",
+      "hash": "1d764148ddd3a7de1f450d50798c60c9",
+      "tokens": 2493,
+      "lastModified": "2025-12-04T11:08:12.284Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\hero-grab.md",
+      "hash": "ea8567d7d22ab6a3009cd6dd1a9bbfea",
+      "tokens": 3723,
+      "lastModified": "2025-12-04T11:11:08.157Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\modal-grab.md",
+      "hash": "fc0faf75e956bb5dd96d67221e84e689",
+      "tokens": 5556,
+      "lastModified": "2025-12-04T11:06:04.085Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\nav-grab.md",
+      "hash": "7bf1aa7560f9b88d212d812236bb669c",
+      "tokens": 3825,
+      "lastModified": "2025-12-04T11:09:03.496Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\pricing-grab.md",
+      "hash": "3ffa31c739d721d393468dc6a9ec207c",
+      "tokens": 4042,
+      "lastModified": "2025-12-04T11:12:06.284Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\sidebar-grab.md",
+      "hash": "d4882be1344a7bc78e27673d46f3afad",
+      "tokens": 4227,
+      "lastModified": "2025-12-04T11:07:24.975Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\stats-grab.md",
+      "hash": "75aa62bd9eaeb0bb7b677beb1a14ddb7",
+      "tokens": 3570,
+      "lastModified": "2025-12-04T11:14:15.485Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\table-grab.md",
+      "hash": "6ad356c2374cb5a6a62d36c4f57a10a6",
+      "tokens": 6332,
+      "lastModified": "2025-12-04T11:04:34.143Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\component-generation\\testimonial-grab.md",
+      "hash": "c20aadfea0ccac01aaf70d89d32fb28d",
+      "tokens": 3384,
+      "lastModified": "2025-12-04T11:13:01.543Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\container-chief.md",
+      "hash": "610c4575f9e549fbb1560dbb74369d2d",
+      "tokens": 4080,
+      "lastModified": "2025-12-06T04:27:01.023Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\content-writer.md",
+      "hash": "6e071b123ba96cc982c038d29a1921d9",
+      "tokens": 6331,
+      "lastModified": "2025-12-06T05:10:39.318Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\convex-expert.md",
+      "hash": "ddc3ac3b55d4780c65890e6cabc69fcf",
+      "tokens": 6675,
+      "lastModified": "2025-12-05T07:46:21.958Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\cross-chain-expert.md",
+      "hash": "f748e50f5ba290e1c510385ef626af86",
+      "tokens": 9447,
+      "lastModified": "2025-12-04T13:08:11.727Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\crypto-twitter-analyst.md",
+      "hash": "e378391623f7a3ee35225db2c05aa1c6",
+      "tokens": 5925,
+      "lastModified": "2025-12-04T10:52:23.886Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\dashboard-grab.md",
+      "hash": "1b0e8c1ce4d56add4e71fa28c92a6533",
+      "tokens": 3360,
+      "lastModified": "2025-12-04T11:49:49.732Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\db-commander.md",
+      "hash": "ddbaf66caa4f97f84f139a2f7146f460",
+      "tokens": 5377,
+      "lastModified": "2025-12-06T04:57:49.421Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\db-grab.md",
+      "hash": "633d403981991d9e6e5c8de8d0c393f6",
+      "tokens": 3355,
+      "lastModified": "2025-12-04T11:49:49.737Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\deep-researcher.md",
+      "hash": "61e084d27ca5fd1c6c5e83032484d0d2",
+      "tokens": 4906,
+      "lastModified": "2025-12-04T11:27:41.939Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\defi-data-analyst.md",
+      "hash": "b2ddd791b71b6aa0bf1bf088a6e18645",
+      "tokens": 5907,
+      "lastModified": "2025-12-04T10:50:16.403Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\design-system-architect.md",
+      "hash": "8a571322a3cab57079886e2585577e9d",
+      "tokens": 7566,
+      "lastModified": "2025-12-04T13:07:50.953Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\desktop-context.md",
+      "hash": "96344c031d53546c48125d9b20fc6085",
+      "tokens": 8202,
+      "lastModified": "2025-12-04T11:42:44.894Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\devops-automation-stack.md",
+      "hash": "c9f9312ec53df95b95c7b83de214281b",
+      "tokens": 10046,
+      "lastModified": "2025-12-04T11:47:45.946Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\devops-engineer.md",
+      "hash": "de4b32a723e81f3b1068c8b403d72d0b",
+      "tokens": 5049,
+      "lastModified": "2025-12-06T04:27:03.555Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\docker-containers.md",
+      "hash": "d3e1af40d5fd92cde52147396090f7f4",
+      "tokens": 3847,
+      "lastModified": "2025-12-04T10:45:34.644Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\docs-expert.md",
+      "hash": "6118beb7d8b74d742bd95100f39128b0",
+      "tokens": 6068,
+      "lastModified": "2025-12-04T11:40:04.974Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\document-generation\\chart-visualization-expert.md",
+      "hash": "b3e13808f66876f198bf0f4669db600f",
+      "tokens": 4496,
+      "lastModified": "2025-12-04T07:50:22.537Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\document-generation\\excel-sheets-master.md",
+      "hash": "903028bf53c3f21d5b8664e94cda354c",
+      "tokens": 12485,
+      "lastModified": "2025-12-04T12:00:25.614Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\document-generation\\pdf-report-generator.md",
+      "hash": "604dee77aaa91cc02abfd62606d191cb",
+      "tokens": 4352,
+      "lastModified": "2025-12-04T07:48:54.184Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\document-generation\\powerpoint-slides-master.md",
+      "hash": "2a6f53a4db10eaef19eb00d574977950",
+      "tokens": 4097,
+      "lastModified": "2025-12-04T07:46:07.813Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\drizzle-studio.md",
+      "hash": "53a6231b8318e9402bce050ca3fcb570",
+      "tokens": 7424,
+      "lastModified": "2025-12-04T12:02:33.274Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\dspy-prompting.md",
+      "hash": "50c5fd896840a8801cc10283f57e9d70",
+      "tokens": 7789,
+      "lastModified": "2025-12-04T11:46:15.387Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\ecommerce-grab.md",
+      "hash": "725294f1d68ccdd1f344903969c82b69",
+      "tokens": 8391,
+      "lastModified": "2025-12-06T05:33:21.578Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\effect-ts.md",
+      "hash": "a827fd95d8040079ef660ba9fc381112",
+      "tokens": 6373,
+      "lastModified": "2025-12-04T11:39:06.543Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\email-grab.md",
+      "hash": "c42914b448d8ead1f8bd95153f6bab02",
+      "tokens": 3357,
+      "lastModified": "2025-12-04T11:49:49.742Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\email-resend.md",
+      "hash": "5de13eb2ce28f424d0fd8688a177697f",
+      "tokens": 8201,
+      "lastModified": "2025-12-04T12:51:54.331Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\embeddings-expert.md",
+      "hash": "09ffb3e04492e4519c0baa3397f1eb01",
+      "tokens": 10568,
+      "lastModified": "2025-12-04T11:28:16.945Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\enhance_skills.py",
+      "hash": "b3e4a2825671430fa82f4a558b5b92e3",
+      "tokens": 15551,
+      "lastModified": "2025-12-04T12:51:30.234Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\error-hunter.md",
+      "hash": "53a424ed35a1a7d47ce62b1b3c5fc3b2",
+      "tokens": 6010,
+      "lastModified": "2025-12-06T05:00:07.620Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\excel-sheets-master.md",
+      "hash": "fd0a27b57f503ef18a3f6c98a42cb9cd",
+      "tokens": 4238,
+      "lastModified": "2025-12-06T04:33:33.053Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\farcaster-expert.md",
+      "hash": "f90d7618932e4c654732b9e408274147",
+      "tokens": 5449,
+      "lastModified": "2025-12-04T10:45:54.756Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\figma-grab.md",
+      "hash": "efe59b11a2657a1c463367a91bd9a077",
+      "tokens": 3357,
+      "lastModified": "2025-12-04T11:49:49.739Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\figma-to-code.md",
+      "hash": "eb22e88bae8db62364fb14df64b7dd02",
+      "tokens": 7429,
+      "lastModified": "2025-12-04T13:05:40.739Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\file-upload-expert.md",
+      "hash": "752e9632981351651fbc61c5328e9e40",
+      "tokens": 6610,
+      "lastModified": "2025-12-04T12:53:53.772Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\fix_file_upload.py",
+      "hash": "ba7ec13df5205792643f2b2ae05797e5",
+      "tokens": 1177,
+      "lastModified": "2025-12-04T12:53:45.211Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\footer-grab.md",
+      "hash": "8c0906a5b885492002e4abe592e9171f",
+      "tokens": 5241,
+      "lastModified": "2025-12-06T05:33:27.588Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\form-grab.md",
+      "hash": "9165084e3dcf7caabfb9ad7b95090f56",
+      "tokens": 3357,
+      "lastModified": "2025-12-04T11:49:49.730Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\framer-motion-wizard.md",
+      "hash": "1f6917bdc063aefc3935133e5821f47d",
+      "tokens": 9700,
+      "lastModified": "2025-12-04T10:48:54.596Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\fullstack-blueprint-stack.md",
+      "hash": "8e04a0f2e91bc24417cbceeb9879e242",
+      "tokens": 17042,
+      "lastModified": "2025-12-04T12:01:03.569Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\gemini-expert.md",
+      "hash": "0a0b473495a5dd273b4ceb0b774bff53",
+      "tokens": 8467,
+      "lastModified": "2025-12-04T11:41:30.748Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\git-expert.md",
+      "hash": "bddd3f1a5d099fa95bda6e611659a288",
+      "tokens": 9574,
+      "lastModified": "2025-12-05T08:52:13.642Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\github-manager.md",
+      "hash": "d5b1696eb566fe26b4d59d493b2ee801",
+      "tokens": 5376,
+      "lastModified": "2025-12-05T09:15:54.716Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\governance-expert.md",
+      "hash": "cc2220e8ad3bf039ba08f43a810ae4f6",
+      "tokens": 10569,
+      "lastModified": "2025-12-04T13:10:50.593Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\grafana-expert.md",
+      "hash": "4b934d9c21e6d2445f5b057a89b4f2f2",
+      "tokens": 4009,
+      "lastModified": "2025-12-05T07:33:11.773Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\graphql-expert.md",
+      "hash": "b5832af7a846cf691d585555f13a4655",
+      "tokens": 1784,
+      "lastModified": "2025-12-05T08:31:25.926Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\hero-grab.md",
+      "hash": "5a92c387fab9b35a1788c5882d4929eb",
+      "tokens": 14472,
+      "lastModified": "2025-12-04T12:03:45.696Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\hono-expert.md",
+      "hash": "a1149bc10da3efa90734af722315a7cd",
+      "tokens": 1867,
+      "lastModified": "2025-12-04T11:23:51.500Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\i18n-expert.md",
+      "hash": "6af741ff747f18745243203581ed27f2",
+      "tokens": 4957,
+      "lastModified": "2025-12-04T12:44:46.313Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\icon-grab.md",
+      "hash": "7228441bb69fcb758f50821d19654857",
+      "tokens": 3357,
+      "lastModified": "2025-12-04T11:49:49.734Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\infrastructure\\db-commander.md",
+      "hash": "8264c13cc4f73689bd2b22c34297e3ce",
+      "tokens": 5995,
+      "lastModified": "2025-12-04T11:05:04.224Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\infrastructure\\grafana-expert.md",
+      "hash": "459f16f937a801677a885d71dd5bae0d",
+      "tokens": 5103,
+      "lastModified": "2025-12-04T11:09:46.496Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\infrastructure\\kubernetes-expert.md",
+      "hash": "ecc82e4ace111224d98398ddd743d5ce",
+      "tokens": 5696,
+      "lastModified": "2025-12-04T11:06:32.345Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\infrastructure\\nginx-expert.md",
+      "hash": "ac01be0c1def8e4e3bee09e0ae69f7f5",
+      "tokens": 5518,
+      "lastModified": "2025-12-04T11:11:23.219Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\infrastructure\\prometheus-expert.md",
+      "hash": "4f303c21468e8489912b68bc31d6d1a8",
+      "tokens": 5828,
+      "lastModified": "2025-12-04T11:08:09.151Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\infrastructure\\README.md",
+      "hash": "d2311aee39fe3fef19e415fbcf28401c",
+      "tokens": 1588,
+      "lastModified": "2025-12-04T11:47:38.903Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\inngest-expert.md",
+      "hash": "c5440503d834131bbfa19eaf95eb1fca",
+      "tokens": 8735,
+      "lastModified": "2025-12-05T07:07:09.817Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\jupiter-trader-part1.txt",
+      "hash": "666a5b111a6951e774a98d8ab76684ab",
+      "tokens": 213,
+      "lastModified": "2025-12-04T12:39:59.724Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\jupiter-trader.md",
+      "hash": "973835bb5dc1eb36a5b847a700339b7b",
+      "tokens": 8531,
+      "lastModified": "2025-12-04T12:45:15.425Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\kubernetes-expert.md",
+      "hash": "6438b4629938fbaaf0d4bb347cb18ea5",
+      "tokens": 7854,
+      "lastModified": "2025-12-04T12:02:13.211Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\landing-grab.md",
+      "hash": "0b5c63fde37f9bc0839eadc61cf5c519",
+      "tokens": 3359,
+      "lastModified": "2025-12-04T11:49:49.731Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\lp-automation.md",
+      "hash": "b349b109c04f27c9b2d4059fd7e0af34",
+      "tokens": 4781,
+      "lastModified": "2025-12-04T12:53:49.362Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\market-researcher.md",
+      "hash": "6078d016aa42b0ea1f8ee750da3e182e",
+      "tokens": 13034,
+      "lastModified": "2025-12-04T12:05:59.100Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\mcp-builder.md",
+      "hash": "581ffea8fdd3fa25c7dd8592cdd509b1",
+      "tokens": 1185,
+      "lastModified": "2025-12-05T08:49:34.177Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\memory-keeper.md",
+      "hash": "c5d41721bf8932b3e0092a961db579cd",
+      "tokens": 6699,
+      "lastModified": "2025-12-05T07:08:19.116Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\mobile-grab.md",
+      "hash": "cbb85a3f45470ef2b8aa8da20b6e87fd",
+      "tokens": 3358,
+      "lastModified": "2025-12-04T11:49:49.744Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\modal-grab.md",
+      "hash": "af685c2e382de4a6f2dc41430adcdea8",
+      "tokens": 6298,
+      "lastModified": "2025-12-06T05:33:35.480Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\monorepo-build-stack.md",
+      "hash": "45d18f7b239f8e685c6369242debb578",
+      "tokens": 9264,
+      "lastModified": "2025-12-04T12:04:08.237Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\monorepo-expert.md",
+      "hash": "bd634717bfd2f48fbd6f843b04a91250",
+      "tokens": 3355,
+      "lastModified": "2025-12-05T08:50:07.222Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\nav-grab.md",
+      "hash": "280db3ae4dd742bb6793e1188aa314a2",
+      "tokens": 6191,
+      "lastModified": "2025-12-06T05:33:45.195Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\neon-postgres.md",
+      "hash": "16c949ac13ec709dcce7cb0aa4a9fb10",
+      "tokens": 5794,
+      "lastModified": "2025-12-06T05:03:55.540Z"
+    },
+    {
       "path": "packages\\opus67\\skills\\definitions\\nextjs-14-expert.md",
       "hash": "c4f54536f1b736c99db57dab7e881c2e",
       "tokens": 2678,
       "lastModified": "2025-12-02T03:12:19.823Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\nft-marketplace-expert.md",
+      "hash": "35108413327039f94f1d8e58a47b572f",
+      "tokens": 8257,
+      "lastModified": "2025-12-04T13:12:59.440Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\nginx-expert.md",
+      "hash": "a69ef593029903f17fca00d069fd6dcd",
+      "tokens": 4619,
+      "lastModified": "2025-12-05T07:27:31.257Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\node-backend.md",
+      "hash": "066d7d07a55df84590c31394b42f447e",
+      "tokens": 7658,
+      "lastModified": "2025-12-06T04:23:50.751Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\notion-navigator.md",
+      "hash": "537169e7ac57aab5184c6036ef7f8880",
+      "tokens": 6427,
+      "lastModified": "2025-12-06T05:06:09.633Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\openai-assistant-expert.md",
+      "hash": "dea937ce1fddae94557d7b9e7eaa9a18",
+      "tokens": 8051,
+      "lastModified": "2025-12-04T11:43:55.168Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\patent-analyzer.md",
+      "hash": "49f1243c0dea9ecdee15c07892dec9cf",
+      "tokens": 5695,
+      "lastModified": "2025-12-06T05:23:53.915Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\pdf-grab.md",
+      "hash": "d1cf4580ea0faa6f2698913fdc3de897",
+      "tokens": 3356,
+      "lastModified": "2025-12-04T11:49:49.745Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\pdf-report-generator.md",
+      "hash": "91d7fb46c931fa931a10f7823b8d28f2",
+      "tokens": 5885,
+      "lastModified": "2025-12-06T04:33:39.168Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\playwright-pro.md",
+      "hash": "d1340d92a195a417ed5f644e5e187a60",
+      "tokens": 10236,
+      "lastModified": "2025-12-05T07:07:38.281Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\powerpoint-slides-master.md",
+      "hash": "4b1681d0d92cad603ae418fd03a95637",
+      "tokens": 6065,
+      "lastModified": "2025-12-06T05:10:44.071Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\pricing-grab.md",
+      "hash": "bc5a5fada63379bff020f400fa5f7242",
+      "tokens": 12269,
+      "lastModified": "2025-12-04T12:13:57.688Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\prisma-drizzle-orm.md",
+      "hash": "e1102fa35a37da76bdf6dde83be609b1",
+      "tokens": 8171,
+      "lastModified": "2025-12-05T08:28:49.628Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\prometheus-expert.md",
+      "hash": "4c9129f720425328916a05bd41bdeaa7",
+      "tokens": 1888,
+      "lastModified": "2025-12-05T07:59:12.005Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\pwa-expert.md",
+      "hash": "59e5b648637e4f4ff257c22a37daa003",
+      "tokens": 5577,
+      "lastModified": "2025-12-04T12:37:23.581Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\python-developer.md",
+      "hash": "ab21484d683bbda501bcd0e0e12b1167",
+      "tokens": 7916,
+      "lastModified": "2025-12-06T04:23:57.785Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\queue-expert.md",
+      "hash": "83b9294a32e0e91114359d336b382dbe",
+      "tokens": 7398,
+      "lastModified": "2025-12-04T13:00:48.240Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\react-19-expert.md",
+      "hash": "11809123068be1d19d28e3fbff2388b5",
+      "tokens": 482,
+      "lastModified": "2025-12-04T11:09:09.999Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\react-expert.md",
+      "hash": "581449db25b02af8fb94cb7579cc98d1",
+      "tokens": 12778,
+      "lastModified": "2025-12-04T12:31:29.893Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\react-grab.md",
+      "hash": "5fbf637edd4f00aa7825a635700fab1c",
+      "tokens": 12417,
+      "lastModified": "2025-12-04T11:25:09.759Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\react-hook-form-zod.md",
+      "hash": "080287db384357c84c928fc3219971c4",
+      "tokens": 9875,
+      "lastModified": "2025-12-06T04:23:46.802Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\realtime-multiplayer.md",
+      "hash": "ff425bf308a54a1b65c0c64d73affa6a",
+      "tokens": 7118,
+      "lastModified": "2025-12-06T04:33:28.705Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\resend-email.md",
+      "hash": "aeaca493539cdf35fbfb34c79540d21b",
+      "tokens": 7905,
+      "lastModified": "2025-12-04T12:51:54.330Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\rust-systems.md",
+      "hash": "bcdefb0867f92f76ef45e6242e980804",
+      "tokens": 6510,
+      "lastModified": "2025-12-04T10:48:15.853Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\COMPLETION_REPORT.md",
+      "hash": "03ae7b8e1af96cc3fabfaf8b7acd2b40",
+      "tokens": 2634,
+      "lastModified": "2025-12-04T11:14:12.383Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\convex-expert.md",
+      "hash": "271d6d10ae3fa7d3462f87bda45eaed6",
+      "tokens": 7100,
+      "lastModified": "2025-12-04T11:10:51.979Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\github-manager.md",
+      "hash": "cfa6e290481e2c964e414ff6a74ea111",
+      "tokens": 5486,
+      "lastModified": "2025-12-04T11:40:35.128Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\inngest-expert.md",
+      "hash": "a799e9d6401879639e89e32d17069147",
+      "tokens": 7898,
+      "lastModified": "2025-12-04T11:07:06.007Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\notion-navigator.md",
+      "hash": "b41627b232c204a77798984d9b27d8d5",
+      "tokens": 4502,
+      "lastModified": "2025-12-04T11:41:49.609Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\REMAINING_SKILLS_COMPLETE.md",
+      "hash": "da93617479fdd1f4b1b0cc48798c9979",
+      "tokens": 1116,
+      "lastModified": "2025-12-04T11:43:52.053Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\resend-email.md",
+      "hash": "e9a318b5a6a0e5c195c94ef4b062528a",
+      "tokens": 5786,
+      "lastModified": "2025-12-04T11:39:08.330Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\SKILLS_SUMMARY.md",
+      "hash": "fbcf5d7d65c3e7ac08d30fe0b500bd63",
+      "tokens": 328,
+      "lastModified": "2025-12-04T11:11:24.233Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\saas-integration\\trigger-dev-expert.md",
+      "hash": "1b75bd464a09c8e59af7d6a983777a71",
+      "tokens": 6128,
+      "lastModified": "2025-12-04T11:08:57.102Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\search-expert.md",
+      "hash": "b1b5995f89e8a1d420ca8b9640c2992f",
+      "tokens": 6213,
+      "lastModified": "2025-12-04T12:43:04.832Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\shadcn-ui-master.md",
+      "hash": "a24ea12b4af79eb01610189f6991bae5",
+      "tokens": 11748,
+      "lastModified": "2025-12-04T10:57:38.858Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\sidebar-grab.md",
+      "hash": "38148139b0446bf50dc59de85a9a9767",
+      "tokens": 5973,
+      "lastModified": "2025-12-06T05:35:59.973Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\smart-contract-auditor.md",
+      "hash": "367a6fff0340a0033ca9959e1624a50b",
+      "tokens": 14924,
+      "lastModified": "2025-12-04T12:59:03.112Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\anchor-instructor.md",
+      "hash": "f7af5e12eb9180a483ce26e2c596c0fa",
+      "tokens": 6651,
+      "lastModified": "2025-12-04T11:10:28.284Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\bridge-expert.md",
+      "hash": "35462eb6783dfef04abd8f09f609c2e7",
+      "tokens": 7275,
+      "lastModified": "2025-12-04T11:42:22.944Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\cross-chain-expert.md",
+      "hash": "231be733031989417932cd13316ecc38",
+      "tokens": 7690,
+      "lastModified": "2025-12-04T11:40:12.280Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\governance-expert.md",
+      "hash": "83a24111497c1f862ca86df1cbb73ea7",
+      "tokens": 7233,
+      "lastModified": "2025-12-04T11:46:52.480Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\jupiter-trader.md",
+      "hash": "e0fc3115a700b514b9fa7ac1759bfa74",
+      "tokens": 7423,
+      "lastModified": "2025-12-04T11:06:44.647Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\lp-automation.md",
+      "hash": "733cec5b0bd8cabb3ccdade1dd694259",
+      "tokens": 7376,
+      "lastModified": "2025-12-04T11:45:22.972Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\nft-marketplace-expert.md",
+      "hash": "2f8de6c87044a6f3f7bed7d85c7c94b8",
+      "tokens": 7492,
+      "lastModified": "2025-12-04T11:48:51.354Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\README.md",
+      "hash": "ffc43916753c39bdf2843bf090dae138",
+      "tokens": 2063,
+      "lastModified": "2025-12-04T11:14:08.305Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\smart-contract-auditor.md",
+      "hash": "f791309b43ddabd0569df456a7f32691",
+      "tokens": 8011,
+      "lastModified": "2025-12-04T11:47:43.341Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\solana-deployer.md",
+      "hash": "1a40a5b4c23f9afdee56c607ff399f48",
+      "tokens": 5953,
+      "lastModified": "2025-12-04T11:12:14.724Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\solana-reader.md",
+      "hash": "b0b8dc1da264b7783668f7f29339c98f",
+      "tokens": 6395,
+      "lastModified": "2025-12-04T11:08:33.917Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\staking-expert.md",
+      "hash": "46e17c27039abf177aaf052abd844f63",
+      "tokens": 8200,
+      "lastModified": "2025-12-04T11:44:35.427Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\tokenomics-designer.md",
+      "hash": "0626dc124770325b92cd5ee4cfa3d407",
+      "tokens": 7546,
+      "lastModified": "2025-12-04T11:43:11.202Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana\\wallet-integration.md",
+      "hash": "df18ae2f7d5f509e7a43d441c35db503",
+      "tokens": 7848,
+      "lastModified": "2025-12-04T11:40:47.228Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana-2025-stack.md",
+      "hash": "30919cb16ddddcbea9d06634e4d55e33",
+      "tokens": 11777,
+      "lastModified": "2025-12-04T11:44:54.264Z"
     },
     {
       "path": "packages\\opus67\\skills\\definitions\\solana-anchor-expert.md",
@@ -5319,16 +6531,1006 @@
       "lastModified": "2025-12-02T03:12:19.822Z"
     },
     {
+      "path": "packages\\opus67\\skills\\definitions\\solana-deployer.md",
+      "hash": "9918b6e4634e31a516b187c0790c8754",
+      "tokens": 7284,
+      "lastModified": "2025-12-04T12:47:37.643Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\solana-reader.md",
+      "hash": "57edb7712c9665df2d2364e07fec6360",
+      "tokens": 5325,
+      "lastModified": "2025-12-04T12:49:15.679Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\sql-database.md",
+      "hash": "53fdf79ee756e32f9f95304039deef43",
+      "tokens": 4586,
+      "lastModified": "2025-12-06T05:14:27.111Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\staking-expert.md",
+      "hash": "9b8f10fca91fbd6bcc88f5625bf7f29b",
+      "tokens": 10163,
+      "lastModified": "2025-12-04T13:15:34.062Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\stats-grab.md",
+      "hash": "3de93b9561e59dfd9031d7eeca79e904",
+      "tokens": 5237,
+      "lastModified": "2025-12-06T05:46:45.021Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\stripe-payments.md",
+      "hash": "9349017ec039aaad6ce3c8b2173ff948",
+      "tokens": 10965,
+      "lastModified": "2025-12-04T12:51:54.329Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\supabase-expert.md",
+      "hash": "04784a13a170a1d73f0c617b01a71f8a",
+      "tokens": 7960,
+      "lastModified": "2025-12-04T10:57:09.696Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\svg-illustration.md",
+      "hash": "801848e4a5a36263840de150c51dfa87",
+      "tokens": 5008,
+      "lastModified": "2025-12-06T05:46:51.030Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\table-grab.md",
+      "hash": "6ebe014f80eb183325cb22d0a0879bb3",
+      "tokens": 6768,
+      "lastModified": "2025-12-06T05:46:59.843Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\tailwind-ui-designer.md",
+      "hash": "27ce2af9c3d07374dd3674ef548b8455",
+      "tokens": 15162,
+      "lastModified": "2025-12-04T12:35:48.453Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\tanstack-query-expert.md",
+      "hash": "bdb153a5900f09c16a63d823b01072a4",
+      "tokens": 14288,
+      "lastModified": "2025-12-05T08:28:25.500Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\testimonial-grab.md",
+      "hash": "8b5e2d49ad5d4640808d005dbebee685",
+      "tokens": 5562,
+      "lastModified": "2025-12-06T05:47:10.440Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\testing-playwright.md",
+      "hash": "69861dd4ea4c7812fcde0aa43e157bad",
+      "tokens": 4980,
+      "lastModified": "2025-12-04T10:47:15.972Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\testing-unit.md",
+      "hash": "d9973c700c1342a5715d7df5ec9db2a3",
+      "tokens": 5333,
+      "lastModified": "2025-12-04T10:49:03.612Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\theme-grab.md",
+      "hash": "c3c0c80c0344cf3068bb76241256441a",
+      "tokens": 3357,
+      "lastModified": "2025-12-04T11:49:49.729Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\threejs-webgl.md",
+      "hash": "1d97d0475a568fbe720d8582c32f5847",
+      "tokens": 9374,
+      "lastModified": "2025-12-04T12:38:45.748Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\tokenomics-designer.md",
+      "hash": "ba8bfcb4bb079f858de5c49237d54288",
+      "tokens": 6881,
+      "lastModified": "2025-12-04T12:52:05.440Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\trend-spotter-skill.md",
+      "hash": "42b0c2e0ae464040e3a874530868d441",
+      "tokens": 4091,
+      "lastModified": "2025-12-06T05:23:58.159Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\trigger-dev-expert.md",
+      "hash": "e684b3203fe4d5c2ebd1982def8e7e8a",
+      "tokens": 6393,
+      "lastModified": "2025-12-05T07:05:19.895Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\trpc-fullstack.md",
+      "hash": "1792fafc554a639705169589de6bf893",
+      "tokens": 3640,
+      "lastModified": "2025-12-05T08:49:00.754Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\typescript-senior.md",
+      "hash": "550d68a7e03d24e4465c574480afb309",
+      "tokens": 5140,
+      "lastModified": "2025-12-04T10:45:59.532Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\uploadthing-expert.md",
+      "hash": "9263a4e6b8984a911b877758b22b5852",
+      "tokens": 1780,
+      "lastModified": "2025-12-05T07:44:18.044Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\v0-style-generator.md",
+      "hash": "88d33c9234f2453a506aaa6232dd3082",
+      "tokens": 8253,
+      "lastModified": "2025-12-04T13:13:11.270Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\vector-wizard.md",
+      "hash": "7ea540990c3489df3a58c0ba068b136f",
+      "tokens": 13341,
+      "lastModified": "2025-12-05T07:23:20.423Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\vibe-coder.md",
+      "hash": "8b7b97e8752864dd8bc0c2c101433af0",
+      "tokens": 6660,
+      "lastModified": "2025-12-04T13:09:38.819Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\vitest-expert.md",
+      "hash": "05b57d3e449fd9349f72b8a6104c7860",
+      "tokens": 6535,
+      "lastModified": "2025-12-04T11:41:04.042Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\wallet-integration.md",
+      "hash": "859eadfa6eb241d215ace09c1f71313d",
+      "tokens": 4765,
+      "lastModified": "2025-12-04T12:50:23.038Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\web-scraper.md",
+      "hash": "9e2717f8c717504d083d1ffe11179a73",
+      "tokens": 6704,
+      "lastModified": "2025-12-04T11:06:11.386Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\websocket-content.json",
+      "hash": "527f53d42aed65ad509c42adc21de24e",
+      "tokens": 6554,
+      "lastModified": "2025-12-04T12:46:41.874Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\websocket-expert.md",
+      "hash": "66f3be12fd595e55fd07f6cfd17a8916",
+      "tokens": 6307,
+      "lastModified": "2025-12-04T12:54:14.281Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\wireframe-grab.md",
+      "hash": "a8a5495e3df73ed2a292b58752e6b6ed",
+      "tokens": 3360,
+      "lastModified": "2025-12-04T11:49:49.738Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\write_charts.py",
+      "hash": "61574de443d41a95d5be434a97b06dfa",
+      "tokens": 10034,
+      "lastModified": "2025-12-04T12:41:13.400Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\write_remaining.py",
+      "hash": "578f36e3fabff9abdf666cb42dc0128a",
+      "tokens": 17444,
+      "lastModified": "2025-12-04T12:45:31.820Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\write_skills.py",
+      "hash": "981263e029aafef6a13f4bcafb959526",
+      "tokens": 12468,
+      "lastModified": "2025-12-04T12:31:22.049Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\write_tailwind.py",
+      "hash": "7093af369b780763b834df799edad674",
+      "tokens": 14859,
+      "lastModified": "2025-12-04T12:35:40.802Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\write_threejs.py",
+      "hash": "36f1dc218e8a4ae5e14de53f44d7ef93",
+      "tokens": 9150,
+      "lastModified": "2025-12-04T12:38:37.748Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\zustand-jotai-state.md",
+      "hash": "9a06ac5e836aa4fdf13b616f83f68f5e",
+      "tokens": 14410,
+      "lastModified": "2025-12-05T08:28:33.180Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\definitions\\_create_remaining_skills.sh",
+      "hash": "1226cdcbb1e3419fe8aa9d791dc0d43a",
+      "tokens": 76,
+      "lastModified": "2025-12-04T11:28:51.884Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\fragments\\api-base.yaml",
+      "hash": "1b36830e3ab760ec5cfa9bb90e85cbdb",
+      "tokens": 381,
+      "lastModified": "2025-12-04T03:21:58.162Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\fragments\\blockchain-base.yaml",
+      "hash": "a5af3865d83fd169fb154d0af70c5378",
+      "tokens": 595,
+      "lastModified": "2025-12-04T03:21:59.342Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\fragments\\devops-base.yaml",
+      "hash": "2accc0f460d874cf4143c190ce34e8ec",
+      "tokens": 618,
+      "lastModified": "2025-12-04T03:22:00.807Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\generate-research-skills.py",
+      "hash": "ac08446299de0e61a65fc78c69f3edee",
+      "tokens": 4847,
+      "lastModified": "2025-12-04T11:27:33.327Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\access-control-expert.yaml",
+      "hash": "3e5e014fade3f47e7dfb7621ffe063b6",
+      "tokens": 706,
+      "lastModified": "2025-12-02T11:48:24.721Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\ai\\ai-native-stack.yaml",
+      "hash": "5aa626b4d197ebd169b94b50f315306e",
+      "tokens": 1806,
+      "lastModified": "2025-12-04T03:24:41.360Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\ai\\dspy-prompting.yaml",
+      "hash": "0d43f32d17c19378e600f3a54fbd150e",
+      "tokens": 447,
+      "lastModified": "2025-12-04T03:32:13.630Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\ai-agent-builder.yaml",
+      "hash": "26bebc81215a1db0184f468509ab252f",
+      "tokens": 643,
+      "lastModified": "2025-12-02T11:50:40.285Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\analytics-dashboard.yaml",
+      "hash": "779f30e408460684d8002db1c4bf6b81",
+      "tokens": 650,
+      "lastModified": "2025-12-02T11:49:31.309Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\anthropic-integration.yaml",
+      "hash": "860c2966048c2cec8e30259ae17ff2cc",
+      "tokens": 509,
+      "lastModified": "2025-12-02T11:39:49.173Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\api-design-patterns.yaml",
+      "hash": "f67dc8068c0e0ffa8cd2732fefae7aa9",
+      "tokens": 671,
+      "lastModified": "2025-12-02T11:31:04.975Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\astro-expert.yaml",
+      "hash": "6dbd22cefa25501bada3dd05dc40ad81",
+      "tokens": 488,
+      "lastModified": "2025-12-02T11:40:48.890Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\auth\\clerk-auth-expert.yaml",
+      "hash": "c7c90d2f083e3dff67934ddbc5289c7a",
+      "tokens": 830,
+      "lastModified": "2025-12-04T03:34:24.998Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\aws-infrastructure.yaml",
+      "hash": "6d104d6a29a4d23ae301d44a4e9db1d2",
+      "tokens": 394,
+      "lastModified": "2025-12-02T11:16:00.222Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\backend\\convex-expert.yaml",
+      "hash": "706bb97ad59a42c60455fc52d92eb1fd",
+      "tokens": 802,
+      "lastModified": "2025-12-04T03:35:25.687Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\bonding-curve-master.yaml",
+      "hash": "b3d8927fa8bf126d4376d6ea481009da",
+      "tokens": 505,
+      "lastModified": "2025-12-02T10:36:26.216Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\cdn-optimization.yaml",
+      "hash": "c7720198d0df4966dc71c7faa63c5305",
+      "tokens": 647,
+      "lastModified": "2025-12-02T11:51:49.690Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\chainlink-expert.yaml",
+      "hash": "e1b6c782b3e60fe0b3ae89c9bbea9d34",
+      "tokens": 475,
+      "lastModified": "2025-12-02T11:41:42.382Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\ci-cd-automation.yaml",
+      "hash": "527d81d566e7c1c6307d8782963fb6ab",
+      "tokens": 409,
+      "lastModified": "2025-12-02T11:15:57.951Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\cli\\cli-builder-expert.yaml",
+      "hash": "0410de0b6f8df64c0a46d18c939fef9e",
+      "tokens": 1034,
+      "lastModified": "2025-12-04T03:36:19.662Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\cloudflare-expert.yaml",
+      "hash": "a72c4c68178e258057bcc4f447a6dcb4",
+      "tokens": 481,
+      "lastModified": "2025-12-02T11:42:33.476Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\code-security-audit.yaml",
+      "hash": "ec9c3109e5a3891d7da36d25ee93b34f",
+      "tokens": 685,
+      "lastModified": "2025-12-02T11:48:19.383Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\cross-chain-expert.yaml",
+      "hash": "90569901e1c9a8313f5a958e68ff7e32",
+      "tokens": 672,
+      "lastModified": "2025-12-02T11:53:30.171Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\crypto-wallet-security.yaml",
+      "hash": "1aa443e41b69a3d35ce95e4636b0110d",
+      "tokens": 714,
+      "lastModified": "2025-12-02T11:48:21.353Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\cypress-testing.yaml",
+      "hash": "9228a7e2d0ea0b5b59ec4946192ca218",
+      "tokens": 478,
+      "lastModified": "2025-12-02T11:42:35.122Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\dao-governance.yaml",
+      "hash": "e4388f9804cb21fabfe19af1cd74b33b",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:53:32.052Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\data-pipeline-expert.yaml",
+      "hash": "d3d592a9dbdfcc1b09614a78cfea197e",
+      "tokens": 634,
+      "lastModified": "2025-12-02T11:49:24.169Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\data-visualization.yaml",
+      "hash": "099c13477c7ee878c5fb26028209cd06",
+      "tokens": 654,
+      "lastModified": "2025-12-02T11:49:29.597Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\database\\drizzle-studio.yaml",
+      "hash": "2f17e6c7f07d768d0c69a5408e2dd825",
+      "tokens": 670,
+      "lastModified": "2025-12-04T03:34:22.383Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\database\\neon-postgres.yaml",
+      "hash": "bd67724b9cc2df9edc52fcedd40862f7",
+      "tokens": 635,
+      "lastModified": "2025-12-04T03:34:23.691Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\database-schema-expert.yaml",
+      "hash": "21b3b5d0e7471bcd31cc15a058b67c25",
+      "tokens": 426,
+      "lastModified": "2025-12-02T11:15:08.443Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\defi-data-analyst.yaml",
+      "hash": "cbe4057c9f5090e59bc766074d60a50b",
+      "tokens": 430,
+      "lastModified": "2025-12-02T11:13:20.079Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\devops\\devops-automation-stack.yaml",
+      "hash": "eeda1a9fb8bdcc06a3f27c0c1a8113fe",
+      "tokens": 1088,
+      "lastModified": "2025-12-04T03:27:46.192Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\devops\\monorepo-build-stack.yaml",
+      "hash": "2c29c5fdad4fdb6bb1f116f2d9677a6c",
+      "tokens": 952,
+      "lastModified": "2025-12-04T03:27:47.608Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\docker-kubernetes-pro.yaml",
+      "hash": "1958ca654a1e850e1198e44520902b47",
+      "tokens": 415,
+      "lastModified": "2025-12-02T11:15:55.946Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\drizzle-orm-expert.yaml",
+      "hash": "9881a8a01592931e97f304381872934e",
+      "tokens": 645,
+      "lastModified": "2025-12-02T11:32:16.558Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\edge-computing.yaml",
+      "hash": "1ff4571116bdd6b57ad7db52a3fa255a",
+      "tokens": 638,
+      "lastModified": "2025-12-02T11:51:46.211Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\elasticsearch-expert.yaml",
+      "hash": "87f749c148742041d0c74aebaeb54087",
+      "tokens": 655,
+      "lastModified": "2025-12-02T11:49:25.913Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\email\\resend-email.yaml",
+      "hash": "01ebf469c88a0ec989e57f909a9769ad",
+      "tokens": 890,
+      "lastModified": "2025-12-04T03:36:17.089Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\embedding-specialist.yaml",
+      "hash": "a892948b3b678d5a124ea390ff43b8da",
+      "tokens": 651,
+      "lastModified": "2025-12-02T11:50:38.563Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\error-handling-expert.yaml",
+      "hash": "6e258bab62665cb97fc0316c8bede7f0",
+      "tokens": 694,
+      "lastModified": "2025-12-02T11:29:57.783Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\evm-solidity-expert.yaml",
+      "hash": "c6e89ab7f86247cc2567cefbe2c19560",
+      "tokens": 511,
+      "lastModified": "2025-12-02T11:13:14.949Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\expo-expert.yaml",
+      "hash": "f2e1beeb24a34b5bd16724f3d569c29e",
+      "tokens": 497,
+      "lastModified": "2025-12-02T11:40:46.860Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\extensions\\chrome-extension-expert.yaml",
+      "hash": "95fdc849bf55d13d22ea93c86a08550c",
+      "tokens": 936,
+      "lastModified": "2025-12-04T03:36:18.344Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\fastify-expert.yaml",
+      "hash": "08569a9c7856fcf4b7d1dfeaffb5fedc",
+      "tokens": 407,
+      "lastModified": "2025-12-02T11:15:15.408Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\framer-motion-wizard.yaml",
+      "hash": "1d2408546435ab83f45312feafba8449",
+      "tokens": 406,
+      "lastModified": "2025-12-02T11:14:20.881Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\frontend\\react-19-expert.yaml",
+      "hash": "4eda2b8dea6acd78de8b27c81d6a6995",
+      "tokens": 792,
+      "lastModified": "2025-12-04T03:32:19.596Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\gas-optimization.yaml",
+      "hash": "89d1c204ca45998ba2a57f57e6150df8",
+      "tokens": 644,
+      "lastModified": "2025-12-02T11:53:41.332Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\git-workflow-expert.yaml",
+      "hash": "8dc43e3ad318e97cbc01ce028f2aca85",
+      "tokens": 674,
+      "lastModified": "2025-12-02T11:31:07.024Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\graphql-api-designer.yaml",
+      "hash": "bfe438239e4c043263e33fb404505ce1",
+      "tokens": 407,
+      "lastModified": "2025-12-02T11:15:11.930Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\helius-integration.yaml",
+      "hash": "b90605e8ff6be0febae53792e669a0f8",
+      "tokens": 407,
+      "lastModified": "2025-12-02T11:13:21.885Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\jest-testing.yaml",
+      "hash": "81a8547f07019f5ffe99dcfda6526729",
+      "tokens": 467,
+      "lastModified": "2025-12-02T11:42:37.097Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\jobs\\inngest-expert.yaml",
+      "hash": "63bb26251978d5fa8524fa7fa3ea8b65",
+      "tokens": 782,
+      "lastModified": "2025-12-04T03:35:23.282Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\jobs\\trigger-dev-expert.yaml",
+      "hash": "b58c8fa6d22f586ea087ccffd845058b",
+      "tokens": 717,
+      "lastModified": "2025-12-04T03:35:24.426Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\jupiter-trader.yaml",
+      "hash": "c733afcc5f9eb96c49120958947edd8a",
+      "tokens": 422,
+      "lastModified": "2025-12-02T10:36:46.202Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\kubernetes-expert.yaml",
+      "hash": "6e2ff922a253d867200115b5b3bb1014",
+      "tokens": 632,
+      "lastModified": "2025-12-02T11:51:42.375Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\langchain-expert.yaml",
+      "hash": "36f35fc410214cda69de95964cfb553c",
+      "tokens": 477,
+      "lastModified": "2025-12-02T11:39:51.073Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\liquidity-pools.yaml",
+      "hash": "e0090abf3b1cee39288dd15f6cf46d29",
+      "tokens": 647,
+      "lastModified": "2025-12-02T11:53:37.707Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\load-balancing-expert.yaml",
+      "hash": "d4baa4c29ac0ade36cc5689ac7e412da",
+      "tokens": 653,
+      "lastModified": "2025-12-02T11:51:47.938Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\mev-protection.yaml",
+      "hash": "a6020499c7f392e3839f944ee60460a9",
+      "tokens": 654,
+      "lastModified": "2025-12-02T11:53:28.348Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\mlops-expert.yaml",
+      "hash": "ed6731032541af58b4348bd21e1e57b1",
+      "tokens": 615,
+      "lastModified": "2025-12-02T11:50:34.705Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\model-fine-tuning.yaml",
+      "hash": "aeb0ce832b198c8bd1e379313fe80d28",
+      "tokens": 622,
+      "lastModified": "2025-12-02T11:50:36.505Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\multimodal-ai-expert.yaml",
+      "hash": "aaaa64a8292f2a80516f5b809098d28e",
+      "tokens": 631,
+      "lastModified": "2025-12-02T11:50:42.086Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\nextjs-14-expert.yaml",
+      "hash": "367de56c59183d6cb0573f4513f7f110",
+      "tokens": 548,
+      "lastModified": "2025-12-02T10:37:06.209Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\nextjs-app-router.yaml",
+      "hash": "2d553c5760a8a92a5f3c093d26b8ec17",
+      "tokens": 742,
+      "lastModified": "2025-12-02T11:31:03.272Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\nft-metadata-expert.yaml",
+      "hash": "81ba98cb647682ba66895c5923ddab0b",
+      "tokens": 647,
+      "lastModified": "2025-12-02T11:53:33.970Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\nginx-expert.yaml",
+      "hash": "fcbe2c33b862bb0f1d4ec0d3001790b4",
+      "tokens": 476,
+      "lastModified": "2025-12-02T11:41:47.817Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\nodejs-api-architect.yaml",
+      "hash": "2a628fe4b90294223086247f9fdce60d",
+      "tokens": 550,
+      "lastModified": "2025-12-02T10:40:29.839Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\openai-integration.yaml",
+      "hash": "cb21eca4cb1afd169d562c71b2a8f407",
+      "tokens": 645,
+      "lastModified": "2025-12-02T11:33:32.783Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\penetration-testing.yaml",
+      "hash": "72ce7a3fd41888c5b953c35a83e4b568",
+      "tokens": 739,
+      "lastModified": "2025-12-02T11:48:17.588Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\performance-optimization.yaml",
+      "hash": "cd7866f0b097cee862967e88571255ac",
+      "tokens": 713,
+      "lastModified": "2025-12-02T11:29:59.699Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\playwright-testing.yaml",
+      "hash": "580ec1b1af16fe381106d48eee9c3541",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:33:29.003Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\pnpm-monorepo-expert.yaml",
+      "hash": "52d66252476c0ac6d8cd13124e7d16d6",
+      "tokens": 670,
+      "lastModified": "2025-12-02T11:32:11.105Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\prisma-orm-expert.yaml",
+      "hash": "7265304e4746a2afb861dca2fc8348cb",
+      "tokens": 648,
+      "lastModified": "2025-12-02T11:30:03.780Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\prompt-engineering.yaml",
+      "hash": "e07f4c2952f0b0a283fb9dc03afcf56b",
+      "tokens": 501,
+      "lastModified": "2025-12-02T11:39:57.404Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\rag-expert.yaml",
+      "hash": "71c026085c8e75aac23e0accb9948ca1",
+      "tokens": 507,
+      "lastModified": "2025-12-02T11:39:53.113Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\react-hook-form-expert.yaml",
+      "hash": "d6fab864de914fbc487004a34d8a6c2b",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:32:18.409Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\react-native-expert.yaml",
+      "hash": "a54e22a534557dae537ad4abb4986559",
+      "tokens": 510,
+      "lastModified": "2025-12-02T11:40:44.998Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\react-typescript-master.yaml",
+      "hash": "4f9f174d32a5b1b3c0c1cf6d87a68cbc",
+      "tokens": 450,
+      "lastModified": "2025-12-02T11:14:19.274Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\redis-caching-pro.yaml",
+      "hash": "7ea87aff39570b8ce051a4b0b6aa6a49",
+      "tokens": 397,
+      "lastModified": "2025-12-02T11:15:10.014Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\reentrancy-guard.yaml",
+      "hash": "11d64c7b6b1e71491506593df9443ffe",
+      "tokens": 675,
+      "lastModified": "2025-12-02T11:48:22.999Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\responsive-design-pro.yaml",
+      "hash": "90fe0ec819d2d82de06290cf776a0079",
+      "tokens": 424,
+      "lastModified": "2025-12-02T11:14:26.251Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\runtime\\bun-runtime.yaml",
+      "hash": "14bf40eb68ac319705b5a5891dc47b7e",
+      "tokens": 470,
+      "lastModified": "2025-12-04T03:32:16.002Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\security-best-practices.yaml",
+      "hash": "533f234b6a99e1ed1f4295fb91030357",
+      "tokens": 723,
+      "lastModified": "2025-12-02T11:29:56.042Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\serverless-expert.yaml",
+      "hash": "229bb93a6758c95480bf9078ecc9ef7f",
+      "tokens": 637,
+      "lastModified": "2025-12-02T11:51:44.178Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\shadcn-components.yaml",
+      "hash": "41f378ccf83e0fddeb85780731f0d190",
+      "tokens": 686,
+      "lastModified": "2025-12-02T11:33:25.475Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\shadcn-ui-expert.yaml",
+      "hash": "68d3181a7b50d8b6cca7df9253afa564",
+      "tokens": 369,
+      "lastModified": "2025-12-02T10:37:42.042Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\smart-contract-auditor.yaml",
+      "hash": "af66b49c2e9ea778b8728b008298c96f",
+      "tokens": 507,
+      "lastModified": "2025-12-02T11:13:16.514Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\solana-2025\\solana-2025-stack.yaml",
+      "hash": "ae1211b91ffc44689435dce905835834",
+      "tokens": 1601,
+      "lastModified": "2025-12-04T03:27:44.965Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\solana-anchor-expert.yaml",
+      "hash": "b6265af53ad698cc891f8dc73fa5bccc",
+      "tokens": 852,
+      "lastModified": "2025-12-02T10:35:52.816Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\stacks\\fullstack-blueprint-stack.yaml",
+      "hash": "dcb2977b6c32eb5deb3d21e4e15d0dff",
+      "tokens": 1407,
+      "lastModified": "2025-12-04T03:27:48.925Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\supabase-expert.yaml",
+      "hash": "ae6cb4866a6133c25781fed2ef9c28a2",
+      "tokens": 642,
+      "lastModified": "2025-12-02T11:31:09.044Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\svelte-expert.yaml",
+      "hash": "b6a6000c084bd10f81aaba5b1039196a",
+      "tokens": 505,
+      "lastModified": "2025-12-02T11:40:51.234Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\tailwind-css-pro.yaml",
+      "hash": "c2644daa7cb331fa12d52d4343ef584f",
+      "tokens": 324,
+      "lastModified": "2025-12-02T10:38:16.006Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\tanstack-query-expert.yaml",
+      "hash": "4f08bab5b4355e4f7166506429126876",
+      "tokens": 433,
+      "lastModified": "2025-12-02T11:14:24.527Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\terraform-expert.yaml",
+      "hash": "0499aa394a47d3c4c84994bcb4e1a658",
+      "tokens": 481,
+      "lastModified": "2025-12-02T11:41:46.085Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\test-automation-expert.yaml",
+      "hash": "9f76f8666e61b162d1b1bc5cbffb5660",
+      "tokens": 384,
+      "lastModified": "2025-12-02T11:16:02.470Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\testing\\playwright-pro.yaml",
+      "hash": "22ce3c6b07330d36cc0978d732f2c520",
+      "tokens": 613,
+      "lastModified": "2025-12-04T03:32:18.368Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\testing\\vitest-expert.yaml",
+      "hash": "ee8ea77af97621258a7c3d370fd367a8",
+      "tokens": 554,
+      "lastModified": "2025-12-04T03:32:17.184Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\thegraph-expert.yaml",
+      "hash": "ef76cd18393fc332a420e3ec9ea93442",
+      "tokens": 475,
+      "lastModified": "2025-12-02T11:41:44.424Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\timeseries-db-expert.yaml",
+      "hash": "7580731d429d66bf52aed7eb0416d939",
+      "tokens": 652,
+      "lastModified": "2025-12-02T11:49:27.909Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\token-economics.yaml",
+      "hash": "08b9cb27a3e5f78a0595f4df01f6bd1d",
+      "tokens": 470,
+      "lastModified": "2025-12-02T11:13:18.398Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\token-launch-expert.yaml",
+      "hash": "d9f1c5e0ef60039a7a13c965fef32680",
+      "tokens": 634,
+      "lastModified": "2025-12-02T11:53:35.795Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\trpc-expert.yaml",
+      "hash": "43f2c0f8270e100ad745d81bc65fab13",
+      "tokens": 646,
+      "lastModified": "2025-12-02T11:32:14.690Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\typescript\\effect-ts.yaml",
+      "hash": "9f81357329122ee772f23ba7fcc699b6",
+      "tokens": 609,
+      "lastModified": "2025-12-04T03:34:21.116Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\typescript-advanced.yaml",
+      "hash": "54c298faa3d02bd6ba9ee0b0a0c721c6",
+      "tokens": 690,
+      "lastModified": "2025-12-02T11:30:01.703Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\typescript-senior.yaml",
+      "hash": "548fbe36402b92be9e9846660342b707",
+      "tokens": 434,
+      "lastModified": "2025-12-02T10:37:23.597Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\uniswap-expert.yaml",
+      "hash": "8469331f6a6736321c3e495d2cac8322",
+      "tokens": 467,
+      "lastModified": "2025-12-02T11:41:40.793Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\upload\\uploadthing-expert.yaml",
+      "hash": "92c5538dbe91fcae796b9826e8af4d65",
+      "tokens": 915,
+      "lastModified": "2025-12-04T03:35:27.120Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\vector-db-expert.yaml",
+      "hash": "0d1d1a482ae038efd36428663255c234",
+      "tokens": 501,
+      "lastModified": "2025-12-02T11:39:55.241Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\vercel-deployment.yaml",
+      "hash": "808f81749c7947221758a7c10c8b39ea",
+      "tokens": 661,
+      "lastModified": "2025-12-02T11:31:10.918Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\vibe-coder.yaml",
+      "hash": "26e1d8a0fc424aef5991ba194781eb6c",
+      "tokens": 370,
+      "lastModified": "2025-12-02T10:37:59.380Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\viem-wagmi-expert.yaml",
+      "hash": "d39515f4a903f963900b0248da135de0",
+      "tokens": 669,
+      "lastModified": "2025-12-02T11:33:27.147Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\vitest-testing.yaml",
+      "hash": "5bd6a1ab155515c991a787f74a1f5d6b",
+      "tokens": 628,
+      "lastModified": "2025-12-02T11:33:30.916Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\vue-expert.yaml",
+      "hash": "fc6b1bb70a54d6de2cfb6624a3d9d470",
+      "tokens": 470,
+      "lastModified": "2025-12-02T11:40:53.035Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\wallet-integration.yaml",
+      "hash": "c7d25edceb9ca084c3343b0e9d1bfb10",
+      "tokens": 381,
+      "lastModified": "2025-12-02T10:38:29.767Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\web\\hono-expert.yaml",
+      "hash": "0fffcb822abac791fbda529bc72c0137",
+      "tokens": 473,
+      "lastModified": "2025-12-04T03:32:14.780Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\websocket-realtime.yaml",
+      "hash": "2d835226996357fcc66acf3573565ab6",
+      "tokens": 422,
+      "lastModified": "2025-12-02T11:15:13.658Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\yield-farming.yaml",
+      "hash": "6e8f912aeb3c969d821d36196174790f",
+      "tokens": 659,
+      "lastModified": "2025-12-02T11:53:39.533Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\zod-validation-expert.yaml",
+      "hash": "a4fd1e8a4f3597e9683abe88e0553d9e",
+      "tokens": 645,
+      "lastModified": "2025-12-02T11:32:12.864Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\metadata\\zustand-state-master.yaml",
+      "hash": "f0652d173f3d454446ce85861b25059e",
+      "tokens": 415,
+      "lastModified": "2025-12-02T11:14:22.840Z"
+    },
+    {
       "path": "packages\\opus67\\skills\\registry.yaml",
-      "hash": "64a56d4faf25b69064180c9080cf1508",
-      "tokens": 6251,
-      "lastModified": "2025-12-02T03:16:33.176Z"
+      "hash": "b697fea28810b29a05d3e8c01ee73707",
+      "tokens": 16866,
+      "lastModified": "2025-12-06T13:42:42.802Z"
+    },
+    {
+      "path": "packages\\opus67\\skills\\SKILL_EXPANSION_STATUS.md",
+      "hash": "265d8ac74a1d23f37a98bb9c1c7b50b0",
+      "tokens": 911,
+      "lastModified": "2025-12-06T07:45:13.337Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\agents\\index.ts",
+      "hash": "c2014f06e43c81dedf75d9caab320c04",
+      "tokens": 127,
+      "lastModified": "2025-12-04T03:59:00.074Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\agents\\learning-observer.ts",
+      "hash": "8d3dd1f4b4f504e112ec90fbf57f8f06",
+      "tokens": 2710,
+      "lastModified": "2025-12-04T03:57:47.592Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\agents\\loader.ts",
+      "hash": "f7b1c4edb6728d14dfd7fa03d29c0d87",
+      "tokens": 701,
+      "lastModified": "2025-12-06T13:44:56.080Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\agents\\skills-navigator.ts",
+      "hash": "4db13c7dd70fc73e5760c161b7f9ea61",
+      "tokens": 2873,
+      "lastModified": "2025-12-04T03:58:46.526Z"
     },
     {
       "path": "packages\\opus67\\src\\autonomy\\engine.ts",
       "hash": "1907733bebe97b2370088c75229e867e",
       "tokens": 2373,
       "lastModified": "2025-12-02T03:12:19.125Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\autonomy\\index.ts",
+      "hash": "e921cc085eb73f4bff2344ba3c05024d",
+      "tokens": 26,
+      "lastModified": "2025-12-04T05:20:48.266Z"
     },
     {
       "path": "packages\\opus67\\src\\autonomy-logger.ts",
@@ -5374,15 +7576,15 @@
     },
     {
       "path": "packages\\opus67\\src\\benchmark\\token-tracker.ts",
-      "hash": "43e55de4b8042e95dde31948e183b8d9",
-      "tokens": 2503,
-      "lastModified": "2025-12-02T04:58:20.908Z"
+      "hash": "e9849f5770dcf2496a3f945213cd09bc",
+      "tokens": 2523,
+      "lastModified": "2025-12-04T07:15:48.844Z"
     },
     {
       "path": "packages\\opus67\\src\\boot-sequence.ts",
-      "hash": "4ebe584f472a7da38d517940dab9a7b9",
-      "tokens": 3078,
-      "lastModified": "2025-12-02T04:33:42.466Z"
+      "hash": "b10e2eb67c2119e065acd0ec0ee9774c",
+      "tokens": 3228,
+      "lastModified": "2025-12-04T04:30:52.344Z"
     },
     {
       "path": "packages\\opus67\\src\\boot.ts",
@@ -5398,15 +7600,33 @@
     },
     {
       "path": "packages\\opus67\\src\\brain\\brain-runtime.ts",
-      "hash": "13d814ac72b2075f2a9b73692898b516",
-      "tokens": 3751,
-      "lastModified": "2025-12-02T07:17:49.240Z"
+      "hash": "97d0e9ede0b2be2e10567402486b1ec3",
+      "tokens": 5687,
+      "lastModified": "2025-12-04T08:11:51.392Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\brain\\file-context.ts",
+      "hash": "7bc8fceb2de271e0d8a2146eebeb31c6",
+      "tokens": 5789,
+      "lastModified": "2025-12-04T08:05:54.619Z"
     },
     {
       "path": "packages\\opus67\\src\\brain\\index.ts",
-      "hash": "4f5feecbafce0bda752124be72c3d8a6",
-      "tokens": 123,
-      "lastModified": "2025-12-02T05:47:27.048Z"
+      "hash": "79b340c406616edb3ce5b8d3bea75f94",
+      "tokens": 559,
+      "lastModified": "2025-12-04T08:31:50.268Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\brain\\long-horizon-planning.ts",
+      "hash": "7c9c35b252671d9a556815cef554cb65",
+      "tokens": 4131,
+      "lastModified": "2025-12-04T08:22:07.309Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\brain\\reasoning.ts",
+      "hash": "5f7b09d245560a1279c7d5725c07ba06",
+      "tokens": 4723,
+      "lastModified": "2025-12-06T09:47:30.223Z"
     },
     {
       "path": "packages\\opus67\\src\\brain\\server.ts",
@@ -5415,16 +7635,52 @@
       "lastModified": "2025-12-02T07:24:36.632Z"
     },
     {
+      "path": "packages\\opus67\\src\\brain\\swe-bench-patterns.ts",
+      "hash": "a5ef77c64efbadd50aaaf2cc51d079df",
+      "tokens": 3434,
+      "lastModified": "2025-12-04T08:17:16.215Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\brain\\unified-api.ts",
+      "hash": "d13620da40e5a571cb4fd0e17a3377c5",
+      "tokens": 3396,
+      "lastModified": "2025-12-04T08:33:53.163Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\brain\\verification-loops.ts",
+      "hash": "da59e2bde5ce244bc7f0b4a45af33974",
+      "tokens": 4607,
+      "lastModified": "2025-12-04T08:25:33.951Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\cache\\prompt-cache.ts",
+      "hash": "f5c0d8e7a8df76a0499ae14442b50912",
+      "tokens": 3500,
+      "lastModified": "2025-12-04T07:27:56.379Z"
+    },
+    {
       "path": "packages\\opus67\\src\\cli.ts",
-      "hash": "7582e3a1b6c6e599d5022189a2d1bb3a",
-      "tokens": 1198,
-      "lastModified": "2025-12-02T03:12:19.162Z"
+      "hash": "b2bc466349009b6362685d3390e25aeb",
+      "tokens": 5566,
+      "lastModified": "2025-12-06T12:56:25.914Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\context\\index.ts",
+      "hash": "84a3150decc1466baa777e7abc92cd36",
+      "tokens": 26,
+      "lastModified": "2025-12-04T05:20:49.147Z"
     },
     {
       "path": "packages\\opus67\\src\\context\\indexer.ts",
       "hash": "3162781deb828e49e5f174d38de9559a",
       "tokens": 2708,
       "lastModified": "2025-12-02T03:12:19.180Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\council\\agent-pool.ts",
+      "hash": "a2ae2fcb19bdb109237adb65af8e6dbd",
+      "tokens": 3492,
+      "lastModified": "2025-12-06T08:18:52.734Z"
     },
     {
       "path": "packages\\opus67\\src\\council\\council.ts",
@@ -5434,9 +7690,15 @@
     },
     {
       "path": "packages\\opus67\\src\\council\\index.ts",
-      "hash": "f11fe7369afb1b3fe1df72b16a281dba",
-      "tokens": 188,
-      "lastModified": "2025-12-02T05:11:23.064Z"
+      "hash": "f79382cd701cd7c0e726d23529316b88",
+      "tokens": 651,
+      "lastModified": "2025-12-06T08:22:35.538Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\council\\multi-agent-orchestrator.ts",
+      "hash": "1928088018fb1a7e796c87655fe824c8",
+      "tokens": 4588,
+      "lastModified": "2025-12-06T08:22:03.364Z"
     },
     {
       "path": "packages\\opus67\\src\\council\\ranking.ts",
@@ -5449,6 +7711,30 @@
       "hash": "de7825f58c24675d04b263afdbd8e952",
       "tokens": 2413,
       "lastModified": "2025-12-02T05:10:47.330Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\council\\task-decomposer.ts",
+      "hash": "fef907e3b6d16afb73a490ab17e9cf37",
+      "tokens": 4169,
+      "lastModified": "2025-12-06T08:20:24.191Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\council\\types.ts",
+      "hash": "fe483bc9601648b19fac81316615c218",
+      "tokens": 1940,
+      "lastModified": "2025-12-06T08:17:31.952Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\door\\injector.ts",
+      "hash": "eda180aa692a1fdb45dc7c2430df75e1",
+      "tokens": 1244,
+      "lastModified": "2025-12-06T13:44:21.517Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\evolution\\adaptive-matcher.ts",
+      "hash": "477f9c9af9a3633d213f0bcc63db8ffc",
+      "tokens": 3224,
+      "lastModified": "2025-12-06T08:10:15.722Z"
     },
     {
       "path": "packages\\opus67\\src\\evolution\\code-improver.ts",
@@ -5464,9 +7750,21 @@
     },
     {
       "path": "packages\\opus67\\src\\evolution\\index.ts",
-      "hash": "935b83f03f3daf5554846a8080bf4349",
-      "tokens": 158,
-      "lastModified": "2025-12-02T05:24:34.790Z"
+      "hash": "e77f13cfb922112cb2940aa64614ccc9",
+      "tokens": 768,
+      "lastModified": "2025-12-06T08:12:07.945Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\evolution\\learning-generator.ts",
+      "hash": "18efa2a1b9ab6083d887587941a0ef5c",
+      "tokens": 3911,
+      "lastModified": "2025-12-06T08:09:09.988Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\evolution\\learning-store.ts",
+      "hash": "c51b6a0d1d432d18803aecdd75c9fbee",
+      "tokens": 3432,
+      "lastModified": "2025-12-06T08:07:42.896Z"
     },
     {
       "path": "packages\\opus67\\src\\evolution\\pattern-detector.ts",
@@ -5475,22 +7773,178 @@
       "lastModified": "2025-12-02T05:23:29.871Z"
     },
     {
+      "path": "packages\\opus67\\src\\evolution\\signal-collector.ts",
+      "hash": "5077fdd26327b8045f6cc1179f11847f",
+      "tokens": 3208,
+      "lastModified": "2025-12-06T08:06:22.802Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\evolution\\types.ts",
+      "hash": "abfa0345cc5b5ab6d9833806fabb39f8",
+      "tokens": 2183,
+      "lastModified": "2025-12-06T08:03:56.013Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\evolution\\usage-tracker.ts",
+      "hash": "514f99b27446da3b5a619a983476077f",
+      "tokens": 3205,
+      "lastModified": "2025-12-06T08:05:04.281Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\hooks\\activator.ts",
+      "hash": "c63567d6ac7d4dd05a1205a0b963a534",
+      "tokens": 699,
+      "lastModified": "2025-12-06T13:45:13.843Z"
+    },
+    {
       "path": "packages\\opus67\\src\\index.ts",
-      "hash": "8cba95c5777ffbd4a948046baa49b08c",
-      "tokens": 3568,
-      "lastModified": "2025-12-02T05:49:47.822Z"
+      "hash": "b60d20e931a0252a08440589f2c3c602",
+      "tokens": 3888,
+      "lastModified": "2025-12-04T05:21:15.465Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\capability-matrix.ts",
+      "hash": "940f68f50b350270371e01b7e3738536",
+      "tokens": 4144,
+      "lastModified": "2025-12-02T12:13:49.561Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\cloud-sync.ts",
+      "hash": "05b16254ec07bde04b7887ccd1cc27b0",
+      "tokens": 3002,
+      "lastModified": "2025-12-02T11:25:14.875Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\confidence-scorer.ts",
+      "hash": "0a2903be1c09fd647ca0b30a43b9b1d1",
+      "tokens": 2865,
+      "lastModified": "2025-12-02T11:19:10.437Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\index.ts",
+      "hash": "0cf805e68151a85e95a4f98cac341113",
+      "tokens": 1435,
+      "lastModified": "2025-12-04T04:04:16.361Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\knowledge-store.ts",
+      "hash": "8cb5b0921b65acc20aa6f6b5a9bacf97",
+      "tokens": 3639,
+      "lastModified": "2025-12-02T10:47:29.640Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\learning-loop.ts",
+      "hash": "4ba3345cd35d8bc7668bacb40d4e49af",
+      "tokens": 6095,
+      "lastModified": "2025-12-04T04:03:55.190Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\mcp-validator.ts",
+      "hash": "2e7a662409fe062c106b7349239c602e",
+      "tokens": 2800,
+      "lastModified": "2025-12-02T10:45:25.512Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\similarity-search.ts",
+      "hash": "349c0b069a0e7568ae77bf80166f8ca2",
+      "tokens": 2668,
+      "lastModified": "2025-12-02T12:06:28.801Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\skill-metadata.ts",
+      "hash": "3a7ad28d2d0a5f6dcb31ba0fb7c48b68",
+      "tokens": 3789,
+      "lastModified": "2025-12-02T12:12:35.130Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\skill-search.ts",
+      "hash": "6e43f41b870dd25c5cf1a9830ccf1a9a",
+      "tokens": 3864,
+      "lastModified": "2025-12-04T03:56:36.577Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\sqlite-store.ts",
+      "hash": "304adf64cd2318cba82431aec1e0750a",
+      "tokens": 3724,
+      "lastModified": "2025-12-02T11:17:51.800Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\intelligence\\synergy-graph.ts",
+      "hash": "e7a67684971fd3172d754a747652173b",
+      "tokens": 3359,
+      "lastModified": "2025-12-02T10:44:06.111Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp\\discovery.ts",
+      "hash": "d5642940ab4710038f900f1ed99f04f7",
+      "tokens": 2511,
+      "lastModified": "2025-12-04T07:35:48.110Z"
     },
     {
       "path": "packages\\opus67\\src\\mcp\\hub.ts",
-      "hash": "d126d65c26b141aca92af8462784c435",
-      "tokens": 3139,
-      "lastModified": "2025-12-02T07:27:29.016Z"
+      "hash": "a71ed4eb2eea30e05e20bb6994f7187e",
+      "tokens": 3421,
+      "lastModified": "2025-12-04T07:39:11.352Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp\\index.ts",
+      "hash": "55b6caa0841a6f608af748d64c1f122c",
+      "tokens": 36,
+      "lastModified": "2025-12-04T07:36:01.554Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp\\registrar.ts",
+      "hash": "4b0f742a0838e6856ba4b1f1cd7bdcb4",
+      "tokens": 1488,
+      "lastModified": "2025-12-06T13:43:49.324Z"
     },
     {
       "path": "packages\\opus67\\src\\mcp-hub.ts",
-      "hash": "5aacfd6de8a7f67a067042d27f91baa5",
-      "tokens": 2136,
-      "lastModified": "2025-12-02T04:34:12.182Z"
+      "hash": "ffd9b56a26d4952e786bd9a96f93bc10",
+      "tokens": 2139,
+      "lastModified": "2025-12-06T09:54:59.942Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp-server\\handlers.ts",
+      "hash": "fe3553d07e9a38d7227659d540c325ac",
+      "tokens": 2874,
+      "lastModified": "2025-12-06T09:54:18.172Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp-server\\index.ts",
+      "hash": "9bfa509a2831db1d476103df0b5b3235",
+      "tokens": 52,
+      "lastModified": "2025-12-04T05:27:12.248Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp-server\\registry.ts",
+      "hash": "bddcdff5b73ca84cc6d056b532221bd4",
+      "tokens": 1055,
+      "lastModified": "2025-12-06T11:55:23.721Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp-server\\tools.ts",
+      "hash": "b35e765f93fee767746cfbc54d0d2f0f",
+      "tokens": 796,
+      "lastModified": "2025-12-04T05:26:45.974Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp-server\\types.ts",
+      "hash": "83f4bed16919f8f09052301492bf9701",
+      "tokens": 249,
+      "lastModified": "2025-12-06T11:53:55.446Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\mcp-server.ts",
+      "hash": "ab271e068a12792b3295060d690a7336",
+      "tokens": 2114,
+      "lastModified": "2025-12-06T11:58:07.460Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\memory\\cache.ts",
+      "hash": "8d792fee2f40a042ec00e205e1460894",
+      "tokens": 820,
+      "lastModified": "2025-12-04T05:23:27.531Z"
     },
     {
       "path": "packages\\opus67\\src\\memory\\context.ts",
@@ -5499,22 +7953,40 @@
       "lastModified": "2025-12-02T05:15:56.123Z"
     },
     {
+      "path": "packages\\opus67\\src\\memory\\embeddings.ts",
+      "hash": "55a94bbbdf740214643390f17a6a176d",
+      "tokens": 326,
+      "lastModified": "2025-12-04T05:23:24.748Z"
+    },
+    {
       "path": "packages\\opus67\\src\\memory\\graphiti.ts",
-      "hash": "06ae0398042b0ea5964b18da332bc821",
-      "tokens": 6328,
-      "lastModified": "2025-12-02T06:04:37.452Z"
+      "hash": "3be0ba039cc84294173133fc43a0f97c",
+      "tokens": 3699,
+      "lastModified": "2025-12-04T05:24:29.962Z"
     },
     {
       "path": "packages\\opus67\\src\\memory\\index.ts",
-      "hash": "3f8e131ee8a8f58fe84c0cdceefb1dbc",
-      "tokens": 123,
-      "lastModified": "2025-12-02T05:15:57.303Z"
+      "hash": "13d7f286f046ef62855f7c59b25f73a3",
+      "tokens": 293,
+      "lastModified": "2025-12-04T05:24:49.385Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\memory\\search.ts",
+      "hash": "c914ef3a7df885797ccdcc329bd38287",
+      "tokens": 904,
+      "lastModified": "2025-12-04T05:23:30.594Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\memory\\types.ts",
+      "hash": "093d65b2d859383f2e0f5b56f63b3c01",
+      "tokens": 523,
+      "lastModified": "2025-12-04T05:23:23.564Z"
     },
     {
       "path": "packages\\opus67\\src\\mode-selector.ts",
-      "hash": "67e513a047812b0bc1d7f088706be8ff",
-      "tokens": 3664,
-      "lastModified": "2025-12-02T04:35:41.085Z"
+      "hash": "d56c2ae395949f77a446cdb6d362777b",
+      "tokens": 480,
+      "lastModified": "2025-12-04T05:29:30.220Z"
     },
     {
       "path": "packages\\opus67\\src\\models\\config.ts",
@@ -5530,39 +8002,309 @@
     },
     {
       "path": "packages\\opus67\\src\\models\\index.ts",
-      "hash": "aa41fb97fb8bee40f5912d236297e8cb",
-      "tokens": 197,
-      "lastModified": "2025-12-02T07:16:43.654Z"
+      "hash": "e574e30e1ceeb36248b4bca6cc2deefb",
+      "tokens": 290,
+      "lastModified": "2025-12-04T05:33:16.010Z"
     },
     {
       "path": "packages\\opus67\\src\\models\\model-client.ts",
-      "hash": "8e9ac8976e04fd16b20f85ecffa59417",
-      "tokens": 2958,
-      "lastModified": "2025-12-02T07:16:19.902Z"
+      "hash": "8b0ff32780c0246448344c4384892233",
+      "tokens": 1415,
+      "lastModified": "2025-12-04T05:33:00.885Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\models\\pricing.ts",
+      "hash": "6e586ff9fb87eea74004b5b14d567f02",
+      "tokens": 505,
+      "lastModified": "2025-12-04T07:15:57.905Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\models\\providers.ts",
+      "hash": "bb3ff9150634ee8afbf6ad191891050c",
+      "tokens": 1047,
+      "lastModified": "2025-12-04T05:32:34.979Z"
     },
     {
       "path": "packages\\opus67\\src\\models\\router.ts",
-      "hash": "54c009687392eed906572ca58c9ee1e0",
-      "tokens": 3109,
-      "lastModified": "2025-12-02T04:58:23.525Z"
+      "hash": "d00392d80ac3e48a4f1348f26fe00ee1",
+      "tokens": 3249,
+      "lastModified": "2025-12-04T07:17:11.330Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\models\\types.ts",
+      "hash": "ad5d2cb5d59a94b62371796cbb207d04",
+      "tokens": 249,
+      "lastModified": "2025-12-04T05:32:04.736Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\complexity.ts",
+      "hash": "16fdf182787431b18fc151c6f6b3a45c",
+      "tokens": 621,
+      "lastModified": "2025-12-04T05:28:42.474Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\detection.ts",
+      "hash": "e4c961c43b81935bf4fc5f41c0757120",
+      "tokens": 1336,
+      "lastModified": "2025-12-04T05:28:46.154Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\display.ts",
+      "hash": "8a94d5bcb074bd4c6835d340b06cd814",
+      "tokens": 463,
+      "lastModified": "2025-12-04T05:29:24.797Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\index.ts",
+      "hash": "f9a1cb142a8fcf5deaa5e7e74ebc9475",
+      "tokens": 168,
+      "lastModified": "2025-12-04T05:29:27.335Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\registry.ts",
+      "hash": "ff71d45bb64daa731262f3ac685aef98",
+      "tokens": 541,
+      "lastModified": "2025-12-04T05:31:02.330Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\selector.ts",
+      "hash": "c9362f73086e530aeb2a8d75f7392f8a",
+      "tokens": 632,
+      "lastModified": "2025-12-04T05:29:23.897Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\modes\\types.ts",
+      "hash": "50d5cf5f54b084864e9db06fe2a184a1",
+      "tokens": 535,
+      "lastModified": "2025-12-04T05:28:38.010Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\registry\\loader.ts",
+      "hash": "cc59461a037dfa88e2b1af2cce147481",
+      "tokens": 688,
+      "lastModified": "2025-12-06T13:44:39.475Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skill-hints.ts",
+      "hash": "dd215729ff6ada23e027d5dc4230197d",
+      "tokens": 2511,
+      "lastModified": "2025-12-04T03:23:50.858Z"
     },
     {
       "path": "packages\\opus67\\src\\skill-loader.ts",
-      "hash": "348654c64208dca5cd9284884538f85e",
-      "tokens": 1683,
-      "lastModified": "2025-12-02T03:12:19.227Z"
+      "hash": "ac009ef27840e92054373c47c3c023af",
+      "tokens": 1003,
+      "lastModified": "2025-12-04T05:39:56.518Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skills\\formatter.ts",
+      "hash": "6686eae9a556673392377e389def2a8c",
+      "tokens": 449,
+      "lastModified": "2025-12-04T05:39:32.702Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skills\\fragment.ts",
+      "hash": "5ec3bfb8250a435a86d7c25d181f8490",
+      "tokens": 620,
+      "lastModified": "2025-12-04T05:38:50.091Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skills\\index.ts",
+      "hash": "97c427a9590bc8a33e3d0cf7a4c225ac",
+      "tokens": 188,
+      "lastModified": "2025-12-04T05:40:06.388Z"
     },
     {
       "path": "packages\\opus67\\src\\skills\\loader.ts",
-      "hash": "b2adb08bf88069c26c1390d02da3896e",
-      "tokens": 2062,
-      "lastModified": "2025-12-02T03:12:19.250Z"
+      "hash": "8980e79d70c9466f50aa66e19b1acb8a",
+      "tokens": 3628,
+      "lastModified": "2025-12-06T08:14:24.568Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skills\\matcher.ts",
+      "hash": "8e05a46ed26e7758e593e9498287611e",
+      "tokens": 484,
+      "lastModified": "2025-12-04T05:39:18.800Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skills\\registry.ts",
+      "hash": "3105cea4ca9c1d3c8705caf083c91f06",
+      "tokens": 714,
+      "lastModified": "2025-12-04T05:39:06.502Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\skills\\types.ts",
+      "hash": "83dc7cd52ff258a0fc65e3916902a470",
+      "tokens": 415,
+      "lastModified": "2025-12-04T05:38:34.817Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\benchmark.test.ts",
+      "hash": "d71e33d035edd22995200e40f6c3356f",
+      "tokens": 8206,
+      "lastModified": "2025-12-06T10:34:41.715Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\comprehensive.test.ts",
+      "hash": "8f12667b75207d51efcaf3368c20918e",
+      "tokens": 5387,
+      "lastModified": "2025-12-02T07:57:41.158Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\council.test.ts",
+      "hash": "3cb30fa6006707e895047768ab75b76a",
+      "tokens": 6305,
+      "lastModified": "2025-12-06T10:13:28.848Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\discovery.test.ts",
+      "hash": "5bf73c9d29c27a925b4afac9ebe185be",
+      "tokens": 2405,
+      "lastModified": "2025-12-04T07:40:09.852Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\e2e-integration.test.ts",
+      "hash": "84fc66d34234932e8d38d4e5f0382efc",
+      "tokens": 3994,
+      "lastModified": "2025-12-04T08:34:10.669Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\file-context.test.ts",
+      "hash": "13bcc6003786af94cd85e1a9d55cc2c8",
+      "tokens": 3904,
+      "lastModified": "2025-12-04T08:06:20.720Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\fixtures\\humaneval\\problems.json",
+      "hash": "c8b3c4e83115db2e175f77965d728582",
+      "tokens": 10833,
+      "lastModified": "2025-12-06T10:53:41.845Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\executor.ts",
+      "hash": "c877104366abceca0c6a497c45c55e3e",
+      "tokens": 1177,
+      "lastModified": "2025-12-06T10:55:02.045Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\hallucination.bench.ts",
+      "hash": "9a39f51d78251edfd38b78cba338c066",
+      "tokens": 2598,
+      "lastModified": "2025-12-06T11:01:48.120Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\humaneval.bench.ts",
+      "hash": "4bed3e9d0468e6adcfeb78920c40180e",
+      "tokens": 1995,
+      "lastModified": "2025-12-06T10:57:59.487Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\index.ts",
+      "hash": "0e5c8dcfc53a7f0edb73577600fd5b91",
+      "tokens": 207,
+      "lastModified": "2025-12-06T11:00:44.769Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\llm-benchmark.test.ts",
+      "hash": "b644d74e5a2d85da363519348d5740cd",
+      "tokens": 1785,
+      "lastModified": "2025-12-06T11:00:45.812Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\memory-tiers.bench.ts",
+      "hash": "1db43b12d0fa5fba3d508ab561ec3f76",
+      "tokens": 1976,
+      "lastModified": "2025-12-06T10:56:23.302Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\model-adapter.ts",
+      "hash": "506d2f7dc75caf2770caf6383e1521f7",
+      "tokens": 1105,
+      "lastModified": "2025-12-06T10:55:00.088Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\model-comparison.bench.ts",
+      "hash": "567548f5968920359b67579d046cc7c5",
+      "tokens": 1837,
+      "lastModified": "2025-12-06T10:59:53.821Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\prompt-cache.bench.ts",
+      "hash": "ac1e45018a4b17a464030f52ad99ebaa",
+      "tokens": 1881,
+      "lastModified": "2025-12-06T11:01:46.984Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\runner.ts",
+      "hash": "1d43beefe26c6bcdd0aed9fbc6a6ba87",
+      "tokens": 2746,
+      "lastModified": "2025-12-06T10:59:54.899Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\llm-benchmark\\types.ts",
+      "hash": "e7d2be8124f515e9e61a81b2e288f1de",
+      "tokens": 710,
+      "lastModified": "2025-12-06T10:54:58.864Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\long-horizon-planning.test.ts",
+      "hash": "72bb5c1ed8270c74fd6f300f2c09435c",
+      "tokens": 4313,
+      "lastModified": "2025-12-04T08:21:44.085Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\modules.test.ts",
+      "hash": "3044b10e698b3934fcedef78c76b9795",
+      "tokens": 1366,
+      "lastModified": "2025-12-04T05:44:22.564Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\opus67-self-test.ts",
+      "hash": "53208c65d2d5b855c2df2a16ba54b69b",
+      "tokens": 14133,
+      "lastModified": "2025-12-04T05:10:45.382Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\reasoning.test.ts",
+      "hash": "881cc36166a92212c4268809a292c3f8",
+      "tokens": 1995,
+      "lastModified": "2025-12-04T07:18:51.433Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\swe-bench-patterns.test.ts",
+      "hash": "9ac238170d382457bdcd47a5e0b84021",
+      "tokens": 3319,
+      "lastModified": "2025-12-04T08:18:35.815Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\tests\\verification-loops.test.ts",
+      "hash": "91ad965d61cb4f675185cb28fb09f311",
+      "tokens": 4398,
+      "lastModified": "2025-12-04T08:28:00.963Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\unified-boot.ts",
+      "hash": "f06e3713a549b0849cfa42d7a2d4656b",
+      "tokens": 1905,
+      "lastModified": "2025-12-06T13:53:05.626Z"
+    },
+    {
+      "path": "packages\\opus67\\src\\version.ts",
+      "hash": "ce04078b6576a8b2ed52e3c428eaea42",
+      "tokens": 67,
+      "lastModified": "2025-12-06T12:57:15.027Z"
+    },
+    {
+      "path": "packages\\opus67\\SWARM_DEPLOYMENT_REPORT.md",
+      "hash": "a30242d4137a8a661e51f634b6f1f1c1",
+      "tokens": 1318,
+      "lastModified": "2025-12-04T13:17:02.907Z"
     },
     {
       "path": "packages\\opus67\\THE_DOOR.md",
-      "hash": "63fdc16632cd082eaabf4e5d56329a9e",
-      "tokens": 2732,
-      "lastModified": "2025-12-01T07:14:39.654Z"
+      "hash": "dc4d4b1f1ddc42de9dde6207f35e5e2c",
+      "tokens": 6311,
+      "lastModified": "2025-12-04T10:03:41.866Z"
     },
     {
       "path": "packages\\opus67\\tsconfig.json",
@@ -5572,9 +8314,15 @@
     },
     {
       "path": "packages\\opus67\\tsup.config.ts",
-      "hash": "bc3714aa26d0bdefc0c0bf4937f24222",
-      "tokens": 145,
-      "lastModified": "2025-12-02T05:50:32.490Z"
+      "hash": "476ebb7e9add2f6bf909e32354d8aebc",
+      "tokens": 230,
+      "lastModified": "2025-12-06T13:46:42.698Z"
+    },
+    {
+      "path": "packages\\opus67\\vitest.config.ts",
+      "hash": "d8273ab865d3ff0d0ece1914124aed9f",
+      "tokens": 62,
+      "lastModified": "2025-12-04T05:42:51.627Z"
     },
     {
       "path": "packages\\orchestrator\\package.json",
@@ -5628,7 +8376,7 @@
       "path": "packages\\orchestrator\\src\\brain\\cli.ts",
       "hash": "7a7a250ea2d7e1da76a18267c9dcaa7b",
       "tokens": 2152,
-      "lastModified": "2025-12-02T02:19:09.120Z"
+      "lastModified": "2025-12-06T13:04:48.429Z"
     },
     {
       "path": "packages\\orchestrator\\src\\brain\\daily-cycle.ts",
@@ -6351,6 +9099,150 @@
       "lastModified": "2025-11-29T06:57:32.045Z"
     },
     {
+      "path": "packages\\skill-ai-toolkit\\package.json",
+      "hash": "7349a97cb02bf475cde0ad579e240657",
+      "tokens": 406,
+      "lastModified": "2025-12-04T03:28:15.141Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\src\\agents.ts",
+      "hash": "755cbd4a50acb2e6f172eb757e0a155a",
+      "tokens": 1966,
+      "lastModified": "2025-12-04T03:29:57.781Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\src\\embeddings.ts",
+      "hash": "74b5009e46ac53daa7fce49e334d4540",
+      "tokens": 1576,
+      "lastModified": "2025-12-04T03:29:55.237Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\src\\index.ts",
+      "hash": "4e4827e26377d87f749ea0079c070d7a",
+      "tokens": 154,
+      "lastModified": "2025-12-04T03:29:52.863Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\src\\rag.ts",
+      "hash": "1bb13892ca2fceb02a339f8e9d3cabf9",
+      "tokens": 1185,
+      "lastModified": "2025-12-04T03:29:54.027Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\src\\streaming.ts",
+      "hash": "93b75cb2c37abb8384abb656638b3c0f",
+      "tokens": 1766,
+      "lastModified": "2025-12-04T03:29:56.529Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\tsconfig.json",
+      "hash": "8d0dfc0cf20c0f1e60cf3832cd9a5eaf",
+      "tokens": 115,
+      "lastModified": "2025-12-04T03:28:16.263Z"
+    },
+    {
+      "path": "packages\\skill-ai-toolkit\\tsup.config.ts",
+      "hash": "d80faf428cde22cfaf2f9f836d3ee34d",
+      "tokens": 92,
+      "lastModified": "2025-12-04T03:28:17.502Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\package.json",
+      "hash": "e5186865e7718273cc3e54ead07d9476",
+      "tokens": 323,
+      "lastModified": "2025-12-04T03:39:57.579Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\src\\docker.ts",
+      "hash": "df3c3298623997dc179c46353967780d",
+      "tokens": 1648,
+      "lastModified": "2025-12-04T03:40:02.934Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\src\\github-actions.ts",
+      "hash": "e139a51cf276ee59f2117a9a743b670b",
+      "tokens": 1780,
+      "lastModified": "2025-12-04T03:40:04.298Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\src\\index.ts",
+      "hash": "c283f627b3e2e193aa6128e63f4609b1",
+      "tokens": 69,
+      "lastModified": "2025-12-04T03:40:01.561Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\src\\kubernetes.ts",
+      "hash": "f53fad747df06931b7ddb49a763437f3",
+      "tokens": 1814,
+      "lastModified": "2025-12-04T03:40:05.686Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\src\\terraform.ts",
+      "hash": "c53ac688d53c21701bfb2a6cd07b2743",
+      "tokens": 1808,
+      "lastModified": "2025-12-04T03:40:07.081Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\tsconfig.json",
+      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
+      "tokens": 108,
+      "lastModified": "2025-12-04T03:39:58.904Z"
+    },
+    {
+      "path": "packages\\skill-devops-toolkit\\tsup.config.ts",
+      "hash": "3dd556e0f3f980f79ffe8d7a20d5d6c6",
+      "tokens": 74,
+      "lastModified": "2025-12-04T03:40:00.220Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\package.json",
+      "hash": "0dea898a04a02ab729bfa11033923fdc",
+      "tokens": 310,
+      "lastModified": "2025-12-04T03:37:55.763Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\src\\anchor.ts",
+      "hash": "d09a497514f8f00b451bee7c683699dd",
+      "tokens": 923,
+      "lastModified": "2025-12-04T03:38:03.349Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\src\\index.ts",
+      "hash": "88b52ae04567d7cfb211300083d28f82",
+      "tokens": 106,
+      "lastModified": "2025-12-04T03:38:00.204Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\src\\jupiter.ts",
+      "hash": "b570f4d4679ac33bb4761bf4614700d8",
+      "tokens": 1261,
+      "lastModified": "2025-12-04T03:38:04.860Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\src\\pda.ts",
+      "hash": "05f33ea52d417942adc45ee908c4c06d",
+      "tokens": 969,
+      "lastModified": "2025-12-04T03:38:06.468Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\src\\token.ts",
+      "hash": "e571a71eb1ec6ae68b593c977fead444",
+      "tokens": 960,
+      "lastModified": "2025-12-04T03:38:01.756Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\tsconfig.json",
+      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
+      "tokens": 108,
+      "lastModified": "2025-12-04T03:37:57.227Z"
+    },
+    {
+      "path": "packages\\skill-solana-toolkit\\tsup.config.ts",
+      "hash": "8fdf278918a93aeb0515dcfbdf817f80",
+      "tokens": 83,
+      "lastModified": "2025-12-04T03:37:58.647Z"
+    },
+    {
       "path": "packages\\social-agent\\package.json",
       "hash": "9c7a1d393dc08b4dbb01419738f654ee",
       "tokens": 289,
@@ -6427,6 +9319,48 @@
       "hash": "34104bf5bddc61fc309d57d7a126874b",
       "tokens": 42,
       "lastModified": "2025-11-29T06:10:38.403Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\CHANGELOG.md",
+      "hash": "22ce6e1342f781abbb526707c65bff2c",
+      "tokens": 907,
+      "lastModified": "2025-12-04T06:36:37.346Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\INSTALL.md",
+      "hash": "36e4db2147078b2f985780ba9c4231b6",
+      "tokens": 961,
+      "lastModified": "2025-12-04T06:36:08.051Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\package-lock.json",
+      "hash": "3b32b131bbe9317d46f8c9139756e9c2",
+      "tokens": 18882,
+      "lastModified": "2025-12-04T06:22:52.834Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\package.json",
+      "hash": "a611fbfb72f6da93e529757a2b92f766",
+      "tokens": 639,
+      "lastModified": "2025-12-04T06:23:54.930Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\README.md",
+      "hash": "990b61035de20e4aa18062c2980d00e9",
+      "tokens": 623,
+      "lastModified": "2025-12-04T06:24:36.090Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\src\\extension.ts",
+      "hash": "ba464ffb5e3b0f4bb360fc743ff131ce",
+      "tokens": 3019,
+      "lastModified": "2025-12-04T06:22:09.978Z"
+    },
+    {
+      "path": "packages\\vscode-opus67\\tsconfig.json",
+      "hash": "da7c49260d36cbdf7760c5c35c5b5a68",
+      "tokens": 92,
+      "lastModified": "2025-12-04T06:22:24.170Z"
     },
     {
       "path": "packages\\wallet-agent\\package.json",
@@ -6658,9 +9592,9 @@
     },
     {
       "path": "packages\\workflow-engine\\src\\executor.ts",
-      "hash": "e0f88ad781d0ddacd4e5e14635a03828",
-      "tokens": 1471,
-      "lastModified": "2025-11-30T11:04:59.082Z"
+      "hash": "c16bb3bd3ce7396197594dfee3f0efc5",
+      "tokens": 2063,
+      "lastModified": "2025-12-02T08:04:51.494Z"
     },
     {
       "path": "packages\\workflow-engine\\src\\index.ts",
@@ -6723,6 +9657,354 @@
       "lastModified": "2025-11-30T11:04:12.535Z"
     },
     {
+      "path": "packages\\_archived\\gicm-autonomy\\data\\boundaries.json",
+      "hash": "7d94a7b7254b81a839c65b6cca359306",
+      "tokens": 237,
+      "lastModified": "2025-11-29T09:11:15.103Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\package.json",
+      "hash": "43d372e2968a3f6a82ce0d65b753b676",
+      "tokens": 298,
+      "lastModified": "2025-11-30T06:56:15.436Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\README.md",
+      "hash": "091984ace015af8103e74e95cdd756d5",
+      "tokens": 274,
+      "lastModified": "2025-11-30T07:06:23.416Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\approval\\index.ts",
+      "hash": "1deaf41d27df2ca87e4165772f4f810a",
+      "tokens": 39,
+      "lastModified": "2025-11-29T09:17:07.881Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\approval\\notifications.ts",
+      "hash": "a56ee12a9a9f6368c60b67d5e6a457f0",
+      "tokens": 1491,
+      "lastModified": "2025-11-29T09:17:00.364Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\approval\\queue.ts",
+      "hash": "ce394ee8fa4593927b178ce83e03c484",
+      "tokens": 1501,
+      "lastModified": "2025-11-29T09:16:28.067Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\audit\\index.ts",
+      "hash": "212213ed5e462c0ebb751be898179741",
+      "tokens": 1211,
+      "lastModified": "2025-11-29T09:17:35.632Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\cli.ts",
+      "hash": "fd08663f50cc721560d19eee49b4cbf0",
+      "tokens": 2444,
+      "lastModified": "2025-11-29T09:21:52.232Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\core\\config.ts",
+      "hash": "e58098730e67317c7556172e30ad9c0c",
+      "tokens": 374,
+      "lastModified": "2025-11-29T09:11:36.083Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\core\\types.ts",
+      "hash": "e9b7506fdec8ffa9f8e1e5c405210709",
+      "tokens": 1508,
+      "lastModified": "2025-11-29T09:11:02.956Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\executor\\index.ts",
+      "hash": "5c6bb27b004a83531d301a198385ba45",
+      "tokens": 958,
+      "lastModified": "2025-11-29T09:15:30.567Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\executor\\rollback.ts",
+      "hash": "c63342c9ee06b48484162ebf6ebe6eab",
+      "tokens": 941,
+      "lastModified": "2025-11-29T09:15:02.441Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\executor\\safe-actions.ts",
+      "hash": "34edf1d5c7ce0b189145334dcffed9f4",
+      "tokens": 931,
+      "lastModified": "2025-11-29T09:14:06.669Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\index.ts",
+      "hash": "90e98bde2c290ea4d031dc82e3251f88",
+      "tokens": 1659,
+      "lastModified": "2025-11-29T09:18:51.941Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\router\\boundaries.ts",
+      "hash": "4e7372eb939d69ff1566208c83a66e23",
+      "tokens": 1875,
+      "lastModified": "2025-11-29T09:12:38.277Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\router\\classifier.ts",
+      "hash": "d8346bc5fe41b8ba1a556992d3631d8d",
+      "tokens": 1070,
+      "lastModified": "2025-11-29T09:12:02.121Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\router\\escalation.ts",
+      "hash": "ab5ce26413de4ab7e3411fa3bc69b69c",
+      "tokens": 826,
+      "lastModified": "2025-11-29T09:12:59.430Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\router\\index.ts",
+      "hash": "9c93c9415432236ed4dc71967baf2d2b",
+      "tokens": 1166,
+      "lastModified": "2025-11-29T09:13:24.029Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\src\\utils\\logger.ts",
+      "hash": "896f6cad4767d5930aa5e7fd35dc8e76",
+      "tokens": 131,
+      "lastModified": "2025-11-29T09:11:23.757Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\tsconfig.json",
+      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
+      "tokens": 108,
+      "lastModified": "2025-11-29T09:10:27.536Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-autonomy\\tsup.config.ts",
+      "hash": "e91613b01cf873f77e4e32abb073239d",
+      "tokens": 50,
+      "lastModified": "2025-11-29T09:10:27.568Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\package.json",
+      "hash": "9246ac61c234acfad04439d58fda5464",
+      "tokens": 285,
+      "lastModified": "2025-11-30T07:47:20.116Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\blockchain\\jupiter.ts",
+      "hash": "c6930f37ecb03f0db048cf73879de441",
+      "tokens": 806,
+      "lastModified": "2025-11-30T07:47:20.117Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\cli.ts",
+      "hash": "c4082a4a1cc5cecd0a318cbec2f8b049",
+      "tokens": 1557,
+      "lastModified": "2025-11-30T07:47:20.117Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\core\\constants.ts",
+      "hash": "b986e111a2ba625e4a38f53480578b55",
+      "tokens": 372,
+      "lastModified": "2025-11-30T07:47:20.118Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\core\\treasury.ts",
+      "hash": "3ee79f3887aca6821d15a4304fe79767",
+      "tokens": 1564,
+      "lastModified": "2025-11-30T07:47:20.119Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\core\\types.ts",
+      "hash": "357b98ea98707a408e1830a24b6df75f",
+      "tokens": 1632,
+      "lastModified": "2025-11-30T07:47:20.119Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\expenses\\index.ts",
+      "hash": "1ce4990eb8f153d6a67eb355b97a2fc1",
+      "tokens": 2393,
+      "lastModified": "2025-11-30T07:47:20.120Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\index.ts",
+      "hash": "079dec5b5a4bf1fb9fe727ca89d64e48",
+      "tokens": 1976,
+      "lastModified": "2025-12-01T03:21:40.345Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\integration-hub.d.ts",
+      "hash": "e71d93099d5b215eb79b7c0dc75d280b",
+      "tokens": 75,
+      "lastModified": "2025-12-01T03:21:11.581Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\trading\\base-bot.ts",
+      "hash": "d864a9759cbaacdea5232a6db5edd104",
+      "tokens": 2741,
+      "lastModified": "2025-11-30T07:47:20.122Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\trading\\bots\\dca.ts",
+      "hash": "42186f8bd8ccc71e8cc289243a093af7",
+      "tokens": 2038,
+      "lastModified": "2025-11-30T07:47:20.122Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\trading\\index.ts",
+      "hash": "48db173e1a7cd66ec00ac7e146dc87ac",
+      "tokens": 52,
+      "lastModified": "2025-11-30T07:47:20.123Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\trading\\risk-manager.ts",
+      "hash": "cea0a4f2d866723401ecd289dbdb4d98",
+      "tokens": 1428,
+      "lastModified": "2025-11-30T07:47:20.123Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\src\\utils\\logger.ts",
+      "hash": "e279386b3ca226e7c90ce565b4d5fa76",
+      "tokens": 321,
+      "lastModified": "2025-11-30T07:47:20.124Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-money-engine\\tsconfig.json",
+      "hash": "900148aa39024c527e455c68e8c35c2d",
+      "tokens": 132,
+      "lastModified": "2025-11-30T07:47:20.124Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\package.json",
+      "hash": "28d3107bb8ca86b8d4ec7093aed131c4",
+      "tokens": 415,
+      "lastModified": "2025-11-30T07:35:10.960Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\README.md",
+      "hash": "76f78fa98e10da91ace6bdd161973455",
+      "tokens": 334,
+      "lastModified": "2025-11-30T07:06:24.469Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\src\\cli.ts",
+      "hash": "9b51c529dbce0ca8a4213f3689b36db6",
+      "tokens": 2252,
+      "lastModified": "2025-11-29T07:00:30.142Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\src\\index.ts",
+      "hash": "34d610cc4aa7f1637a0142416747a6b0",
+      "tokens": 153,
+      "lastModified": "2025-11-29T07:00:45.791Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\src\\orchestrator.ts",
+      "hash": "aaa75a3ec42e964deac3ef4dac85551f",
+      "tokens": 3027,
+      "lastModified": "2025-11-29T07:08:11.949Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\src\\types.ts",
+      "hash": "df4751149d43f9339eb63a88e0411cc6",
+      "tokens": 472,
+      "lastModified": "2025-11-29T06:58:55.616Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\tsconfig.json",
+      "hash": "3840493d6d9ca2db759200a407eb41f7",
+      "tokens": 125,
+      "lastModified": "2025-11-29T06:58:37.850Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-orchestrator\\tsup.config.ts",
+      "hash": "5eda457e94d5d005c30a3cae0d8dc2b8",
+      "tokens": 45,
+      "lastModified": "2025-11-29T07:09:26.926Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\package.json",
+      "hash": "62728acba78872f373017066e14ddc64",
+      "tokens": 326,
+      "lastModified": "2025-11-29T07:22:54.088Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\builder\\agents\\agent-builder.ts",
+      "hash": "8c9569d54b8c5155cdd04559b07606c4",
+      "tokens": 2439,
+      "lastModified": "2025-11-29T07:04:03.037Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\builder\\index.ts",
+      "hash": "2faddd511d92943956f1b90716e6bd91",
+      "tokens": 24,
+      "lastModified": "2025-11-29T07:04:04.912Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\cli.ts",
+      "hash": "29e16d5b07b07321604afe31451d2936",
+      "tokens": 1700,
+      "lastModified": "2025-11-29T07:05:00.463Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\core\\types.ts",
+      "hash": "41a0cc359a63c0f1302d875955a2862e",
+      "tokens": 2246,
+      "lastModified": "2025-11-29T07:21:47.650Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\discovery\\evaluator.ts",
+      "hash": "b9e8b9c00a2813e1dd9cb2ff0411f712",
+      "tokens": 1019,
+      "lastModified": "2025-11-29T07:02:20.404Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\discovery\\index.ts",
+      "hash": "ca1d5b77e55c99c04c8db9d2b8f89a48",
+      "tokens": 1285,
+      "lastModified": "2025-11-29T07:03:21.397Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\discovery\\sources\\competitors.ts",
+      "hash": "e81dc8e659d64a61aaadd9bdf0421030",
+      "tokens": 1449,
+      "lastModified": "2025-11-29T07:02:24.710Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\discovery\\sources\\github.ts",
+      "hash": "a4936ebdf27867d2369bf1e9c7abe75f",
+      "tokens": 1183,
+      "lastModified": "2025-11-29T07:03:16.744Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\discovery\\sources\\hackernews.ts",
+      "hash": "480d1a31ca374118136ec6b076852da6",
+      "tokens": 950,
+      "lastModified": "2025-11-29T07:03:18.713Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\discovery\\sources\\user-feedback.ts",
+      "hash": "03f33bd6a92a59d1097ba7603c49d72f",
+      "tokens": 722,
+      "lastModified": "2025-11-29T07:02:22.609Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\index.ts",
+      "hash": "8d22ebb6873fdd5af5a6b89c8a0a61bf",
+      "tokens": 1635,
+      "lastModified": "2025-11-29T07:04:58.544Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\src\\utils\\logger.ts",
+      "hash": "038bf54d672f4c485bc88ce8f9138c09",
+      "tokens": 255,
+      "lastModified": "2025-11-29T07:01:27.110Z"
+    },
+    {
+      "path": "packages\\_archived\\gicm-product-engine\\tsconfig.json",
+      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
+      "tokens": 108,
+      "lastModified": "2025-11-29T07:00:41.506Z"
+    },
+    {
       "path": "PERFORMANCE_AUDIT.md",
       "hash": "6decece7e35eb7c23f874cb612186021",
       "tokens": 1461,
@@ -6754,9 +10036,9 @@
     },
     {
       "path": "PROJECT_STATUS.md",
-      "hash": "7893ab905ae9f09a934fc953f478fe44",
-      "tokens": 5318,
-      "lastModified": "2025-12-01T04:47:39.471Z"
+      "hash": "1b328bb6eb1ab68cef61718db3b90f08",
+      "tokens": 5502,
+      "lastModified": "2025-12-06T07:43:58.719Z"
     },
     {
       "path": "public\\claude\\agents\\aave-protocol-integrator.md",
@@ -13113,6 +16395,18 @@
       "lastModified": "2025-12-02T06:45:42.433Z"
     },
     {
+      "path": "RESUME_HERE.md",
+      "hash": "35c08dcfb8d4e95413cf4c5110adabc0",
+      "tokens": 777,
+      "lastModified": "2025-12-06T05:48:52.075Z"
+    },
+    {
+      "path": "SAAS_SKILLS_DELIVERY.md",
+      "hash": "e39a3cf615af0c23f89741ff1386c520",
+      "tokens": 3723,
+      "lastModified": "2025-12-04T11:15:41.579Z"
+    },
+    {
       "path": "scripts\\accurate-audit.ts",
       "hash": "992b2783b8bff15ed0062211980785b7",
       "tokens": 2650,
@@ -13735,180 +17029,6 @@
       "hash": "6fec33f882a000e9aa0957747982211d",
       "tokens": 24,
       "lastModified": "2025-11-29T04:09:26.298Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\package.json",
-      "hash": "9246ac61c234acfad04439d58fda5464",
-      "tokens": 285,
-      "lastModified": "2025-11-30T07:47:20.116Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\blockchain\\jupiter.ts",
-      "hash": "c6930f37ecb03f0db048cf73879de441",
-      "tokens": 806,
-      "lastModified": "2025-11-30T07:47:20.117Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\cli.ts",
-      "hash": "c4082a4a1cc5cecd0a318cbec2f8b049",
-      "tokens": 1557,
-      "lastModified": "2025-11-30T07:47:20.117Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\core\\constants.ts",
-      "hash": "b986e111a2ba625e4a38f53480578b55",
-      "tokens": 372,
-      "lastModified": "2025-11-30T07:47:20.118Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\core\\treasury.ts",
-      "hash": "3ee79f3887aca6821d15a4304fe79767",
-      "tokens": 1564,
-      "lastModified": "2025-11-30T07:47:20.119Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\core\\types.ts",
-      "hash": "357b98ea98707a408e1830a24b6df75f",
-      "tokens": 1632,
-      "lastModified": "2025-11-30T07:47:20.119Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\expenses\\index.ts",
-      "hash": "1ce4990eb8f153d6a67eb355b97a2fc1",
-      "tokens": 2393,
-      "lastModified": "2025-11-30T07:47:20.120Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\index.ts",
-      "hash": "079dec5b5a4bf1fb9fe727ca89d64e48",
-      "tokens": 1976,
-      "lastModified": "2025-12-01T03:21:40.345Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\integration-hub.d.ts",
-      "hash": "e71d93099d5b215eb79b7c0dc75d280b",
-      "tokens": 75,
-      "lastModified": "2025-12-01T03:21:11.581Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\trading\\base-bot.ts",
-      "hash": "d864a9759cbaacdea5232a6db5edd104",
-      "tokens": 2741,
-      "lastModified": "2025-11-30T07:47:20.122Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\trading\\bots\\dca.ts",
-      "hash": "42186f8bd8ccc71e8cc289243a093af7",
-      "tokens": 2038,
-      "lastModified": "2025-11-30T07:47:20.122Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\trading\\index.ts",
-      "hash": "48db173e1a7cd66ec00ac7e146dc87ac",
-      "tokens": 52,
-      "lastModified": "2025-11-30T07:47:20.123Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\trading\\risk-manager.ts",
-      "hash": "cea0a4f2d866723401ecd289dbdb4d98",
-      "tokens": 1428,
-      "lastModified": "2025-11-30T07:47:20.123Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\src\\utils\\logger.ts",
-      "hash": "e279386b3ca226e7c90ce565b4d5fa76",
-      "tokens": 321,
-      "lastModified": "2025-11-30T07:47:20.124Z"
-    },
-    {
-      "path": "services\\gicm-money-engine\\tsconfig.json",
-      "hash": "900148aa39024c527e455c68e8c35c2d",
-      "tokens": 132,
-      "lastModified": "2025-11-30T07:47:20.124Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\package.json",
-      "hash": "62728acba78872f373017066e14ddc64",
-      "tokens": 326,
-      "lastModified": "2025-11-29T07:22:54.088Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\builder\\agents\\agent-builder.ts",
-      "hash": "8c9569d54b8c5155cdd04559b07606c4",
-      "tokens": 2439,
-      "lastModified": "2025-11-29T07:04:03.037Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\builder\\index.ts",
-      "hash": "2faddd511d92943956f1b90716e6bd91",
-      "tokens": 24,
-      "lastModified": "2025-11-29T07:04:04.912Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\cli.ts",
-      "hash": "29e16d5b07b07321604afe31451d2936",
-      "tokens": 1700,
-      "lastModified": "2025-11-29T07:05:00.463Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\core\\types.ts",
-      "hash": "41a0cc359a63c0f1302d875955a2862e",
-      "tokens": 2246,
-      "lastModified": "2025-11-29T07:21:47.650Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\discovery\\evaluator.ts",
-      "hash": "b9e8b9c00a2813e1dd9cb2ff0411f712",
-      "tokens": 1019,
-      "lastModified": "2025-11-29T07:02:20.404Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\discovery\\index.ts",
-      "hash": "ca1d5b77e55c99c04c8db9d2b8f89a48",
-      "tokens": 1285,
-      "lastModified": "2025-11-29T07:03:21.397Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\discovery\\sources\\competitors.ts",
-      "hash": "e81dc8e659d64a61aaadd9bdf0421030",
-      "tokens": 1449,
-      "lastModified": "2025-11-29T07:02:24.710Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\discovery\\sources\\github.ts",
-      "hash": "a4936ebdf27867d2369bf1e9c7abe75f",
-      "tokens": 1183,
-      "lastModified": "2025-11-29T07:03:16.744Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\discovery\\sources\\hackernews.ts",
-      "hash": "480d1a31ca374118136ec6b076852da6",
-      "tokens": 950,
-      "lastModified": "2025-11-29T07:03:18.713Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\discovery\\sources\\user-feedback.ts",
-      "hash": "03f33bd6a92a59d1097ba7603c49d72f",
-      "tokens": 722,
-      "lastModified": "2025-11-29T07:02:22.609Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\index.ts",
-      "hash": "8d22ebb6873fdd5af5a6b89c8a0a61bf",
-      "tokens": 1635,
-      "lastModified": "2025-11-29T07:04:58.544Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\src\\utils\\logger.ts",
-      "hash": "038bf54d672f4c485bc88ce8f9138c09",
-      "tokens": 255,
-      "lastModified": "2025-11-29T07:01:27.110Z"
-    },
-    {
-      "path": "services\\gicm-product-engine\\tsconfig.json",
-      "hash": "1bd48c0a18ceb18776dd1dc0c0fe0c1a",
-      "tokens": 108,
-      "lastModified": "2025-11-29T07:00:41.506Z"
     },
     {
       "path": "SESSION_1_REPORT.md",
@@ -15093,6 +18213,12 @@
       "lastModified": "2025-11-29T09:50:29.103Z"
     },
     {
+      "path": "TEST_COVERAGE_REPORT.md",
+      "hash": "6211edc01bbb92825f37a3f55ca39d58",
+      "tokens": 6224,
+      "lastModified": "2025-12-02T07:59:03.664Z"
+    },
+    {
       "path": "test_models.txt",
       "hash": "4e276f3c03313ca1794bf3f5edbdb94d",
       "tokens": 29,
@@ -15141,5 +18267,5 @@
       "lastModified": "2025-11-09T04:56:36.975Z"
     }
   ],
-  "totalTokens": 4858549
+  "totalTokens": 6775338
 }

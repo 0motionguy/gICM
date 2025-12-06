@@ -5,6 +5,17 @@ import chalk3 from "chalk";
 
 // src/banner.ts
 import chalk from "chalk";
+
+// src/stats.ts
+var OPUS67_STATS = {
+  skills: 141,
+  mcps: 82,
+  modes: 30,
+  agents: 107
+};
+var VERSION = "5.1.9";
+
+// src/banner.ts
 var OPUS67_ASCII = `
    \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2557   \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557     \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557
   \u2588\u2588\u2554\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D    \u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D \u255A\u2550\u2550\u2550\u2550\u2588\u2588\u2551
@@ -13,25 +24,24 @@ var OPUS67_ASCII = `
   \u255A\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D\u2588\u2588\u2551     \u255A\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551    \u255A\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D   \u2588\u2588\u2551
    \u255A\u2550\u2550\u2550\u2550\u2550\u255D \u255A\u2550\u255D      \u255A\u2550\u2550\u2550\u2550\u2550\u255D \u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D     \u255A\u2550\u2550\u2550\u2550\u2550\u255D    \u255A\u2550\u255D
 `;
-var VERSION = "5.1.0";
 function printBanner() {
   console.log(chalk.cyan(OPUS67_ASCII));
   console.log(chalk.gray(`                 Self-Evolving AI Runtime v${VERSION}`));
   console.log();
-  console.log(chalk.white("  140 Skills \u2022 82 MCPs \u2022 30 Modes \u2022 84 Agents"));
+  console.log(chalk.white(`  ${OPUS67_STATS.skills} Skills \u2022 ${OPUS67_STATS.mcps} MCPs \u2022 ${OPUS67_STATS.modes} Modes \u2022 ${OPUS67_STATS.agents} Agents`));
   console.log();
   console.log(chalk.gray("  Created by ") + chalk.cyan("@0motionguy") + chalk.gray(" \u2022 4ms routing \u2022 566x faster"));
   console.log();
 }
 function printSuccessBanner() {
   console.log();
-  console.log(chalk.green('  \u2713 OPUS 67 v5.1 "THE PRECISION UPDATE" installed successfully!'));
+  console.log(chalk.green('  \u2713 OPUS 67 v5.1.8 "THE PRECISION UPDATE" installed successfully!'));
   console.log();
   console.log(chalk.gray("  What you get:"));
-  console.log(chalk.white("    \u2022 140 specialist skills (auto-loaded based on task)"));
-  console.log(chalk.white("    \u2022 82 MCP connections (live data, APIs, blockchain)"));
-  console.log(chalk.white("    \u2022 30 optimized modes (right context for each task)"));
-  console.log(chalk.white("    \u2022 84 expert agents (domain-specific personas)"));
+  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.skills} specialist skills (auto-loaded based on task)`));
+  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.mcps} MCP connections (live data, APIs, blockchain)`));
+  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.modes} optimized modes (right context for each task)`));
+  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.agents} expert agents (domain-specific personas)`));
   console.log(chalk.white("    \u2022 Multi-model routing (Opus/Sonnet/Haiku)"));
   console.log();
   console.log(chalk.cyan("  \u{1F9E0} NEW in v5.0:"));
@@ -70,7 +80,8 @@ function getClaudeCodePath() {
 function getCursorPath() {
   const home = homedir();
   if (process.platform === "win32") {
-    return join(process.env.APPDATA || "", "Cursor");
+    const appData = process.env.APPDATA || join(home, "AppData", "Roaming");
+    return join(appData, "Cursor");
   } else if (process.platform === "darwin") {
     return join(home, "Library", "Application Support", "Cursor");
   }
@@ -79,7 +90,8 @@ function getCursorPath() {
 function getVSCodePath() {
   const home = homedir();
   if (process.platform === "win32") {
-    return join(process.env.APPDATA || "", "Code");
+    const appData = process.env.APPDATA || join(home, "AppData", "Roaming");
+    return join(appData, "Code");
   } else if (process.platform === "darwin") {
     return join(home, "Library", "Application Support", "Code");
   }
@@ -88,7 +100,8 @@ function getVSCodePath() {
 function getWindsurfPath() {
   const home = homedir();
   if (process.platform === "win32") {
-    return join(process.env.APPDATA || "", "Windsurf");
+    const appData = process.env.APPDATA || join(home, "AppData", "Roaming");
+    return join(appData, "Windsurf");
   } else if (process.platform === "darwin") {
     return join(home, "Library", "Application Support", "Windsurf");
   }
@@ -107,7 +120,8 @@ function getReplitPath() {
 function getContinuePath() {
   const home = homedir();
   if (process.platform === "win32") {
-    return join(process.env.APPDATA || "", "Continue");
+    const appData = process.env.APPDATA || join(home, "AppData", "Roaming");
+    return join(appData, "Continue");
   } else if (process.platform === "darwin") {
     return join(home, "Library", "Application Support", "Continue");
   }
@@ -125,7 +139,8 @@ function getJetBrainsPath() {
 function getCodeiumPath() {
   const home = homedir();
   if (process.platform === "win32") {
-    return join(process.env.APPDATA || "", "Codeium");
+    const appData = process.env.APPDATA || join(home, "AppData", "Roaming");
+    return join(appData, "Codeium");
   } else if (process.platform === "darwin") {
     return join(home, "Library", "Application Support", "Codeium");
   }
@@ -335,10 +350,10 @@ Persistent context across sessions (Mem0, Qdrant)
 
 ${config.installType === "full" ? `
 This is a **Full Installation** with all capabilities:
-- All 95 specialist skills
-- All 84 MCP connections
+- All 141 specialist skills
+- All 82 MCP connections
 - All 30 operating modes
-- All 82 agents
+- All 107 agents
 ` : config.installType === "solana" ? `
 This is a **Solana-focused Installation**:
 - Solana development skills
@@ -615,29 +630,40 @@ function generateManualConfig(config) {
 }
 function writeConfig(config) {
   const configPath = config.configPath;
-  const dir = dirname(configPath);
-  if (!existsSync2(dir)) {
-    mkdirSync(dir, { recursive: true });
+  try {
+    const dir = dirname(configPath);
+    if (!existsSync2(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
+    let content;
+    switch (config.environment) {
+      case "claude-code":
+        content = generateClaudeMd(config);
+        break;
+      case "cursor":
+        content = generateCursorrules(config);
+        break;
+      case "windsurf":
+        content = generateWindsurfrules(config);
+        break;
+      case "vscode":
+      case "zed":
+      case "manual":
+      default:
+        content = generateManualConfig(config);
+        break;
+    }
+    writeFileSync(configPath, content, "utf-8");
+  } catch (error) {
+    const err = error;
+    if (err.code === "EACCES") {
+      throw new Error(`Permission denied writing to ${configPath}. Try running with elevated permissions.`);
+    } else if (err.code === "ENOENT") {
+      throw new Error(`Directory path invalid: ${configPath}`);
+    } else {
+      throw new Error(`Failed to write config: ${err.message}`);
+    }
   }
-  let content;
-  switch (config.environment) {
-    case "claude-code":
-      content = generateClaudeMd(config);
-      break;
-    case "cursor":
-      content = generateCursorrules(config);
-      break;
-    case "windsurf":
-      content = generateWindsurfrules(config);
-      break;
-    case "vscode":
-    case "zed":
-    case "manual":
-    default:
-      content = generateManualConfig(config);
-      break;
-  }
-  writeFileSync(configPath, content, "utf-8");
 }
 function generateClaudeDesktopMcpConfig() {
   return {
@@ -650,41 +676,46 @@ function generateClaudeDesktopMcpConfig() {
   };
 }
 function writeClaudeDesktopConfig(config) {
-  if (config.environment !== "claude-code") return;
   const home = process.env.HOME || process.env.USERPROFILE || "";
+  if (!home) return;
   let mcpConfigPath;
   if (process.platform === "win32") {
-    mcpConfigPath = join2(process.env.APPDATA || "", "Claude", "claude_desktop_config.json");
+    const appData = process.env.APPDATA;
+    if (!appData) return;
+    mcpConfigPath = join2(appData, "Claude", "claude_desktop_config.json");
   } else if (process.platform === "darwin") {
     mcpConfigPath = join2(home, "Library", "Application Support", "Claude", "claude_desktop_config.json");
   } else {
     mcpConfigPath = join2(home, ".config", "claude", "claude_desktop_config.json");
   }
-  let existingConfig = {};
-  if (existsSync2(mcpConfigPath)) {
-    try {
-      existingConfig = JSON.parse(readFileSync(mcpConfigPath, "utf-8"));
-    } catch {
+  try {
+    let existingConfig = {};
+    if (existsSync2(mcpConfigPath)) {
+      try {
+        existingConfig = JSON.parse(readFileSync(mcpConfigPath, "utf-8"));
+      } catch {
+      }
     }
-  }
-  const mcpConfig = generateClaudeDesktopMcpConfig();
-  const mergedConfig = {
-    ...existingConfig,
-    mcpServers: {
-      ...existingConfig.mcpServers || {},
-      ...mcpConfig.mcpServers
+    const mcpConfig = generateClaudeDesktopMcpConfig();
+    const mergedConfig = {
+      ...existingConfig,
+      mcpServers: {
+        ...existingConfig.mcpServers || {},
+        ...mcpConfig.mcpServers
+      }
+    };
+    const dir = dirname(mcpConfigPath);
+    if (!existsSync2(dir)) {
+      mkdirSync(dir, { recursive: true });
     }
-  };
-  const dir = dirname(mcpConfigPath);
-  if (!existsSync2(dir)) {
-    mkdirSync(dir, { recursive: true });
+    writeFileSync(mcpConfigPath, JSON.stringify(mergedConfig, null, 2), "utf-8");
+  } catch {
   }
-  writeFileSync(mcpConfigPath, JSON.stringify(mergedConfig, null, 2), "utf-8");
 }
 
 // src/install.ts
 var INSTALL_STATS = {
-  full: { skills: 95, mcps: 84, modes: 30, agents: 82 },
+  full: OPUS67_STATS,
   solana: { skills: 35, mcps: 25, modes: 12, agents: 30 },
   frontend: { skills: 40, mcps: 20, modes: 15, agents: 25 },
   minimal: { skills: 15, mcps: 10, modes: 8, agents: 10 }
@@ -694,7 +725,7 @@ function getInstallTypeChoices() {
     {
       name: "Full",
       value: "full",
-      hint: "(140 skills, 82 MCPs, 84 agents)"
+      hint: `(${OPUS67_STATS.skills} skills, ${OPUS67_STATS.mcps} MCPs, ${OPUS67_STATS.agents} agents)`
     },
     {
       name: "Solana",
@@ -749,9 +780,7 @@ async function runInstallation(env, installType, version) {
   }).start();
   try {
     writeConfig(config);
-    if (env.id === "claude-code") {
-      writeClaudeDesktopConfig(config);
-    }
+    writeClaudeDesktopConfig(config);
     await sleep(200);
     configSpinner.succeed(`Generating config`);
   } catch (error) {

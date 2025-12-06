@@ -2,6 +2,14 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: [
+    // v6.0.0 Unified Boot (PRIMARY)
+    "src/unified-boot.ts",
+    "src/registry/loader.ts",
+    "src/mcp/registrar.ts",
+    "src/door/injector.ts",
+    "src/agents/loader.ts",
+    "src/hooks/activator.ts",
+    // Original entries (legacy support)
     "src/index.ts",
     "src/cli.ts",
     "src/boot-sequence.ts",

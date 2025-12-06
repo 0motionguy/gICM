@@ -4,10 +4,12 @@
  *
  * Auto-formats TypeScript/TSX files with Prettier after write
  * Tracks successful formats in logs
+ *
+ * FIXED: Using CommonJS require() instead of ES module imports
  */
-import { execSync } from 'child_process';
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
-import { join, extname } from 'path';
+const { execSync } = require('child_process');
+const { appendFileSync, existsSync, mkdirSync } = require('fs');
+const { join, extname } = require('path');
 
 // Read hook input from stdin
 let input = '';

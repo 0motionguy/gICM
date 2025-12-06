@@ -6,8 +6,10 @@
  * - Runs lint before git push
  * - Runs tests before npm publish
  * - Validates deployment commands with autonomy level
+ *
+ * FIXED: Using CommonJS require() instead of ES module imports
  */
-import { execSync } from 'child_process';
+const { execSync } = require('child_process');
 
 let input = '';
 process.stdin.setEncoding('utf8');

@@ -1,0 +1,41 @@
+{
+  "name": "opus67-autopilot",
+  "version": "5.1.9",
+  "description": "OPUS 67 - Claude with Superpowers. 140+ domain expertise skills that auto-activate on code tasks.",
+  "author": "ICM Motion",
+  "homepage": "https://github.com/icm-motion/opus67",
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "node .claude-plugin/hooks/auto-detect.js",
+        "timeout": 30
+      }
+    ]
+  },
+  "mcp": {
+    "opus67": {
+      "command": "npx",
+      "args": ["@gicm/opus67", "mcp-serve"],
+      "description": "OPUS 67 skill detection, loading, and context enhancement"
+    }
+  },
+  "skills": ["./skills/OPUS67"],
+  "capabilities": [
+    "skill-detection",
+    "skill-loading",
+    "context-enhancement",
+    "slash-commands",
+    "auto-activation"
+  ],
+  "keywords": [
+    "claude-code",
+    "ai-enhancement",
+    "skills",
+    "mcp",
+    "autopilot",
+    "blockchain",
+    "fullstack",
+    "devops"
+  ]
+}

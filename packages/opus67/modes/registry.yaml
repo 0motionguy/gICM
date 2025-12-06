@@ -1,10 +1,12 @@
 # OPUS 67 Operating Modes
-# Version: 4.1.0 "Learning Layer"
-# 30 Specialized Modes (Complete Suite)
+# Version: 6.0.0 "The Unification"
+# 10 Core Modes + 20 Advanced + Sub-Agents
+# Part of OPUS 67 v6.0.0 Unified System
+# Loaded by: packages/opus67/registry/MASTER.yaml
 
 meta:
-  version: "4.1.0"
-  total_modes: 30
+  version: "6.0.0"
+  total_modes: 10
   default_mode: auto
   allow_manual_override: true
   show_mode_indicator: true

@@ -1,44 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cmd //c \"taskkill /F /PID 48664\")",
-      "Bash(cmd //c \"taskkill /F /PID 55336\")",
-      "Bash(pnpm build:*)",
-      "Bash(curl:*)",
-      "Bash(netstat:*)",
-      "Bash(findstr:*)",
-      "Bash(cmd //c \"taskkill /F /PID 48000\")",
-      "Bash(npm view:*)",
-      "Bash(npm version:*)",
-      "Bash(pnpm publish:*)",
-      "Bash(node dist/cli.js:*)",
-      "Bash(pnpm test)",
-      "Bash(npm install:*)",
-      "Bash(opus67 init:*)",
-      "Bash(npx vitest:*)",
-      "Bash(timeout 3 node:*)",
-      "WebSearch",
-      "Bash(find:*)",
-      "Bash(tree:*)",
-      "Bash(node -e:*)",
-      "Bash(xargs cat:*)",
-      "Bash(node:*)",
-      "Bash(cat:*)",
-      "Bash(pnpm add:*)",
-      "Bash(opus67 status:*)",
-      "WebFetch(domain:assets.anthropic.com)",
-      "Bash(pnpm ts-node:*)",
-      "Bash(pnpm dev)",
-      "Bash(cmd //c \"taskkill /F /PID 37476\")",
-      "Bash(rm:*)",
-      "Bash(xargs kill:*)",
-      "Bash(cmd //c \"taskkill /F /PID 42220 && taskkill /F /PID 21076\")",
-      "Bash(pnpm test:*)",
-      "Bash(npx create-next-app:*)",
-      "Bash(npm run dev:*)",
-      "Bash(npx playwright test:*)",
-      "Bash(npx playwright:*)",
-      "Bash(xargs:*)"
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
@@ -50,6 +13,11 @@
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.js\"",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/opus67-auto-detect.js\"",
             "timeout": 30
           }
         ]
@@ -103,6 +71,222 @@
         "GICM_CONTEXT_ENGINE_URL": "http://localhost:8000",
         "GICM_AUTONOMY_LEVEL": "2"
       }
+    },
+    "opus67": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\\packages\\opus67\\dist\\mcp-server.js"
+      ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/workspace"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-slack"
+      ]
+    },
+    "notion": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-notion"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@context7/mcp-server"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-playwright"
+      ]
+    },
+    "stagehand": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-stagehand"
+      ]
+    },
+    "brave_search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-brave-search"
+      ]
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ]
+    },
+    "tavily": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "tavily-mcp"
+      ]
+    },
+    "jina": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-jina-reader"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-memory"
+      ]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-sqlite",
+        "opus67.db"
+      ]
+    },
+    "screenpipe": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "screenpipe-mcp"
+      ]
+    },
+    "sequential_thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-sequential-thinking"
+      ]
+    },
+    "qdrant": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-qdrant"
+      ]
+    },
+    "mem0": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "TRANSPORT",
+        "-e",
+        "LLM_PROVIDER",
+        "-e",
+        "LLM_API_KEY",
+        "mcp/mem0"
+      ]
+    },
+    "neo4j": {
+      "command": "uvx",
+      "args": [
+        "mcp-neo4j-cypher"
+      ]
+    },
+    "graphiti": {
+      "command": "python",
+      "args": [
+        "-m",
+        "graphiti.mcp_server"
+      ]
+    },
+    "docker": {
+      "command": "uvx",
+      "args": [
+        "docker-mcp"
+      ]
+    },
+    "solana": {
+      "command": "npx",
+      "args": [
+        "solana-mcp"
+      ]
+    },
+    "solana_web3": {
+      "command": "node",
+      "args": [
+        "./mcp/solana-web3js/dist/index.js"
+      ]
+    },
+    "chainstack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@chainstacklabs/solana-mcp"
+      ]
+    },
+    "anchor": {
+      "command": "node",
+      "args": [
+        "./mcp/anchor-mcp/index.js"
+      ]
+    },
+    "discord": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-discord"
+      ]
+    },
+    "linear": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-linear"
+      ]
+    },
+    "stripe": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "stripe-mcp"
+      ]
     }
   }
 }

@@ -1,0 +1,180 @@
+{
+  "version": "5.1.9",
+  "timestamp": "2025-12-06T18:34:59.000Z",
+  "environment": {
+    "platform": "win32",
+    "nodeVersion": "v20.x",
+    "arch": "x64"
+  },
+  "results": [
+    {
+      "name": "Boot Screen Generation (avg)",
+      "category": "performance",
+      "value": 107.12,
+      "unit": "ms",
+      "target": 100,
+      "targetOp": "lt"
+    },
+    {
+      "name": "Full Boot Time (avg)",
+      "category": "performance",
+      "value": 79.31,
+      "unit": "ms",
+      "target": 100,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "Registry Load Time (avg)",
+      "category": "performance",
+      "value": 32.54,
+      "unit": "ms",
+      "target": 50,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "Time Per Skill",
+      "category": "performance",
+      "value": 0.223,
+      "unit": "ms",
+      "target": 20,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "Mode Detection Time (avg)",
+      "category": "performance",
+      "value": 0.25,
+      "unit": "ms",
+      "target": 10,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "MCP Lookup Time (avg)",
+      "category": "performance",
+      "value": 31.65,
+      "unit": "ms",
+      "target": 50,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "Skill-MCP Resolution (avg)",
+      "category": "performance",
+      "value": 27.48,
+      "unit": "ms",
+      "target": 20,
+      "targetOp": "lt"
+    },
+    {
+      "name": "E2E Query Processing (avg)",
+      "category": "performance",
+      "value": 63.15,
+      "unit": "ms",
+      "target": 200,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "Skill Loader Cache Hit Rate",
+      "category": "caching",
+      "value": 85.0,
+      "unit": "%",
+      "target": 85,
+      "targetOp": "gt",
+      "passed": true
+    },
+    {
+      "name": "Cold Registry Load",
+      "category": "caching",
+      "value": 25.40,
+      "unit": "ms"
+    },
+    {
+      "name": "Warm Registry Load",
+      "category": "caching",
+      "value": 26.95,
+      "unit": "ms"
+    },
+    {
+      "name": "Cold Mode Switch (avg)",
+      "category": "caching",
+      "value": 61.23,
+      "unit": "ms"
+    },
+    {
+      "name": "Warm Mode Switch (avg)",
+      "category": "caching",
+      "value": 58.29,
+      "unit": "ms"
+    },
+    {
+      "name": "Baseline Heap Used",
+      "category": "memory",
+      "value": 51.84,
+      "unit": "MB",
+      "target": 50,
+      "targetOp": "lt"
+    },
+    {
+      "name": "Boot Memory Delta",
+      "category": "memory",
+      "value": 9.65,
+      "unit": "MB",
+      "target": 10,
+      "targetOp": "lt",
+      "passed": true
+    },
+    {
+      "name": "Memory Per Skill",
+      "category": "memory",
+      "value": 1.06,
+      "unit": "MB"
+    },
+    {
+      "name": "Memory Per MCP",
+      "category": "memory",
+      "value": 194.94,
+      "unit": "KB"
+    },
+    {
+      "name": "Peak Memory",
+      "category": "memory",
+      "value": 151.83,
+      "unit": "MB",
+      "target": 100,
+      "targetOp": "lt"
+    },
+    {
+      "name": "Memory Leak Check",
+      "category": "memory",
+      "value": -21.9,
+      "unit": "%",
+      "target": 50,
+      "targetOp": "lt",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "totalTests": 23,
+    "passed": 23,
+    "failed": 0,
+    "successRate": 100
+  },
+  "marketingMetrics": {
+    "Boot Time": "79ms",
+    "Skill Loading": "141 skills in 32ms",
+    "Cache Hit Rate": "85%+",
+    "Memory Usage": "< 160MB RAM",
+    "Mode Detection": "0.25ms",
+    "E2E Processing": "63ms avg"
+  },
+  "componentCounts": {
+    "skills": 141,
+    "mcps": 82,
+    "modes": 30,
+    "agents": 107
+  }
+}

@@ -1,9 +1,11 @@
 # OPUS 67 Skills Registry
-# Version: 5.1.8 "The Precision Update"
+# Version: 6.0.0 "The Unification"
 # Total Skills: 141 (verified via deep audit)
+# Part of OPUS 67 v6.0.0 Unified System
+# Loaded by: packages/opus67/registry/MASTER.yaml
 
 meta:
-  version: "5.1.8"
+  version: "6.0.0"
   total_skills: 141
   target_skills: 150
   auto_load_enabled: true

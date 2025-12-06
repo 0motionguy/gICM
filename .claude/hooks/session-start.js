@@ -5,9 +5,11 @@
  * Integrates with:
  * - Session tracking in .claude/logs/
  * - Autonomy notifications
+ *
+ * FIXED: Using CommonJS require() instead of ES module imports
  */
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+const { appendFileSync, existsSync, mkdirSync } = require('fs');
+const { join } = require('path');
 
 const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
 const logsDir = join(projectDir, '.claude', 'logs');
