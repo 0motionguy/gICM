@@ -5,6 +5,7 @@
 
 import type { Skill, MCPConnection, Mode, ToolArgs } from './types.js';
 import { loadSkillDefinition } from './registry.js';
+import { VERSION } from '../version.js';
 
 export interface HandlerContext {
   skills: Skill[];
@@ -32,7 +33,7 @@ export function handleBoot(ctx: HandlerContext): HandlerResult {
 ║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║                    ║
 ║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝                    ║
 ║                                                                           ║
-║                    Self-Evolving AI Runtime v3.1                          ║
+║              Self-Evolving AI Runtime v${VERSION.padEnd(20)}              ║
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
@@ -299,7 +300,7 @@ export function handleStatus(ctx: HandlerContext): HandlerResult {
   const output = `
 # OPUS 67 Status
 
-- **Version:** 3.1.1
+- **Version:** ${VERSION}
 - **Skills Loaded:** ${ctx.skills.length}
 - **MCP Connections:** ${ctx.mcpConnections.length}
 - **Operating Modes:** ${ctx.modes.length}

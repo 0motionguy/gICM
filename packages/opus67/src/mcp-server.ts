@@ -25,6 +25,7 @@ import { getPackageRoot, loadRegistries, loadSkillDefinition } from './mcp-serve
 import { TOOL_DEFINITIONS } from './mcp-server/tools.js';
 import { handleToolCall, type HandlerContext } from './mcp-server/handlers.js';
 import type { ToolArgs } from './mcp-server/types.js';
+import { VERSION } from './version.js';
 
 // Initialize
 const PACKAGE_ROOT = getPackageRoot();
@@ -39,7 +40,7 @@ const handlerContext: HandlerContext = {
 
 // Create MCP server
 const server = new Server(
-  { name: 'opus67', version: '3.2.2' },
+  { name: 'opus67', version: VERSION },
   { capabilities: { tools: {}, resources: {} } }
 );
 

@@ -1,5 +1,6 @@
 import figlet from 'figlet';
 import chalk from 'chalk';
+import { OPUS67_STATS, VERSION } from './stats.js';
 
 export const OPUS67_ASCII = `
    ██████╗ ██████╗ ██╗   ██╗███████╗     ██████╗ ███████╗
@@ -10,13 +11,13 @@ export const OPUS67_ASCII = `
    ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝
 `;
 
-export const VERSION = '5.1.0';
+export { VERSION } from './stats.js';
 
 export function printBanner(): void {
   console.log(chalk.cyan(OPUS67_ASCII));
   console.log(chalk.gray(`                 Self-Evolving AI Runtime v${VERSION}`));
   console.log();
-  console.log(chalk.white('  140 Skills • 82 MCPs • 30 Modes • 84 Agents'));
+  console.log(chalk.white(`  ${OPUS67_STATS.skills} Skills • ${OPUS67_STATS.mcps} MCPs • ${OPUS67_STATS.modes} Modes • ${OPUS67_STATS.agents} Agents`));
   console.log();
   console.log(chalk.gray('  Created by ') + chalk.cyan('@0motionguy') + chalk.gray(' • 4ms routing • 566x faster'));
   console.log();
@@ -24,13 +25,13 @@ export function printBanner(): void {
 
 export function printSuccessBanner(): void {
   console.log();
-  console.log(chalk.green('  ✓ OPUS 67 v5.1 "THE PRECISION UPDATE" installed successfully!'));
+  console.log(chalk.green('  ✓ OPUS 67 v5.1.8 "THE PRECISION UPDATE" installed successfully!'));
   console.log();
   console.log(chalk.gray('  What you get:'));
-  console.log(chalk.white('    • 140 specialist skills (auto-loaded based on task)'));
-  console.log(chalk.white('    • 82 MCP connections (live data, APIs, blockchain)'));
-  console.log(chalk.white('    • 30 optimized modes (right context for each task)'));
-  console.log(chalk.white('    • 84 expert agents (domain-specific personas)'));
+  console.log(chalk.white(`    • ${OPUS67_STATS.skills} specialist skills (auto-loaded based on task)`));
+  console.log(chalk.white(`    • ${OPUS67_STATS.mcps} MCP connections (live data, APIs, blockchain)`));
+  console.log(chalk.white(`    • ${OPUS67_STATS.modes} optimized modes (right context for each task)`));
+  console.log(chalk.white(`    • ${OPUS67_STATS.agents} expert agents (domain-specific personas)`));
   console.log(chalk.white('    • Multi-model routing (Opus/Sonnet/Haiku)'));
   console.log();
   console.log(chalk.cyan('  🧠 NEW in v5.0:'));

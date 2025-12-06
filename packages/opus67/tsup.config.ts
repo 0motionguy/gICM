@@ -14,7 +14,7 @@ export default defineConfig({
     "src/tests/opus67-self-test.ts"
   ],
   format: ["esm"],
-  dts: false,  // Disable DTS for now - ESM build works
+  dts: false,  // Disabled - MCP SDK type compatibility issues to be fixed in v5.1.9
   clean: true,
   target: "es2022",
   external: [

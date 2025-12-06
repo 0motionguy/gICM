@@ -1,0 +1,44 @@
+# Source files (dist is published)
+src/
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+
+# Test files
+*.test.ts
+*.spec.ts
+__tests__/
+coverage/
+
+# Development files
+.env
+.env.*
+*.log
+*.tsbuildinfo
+
+# Docker (not needed for npm package)
+docker/
+Dockerfile*
+
+# Development scripts
+scripts/dev*.sh
+scripts/test*.sh
+
+# Documentation source (README is kept)
+docs/*.md
+!docs/README.md
+
+# Config files
+.eslintrc*
+.prettierrc*
+.editorconfig
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts not needed
+*.map
+
+# Door module (development only)
+door/

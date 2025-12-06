@@ -1,9 +1,8 @@
 {
   "name": "@gicm/opus67",
-  "version": "5.1.0",
-  "description": "OPUS 67 v5.1 The Precision Update - 140 Skills • 82 MCPs • 30 Modes • 84 Agents - Self-Evolving AI Runtime with Extended Thinking, Unified Brain API, and verified capability counts",
+  "version": "5.1.8",
+  "description": "OPUS 67 v5.1.8 - 141 Skills • 82 MCPs • 30 Modes • 107 Agents - Self-Evolving AI Runtime with Extended Thinking, Unified Brain API, and Full Enhancement Layer",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
     "opus67": "./dist/cli.js",

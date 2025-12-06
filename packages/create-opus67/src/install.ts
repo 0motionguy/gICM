@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { writeConfig, writeClaudeDesktopConfig } from './config.js';
 import type { DetectedEnvironment } from './detect.js';
+import { OPUS67_STATS } from './stats.js';
 
 export type InstallType = 'full' | 'solana' | 'frontend' | 'minimal';
 
@@ -30,9 +31,9 @@ export interface InstallStats {
   agents: number;
 }
 
-// Stats by install type
+// Stats by install type - full uses centralized stats
 const INSTALL_STATS: Record<InstallType, InstallStats> = {
-  full: { skills: 140, mcps: 82, modes: 30, agents: 84 },
+  full: OPUS67_STATS,
   solana: { skills: 35, mcps: 25, modes: 12, agents: 30 },
   frontend: { skills: 40, mcps: 20, modes: 15, agents: 25 },
   minimal: { skills: 15, mcps: 10, modes: 8, agents: 10 },
@@ -43,7 +44,7 @@ export function getInstallTypeChoices(): Array<{ name: string; value: InstallTyp
     {
       name: 'Full',
       value: 'full',
-      hint: '(140 skills, 82 MCPs, 84 agents)',
+      hint: `(${OPUS67_STATS.skills} skills, ${OPUS67_STATS.mcps} MCPs, ${OPUS67_STATS.agents} agents)`,
     },
     {
       name: 'Solana',
@@ -115,10 +116,10 @@ export async function runInstallation(
   try {
     writeConfig(config);
 
-    // Also write Claude Desktop MCP config if applicable
-    if (env.id === 'claude-code') {
-      writeClaudeDesktopConfig(config);
-    }
+    // Always attempt to write Claude Desktop MCP config
+    // Users may have Claude Code installed even if using other environments
+    // The function handles errors gracefully
+    writeClaudeDesktopConfig(config);
 
     await sleep(200);
     configSpinner.succeed(`Generating config`);

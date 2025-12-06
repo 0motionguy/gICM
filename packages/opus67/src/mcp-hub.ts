@@ -90,7 +90,7 @@ export function getAllConnections(): Array<{ id: string; connection: MCPConnecti
   const categories = ['blockchain', 'social', 'data', 'productivity', 'documentation', 'testing', 'ai_search', 'persistence', 'reasoning'] as const;
 
   for (const category of categories) {
-    const categoryConnections = (registry as Record<string, Record<string, MCPConnection>>)[category];
+    const categoryConnections = (registry as unknown as Record<string, Record<string, MCPConnection>>)[category];
     if (categoryConnections && typeof categoryConnections === 'object') {
       for (const [id, connection] of Object.entries(categoryConnections)) {
         if (connection && connection.name) {

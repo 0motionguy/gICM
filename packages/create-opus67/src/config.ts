@@ -53,10 +53,10 @@ Persistent context across sessions (Mem0, Qdrant)
 
 ${config.installType === 'full' ? `
 This is a **Full Installation** with all capabilities:
-- All 95 specialist skills
-- All 84 MCP connections
+- All 141 specialist skills
+- All 82 MCP connections
 - All 30 operating modes
-- All 82 agents
+- All 107 agents
 ` : config.installType === 'solana' ? `
 This is a **Solana-focused Installation**:
 - Solana development skills
@@ -346,33 +346,44 @@ export function generateManualConfig(config: InstallConfig): string {
 export function writeConfig(config: InstallConfig): void {
   const configPath = config.configPath;
 
-  // Ensure directory exists
-  const dir = dirname(configPath);
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
+  try {
+    // Ensure directory exists
+    const dir = dirname(configPath);
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
+
+    let content: string;
+
+    switch (config.environment) {
+      case 'claude-code':
+        content = generateClaudeMd(config);
+        break;
+      case 'cursor':
+        content = generateCursorrules(config);
+        break;
+      case 'windsurf':
+        content = generateWindsurfrules(config);
+        break;
+      case 'vscode':
+      case 'zed':
+      case 'manual':
+      default:
+        content = generateManualConfig(config);
+        break;
+    }
+
+    writeFileSync(configPath, content, 'utf-8');
+  } catch (error) {
+    const err = error as NodeJS.ErrnoException;
+    if (err.code === 'EACCES') {
+      throw new Error(`Permission denied writing to ${configPath}. Try running with elevated permissions.`);
+    } else if (err.code === 'ENOENT') {
+      throw new Error(`Directory path invalid: ${configPath}`);
+    } else {
+      throw new Error(`Failed to write config: ${err.message}`);
+    }
   }
-
-  let content: string;
-
-  switch (config.environment) {
-    case 'claude-code':
-      content = generateClaudeMd(config);
-      break;
-    case 'cursor':
-      content = generateCursorrules(config);
-      break;
-    case 'windsurf':
-      content = generateWindsurfrules(config);
-      break;
-    case 'vscode':
-    case 'zed':
-    case 'manual':
-    default:
-      content = generateManualConfig(config);
-      break;
-  }
-
-  writeFileSync(configPath, content, 'utf-8');
 }
 
 // Generate MCP config for Claude Desktop
@@ -388,44 +399,52 @@ export function generateClaudeDesktopMcpConfig(): Record<string, unknown> {
 }
 
 // Write MCP config for Claude Desktop
+// Always attempts to write - users may have Claude installed regardless of selected environment
 export function writeClaudeDesktopConfig(config: InstallConfig): void {
-  if (config.environment !== 'claude-code') return;
-
   const home = process.env.HOME || process.env.USERPROFILE || '';
+  if (!home) return; // Can't determine home directory
+
   let mcpConfigPath: string;
 
   if (process.platform === 'win32') {
-    mcpConfigPath = join(process.env.APPDATA || '', 'Claude', 'claude_desktop_config.json');
+    const appData = process.env.APPDATA;
+    if (!appData) return; // APPDATA not set on Windows
+    mcpConfigPath = join(appData, 'Claude', 'claude_desktop_config.json');
   } else if (process.platform === 'darwin') {
     mcpConfigPath = join(home, 'Library', 'Application Support', 'Claude', 'claude_desktop_config.json');
   } else {
     mcpConfigPath = join(home, '.config', 'claude', 'claude_desktop_config.json');
   }
 
-  // Check if file exists and merge
-  let existingConfig: Record<string, unknown> = {};
-  if (existsSync(mcpConfigPath)) {
-    try {
-      existingConfig = JSON.parse(readFileSync(mcpConfigPath, 'utf-8'));
-    } catch {
-      // Ignore parse errors
+  try {
+    // Check if file exists and merge
+    let existingConfig: Record<string, unknown> = {};
+    if (existsSync(mcpConfigPath)) {
+      try {
+        existingConfig = JSON.parse(readFileSync(mcpConfigPath, 'utf-8'));
+      } catch {
+        // Ignore parse errors - will overwrite with new config
+      }
     }
+
+    const mcpConfig = generateClaudeDesktopMcpConfig();
+    const mergedConfig = {
+      ...existingConfig,
+      mcpServers: {
+        ...(existingConfig.mcpServers as Record<string, unknown> || {}),
+        ...mcpConfig.mcpServers,
+      },
+    };
+
+    // Ensure directory exists
+    const dir = dirname(mcpConfigPath);
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
+
+    writeFileSync(mcpConfigPath, JSON.stringify(mergedConfig, null, 2), 'utf-8');
+  } catch {
+    // Silently fail - user may not have Claude Desktop installed
+    // This is expected behavior for users with other environments
   }
-
-  const mcpConfig = generateClaudeDesktopMcpConfig();
-  const mergedConfig = {
-    ...existingConfig,
-    mcpServers: {
-      ...(existingConfig.mcpServers as Record<string, unknown> || {}),
-      ...mcpConfig.mcpServers,
-    },
-  };
-
-  // Ensure directory exists
-  const dir = dirname(mcpConfigPath);
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
-  }
-
-  writeFileSync(mcpConfigPath, JSON.stringify(mergedConfig, null, 2), 'utf-8');
 }

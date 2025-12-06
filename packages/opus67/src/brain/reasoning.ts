@@ -184,16 +184,23 @@ export class HybridReasoningEngine extends EventEmitter<ReasoningEvents> {
    * Score multi-step complexity
    */
   private scoreMultiStep(text: string): number {
-    // High complexity indicators
-    if (/\b(multi-day|multi-stage|long-horizon|autonomous|entire|full build|sprint)\b/.test(text)) return 3;
-    if (/\b(many|numerous|comprehensive|end-to-end|complex|architecture|system design)\b/.test(text)) return 2;
-    if (/\b(few|couple|several|multiple|implement|build|create)\b/.test(text)) return 1;
+    let score = 0;
 
-    // Low complexity indicators
-    if (/\b(single|one|quick|simple|what|how to|syntax|show me)\b/.test(text)) return 0;
+    // Maximum complexity indicators
+    if (/\b(multi-day|multi-stage|long-horizon|autonomous|entire|full build|sprint)\b/.test(text)) score = Math.max(score, 3);
+    // High complexity - architecture, system design, comprehensive plans
+    if (/\b(architecture|system design|microservices|distributed|scalable)\b/.test(text)) score = Math.max(score, 3);
+    // Security audit/compliance is inherently multi-step
+    if (/\b(security audit|compliance|smart contract|defi)\b/.test(text)) score = Math.max(score, 3);
+    if (/\b(comprehensive|end-to-end|load balancing|failover|orchestrat|perform)\b/.test(text)) score = Math.max(score, 2);
+    if (/\b(many|numerous|complex|multi-step|audit)\b/.test(text)) score = Math.max(score, 2);
+    if (/\b(few|couple|several|multiple|implement|build|create|design)\b/.test(text)) score = Math.max(score, 1);
+
+    // Low complexity indicators - only apply if no higher score
+    if (score === 0 && /\b(single|one|quick|simple|what|how to|syntax|show me)\b/.test(text)) return 0;
 
     // Default: lean towards simple for short queries
-    return text.length < 30 ? 0 : 1;
+    return score > 0 ? score : (text.length < 30 ? 0 : 1);
   }
 
   /**
@@ -216,31 +223,42 @@ export class HybridReasoningEngine extends EventEmitter<ReasoningEvents> {
    * Score required depth
    */
   private scoreDepth(text: string): number {
-    // High depth
-    if (/\b(exhaustive|complete|full analysis|architecture|deep dive|thorough)\b/.test(text)) return 3;
-    if (/\b(comprehensive|detailed|in-depth|extensive)\b/.test(text)) return 2;
-    if (/\b(analyze|understand|evaluate|design|implement)\b/.test(text)) return 1;
+    let score = 0;
 
-    // Low depth
-    if (/\b(surface|brief|overview|summary|quick|what is|how to)\b/.test(text)) return 0;
+    // Maximum depth - exhaustive analysis, full architecture
+    if (/\b(exhaustive|complete|full analysis|deep dive|thorough)\b/.test(text)) score = Math.max(score, 3);
+    // High depth - architecture, system design, scalable
+    if (/\b(architecture|scalable|system design|load balancing|failover)\b/.test(text)) score = Math.max(score, 3);
+    // Security audit/smart contract requires deep analysis
+    if (/\b(security audit|smart contract|defi|compliance)\b/.test(text)) score = Math.max(score, 3);
+    if (/\b(comprehensive|detailed|in-depth|extensive|websocket|audit)\b/.test(text)) score = Math.max(score, 2);
+    if (/\b(analyze|understand|evaluate|design|implement)\b/.test(text)) score = Math.max(score, 1);
+
+    // Low depth - only apply if no higher score
+    if (score === 0 && /\b(surface|brief|overview|summary|quick|what is|how to)\b/.test(text)) return 0;
 
     // Short queries are usually simpler
-    return text.length < 40 ? 0 : 1;
+    return score > 0 ? score : (text.length < 40 ? 0 : 1);
   }
 
   /**
    * Score criticality
    */
   private scoreCriticality(text: string): number {
-    // Critical
-    if (/\b(mission-critical|security|compliance|financial|irreversible|audit)\b/.test(text)) return 3;
-    if (/\b(production|important|significant|critical)\b/.test(text)) return 2;
-    if (/\b(development|staging|implement)\b/.test(text)) return 1;
+    let score = 0;
 
-    // Non-critical
-    if (/\b(test|experiment|try|draft|example|sample|learn|what is)\b/.test(text)) return 0;
+    // Maximum criticality - mission-critical, security audit, financial compliance
+    if (/\b(mission-critical|security audit|financial compliance|irreversible)\b/.test(text)) score = Math.max(score, 3);
+    // High criticality - security, compliance, production, defi, smart contract
+    if (/\b(security|compliance|financial|defi|smart contract)\b/.test(text)) score = Math.max(score, 3);
+    if (/\b(production|audit|critical)\b/.test(text)) score = Math.max(score, 2);
+    if (/\b(important|significant)\b/.test(text)) score = Math.max(score, 1);
+    if (/\b(development|staging|implement)\b/.test(text)) score = Math.max(score, 1);
 
-    return 0; // default to non-critical for safety
+    // Non-critical - only apply if no higher score
+    if (score === 0 && /\b(test|experiment|try|draft|example|sample|learn|what is)\b/.test(text)) return 0;
+
+    return score;
   }
 
   /**

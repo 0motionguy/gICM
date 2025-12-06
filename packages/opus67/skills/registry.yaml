@@ -1,10 +1,10 @@
 # OPUS 67 Skills Registry
-# Version: 5.1.0 "The Precision Update"
-# Total Skills: 145 (verified via deep audit)
+# Version: 5.1.8 "The Precision Update"
+# Total Skills: 141 (verified via deep audit)
 
 meta:
-  version: "5.1.0"
-  total_skills: 145
+  version: "5.1.8"
+  total_skills: 141
   target_skills: 150
   auto_load_enabled: true
   max_skills_per_session: 5
@@ -16,9 +16,9 @@ meta:
   new_individual: 17   # New lean skills
   new_mcps: 12         # New MCP connections
 
-  # v4.1 Additions
-  agents: 84           # +2 new (learning-observer, skills-navigator)
-  mcps: 48             # +1 new (acontext)
+  # v5.1 Additions
+  agents: 107          # 107 specialized agents
+  mcps: 82             # 82 MCP connections
   learning: true       # Auto-learning enabled
 
   # Token Savings

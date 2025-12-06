@@ -27,7 +27,8 @@ function getClaudeCodePath(): string {
 function getCursorPath(): string {
   const home = homedir();
   if (process.platform === 'win32') {
-    return join(process.env.APPDATA || '', 'Cursor');
+    const appData = process.env.APPDATA || join(home, 'AppData', 'Roaming');
+    return join(appData, 'Cursor');
   } else if (process.platform === 'darwin') {
     return join(home, 'Library', 'Application Support', 'Cursor');
   }
@@ -37,7 +38,8 @@ function getCursorPath(): string {
 function getVSCodePath(): string {
   const home = homedir();
   if (process.platform === 'win32') {
-    return join(process.env.APPDATA || '', 'Code');
+    const appData = process.env.APPDATA || join(home, 'AppData', 'Roaming');
+    return join(appData, 'Code');
   } else if (process.platform === 'darwin') {
     return join(home, 'Library', 'Application Support', 'Code');
   }
@@ -47,7 +49,8 @@ function getVSCodePath(): string {
 function getWindsurfPath(): string {
   const home = homedir();
   if (process.platform === 'win32') {
-    return join(process.env.APPDATA || '', 'Windsurf');
+    const appData = process.env.APPDATA || join(home, 'AppData', 'Roaming');
+    return join(appData, 'Windsurf');
   } else if (process.platform === 'darwin') {
     return join(home, 'Library', 'Application Support', 'Windsurf');
   }
@@ -70,7 +73,8 @@ function getReplitPath(): string {
 function getContinuePath(): string {
   const home = homedir();
   if (process.platform === 'win32') {
-    return join(process.env.APPDATA || '', 'Continue');
+    const appData = process.env.APPDATA || join(home, 'AppData', 'Roaming');
+    return join(appData, 'Continue');
   } else if (process.platform === 'darwin') {
     return join(home, 'Library', 'Application Support', 'Continue');
   }
@@ -91,7 +95,8 @@ function getJetBrainsPath(): string {
 function getCodeiumPath(): string {
   const home = homedir();
   if (process.platform === 'win32') {
-    return join(process.env.APPDATA || '', 'Codeium');
+    const appData = process.env.APPDATA || join(home, 'AppData', 'Roaming');
+    return join(appData, 'Codeium');
   } else if (process.platform === 'darwin') {
     return join(home, 'Library', 'Application Support', 'Codeium');
   }

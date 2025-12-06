@@ -8,8 +8,7 @@ import { createOPUS67 } from "./boot.js";
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { homedir } from "os";
-
-const VERSION = "5.1.3";
+import { VERSION } from "./version.js";
 
 const HELP = `
 ╔═══════════════════════════════════════════════════════════════════════════╗
@@ -60,7 +59,7 @@ const OPUS67_CLAUDE_MD_SECTION = `
 
 You have OPUS 67 installed. This gives you access to:
 
-## Available Skills (140+ total)
+## Available Skills (141 total)
 Use \`opus67_list_skills\` MCP tool to see all, or auto-detect based on task.
 
 ### Blockchain
@@ -232,9 +231,9 @@ async function main() {
 ║   OPUS 67 IS NOW INTEGRATED WITH CLAUDE CODE                              ║
 ║                                                                           ║
 ║   What you get:                                                           ║
-║   • 140+ specialist skills auto-loaded                                    ║
+║   • 141 specialist skills auto-loaded                                     ║
 ║   • 82 MCP connections available                                          ║
-║   • 30 operating modes                                                    ║
+║   • 30 operating modes • 107 agents                                       ║
 ║   • Skills auto-detect based on your task                                 ║
 ║                                                                           ║
 ║   Usage in Claude Code:                                                   ║
