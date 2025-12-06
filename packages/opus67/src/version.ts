@@ -3,7 +3,7 @@
  * Single source of truth for version across all components
  */
 
-export const VERSION = '5.1.8';
+export const VERSION = '5.1.9';
 
 export const VERSION_INFO = {
   version: VERSION,
