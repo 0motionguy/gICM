@@ -1,81 +1,126 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { GlassCard } from "@/components/ui/glass-card";
 
 export const metadata = {
-  title: "Terms of Service | gICM",
-  description: "Terms of Service for gICM - AI Dev Stack for Web3",
+  title: "Terms of Service | Aether",
+  description: "Terms of Service for Aether - AI Dev Stack for Web3",
 };
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-lime-300 via-emerald-300 to-teal-300">
+    <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white">
       {/* Header */}
-      <div className="border-b border-black/20 bg-white/90 backdrop-blur sticky top-0 z-40">
+      <div className="border-b border-white/10 bg-black/40 backdrop-blur sticky top-0 z-40">
         <div className="max-w-4xl mx-auto px-6 md:px-10 py-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-black/80 hover:text-black transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
-            Back to Home
+            Back to Aether Catalog
           </Link>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-6 md:px-10 py-12">
-        <div className="rounded-xl border border-black/20 bg-white/90 backdrop-blur p-8 md:p-12">
-          <h1 className="text-4xl font-black text-black mb-4">Terms of Service</h1>
-          <p className="text-sm text-black/60 mb-8">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <GlassCard className="p-8 md:p-12">
+          <h1 className="text-4xl font-display font-bold text-white mb-4">
+            Terms of Service
+          </h1>
+          <p className="text-sm text-zinc-500 mb-8">
+            Last updated:{" "}
+            {new Date().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
 
-          <div className="prose prose-black max-w-none space-y-6">
+          <div className="prose prose-invert max-w-none space-y-6">
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">1. Agreement to Terms</h2>
-              <p className="text-black/80 leading-relaxed">
-                By accessing or using gICM ("Service", "Platform"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you do not have permission to access the Service.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                1. Agreement to Terms
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                By accessing or using Aether ("Service", "Platform"), you agree
+                to be bound by these Terms of Service ("Terms"). If you disagree
+                with any part of these terms, you do not have permission to
+                access the Service.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">2. Description of Service</h2>
-              <p className="text-black/80 leading-relaxed mb-3">
-                gICM is a marketplace platform that provides:
+              <h2 className="text-2xl font-bold text-white mb-3">
+                2. Description of Service
+              </h2>
+              <p className="text-zinc-300 leading-relaxed mb-3">
+                Aether is a marketplace platform that provides:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-black/80">
-                <li>A curated catalog of Claude AI agents, skills, commands, MCP servers, and settings</li>
+              <ul className="list-disc pl-6 space-y-2 text-zinc-300">
+                <li>
+                  A curated catalog of Claude AI agents, skills, commands, MCP
+                  servers, and settings
+                </li>
                 <li>AI-powered stack building recommendations</li>
-                <li>Tools for discovering, comparing, and organizing development resources</li>
+                <li>
+                  Tools for discovering, comparing, and organizing development
+                  resources
+                </li>
                 <li>Community-driven ratings and reviews</li>
               </ul>
-              <p className="text-black/80 leading-relaxed mt-3">
-                The Service is currently in beta/alpha testing phase. Features and availability may change without notice.
+              <p className="text-zinc-300 leading-relaxed mt-3">
+                The Service is currently in beta/alpha testing phase. Features
+                and availability may change without notice.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">3. User Accounts and Waitlist</h2>
-              <p className="text-black/80 leading-relaxed mb-3">
-                To access certain features, you may need to join our waitlist or request alpha access:
+              <h2 className="text-2xl font-bold text-white mb-3">
+                3. User Accounts and Waitlist
+              </h2>
+              <p className="text-zinc-300 leading-relaxed mb-3">
+                To access certain features, you may need to join our waitlist or
+                request alpha access:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-black/80">
+              <ul className="list-disc pl-6 space-y-2 text-zinc-300">
                 <li>You must provide accurate and complete information</li>
-                <li>You are responsible for maintaining the security of your account</li>
+                <li>
+                  You are responsible for maintaining the security of your
+                  account
+                </li>
                 <li>You must be at least 13 years old to use the Service</li>
-                <li>One account per person; no automated or bot registrations</li>
-                <li>We reserve the right to refuse service or terminate accounts at our discretion</li>
+                <li>
+                  One account per person; no automated or bot registrations
+                </li>
+                <li>
+                  We reserve the right to refuse service or terminate accounts
+                  at our discretion
+                </li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">4. Acceptable Use</h2>
-              <p className="text-black/80 leading-relaxed mb-3">
+              <h2 className="text-2xl font-bold text-white mb-3">
+                4. Acceptable Use
+              </h2>
+              <p className="text-zinc-300 leading-relaxed mb-3">
                 You agree NOT to:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-black/80">
-                <li>Use the Service for any illegal purpose or to violate any laws</li>
-                <li>Attempt to gain unauthorized access to our systems or other users' accounts</li>
+              <ul className="list-disc pl-6 space-y-2 text-zinc-300">
+                <li>
+                  Use the Service for any illegal purpose or to violate any laws
+                </li>
+                <li>
+                  Attempt to gain unauthorized access to our systems or other
+                  users' accounts
+                </li>
                 <li>Upload malware, viruses, or malicious code</li>
-                <li>Scrape, crawl, or automatically extract data from the Service</li>
+                <li>
+                  Scrape, crawl, or automatically extract data from the Service
+                </li>
                 <li>Impersonate others or provide false information</li>
                 <li>Harass, abuse, or harm other users</li>
                 <li>Interfere with the proper functioning of the Service</li>
@@ -84,159 +129,253 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">5. Content and Intellectual Property</h2>
-              <div className="space-y-3 text-black/80">
+              <h2 className="text-2xl font-bold text-white mb-3">
+                5. Content and Intellectual Property
+              </h2>
+              <div className="space-y-3 text-zinc-300">
                 <div>
-                  <h3 className="font-bold text-black mb-2">5.1 Our Content</h3>
+                  <h3 className="font-bold text-white mb-2">5.1 Our Content</h3>
                   <p className="leading-relaxed">
-                    The Service and its original content (excluding user-generated content and third-party items), features, and functionality are owned by gICM and are protected by international copyright, trademark, and other intellectual property laws.
+                    The Service and its original content (excluding
+                    user-generated content and third-party items), features, and
+                    functionality are owned by Aether and are protected by
+                    international copyright, trademark, and other intellectual
+                    property laws.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-black mb-2">5.2 Registry Items</h3>
+                  <h3 className="font-bold text-white mb-2">
+                    5.2 Registry Items
+                  </h3>
                   <p className="leading-relaxed">
-                    Items in the gICM marketplace (agents, skills, commands, etc.) are provided by third parties and are subject to their own licenses. We do not claim ownership of these items. Each item's license terms are specified in its individual listing.
+                    Items in the Aether marketplace (agents, skills, commands,
+                    etc.) are provided by third parties and are subject to their
+                    own licenses. We do not claim ownership of these items. Each
+                    item's license terms are specified in its individual
+                    listing.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-black mb-2">5.3 User-Generated Content</h3>
+                  <h3 className="font-bold text-white mb-2">
+                    5.3 User-Generated Content
+                  </h3>
                   <p className="leading-relaxed">
-                    By sharing stacks, reviews, or other content on gICM, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, and distribute that content in connection with the Service.
+                    By sharing stacks, reviews, or other content on Aether, you
+                    grant us a worldwide, non-exclusive, royalty-free license to
+                    use, reproduce, and distribute that content in connection
+                    with the Service.
                   </p>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">6. AI Features and Recommendations</h2>
-              <p className="text-black/80 leading-relaxed mb-3">
-                Our AI-powered features (stack builder, recommendations) are provided "as is":
+              <h2 className="text-2xl font-bold text-white mb-3">
+                6. AI Features and Recommendations
+              </h2>
+              <p className="text-zinc-300 leading-relaxed mb-3">
+                Our AI-powered features (stack builder, recommendations) are
+                provided "as is":
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-black/80">
-                <li>AI recommendations are suggestions only and may not be suitable for all use cases</li>
-                <li>We do not guarantee the accuracy, completeness, or reliability of AI-generated content</li>
-                <li>You are responsible for evaluating AI recommendations before implementation</li>
-                <li>AI features require an Anthropic API key and are subject to Anthropic's terms of service</li>
+              <ul className="list-disc pl-6 space-y-2 text-zinc-300">
+                <li>
+                  AI recommendations are suggestions only and may not be
+                  suitable for all use cases
+                </li>
+                <li>
+                  We do not guarantee the accuracy, completeness, or reliability
+                  of AI-generated content
+                </li>
+                <li>
+                  You are responsible for evaluating AI recommendations before
+                  implementation
+                </li>
+                <li>
+                  AI features require an Anthropic API key and are subject to
+                  Anthropic's terms of service
+                </li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">7. Third-Party Links and Services</h2>
-              <p className="text-black/80 leading-relaxed">
-                The Service may contain links to third-party websites, repositories (GitHub), or services. We are not responsible for the content, privacy policies, or practices of third-party sites. Your use of third-party services is at your own risk.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                7. Third-Party Links and Services
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                The Service may contain links to third-party websites,
+                repositories (GitHub), or services. We are not responsible for
+                the content, privacy policies, or practices of third-party
+                sites. Your use of third-party services is at your own risk.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">8. Disclaimers and Limitations</h2>
-              <div className="space-y-3 text-black/80">
+              <h2 className="text-2xl font-bold text-white mb-3">
+                8. Disclaimers and Limitations
+              </h2>
+              <div className="space-y-3 text-zinc-300">
                 <div>
-                  <h3 className="font-bold text-black mb-2">8.1 Service Availability</h3>
+                  <h3 className="font-bold text-white mb-2">
+                    8.1 Service Availability
+                  </h3>
                   <p className="leading-relaxed">
-                    The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind. We do not guarantee uninterrupted or error-free service. The platform is in beta and may contain bugs or limitations.
+                    The Service is provided "AS IS" and "AS AVAILABLE" without
+                    warranties of any kind. We do not guarantee uninterrupted or
+                    error-free service. The platform is in beta and may contain
+                    bugs or limitations.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-black mb-2">8.2 No Warranty</h3>
+                  <h3 className="font-bold text-white mb-2">8.2 No Warranty</h3>
                   <p className="leading-relaxed">
-                    We make no warranties about the accuracy, reliability, or suitability of any marketplace items. Each item is provided by third parties and is used at your own risk.
+                    We make no warranties about the accuracy, reliability, or
+                    suitability of any marketplace items. Each item is provided
+                    by third parties and is used at your own risk.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-black mb-2">8.3 Limitation of Liability</h3>
+                  <h3 className="font-bold text-white mb-2">
+                    8.3 Limitation of Liability
+                  </h3>
                   <p className="leading-relaxed">
-                    To the maximum extent permitted by law, gICM shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the Service, including loss of data, revenue, or profits.
+                    To the maximum extent permitted by law, Aether shall not be
+                    liable for any indirect, incidental, special, consequential,
+                    or punitive damages resulting from your use of the Service,
+                    including loss of data, revenue, or profits.
                   </p>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">9. Alpha/Beta Testing</h2>
-              <p className="text-black/80 leading-relaxed mb-3">
+              <h2 className="text-2xl font-bold text-white mb-3">
+                9. Alpha/Beta Testing
+              </h2>
+              <p className="text-zinc-300 leading-relaxed mb-3">
                 If you are granted alpha or beta access:
               </p>
-              <ul className="list-disc pl-6 space-y-2 text-black/80">
-                <li>Features are experimental and may be unstable or incomplete</li>
+              <ul className="list-disc pl-6 space-y-2 text-zinc-300">
+                <li>
+                  Features are experimental and may be unstable or incomplete
+                </li>
                 <li>Your feedback helps improve the Service</li>
                 <li>Access may be revoked at any time</li>
                 <li>Data may be reset during testing phases</li>
-                <li>You agree to report bugs and security issues responsibly</li>
+                <li>
+                  You agree to report bugs and security issues responsibly
+                </li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">10. Pricing and Payments</h2>
-              <p className="text-black/80 leading-relaxed">
-                Currently, gICM is free to use during alpha/beta. Future pricing will be communicated clearly before any charges are implemented. If we introduce paid features, you will have the option to opt-in before being charged.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                10. Pricing and Payments
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                Currently, Aether is free to use during alpha/beta. Future
+                pricing will be communicated clearly before any charges are
+                implemented. If we introduce paid features, you will have the
+                option to opt-in before being charged.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">11. Termination</h2>
-              <p className="text-black/80 leading-relaxed">
-                We reserve the right to terminate or suspend your access to the Service immediately, without prior notice, for any reason, including breach of these Terms. Upon termination, your right to use the Service will cease immediately.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                11. Termination
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                We reserve the right to terminate or suspend your access to the
+                Service immediately, without prior notice, for any reason,
+                including breach of these Terms. Upon termination, your right to
+                use the Service will cease immediately.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">12. Changes to Terms</h2>
-              <p className="text-black/80 leading-relaxed">
-                We reserve the right to modify these Terms at any time. We will notify users of material changes by updating the "Last updated" date. Your continued use of the Service after changes constitutes acceptance of the new Terms.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                12. Changes to Terms
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                We reserve the right to modify these Terms at any time. We will
+                notify users of material changes by updating the "Last updated"
+                date. Your continued use of the Service after changes
+                constitutes acceptance of the new Terms.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">13. Governing Law</h2>
-              <p className="text-black/80 leading-relaxed">
-                These Terms shall be governed by and construed in accordance with applicable international laws. Any disputes shall be resolved through binding arbitration or in courts of competent jurisdiction.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                13. Governing Law
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                These Terms shall be governed by and construed in accordance
+                with applicable international laws. Any disputes shall be
+                resolved through binding arbitration or in courts of competent
+                jurisdiction.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-black mb-3">14. Contact Information</h2>
-              <p className="text-black/80 leading-relaxed mb-3">
+              <h2 className="text-2xl font-bold text-white mb-3">
+                14. Contact Information
+              </h2>
+              <p className="text-zinc-300 leading-relaxed mb-3">
                 For questions about these Terms, please contact us:
               </p>
-              <div className="bg-black/5 rounded-lg p-4 text-black/80">
-                <p><strong>Email:</strong> legal@gicm.dev</p>
-                <p><strong>GitHub:</strong> github.com/Kermit457/gICM</p>
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-zinc-300">
+                <p>
+                  <strong className="text-white">Email:</strong>{" "}
+                  legal@aether.dev
+                </p>
+                <p>
+                  <strong className="text-white">GitHub:</strong>{" "}
+                  github.com/Kermit457/gICM
+                </p>
               </div>
             </section>
 
-            <section className="mt-12 pt-8 border-t border-black/10">
-              <h2 className="text-2xl font-black text-black mb-3">15. Severability</h2>
-              <p className="text-black/80 leading-relaxed">
-                If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.
+            <section className="mt-12 pt-8 border-t border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-3">
+                15. Severability
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                If any provision of these Terms is found to be unenforceable or
+                invalid, that provision will be limited or eliminated to the
+                minimum extent necessary, and the remaining provisions will
+                remain in full force and effect.
               </p>
             </section>
 
             <section className="mt-8">
-              <h2 className="text-2xl font-black text-black mb-3">16. Entire Agreement</h2>
-              <p className="text-black/80 leading-relaxed">
-                These Terms, together with our Privacy Policy, constitute the entire agreement between you and gICM regarding the Service and supersede all prior agreements and understandings.
+              <h2 className="text-2xl font-bold text-white mb-3">
+                16. Entire Agreement
+              </h2>
+              <p className="text-zinc-300 leading-relaxed">
+                These Terms, together with our Privacy Policy, constitute the
+                entire agreement between you and Aether regarding the Service
+                and supersede all prior agreements and understandings.
               </p>
             </section>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-black/10">
-            <div className="flex gap-4">
+          <div className="mt-12 pt-8 border-t border-white/10">
+            <div className="flex gap-4 flex-wrap">
               <Link
                 href="/"
-                className="px-6 py-3 rounded-lg bg-lime-300 text-black font-bold hover:bg-lime-400 transition-colors"
+                className="px-6 py-3 rounded-lg bg-gradient-to-r from-[#00F0FF] to-[#7000FF] text-white font-bold hover:opacity-90 transition-opacity"
               >
                 Return to Home
               </Link>
               <Link
                 href="/privacy"
-                className="px-6 py-3 rounded-lg border-2 border-black/20 text-black font-bold hover:border-black/40 transition-colors"
+                className="px-6 py-3 rounded-lg border border-white/20 text-white font-bold hover:bg-white/5 transition-colors"
               >
                 View Privacy Policy
               </Link>
             </div>
           </div>
-        </div>
+        </GlassCard>
       </div>
-    </div>
+    </AuroraBackground>
   );
 }
