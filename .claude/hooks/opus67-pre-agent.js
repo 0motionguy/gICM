@@ -282,23 +282,8 @@ async function main() {
         : agentSkillMap["default"];
     }
 
-    const hookOutput = {
-      additionalContext: `
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ OPUS 67: Agent Spawning - ${agentType.substring(0, 48).padEnd(48)}│
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Pre-loading Skills:                                                         │
-│ ${skills
-        .map((s) => `- ${s}`)
-        .join("\n│ ")
-        .padEnd(73)}│
-│                                                                             │
-│ The spawned agent will benefit from these skills being loaded.              │
-└─────────────────────────────────────────────────────────────────────────────┘
-`.trim(),
-    };
-
-    console.log(JSON.stringify(hookOutput));
+    // Slim output: cache only, no context injection to avoid compaction issues
+    // (Claude Code bug: thinking blocks + additionalContext = compaction failure)
     updateLastDetect(agentType, skills);
 
     // Log activity

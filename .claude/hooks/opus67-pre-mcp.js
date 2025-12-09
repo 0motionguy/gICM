@@ -149,23 +149,8 @@ try {
     process.exit(0);
   }
 
-  const hookOutput = {
-    additionalContext: `
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ OPUS 67: MCP Tool Detected - ${mcpName.toUpperCase().padEnd(45)}│
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Suggested Skills:                                                           │
-│ ${skills
-      .map((s) => `- ${s}`)
-      .join("\n│ ")
-      .padEnd(73)}│
-│                                                                             │
-│ Call: mcp__opus67__opus67_get_skill("${skills[0]}")                │
-└─────────────────────────────────────────────────────────────────────────────┘
-`.trim(),
-  };
-
-  console.log(JSON.stringify(hookOutput));
+  // Slim output: cache only, no context injection to avoid compaction issues
+  // (Claude Code bug: thinking blocks + additionalContext = compaction failure)
   updateLastDetect(mcpName, skills);
 
   // Log activity

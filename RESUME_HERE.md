@@ -1,86 +1,83 @@
-# OPUS 67 v6.0.0 - Session Resume
+# RESUME SESSION - December 9, 2025
 
-**Last Updated:** 2025-12-08
-**Version:** 6.0.0
+## ✅ COMPACTION BUG - WORKAROUND APPLIED
+
+### Issue: Compaction Error with Extended Thinking (Opus 4.5)
+
+**Root Cause:** Known Claude Code bug (Issues #12973, #13086, #12316) - NOT an OPUS 67 issue.
+
+Claude Code's compaction mechanism tries to modify `thinking` blocks, which the Anthropic API forbids.
+
+**Workaround Applied:**
+
+- Removed `additionalContext` injection from 3 hooks:
+  - `opus67-pre-read.js`
+  - `opus67-pre-mcp.js`
+  - `opus67-pre-agent.js`
+- Hooks now write to cache only (no context injection)
+- Less context usage = fewer compactions needed
+
+**If compaction still fails:** Use `/clear` or start a new session. This is a Claude Code bug, not ours.
+
+**Monitor for fix:** https://github.com/anthropics/claude-code/issues/12973
 
 ---
 
-## LATEST: /opus67 Benchmark Landing Page - COMPLETE
+## ✅ COMPLETED TODAY
 
-### What Was Built
+### OPUS 67 v6.1.0 "Memory Unified" - SHIPPED
 
-Created `/opus67` subpage displaying BENCHMARK_ULTIMATE.md in terminal/code ASCII style.
+| Task                               | Status  |
+| ---------------------------------- | ------- |
+| Unified Memory System (5 adapters) | ✅ Done |
+| MCP Memory Tools                   | ✅ Done |
+| Benchmark results v6.1.0           | ✅ Done |
+| /opus67 dashboard hover cards      | ✅ Done |
+| Hover popup fix                    | ✅ Done |
+| All pushed to GitHub               | ✅ Done |
 
-### Files Created
+### Commits Pushed
 
-| File                                     | Purpose                                              |
-| ---------------------------------------- | ---------------------------------------------------- |
-| `src/app/opus67/page.tsx`                | Main page route with header, stats, terminal display |
-| `src/components/ui/terminal-display.tsx` | Reusable terminal component                          |
-| `src/lib/benchmark-data.ts`              | Benchmark data as TypeScript constants               |
+```
+8193cb6 fix: architecture card hover popup stays visible
+2ca59a2 fix: update OPUS 67 Ultimate benchmark to v6.1.0 December 2025
+8384017 feat: OPUS 67 v6.1.0 benchmark results + dashboard hover cards
+24c4848 fix(test): add 'internal' MCP type for memory adapter
+66ffcd8 feat: OPUS 67 v6.1.0 "Memory Unified"
+```
 
-### Key Metrics Displayed
+---
 
-| Metric                | Value                   |
-| --------------------- | ----------------------- |
-| HumanEval Pass@1      | 96.8% (+5.6% vs Claude) |
-| Token Reduction       | 89% (45K -> 5K)         |
-| Hallucination Rate    | 2.1% (Lowest)           |
-| First Attempt Success | 94.2%                   |
-| Cost Savings          | 74% vs Claude           |
-| Real-World Tasks      | 16/16 wins              |
-| Speed                 | 29% faster              |
-| Overall Score         | 93.8/100 (#1)           |
+## 📋 NEXT TASKS
 
-### To View
+1. **🔴 FIX COMPACTION BUG** - Priority #1
+2. Test /opus67 page live at https://gicm.vercel.app/opus67
+3. Verify hover cards work on production
+4. Continue OPUS 67 improvements
+
+---
+
+## 🔧 DEV SERVER
+
+Last running on: `http://localhost:3002`
+
+To restart:
 
 ```bash
+cd /c/Users/mirko/OneDrive/Desktop/gICM
 pnpm dev
-# Visit: http://localhost:3000/opus67
-```
-
-### Status: COMPLETE
-
-- [x] terminal-display.tsx component
-- [x] benchmark-data.ts with ASCII content
-- [x] opus67/page.tsx page route
-- [x] Tested - HTTP 200, compiled successfully
-
----
-
-## OPUS 67 Component Counts
-
-| Component    | Count | Source                        |
-| ------------ | ----- | ----------------------------- |
-| **Skills**   | 141   | Updated count                 |
-| **Agents**   | 108   | registry.ts (kind: "agent")   |
-| **MCPs**     | 95    | registry.ts (kind: "mcp")     |
-| **Commands** | 93    | registry.ts (kind: "command") |
-| **Modes**    | 30    | MASTER.yaml                   |
-
-```
-╔═══════════════════════════════════════════════════════════════╗
-║                                                               ║
-║   ██████╗ ██████╗ ██╗   ██╗███████╗     ██████╗ ███████╗     ║
-║  ██╔═══██╗██╔══██╗██║   ██║██╔════╝    ██╔════╝ ╚════██║     ║
-║  ██║   ██║██████╔╝██║   ██║███████╗    ███████╗     ██╔╝     ║
-║  ██║   ██║██╔═══╝ ██║   ██║╚════██║    ██╔═══██║   ██╔╝      ║
-║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║       ║
-║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝       ║
-║                                                               ║
-║              v6.0.0 "The Unification"                         ║
-║                                                               ║
-╚═══════════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-## Benchmark Files
+## 📁 KEY FILES MODIFIED TODAY
 
-- `packages/opus67/BENCHMARK_ULTIMATE.md` - Full ASCII art benchmark (686 lines)
-- `packages/benchmark-results/benchmark-results.md` - Markdown report
-- `packages/benchmark-results/benchmark-results.json` - JSON data
+- `src/lib/benchmark-data.ts` - Updated to v6.1.0, December 2025
+- `src/components/ui/architecture-card.tsx` - Hover fix
+- `packages/benchmark-results/benchmark-results.json` - v6.1.0 data
+- `packages/benchmark-results/benchmark-results.md` - v6.1.0 analysis
+- `packages/opus67/BENCHMARK_PROTOCOL.md` - NEW - Benchmark checklist
 
 ---
 
-_Updated: 2025-12-08_
+_Last Updated: December 9, 2025 ~4:30 PM_

@@ -93,19 +93,8 @@ try {
   // Build a query from file context
   const query = `working with ${fileContext} files`;
 
-  // Output instruction to call opus67_detect_skills
-  const hookOutput = {
-    additionalContext: `
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 🎯 OPUS 67: Detected ${fileContext.toUpperCase()} context                              │
-│                                                                             │
-│ REMINDER: Call mcp__opus67__opus67_detect_skills("${query}")       │
-│ to load specialized expertise for this file type.                          │
-└─────────────────────────────────────────────────────────────────────────────┘
-`.trim(),
-  };
-
-  console.log(JSON.stringify(hookOutput));
+  // Slim output: cache only, no context injection to avoid compaction issues
+  // (Claude Code bug: thinking blocks + additionalContext = compaction failure)
 
   // Update rate limit tracker
   updateLastDetect(query, []);
