@@ -1,26 +1,40 @@
 export type AnalyticsEventType =
-  | 'item_view'
-  | 'item_add_to_stack'
-  | 'item_remove_from_stack'
-  | 'bundle_created'
-  | 'bundle_copied'
-  | 'search_query'
-  | 'filter_applied'
-  | 'workflow_ai_request'
-  | 'component_copied'
-  | 'component_previewed';
+  | "item_view"
+  | "item_add_to_stack"
+  | "item_remove_from_stack"
+  | "bundle_created"
+  | "bundle_copied"
+  | "search_query"
+  | "filter_applied"
+  | "workflow_ai_request"
+  | "component_copied"
+  | "component_previewed"
+  | "stack_export"
+  | "stack_share"
+  | "category_filter"
+  | "page_view"
+  | "session_start"
+  | "session_end"
+  | "workflow_start"
+  | "workflow_complete"
+  | "bundle_generate"
+  | "installation_start"
+  | "installation_complete";
 
 export interface AnalyticsEvent {
   id: string;
   type: AnalyticsEventType;
   timestamp: string;
   itemId?: string;
-  itemKind?: 'agent' | 'skill' | 'command' | 'mcp' | 'setting';
+  itemKind?: "agent" | "skill" | "command" | "mcp" | "setting";
   itemSlug?: string;
   bundleSize?: number;
   searchQuery?: string;
   filterValue?: string;
   sessionId: string;
+  category?: string;
+  page?: string;
+  metadata?: Record<string, unknown>;
 }
 
 export interface AnalyticsStats {

@@ -23,7 +23,11 @@
       "Bash(dir /b \"C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\\.claude\\memory\")",
       "Bash(npm audit:*)",
       "Bash(dir /b \"C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\\.claude\\hooks\")",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git stash:*)",
+      "Bash(pnpm tsc:*)"
     ],
     "deny": [],
     "ask": []

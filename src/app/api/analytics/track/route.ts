@@ -37,7 +37,7 @@ const AnalyticsEventSchema = z.object({
   searchQuery: z.string().max(500).optional(),
   category: z.string().max(100).optional(),
   page: z.string().max(200).optional(),
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
 });
 
 const GetParamsSchema = z.object({

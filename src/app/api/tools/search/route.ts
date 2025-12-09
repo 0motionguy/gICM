@@ -12,7 +12,7 @@ import { z } from "zod";
 const SearchPostSchema = z.object({
   query: z.string().min(1).max(500),
   limit: z.number().int().min(1).max(20).default(5),
-  platform: z.string().max(50).optional(),
+  platform: z.enum(["claude", "gemini", "openai"]).optional(),
   kind: z
     .enum(["agent", "skill", "command", "mcp", "setting", "component"])
     .optional(),
@@ -22,7 +22,7 @@ const SearchPostSchema = z.object({
 const SearchGetSchema = z.object({
   query: z.string().min(1).max(500),
   limit: z.coerce.number().int().min(1).max(20).default(5),
-  platform: z.string().max(50).optional(),
+  platform: z.enum(["claude", "gemini", "openai"]).optional(),
   kind: z
     .enum(["agent", "skill", "command", "mcp", "setting", "component"])
     .optional(),

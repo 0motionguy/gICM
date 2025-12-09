@@ -46,14 +46,16 @@ export function ShareRemixPanel({
   const [isForkMode, setIsForkMode] = useState(false);
   const [forkName, setForkName] = useState("");
 
-  const { items: bundleItems } = useBundleStore();
+  const { getActiveStack } = useBundleStore();
+  const activeStack = getActiveStack();
+  const bundleItems = activeStack?.items || [];
 
   // Create stack config from current bundle if not provided
   const currentConfig: StackConfig = stackConfig || {
     id: `stack_${Date.now()}`,
-    name: "My Stack",
+    name: activeStack?.name || "My Stack",
     description: "A custom gICM stack",
-    items: bundleItems.map((item) => item.id),
+    items: bundleItems.map((bundleItem) => bundleItem.item.id),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     version: "1.0.0",
