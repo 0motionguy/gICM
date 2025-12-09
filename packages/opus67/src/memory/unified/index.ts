@@ -38,3 +38,16 @@ export {
   type SessionState,
   type SessionStoreConfig,
 } from "./adapters/session-store.js";
+
+// Event Consumer
+export {
+  MemoryEventConsumer,
+  createEventConsumer,
+  getEventConsumer,
+  type MemoryEvent,
+  type EventConsumerConfig,
+  type ConsumeResult,
+} from "./event-consumer.js";
+
+// Bootstrap
+export { bootstrapMemory } from "./bootstrap.js";

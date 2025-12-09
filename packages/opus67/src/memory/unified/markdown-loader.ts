@@ -54,7 +54,14 @@ export class MarkdownLoader implements MemoryAdapter {
   private watcher: ReturnType<typeof watch> | null = null;
 
   constructor(memoryPath?: string) {
-    this.memoryPath = memoryPath ?? join(process.cwd(), ".claude", "memory");
+    // Use CLAUDE_PROJECT_DIR env var for Claude Code integration
+    this.memoryPath =
+      memoryPath ??
+      join(
+        process.env.CLAUDE_PROJECT_DIR || process.cwd(),
+        ".claude",
+        "memory",
+      );
   }
 
   /**

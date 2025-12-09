@@ -37,6 +37,7 @@ import {
   createLearningSyncBridge,
 } from "./learning-sync.js";
 import { HMLRAdapter, createHMLRAdapter } from "./adapters/hmlr-adapter.js";
+import { SessionStore, createSessionStore } from "./adapters/session-store.js";
 import { GraphitiMemory, createMemory } from "../graphiti.js";
 
 // =============================================================================
@@ -126,6 +127,7 @@ export class UnifiedMemory extends EventEmitter<UnifiedMemoryEvents> {
   private markdownLoader: MarkdownLoader | null = null;
   private learningSyncBridge: LearningSyncBridge | null = null;
   private hmlrAdapter: HMLRAdapter | null = null;
+  private sessionStore: SessionStore | null = null;
 
   // Cache
   private queryCache: Map<
@@ -191,6 +193,12 @@ export class UnifiedMemory extends EventEmitter<UnifiedMemoryEvents> {
       });
       this.bus.registerAdapter(this.hmlrAdapter);
     }
+
+    // Initialize SessionStore (5th adapter)
+    this.sessionStore = createSessionStore({
+      projectRoot: this.config.projectRoot,
+    });
+    // Note: SessionStore is not a MemoryAdapter, but we query it directly
 
     // Initialize all adapters via bus
     await this.bus.initialize();
@@ -303,6 +311,12 @@ export class UnifiedMemory extends EventEmitter<UnifiedMemoryEvents> {
       limit: limit * 2, // Get more and filter
       minScore,
     });
+
+    // Add SessionStore results (not in bus, queried directly)
+    if (this.sessionStore) {
+      const sessionResults = this.sessionStore.query(query, limit);
+      results.push(...sessionResults);
+    }
 
     // Sort by score and deduplicate
     const seen = new Set<string>();
@@ -472,6 +486,16 @@ export class UnifiedMemory extends EventEmitter<UnifiedMemoryEvents> {
     // Update backend flags
     stats.backends.neo4j = this.graphitiAdapter?.isAvailable() ?? false;
     stats.backends.hmlr = this.hmlrAdapter?.isAvailable() ?? false;
+
+    // Add SessionStore stats
+    if (this.sessionStore) {
+      const sessionStats = this.sessionStore.getStats();
+      stats.sources.session = {
+        available: sessionStats.available,
+        count: sessionStats.currentFacts + sessionStats.totalSessions,
+      };
+      stats.totalMemories += sessionStats.currentFacts;
+    }
 
     return stats;
   }

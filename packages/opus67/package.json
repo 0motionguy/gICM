@@ -1,6 +1,6 @@
 {
   "name": "@gicm/opus67",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "OPUS 67 v6.0.0 'The Unification' - 141 Skills • 82 MCPs • 30 Modes • 107 Agents - ONE COMMAND, EVERYTHING WORKS",
   "main": "dist/index.js",
   "type": "module",
@@ -21,6 +21,7 @@
     "benchmark:quick": "node --loader ts-node/esm src/tests/llm-benchmark/runner.ts --quick",
     "benchmark:full": "node --loader ts-node/esm src/tests/llm-benchmark/runner.ts --full",
     "benchmark:memory": "npx tsx src/benchmark/run-memory.ts",
+    "bootstrap:memory": "npx tsx src/memory/unified/bootstrap.ts",
     "lint": "eslint src --ext .ts"
   },
   "keywords": [

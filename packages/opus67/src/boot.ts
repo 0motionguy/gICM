@@ -20,6 +20,8 @@ import { fileURLToPath } from "url";
 import {
   UnifiedMemory,
   createUnifiedMemory,
+  MemoryEventConsumer,
+  createEventConsumer,
   type MemoryStats,
 } from "./memory/unified/index.js";
 
@@ -85,6 +87,7 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
   private mcp: MCPHub;
   private autonomy: AutonomyEngine;
   private unifiedMemory: UnifiedMemory | null = null;
+  private eventConsumer: MemoryEventConsumer | null = null;
   private theDoorPrompt: string = "";
   private isReady: boolean = false;
 
@@ -160,6 +163,20 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
         maxResults: 10,
         maxHops: 3,
       });
+
+      // Initialize event consumer and consume any pending events
+      this.eventConsumer = createEventConsumer({
+        projectRoot: this.config.projectRoot,
+      });
+
+      if (this.eventConsumer.hasEvents()) {
+        const consumed = await this.eventConsumer.consume(this.unifiedMemory);
+        if (consumed.processed > 0) {
+          console.log(
+            `[OPUS67] Consumed ${consumed.processed} memory events from hooks`,
+          );
+        }
+      }
 
       const stats = await this.unifiedMemory.getStats();
       this.emit("memory:ready", stats);

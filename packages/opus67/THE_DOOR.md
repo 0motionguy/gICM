@@ -1,9 +1,9 @@
-# THE DOOR - OPUS 67 Orchestrator v6.0.0
+# THE DOOR - OPUS 67 Orchestrator v6.1.0
 
-> **Version:** 6.0.0 "The Unification"
-> **Features:** 30 Operating Modes + Extended Thinking + Unified Brain API
-> **Purpose:** Self-evolving AI runtime with intelligent mode selection
-> **Stats:** 141 Skills • 82 MCPs • 30 Modes • 107 Agents
+> **Version:** 6.1.0 "Memory Unified"
+> **Features:** 30 Operating Modes + Extended Thinking + Unified Brain API + Unified Memory
+> **Purpose:** Self-evolving AI runtime with intelligent mode selection and cross-session memory
+> **Stats:** 141 Skills • 83 MCPs • 30 Modes • 107 Agents • 5 Memory Sources
 
 ---
 
@@ -884,6 +884,105 @@ Mode-based routing saves costs:
 
 ---
 
+## UNIFIED MEMORY SYSTEM (v6.1.0)
+
+OPUS 67 v6.1.0 introduces **Unified Memory** - a cross-session knowledge system that learns from every interaction.
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     UNIFIED MEMORY                                          │
+│                                                                             │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │                       UnifiedMemory                                    │ │
+│  │   query() │ write() │ getContext() │ multiHopQuery()                  │ │
+│  └──────────────────────────┬────────────────────────────────────────────┘ │
+│                             │                                              │
+│  ┌─────────────┬────────────┼────────────┬───────────────┬──────────────┐  │
+│  │             │            │            │               │              │  │
+│  ▼             ▼            ▼            ▼               ▼              │  │
+│ Graphiti    Learning    Markdown      HMLR         SessionStore         │  │
+│ Adapter     Sync        Loader        Adapter      (JSON-based)         │  │
+│   (graph)   (patterns)  (.claude)     (multi-hop)  (cross-session)      │  │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Memory Sources
+
+| Source       | Purpose                          | Persistence |
+| ------------ | -------------------------------- | ----------- |
+| **Graphiti** | Graph database (facts, episodes) | Neo4j/Local |
+| **Learning** | Pattern learnings                | Synced      |
+| **Markdown** | .claude/memory files             | File-based  |
+| **HMLR**     | Multi-hop reasoning (1-5 hops)   | Computed    |
+| **Session**  | Session facts across restarts    | JSON files  |
+
+### MCP Tools
+
+| Tool                   | Description                                 |
+| ---------------------- | ------------------------------------------- |
+| `opus67_queryMemory`   | Search unified memory (semantic + keyword)  |
+| `opus67_multiHopQuery` | Multi-hop reasoning (follows relationships) |
+| `opus67_writeMemory`   | Write fact/episode/learning/win to memory   |
+| `opus67_memoryStats`   | Get statistics across all sources           |
+
+### Memory Types
+
+- **fact**: Statements about the project or world
+- **episode**: Actions taken (builds, deploys, edits)
+- **learning**: Patterns discovered during work
+- **win**: Achievements and successes
+- **decision**: Architectural decisions with rationale
+
+### Auto-Learning
+
+Hooks automatically capture:
+
+- Successful builds → episode
+- Test passes → episode
+- Deployments → win
+- Code pushes → episode
+- Session starts → episode
+
+### Commands
+
+```bash
+# Bootstrap memory from project files
+pnpm bootstrap:memory
+
+# Run memory benchmark
+pnpm benchmark:memory
+```
+
+### Query Examples
+
+```typescript
+// Simple query
+const results = await memory.query({ query: "authentication" });
+
+// Multi-hop reasoning
+const chain = await memory.multiHopQuery("why did we choose Solana");
+
+// Write a learning
+await memory.write({
+  type: "learning",
+  content: "Use PDAs for token accounts to avoid rent issues",
+  key: "solana:pda-pattern",
+});
+```
+
+### Memory Dashboard
+
+View memory stats at `/opus67`:
+
+- Total memories across sources
+- Session facts count
+- HMLR status (enabled/disabled)
+- Recent activity
+
+---
+
 ## REMEMBER
 
 1. **AUTO is default** - User gets optimal mode without thinking
@@ -892,5 +991,6 @@ Mode-based routing saves costs:
 4. **Sub-agents are powerful** - SWARM can do 20 parallel tasks
 5. **Cost matters** - Use LIGHT/VIBE for simple things
 6. **User can override** - "set mode X" always respected
+7. **Memory persists** - Facts learned carry across sessions
 
-**THE DOOR is open. Mode engaged. Execute.**
+**THE DOOR is open. Mode engaged. Memory unified. Execute.**
