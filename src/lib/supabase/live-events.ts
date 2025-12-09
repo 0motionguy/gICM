@@ -110,7 +110,8 @@ export function useLiveEvents(
   }, []);
 
   useEffect(() => {
-    let channel: ReturnType<typeof supabase.channel> | null = null;
+    let channel: ReturnType<NonNullable<typeof supabase>["channel"]> | null =
+      null;
     let pollTimer: NodeJS.Timeout | null = null;
     let mockTimer: NodeJS.Timeout | null = null;
 

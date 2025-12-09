@@ -36,7 +36,6 @@ export class ErrorBoundary extends React.Component<
         <div className="min-h-screen bg-white flex items-center justify-center p-6">
           <div className="max-w-md w-full bg-white border border-red-200 rounded-lg p-8 text-center">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              {/* @ts-expect-error - React types conflict */}
               <AlertCircle className="w-8 h-8 text-red-600" />
             </div>
 
@@ -52,7 +51,6 @@ export class ErrorBoundary extends React.Component<
               onClick={() => window.location.reload()}
               className="bg-black text-white hover:bg-black/90"
             >
-              {/* @ts-expect-error - React types conflict */}
               <RefreshCw className="w-4 h-4 mr-2" />
               Reload Page
             </Button>

@@ -99,12 +99,18 @@
     "zod": "^4.1.12",
     "zustand": "^5.0.8"
   },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "18.2.79",
+      "@types/react-dom": "18.2.25"
+    }
+  },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^20.19.25",
     "@types/qrcode": "^1.5.6",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "18.2.79",
+    "@types/react-dom": "18.2.25",
     "@vitest/coverage-v8": "^4.0.14",
     "autoprefixer": "^10.4.20",
     "eslint": "^8",

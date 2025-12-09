@@ -315,7 +315,7 @@ export async function getUserBadges(userId: string): Promise<Badge[]> {
 
     if (error) throw error;
     return (
-      data?.map((ub: { badge_id: string; badges: Badge }) => ub.badges) || []
+      data?.map((ub) => ub.badges as unknown as Badge).filter(Boolean) || []
     );
   } catch (err) {
     console.error("Error fetching user badges:", err);
