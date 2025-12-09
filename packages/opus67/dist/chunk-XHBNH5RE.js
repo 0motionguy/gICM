@@ -1,12 +1,14 @@
 import { getKnowledgeStore } from './chunk-JSMRUXZR.js';
-import { tokenTracker, latencyProfiler, metricsCollector, memory, createMemory, createSpawner } from './chunk-E7SMDDMF.js';
+import { tokenTracker, latencyProfiler, metricsCollector, createSpawner } from './chunk-GNLGUR5P.js';
+import { getUnifiedMemory, DEFAULT_EVOLUTION_CONFIG, truncate, generateId, hashTask, createUnifiedMemory } from './chunk-CHIT2KIS.js';
+import { memory, createMemory } from './chunk-2BMLDUKW.js';
 import { generateBootScreen } from './chunk-KRJAO3QU.js';
 import { detectMode } from './chunk-JD6NEK3D.js';
 import Fastify from 'fastify';
 import fastifyWebsocket from '@fastify/websocket';
 import fastifyCors from '@fastify/cors';
 import { EventEmitter } from 'eventemitter3';
-import { existsSync, readFileSync, mkdirSync, appendFileSync, readdirSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, mkdirSync, appendFileSync, readdirSync } from 'fs';
 import { parse } from 'yaml';
 import path, { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -1682,14 +1684,32 @@ var DEFAULT_CONFIG2 = {
   maxGoals: 2,
   maxImprovements: 3,
   maxTokens: 2e3,
-  includeTimestamps: true
+  includeTimestamps: true,
+  // NEW: Enable unified by default
+  useUnifiedMemory: true,
+  enableHMLR: true,
+  includeMarkdown: true,
+  includeLearnings: true
 };
 var ContextEnhancer = class {
   memory;
+  unifiedMemory = null;
   config;
   constructor(memoryInstance, config) {
     this.memory = memoryInstance ?? memory;
     this.config = { ...DEFAULT_CONFIG2, ...config };
+    if (this.config.useUnifiedMemory) {
+      this.unifiedMemory = getUnifiedMemory();
+    }
+  }
+  /**
+   * Connect to unified memory system
+   */
+  async connectUnified() {
+    if (!this.unifiedMemory) {
+      this.unifiedMemory = getUnifiedMemory();
+    }
+    await this.unifiedMemory.initialize();
   }
   /**
    * Estimate token count (rough: 4 chars = 1 token)
@@ -1699,13 +1719,22 @@ var ContextEnhancer = class {
   }
   /**
    * Build context window for a query
+   * NOW PULLS FROM ALL UNIFIED MEMORY SOURCES!
    */
   async buildContextWindow(query) {
-    const searchResults = await this.memory.search(query, { limit: this.config.maxMemories });
+    const searchResults = await this.memory.search(query, {
+      limit: this.config.maxMemories
+    });
     const relevantMemories = searchResults.map((r) => r.node);
-    const episodeResults = await this.memory.search("", { type: "episode", limit: this.config.maxEpisodes });
+    const episodeResults = await this.memory.search("", {
+      type: "episode",
+      limit: this.config.maxEpisodes
+    });
     const recentEpisodes = episodeResults.map((r) => r.node);
-    const goalResults = await this.memory.search("", { type: "goal", limit: this.config.maxGoals });
+    const goalResults = await this.memory.search("", {
+      type: "goal",
+      limit: this.config.maxGoals
+    });
     const activeGoals = goalResults.map((r) => r.node).filter((n) => {
       try {
         const goal = JSON.parse(n.value);
@@ -1714,24 +1743,67 @@ var ContextEnhancer = class {
         return false;
       }
     });
-    const improvementResults = await this.memory.search("", { type: "improvement", limit: this.config.maxImprovements });
+    const improvementResults = await this.memory.search("", {
+      type: "improvement",
+      limit: this.config.maxImprovements
+    });
     const improvements = improvementResults.map((r) => r.node);
-    const allNodes = [...relevantMemories, ...recentEpisodes, ...activeGoals, ...improvements];
-    const totalText = allNodes.map((n) => `${n.key}: ${n.value}`).join("\n");
-    const tokenEstimate = this.estimateTokens(totalText);
+    let unifiedResults = [];
+    const sourceBreakdown = {
+      graphiti: 0,
+      learning: 0,
+      sqlite: 0,
+      context: 0,
+      markdown: 0,
+      session: 0,
+      "claude-mem": 0,
+      hmlr: 0
+    };
+    if (this.config.useUnifiedMemory && this.unifiedMemory) {
+      try {
+        const sources = ["graphiti"];
+        if (this.config.includeLearnings) sources.push("learning");
+        if (this.config.includeMarkdown) sources.push("markdown");
+        if (this.config.enableHMLR) sources.push("hmlr");
+        unifiedResults = await this.unifiedMemory.query({
+          query,
+          sources,
+          limit: this.config.maxMemories * 2,
+          // Get more for diversity
+          minScore: 0.3
+        });
+        for (const result of unifiedResults) {
+          sourceBreakdown[result.source]++;
+        }
+      } catch (error) {
+        console.warn("[ContextEnhancer] Unified memory query failed:", error);
+      }
+    }
+    const allNodes = [
+      ...relevantMemories,
+      ...recentEpisodes,
+      ...activeGoals,
+      ...improvements
+    ];
+    const legacyText = allNodes.map((n) => `${n.key}: ${n.value}`).join("\n");
+    const unifiedText = unifiedResults.map((r) => r.content).join("\n");
+    const tokenEstimate = this.estimateTokens(legacyText + unifiedText);
     return {
       relevantMemories,
       recentEpisodes,
       activeGoals,
       improvements,
-      tokenEstimate
+      tokenEstimate,
+      unifiedResults,
+      sourceBreakdown
     };
   }
   /**
    * Format context for prompt injection
+   * NOW INCLUDES UNIFIED MEMORY FROM ALL SOURCES!
    */
   formatContext(context) {
-    let output = "<!-- OPUS 67 MEMORY CONTEXT -->\n";
+    let output = "<!-- OPUS 67 UNIFIED MEMORY CONTEXT -->\n";
     if (context.relevantMemories.length > 0) {
       output += "\n<relevant_memories>\n";
       for (const mem of context.relevantMemories) {
@@ -1740,6 +1812,45 @@ var ContextEnhancer = class {
 `;
       }
       output += "</relevant_memories>\n";
+    }
+    if (context.unifiedResults && context.unifiedResults.length > 0) {
+      const bySource = /* @__PURE__ */ new Map();
+      for (const result of context.unifiedResults) {
+        const existing = bySource.get(result.source) ?? [];
+        existing.push(result);
+        bySource.set(result.source, existing);
+      }
+      const learnings = bySource.get("learning") ?? [];
+      if (learnings.length > 0) {
+        output += "\n<pattern_learnings>\n";
+        for (const learning of learnings.slice(0, 5)) {
+          const confidence = learning.metadata?.confidence ?? 0;
+          const score = (confidence * 100).toFixed(0);
+          output += `\u2022 [${score}%] ${learning.content.slice(0, 150)}
+`;
+        }
+        output += "</pattern_learnings>\n";
+      }
+      const markdown = bySource.get("markdown") ?? [];
+      if (markdown.length > 0) {
+        output += "\n<session_memory>\n";
+        for (const md of markdown.slice(0, 5)) {
+          const type = md.metadata?.type ?? "note";
+          output += `\u2022 [${type}] ${md.content.slice(0, 150)}
+`;
+        }
+        output += "</session_memory>\n";
+      }
+      const hmlr = bySource.get("hmlr") ?? [];
+      if (hmlr.length > 0) {
+        output += "\n<reasoning_chain>\n";
+        for (const hop of hmlr.slice(0, 3)) {
+          const hops = hop.metadata?.hops ?? 0;
+          output += `\u2022 [hop ${hops}] ${hop.content.slice(0, 150)}
+`;
+        }
+        output += "</reasoning_chain>\n";
+      }
     }
     if (context.activeGoals.length > 0) {
       output += "\n<active_goals>\n";
@@ -1777,7 +1888,15 @@ var ContextEnhancer = class {
       }
       output += "</recent_episodes>\n";
     }
-    output += "\n<!-- /OPUS 67 MEMORY CONTEXT -->";
+    if (context.sourceBreakdown) {
+      const sources = Object.entries(context.sourceBreakdown).filter(([, count]) => count > 0).map(([source, count]) => `${source}:${count}`).join(" ");
+      if (sources) {
+        output += `
+<!-- Sources: ${sources} -->
+`;
+      }
+    }
+    output += "\n<!-- /OPUS 67 UNIFIED MEMORY CONTEXT -->";
     return output;
   }
   /**
@@ -1787,8 +1906,14 @@ var ContextEnhancer = class {
     const context = await this.buildContextWindow(prompt);
     if (context.tokenEstimate > this.config.maxTokens) {
       const ratio = this.config.maxTokens / context.tokenEstimate;
-      context.relevantMemories = context.relevantMemories.slice(0, Math.ceil(context.relevantMemories.length * ratio));
-      context.recentEpisodes = context.recentEpisodes.slice(0, Math.ceil(context.recentEpisodes.length * ratio));
+      context.relevantMemories = context.relevantMemories.slice(
+        0,
+        Math.ceil(context.relevantMemories.length * ratio)
+      );
+      context.recentEpisodes = context.recentEpisodes.slice(
+        0,
+        Math.ceil(context.recentEpisodes.length * ratio)
+      );
     }
     const contextString = this.formatContext(context);
     const injectedTokens = this.estimateTokens(contextString);
@@ -1850,15 +1975,25 @@ ${prompt}`;
   }
   /**
    * Get context summary without full prompt injection
+   * NOW INCLUDES UNIFIED MEMORY STATS!
    */
   async getSummary(query) {
     const context = await this.buildContextWindow(query);
+    let sourceStats = "";
+    if (context.sourceBreakdown) {
+      const sources = Object.entries(context.sourceBreakdown).filter(([, count]) => count > 0).map(([source, count]) => `${source}: ${count}`).join(", ");
+      if (sources) {
+        sourceStats = `
+Unified sources: ${sources}`;
+      }
+    }
     return `
-Memory Context Summary:
-- ${context.relevantMemories.length} relevant memories
+Memory Context Summary (UNIFIED):
+- ${context.relevantMemories.length} relevant memories (Graphiti)
 - ${context.recentEpisodes.length} recent episodes
 - ${context.activeGoals.length} active goals
 - ${context.improvements.length} improvements
+- ${context.unifiedResults?.length ?? 0} unified results${sourceStats}
 - ~${context.tokenEstimate} tokens
 
 Top relevant: ${context.relevantMemories[0]?.key ?? "None"}`;
@@ -2704,34 +2839,6 @@ function createCodeImprover(config) {
   return new CodeImprover(config);
 }
 var codeImprover = new CodeImprover();
-
-// src/evolution/types.ts
-var DEFAULT_EVOLUTION_CONFIG = {
-  usageTracker: {
-    enabled: true,
-    bufferSize: 20,
-    flushIntervalMs: 5e3,
-    storageLocation: ".opus67/evolution/usage",
-    maxEventsPerDay: 1e4,
-    trackContext: true,
-    contextMaxLength: 200
-  }};
-function generateId(prefix = "evo") {
-  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-}
-function hashTask(task) {
-  let hash = 0;
-  for (let i = 0; i < task.length; i++) {
-    const char = task.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString(36);
-}
-function truncate(str, maxLength) {
-  if (str.length <= maxLength) return str;
-  return str.slice(0, maxLength - 3) + "...";
-}
 var UsageTracker = class extends EventEmitter {
   config;
   buffer = [];
@@ -3065,331 +3172,6 @@ var UsageTracker = class extends EventEmitter {
   }
 };
 new UsageTracker();
-var DEFAULT_CONFIG6 = {
-  storageLocation: ".opus67/evolution/learnings",
-  maxLearnings: 500,
-  autoDeprecateThreshold: 10,
-  confidenceDecayRate: 0.01
-};
-var LearningStore = class extends EventEmitter {
-  config;
-  learnings = /* @__PURE__ */ new Map();
-  indexByType = /* @__PURE__ */ new Map();
-  indexByEntity = /* @__PURE__ */ new Map();
-  dirty = false;
-  constructor(config) {
-    super();
-    this.config = { ...DEFAULT_CONFIG6, ...config };
-    this.ensureStorageDir();
-    this.load();
-  }
-  /**
-   * Ensure storage directory exists
-   */
-  ensureStorageDir() {
-    const dir = this.config.storageLocation;
-    if (!existsSync(dir)) {
-      mkdirSync(dir, { recursive: true });
-    }
-  }
-  /**
-   * Load learnings from storage
-   */
-  load() {
-    const mainFile = join(this.config.storageLocation, "learnings.json");
-    if (!existsSync(mainFile)) {
-      return;
-    }
-    try {
-      const content = readFileSync(mainFile, "utf-8");
-      const data = JSON.parse(content);
-      for (const learning of data) {
-        this.learnings.set(learning.id, learning);
-        this.addToIndices(learning);
-      }
-    } catch (error) {
-      console.error("[LearningStore] Failed to load:", error);
-    }
-  }
-  /**
-   * Save learnings to storage
-   */
-  save() {
-    if (!this.dirty) return;
-    const mainFile = join(this.config.storageLocation, "learnings.json");
-    const learnings = Array.from(this.learnings.values());
-    try {
-      writeFileSync(mainFile, JSON.stringify(learnings, null, 2), "utf-8");
-      this.dirty = false;
-    } catch (error) {
-      console.error("[LearningStore] Failed to save:", error);
-      this.emit("error", error instanceof Error ? error : new Error(String(error)));
-    }
-  }
-  /**
-   * Add learning to indices
-   */
-  addToIndices(learning) {
-    if (!this.indexByType.has(learning.type)) {
-      this.indexByType.set(learning.type, /* @__PURE__ */ new Set());
-    }
-    this.indexByType.get(learning.type).add(learning.id);
-    for (const entity of learning.entities) {
-      const key = `${entity.type}:${entity.id}`;
-      if (!this.indexByEntity.has(key)) {
-        this.indexByEntity.set(key, /* @__PURE__ */ new Set());
-      }
-      this.indexByEntity.get(key).add(learning.id);
-    }
-  }
-  /**
-   * Remove learning from indices
-   */
-  removeFromIndices(learning) {
-    this.indexByType.get(learning.type)?.delete(learning.id);
-    for (const entity of learning.entities) {
-      const key = `${entity.type}:${entity.id}`;
-      this.indexByEntity.get(key)?.delete(learning.id);
-    }
-  }
-  /**
-   * Create a new learning
-   */
-  create(params) {
-    const similar = this.findSimilar(params.type, params.entities);
-    if (similar) {
-      return this.addEvidence(similar.id, params.evidence);
-    }
-    if (this.learnings.size >= this.config.maxLearnings) {
-      this.pruneOldLearnings();
-    }
-    const learning = {
-      id: generateId("learning"),
-      createdAt: (/* @__PURE__ */ new Date()).toISOString(),
-      updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      type: params.type,
-      insight: params.insight,
-      confidence: Math.min(1, Math.max(0, params.confidence)),
-      evidenceCount: params.evidence.length,
-      evidence: params.evidence.slice(0, 20),
-      // Keep last 20 evidence items
-      triggerConditions: params.triggerConditions,
-      entities: params.entities,
-      expectedBenefit: params.expectedBenefit,
-      applicationCount: 0,
-      status: "active"
-    };
-    this.learnings.set(learning.id, learning);
-    this.addToIndices(learning);
-    this.dirty = true;
-    this.emit("learning:created", learning);
-    return learning;
-  }
-  /**
-   * Find similar existing learning
-   */
-  findSimilar(type, entities) {
-    const typeLearnings = this.indexByType.get(type);
-    if (!typeLearnings) return null;
-    for (const id of typeLearnings) {
-      const learning = this.learnings.get(id);
-      if (!learning || learning.status !== "active") continue;
-      const entityIds = entities.map((e) => `${e.type}:${e.id}`).sort();
-      const learningEntityIds = learning.entities.map((e) => `${e.type}:${e.id}`).sort();
-      if (entityIds.join(",") === learningEntityIds.join(",")) {
-        return learning;
-      }
-    }
-    return null;
-  }
-  /**
-   * Add evidence to existing learning
-   */
-  addEvidence(learningId, evidence) {
-    const learning = this.learnings.get(learningId);
-    if (!learning) {
-      throw new Error(`Learning not found: ${learningId}`);
-    }
-    learning.evidence.unshift(...evidence);
-    learning.evidence = learning.evidence.slice(0, 20);
-    learning.evidenceCount += evidence.length;
-    const positiveCount = evidence.filter((e) => e.outcome === "positive").length;
-    const negativeCount = evidence.filter((e) => e.outcome === "negative").length;
-    if (positiveCount > negativeCount) {
-      learning.confidence = Math.min(1, learning.confidence + 0.05 * positiveCount);
-    } else if (negativeCount > positiveCount) {
-      learning.confidence = Math.max(0, learning.confidence - 0.1 * negativeCount);
-    }
-    learning.updatedAt = (/* @__PURE__ */ new Date()).toISOString();
-    this.dirty = true;
-    this.emit("learning:updated", learning);
-    return learning;
-  }
-  /**
-   * Record that a learning was applied
-   */
-  recordApplication(learningId, success) {
-    const learning = this.learnings.get(learningId);
-    if (!learning) return null;
-    learning.applicationCount++;
-    if (learning.actualBenefit === void 0) {
-      learning.actualBenefit = success ? 1 : 0;
-    } else {
-      learning.actualBenefit = (learning.actualBenefit * (learning.applicationCount - 1) + (success ? 1 : 0)) / learning.applicationCount;
-    }
-    if (learning.applicationCount >= this.config.autoDeprecateThreshold && (learning.actualBenefit ?? 0) < 0.3) {
-      learning.status = "deprecated";
-      this.emit("learning:deprecated", learning);
-    }
-    learning.updatedAt = (/* @__PURE__ */ new Date()).toISOString();
-    this.dirty = true;
-    return learning;
-  }
-  /**
-   * Get a learning by ID
-   */
-  get(id) {
-    return this.learnings.get(id);
-  }
-  /**
-   * Get all active learnings
-   */
-  getActive() {
-    return Array.from(this.learnings.values()).filter((l) => l.status === "active");
-  }
-  /**
-   * Get learnings by type
-   */
-  getByType(type) {
-    const ids = this.indexByType.get(type) ?? /* @__PURE__ */ new Set();
-    return Array.from(ids).map((id) => this.learnings.get(id)).filter((l) => l !== void 0 && l.status === "active");
-  }
-  /**
-   * Get learnings for an entity
-   */
-  getForEntity(entityType, entityId) {
-    const key = `${entityType}:${entityId}`;
-    const ids = this.indexByEntity.get(key) ?? /* @__PURE__ */ new Set();
-    return Array.from(ids).map((id) => this.learnings.get(id)).filter((l) => l !== void 0 && l.status === "active");
-  }
-  /**
-   * Find relevant learnings for a task context
-   */
-  findRelevant(context, limit = 10) {
-    const activeLearnings = this.getActive();
-    const scores = [];
-    const lowerContext = context.toLowerCase();
-    for (const learning of activeLearnings) {
-      let score = 0;
-      for (const condition of learning.triggerConditions) {
-        if (condition.type === "keyword") {
-          if (lowerContext.includes(condition.value.toLowerCase())) {
-            score += condition.weight;
-          }
-        } else if (condition.type === "context") {
-          if (lowerContext.includes(condition.value.toLowerCase())) {
-            score += condition.weight;
-          }
-        }
-      }
-      score *= learning.confidence;
-      if (score > 0) {
-        scores.push({ learning, score });
-      }
-    }
-    return scores.sort((a, b) => b.score - a.score).slice(0, limit).map((s) => s.learning);
-  }
-  /**
-   * Deprecate a learning
-   */
-  deprecate(id, reason) {
-    const learning = this.learnings.get(id);
-    if (!learning) return false;
-    learning.status = "deprecated";
-    learning.updatedAt = (/* @__PURE__ */ new Date()).toISOString();
-    if (reason) {
-      learning.entities.push({
-        type: "skill",
-        id: "deprecation_reason",
-        effect: "exclude",
-        weight: 0
-      });
-    }
-    this.dirty = true;
-    this.emit("learning:deprecated", learning);
-    return true;
-  }
-  /**
-   * Prune old/low-performing learnings
-   */
-  pruneOldLearnings() {
-    const sorted = Array.from(this.learnings.values()).filter((l) => l.status === "active").sort((a, b) => {
-      const scoreA = a.confidence * (a.actualBenefit ?? a.expectedBenefit) * (1 / (Date.now() - new Date(a.updatedAt).getTime()));
-      const scoreB = b.confidence * (b.actualBenefit ?? b.expectedBenefit) * (1 / (Date.now() - new Date(b.updatedAt).getTime()));
-      return scoreA - scoreB;
-    });
-    const toRemove = Math.ceil(sorted.length * 0.1);
-    for (let i = 0; i < toRemove; i++) {
-      const learning = sorted[i];
-      learning.status = "deprecated";
-      this.emit("learning:deprecated", learning);
-    }
-    this.dirty = true;
-  }
-  /**
-   * Apply confidence decay to unused learnings
-   */
-  applyDecay() {
-    const now = Date.now();
-    const dayMs = 24 * 60 * 60 * 1e3;
-    for (const learning of this.learnings.values()) {
-      if (learning.status !== "active") continue;
-      const daysSinceUpdate = (now - new Date(learning.updatedAt).getTime()) / dayMs;
-      if (daysSinceUpdate > 7) {
-        const decay = this.config.confidenceDecayRate * Math.floor(daysSinceUpdate / 7);
-        learning.confidence = Math.max(0.1, learning.confidence - decay);
-        this.dirty = true;
-      }
-    }
-  }
-  /**
-   * Get stats
-   */
-  getStats() {
-    const all = Array.from(this.learnings.values());
-    const active = all.filter((l) => l.status === "active");
-    const totalApplications = all.reduce((sum, l) => sum + l.applicationCount, 0);
-    const avgConfidence = active.length > 0 ? active.reduce((sum, l) => sum + l.confidence, 0) / active.length : 0;
-    const avgBenefit = active.length > 0 ? active.reduce((sum, l) => sum + (l.actualBenefit ?? l.expectedBenefit), 0) / active.length : 0;
-    return {
-      totalLearnings: all.length,
-      activeLearnings: active.length,
-      avgConfidence,
-      totalApplications,
-      avgBenefit
-    };
-  }
-  /**
-   * Export learnings for backup
-   */
-  export() {
-    return Array.from(this.learnings.values());
-  }
-  /**
-   * Import learnings from backup
-   */
-  import(learnings) {
-    for (const learning of learnings) {
-      if (!this.learnings.has(learning.id)) {
-        this.learnings.set(learning.id, learning);
-        this.addToIndices(learning);
-      }
-    }
-    this.dirty = true;
-    this.save();
-  }
-};
-new LearningStore();
 var DEFAULT_LEVELS = [
   { name: "light", agentCount: 5, expectedSuccessRate: 1, timeout: 3e4 },
   { name: "medium", agentCount: 10, expectedSuccessRate: 1, timeout: 45e3 },
@@ -3902,6 +3684,409 @@ async function runComparisonCLI(iterations = 3) {
   const suite = await runner.runSuite(COMPARISON_TASKS, iterations);
   console.log(runner.formatResults(suite));
 }
+
+// src/benchmark/memory-suite.ts
+var MEMORY_TEST_CASES = [
+  // === SEMANTIC QUERIES ===
+  {
+    id: "mem-001",
+    name: "Semantic: Project Context",
+    query: "What is OPUS 67 and what are its main features?",
+    type: "semantic",
+    expectedMinResults: 3,
+    expectedMinScore: 0.4,
+    maxLatencyMs: 500,
+    description: "Tests semantic search for project overview"
+  },
+  {
+    id: "mem-002",
+    name: "Semantic: Technical Concept",
+    query: "How does the skill loading system work?",
+    type: "semantic",
+    expectedMinResults: 2,
+    expectedMinScore: 0.3,
+    maxLatencyMs: 500,
+    description: "Tests semantic search for technical implementation"
+  },
+  {
+    id: "mem-003",
+    name: "Semantic: Recent Work",
+    query: "What was implemented recently in the memory system?",
+    type: "semantic",
+    expectedMinResults: 1,
+    expectedMinScore: 0.3,
+    expectedSources: ["graphiti", "markdown", "learning"],
+    maxLatencyMs: 600,
+    description: "Tests cross-source semantic search"
+  },
+  // === KEYWORD QUERIES ===
+  {
+    id: "mem-004",
+    name: "Keyword: Exact Match",
+    query: "skill:react-typescript-master",
+    type: "keyword",
+    expectedMinResults: 1,
+    expectedMinScore: 0.5,
+    maxLatencyMs: 200,
+    description: "Tests exact keyword match"
+  },
+  {
+    id: "mem-005",
+    name: "Keyword: MCP Reference",
+    query: "mcp:opus67",
+    type: "keyword",
+    expectedMinResults: 1,
+    expectedMinScore: 0.4,
+    maxLatencyMs: 200,
+    description: "Tests MCP keyword lookup"
+  },
+  // === MULTI-HOP QUERIES ===
+  {
+    id: "mem-006",
+    name: "Multi-Hop: Causal Chain",
+    query: "Why was the unified memory system created?",
+    type: "multi-hop",
+    expectedMinResults: 2,
+    expectedMinScore: 0.3,
+    expectedSources: ["hmlr", "graphiti"],
+    maxLatencyMs: 1e3,
+    description: "Tests causal reasoning across facts"
+  },
+  {
+    id: "mem-007",
+    name: "Multi-Hop: Evolution",
+    query: "How did the context system evolve?",
+    type: "multi-hop",
+    expectedMinResults: 2,
+    expectedMinScore: 0.3,
+    maxLatencyMs: 1e3,
+    description: "Tests temporal evolution queries"
+  },
+  {
+    id: "mem-008",
+    name: "Multi-Hop: Dependencies",
+    query: "What led to the decision to use TypeScript for HMLR?",
+    type: "multi-hop",
+    expectedMinResults: 1,
+    expectedMinScore: 0.2,
+    maxLatencyMs: 1200,
+    description: "Tests decision chain reasoning"
+  },
+  // === TEMPORAL QUERIES ===
+  {
+    id: "mem-009",
+    name: "Temporal: Recent",
+    query: "What happened in the last session?",
+    type: "temporal",
+    expectedMinResults: 1,
+    expectedMinScore: 0.3,
+    expectedSources: ["markdown", "graphiti"],
+    maxLatencyMs: 400,
+    description: "Tests recent temporal queries"
+  },
+  // === GRAPH QUERIES ===
+  {
+    id: "mem-010",
+    name: "Graph: Related Concepts",
+    query: "What is related to the memory adapter pattern?",
+    type: "graph",
+    expectedMinResults: 2,
+    expectedMinScore: 0.3,
+    maxLatencyMs: 600,
+    description: "Tests graph relationship traversal"
+  },
+  // === STRESS TESTS ===
+  {
+    id: "mem-011",
+    name: "Stress: Complex Query",
+    query: "Explain how the unified memory system connects GraphitiMemory, LearningStore, and MarkdownLoader to provide cross-source context with multi-hop reasoning capabilities",
+    type: "semantic",
+    expectedMinResults: 3,
+    expectedMinScore: 0.3,
+    maxLatencyMs: 800,
+    description: "Tests complex multi-concept query"
+  },
+  {
+    id: "mem-012",
+    name: "Stress: Empty Query",
+    query: "",
+    type: "semantic",
+    expectedMinResults: 0,
+    expectedMinScore: 0,
+    maxLatencyMs: 100,
+    description: "Tests handling of empty queries"
+  }
+];
+var MemoryBenchmarkRunner = class {
+  memory = null;
+  /**
+   * Initialize memory for benchmarking
+   */
+  async initialize() {
+    console.log("[MemoryBenchmark] Initializing unified memory...");
+    this.memory = await createUnifiedMemory({
+      enableHMLR: true,
+      enableNeo4j: true,
+      cacheEnabled: false
+      // Disable cache for accurate benchmarks
+    });
+    console.log("[MemoryBenchmark] Memory initialized");
+  }
+  /**
+   * Run a single test case
+   */
+  async runTest(testCase) {
+    if (!this.memory) {
+      throw new Error("Memory not initialized. Call initialize() first.");
+    }
+    const startTime = Date.now();
+    try {
+      const results = await this.memory.query({
+        query: testCase.query,
+        type: testCase.type,
+        limit: 20,
+        minScore: 0.1
+      });
+      const latencyMs = Date.now() - startTime;
+      const sourceBreakdown = {
+        graphiti: 0,
+        learning: 0,
+        sqlite: 0,
+        context: 0,
+        markdown: 0,
+        session: 0,
+        "claude-mem": 0,
+        hmlr: 0
+      };
+      for (const result of results) {
+        sourceBreakdown[result.source]++;
+      }
+      const avgScore = results.length > 0 ? results.reduce((sum, r) => sum + r.score, 0) / results.length : 0;
+      const tokenEstimate = Math.ceil(
+        results.reduce((sum, r) => sum + r.content.length, 0) / 4
+      );
+      let passed = true;
+      const notes = [];
+      if (results.length < testCase.expectedMinResults) {
+        passed = false;
+        notes.push(
+          `Results: ${results.length} < expected ${testCase.expectedMinResults}`
+        );
+      }
+      if (avgScore < testCase.expectedMinScore && results.length > 0) {
+        passed = false;
+        notes.push(
+          `Avg score: ${avgScore.toFixed(2)} < expected ${testCase.expectedMinScore}`
+        );
+      }
+      if (latencyMs > testCase.maxLatencyMs) {
+        passed = false;
+        notes.push(`Latency: ${latencyMs}ms > max ${testCase.maxLatencyMs}ms`);
+      }
+      if (testCase.expectedSources) {
+        for (const source of testCase.expectedSources) {
+          if (sourceBreakdown[source] === 0) {
+            passed = false;
+            notes.push(`Missing expected source: ${source}`);
+          }
+        }
+      }
+      return {
+        testName: testCase.name,
+        queryType: testCase.type ?? "semantic",
+        latencyMs,
+        resultCount: results.length,
+        avgScore,
+        sourceBreakdown,
+        tokenEstimate,
+        passed,
+        notes: notes.length > 0 ? notes.join("; ") : void 0
+      };
+    } catch (error) {
+      return {
+        testName: testCase.name,
+        queryType: testCase.type ?? "semantic",
+        latencyMs: Date.now() - startTime,
+        resultCount: 0,
+        avgScore: 0,
+        sourceBreakdown: {
+          graphiti: 0,
+          learning: 0,
+          sqlite: 0,
+          context: 0,
+          markdown: 0,
+          session: 0,
+          "claude-mem": 0,
+          hmlr: 0
+        },
+        tokenEstimate: 0,
+        passed: false,
+        notes: `Error: ${error}`
+      };
+    }
+  }
+  /**
+   * Run all test cases
+   */
+  async runAll(testCases = MEMORY_TEST_CASES) {
+    if (!this.memory) {
+      await this.initialize();
+    }
+    console.log(`[MemoryBenchmark] Running ${testCases.length} tests...`);
+    const results = [];
+    for (const testCase of testCases) {
+      console.log(`  Testing: ${testCase.name}...`);
+      const result = await this.runTest(testCase);
+      results.push(result);
+      console.log(
+        `    ${result.passed ? "PASS" : "FAIL"} - ${result.latencyMs}ms, ${result.resultCount} results, score=${result.avgScore.toFixed(2)}`
+      );
+    }
+    const passed = results.filter((r) => r.passed).length;
+    const avgLatencyMs = results.reduce((sum, r) => sum + r.latencyMs, 0) / results.length;
+    const avgResultCount = results.reduce((sum, r) => sum + r.resultCount, 0) / results.length;
+    const avgScore = results.filter((r) => r.resultCount > 0).reduce((sum, r) => sum + r.avgScore, 0) / results.filter((r) => r.resultCount > 0).length;
+    const memoryStats = this.memory ? await this.memory.getStats() : null;
+    return {
+      name: "OPUS 67 Memory Benchmark Suite",
+      timestamp: /* @__PURE__ */ new Date(),
+      results,
+      summary: {
+        totalTests: results.length,
+        passed,
+        failed: results.length - passed,
+        avgLatencyMs: Math.round(avgLatencyMs),
+        avgResultCount: Math.round(avgResultCount * 10) / 10,
+        avgScore: Math.round(avgScore * 100) / 100
+      },
+      memoryStats
+    };
+  }
+  /**
+   * Format results as markdown
+   */
+  formatResults(suite) {
+    let output = `# ${suite.name}
+
+`;
+    output += `**Date:** ${suite.timestamp.toISOString()}
+
+`;
+    output += `## Summary
+
+`;
+    output += `| Metric | Value |
+`;
+    output += `|--------|-------|
+`;
+    output += `| Total Tests | ${suite.summary.totalTests} |
+`;
+    output += `| Passed | ${suite.summary.passed} (${Math.round(suite.summary.passed / suite.summary.totalTests * 100)}%) |
+`;
+    output += `| Failed | ${suite.summary.failed} |
+`;
+    output += `| Avg Latency | ${suite.summary.avgLatencyMs}ms |
+`;
+    output += `| Avg Results | ${suite.summary.avgResultCount} |
+`;
+    output += `| Avg Score | ${suite.summary.avgScore} |
+
+`;
+    if (suite.memoryStats) {
+      output += `## Memory Stats
+
+`;
+      output += `| Source | Available | Count |
+`;
+      output += `|--------|-----------|-------|
+`;
+      for (const [source, stats] of Object.entries(suite.memoryStats.sources)) {
+        if (stats.available) {
+          output += `| ${source} | YES | ${stats.count} |
+`;
+        }
+      }
+      output += `| **Total** | - | **${suite.memoryStats.totalMemories}** |
+
+`;
+      output += `**HMLR:** ${suite.memoryStats.backends.hmlr ? "ENABLED" : "disabled"}
+
+`;
+    }
+    output += `## Detailed Results
+
+`;
+    output += `| Test | Type | Latency | Results | Score | Status |
+`;
+    output += `|------|------|---------|---------|-------|--------|
+`;
+    for (const result of suite.results) {
+      output += `| ${result.testName} | ${result.queryType} | ${result.latencyMs}ms | ${result.resultCount} | ${result.avgScore.toFixed(2)} | ${result.passed ? "PASS" : "FAIL"} |
+`;
+    }
+    const failed = suite.results.filter((r) => !r.passed);
+    if (failed.length > 0) {
+      output += `
+## Failed Tests
+
+`;
+      for (const result of failed) {
+        output += `### ${result.testName}
+`;
+        output += `- **Type:** ${result.queryType}
+`;
+        output += `- **Notes:** ${result.notes}
+
+`;
+      }
+    }
+    return output;
+  }
+  /**
+   * Shutdown memory
+   */
+  async shutdown() {
+    if (this.memory) {
+      await this.memory.shutdown();
+      this.memory = null;
+    }
+  }
+};
+async function runMemoryBenchmark() {
+  const runner = new MemoryBenchmarkRunner();
+  try {
+    await runner.initialize();
+    const suite = await runner.runAll();
+    console.log("\n" + "=".repeat(60));
+    console.log("MEMORY BENCHMARK RESULTS");
+    console.log("=".repeat(60));
+    console.log(`Total: ${suite.summary.totalTests} tests`);
+    console.log(
+      `Passed: ${suite.summary.passed} (${Math.round(suite.summary.passed / suite.summary.totalTests * 100)}%)`
+    );
+    console.log(`Avg Latency: ${suite.summary.avgLatencyMs}ms`);
+    console.log(`Avg Score: ${suite.summary.avgScore}`);
+    if (suite.summary.failed > 0) {
+      console.log(`
+Failed tests:`);
+      for (const result of suite.results.filter((r) => !r.passed)) {
+        console.log(`  - ${result.testName}: ${result.notes}`);
+      }
+    }
+    return suite;
+  } finally {
+    await runner.shutdown();
+  }
+}
+if (import.meta.url === `file://${process.argv[1]}`) {
+  runMemoryBenchmark().then((suite) => {
+    const runner = new MemoryBenchmarkRunner();
+    console.log("\n" + runner.formatResults(suite));
+  }).catch((error) => {
+    console.error("Benchmark failed:", error);
+    process.exit(1);
+  });
+}
 var __dirname2 = dirname(fileURLToPath(import.meta.url));
 var OPUS_45_CACHE_PRICING = {
   input: 3,
@@ -4229,7 +4414,7 @@ ${request.userContext}`,
 function createPromptCache(config) {
   return new PromptCacheManager(config);
 }
-var DEFAULT_CONFIG7 = {
+var DEFAULT_CONFIG6 = {
   maxFiles: 500,
   enableAutoSummary: true,
   enableRelationshipTracking: true,
@@ -4244,7 +4429,7 @@ var FileContextManager = class extends EventEmitter {
   sessionFiles = /* @__PURE__ */ new Set();
   constructor(config = {}) {
     super();
-    this.config = { ...DEFAULT_CONFIG7, ...config };
+    this.config = { ...DEFAULT_CONFIG6, ...config };
     this.sessionStart = /* @__PURE__ */ new Date();
   }
   // =========================================================================
@@ -4783,7 +4968,7 @@ function createFileContext(config) {
 }
 
 // src/brain/brain-runtime.ts
-var DEFAULT_CONFIG8 = {
+var DEFAULT_CONFIG7 = {
   enableRouter: true,
   enableCouncil: true,
   enableMemory: true,
@@ -4825,7 +5010,7 @@ var BrainRuntime = class extends EventEmitter {
   // v4.0
   constructor(config) {
     super();
-    this.config = { ...DEFAULT_CONFIG8, ...config };
+    this.config = { ...DEFAULT_CONFIG7, ...config };
     this.currentMode = this.config.defaultMode;
     this.router = router;
     this.council = council;
@@ -5636,13 +5821,13 @@ function createBrainAPI(brainInstance) {
 var brainAPI = new BrainAPI();
 
 // src/brain/server.ts
-var DEFAULT_CONFIG9 = {
+var DEFAULT_CONFIG8 = {
   port: parseInt(process.env.PORT ?? "3100"),
   host: process.env.HOST ?? "0.0.0.0",
   corsOrigin: process.env.CORS_ORIGIN ?? "*"
 };
 async function createBrainServer(config) {
-  const serverConfig = { ...DEFAULT_CONFIG9, ...config };
+  const serverConfig = { ...DEFAULT_CONFIG8, ...config };
   const api = createBrainAPI();
   const fastify = Fastify({
     logger: {
@@ -5852,7 +6037,7 @@ async function createBrainServer(config) {
   return fastify;
 }
 async function startBrainServer(config) {
-  const serverConfig = { ...DEFAULT_CONFIG9, ...config };
+  const serverConfig = { ...DEFAULT_CONFIG8, ...config };
   const fastify = await createBrainServer(config);
   try {
     await fastify.listen({ port: serverConfig.port, host: serverConfig.host });

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { SkillLoader, MCPHub, AutonomyEngine } from './chunk-64IVSL5H.js';
 import { ContextIndexer } from './chunk-XVOLIGJS.js';
+import { createUnifiedMemory } from './chunk-CHIT2KIS.js';
+import './chunk-2BMLDUKW.js';
 import { generateBootScreen } from './chunk-KRJAO3QU.js';
 import './chunk-WHBX6V2T.js';
 import { VERSION } from './chunk-IEE3QXBQ.js';
@@ -23,6 +25,7 @@ var OPUS67 = class extends EventEmitter {
   skills;
   mcp;
   autonomy;
+  unifiedMemory = null;
   theDoorPrompt = "";
   isReady = false;
   constructor(config) {
@@ -35,27 +38,61 @@ var OPUS67 = class extends EventEmitter {
   }
   /**
    * Boot sequence - initialize all subsystems
+   * NOW WITH UNIFIED MEMORY!
    */
   async boot() {
     this.emit("boot:start");
     try {
       this.updateStatus("init", 0, "Loading THE DOOR orchestrator...");
       await this.loadTheDoor();
-      this.updateStatus("context", 20, "Indexing project context...");
+      this.updateStatus("memory", 15, "Initializing unified memory system...");
+      await this.initializeUnifiedMemory();
+      this.updateStatus("context", 30, "Indexing project context...");
       await this.context.index(this.config.projectRoot);
-      this.updateStatus("skills", 40, "Loading skills registry...");
+      this.updateStatus("skills", 50, "Loading skills registry...");
       await this.skills.loadRegistry();
-      this.updateStatus("mcp", 60, "Connecting MCP integrations...");
+      this.updateStatus("mcp", 70, "Connecting MCP integrations...");
       await this.mcp.connectAll();
-      this.updateStatus("autonomy", 80, "Initializing autonomy engine...");
+      this.updateStatus("autonomy", 85, "Initializing autonomy engine...");
       await this.autonomy.initialize();
-      this.updateStatus("ready", 100, "THE DOOR IS OPEN. OPUS 67 ONLINE.");
+      this.updateStatus(
+        "ready",
+        100,
+        "THE DOOR IS OPEN. OPUS 67 ONLINE. MEMORY UNIFIED."
+      );
       this.isReady = true;
       this.emit("boot:complete");
     } catch (error) {
       this.updateStatus("error", 0, `Boot failed: ${error}`);
       this.emit("boot:error", error);
       throw error;
+    }
+  }
+  /**
+   * Initialize the unified memory system
+   * Connects: GraphitiMemory, LearningStore, MarkdownMemory, HMLR
+   */
+  async initializeUnifiedMemory() {
+    try {
+      this.unifiedMemory = await createUnifiedMemory({
+        projectRoot: this.config.projectRoot,
+        enableHMLR: true,
+        enableNeo4j: true,
+        // Will auto-fallback to local if unavailable
+        enableSQLite: true,
+        enableClaudeMem: false,
+        // Future
+        maxContextTokens: 4e3,
+        maxResults: 10,
+        maxHops: 3
+      });
+      const stats = await this.unifiedMemory.getStats();
+      this.emit("memory:ready", stats);
+      console.log(
+        `[OPUS67] Unified Memory: ${stats.totalMemories} memories across ${Object.entries(stats.sources).filter(([, s]) => s.available).length} sources`
+      );
+    } catch (error) {
+      console.warn("[OPUS67] Unified memory init failed (non-fatal):", error);
     }
   }
   /**
@@ -168,6 +205,50 @@ var OPUS67 = class extends EventEmitter {
   get connectedMCPs() {
     return this.mcp.getConnected();
   }
+  /**
+   * Get unified memory instance
+   */
+  get memory() {
+    return this.unifiedMemory;
+  }
+  /**
+   * Get memory stats
+   */
+  async getMemoryStats() {
+    if (!this.unifiedMemory) return null;
+    return this.unifiedMemory.getStats();
+  }
+  /**
+   * Query unified memory
+   */
+  async queryMemory(query, limit = 10) {
+    if (!this.unifiedMemory) {
+      console.warn("[OPUS67] Unified memory not available");
+      return [];
+    }
+    const results = await this.unifiedMemory.query({ query, limit });
+    this.emit("memory:query", query, results.length);
+    return results;
+  }
+  /**
+   * Get context from unified memory for a topic
+   */
+  async getMemoryContext(topic, maxTokens = 4e3) {
+    if (!this.unifiedMemory) {
+      return { results: [], sources: {}, tokenEstimate: 0, query: topic };
+    }
+    return this.unifiedMemory.getContext(topic, maxTokens);
+  }
+  /**
+   * Perform multi-hop reasoning query
+   */
+  async multiHopQuery(query, maxHops = 3) {
+    if (!this.unifiedMemory) {
+      console.warn("[OPUS67] Unified memory not available for multi-hop");
+      return [];
+    }
+    return this.unifiedMemory.multiHopQuery(query, maxHops);
+  }
 };
 async function createOPUS67(projectRoot) {
   const config = {
@@ -193,14 +274,27 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557
 \u2551                        OPUS 67                                 \u2551
 \u2551              Self-Evolving AI Runtime                          \u2551
+\u2551                   UNIFIED MEMORY                               \u2551
 \u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D
   `);
-  createOPUS67(projectRoot).then((opus) => {
+  createOPUS67(projectRoot).then(async (opus) => {
     console.log("\n\u2705 OPUS 67 initialized successfully");
-    console.log(`   Context: ${opus.contextStats.totalTokens} tokens indexed`);
+    console.log(
+      `   Context: ${opus.contextStats.totalTokens} tokens indexed`
+    );
     console.log(`   Skills: ${opus.loadedSkills.length} loaded`);
     console.log(`   MCPs: ${opus.connectedMCPs.length} connected`);
-    console.log("\n\u{1F6AA} THE DOOR IS OPEN\n");
+    const memStats = await opus.getMemoryStats();
+    if (memStats) {
+      const sources = Object.entries(memStats.sources).filter(([, s]) => s.available).map(([name, s]) => `${name}(${s.count})`);
+      console.log(
+        `   Memory: ${memStats.totalMemories} total [${sources.join(", ")}]`
+      );
+      console.log(
+        `   HMLR: ${memStats.backends.hmlr ? "ENABLED" : "disabled"}`
+      );
+    }
+    console.log("\n\u{1F6AA} THE DOOR IS OPEN. MEMORY UNIFIED.\n");
   }).catch((error) => {
     console.error("\n\u274C OPUS 67 boot failed:", error.message);
     process.exit(1);

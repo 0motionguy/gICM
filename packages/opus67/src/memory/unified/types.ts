@@ -62,6 +62,8 @@ export interface UnifiedResult {
     hops?: number; // For multi-hop results (0 = direct match)
     reasoning?: string[]; // For HMLR results
     originalNode?: MemoryNode; // Reference to source node
+    // Allow additional properties for source-specific metadata
+    [key: string]: unknown;
   };
 }
 

@@ -99,6 +99,7 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
 
   /**
    * Boot sequence - initialize all subsystems
+   * NOW WITH UNIFIED MEMORY!
    */
   async boot(): Promise<void> {
     this.emit("boot:start");
@@ -108,30 +109,69 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
       this.updateStatus("init", 0, "Loading THE DOOR orchestrator...");
       await this.loadTheDoor();
 
-      // Phase 2: Index context
-      this.updateStatus("context", 20, "Indexing project context...");
+      // Phase 2: Initialize UNIFIED MEMORY (NEW!)
+      this.updateStatus("memory", 15, "Initializing unified memory system...");
+      await this.initializeUnifiedMemory();
+
+      // Phase 3: Index context
+      this.updateStatus("context", 30, "Indexing project context...");
       await this.context.index(this.config.projectRoot);
 
-      // Phase 3: Load skills registry
-      this.updateStatus("skills", 40, "Loading skills registry...");
+      // Phase 4: Load skills registry
+      this.updateStatus("skills", 50, "Loading skills registry...");
       await this.skills.loadRegistry();
 
-      // Phase 4: Connect MCPs
-      this.updateStatus("mcp", 60, "Connecting MCP integrations...");
+      // Phase 5: Connect MCPs
+      this.updateStatus("mcp", 70, "Connecting MCP integrations...");
       await this.mcp.connectAll();
 
-      // Phase 5: Initialize autonomy
-      this.updateStatus("autonomy", 80, "Initializing autonomy engine...");
+      // Phase 6: Initialize autonomy
+      this.updateStatus("autonomy", 85, "Initializing autonomy engine...");
       await this.autonomy.initialize();
 
-      // Phase 6: Ready
-      this.updateStatus("ready", 100, "THE DOOR IS OPEN. OPUS 67 ONLINE.");
+      // Phase 7: Ready
+      this.updateStatus(
+        "ready",
+        100,
+        "THE DOOR IS OPEN. OPUS 67 ONLINE. MEMORY UNIFIED.",
+      );
       this.isReady = true;
       this.emit("boot:complete");
     } catch (error) {
       this.updateStatus("error", 0, `Boot failed: ${error}`);
       this.emit("boot:error", error as Error);
       throw error;
+    }
+  }
+
+  /**
+   * Initialize the unified memory system
+   * Connects: GraphitiMemory, LearningStore, MarkdownMemory, HMLR
+   */
+  private async initializeUnifiedMemory(): Promise<void> {
+    try {
+      this.unifiedMemory = await createUnifiedMemory({
+        projectRoot: this.config.projectRoot,
+        enableHMLR: true,
+        enableNeo4j: true, // Will auto-fallback to local if unavailable
+        enableSQLite: true,
+        enableClaudeMem: false, // Future
+        maxContextTokens: 4000,
+        maxResults: 10,
+        maxHops: 3,
+      });
+
+      const stats = await this.unifiedMemory.getStats();
+      this.emit("memory:ready", stats);
+
+      console.log(
+        `[OPUS67] Unified Memory: ${stats.totalMemories} memories across ${
+          Object.entries(stats.sources).filter(([, s]) => s.available).length
+        } sources`,
+      );
+    } catch (error) {
+      console.warn("[OPUS67] Unified memory init failed (non-fatal):", error);
+      // Non-fatal - continue boot without unified memory
     }
   }
 
@@ -293,6 +333,55 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
   get connectedMCPs() {
     return this.mcp.getConnected();
   }
+
+  /**
+   * Get unified memory instance
+   */
+  get memory(): UnifiedMemory | null {
+    return this.unifiedMemory;
+  }
+
+  /**
+   * Get memory stats
+   */
+  async getMemoryStats(): Promise<MemoryStats | null> {
+    if (!this.unifiedMemory) return null;
+    return this.unifiedMemory.getStats();
+  }
+
+  /**
+   * Query unified memory
+   */
+  async queryMemory(query: string, limit = 10) {
+    if (!this.unifiedMemory) {
+      console.warn("[OPUS67] Unified memory not available");
+      return [];
+    }
+    const results = await this.unifiedMemory.query({ query, limit });
+    this.emit("memory:query", query, results.length);
+    return results;
+  }
+
+  /**
+   * Get context from unified memory for a topic
+   */
+  async getMemoryContext(topic: string, maxTokens = 4000) {
+    if (!this.unifiedMemory) {
+      return { results: [], sources: {}, tokenEstimate: 0, query: topic };
+    }
+    return this.unifiedMemory.getContext(topic, maxTokens);
+  }
+
+  /**
+   * Perform multi-hop reasoning query
+   */
+  async multiHopQuery(query: string, maxHops = 3) {
+    if (!this.unifiedMemory) {
+      console.warn("[OPUS67] Unified memory not available for multi-hop");
+      return [];
+    }
+    return this.unifiedMemory.multiHopQuery(query, maxHops);
+  }
 }
 
 // =============================================================================
@@ -368,18 +457,34 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 ╔═══════════════════════════════════════════════════════════════╗
 ║                        OPUS 67                                 ║
 ║              Self-Evolving AI Runtime                          ║
+║                   UNIFIED MEMORY                               ║
 ╚═══════════════════════════════════════════════════════════════╝
   `);
 
   createOPUS67(projectRoot)
-    .then((opus) => {
+    .then(async (opus) => {
       console.log("\n✅ OPUS 67 initialized successfully");
       console.log(
         `   Context: ${opus.contextStats.totalTokens} tokens indexed`,
       );
       console.log(`   Skills: ${opus.loadedSkills.length} loaded`);
       console.log(`   MCPs: ${opus.connectedMCPs.length} connected`);
-      console.log("\n🚪 THE DOOR IS OPEN\n");
+
+      // Display memory stats
+      const memStats = await opus.getMemoryStats();
+      if (memStats) {
+        const sources = Object.entries(memStats.sources)
+          .filter(([, s]) => s.available)
+          .map(([name, s]) => `${name}(${s.count})`);
+        console.log(
+          `   Memory: ${memStats.totalMemories} total [${sources.join(", ")}]`,
+        );
+        console.log(
+          `   HMLR: ${memStats.backends.hmlr ? "ENABLED" : "disabled"}`,
+        );
+      }
+
+      console.log("\n🚪 THE DOOR IS OPEN. MEMORY UNIFIED.\n");
     })
     .catch((error) => {
       console.error("\n❌ OPUS 67 boot failed:", error.message);

@@ -12,8 +12,8 @@ export {
   type LatencyMetrics,
   type ThroughputMetrics,
   type QualityMetrics,
-  type MetricsSnapshot
-} from './metrics-collector.js';
+  type MetricsSnapshot,
+} from "./metrics-collector.js";
 
 export {
   TokenTracker,
@@ -22,8 +22,8 @@ export {
   type ModelName,
   type TokenUsage,
   type AgentTokenRecord,
-  type SessionTokenSummary
-} from './token-tracker.js';
+  type SessionTokenSummary,
+} from "./token-tracker.js";
 
 export {
   LatencyProfiler,
@@ -31,8 +31,8 @@ export {
   timed,
   type TimingEntry,
   type TraceSpan,
-  type LatencyStats
-} from './latency-profiler.js';
+  type LatencyStats,
+} from "./latency-profiler.js";
 
 export {
   AgentSpawner,
@@ -40,8 +40,8 @@ export {
   createSpawner,
   type AgentTask,
   type AgentResult,
-  type SpawnOptions
-} from './agent-spawner.js';
+  type SpawnOptions,
+} from "./agent-spawner.js";
 
 export {
   StressTest,
@@ -52,8 +52,8 @@ export {
   TEST_PROMPTS,
   type StressLevel,
   type StressTestResult,
-  type StressTestSuite
-} from './stress-test.js';
+  type StressTestSuite,
+} from "./stress-test.js";
 
 export {
   ComparisonRunner,
@@ -64,5 +64,15 @@ export {
   type ComparisonTask,
   type RuntimeResult,
   type ComparisonResult,
-  type ComparisonSuite
-} from './comparison-runner.js';
+  type ComparisonSuite,
+} from "./comparison-runner.js";
+
+// NEW: Memory Benchmark Suite
+export {
+  MemoryBenchmarkRunner,
+  runMemoryBenchmark,
+  MEMORY_TEST_CASES,
+  type MemoryBenchmarkResult,
+  type MemoryBenchmarkSuite,
+  type MemoryTestCase,
+} from "./memory-suite.js";

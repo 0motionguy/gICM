@@ -259,7 +259,10 @@ export class MarkdownLoader implements MemoryAdapter {
 
       // Metadata match
       for (const [key, value] of Object.entries(entry.metadata)) {
-        if (value.toLowerCase().includes(lowerQuery)) {
+        if (
+          typeof value === "string" &&
+          value.toLowerCase().includes(lowerQuery)
+        ) {
           score += 0.2;
         }
       }

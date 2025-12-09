@@ -15,7 +15,7 @@ import type {
   UnifiedQuery,
   WritePayload,
 } from "./types.js";
-import type { Learning } from "../../evolution/types.js";
+import type { Learning, LearningType } from "../../evolution/types.js";
 import {
   LearningStore,
   learningStore,
@@ -217,7 +217,7 @@ export class LearningSyncBridge implements MemoryAdapter {
 
     try {
       const learning = this.learningStore.create({
-        type: (payload.metadata?.learningType as string) ?? "pattern",
+        type: (payload.metadata?.learningType as LearningType) ?? "pattern",
         insight: payload.content,
         confidence: (payload.metadata?.confidence as number) ?? 0.7,
         evidence: [],
