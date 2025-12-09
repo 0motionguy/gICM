@@ -30,4 +30,11 @@ export {
 
 // Adapters
 export { HMLRAdapter, createHMLRAdapter } from "./adapters/hmlr-adapter.js";
-// Future: export { ClaudeMemAdapter, createClaudeMemAdapter } from "./adapters/claude-mem-adapter.js";
+export {
+  SessionStore,
+  createSessionStore,
+  getSessionStore,
+  type SessionFact,
+  type SessionState,
+  type SessionStoreConfig,
+} from "./adapters/session-store.js";

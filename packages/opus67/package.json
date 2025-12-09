@@ -20,6 +20,7 @@
     "benchmark": "node --loader ts-node/esm src/tests/llm-benchmark/runner.ts",
     "benchmark:quick": "node --loader ts-node/esm src/tests/llm-benchmark/runner.ts --quick",
     "benchmark:full": "node --loader ts-node/esm src/tests/llm-benchmark/runner.ts --full",
+    "benchmark:memory": "npx tsx src/benchmark/run-memory.ts",
     "lint": "eslint src --ext .ts"
   },
   "keywords": [

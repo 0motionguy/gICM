@@ -3,9 +3,9 @@
 # Total Connections: 82 (Target Achieved!)
 
 meta:
-  version: "5.1.0"
-  total_connections: 82
-  target_connections: 82
+  version: "6.1.0"
+  total_connections: 83
+  target_connections: 83
   auto_connect_enabled: true
   connection_timeout_ms: 5000
   retry_attempts: 3
@@ -734,6 +734,29 @@ persistence:
     auto_connect_when:
       keywords: [local db, sqlite, store, persist]
       skills: [sql-database]
+
+  opus67_memory:
+    name: OPUS 67 Unified Memory
+    type: internal
+    category: persistence
+    priority: 0
+    description: OPUS 67 unified memory with multi-hop reasoning (4 adapters, 7 sources)
+    connection:
+      type: internal
+      command: opus67-memory
+    capabilities:
+      - queryMemory
+      - multiHopQuery
+      - writeMemory
+      - semantic_search
+      - keyword_search
+      - multi_hop_reasoning
+      - fact_storage
+      - episode_storage
+      - learning_sync
+    auto_connect_when:
+      keywords: [remember, recall, context, what did, previous, learned, decided]
+      skills: [all]
 
   screenpipe:
     name: ScreenPipe
