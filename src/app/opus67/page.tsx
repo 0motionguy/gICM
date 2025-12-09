@@ -10,7 +10,6 @@ import {
   Terminal,
   Sparkles,
   Brain,
-  Database,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TerminalDisplay } from "@/components/ui/terminal-display";
@@ -20,14 +19,12 @@ import {
   BENCHMARK_METRICS,
 } from "@/lib/benchmark-data";
 import { toast } from "sonner";
-
-// Memory stats (static for now - will be dynamic later)
-const MEMORY_STATS = {
-  sources: 5,
-  totalMemories: 0,
-  sessions: 0,
-  hmlrEnabled: true,
-};
+import { ArchitectureCard } from "@/components/ui/architecture-card";
+import {
+  OPUS67_ARCHITECTURE_ASCII,
+  MEMORY_ARCHITECTURE_ASCII,
+  USP_ASCII,
+} from "@/lib/architecture-ascii";
 
 export default function Opus67BenchmarkPage() {
   const [copied, setCopied] = useState(false);
@@ -115,63 +112,29 @@ export default function Opus67BenchmarkPage() {
           </div>
         </div>
 
-        {/* Memory System Stats */}
-        <div className="mb-8 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-          <div className="mb-4 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-purple-400" />
-            <h2 className="text-lg font-semibold text-white">
-              Unified Memory System
-            </h2>
-            <span className="rounded bg-purple-500/20 px-2 py-0.5 text-xs text-purple-400">
-              v6.1.0
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            <div className="rounded-lg border border-zinc-800 bg-zinc-900 p-3">
-              <div className="flex items-center gap-2">
-                <Database className="h-4 w-4 text-[#00F0FF]" />
-                <span className="text-xs text-zinc-500">Sources</span>
-              </div>
-              <p className="mt-1 text-2xl font-bold text-white">
-                {MEMORY_STATS.sources}
-              </p>
-            </div>
-            <div className="rounded-lg border border-zinc-800 bg-zinc-900 p-3">
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-yellow-400" />
-                <span className="text-xs text-zinc-500">Memories</span>
-              </div>
-              <p className="mt-1 text-2xl font-bold text-white">
-                {MEMORY_STATS.totalMemories}
-              </p>
-            </div>
-            <div className="rounded-lg border border-zinc-800 bg-zinc-900 p-3">
-              <div className="flex items-center gap-2">
-                <Terminal className="h-4 w-4 text-green-400" />
-                <span className="text-xs text-zinc-500">Sessions</span>
-              </div>
-              <p className="mt-1 text-2xl font-bold text-white">
-                {MEMORY_STATS.sessions}
-              </p>
-            </div>
-            <div className="rounded-lg border border-zinc-800 bg-zinc-900 p-3">
-              <div className="flex items-center gap-2">
-                <Brain className="h-4 w-4 text-purple-400" />
-                <span className="text-xs text-zinc-500">HMLR</span>
-              </div>
-              <p className="mt-1 text-2xl font-bold text-white">
-                {MEMORY_STATS.hmlrEnabled ? (
-                  <span className="text-green-400">ON</span>
-                ) : (
-                  <span className="text-zinc-500">OFF</span>
-                )}
-              </p>
-            </div>
-          </div>
-          <p className="mt-4 text-xs text-zinc-500">
-            Graphiti • Learning • Markdown • HMLR • Session adapters providing
-            cross-session memory with multi-hop reasoning
-          </p>
+        {/* Architecture Cards */}
+        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <ArchitectureCard
+            title="Architecture"
+            icon={<Zap className="h-6 w-6" />}
+            iconColor="text-[#00F0FF]"
+            description="141 Skills • 83 MCPs • 30 Modes • 108 Agents"
+            asciiContent={OPUS67_ARCHITECTURE_ASCII}
+          />
+          <ArchitectureCard
+            title="Memory"
+            icon={<Brain className="h-6 w-6" />}
+            iconColor="text-purple-400"
+            description="5 Adapters • Cross-session • Multi-hop reasoning"
+            asciiContent={MEMORY_ARCHITECTURE_ASCII}
+          />
+          <ArchitectureCard
+            title="Why OPUS 67"
+            icon={<Sparkles className="h-6 w-6" />}
+            iconColor="text-yellow-400"
+            description="One command, everything works"
+            asciiContent={USP_ASCII}
+          />
         </div>
 
         {/* Full Benchmark Display */}
