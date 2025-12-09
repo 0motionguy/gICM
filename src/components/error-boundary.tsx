@@ -13,7 +13,10 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -33,10 +36,13 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         <div className="min-h-screen bg-white flex items-center justify-center p-6">
           <div className="max-w-md w-full bg-white border border-red-200 rounded-lg p-8 text-center">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              {/* @ts-expect-error - React types conflict */}
               <AlertCircle className="w-8 h-8 text-red-600" />
             </div>
 
-            <h2 className="text-2xl font-bold text-black mb-2">Something went wrong</h2>
+            <h2 className="text-2xl font-bold text-black mb-2">
+              Something went wrong
+            </h2>
 
             <p className="text-zinc-600 mb-6">
               {this.state.error?.message || "An unexpected error occurred"}
@@ -46,11 +52,12 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
               onClick={() => window.location.reload()}
               className="bg-black text-white hover:bg-black/90"
             >
+              {/* @ts-expect-error - React types conflict */}
               <RefreshCw className="w-4 h-4 mr-2" />
               Reload Page
             </Button>
 
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {process.env.NODE_ENV === "development" && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="cursor-pointer text-sm text-zinc-500 hover:text-zinc-700">
                   Error Details (Dev Only)

@@ -18,7 +18,8 @@ function AuroraPreview() {
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         style={{
-          background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #06b6d4 75%, #3b82f6 100%)",
+          background:
+            "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #06b6d4 75%, #3b82f6 100%)",
           backgroundSize: "400% 400%",
           filter: "blur(80px)",
           opacity: 0.5,
@@ -32,7 +33,8 @@ function AuroraPreview() {
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.6) 0%, transparent 70%)",
+          background:
+            "radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.6) 0%, transparent 70%)",
           backgroundSize: "200% 200%",
           filter: "blur(60px)",
           mixBlendMode: "screen",
@@ -44,7 +46,8 @@ function AuroraPreview() {
         animate={{ opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 5, repeat: Infinity }}
         style={{
-          background: "linear-gradient(180deg, rgba(147,197,253,0.4) 0%, transparent 100%)",
+          background:
+            "linear-gradient(180deg, rgba(147,197,253,0.4) 0%, transparent 100%)",
           filter: "blur(40px)",
         }}
       />
@@ -68,10 +71,19 @@ function AuroraPreview() {
 function AnimatedGridPreview() {
   return (
     <div className="w-full h-64 rounded-xl overflow-hidden relative bg-black">
+      <style>{`
+        @keyframes gridScrollAnim {
+          0% { transform: rotateX(60deg) translateY(-50%); }
+          100% { transform: rotateX(60deg) translateY(0%); }
+        }
+        .animated-grid-bg {
+          animation: gridScrollAnim 4s linear infinite;
+        }
+      `}</style>
       {/* Perspective grid */}
       <div className="absolute inset-0" style={{ perspective: "500px" }}>
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 animated-grid-bg"
           style={{
             backgroundImage: `
               linear-gradient(to right, rgba(6, 182, 212, 0.3) 1px, transparent 1px),
@@ -80,7 +92,6 @@ function AnimatedGridPreview() {
             backgroundSize: "50px 50px",
             transform: "rotateX(60deg) translateY(-50%)",
             transformOrigin: "center top",
-            animation: "gridScroll 4s linear infinite",
           }}
         />
       </div>
@@ -88,12 +99,6 @@ function AnimatedGridPreview() {
       <div className="absolute inset-0 flex items-center justify-center">
         <span className="text-white text-xl font-bold">Animated Grid</span>
       </div>
-      <style jsx>{`
-        @keyframes gridScroll {
-          0% { transform: rotateX(60deg) translateY(-50%); }
-          100% { transform: rotateX(60deg) translateY(0%); }
-        }
-      `}</style>
     </div>
   );
 }
@@ -204,7 +209,9 @@ function GlassCardPreview() {
             <span className="text-white text-xl">✦</span>
           </div>
           <h3 className="text-white font-bold text-lg mb-2">Glass Card</h3>
-          <p className="text-zinc-400 text-sm">Hover to see the spotlight effect follow your cursor.</p>
+          <p className="text-zinc-400 text-sm">
+            Hover to see the spotlight effect follow your cursor.
+          </p>
         </div>
       </motion.div>
     </div>
@@ -222,22 +229,25 @@ function TypewriterPreview() {
 
   React.useEffect(() => {
     const word = words[currentWord];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < word.length) {
-          setDisplayText(word.slice(0, displayText.length + 1));
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (displayText.length < word.length) {
+            setDisplayText(word.slice(0, displayText.length + 1));
+          } else {
+            setTimeout(() => setIsDeleting(true), 1500);
+          }
         } else {
-          setTimeout(() => setIsDeleting(true), 1500);
+          if (displayText.length > 0) {
+            setDisplayText(word.slice(0, displayText.length - 1));
+          } else {
+            setIsDeleting(false);
+            setCurrentWord((prev) => (prev + 1) % words.length);
+          }
         }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(word.slice(0, displayText.length - 1));
-        } else {
-          setIsDeleting(false);
-          setCurrentWord((prev) => (prev + 1) % words.length);
-        }
-      }
-    }, isDeleting ? 50 : 150);
+      },
+      isDeleting ? 50 : 150,
+    );
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentWord]);
 
@@ -350,7 +360,16 @@ function FloatingDockPreview() {
 // MAGIC UI - Marquee Preview
 // ============================================================================
 function MarqueePreview() {
-  const logos = ["Vercel", "Stripe", "GitHub", "Notion", "Linear", "Figma", "Slack", "Discord"];
+  const logos = [
+    "Vercel",
+    "Stripe",
+    "GitHub",
+    "Notion",
+    "Linear",
+    "Figma",
+    "Slack",
+    "Discord",
+  ];
 
   return (
     <div className="w-full overflow-hidden py-8">
@@ -382,7 +401,8 @@ function BeamsPreview() {
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.15) 0%, transparent 60%)",
+          background:
+            "radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.15) 0%, transparent 60%)",
         }}
       />
       {/* Beam lines with blur */}
@@ -394,12 +414,19 @@ function BeamsPreview() {
             top: `${15 + i * 14}%`,
             left: 0,
             right: 0,
-            background: "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.8) 20%, rgba(236,72,153,0.8) 50%, rgba(6,182,212,0.8) 80%, transparent 100%)",
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.8) 20%, rgba(236,72,153,0.8) 50%, rgba(6,182,212,0.8) 80%, transparent 100%)",
             filter: "blur(1px)",
-            boxShadow: "0 0 10px rgba(139,92,246,0.5), 0 0 20px rgba(139,92,246,0.3)",
+            boxShadow:
+              "0 0 10px rgba(139,92,246,0.5), 0 0 20px rgba(139,92,246,0.3)",
           }}
           animate={{ x: ["-100%", "100%"] }}
-          transition={{ duration: 2.5 + i * 0.3, repeat: Infinity, ease: "linear", delay: i * 0.4 }}
+          transition={{
+            duration: 2.5 + i * 0.3,
+            repeat: Infinity,
+            ease: "linear",
+            delay: i * 0.4,
+          }}
         />
       ))}
       {/* Secondary glow beams */}
@@ -411,15 +438,23 @@ function BeamsPreview() {
             top: `${25 + i * 20}%`,
             left: 0,
             right: 0,
-            background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.5), transparent)",
+            background:
+              "linear-gradient(90deg, transparent, rgba(168,85,247,0.5), transparent)",
             filter: "blur(15px)",
           }}
           animate={{ x: ["100%", "-100%"] }}
-          transition={{ duration: 4 + i * 0.5, repeat: Infinity, ease: "linear", delay: i * 0.8 }}
+          transition={{
+            duration: 4 + i * 0.5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: i * 0.8,
+          }}
         />
       ))}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-white text-xl font-bold drop-shadow-lg">Beams Background</span>
+        <span className="text-white text-xl font-bold drop-shadow-lg">
+          Beams Background
+        </span>
       </div>
     </div>
   );
@@ -447,7 +482,10 @@ function SpotlightPreview() {
       className="w-full h-64 rounded-xl overflow-hidden relative bg-zinc-950 cursor-none"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        setPos({ x: ((e.clientX - rect.left) / rect.width) * 100, y: ((e.clientY - rect.top) / rect.height) * 100 });
+        setPos({
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100,
+        });
       }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -521,20 +559,27 @@ function MeteorsPreview() {
             rotate: "215deg",
           }}
           animate={{ y: [0, 500], opacity: [0, 1, 1, 0] }}
-          transition={{ duration: 1.2 + Math.random() * 0.5, repeat: Infinity, delay: i * 0.3 + Math.random() * 0.5, ease: "linear" }}
+          transition={{
+            duration: 1.2 + Math.random() * 0.5,
+            repeat: Infinity,
+            delay: i * 0.3 + Math.random() * 0.5,
+            ease: "linear",
+          }}
         >
           {/* Meteor head - bright glow */}
           <div
             className="w-1 h-1 rounded-full bg-white"
             style={{
-              boxShadow: "0 0 6px 2px rgba(255,255,255,0.8), 0 0 12px 4px rgba(168,85,247,0.6)",
+              boxShadow:
+                "0 0 6px 2px rgba(255,255,255,0.8), 0 0 12px 4px rgba(168,85,247,0.6)",
             }}
           />
           {/* Meteor tail - gradient trail */}
           <div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-24"
             style={{
-              background: "linear-gradient(180deg, rgba(168,85,247,0.8) 0%, rgba(168,85,247,0.4) 30%, rgba(139,92,246,0.2) 60%, transparent 100%)",
+              background:
+                "linear-gradient(180deg, rgba(168,85,247,0.8) 0%, rgba(168,85,247,0.4) 30%, rgba(139,92,246,0.2) 60%, transparent 100%)",
               filter: "blur(1px)",
             }}
           />
@@ -542,14 +587,17 @@ function MeteorsPreview() {
           <div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-16 opacity-40"
             style={{
-              background: "linear-gradient(180deg, rgba(168,85,247,0.5) 0%, transparent 100%)",
+              background:
+                "linear-gradient(180deg, rgba(168,85,247,0.5) 0%, transparent 100%)",
               filter: "blur(4px)",
             }}
           />
         </motion.div>
       ))}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-white text-xl font-bold drop-shadow-lg">Meteors</span>
+        <span className="text-white text-xl font-bold drop-shadow-lg">
+          Meteors
+        </span>
       </div>
     </div>
   );
@@ -560,14 +608,16 @@ function MeteorsPreview() {
 // ============================================================================
 function SparklesPreview() {
   // Pre-computed sparkle positions for consistent rendering
-  const sparkles = React.useMemo(() =>
-    [...Array(25)].map((_, i) => ({
-      x: 10 + (i % 5) * 20 + Math.random() * 10,
-      y: 10 + Math.floor(i / 5) * 20 + Math.random() * 10,
-      size: 2 + Math.random() * 4,
-      delay: Math.random() * 3,
-      duration: 1.5 + Math.random() * 1,
-    })), []
+  const sparkles = React.useMemo(
+    () =>
+      [...Array(25)].map((_, i) => ({
+        x: 10 + (i % 5) * 20 + Math.random() * 10,
+        y: 10 + Math.floor(i / 5) * 20 + Math.random() * 10,
+        size: 2 + Math.random() * 4,
+        delay: Math.random() * 3,
+        duration: 1.5 + Math.random() * 1,
+      })),
+    [],
   );
 
   return (
@@ -576,7 +626,8 @@ function SparklesPreview() {
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(250,204,21,0.08) 0%, transparent 60%)",
+          background:
+            "radial-gradient(ellipse at 50% 50%, rgba(250,204,21,0.08) 0%, transparent 60%)",
         }}
       />
       {/* Sparkles with glow */}
@@ -589,7 +640,8 @@ function SparklesPreview() {
             top: `${sparkle.y}%`,
             width: sparkle.size,
             height: sparkle.size,
-            background: "radial-gradient(circle, #fef08a 0%, #facc15 50%, #eab308 100%)",
+            background:
+              "radial-gradient(circle, #fef08a 0%, #facc15 50%, #eab308 100%)",
             boxShadow: `0 0 ${sparkle.size * 2}px ${sparkle.size}px rgba(250,204,21,0.4), 0 0 ${sparkle.size * 4}px ${sparkle.size * 2}px rgba(250,204,21,0.2)`,
           }}
           animate={{
@@ -625,13 +677,18 @@ function SparklesPreview() {
           }}
         >
           <div className="w-3 h-3 relative">
-            <div className="absolute inset-0 bg-yellow-300 rounded-sm rotate-45" style={{ filter: "blur(1px)" }} />
+            <div
+              className="absolute inset-0 bg-yellow-300 rounded-sm rotate-45"
+              style={{ filter: "blur(1px)" }}
+            />
             <div className="absolute inset-0.5 bg-yellow-200 rounded-sm rotate-45" />
           </div>
         </motion.div>
       ))}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-white text-xl font-bold drop-shadow-lg">✨ Sparkles</span>
+        <span className="text-white text-xl font-bold drop-shadow-lg">
+          ✨ Sparkles
+        </span>
       </div>
     </div>
   );
@@ -646,7 +703,8 @@ function DotPatternPreview() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "radial-gradient(circle, rgba(139,92,246,0.3) 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, rgba(139,92,246,0.3) 1px, transparent 1px)",
           backgroundSize: "20px 20px",
         }}
       />
@@ -668,7 +726,8 @@ function ShimmerButtonPreview() {
         className="relative px-8 py-3 bg-gradient-to-br from-zinc-800 to-zinc-900 text-white font-bold rounded-xl overflow-hidden border border-zinc-700/50"
         whileHover={{
           scale: 1.05,
-          boxShadow: "0 0 30px rgba(139,92,246,0.4), 0 0 60px rgba(6,182,212,0.2)",
+          boxShadow:
+            "0 0 30px rgba(139,92,246,0.4), 0 0 60px rgba(6,182,212,0.2)",
           borderColor: "rgba(139,92,246,0.5)",
         }}
         whileTap={{ scale: 0.98 }}
@@ -677,7 +736,10 @@ function ShimmerButtonPreview() {
         {/* Background glow */}
         <motion.div
           className="absolute inset-0 opacity-0 group-hover:opacity-100"
-          style={{ background: "radial-gradient(circle at center, rgba(139,92,246,0.15), transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle at center, rgba(139,92,246,0.15), transparent 70%)",
+          }}
           animate={{ opacity: [0, 0.3, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -685,7 +747,8 @@ function ShimmerButtonPreview() {
         <motion.div
           className="absolute inset-0 -skew-x-12"
           style={{
-            background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
             filter: "blur(8px)",
           }}
           animate={{ x: ["-200%", "200%"] }}
@@ -694,7 +757,10 @@ function ShimmerButtonPreview() {
         {/* Sharp shimmer line */}
         <motion.div
           className="absolute inset-0 -skew-x-12"
-          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)" }}
+          style={{
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)",
+          }}
           animate={{ x: ["-200%", "200%"] }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         />
@@ -719,7 +785,8 @@ function MovingBorderPreview() {
         <motion.div
           className="absolute inset-[-100%] rounded-xl"
           style={{
-            background: "conic-gradient(from 0deg, #8b5cf6, #ec4899, #06b6d4, #8b5cf6)",
+            background:
+              "conic-gradient(from 0deg, #8b5cf6, #ec4899, #06b6d4, #8b5cf6)",
           }}
           animate={{ rotate: 360 }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -728,7 +795,8 @@ function MovingBorderPreview() {
         <motion.div
           className="absolute inset-0 rounded-xl opacity-50"
           style={{
-            background: "conic-gradient(from 0deg, #8b5cf6, #ec4899, #06b6d4, #8b5cf6)",
+            background:
+              "conic-gradient(from 0deg, #8b5cf6, #ec4899, #06b6d4, #8b5cf6)",
             filter: "blur(15px)",
           }}
           animate={{ rotate: 360 }}
@@ -780,7 +848,9 @@ function MagneticButtonPreview() {
 // Ripple Button Preview
 // ============================================================================
 function RippleButtonPreview() {
-  const [ripples, setRipples] = React.useState<{ x: number; y: number; id: number }[]>([]);
+  const [ripples, setRipples] = React.useState<
+    { x: number; y: number; id: number }[]
+  >([]);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -827,7 +897,8 @@ function GradientBorderPreview() {
         <motion.div
           className="absolute inset-0 rounded-xl"
           style={{
-            background: "linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #ec4899)",
+            background:
+              "linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #ec4899)",
             backgroundSize: "300% 100%",
           }}
           animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
@@ -837,7 +908,8 @@ function GradientBorderPreview() {
         <motion.div
           className="absolute inset-0 rounded-xl opacity-50"
           style={{
-            background: "linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #ec4899)",
+            background:
+              "linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #ec4899)",
             backgroundSize: "300% 100%",
             filter: "blur(10px)",
           }}
@@ -869,7 +941,10 @@ function Card3DPreview() {
   };
 
   return (
-    <div className="flex items-center justify-center p-8" style={{ perspective: "1000px" }}>
+    <div
+      className="flex items-center justify-center p-8"
+      style={{ perspective: "1000px" }}
+    >
       <motion.div
         className="w-48 h-32 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-4 shadow-xl"
         onMouseMove={handleMouseMove}
@@ -895,7 +970,8 @@ function HoverCardPreview() {
         whileHover={{
           y: -8,
           scale: 1.02,
-          boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(139,92,246,0.3)"
+          boxShadow:
+            "0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(139,92,246,0.3)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
@@ -903,17 +979,16 @@ function HoverCardPreview() {
         <motion.div
           className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: "linear-gradient(135deg, rgba(139,92,246,0.3), rgba(6,182,212,0.3))",
+            background:
+              "linear-gradient(135deg, rgba(139,92,246,0.3), rgba(6,182,212,0.3))",
             filter: "blur(20px)",
-            zIndex: -1
+            zIndex: -1,
           }}
         />
         <h3 className="text-white font-bold">Hover Card</h3>
         <p className="text-zinc-400 text-sm mt-2">Lift with glow</p>
         {/* Shimmer effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-        />
+        <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       </motion.div>
     </div>
   );
@@ -927,22 +1002,36 @@ function BentoGridPreview() {
     <div className="grid grid-cols-3 gap-2 p-4 w-full max-w-xs">
       <motion.div
         className="col-span-2 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg cursor-pointer"
-        whileHover={{ scale: 1.03, boxShadow: "0 10px 30px rgba(168,85,247,0.4)" }}
+        whileHover={{
+          scale: 1.03,
+          boxShadow: "0 10px 30px rgba(168,85,247,0.4)",
+        }}
         transition={{ type: "spring", stiffness: 400 }}
       />
       <motion.div
         className="h-16 bg-zinc-800 rounded-lg cursor-pointer border border-zinc-700/50"
-        whileHover={{ scale: 1.05, borderColor: "rgba(139,92,246,0.5)", boxShadow: "0 0 20px rgba(139,92,246,0.2)" }}
+        whileHover={{
+          scale: 1.05,
+          borderColor: "rgba(139,92,246,0.5)",
+          boxShadow: "0 0 20px rgba(139,92,246,0.2)",
+        }}
         transition={{ type: "spring", stiffness: 400 }}
       />
       <motion.div
         className="h-16 bg-zinc-800 rounded-lg cursor-pointer border border-zinc-700/50"
-        whileHover={{ scale: 1.05, borderColor: "rgba(6,182,212,0.5)", boxShadow: "0 0 20px rgba(6,182,212,0.2)" }}
+        whileHover={{
+          scale: 1.05,
+          borderColor: "rgba(6,182,212,0.5)",
+          boxShadow: "0 0 20px rgba(6,182,212,0.2)",
+        }}
         transition={{ type: "spring", stiffness: 400 }}
       />
       <motion.div
         className="col-span-2 h-16 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg cursor-pointer"
-        whileHover={{ scale: 1.03, boxShadow: "0 10px 30px rgba(6,182,212,0.4)" }}
+        whileHover={{
+          scale: 1.03,
+          boxShadow: "0 10px 30px rgba(6,182,212,0.4)",
+        }}
         transition={{ type: "spring", stiffness: 400 }}
       />
     </div>
@@ -959,19 +1048,28 @@ function FeatureCardPreview() {
         className="w-56 bg-gradient-to-br from-zinc-900 to-zinc-950 rounded-xl p-4 border border-zinc-800/50 cursor-pointer group"
         whileHover={{
           y: -6,
-          boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(168,85,247,0.15)"
+          boxShadow:
+            "0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(168,85,247,0.15)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
         <motion.div
           className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center mb-3 shadow-lg shadow-purple-600/30"
           whileHover={{ scale: 1.1, rotate: 5 }}
-          animate={{ boxShadow: ["0 0 20px rgba(168,85,247,0.3)", "0 0 30px rgba(168,85,247,0.5)", "0 0 20px rgba(168,85,247,0.3)"] }}
+          animate={{
+            boxShadow: [
+              "0 0 20px rgba(168,85,247,0.3)",
+              "0 0 30px rgba(168,85,247,0.5)",
+              "0 0 20px rgba(168,85,247,0.3)",
+            ],
+          }}
           transition={{ boxShadow: { duration: 2, repeat: Infinity } }}
         >
           <span className="text-white text-lg">⚡</span>
         </motion.div>
-        <h3 className="text-white font-bold group-hover:text-purple-300 transition-colors">Feature</h3>
+        <h3 className="text-white font-bold group-hover:text-purple-300 transition-colors">
+          Feature
+        </h3>
         <p className="text-zinc-400 text-sm mt-1">Hover for elevation</p>
       </motion.div>
     </div>
@@ -989,7 +1087,8 @@ function PricingCardPreview() {
         whileHover={{
           y: -6,
           borderColor: "rgba(168,85,247,0.6)",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 40px rgba(168,85,247,0.2)"
+          boxShadow:
+            "0 20px 40px rgba(0,0,0,0.4), 0 0 40px rgba(168,85,247,0.2)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
@@ -1000,17 +1099,21 @@ function PricingCardPreview() {
           className="relative text-2xl font-bold text-white mt-2"
           whileHover={{ scale: 1.05 }}
         >
-          <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">$29</span>
+          <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+            $29
+          </span>
           <span className="text-sm text-zinc-400">/mo</span>
         </motion.div>
         <ul className="relative mt-3 space-y-1 text-xs text-zinc-400">
-          <li className="group-hover:text-zinc-300 transition-colors">✓ Feature one</li>
-          <li className="group-hover:text-zinc-300 transition-colors">✓ Feature two</li>
+          <li className="group-hover:text-zinc-300 transition-colors">
+            ✓ Feature one
+          </li>
+          <li className="group-hover:text-zinc-300 transition-colors">
+            ✓ Feature two
+          </li>
         </ul>
         {/* Shimmer */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
-        />
+        <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
       </motion.div>
     </div>
   );
@@ -1048,7 +1151,10 @@ function FlipWordsPreview() {
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
-    const interval = setInterval(() => setIndex((i) => (i + 1) % words.length), 2000);
+    const interval = setInterval(
+      () => setIndex((i) => (i + 1) % words.length),
+      2000,
+    );
     return () => clearInterval(interval);
   }, []);
 
@@ -1122,7 +1228,10 @@ function NumberTickerPreview() {
         </motion.span>
         <motion.div
           className="absolute -inset-2 rounded-lg opacity-50"
-          style={{ background: "radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%)",
+          }}
           animate={{ opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -1140,7 +1249,8 @@ function GradientTextPreview() {
       <motion.span
         className="text-3xl font-bold bg-clip-text text-transparent"
         style={{
-          backgroundImage: "linear-gradient(90deg, #a78bfa, #ec4899, #f87171, #a78bfa)",
+          backgroundImage:
+            "linear-gradient(90deg, #a78bfa, #ec4899, #f87171, #a78bfa)",
           backgroundSize: "200% 100%",
           WebkitBackgroundClip: "text",
         }}
@@ -1216,7 +1326,12 @@ function SkeletonPreview() {
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-700/50 to-transparent"
               animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.15, ease: "linear" }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: i * 0.15,
+                ease: "linear",
+              }}
             />
           </div>
         ))}
@@ -1232,7 +1347,10 @@ function ProgressBarPreview() {
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    const interval = setInterval(() => setProgress((p) => (p >= 100 ? 0 : p + 2)), 100);
+    const interval = setInterval(
+      () => setProgress((p) => (p >= 100 ? 0 : p + 2)),
+      100,
+    );
     return () => clearInterval(interval);
   }, []);
 
@@ -1303,7 +1421,11 @@ function AnimatedInputPreview() {
         />
         <motion.span
           className="absolute left-4 text-zinc-500 pointer-events-none"
-          animate={{ y: focused ? -24 : 0, scale: focused ? 0.8 : 1, color: focused ? "#8b5cf6" : "#71717a" }}
+          animate={{
+            y: focused ? -24 : 0,
+            scale: focused ? 0.8 : 1,
+            color: focused ? "#8b5cf6" : "#71717a",
+          }}
         >
           Label
         </motion.span>
@@ -1342,7 +1464,9 @@ function ToggleSwitchPreview() {
           className="w-6 h-6 bg-white rounded-full"
           animate={{
             x: on ? 24 : 0,
-            boxShadow: on ? "0 0 10px rgba(255,255,255,0.5)" : "0 0 0 rgba(255,255,255,0)",
+            boxShadow: on
+              ? "0 0 10px rgba(255,255,255,0.5)"
+              : "0 0 0 rgba(255,255,255,0)",
           }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
@@ -1388,13 +1512,20 @@ function RangeSliderPreview() {
             className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full cursor-pointer"
             style={{ boxShadow: "0 0 10px rgba(139,92,246,0.5)" }}
             animate={{ left: `calc(${value}% - 8px)` }}
-            whileHover={{ scale: 1.2, boxShadow: "0 0 20px rgba(139,92,246,0.8)" }}
+            whileHover={{
+              scale: 1.2,
+              boxShadow: "0 0 20px rgba(139,92,246,0.8)",
+            }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           />
         </div>
         <motion.div
           className="text-center font-bold text-2xl"
-          style={{ background: "linear-gradient(90deg, #8b5cf6, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          style={{
+            background: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
           key={value}
           initial={{ scale: 1.2, opacity: 0.5 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -1425,14 +1556,26 @@ function CustomSelectPreview() {
         <motion.button
           onClick={() => setOpen(!open)}
           className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white text-left flex justify-between items-center"
-          whileHover={{ borderColor: "rgba(139,92,246,0.5)", boxShadow: "0 0 15px rgba(139,92,246,0.2)" }}
+          whileHover={{
+            borderColor: "rgba(139,92,246,0.5)",
+            boxShadow: "0 0 15px rgba(139,92,246,0.2)",
+          }}
         >
           {selected}
-          <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ type: "spring", stiffness: 300 }}>▼</motion.span>
+          <motion.span
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            ▼
+          </motion.span>
         </motion.button>
         <motion.div
           initial={{ opacity: 0, y: -10, scaleY: 0.8 }}
-          animate={{ opacity: open ? 1 : 0, y: open ? 0 : -10, scaleY: open ? 1 : 0.8 }}
+          animate={{
+            opacity: open ? 1 : 0,
+            y: open ? 0 : -10,
+            scaleY: open ? 1 : 0.8,
+          }}
           className="absolute top-full mt-1 w-full bg-zinc-800 border border-zinc-700 rounded-lg overflow-hidden z-10 origin-top"
           style={{ pointerEvents: open ? "auto" : "none" }}
         >
@@ -1442,11 +1585,16 @@ function CustomSelectPreview() {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: open ? 1 : 0, x: open ? 0 : -10 }}
               transition={{ delay: open ? i * 0.1 : 0 }}
-              onClick={() => { setSelected(opt); setOpen(false); }}
+              onClick={() => {
+                setSelected(opt);
+                setOpen(false);
+              }}
               className="w-full px-4 py-2 text-white text-left"
               whileHover={{ backgroundColor: "rgba(139,92,246,0.2)", x: 4 }}
             >
-              {opt === selected && <span className="mr-2 text-purple-400">✓</span>}
+              {opt === selected && (
+                <span className="mr-2 text-purple-400">✓</span>
+              )}
               {opt}
             </motion.button>
           ))}
@@ -1483,20 +1631,36 @@ function DialogModalPreview() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={() => setOpen(false)}
-          style={{ backgroundColor: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)" }}
+          style={{
+            backgroundColor: "rgba(0,0,0,0.7)",
+            backdropFilter: "blur(8px)",
+          }}
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="bg-zinc-900 p-6 rounded-xl border border-zinc-700/50 w-80"
-            style={{ boxShadow: "0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.2)" }}
+            style={{
+              boxShadow:
+                "0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.2)",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            <motion.h3 className="text-white font-bold text-lg" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+            <motion.h3
+              className="text-white font-bold text-lg"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
               Modal Title
             </motion.h3>
-            <motion.p className="text-zinc-400 mt-2 text-sm" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <motion.p
+              className="text-zinc-400 mt-2 text-sm"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
               This is modal content with premium animations.
             </motion.p>
             <motion.button
@@ -1505,7 +1669,10 @@ function DialogModalPreview() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              whileHover={{ scale: 1.02, boxShadow: "0 0 15px rgba(139,92,246,0.5)" }}
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 0 15px rgba(139,92,246,0.5)",
+              }}
               whileTap={{ scale: 0.98 }}
             >
               Close
@@ -1540,14 +1707,29 @@ function DrawerPreview() {
       </motion.button>
       <motion.div
         initial={{ x: "100%" }}
-        animate={{ x: open ? 0 : "100%", boxShadow: open ? "-10px 0 30px rgba(0,0,0,0.5)" : "0 0 0 rgba(0,0,0,0)" }}
+        animate={{
+          x: open ? 0 : "100%",
+          boxShadow: open
+            ? "-10px 0 30px rgba(0,0,0,0.5)"
+            : "0 0 0 rgba(0,0,0,0)",
+        }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className="absolute top-0 right-0 h-full w-48 bg-zinc-900 border-l border-zinc-700/50 p-4"
       >
-        <motion.h3 className="text-white font-bold" initial={{ opacity: 0, x: 20 }} animate={{ opacity: open ? 1 : 0, x: open ? 0 : 20 }} transition={{ delay: 0.1 }}>
+        <motion.h3
+          className="text-white font-bold"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: open ? 1 : 0, x: open ? 0 : 20 }}
+          transition={{ delay: 0.1 }}
+        >
           Drawer
         </motion.h3>
-        <motion.p className="text-zinc-400 text-sm mt-2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: open ? 1 : 0, x: open ? 0 : 20 }} transition={{ delay: 0.2 }}>
+        <motion.p
+          className="text-zinc-400 text-sm mt-2"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: open ? 1 : 0, x: open ? 0 : 20 }}
+          transition={{ delay: 0.2 }}
+        >
           Premium drawer panel
         </motion.p>
         <motion.button
@@ -1583,22 +1765,37 @@ function TooltipPreview() {
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
           className="px-4 py-2 bg-zinc-800 text-white rounded-lg border border-zinc-700"
-          whileHover={{ borderColor: "rgba(139,92,246,0.5)", boxShadow: "0 0 15px rgba(139,92,246,0.2)" }}
+          whileHover={{
+            borderColor: "rgba(139,92,246,0.5)",
+            boxShadow: "0 0 15px rgba(139,92,246,0.2)",
+          }}
         >
           Hover me
         </motion.button>
         <motion.div
           initial={{ opacity: 0, y: 5, scale: 0.9 }}
-          animate={{ opacity: show ? 1 : 0, y: show ? 0 : 5, scale: show ? 1 : 0.9 }}
+          animate={{
+            opacity: show ? 1 : 0,
+            y: show ? 0 : 5,
+            scale: show ? 1 : 0.9,
+          }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
           className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-gradient-to-br from-zinc-700 to-zinc-800 text-white text-sm rounded-lg"
-          style={{ boxShadow: "0 4px 15px rgba(0,0,0,0.3), 0 0 10px rgba(139,92,246,0.2)", pointerEvents: "none" }}
+          style={{
+            boxShadow:
+              "0 4px 15px rgba(0,0,0,0.3), 0 0 10px rgba(139,92,246,0.2)",
+            pointerEvents: "none",
+          }}
         >
           <span className="relative z-10">Tooltip!</span>
           {/* Arrow */}
           <motion.div
             className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0"
-            style={{ borderLeft: "6px solid transparent", borderRight: "6px solid transparent", borderTop: "6px solid #3f3f46" }}
+            style={{
+              borderLeft: "6px solid transparent",
+              borderRight: "6px solid transparent",
+              borderTop: "6px solid #3f3f46",
+            }}
             animate={{ y: show ? [0, -2, 0] : 0 }}
             transition={{ duration: 0.5, repeat: show ? Infinity : 0 }}
           />
@@ -1688,7 +1885,9 @@ function AccordionPreview() {
         className="w-64 bg-zinc-800 rounded-lg overflow-hidden border border-zinc-700/50"
         animate={{
           borderColor: open ? "rgba(139,92,246,0.3)" : "rgba(63,63,70,0.5)",
-          boxShadow: open ? "0 0 15px rgba(139,92,246,0.15)" : "0 0 0 rgba(139,92,246,0)",
+          boxShadow: open
+            ? "0 0 15px rgba(139,92,246,0.15)"
+            : "0 0 0 rgba(139,92,246,0)",
         }}
       >
         <motion.button
@@ -1705,7 +1904,11 @@ function AccordionPreview() {
             ▼
           </motion.span>
         </motion.button>
-        <motion.div initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }} className="overflow-hidden">
+        <motion.div
+          initial={false}
+          animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+          className="overflow-hidden"
+        >
           <motion.p
             className="px-4 pb-3 text-zinc-400 text-sm"
             initial={{ y: -10 }}
@@ -1727,7 +1930,10 @@ function TabsPreview() {
   const tabs = ["Tab 1", "Tab 2", "Tab 3"];
 
   React.useEffect(() => {
-    const interval = setInterval(() => setActive((prev) => (prev + 1) % tabs.length), 2000);
+    const interval = setInterval(
+      () => setActive((prev) => (prev + 1) % tabs.length),
+      2000,
+    );
     return () => clearInterval(interval);
   }, []);
 
@@ -1737,7 +1943,10 @@ function TabsPreview() {
         {/* Animated background pill */}
         <motion.div
           className="absolute top-1 bottom-1 bg-purple-600 rounded-md"
-          animate={{ left: `calc(${active * 33.33}% + 4px)`, width: "calc(33.33% - 8px)" }}
+          animate={{
+            left: `calc(${active * 33.33}% + 4px)`,
+            width: "calc(33.33% - 8px)",
+          }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           style={{ boxShadow: "0 0 15px rgba(139,92,246,0.4)" }}
         />
@@ -1775,9 +1984,19 @@ function NotificationToastPreview() {
 
   React.useEffect(() => {
     const hideTimer = setTimeout(() => setShow(false), 3000);
-    const showTimer = setTimeout(() => { setShow(true); setProgress(100); }, 4000);
-    const progressInterval = setInterval(() => setProgress((prev) => Math.max(0, prev - 3)), 100);
-    return () => { clearTimeout(hideTimer); clearTimeout(showTimer); clearInterval(progressInterval); };
+    const showTimer = setTimeout(() => {
+      setShow(true);
+      setProgress(100);
+    }, 4000);
+    const progressInterval = setInterval(
+      () => setProgress((prev) => Math.max(0, prev - 3)),
+      100,
+    );
+    return () => {
+      clearTimeout(hideTimer);
+      clearTimeout(showTimer);
+      clearInterval(progressInterval);
+    };
   }, [show]);
 
   return (
@@ -1787,7 +2006,10 @@ function NotificationToastPreview() {
         animate={{ x: show ? 0 : 100, opacity: show ? 1 : 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         className="relative flex items-center gap-3 px-4 py-3 bg-zinc-800 border border-zinc-700/50 rounded-lg overflow-hidden"
-        style={{ boxShadow: "0 10px 25px rgba(0,0,0,0.3), 0 0 10px rgba(34,197,94,0.1)" }}
+        style={{
+          boxShadow:
+            "0 10px 25px rgba(0,0,0,0.3), 0 0 10px rgba(34,197,94,0.1)",
+        }}
       >
         <motion.span
           className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold"
@@ -1798,7 +2020,9 @@ function NotificationToastPreview() {
         </motion.span>
         <div>
           <div className="text-white font-medium text-sm">Success!</div>
-          <div className="text-zinc-400 text-xs">Your action was completed.</div>
+          <div className="text-zinc-400 text-xs">
+            Your action was completed.
+          </div>
         </div>
         {/* Progress bar */}
         <motion.div
@@ -1953,7 +2177,9 @@ function ParallaxScrollPreview() {
           <div className="absolute top-4 left-10 w-3 h-3 bg-purple-400/60 rounded-full" />
         </motion.div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-white font-bold text-lg drop-shadow-lg">Parallax Layers</span>
+          <span className="text-white font-bold text-lg drop-shadow-lg">
+            Parallax Layers
+          </span>
         </div>
       </div>
     </div>
@@ -1967,7 +2193,7 @@ function ScrollRevealPreview() {
   const [key, setKey] = React.useState(0);
 
   React.useEffect(() => {
-    const interval = setInterval(() => setKey(k => k + 1), 3000);
+    const interval = setInterval(() => setKey((k) => k + 1), 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -1989,7 +2215,10 @@ function ScrollRevealPreview() {
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 0.5, 0.3] }}
             transition={{ duration: 1 }}
-            style={{ background: "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)" }}
+            style={{
+              background:
+                "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)",
+            }}
           />
         </motion.div>
         {/* Scroll indicator */}
@@ -2014,11 +2243,16 @@ function DividerPreview() {
       <div className="w-64 flex items-center gap-4">
         <motion.div
           className="flex-1 h-px relative overflow-hidden"
-          style={{ background: "linear-gradient(90deg, transparent, #71717a, #a78bfa)" }}
+          style={{
+            background: "linear-gradient(90deg, transparent, #71717a, #a78bfa)",
+          }}
         >
           <motion.div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.8), transparent)" }}
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(167,139,250,0.8), transparent)",
+            }}
             animate={{ x: ["-100%", "100%"] }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           />
@@ -2032,11 +2266,16 @@ function DividerPreview() {
         </motion.span>
         <motion.div
           className="flex-1 h-px relative overflow-hidden"
-          style={{ background: "linear-gradient(90deg, #a78bfa, #71717a, transparent)" }}
+          style={{
+            background: "linear-gradient(90deg, #a78bfa, #71717a, transparent)",
+          }}
         >
           <motion.div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.8), transparent)" }}
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(167,139,250,0.8), transparent)",
+            }}
             animate={{ x: ["100%", "-100%"] }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           />
@@ -2071,9 +2310,10 @@ function KeyboardKeyPreview() {
         className="px-3 py-1.5 bg-zinc-800 border border-zinc-600 rounded text-white text-sm font-mono cursor-pointer"
         animate={{
           y: pressed === 0 ? 2 : 0,
-          boxShadow: pressed === 0
-            ? "0 0 0 0 #3f3f46, 0 0 10px rgba(167,139,250,0.5)"
-            : "0 2px 0 0 #3f3f46, 0 0 0 rgba(167,139,250,0)",
+          boxShadow:
+            pressed === 0
+              ? "0 0 0 0 #3f3f46, 0 0 10px rgba(167,139,250,0.5)"
+              : "0 2px 0 0 #3f3f46, 0 0 0 rgba(167,139,250,0)",
           borderColor: pressed === 0 ? "rgba(167,139,250,0.5)" : "#52525b",
         }}
         whileHover={{ scale: 1.05 }}
@@ -2087,9 +2327,10 @@ function KeyboardKeyPreview() {
         className="px-3 py-1.5 bg-zinc-800 border border-zinc-600 rounded text-white text-sm font-mono cursor-pointer"
         animate={{
           y: pressed === 1 ? 2 : 0,
-          boxShadow: pressed === 1
-            ? "0 0 0 0 #3f3f46, 0 0 10px rgba(6,182,212,0.5)"
-            : "0 2px 0 0 #3f3f46, 0 0 0 rgba(6,182,212,0)",
+          boxShadow:
+            pressed === 1
+              ? "0 0 0 0 #3f3f46, 0 0 10px rgba(6,182,212,0.5)"
+              : "0 2px 0 0 #3f3f46, 0 0 0 rgba(6,182,212,0)",
           borderColor: pressed === 1 ? "rgba(6,182,212,0.5)" : "#52525b",
         }}
         whileHover={{ scale: 1.05 }}
@@ -2123,10 +2364,28 @@ function ChipPreview() {
     }, 1500);
   };
 
-  const colorStyles: Record<string, { bg: string; border: string; text: string; glow: string }> = {
-    cyan: { bg: "rgba(6,182,212,0.15)", border: "rgba(6,182,212,0.3)", text: "#22d3ee", glow: "rgba(6,182,212,0.4)" },
-    purple: { bg: "rgba(147,51,234,0.15)", border: "rgba(147,51,234,0.3)", text: "#a78bfa", glow: "rgba(147,51,234,0.4)" },
-    pink: { bg: "rgba(236,72,153,0.15)", border: "rgba(236,72,153,0.3)", text: "#f472b6", glow: "rgba(236,72,153,0.4)" },
+  const colorStyles: Record<
+    string,
+    { bg: string; border: string; text: string; glow: string }
+  > = {
+    cyan: {
+      bg: "rgba(6,182,212,0.15)",
+      border: "rgba(6,182,212,0.3)",
+      text: "#22d3ee",
+      glow: "rgba(6,182,212,0.4)",
+    },
+    purple: {
+      bg: "rgba(147,51,234,0.15)",
+      border: "rgba(147,51,234,0.3)",
+      text: "#a78bfa",
+      glow: "rgba(147,51,234,0.4)",
+    },
+    pink: {
+      bg: "rgba(236,72,153,0.15)",
+      border: "rgba(236,72,153,0.3)",
+      text: "#f472b6",
+      glow: "rgba(236,72,153,0.4)",
+    },
   };
 
   return (
@@ -2142,7 +2401,11 @@ function ChipPreview() {
             exit={{ opacity: 0, scale: 0.8, x: 20 }}
             whileHover={{ scale: 1.05, boxShadow: `0 0 15px ${style.glow}` }}
             className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm cursor-pointer"
-            style={{ backgroundColor: style.bg, border: `1px solid ${style.border}`, color: style.text }}
+            style={{
+              backgroundColor: style.bg,
+              border: `1px solid ${style.border}`,
+              color: style.text,
+            }}
           >
             {chip.text}
             <motion.button
@@ -2174,7 +2437,10 @@ function EmptyStatePreview() {
       >
         <motion.div
           className="absolute inset-0 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)",
+          }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -2192,15 +2458,29 @@ function EmptyStatePreview() {
             key={i}
             className="absolute w-1 h-1 bg-purple-400 rounded-full"
             style={{ left: `${30 + i * 20}%`, top: "50%" }}
-            animate={{ y: [-20, -40, -20], opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
+            animate={{
+              y: [-20, -40, -20],
+              opacity: [0, 1, 0],
+              scale: [0.5, 1, 0.5],
+            }}
             transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
           />
         ))}
       </motion.div>
-      <motion.h3 className="text-white font-bold" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+      <motion.h3
+        className="text-white font-bold"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
         No items
       </motion.h3>
-      <motion.p className="text-zinc-400 text-sm mt-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+      <motion.p
+        className="text-zinc-400 text-sm mt-1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
         Get started by adding one.
       </motion.p>
       <motion.button
@@ -2251,20 +2531,41 @@ function StatCardPreview() {
     <div className="flex items-center justify-center p-4 gap-4">
       <motion.div
         className="relative bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl p-5 border border-zinc-700/50 overflow-hidden cursor-pointer"
-        whileHover={{ y: -4, scale: 1.02, boxShadow: "0 15px 30px rgba(0,0,0,0.3), 0 0 20px rgba(34,197,94,0.2)" }}
+        whileHover={{
+          y: -4,
+          scale: 1.02,
+          boxShadow:
+            "0 15px 30px rgba(0,0,0,0.3), 0 0 20px rgba(34,197,94,0.2)",
+        }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
         <motion.div
           className="absolute top-0 right-0 w-20 h-20 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%)",
+          }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 3, repeat: Infinity }}
         />
         <div className="relative">
           <div className="text-zinc-400 text-xs font-medium">Total Users</div>
-          <div className="text-3xl font-bold text-white mt-1 tabular-nums">{count.toLocaleString()}</div>
-          <motion.div className="flex items-center gap-1 mt-2" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5 }}>
-            <motion.span className="text-green-400 text-sm font-bold" animate={{ y: [0, -2, 0] }} transition={{ duration: 1, repeat: Infinity }}>↑</motion.span>
+          <div className="text-3xl font-bold text-white mt-1 tabular-nums">
+            {count.toLocaleString()}
+          </div>
+          <motion.div
+            className="flex items-center gap-1 mt-2"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.5 }}
+          >
+            <motion.span
+              className="text-green-400 text-sm font-bold"
+              animate={{ y: [0, -2, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              ↑
+            </motion.span>
             <span className="text-green-400 text-sm font-medium">12%</span>
             <span className="text-zinc-500 text-xs ml-1">vs last month</span>
           </motion.div>
@@ -2437,7 +2738,12 @@ function SlideNotificationPreview() {
           className={`px-3 py-1.5 bg-gradient-to-r ${notif.color} text-white text-xs rounded-lg font-medium shadow-lg`}
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: notif.delay, type: "spring", stiffness: 300, damping: 20 }}
+          transition={{
+            delay: notif.delay,
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+          }}
           whileHover={{ scale: 1.05, boxShadow: "0 5px 20px rgba(0,0,0,0.3)" }}
         >
           {notif.text}
@@ -2471,7 +2777,9 @@ function StackedNotificationsPreview() {
           whileHover={i === 0 ? { x: 5 } : undefined}
         >
           <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${i === 0 ? "bg-green-500" : i === 1 ? "bg-blue-500" : "bg-purple-500"}`} />
+            <div
+              className={`w-2 h-2 rounded-full ${i === 0 ? "bg-green-500" : i === 1 ? "bg-blue-500" : "bg-purple-500"}`}
+            />
             <div className="w-20 h-2 bg-zinc-600 rounded" />
           </div>
           <div className="w-16 h-1.5 bg-zinc-700 rounded mt-2" />
@@ -2494,10 +2802,15 @@ function EncryptButtonPreview() {
     }
     let iteration = 0;
     const interval = setInterval(() => {
-      setText(prev =>
-        originalText.split("").map((char, i) =>
-          i < iteration ? originalText[i] : chars[Math.floor(Math.random() * chars.length)]
-        ).join("")
+      setText((prev) =>
+        originalText
+          .split("")
+          .map((char, i) =>
+            i < iteration
+              ? originalText[i]
+              : chars[Math.floor(Math.random() * chars.length)],
+          )
+          .join(""),
       );
       iteration += 0.5;
       if (iteration >= originalText.length) clearInterval(interval);
@@ -2511,7 +2824,10 @@ function EncryptButtonPreview() {
         className="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-[#00F0FF] text-xs font-mono"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(0, 240, 255, 0.3)" }}
+        whileHover={{
+          scale: 1.05,
+          boxShadow: "0 0 15px rgba(0, 240, 255, 0.3)",
+        }}
         whileTap={{ scale: 0.95 }}
       >
         {text}
@@ -2595,7 +2911,11 @@ function NeubrutalismButtonPreview() {
       <motion.button
         className="px-4 py-2 bg-[#00F0FF] text-black text-xs font-bold border-2 border-black rounded"
         initial={{ boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)" }}
-        whileHover={{ boxShadow: "5px 5px 0px 0px rgba(0,0,0,1)", x: -2, y: -2 }}
+        whileHover={{
+          boxShadow: "5px 5px 0px 0px rgba(0,0,0,1)",
+          x: -2,
+          y: -2,
+        }}
         whileTap={{ boxShadow: "1px 1px 0px 0px rgba(0,0,0,1)", x: 2, y: 2 }}
         transition={{ duration: 0.1 }}
       >
@@ -2656,7 +2976,7 @@ function NeumorphismButtonPreview() {
         style={{
           boxShadow: isPressed
             ? "inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #2a2a2a"
-            : "4px 4px 8px #1a1a1a, -4px -4px 8px #2a2a2a"
+            : "4px 4px 8px #1a1a1a, -4px -4px 8px #2a2a2a",
         }}
         onMouseDown={() => setIsPressed(true)}
         onMouseUp={() => setIsPressed(false)}
@@ -2678,7 +2998,12 @@ function SwipeCardsPreview() {
           key={card}
           className="absolute inset-0 rounded-xl p-3 cursor-grab active:cursor-grabbing"
           style={{
-            background: card === 0 ? "linear-gradient(135deg, #8b5cf6, #ec4899)" : card === 1 ? "linear-gradient(135deg, #3b82f6, #06b6d4)" : "linear-gradient(135deg, #f97316, #ef4444)",
+            background:
+              card === 0
+                ? "linear-gradient(135deg, #8b5cf6, #ec4899)"
+                : card === 1
+                  ? "linear-gradient(135deg, #3b82f6, #06b6d4)"
+                  : "linear-gradient(135deg, #f97316, #ef4444)",
             zIndex: 3 - i,
           }}
           initial={{ y: i * 8, scale: 1 - i * 0.05, rotate: i * 2 }}
@@ -2687,7 +3012,7 @@ function SwipeCardsPreview() {
           dragConstraints={{ left: 0, right: 0 }}
           onDragEnd={(_, info) => {
             if (Math.abs(info.offset.x) > 50) {
-              setCards(prev => [...prev.slice(1), prev[0]]);
+              setCards((prev) => [...prev.slice(1), prev[0]]);
             }
           }}
           whileDrag={{ scale: 1.05 }}
@@ -2744,7 +3069,10 @@ function SquishyCardPreview() {
 function TiltHoverCardPreview() {
   const [rotate, setRotate] = React.useState({ x: 0, y: 0 });
   return (
-    <div className="flex items-center justify-center p-4" style={{ perspective: "500px" }}>
+    <div
+      className="flex items-center justify-center p-4"
+      style={{ perspective: "500px" }}
+    >
       <motion.div
         className="w-32 h-20 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-xl p-3 cursor-pointer"
         style={{ transformStyle: "preserve-3d" }}
@@ -2816,7 +3144,14 @@ function SliderTogglePreview() {
 }
 
 function BubbleTextPreview() {
-  const colors = ["#8b5cf6", "#06b6d4", "#ec4899", "#f59e0b", "#22c55e", "#8b5cf6"];
+  const colors = [
+    "#8b5cf6",
+    "#06b6d4",
+    "#ec4899",
+    "#f59e0b",
+    "#22c55e",
+    "#8b5cf6",
+  ];
   return (
     <div className="flex items-center justify-center p-4">
       {"BUBBLE".split("").map((char, i) => (
@@ -3044,8 +3379,14 @@ function MultiStepLoaderPreview() {
     <div className="flex flex-col items-start gap-2 p-4">
       {["Loading...", "Processing...", "Done!"].map((text, i) => (
         <div key={i} className="flex items-center gap-2">
-          <div className={`w-3 h-3 rounded-full ${i === 0 ? "bg-green-500" : i === 1 ? "bg-[#00F0FF] animate-spin border-2 border-t-transparent" : "border-2 border-zinc-600"}`} />
-          <span className={`text-xs ${i <= 1 ? "text-white" : "text-zinc-500"}`}>{text}</span>
+          <div
+            className={`w-3 h-3 rounded-full ${i === 0 ? "bg-green-500" : i === 1 ? "bg-[#00F0FF] animate-spin border-2 border-t-transparent" : "border-2 border-zinc-600"}`}
+          />
+          <span
+            className={`text-xs ${i <= 1 ? "text-white" : "text-zinc-500"}`}
+          >
+            {text}
+          </span>
         </div>
       ))}
     </div>
@@ -3097,7 +3438,10 @@ function CompareSliderPreview() {
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="relative w-32 h-20 rounded-lg overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600" />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600" style={{ clipPath: "inset(0 50% 0 0)" }} />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600"
+          style={{ clipPath: "inset(0 50% 0 0)" }}
+        />
         <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full flex items-center justify-center">
           <span className="text-[8px] text-zinc-600">↔</span>
@@ -3110,7 +3454,10 @@ function CompareSliderPreview() {
 function StickyScrollPreview() {
   const [activeSection, setActiveSection] = React.useState(0);
   React.useEffect(() => {
-    const interval = setInterval(() => setActiveSection((prev) => (prev + 1) % 3), 1500);
+    const interval = setInterval(
+      () => setActiveSection((prev) => (prev + 1) % 3),
+      1500,
+    );
     return () => clearInterval(interval);
   }, []);
   return (
@@ -3124,7 +3471,10 @@ function StickyScrollPreview() {
               width: activeSection === i ? 64 : 48,
               height: activeSection === i ? 8 : 6,
               backgroundColor: activeSection === i ? "#8b5cf6" : "#52525b",
-              boxShadow: activeSection === i ? "0 0 10px rgba(139,92,246,0.5)" : "0 0 0 transparent",
+              boxShadow:
+                activeSection === i
+                  ? "0 0 10px rgba(139,92,246,0.5)"
+                  : "0 0 0 transparent",
             }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
           />
@@ -3176,7 +3526,10 @@ function GlareCardPreview() {
 function FloatingNavbarPreview() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   React.useEffect(() => {
-    const interval = setInterval(() => setActiveIndex((prev) => (prev + 1) % 3), 1500);
+    const interval = setInterval(
+      () => setActiveIndex((prev) => (prev + 1) % 3),
+      1500,
+    );
     return () => clearInterval(interval);
   }, []);
   const items = ["Home", "About", "Contact"];
@@ -3194,7 +3547,10 @@ function FloatingNavbarPreview() {
             className="text-[10px] px-1 cursor-pointer"
             animate={{
               color: activeIndex === i ? "#00F0FF" : "#a1a1aa",
-              textShadow: activeIndex === i ? "0 0 10px rgba(0,240,255,0.5)" : "0 0 0 transparent",
+              textShadow:
+                activeIndex === i
+                  ? "0 0 10px rgba(0,240,255,0.5)"
+                  : "0 0 0 transparent",
             }}
             whileHover={{ scale: 1.1 }}
           >
@@ -3245,9 +3601,17 @@ function GlowingStarsPreview() {
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-white rounded-full"
-          style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, boxShadow: "0 0 4px 2px rgba(255,255,255,0.3)" }}
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            boxShadow: "0 0 4px 2px rgba(255,255,255,0.3)",
+          }}
           animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity, delay: Math.random() * 2 }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
         />
       ))}
     </div>
@@ -3298,7 +3662,9 @@ function GlitchButtonPreview() {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
-        <span className="relative z-10 text-[#00F0FF] font-mono text-sm font-bold">GLITCH</span>
+        <span className="relative z-10 text-[#00F0FF] font-mono text-sm font-bold">
+          GLITCH
+        </span>
         {isHovered && (
           <>
             <motion.span
@@ -3329,7 +3695,13 @@ function HologramButtonPreview() {
     <div className="flex items-center justify-center p-4">
       <motion.div
         className="px-6 py-2 border-2 border-[#00F0FF] rounded-lg"
-        animate={{ boxShadow: ["0 0 10px #00F0FF40", "0 0 20px #00F0FF60", "0 0 10px #00F0FF40"] }}
+        animate={{
+          boxShadow: [
+            "0 0 10px #00F0FF40",
+            "0 0 20px #00F0FF60",
+            "0 0 10px #00F0FF40",
+          ],
+        }}
         transition={{ duration: 2, repeat: Infinity }}
       >
         <motion.span
@@ -3387,13 +3759,21 @@ function CyberpunkButtonPreview() {
     <div className="flex items-center justify-center p-4">
       <motion.button
         className="relative px-5 py-2 bg-zinc-900 border border-[#00F0FF]/50 overflow-hidden"
-        style={{ clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))" }}
+        style={{
+          clipPath:
+            "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 240, 255, 0.5)" }}
+        whileHover={{
+          scale: 1.05,
+          boxShadow: "0 0 20px rgba(0, 240, 255, 0.5)",
+        }}
         whileTap={{ scale: 0.95 }}
       >
-        <span className="relative z-10 text-[#00F0FF] font-mono text-xs font-bold uppercase tracking-wider">EXECUTE</span>
+        <span className="relative z-10 text-[#00F0FF] font-mono text-xs font-bold uppercase tracking-wider">
+          EXECUTE
+        </span>
         {isHovered && (
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00F0FF]/20 to-transparent"
@@ -3416,7 +3796,10 @@ function PushButton3DPreview() {
   return (
     <div className="flex items-center justify-center p-4">
       <div className="relative">
-        <div className="absolute inset-0 bg-[#5000AA] rounded-lg" style={{ transform: "translateY(4px)" }} />
+        <div
+          className="absolute inset-0 bg-[#5000AA] rounded-lg"
+          style={{ transform: "translateY(4px)" }}
+        />
         <motion.button
           className="relative px-5 py-2 bg-[#7000FF] rounded-lg cursor-pointer"
           animate={{ y: isPressed ? 4 : 0 }}
@@ -3464,7 +3847,12 @@ function OrbitLoaderPreview() {
               boxShadow: `0 0 10px ${["rgba(0,240,255,0.6)", "rgba(139,92,246,0.6)", "rgba(236,72,153,0.6)"][i]}`,
             }}
             animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: i * 0.25 }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+              delay: i * 0.25,
+            }}
           />
         ))}
       </div>
@@ -3520,7 +3908,10 @@ function DNALoaderPreview() {
 
 function CubeLoaderPreview() {
   return (
-    <div className="flex items-center justify-center p-4" style={{ perspective: "200px" }}>
+    <div
+      className="flex items-center justify-center p-4"
+      style={{ perspective: "200px" }}
+    >
       <motion.div
         className="w-10 h-10 border-2 border-[#00F0FF]"
         style={{ transformStyle: "preserve-3d" }}
@@ -3575,7 +3966,14 @@ function RingLoaderPreview() {
         animate={{ rotate: 360 }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
       >
-        <circle cx="20" cy="20" r="16" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+        <circle
+          cx="20"
+          cy="20"
+          r="16"
+          fill="none"
+          stroke="rgba(255,255,255,0.1)"
+          strokeWidth="3"
+        />
         <circle
           cx="20"
           cy="20"
@@ -3588,7 +3986,13 @@ function RingLoaderPreview() {
           strokeDashoffset="25"
         />
         <defs>
-          <linearGradient id="ringGradPreview" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient
+            id="ringGradPreview"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
             <stop offset="0%" stopColor="#00F0FF" />
             <stop offset="100%" stopColor="#7000FF" />
           </linearGradient>
@@ -3656,7 +4060,9 @@ function NeumorphismTogglePreview() {
       <button
         onClick={() => setOn(!on)}
         className="relative w-14 h-8 bg-zinc-800 rounded-full p-1"
-        style={{ boxShadow: "inset 3px 3px 6px #1a1a1a, inset -3px -3px 6px #2a2a2a" }}
+        style={{
+          boxShadow: "inset 3px 3px 6px #1a1a1a, inset -3px -3px 6px #2a2a2a",
+        }}
       >
         <motion.div
           className={`w-6 h-6 rounded-full ${on ? "bg-[#00F0FF]" : "bg-zinc-600"}`}
@@ -3678,15 +4084,20 @@ function Toggle3DPreview() {
         onClick={() => setOn(!on)}
         className="relative w-14 h-8 rounded-full overflow-hidden transition-all duration-300"
         style={{
-          background: on ? "linear-gradient(145deg, #00d4e0, #00F0FF)" : "linear-gradient(145deg, #3a3a3a, #2a2a2a)",
-          boxShadow: "3px 3px 8px #0a0a0a"
+          background: on
+            ? "linear-gradient(145deg, #00d4e0, #00F0FF)"
+            : "linear-gradient(145deg, #3a3a3a, #2a2a2a)",
+          boxShadow: "3px 3px 8px #0a0a0a",
         }}
       >
         <motion.div
           className="absolute w-6 h-6 rounded-full top-1"
           animate={{ left: on ? 28 : 4 }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          style={{ background: "linear-gradient(145deg, #fff, #e0e0e0)", boxShadow: "2px 2px 4px rgba(0,0,0,0.2)" }}
+          style={{
+            background: "linear-gradient(145deg, #fff, #e0e0e0)",
+            boxShadow: "2px 2px 4px rgba(0,0,0,0.2)",
+          }}
         />
       </button>
       <span className="text-white text-xs">{on ? "ON" : "OFF"}</span>
@@ -3721,7 +4132,9 @@ function AnimatedCheckboxPreview() {
           />
         </motion.svg>
       </button>
-      <span className="text-white text-xs">{checked ? "Checked" : "Click me"}</span>
+      <span className="text-white text-xs">
+        {checked ? "Checked" : "Click me"}
+      </span>
     </div>
   );
 }
@@ -3748,7 +4161,9 @@ function BounceCheckboxPreview() {
           </motion.span>
         )}
       </motion.button>
-      <span className="text-white text-xs">{checked ? "Bounce!" : "Click me"}</span>
+      <span className="text-white text-xs">
+        {checked ? "Bounce!" : "Click me"}
+      </span>
     </div>
   );
 }
@@ -3772,7 +4187,10 @@ function GlowInputPreview() {
             backgroundSize: "200% 100%",
             backgroundPosition: focused ? ["0% 50%", "100% 50%"] : "0% 50%",
           }}
-          transition={{ duration: focused ? 1.5 : 0.3, repeat: focused ? Infinity : 0 }}
+          transition={{
+            duration: focused ? 1.5 : 0.3,
+            repeat: focused ? Infinity : 0,
+          }}
         />
         <motion.input
           type="text"
@@ -3818,7 +4236,9 @@ function FloatingLabelInputPreview() {
             top: focused ? 4 : 14,
             fontSize: focused ? "10px" : "12px",
             color: focused ? "#8b5cf6" : "#71717a",
-            textShadow: focused ? "0 0 10px rgba(139,92,246,0.5)" : "0 0 0 transparent",
+            textShadow: focused
+              ? "0 0 10px rgba(139,92,246,0.5)"
+              : "0 0 0 transparent",
           }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
         >
@@ -3828,7 +4248,9 @@ function FloatingLabelInputPreview() {
           className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#8b5cf6] to-[#00F0FF] origin-left"
           animate={{
             scaleX: focused ? 1 : 0,
-            boxShadow: focused ? "0 0 10px rgba(139,92,246,0.5)" : "0 0 0 transparent",
+            boxShadow: focused
+              ? "0 0 10px rgba(139,92,246,0.5)"
+              : "0 0 0 transparent",
           }}
           transition={{ duration: 0.3 }}
         />
@@ -3842,7 +4264,14 @@ function ProgressCirclePreview() {
     <div className="flex items-center justify-center p-4">
       <div className="relative w-16 h-16">
         <svg width="64" height="64" className="-rotate-90">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="6" />
+          <circle
+            cx="32"
+            cy="32"
+            r="26"
+            fill="none"
+            stroke="rgba(255,255,255,0.1)"
+            strokeWidth="6"
+          />
           <motion.circle
             cx="32"
             cy="32"
@@ -3862,7 +4291,9 @@ function ProgressCirclePreview() {
             </linearGradient>
           </defs>
         </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-white text-sm font-bold">75%</span>
+        <span className="absolute inset-0 flex items-center justify-center text-white text-sm font-bold">
+          75%
+        </span>
       </div>
     </div>
   );

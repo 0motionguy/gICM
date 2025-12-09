@@ -1,6 +1,12 @@
 /**
  * OPUS 67 - Self-Evolving AI Runtime
  * Boot sequence and main orchestrator
+ *
+ * NOW WITH UNIFIED MEMORY!
+ * - GraphitiMemory (graph database)
+ * - LearningStore (pattern learnings)
+ * - MarkdownMemory (.claude/memory files)
+ * - HMLR (multi-hop reasoning)
  */
 
 import { ContextIndexer } from "./context/indexer.js";
@@ -11,6 +17,11 @@ import { EventEmitter } from "eventemitter3";
 import { readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import {
+  UnifiedMemory,
+  createUnifiedMemory,
+  type MemoryStats,
+} from "./memory/unified/index.js";
 
 // ESM-compatible __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -36,7 +47,15 @@ export interface ContextConfig {
 }
 
 export interface BootStatus {
-  phase: "init" | "context" | "skills" | "mcp" | "autonomy" | "ready" | "error";
+  phase:
+    | "init"
+    | "memory"
+    | "context"
+    | "skills"
+    | "mcp"
+    | "autonomy"
+    | "ready"
+    | "error";
   progress: number;
   message: string;
   timestamp: Date;
@@ -50,6 +69,9 @@ export interface OPUS67Events {
   "skill:loaded": (skillId: string) => void;
   "mcp:connected": (mcpId: string) => void;
   "task:detected": (taskType: string, skills: string[]) => void;
+  // NEW: Memory events
+  "memory:ready": (stats: MemoryStats) => void;
+  "memory:query": (query: string, resultCount: number) => void;
 }
 
 // =============================================================================
@@ -62,6 +84,7 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
   private skills: SkillLoader;
   private mcp: MCPHub;
   private autonomy: AutonomyEngine;
+  private unifiedMemory: UnifiedMemory | null = null;
   private theDoorPrompt: string = "";
   private isReady: boolean = false;
 
@@ -105,7 +128,6 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
       this.updateStatus("ready", 100, "THE DOOR IS OPEN. OPUS 67 ONLINE.");
       this.isReady = true;
       this.emit("boot:complete");
-
     } catch (error) {
       this.updateStatus("error", 0, `Boot failed: ${error}`);
       this.emit("boot:error", error as Error);
@@ -206,16 +228,32 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
    * Classify task type for routing
    */
   private classifyTaskType(input: string): string {
-    if (input.includes("code") || input.includes("implement") || input.includes("build")) {
+    if (
+      input.includes("code") ||
+      input.includes("implement") ||
+      input.includes("build")
+    ) {
       return "development";
     }
-    if (input.includes("research") || input.includes("analyze") || input.includes("find")) {
+    if (
+      input.includes("research") ||
+      input.includes("analyze") ||
+      input.includes("find")
+    ) {
       return "research";
     }
-    if (input.includes("deploy") || input.includes("launch") || input.includes("migrate")) {
+    if (
+      input.includes("deploy") ||
+      input.includes("launch") ||
+      input.includes("migrate")
+    ) {
       return "operations";
     }
-    if (input.includes("test") || input.includes("audit") || input.includes("review")) {
+    if (
+      input.includes("test") ||
+      input.includes("audit") ||
+      input.includes("review")
+    ) {
       return "quality";
     }
     return "general";
@@ -224,7 +262,11 @@ export class OPUS67 extends EventEmitter<OPUS67Events> {
   /**
    * Update boot status
    */
-  private updateStatus(phase: BootStatus["phase"], progress: number, message: string): void {
+  private updateStatus(
+    phase: BootStatus["phase"],
+    progress: number,
+    message: string,
+  ): void {
     const status: BootStatus = {
       phase,
       progress,
@@ -321,7 +363,7 @@ export async function createOPUS67(projectRoot: string): Promise<OPUS67> {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const projectRoot = process.argv[2] || process.cwd();
-  
+
   console.log(`
 ╔═══════════════════════════════════════════════════════════════╗
 ║                        OPUS 67                                 ║
@@ -332,7 +374,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   createOPUS67(projectRoot)
     .then((opus) => {
       console.log("\n✅ OPUS 67 initialized successfully");
-      console.log(`   Context: ${opus.contextStats.totalTokens} tokens indexed`);
+      console.log(
+        `   Context: ${opus.contextStats.totalTokens} tokens indexed`,
+      );
       console.log(`   Skills: ${opus.loadedSkills.length} loaded`);
       console.log(`   MCPs: ${opus.connectedMCPs.length} connected`);
       console.log("\n🚪 THE DOOR IS OPEN\n");

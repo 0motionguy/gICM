@@ -2,20 +2,17 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useBundleStore } from "@/lib/store/bundle";
-import { calculateTokenSavings, generateInstallCommand } from "@/lib/stack-builder";
-import type { RegistryItem } from "@/types/registry";
 import {
-  Copy,
-  Zap,
-  Package,
-  Tags,
-  Award,
-  Box,
-} from "lucide-react";
+  calculateTokenSavings,
+  generateInstallCommand,
+} from "@/lib/stack-builder";
+import type { RegistryItem } from "@/types/registry";
+import { Copy, Zap, Package, Tags, Award, Box, Share2 } from "lucide-react";
 import { toast } from "sonner";
 import { analytics } from "@/lib/analytics";
 import { ScrambleText } from "@/components/ui/scramble-text";
 import { formatProductName } from "@/lib/utils";
+import { ShareRemixPanel } from "./share-remix-panel";
 
 interface StackPreviewProps {
   allItems: RegistryItem[]; // All available items for dependency resolution
@@ -28,6 +25,7 @@ export function StackPreview({ allItems }: StackPreviewProps) {
   const [hoverHeader, setHoverHeader] = useState(false);
   const [hoverSelectedItems, setHoverSelectedItems] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isSharePanelOpen, setIsSharePanelOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -40,7 +38,7 @@ export function StackPreview({ allItems }: StackPreviewProps) {
   const activeStack = getActiveStack();
   const selectedItems = useMemo(
     () => (activeStack?.items || []).map((bi) => bi.item),
-    [activeStack]
+    [activeStack],
   );
 
   const dependencies = useMemo(() => {
@@ -80,7 +78,13 @@ export function StackPreview({ allItems }: StackPreviewProps) {
 
     const avgQualityScore = selectedItems.length > 0 ? 100 : 0;
 
-    return { tokenSavings, totalItems, breakdown, tags: Array.from(allTags), avgQualityScore };
+    return {
+      tokenSavings,
+      totalItems,
+      breakdown,
+      tags: Array.from(allTags),
+      avgQualityScore,
+    };
   }, [selectedItems, dependencies]);
 
   const handleCopyInstall = async () => {
@@ -107,13 +111,13 @@ export function StackPreview({ allItems }: StackPreviewProps) {
       <div className="sticky top-4 relative overflow-hidden rounded-xl border border-white/[0.08] bg-[#0F0F11] p-6 shadow-lg">
         <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-4">
           <div className="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-             <Package className="h-6 w-6 text-zinc-500" />
+            <Package className="h-6 w-6 text-zinc-500" />
           </div>
           <div>
-             <h3 className="text-sm font-bold text-white">Stack Empty</h3>
-             <p className="text-xs text-zinc-500 mt-1 max-w-[200px] mx-auto">
-               Select items from the catalog to build your custom workflow.
-             </p>
+            <h3 className="text-sm font-bold text-white">Stack Empty</h3>
+            <p className="text-xs text-zinc-500 mt-1 max-w-[200px] mx-auto">
+              Select items from the catalog to build your custom workflow.
+            </p>
           </div>
         </div>
       </div>
@@ -134,7 +138,11 @@ export function StackPreview({ allItems }: StackPreviewProps) {
             <div className="flex-1">
               <div className="text-xs font-bold text-[#00F0FF] uppercase tracking-wider">
                 {hoverHeader ? (
-                  <ScrambleText text="Current Stack" trigger="hover" duration={400} />
+                  <ScrambleText
+                    text="Current Stack"
+                    trigger="hover"
+                    duration={400}
+                  />
                 ) : (
                   "Current Stack"
                 )}
@@ -163,20 +171,25 @@ export function StackPreview({ allItems }: StackPreviewProps) {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           {Object.entries(stats.breakdown).map(([key, value]) => {
-             if (value === 0) return null;
-             return (
-                <div key={key} className="bg-white/[0.03] rounded-lg p-2 text-center border border-white/[0.02]">
-                  <div className="text-lg font-bold text-white">{value}</div>
-                  <div className="text-[10px] text-zinc-500 uppercase tracking-wider">{key}</div>
+            if (value === 0) return null;
+            return (
+              <div
+                key={key}
+                className="bg-white/[0.03] rounded-lg p-2 text-center border border-white/[0.02]"
+              >
+                <div className="text-lg font-bold text-white">{value}</div>
+                <div className="text-[10px] text-zinc-500 uppercase tracking-wider">
+                  {key}
                 </div>
-             );
+              </div>
+            );
           })}
         </div>
 
         {/* Selected Items List */}
         <div className="mb-4">
           <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-2">
-             Manifest
+            Manifest
           </h4>
           <div className="max-h-48 overflow-y-auto space-y-1 pr-1 scrollbar-thin">
             {selectedItems.map((item) => (
@@ -184,7 +197,9 @@ export function StackPreview({ allItems }: StackPreviewProps) {
                 key={item.id}
                 className="flex items-center justify-between text-xs p-2 rounded bg-white/[0.03] hover:bg-white/[0.06] border border-transparent hover:border-white/5 transition-colors"
               >
-                <span className="truncate text-zinc-300 font-medium max-w-[140px]">{formatProductName(item.name)}</span>
+                <span className="truncate text-zinc-300 font-medium max-w-[140px]">
+                  {formatProductName(item.name)}
+                </span>
                 <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-white/5 text-zinc-500 uppercase">
                   {item.kind}
                 </span>
@@ -193,15 +208,39 @@ export function StackPreview({ allItems }: StackPreviewProps) {
           </div>
         </div>
 
-        {/* Install Button */}
-        <button
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <button
             onClick={handleCopyInstall}
-            className="w-full py-3 rounded-lg bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#00F0FF]/90 hover:shadow-[0_0_20px_-5px_rgba(0,240,255,0.5)] transition-all flex items-center justify-center gap-2"
-        >
+            className="flex-1 py-3 rounded-lg bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#00F0FF]/90 hover:shadow-[0_0_20px_-5px_rgba(0,240,255,0.5)] transition-all flex items-center justify-center gap-2"
+          >
             <Copy size={14} />
-            Copy CLI Command
-        </button>
+            Copy CLI
+          </button>
+          <button
+            onClick={() => setIsSharePanelOpen(true)}
+            className="py-3 px-4 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+            title="Share Stack"
+          >
+            <Share2 size={14} />
+          </button>
+        </div>
       </div>
+
+      {/* Share Panel */}
+      <ShareRemixPanel
+        isOpen={isSharePanelOpen}
+        onClose={() => setIsSharePanelOpen(false)}
+        stackConfig={{
+          id: `stack_${Date.now()}`,
+          name: stackName,
+          description: "Custom gICM stack",
+          items: selectedItems.map((i) => i.id),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          version: "1.0.0",
+        }}
+      />
     </div>
   );
 }

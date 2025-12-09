@@ -1,9 +1,26 @@
 /**
  * OPUS 67 Context Enhancement
- * Use memory to enhance prompts with relevant context
+ * Use UNIFIED memory to enhance prompts with relevant context from ALL sources
+ *
+ * Sources integrated:
+ * - GraphitiMemory (graph database)
+ * - LearningStore (pattern learnings)
+ * - MarkdownMemory (.claude/memory files)
+ * - HMLR (multi-hop reasoning)
  */
 
-import { GraphitiMemory, memory, type MemoryNode, type SearchResult } from './graphiti.js';
+import {
+  GraphitiMemory,
+  memory,
+  type MemoryNode,
+  type SearchResult,
+} from "./graphiti.js";
+import {
+  UnifiedMemory,
+  getUnifiedMemory,
+  type UnifiedResult,
+  type MemorySource,
+} from "./unified/index.js";
 
 // Types
 export interface ContextWindow {
@@ -12,6 +29,9 @@ export interface ContextWindow {
   activeGoals: MemoryNode[];
   improvements: MemoryNode[];
   tokenEstimate: number;
+  // NEW: Unified memory results by source
+  unifiedResults?: UnifiedResult[];
+  sourceBreakdown?: Record<MemorySource, number>;
 }
 
 export interface ContextEnhancement {
@@ -28,6 +48,11 @@ export interface ContextConfig {
   maxImprovements: number;
   maxTokens: number;
   includeTimestamps: boolean;
+  // NEW: Unified memory options
+  useUnifiedMemory: boolean;
+  enableHMLR: boolean;
+  includeMarkdown: boolean;
+  includeLearnings: boolean;
 }
 
 const DEFAULT_CONFIG: ContextConfig = {
@@ -37,18 +62,43 @@ const DEFAULT_CONFIG: ContextConfig = {
   maxImprovements: 3,
   maxTokens: 2000,
   includeTimestamps: true,
+  // NEW: Enable unified by default
+  useUnifiedMemory: true,
+  enableHMLR: true,
+  includeMarkdown: true,
+  includeLearnings: true,
 };
 
 /**
  * ContextEnhancer - Inject relevant memory into prompts
+ * Now with UNIFIED MEMORY pulling from ALL sources!
  */
 export class ContextEnhancer {
   private memory: GraphitiMemory;
+  private unifiedMemory: UnifiedMemory | null = null;
   private config: ContextConfig;
 
-  constructor(memoryInstance?: GraphitiMemory, config?: Partial<ContextConfig>) {
+  constructor(
+    memoryInstance?: GraphitiMemory,
+    config?: Partial<ContextConfig>,
+  ) {
     this.memory = memoryInstance ?? memory;
     this.config = { ...DEFAULT_CONFIG, ...config };
+
+    // Initialize unified memory if enabled
+    if (this.config.useUnifiedMemory) {
+      this.unifiedMemory = getUnifiedMemory();
+    }
+  }
+
+  /**
+   * Connect to unified memory system
+   */
+  async connectUnified(): Promise<void> {
+    if (!this.unifiedMemory) {
+      this.unifiedMemory = getUnifiedMemory();
+    }
+    await this.unifiedMemory.initialize();
   }
 
   /**
@@ -60,68 +110,172 @@ export class ContextEnhancer {
 
   /**
    * Build context window for a query
+   * NOW PULLS FROM ALL UNIFIED MEMORY SOURCES!
    */
   async buildContextWindow(query: string): Promise<ContextWindow> {
-    // Search for relevant memories
-    const searchResults = await this.memory.search(query, { limit: this.config.maxMemories });
-    const relevantMemories = searchResults.map(r => r.node);
+    // Search for relevant memories from Graphiti (legacy path)
+    const searchResults = await this.memory.search(query, {
+      limit: this.config.maxMemories,
+    });
+    const relevantMemories = searchResults.map((r) => r.node);
 
     // Get recent episodes
-    const episodeResults = await this.memory.search('', { type: 'episode', limit: this.config.maxEpisodes });
-    const recentEpisodes = episodeResults.map(r => r.node);
+    const episodeResults = await this.memory.search("", {
+      type: "episode",
+      limit: this.config.maxEpisodes,
+    });
+    const recentEpisodes = episodeResults.map((r) => r.node);
 
     // Get active goals
-    const goalResults = await this.memory.search('', { type: 'goal', limit: this.config.maxGoals });
+    const goalResults = await this.memory.search("", {
+      type: "goal",
+      limit: this.config.maxGoals,
+    });
     const activeGoals = goalResults
-      .map(r => r.node)
-      .filter(n => {
+      .map((r) => r.node)
+      .filter((n) => {
         try {
           const goal = JSON.parse(n.value);
-          return goal.status !== 'completed';
+          return goal.status !== "completed";
         } catch {
           return false;
         }
       });
 
     // Get recent improvements
-    const improvementResults = await this.memory.search('', { type: 'improvement', limit: this.config.maxImprovements });
-    const improvements = improvementResults.map(r => r.node);
+    const improvementResults = await this.memory.search("", {
+      type: "improvement",
+      limit: this.config.maxImprovements,
+    });
+    const improvements = improvementResults.map((r) => r.node);
+
+    // NEW: Query unified memory for additional context
+    let unifiedResults: UnifiedResult[] = [];
+    const sourceBreakdown: Record<MemorySource, number> = {
+      graphiti: 0,
+      learning: 0,
+      sqlite: 0,
+      context: 0,
+      markdown: 0,
+      session: 0,
+      "claude-mem": 0,
+      hmlr: 0,
+    };
+
+    if (this.config.useUnifiedMemory && this.unifiedMemory) {
+      try {
+        // Determine which sources to query
+        const sources: MemorySource[] = ["graphiti"];
+        if (this.config.includeLearnings) sources.push("learning");
+        if (this.config.includeMarkdown) sources.push("markdown");
+        if (this.config.enableHMLR) sources.push("hmlr");
+
+        // Query unified memory
+        unifiedResults = await this.unifiedMemory.query({
+          query,
+          sources,
+          limit: this.config.maxMemories * 2, // Get more for diversity
+          minScore: 0.3,
+        });
+
+        // Count by source
+        for (const result of unifiedResults) {
+          sourceBreakdown[result.source]++;
+        }
+      } catch (error) {
+        console.warn("[ContextEnhancer] Unified memory query failed:", error);
+      }
+    }
 
     // Calculate token estimate
-    const allNodes = [...relevantMemories, ...recentEpisodes, ...activeGoals, ...improvements];
-    const totalText = allNodes.map(n => `${n.key}: ${n.value}`).join('\n');
-    const tokenEstimate = this.estimateTokens(totalText);
+    const allNodes = [
+      ...relevantMemories,
+      ...recentEpisodes,
+      ...activeGoals,
+      ...improvements,
+    ];
+    const legacyText = allNodes.map((n) => `${n.key}: ${n.value}`).join("\n");
+    const unifiedText = unifiedResults.map((r) => r.content).join("\n");
+    const tokenEstimate = this.estimateTokens(legacyText + unifiedText);
 
     return {
       relevantMemories,
       recentEpisodes,
       activeGoals,
       improvements,
-      tokenEstimate
+      tokenEstimate,
+      unifiedResults,
+      sourceBreakdown,
     };
   }
 
   /**
    * Format context for prompt injection
+   * NOW INCLUDES UNIFIED MEMORY FROM ALL SOURCES!
    */
   formatContext(context: ContextWindow): string {
-    let output = '<!-- OPUS 67 MEMORY CONTEXT -->\n';
+    let output = "<!-- OPUS 67 UNIFIED MEMORY CONTEXT -->\n";
 
-    // Relevant memories
+    // Relevant memories (from Graphiti)
     if (context.relevantMemories.length > 0) {
-      output += '\n<relevant_memories>\n';
+      output += "\n<relevant_memories>\n";
       for (const mem of context.relevantMemories) {
         const timestamp = this.config.includeTimestamps
           ? ` [${mem.createdAt.toISOString().slice(0, 10)}]`
-          : '';
+          : "";
         output += `• ${mem.key}${timestamp}: ${mem.value.slice(0, 200)}\n`;
       }
-      output += '</relevant_memories>\n';
+      output += "</relevant_memories>\n";
+    }
+
+    // NEW: Unified memory results by source
+    if (context.unifiedResults && context.unifiedResults.length > 0) {
+      // Group by source
+      const bySource = new Map<MemorySource, UnifiedResult[]>();
+      for (const result of context.unifiedResults) {
+        const existing = bySource.get(result.source) ?? [];
+        existing.push(result);
+        bySource.set(result.source, existing);
+      }
+
+      // Learnings from LearningStore
+      const learnings = bySource.get("learning") ?? [];
+      if (learnings.length > 0) {
+        output += "\n<pattern_learnings>\n";
+        for (const learning of learnings.slice(0, 5)) {
+          const confidence = learning.metadata?.confidence ?? 0;
+          const score = (confidence * 100).toFixed(0);
+          output += `• [${score}%] ${learning.content.slice(0, 150)}\n`;
+        }
+        output += "</pattern_learnings>\n";
+      }
+
+      // Markdown memory (wins, decisions, etc.)
+      const markdown = bySource.get("markdown") ?? [];
+      if (markdown.length > 0) {
+        output += "\n<session_memory>\n";
+        for (const md of markdown.slice(0, 5)) {
+          const type = md.metadata?.type ?? "note";
+          output += `• [${type}] ${md.content.slice(0, 150)}\n`;
+        }
+        output += "</session_memory>\n";
+      }
+
+      // HMLR multi-hop results
+      const hmlr = bySource.get("hmlr") ?? [];
+      if (hmlr.length > 0) {
+        output += "\n<reasoning_chain>\n";
+        for (const hop of hmlr.slice(0, 3)) {
+          const hops = hop.metadata?.hops ?? 0;
+          output += `• [hop ${hops}] ${hop.content.slice(0, 150)}\n`;
+        }
+        output += "</reasoning_chain>\n";
+      }
     }
 
     // Active goals
     if (context.activeGoals.length > 0) {
-      output += '\n<active_goals>\n';
+      output += "\n<active_goals>\n";
       for (const goal of context.activeGoals) {
         try {
           const g = JSON.parse(goal.value);
@@ -130,12 +284,12 @@ export class ContextEnhancer {
           output += `• ${goal.key}\n`;
         }
       }
-      output += '</active_goals>\n';
+      output += "</active_goals>\n";
     }
 
     // Recent improvements
     if (context.improvements.length > 0) {
-      output += '\n<recent_improvements>\n';
+      output += "\n<recent_improvements>\n";
       for (const imp of context.improvements) {
         try {
           const i = JSON.parse(imp.value);
@@ -144,19 +298,30 @@ export class ContextEnhancer {
           output += `• ${imp.key}\n`;
         }
       }
-      output += '</recent_improvements>\n';
+      output += "</recent_improvements>\n";
     }
 
     // Recent episodes (brief)
     if (context.recentEpisodes.length > 0) {
-      output += '\n<recent_episodes>\n';
+      output += "\n<recent_episodes>\n";
       for (const ep of context.recentEpisodes) {
         output += `• ${ep.key}: ${ep.value.slice(0, 100)}...\n`;
       }
-      output += '</recent_episodes>\n';
+      output += "</recent_episodes>\n";
     }
 
-    output += '\n<!-- /OPUS 67 MEMORY CONTEXT -->';
+    // Source breakdown
+    if (context.sourceBreakdown) {
+      const sources = Object.entries(context.sourceBreakdown)
+        .filter(([, count]) => count > 0)
+        .map(([source, count]) => `${source}:${count}`)
+        .join(" ");
+      if (sources) {
+        output += `\n<!-- Sources: ${sources} -->\n`;
+      }
+    }
+
+    output += "\n<!-- /OPUS 67 UNIFIED MEMORY CONTEXT -->";
 
     return output;
   }
@@ -171,8 +336,14 @@ export class ContextEnhancer {
     if (context.tokenEstimate > this.config.maxTokens) {
       // Trim context to fit
       const ratio = this.config.maxTokens / context.tokenEstimate;
-      context.relevantMemories = context.relevantMemories.slice(0, Math.ceil(context.relevantMemories.length * ratio));
-      context.recentEpisodes = context.recentEpisodes.slice(0, Math.ceil(context.recentEpisodes.length * ratio));
+      context.relevantMemories = context.relevantMemories.slice(
+        0,
+        Math.ceil(context.relevantMemories.length * ratio),
+      );
+      context.recentEpisodes = context.recentEpisodes.slice(
+        0,
+        Math.ceil(context.recentEpisodes.length * ratio),
+      );
     }
 
     const contextString = this.formatContext(context);
@@ -184,23 +355,26 @@ export class ContextEnhancer {
       originalPrompt: prompt,
       enhancedPrompt,
       context,
-      injectedTokens
+      injectedTokens,
     };
   }
 
   /**
    * Extract and store learnings from a conversation
    */
-  async extractAndStore(conversation: string, metadata?: Record<string, unknown>): Promise<MemoryNode[]> {
+  async extractAndStore(
+    conversation: string,
+    metadata?: Record<string, unknown>,
+  ): Promise<MemoryNode[]> {
     const stored: MemoryNode[] = [];
 
     // Simple extraction patterns
     const patterns = [
-      { regex: /learned?:?\s*(.+?)(?:\.|$)/gi, type: 'fact' as const },
-      { regex: /remember:?\s*(.+?)(?:\.|$)/gi, type: 'fact' as const },
-      { regex: /note:?\s*(.+?)(?:\.|$)/gi, type: 'fact' as const },
-      { regex: /goal:?\s*(.+?)(?:\.|$)/gi, type: 'goal' as const },
-      { regex: /improved?:?\s*(.+?)(?:\.|$)/gi, type: 'improvement' as const },
+      { regex: /learned?:?\s*(.+?)(?:\.|$)/gi, type: "fact" as const },
+      { regex: /remember:?\s*(.+?)(?:\.|$)/gi, type: "fact" as const },
+      { regex: /note:?\s*(.+?)(?:\.|$)/gi, type: "fact" as const },
+      { regex: /goal:?\s*(.+?)(?:\.|$)/gi, type: "goal" as const },
+      { regex: /improved?:?\s*(.+?)(?:\.|$)/gi, type: "improvement" as const },
     ];
 
     for (const { regex, type } of patterns) {
@@ -210,26 +384,26 @@ export class ContextEnhancer {
         if (content.length > 10) {
           let node: MemoryNode;
 
-          if (type === 'goal') {
+          if (type === "goal") {
             node = await this.memory.trackGoal({
               description: content,
               progress: 0,
-              status: 'pending'
+              status: "pending",
             });
-          } else if (type === 'improvement') {
+          } else if (type === "improvement") {
             node = await this.memory.storeImprovement({
-              component: 'extracted',
-              changeType: 'enhancement',
-              before: '',
+              component: "extracted",
+              changeType: "enhancement",
+              before: "",
               after: content,
               impact: 0.5,
-              automated: true
+              automated: true,
             });
           } else {
             node = await this.memory.addFact(
               `extracted:${Date.now()}`,
               content,
-              { source: 'conversation', ...metadata }
+              { source: "conversation", ...metadata },
             );
           }
 
@@ -243,26 +417,40 @@ export class ContextEnhancer {
 
   /**
    * Get context summary without full prompt injection
+   * NOW INCLUDES UNIFIED MEMORY STATS!
    */
   async getSummary(query: string): Promise<string> {
     const context = await this.buildContextWindow(query);
 
+    // Build source breakdown string
+    let sourceStats = "";
+    if (context.sourceBreakdown) {
+      const sources = Object.entries(context.sourceBreakdown)
+        .filter(([, count]) => count > 0)
+        .map(([source, count]) => `${source}: ${count}`)
+        .join(", ");
+      if (sources) {
+        sourceStats = `\nUnified sources: ${sources}`;
+      }
+    }
+
     return `
-Memory Context Summary:
-- ${context.relevantMemories.length} relevant memories
+Memory Context Summary (UNIFIED):
+- ${context.relevantMemories.length} relevant memories (Graphiti)
 - ${context.recentEpisodes.length} recent episodes
 - ${context.activeGoals.length} active goals
 - ${context.improvements.length} improvements
+- ${context.unifiedResults?.length ?? 0} unified results${sourceStats}
 - ~${context.tokenEstimate} tokens
 
-Top relevant: ${context.relevantMemories[0]?.key ?? 'None'}`;
+Top relevant: ${context.relevantMemories[0]?.key ?? "None"}`;
   }
 }
 
 // Export factory
 export function createContextEnhancer(
   memoryInstance?: GraphitiMemory,
-  config?: Partial<ContextConfig>
+  config?: Partial<ContextConfig>,
 ): ContextEnhancer {
   return new ContextEnhancer(memoryInstance, config);
 }

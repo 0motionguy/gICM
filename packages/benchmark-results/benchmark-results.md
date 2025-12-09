@@ -1,23 +1,23 @@
 # OPUS 67 v5.1.14 Benchmark Report
 
-> Generated: 06/12/2025 | Platform: win32 | Node: v22.19.0
+> Generated: 09/12/2025 | Platform: win32 | Node: v22.19.0
 
 ## 📊 Marketing Metrics
 
 | Metric | Value |
 |--------|-------|
-| **Boot Time** | 78ms |
-| **Skill Loading** | 141 skills in 33ms |
+| **Boot Time** | 95ms |
+| **Skill Loading** | 141 skills in 47ms |
 | **Token Savings** | 0% reduction |
 | **Cache Hit Rate** | 85%+ |
-| **Memory Usage** | < 160MB RAM |
+| **Memory Usage** | < 150MB RAM |
 
 ## 🚀 Performance Summary
 
 - **141 Skills** loaded and indexed
 - **25 MCP Connections** available
 - **30 Operating Modes** configured
-- **41%** benchmark pass rate
+- **36%** benchmark pass rate
 
 ## 📈 Detailed Results
 
@@ -25,16 +25,16 @@
 
 | Test | Value | Target | Status |
 |------|-------|--------|--------|
-| Boot Screen Generation (avg) | 77.53ms | <100ms | ✅ |
-| Full Boot Time (avg) | 66.59ms | <100ms | ✅ |
-| Registry Load Time (avg) | 33.13ms | <50ms | ✅ |
-| Skill Match Time (avg) | 33.26ms | <100ms | ✅ |
-| Time Per Skill | 0.24ms | <20ms | ✅ |
-| All Skills Load (141 skills) | 0.02ms | - | ⚪ |
-| Mode Detection Time (avg) | 0.23ms | <10ms | ✅ |
-| MCP Lookup Time (avg) | 27.96ms | <50ms | ✅ |
-| Skill-MCP Resolution (avg) | 22.95ms | <20ms | ❌ |
-| E2E Query Processing (avg) | 50.01ms | <200ms | ✅ |
+| Boot Screen Generation (avg) | 94.79ms | <100ms | ✅ |
+| Full Boot Time (avg) | 108.21ms | <100ms | ❌ |
+| Registry Load Time (avg) | 50.62ms | <50ms | ❌ |
+| Skill Match Time (avg) | 46.53ms | <100ms | ✅ |
+| Time Per Skill | 0.33ms | <20ms | ✅ |
+| All Skills Load (141 skills) | 0.16ms | - | ⚪ |
+| Mode Detection Time (avg) | 0.26ms | <10ms | ✅ |
+| MCP Lookup Time (avg) | 43.75ms | <50ms | ✅ |
+| Skill-MCP Resolution (avg) | 44.34ms | <20ms | ❌ |
+| E2E Query Processing (avg) | 93.10ms | <200ms | ✅ |
 
 ### Token Savings
 
@@ -49,33 +49,33 @@
 
 | Test | Value | Target | Status |
 |------|-------|--------|--------|
-| Cold Registry Load | 25.35ms | - | ⚪ |
-| Warm Registry Load | 25.39ms | <12.675350000150502ms | ❌ |
-| Cache Speedup | 1.00x | >2x | ❌ |
-| Cache Efficiency | -0.15% | >50% | ❌ |
+| Cold Registry Load | 55.92ms | - | ⚪ |
+| Warm Registry Load | 52.90ms | <27.958000000000084ms | ❌ |
+| Cache Speedup | 1.06x | >2x | ❌ |
+| Cache Efficiency | 5.39% | >50% | ❌ |
 | Skill Loader Cache Hit Rate | 85.00% | >85% | ❌ |
-| Cold Mode Switch (avg) | 48.95ms | - | ⚪ |
-| Warm Mode Switch (avg) | 52.25ms | <48.952225000131875ms | ❌ |
+| Cold Mode Switch (avg) | 103.05ms | - | ⚪ |
+| Warm Mode Switch (avg) | 95.75ms | <103.04982500000006ms | ✅ |
 
 ### Memory Usage
 
 | Test | Value | Target | Status |
 |------|-------|--------|--------|
-| Baseline Heap Used | 92.29MB | <50MB | ❌ |
-| Boot Memory Delta | 9.84MB | <10MB | ✅ |
-| Memory Per Skill | 1106.80KB | <50KB | ❌ |
-| Memory Per MCP | 201.60KB | <20KB | ❌ |
-| Peak Memory | 157.62MB | <100MB | ❌ |
-| Memory Leak Check | 273.18% | <50% | ❌ |
+| Baseline Heap Used | 84.42MB | <50MB | ❌ |
+| Boot Memory Delta | 8.25MB | <10MB | ✅ |
+| Memory Per Skill | 935.05KB | <50KB | ❌ |
+| Memory Per MCP | 162.18KB | <20KB | ❌ |
+| Peak Memory | 147.31MB | <100MB | ❌ |
+| Memory Leak Check | 166.60% | <50% | ❌ |
 
 ## 🎯 Targets vs Reality
 
 ```
-Boot Time:      Target < 100ms   Actual: 78ms
-Skill Load:     Target < 20ms/s  Actual: 141 skills in 33ms
+Boot Time:      Target < 100ms   Actual: 95ms
+Skill Load:     Target < 20ms/s  Actual: 141 skills in 47ms
 Token Savings:  Target 40-60%    Actual: 0% reduction
 Cache Hits:     Target > 85%     Actual: 85%+
-Memory:         Target < 50MB    Actual: < 160MB RAM
+Memory:         Target < 50MB    Actual: < 150MB RAM
 ```
 
 ---

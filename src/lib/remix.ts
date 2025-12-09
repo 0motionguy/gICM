@@ -17,6 +17,7 @@ export interface StackConfig {
   remixCount?: number;
   tags?: string[];
   version?: string;
+  featured?: boolean;
 }
 
 export interface RemixMetadata {
@@ -34,10 +35,7 @@ export function encodeStackToURL(config: StackConfig): string {
     const json = JSON.stringify(config);
     const base64 = btoa(json);
     // Make URL-safe by replacing characters
-    return base64
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=/g, '');
+    return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
   } catch (error) {
     console.error("Failed to encode stack:", error);
     throw new Error("Failed to encode stack configuration");
@@ -50,13 +48,11 @@ export function encodeStackToURL(config: StackConfig): string {
 export function decodeStackFromURL(encoded: string): StackConfig {
   try {
     // Restore original base64
-    let base64 = encoded
-      .replace(/-/g, '+')
-      .replace(/_/g, '/');
+    let base64 = encoded.replace(/-/g, "+").replace(/_/g, "/");
 
     // Add padding if needed
     while (base64.length % 4) {
-      base64 += '=';
+      base64 += "=";
     }
 
     const json = atob(base64);
@@ -70,9 +66,16 @@ export function decodeStackFromURL(encoded: string): StackConfig {
 /**
  * Generate shareable URL for stack
  */
-export function generateShareURL(config: StackConfig, baseURL?: string): string {
+export function generateShareURL(
+  config: StackConfig,
+  baseURL?: string,
+): string {
   const encoded = encodeStackToURL(config);
-  const base = baseURL || (typeof window !== 'undefined' ? window.location.origin : 'https://gicm.io');
+  const base =
+    baseURL ||
+    (typeof window !== "undefined"
+      ? window.location.origin
+      : "https://gicm.io");
   return `${base}/stack?import=${encoded}`;
 }
 
@@ -82,7 +85,7 @@ export function generateShareURL(config: StackConfig, baseURL?: string): string 
 export function forkStack(
   originalStack: StackConfig,
   newName?: string,
-  author?: string
+  author?: string,
 ): StackConfig {
   const now = new Date().toISOString();
 
@@ -115,7 +118,7 @@ export function saveStackPreset(config: StackConfig): void {
     const presets = getStackPresets();
 
     // Check if preset with same ID exists
-    const existingIndex = presets.findIndex(p => p.id === config.id);
+    const existingIndex = presets.findIndex((p) => p.id === config.id);
 
     if (existingIndex >= 0) {
       // Update existing
@@ -128,7 +131,7 @@ export function saveStackPreset(config: StackConfig): void {
       presets.push(config);
     }
 
-    localStorage.setItem('gicm_stack_presets', JSON.stringify(presets));
+    localStorage.setItem("gicm_stack_presets", JSON.stringify(presets));
   } catch (error) {
     console.error("Failed to save stack preset:", error);
     throw new Error("Failed to save stack preset");
@@ -140,7 +143,7 @@ export function saveStackPreset(config: StackConfig): void {
  */
 export function getStackPresets(): StackConfig[] {
   try {
-    const data = localStorage.getItem('gicm_stack_presets');
+    const data = localStorage.getItem("gicm_stack_presets");
     return data ? JSON.parse(data) : [];
   } catch (error) {
     console.error("Failed to load stack presets:", error);
@@ -154,8 +157,8 @@ export function getStackPresets(): StackConfig[] {
 export function deleteStackPreset(stackId: string): void {
   try {
     const presets = getStackPresets();
-    const filtered = presets.filter(p => p.id !== stackId);
-    localStorage.setItem('gicm_stack_presets', JSON.stringify(filtered));
+    const filtered = presets.filter((p) => p.id !== stackId);
+    localStorage.setItem("gicm_stack_presets", JSON.stringify(filtered));
   } catch (error) {
     console.error("Failed to delete stack preset:", error);
     throw new Error("Failed to delete stack preset");
@@ -167,7 +170,7 @@ export function deleteStackPreset(stackId: string): void {
  */
 export function getStackPresetById(stackId: string): StackConfig | null {
   const presets = getStackPresets();
-  return presets.find(p => p.id === stackId) || null;
+  return presets.find((p) => p.id === stackId) || null;
 }
 
 /**
@@ -176,7 +179,7 @@ export function getStackPresetById(stackId: string): StackConfig | null {
 export async function exportToGist(
   config: StackConfig,
   items: RegistryItem[],
-  githubToken?: string
+  githubToken?: string,
 ): Promise<{ url: string; id: string }> {
   if (!githubToken) {
     throw new Error("GitHub token is required to create a Gist");
@@ -184,26 +187,26 @@ export async function exportToGist(
 
   // Generate files for Gist
   const files: Record<string, { content: string }> = {
-    'stack.json': {
+    "stack.json": {
       content: JSON.stringify(config, null, 2),
     },
-    'README.md': {
+    "README.md": {
       content: generateStackREADME(config, items),
     },
-    'install.sh': {
+    "install.sh": {
       content: generateInstallScript(items),
     },
-    '.env.example': {
+    ".env.example": {
       content: generateEnvExample(items),
     },
   };
 
   try {
-    const response = await fetch('https://api.github.com/gists', {
-      method: 'POST',
+    const response = await fetch("https://api.github.com/gists", {
+      method: "POST",
       headers: {
-        'Authorization': `token ${githubToken}`,
-        'Content-Type': 'application/json',
+        Authorization: `token ${githubToken}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         description: `gICM Stack: ${config.name}`,
@@ -232,7 +235,10 @@ export async function exportToGist(
 /**
  * Generate README for stack
  */
-function generateStackREADME(config: StackConfig, items: RegistryItem[]): string {
+function generateStackREADME(
+  config: StackConfig,
+  items: RegistryItem[],
+): string {
   let readme = `# ${config.name}\n\n`;
 
   if (config.description) {
@@ -248,7 +254,7 @@ function generateStackREADME(config: StackConfig, items: RegistryItem[]): string
 
   // Group by kind
   const byKind: Record<string, RegistryItem[]> = {};
-  items.forEach(item => {
+  items.forEach((item) => {
     if (!byKind[item.kind]) {
       byKind[item.kind] = [];
     }
@@ -257,10 +263,10 @@ function generateStackREADME(config: StackConfig, items: RegistryItem[]): string
 
   Object.entries(byKind).forEach(([kind, kindItems]) => {
     readme += `### ${kind.charAt(0).toUpperCase() + kind.slice(1)}s (${kindItems.length})\n\n`;
-    kindItems.forEach(item => {
+    kindItems.forEach((item) => {
       readme += `- **${item.name}** - ${item.description}\n`;
     });
-    readme += '\n';
+    readme += "\n";
   });
 
   readme += `## Installation\n\n`;
@@ -294,7 +300,7 @@ function generateInstallScript(items: RegistryItem[]): string {
 
   // Group by kind
   const byKind: Record<string, RegistryItem[]> = {};
-  items.forEach(item => {
+  items.forEach((item) => {
     if (!byKind[item.kind]) {
       byKind[item.kind] = [];
     }
@@ -304,12 +310,12 @@ function generateInstallScript(items: RegistryItem[]): string {
   Object.entries(byKind).forEach(([kind, kindItems]) => {
     script += `# Installing ${kind}s\n`;
     script += `echo "📦 Installing ${kindItems.length} ${kind}(s)..."\n`;
-    kindItems.forEach(item => {
+    kindItems.forEach((item) => {
       if (item.install) {
         script += `${item.install}\n`;
       }
     });
-    script += '\n';
+    script += "\n";
   });
 
   script += `echo "✅ Installation complete!"\n`;
@@ -327,17 +333,19 @@ function generateEnvExample(items: RegistryItem[]): string {
 
   const envKeys = new Set<string>();
 
-  items.forEach(item => {
-    if (item.kind === 'mcp' && (item as any).envKeys) {
+  items.forEach((item) => {
+    if (item.kind === "mcp" && (item as any).envKeys) {
       (item as any).envKeys.forEach((key: string) => envKeys.add(key));
     }
   });
 
   if (envKeys.size > 0) {
     env += `# MCP Environment Variables\n`;
-    Array.from(envKeys).sort().forEach(key => {
-      env += `${key}=\n`;
-    });
+    Array.from(envKeys)
+      .sort()
+      .forEach((key) => {
+        env += `${key}=\n`;
+      });
   } else {
     env += `# No environment variables required\n`;
   }
@@ -354,13 +362,13 @@ export async function copyToClipboard(text: string): Promise<void> {
       await navigator.clipboard.writeText(text);
     } else {
       // Fallback for older browsers
-      const textarea = document.createElement('textarea');
+      const textarea = document.createElement("textarea");
       textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
       document.body.appendChild(textarea);
       textarea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(textarea);
     }
   } catch (error) {
@@ -375,14 +383,14 @@ export async function copyToClipboard(text: string): Promise<void> {
 export async function trackRemix(
   originalStackId: string,
   newStackId: string,
-  author?: string
+  author?: string,
 ): Promise<void> {
   try {
-    await fetch('/api/analytics/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    await fetch("/api/analytics/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        type: 'stack_remix',
+        type: "stack_remix",
         originalStackId,
         newStackId,
         author,
@@ -400,14 +408,14 @@ export async function trackRemix(
  */
 export async function trackShare(
   stackId: string,
-  method: 'url' | 'gist' | 'social'
+  method: "url" | "gist" | "social",
 ): Promise<void> {
   try {
-    await fetch('/api/analytics/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    await fetch("/api/analytics/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        type: 'stack_share',
+        type: "stack_share",
         stackId,
         method,
         timestamp: new Date().toISOString(),

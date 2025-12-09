@@ -17,6 +17,7 @@ export interface InstallationResult {
   dependenciesMissing: string[];
   timestamp: string;
   error?: string;
+  verificationMethod: "api" | "browser-limited" | "cli";
 }
 
 export interface InstallationStatus {
@@ -32,21 +33,33 @@ export interface InstallationStatus {
  */
 export async function verifyFilesCreated(
   item: RegistryItem,
-  targetDir: string = ".claude"
-): Promise<{ success: boolean; filesCreated: string[]; filesMissing: string[] }> {
+  targetDir: string = ".claude",
+): Promise<{
+  success: boolean;
+  filesCreated: string[];
+  filesMissing: string[];
+  verificationMethod: "api" | "browser-limited" | "cli";
+}> {
   const filesExpected = item.files || [];
   const filesCreated: string[] = [];
   const filesMissing: string[] = [];
+  let verificationMethod: "api" | "browser-limited" | "cli" = "browser-limited";
 
-  // In browser environment, we can't actually verify file creation
-  // This would need to be done server-side or via a CLI tool
-  // For now, we'll simulate verification based on expected files
+  // No files expected = success
+  if (filesExpected.length === 0) {
+    return {
+      success: true,
+      filesCreated: [],
+      filesMissing: [],
+      verificationMethod: "browser-limited",
+    };
+  }
 
   for (const file of filesExpected) {
-    // Simulate file check (in real implementation, this would be an API call)
-    const exists = await simulateFileCheck(file, targetDir);
+    const result = await checkFileExists(file, targetDir);
+    verificationMethod = result.verificationMethod;
 
-    if (exists) {
+    if (result.exists) {
       filesCreated.push(file);
     } else {
       filesMissing.push(file);
@@ -57,16 +70,37 @@ export async function verifyFilesCreated(
     success: filesMissing.length === 0,
     filesCreated,
     filesMissing,
+    verificationMethod,
   };
 }
 
 /**
- * Simulate file check (replace with actual implementation)
+ * Check if file exists via API call
+ * Browser cannot verify local files - must use server-side verification
  */
-async function simulateFileCheck(file: string, targetDir: string): Promise<boolean> {
-  // In production, this would make an API call to check if file exists
-  // For now, assume success for demonstration
-  return Promise.resolve(true);
+async function checkFileExists(
+  file: string,
+  targetDir: string,
+): Promise<{ exists: boolean; verificationMethod: "api" | "browser-limited" }> {
+  // Try to verify via API endpoint
+  try {
+    const response = await fetch("/api/verify-installation", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ file, targetDir }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return { exists: data.exists, verificationMethod: "api" };
+    }
+  } catch {
+    // API not available, fall through to browser-limited
+  }
+
+  // Browser cannot verify local files - return unknown (false) with indication
+  // This is conservative: we don't claim files exist unless we can verify
+  return { exists: false, verificationMethod: "browser-limited" };
 }
 
 /**
@@ -74,10 +108,10 @@ async function simulateFileCheck(file: string, targetDir: string): Promise<boole
  */
 export function verifyDependencies(
   item: RegistryItem,
-  installedItems: string[]
+  installedItems: string[],
 ): { resolved: boolean; missing: string[] } {
   const dependencies = item.dependencies || [];
-  const missing = dependencies.filter(dep => !installedItems.includes(dep));
+  const missing = dependencies.filter((dep) => !installedItems.includes(dep));
 
   return {
     resolved: missing.length === 0,
@@ -91,7 +125,7 @@ export function verifyDependencies(
 export async function verifyInstallation(
   item: RegistryItem,
   installedItems: string[],
-  targetDir: string = ".claude"
+  targetDir: string = ".claude",
 ): Promise<InstallationResult> {
   const timestamp = new Date().toISOString();
 
@@ -115,6 +149,7 @@ export async function verifyInstallation(
       dependenciesResolved: depCheck.resolved,
       dependenciesMissing: depCheck.missing,
       timestamp,
+      verificationMethod: fileCheck.verificationMethod,
     };
   } catch (error) {
     return {
@@ -129,6 +164,7 @@ export async function verifyInstallation(
       dependenciesMissing: item.dependencies || [],
       timestamp,
       error: error instanceof Error ? error.message : "Unknown error",
+      verificationMethod: "browser-limited",
     };
   }
 }
@@ -139,10 +175,10 @@ export async function verifyInstallation(
 export async function verifyMultipleInstallations(
   items: RegistryItem[],
   installedItems: string[],
-  targetDir: string = ".claude"
+  targetDir: string = ".claude",
 ): Promise<InstallationResult[]> {
   const results = await Promise.all(
-    items.map(item => verifyInstallation(item, installedItems, targetDir))
+    items.map((item) => verifyInstallation(item, installedItems, targetDir)),
   );
 
   return results;
@@ -161,13 +197,22 @@ export function getInstallationSummary(results: InstallationResult[]): {
   totalFilesMissing: number;
 } {
   const total = results.length;
-  const successful = results.filter(r => r.success).length;
+  const successful = results.filter((r) => r.success).length;
   const failed = total - successful;
   const successRate = total > 0 ? (successful / total) * 100 : 0;
 
-  const totalFilesExpected = results.reduce((sum, r) => sum + r.filesExpected.length, 0);
-  const totalFilesCreated = results.reduce((sum, r) => sum + r.filesCreated.length, 0);
-  const totalFilesMissing = results.reduce((sum, r) => sum + r.filesMissing.length, 0);
+  const totalFilesExpected = results.reduce(
+    (sum, r) => sum + r.filesExpected.length,
+    0,
+  );
+  const totalFilesCreated = results.reduce(
+    (sum, r) => sum + r.filesCreated.length,
+    0,
+  );
+  const totalFilesMissing = results.reduce(
+    (sum, r) => sum + r.filesMissing.length,
+    0,
+  );
 
   return {
     total,
@@ -183,7 +228,9 @@ export function getInstallationSummary(results: InstallationResult[]): {
 /**
  * Generate installation report
  */
-export function generateInstallationReport(results: InstallationResult[]): string {
+export function generateInstallationReport(
+  results: InstallationResult[],
+): string {
   const summary = getInstallationSummary(results);
 
   let report = `# Installation Verification Report\n\n`;
@@ -201,13 +248,13 @@ export function generateInstallationReport(results: InstallationResult[]): strin
     report += `## Failed Installations\n\n`;
 
     results
-      .filter(r => !r.success)
-      .forEach(r => {
+      .filter((r) => !r.success)
+      .forEach((r) => {
         report += `### ${r.itemName} (${r.itemKind})\n\n`;
 
         if (r.filesMissing.length > 0) {
           report += `**Missing Files:**\n`;
-          r.filesMissing.forEach(file => {
+          r.filesMissing.forEach((file) => {
             report += `- ${file}\n`;
           });
           report += `\n`;
@@ -215,7 +262,7 @@ export function generateInstallationReport(results: InstallationResult[]): strin
 
         if (r.dependenciesMissing.length > 0) {
           report += `**Missing Dependencies:**\n`;
-          r.dependenciesMissing.forEach(dep => {
+          r.dependenciesMissing.forEach((dep) => {
             report += `- ${dep}\n`;
           });
           report += `\n`;
@@ -274,7 +321,9 @@ export function clearInstallationHistory(): void {
 /**
  * Get recent installations (last N)
  */
-export function getRecentInstallations(limit: number = 10): InstallationResult[] {
+export function getRecentInstallations(
+  limit: number = 10,
+): InstallationResult[] {
   const history = getInstallationHistory();
   return history.slice(-limit).reverse();
 }
@@ -285,8 +334,11 @@ export function getRecentInstallations(limit: number = 10): InstallationResult[]
 export function isItemInstalled(itemId: string): boolean {
   const history = getInstallationHistory();
   const latest = history
-    .filter(r => r.itemId === itemId)
-    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0];
+    .filter((r) => r.itemId === itemId)
+    .sort(
+      (a, b) =>
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+    )[0];
 
   return latest?.success || false;
 }
@@ -305,13 +357,14 @@ export function getInstallationStats(): {
   const history = getInstallationHistory();
 
   const totalInstalls = history.length;
-  const successfulInstalls = history.filter(r => r.success).length;
+  const successfulInstalls = history.filter((r) => r.success).length;
   const failedInstalls = totalInstalls - successfulInstalls;
-  const successRate = totalInstalls > 0 ? (successfulInstalls / totalInstalls) * 100 : 0;
+  const successRate =
+    totalInstalls > 0 ? (successfulInstalls / totalInstalls) * 100 : 0;
 
   // Count by kind
   const byKind: Record<string, number> = {};
-  history.forEach(r => {
+  history.forEach((r) => {
     byKind[r.itemKind] = (byKind[r.itemKind] || 0) + 1;
   });
 
@@ -322,9 +375,9 @@ export function getInstallationStats(): {
 
   const activityMap = new Map<string, number>();
   history
-    .filter(r => new Date(r.timestamp) >= sevenDaysAgo)
-    .forEach(r => {
-      const date = r.timestamp.split('T')[0];
+    .filter((r) => new Date(r.timestamp) >= sevenDaysAgo)
+    .forEach((r) => {
+      const date = r.timestamp.split("T")[0];
       activityMap.set(date, (activityMap.get(date) || 0) + 1);
     });
 

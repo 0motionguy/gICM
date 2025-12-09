@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
-import { REGISTRY } from '@/lib/registry';
-import type { RegistryItem } from '@/types/registry';
+import { NextResponse } from "next/server";
+import Anthropic from "@anthropic-ai/sdk";
+import { REGISTRY } from "@/lib/registry";
+import type { RegistryItem } from "@/types/registry";
 import {
   calculateCost,
   hashPrompt,
@@ -9,40 +9,51 @@ import {
   checkRateLimit,
   cacheWorkflowResponse,
   getCachedWorkflowResponse,
-} from '@/lib/api-usage';
+} from "@/lib/api-usage";
+import { z } from "zod";
+
+const WorkflowRequestSchema = z.object({
+  prompt: z.string().min(1).max(10000),
+  sessionId: z.string().max(100).optional(),
+});
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY || '',
+  apiKey: process.env.ANTHROPIC_API_KEY || "",
 });
 
 export async function POST(request: Request) {
   const startTime = Date.now();
-  let sessionId = 'anonymous';
+  let sessionId = "anonymous";
 
   try {
-    const { prompt, sessionId: clientSessionId } = await request.json();
+    const body = await request.json();
 
-    if (!prompt || typeof prompt !== 'string') {
+    // Validate with Zod
+    const parseResult = WorkflowRequestSchema.safeParse(body);
+    if (!parseResult.success) {
       return NextResponse.json(
-        { error: 'Prompt is required' },
-        { status: 400 }
+        { error: "Invalid request", details: parseResult.error.flatten() },
+        { status: 400 },
       );
     }
 
-    sessionId = clientSessionId || 'anonymous';
+    const { prompt, sessionId: clientSessionId } = parseResult.data;
+    sessionId = clientSessionId || "anonymous";
 
     // Check rate limit
     const rateLimit = checkRateLimit(sessionId);
     if (!rateLimit.allowed) {
-      const waitMinutes = Math.ceil((rateLimit.resetTime - Date.now()) / 1000 / 60);
+      const waitMinutes = Math.ceil(
+        (rateLimit.resetTime - Date.now()) / 1000 / 60,
+      );
       return NextResponse.json(
         {
-          error: 'Rate limit exceeded',
+          error: "Rate limit exceeded",
           message: `Please wait ${waitMinutes} minute(s) before making another request`,
           resetTime: rateLimit.resetTime,
           remainingRequests: 0,
         },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -54,7 +65,7 @@ export async function POST(request: Request) {
       trackAPIUsage({
         timestamp: new Date().toISOString(),
         sessionId,
-        endpoint: 'workflow/build',
+        endpoint: "workflow/build",
         inputTokens: 0,
         outputTokens: 0,
         totalTokens: 0,
@@ -72,7 +83,7 @@ export async function POST(request: Request) {
     }
 
     // Build a catalog description for Claude
-    const catalogDescription = REGISTRY.map(item => ({
+    const catalogDescription = REGISTRY.map((item) => ({
       id: item.id,
       name: item.name,
       kind: item.kind,
@@ -106,59 +117,63 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
     // Call Claude API with prompt caching
     // Cache the system prompt (catalog) for 5 minutes - saves 90% on repeated requests
     const message = await anthropic.messages.create({
-      model: 'claude-opus-4-5-20251101',
+      model: "claude-opus-4-5-20251101",
       max_tokens: 2000,
       messages: [
         {
-          role: 'user',
+          role: "user",
           content: prompt,
         },
       ],
       system: [
         {
-          type: 'text',
+          type: "text",
           text: systemPrompt,
-          cache_control: { type: 'ephemeral' },
+          cache_control: { type: "ephemeral" },
         },
       ],
     });
 
     // Parse Claude's response
-    const responseText = message.content[0].type === 'text' ? message.content[0].text : '';
+    const responseText =
+      message.content[0].type === "text" ? message.content[0].text : "";
 
     // Extract JSON from response (Claude might wrap it in markdown code blocks)
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error('Failed to parse AI response');
+      throw new Error("Failed to parse AI response");
     }
 
     const aiResponse = JSON.parse(jsonMatch[0]);
     const { itemIds, reasoning } = aiResponse;
 
     if (!Array.isArray(itemIds)) {
-      throw new Error('Invalid response format from AI');
+      throw new Error("Invalid response format from AI");
     }
 
     // Get the actual items
     const items = itemIds
-      .map(id => REGISTRY.find(item => item.id === id))
+      .map((id) => REGISTRY.find((item) => item.id === id))
       .filter((item): item is RegistryItem => item !== undefined);
 
     if (items.length === 0) {
-      throw new Error('No matching items found');
+      throw new Error("No matching items found");
     }
 
     // Calculate stats
     const breakdown = {
-      agents: items.filter(i => i!.kind === 'agent').length,
-      skills: items.filter(i => i!.kind === 'skill').length,
-      commands: items.filter(i => i!.kind === 'command').length,
-      mcps: items.filter(i => i!.kind === 'mcp').length,
-      workflows: items.filter(i => i!.kind === 'workflow').length,
-      settings: items.filter(i => i!.kind === 'setting').length,
+      agents: items.filter((i) => i!.kind === "agent").length,
+      skills: items.filter((i) => i!.kind === "skill").length,
+      commands: items.filter((i) => i!.kind === "command").length,
+      mcps: items.filter((i) => i!.kind === "mcp").length,
+      workflows: items.filter((i) => i!.kind === "workflow").length,
+      settings: items.filter((i) => i!.kind === "setting").length,
     };
 
-    const totalTokenSavings = items.reduce((sum, item) => sum + (item!.tokenSavings || 0), 0);
+    const totalTokenSavings = items.reduce(
+      (sum, item) => sum + (item!.tokenSavings || 0),
+      0,
+    );
 
     const response = {
       items,
@@ -174,12 +189,17 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
     const outputTokens = message.usage.output_tokens;
     const cacheCreationTokens = message.usage.cache_creation_input_tokens || 0;
     const cacheReadTokens = message.usage.cache_read_input_tokens || 0;
-    const estimatedCost = calculateCost(inputTokens, outputTokens, cacheCreationTokens, cacheReadTokens);
+    const estimatedCost = calculateCost(
+      inputTokens,
+      outputTokens,
+      cacheCreationTokens,
+      cacheReadTokens,
+    );
 
     trackAPIUsage({
       timestamp: new Date().toISOString(),
       sessionId,
-      endpoint: 'workflow/build',
+      endpoint: "workflow/build",
       inputTokens,
       outputTokens,
       totalTokens: inputTokens + outputTokens,
@@ -193,22 +213,21 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
     cacheWorkflowResponse(promptHash, response);
 
     return NextResponse.json(response);
-
   } catch (error) {
-    console.error('Workflow build error:', error);
+    console.error("Workflow build error:", error);
 
     // Track failed request
     trackAPIUsage({
       timestamp: new Date().toISOString(),
       sessionId,
-      endpoint: 'workflow/build',
+      endpoint: "workflow/build",
       inputTokens: 0,
       outputTokens: 0,
       totalTokens: 0,
       estimatedCost: 0,
       responseTime: Date.now() - startTime,
       success: false,
-      errorMessage: error instanceof Error ? error.message : 'Unknown error',
+      errorMessage: error instanceof Error ? error.message : "Unknown error",
     });
 
     // Fallback response if API key is not configured
@@ -217,19 +236,24 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
       const promptLower = (await request.json()).prompt.toLowerCase();
       let items = [];
 
-      if (promptLower.includes('solana') || promptLower.includes('defi')) {
-        items = REGISTRY.filter(item =>
-          item.tags.some(tag =>
-            tag.toLowerCase().includes('solana') ||
-            tag.toLowerCase().includes('blockchain')
-          )
+      if (promptLower.includes("solana") || promptLower.includes("defi")) {
+        items = REGISTRY.filter((item) =>
+          item.tags.some(
+            (tag) =>
+              tag.toLowerCase().includes("solana") ||
+              tag.toLowerCase().includes("blockchain"),
+          ),
         ).slice(0, 5);
-      } else if (promptLower.includes('react') || promptLower.includes('frontend')) {
-        items = REGISTRY.filter(item =>
-          item.tags.some(tag =>
-            tag.toLowerCase().includes('react') ||
-            tag.toLowerCase().includes('frontend')
-          )
+      } else if (
+        promptLower.includes("react") ||
+        promptLower.includes("frontend")
+      ) {
+        items = REGISTRY.filter((item) =>
+          item.tags.some(
+            (tag) =>
+              tag.toLowerCase().includes("react") ||
+              tag.toLowerCase().includes("frontend"),
+          ),
         ).slice(0, 5);
       } else {
         // Default: return most popular items
@@ -239,27 +263,31 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
       }
 
       const breakdown = {
-        agents: items.filter(i => i.kind === 'agent').length,
-        skills: items.filter(i => i.kind === 'skill').length,
-        commands: items.filter(i => i.kind === 'command').length,
-        mcps: items.filter(i => i.kind === 'mcp').length,
-        workflows: items.filter(i => i.kind === 'workflow').length,
-        settings: items.filter(i => i.kind === 'setting').length,
+        agents: items.filter((i) => i.kind === "agent").length,
+        skills: items.filter((i) => i.kind === "skill").length,
+        commands: items.filter((i) => i.kind === "command").length,
+        mcps: items.filter((i) => i.kind === "mcp").length,
+        workflows: items.filter((i) => i.kind === "workflow").length,
+        settings: items.filter((i) => i.kind === "setting").length,
       };
 
       return NextResponse.json({
         items,
-        reasoning: 'Basic recommendation based on keywords (AI API key not configured)',
-        totalTokenSavings: items.reduce((sum, item) => sum + (item.tokenSavings || 0), 0),
+        reasoning:
+          "Basic recommendation based on keywords (AI API key not configured)",
+        totalTokenSavings: items.reduce(
+          (sum, item) => sum + (item.tokenSavings || 0),
+          0,
+        ),
         breakdown,
       });
     }
 
     return NextResponse.json(
-      { error: 'Failed to generate workflow' },
-      { status: 500 }
+      { error: "Failed to generate workflow" },
+      { status: 500 },
     );
   }
 }
 
-export const runtime = 'nodejs';
+export const runtime = "nodejs";

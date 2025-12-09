@@ -5,20 +5,43 @@
  * Enables dynamic tool discovery with 85% context reduction.
  */
 
-import { NextRequest, NextResponse } from 'next/server';
-import { REGISTRY } from '@/lib/registry';
+import { NextRequest, NextResponse } from "next/server";
+import { REGISTRY } from "@/lib/registry";
+import { z } from "zod";
+
+const SearchPostSchema = z.object({
+  query: z.string().min(1).max(500),
+  limit: z.number().int().min(1).max(20).default(5),
+  platform: z.string().max(50).optional(),
+  kind: z
+    .enum(["agent", "skill", "command", "mcp", "setting", "component"])
+    .optional(),
+  minQuality: z.number().min(0).max(100).default(0),
+});
+
+const SearchGetSchema = z.object({
+  query: z.string().min(1).max(500),
+  limit: z.coerce.number().int().min(1).max(20).default(5),
+  platform: z.string().max(50).optional(),
+  kind: z
+    .enum(["agent", "skill", "command", "mcp", "setting", "component"])
+    .optional(),
+});
 
 // Claude-compatible tool definition
 interface ToolDefinition {
   name: string;
   description: string;
   input_schema: {
-    type: 'object';
-    properties: Record<string, {
-      type: string;
-      description: string;
-      enum?: string[];
-    }>;
+    type: "object";
+    properties: Record<
+      string,
+      {
+        type: string;
+        description: string;
+        enum?: string[];
+      }
+    >;
     required: string[];
   };
 }
@@ -40,59 +63,61 @@ interface ToolSearchResult {
 }
 
 // Generate input schema based on agent type
-function generateInputSchema(item: typeof REGISTRY[0]): ToolDefinition['input_schema'] {
-  const baseSchema: ToolDefinition['input_schema'] = {
-    type: 'object',
+function generateInputSchema(
+  item: (typeof REGISTRY)[0],
+): ToolDefinition["input_schema"] {
+  const baseSchema: ToolDefinition["input_schema"] = {
+    type: "object",
     properties: {
       task: {
-        type: 'string',
-        description: 'The specific task or query for this tool to perform',
+        type: "string",
+        description: "The specific task or query for this tool to perform",
       },
     },
-    required: ['task'],
+    required: ["task"],
   };
 
   // Add category-specific parameters
-  if (item.category === 'Trading & DeFi') {
+  if (item.category === "Trading & DeFi") {
     baseSchema.properties.token = {
-      type: 'string',
-      description: 'Token address or symbol',
+      type: "string",
+      description: "Token address or symbol",
     };
     baseSchema.properties.chain = {
-      type: 'string',
-      description: 'Blockchain network',
-      enum: ['solana', 'ethereum', 'base', 'arbitrum', 'polygon'],
+      type: "string",
+      description: "Blockchain network",
+      enum: ["solana", "ethereum", "base", "arbitrum", "polygon"],
     };
   }
 
-  if (item.category === 'Security & Audit') {
+  if (item.category === "Security & Audit") {
     baseSchema.properties.contract = {
-      type: 'string',
-      description: 'Contract address or code to audit',
+      type: "string",
+      description: "Contract address or code to audit",
     };
     baseSchema.properties.severity = {
-      type: 'string',
-      description: 'Minimum severity level to report',
-      enum: ['low', 'medium', 'high', 'critical'],
+      type: "string",
+      description: "Minimum severity level to report",
+      enum: ["low", "medium", "high", "critical"],
     };
   }
 
-  if (item.category === 'Content & Marketing') {
+  if (item.category === "Content & Marketing") {
     baseSchema.properties.topic = {
-      type: 'string',
-      description: 'Content topic or keyword',
+      type: "string",
+      description: "Content topic or keyword",
     };
     baseSchema.properties.format = {
-      type: 'string',
-      description: 'Output format',
-      enum: ['blog', 'tweet', 'thread', 'documentation'],
+      type: "string",
+      description: "Output format",
+      enum: ["blog", "tweet", "thread", "documentation"],
     };
   }
 
-  if (item.kind === 'block' || item.kind === 'template') {
+  if (item.kind === "component") {
     baseSchema.properties.customization = {
-      type: 'string',
-      description: 'Customization requirements for the component',
+      type: "string",
+      description: "Customization requirements for the component",
     };
   }
 
@@ -100,39 +125,39 @@ function generateInputSchema(item: typeof REGISTRY[0]): ToolDefinition['input_sc
 }
 
 // Convert registry item to Claude tool definition
-function itemToToolDefinition(item: typeof REGISTRY[0]): ToolDefinition {
+function itemToToolDefinition(item: (typeof REGISTRY)[0]): ToolDefinition {
   // Create a valid tool name (alphanumeric + underscores only)
-  const toolName = item.slug.replace(/-/g, '_');
+  const toolName = item.slug.replace(/-/g, "_");
 
   return {
     name: toolName,
-    description: `${item.name}: ${item.description}${item.longDescription ? ` ${item.longDescription.slice(0, 200)}...` : ''}`,
+    description: `${item.name}: ${item.description}${item.longDescription ? ` ${item.longDescription.slice(0, 200)}...` : ""}`,
     input_schema: generateInputSchema(item),
   };
 }
 
 // Simple text search scoring
-function scoreMatch(item: typeof REGISTRY[0], query: string): number {
+function scoreMatch(item: (typeof REGISTRY)[0], query: string): number {
   const queryLower = query.toLowerCase();
   const words = queryLower.split(/\s+/);
   let score = 0;
 
   // Exact name match
   if (item.name.toLowerCase() === queryLower) score += 100;
-  if (item.slug.includes(queryLower.replace(/\s+/g, '-'))) score += 80;
+  if (item.slug.includes(queryLower.replace(/\s+/g, "-"))) score += 80;
 
   // Partial matches
   for (const word of words) {
     if (item.name.toLowerCase().includes(word)) score += 30;
     if (item.description.toLowerCase().includes(word)) score += 20;
     if (item.longDescription?.toLowerCase().includes(word)) score += 10;
-    if (item.tags.some(t => t.toLowerCase().includes(word))) score += 25;
+    if (item.tags.some((t) => t.toLowerCase().includes(word))) score += 25;
     if (item.category.toLowerCase().includes(word)) score += 15;
   }
 
   // Boost by quality and popularity
   score += (item.audit?.qualityScore || 0) * 0.2;
-  score += Math.log(item.installs + 1) * 2;
+  score += Math.log((item.installs || 0) + 1) * 2;
 
   return score;
 }
@@ -140,26 +165,29 @@ function scoreMatch(item: typeof REGISTRY[0], query: string): number {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { query, limit = 5, platform, kind, minQuality = 0 } = body;
 
-    if (!query) {
+    // Validate with Zod
+    const parseResult = SearchPostSchema.safeParse(body);
+    if (!parseResult.success) {
       return NextResponse.json(
-        { error: 'Query is required' },
-        { status: 400 }
+        { error: "Invalid request", details: parseResult.error.flatten() },
+        { status: 400 },
       );
     }
+
+    const { query, limit, platform, kind, minQuality } = parseResult.data;
 
     const startTime = performance.now();
 
     // Filter and score items
-    let items = REGISTRY
-      .filter(item => {
-        if (platform && !item.platforms.includes(platform)) return false;
-        if (kind && item.kind !== kind) return false;
-        if (minQuality && (item.audit?.qualityScore || 0) < minQuality) return false;
-        return true;
-      })
-      .map(item => ({
+    let items = REGISTRY.filter((item) => {
+      if (platform && !(item.platforms || []).includes(platform)) return false;
+      if (kind && item.kind !== kind) return false;
+      if (minQuality && (item.audit?.qualityScore || 0) < minQuality)
+        return false;
+      return true;
+    })
+      .map((item) => ({
         item,
         score: scoreMatch(item, query),
       }))
@@ -176,9 +204,9 @@ export async function POST(request: NextRequest) {
         category: item.category,
         tags: item.tags,
         install: item.install,
-        platforms: item.platforms,
+        platforms: item.platforms || [],
         qualityScore: item.audit?.qualityScore || 0,
-        installs: item.installs,
+        installs: item.installs || 0,
       },
       score,
     }));
@@ -186,7 +214,7 @@ export async function POST(request: NextRequest) {
     const searchTime = performance.now() - startTime;
 
     return NextResponse.json({
-      tools: results.map(r => r.tool),
+      tools: results.map((r) => r.tool),
       results,
       meta: {
         query,
@@ -197,10 +225,10 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Tool search error:', error);
+    console.error("Tool search error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: "Internal server error" },
+      { status: 500 },
     );
   }
 }
@@ -208,25 +236,34 @@ export async function POST(request: NextRequest) {
 // GET for simple queries
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get('q') || searchParams.get('query');
-  const limit = parseInt(searchParams.get('limit') || '5', 10);
-  const platform = searchParams.get('platform');
-  const kind = searchParams.get('kind');
 
-  if (!query) {
+  // Validate with Zod
+  const parseResult = SearchGetSchema.safeParse({
+    query: searchParams.get("q") || searchParams.get("query") || "",
+    limit: searchParams.get("limit") || "5",
+    platform: searchParams.get("platform") || undefined,
+    kind: searchParams.get("kind") || undefined,
+  });
+
+  if (!parseResult.success) {
     return NextResponse.json(
-      { error: 'Query parameter "q" or "query" is required' },
-      { status: 400 }
+      {
+        error: "Invalid query parameters",
+        details: parseResult.error.flatten(),
+      },
+      { status: 400 },
     );
   }
 
+  const { query, limit, platform, kind } = parseResult.data;
+
   // Reuse POST logic
   const fakeRequest = new NextRequest(request.url, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ query, limit, platform, kind }),
   });
 
   return POST(fakeRequest);
 }
 
-export const runtime = 'nodejs';
+export const runtime = "nodejs";

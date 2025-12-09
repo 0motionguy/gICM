@@ -4,7 +4,35 @@ import { useMemo, useState, Suspense, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Search, Plus, Check, Info, PackageOpen, ChevronDown, Copy, Download, GitFork, BadgeCheck, X, TrendingUp, Layers, ExternalLink, Bot, Zap, Terminal, Plug, Settings, Wand2, ArrowRight, Loader2, Workflow, Box, Cpu, Code2, FileCode } from "lucide-react";
+import {
+  Search,
+  Plus,
+  Check,
+  Info,
+  PackageOpen,
+  ChevronDown,
+  Copy,
+  Download,
+  GitFork,
+  BadgeCheck,
+  X,
+  TrendingUp,
+  Layers,
+  ExternalLink,
+  Bot,
+  Zap,
+  Terminal,
+  Plug,
+  Settings,
+  Wand2,
+  ArrowRight,
+  Loader2,
+  Workflow,
+  Box,
+  Cpu,
+  Code2,
+  FileCode,
+} from "lucide-react";
 import { ReactIcon, ComfyUIIcon } from "@/components/ui/icons";
 import Fuse from "fuse.js";
 import { REGISTRY, resolveDependencies, getItemById } from "@/lib/registry";
@@ -13,7 +41,10 @@ import { HeroBanner } from "@/components/molecules/hero-banner";
 import { Web3HeroSection } from "@/components/molecules/web3-hero-section";
 import { SolanaShowcase } from "@/components/molecules/solana-showcase";
 import { PreSignupCTA } from "@/components/molecules/presignup-cta";
-import { MenuBuilder, type MenuCategory } from "@/components/molecules/menu-builder";
+import {
+  MenuBuilder,
+  type MenuCategory,
+} from "@/components/molecules/menu-builder";
 import { LiveTicker } from "@/components/molecules/live-ticker";
 import { ImportStackBanner } from "@/components/ImportStackBanner";
 import { StackManager } from "@/components/StackManager";
@@ -29,6 +60,7 @@ import { toast } from "sonner";
 import { getStackPresetById } from "@/lib/remix";
 import { formatProductName } from "@/lib/utils";
 import { ModelShowcase } from "@/components/molecules/model-showcase";
+import { TokenCalculator } from "@/components/organisms/token-calculator";
 import { DesignCard } from "@/components/molecules/design-card";
 import { DESIGN_ASSETS, UI_COMPONENTS } from "@/lib/registry-design";
 import { PREVIEW_COMPONENTS } from "@/components/registry";
@@ -42,37 +74,57 @@ const formatNumber = (n: number) => new Intl.NumberFormat("en-US").format(n);
 // Get icon component based on item kind
 const getKindIcon = (kind: string) => {
   switch (kind.toLowerCase()) {
-    case "agent": return Bot;
-    case "skill": return Zap;
-    case "command": return Terminal;
-    case "mcp": return Plug;
-    case "setting": return Settings;
-    case "workflow": return Workflow;
-    default: return null;
+    case "agent":
+      return Bot;
+    case "skill":
+      return Zap;
+    case "command":
+      return Terminal;
+    case "mcp":
+      return Plug;
+    case "setting":
+      return Settings;
+    case "workflow":
+      return Workflow;
+    default:
+      return null;
   }
 };
 
 import { ClaudeIcon, GeminiIcon, OpenAIIcon } from "@/components/ui/icons";
 
-const platformIcons: { [key: string]: { icon: React.ElementType, color: string } } = {
+const platformIcons: {
+  [key: string]: { icon: React.ElementType; color: string };
+} = {
   claude: { icon: ClaudeIcon, color: "text-[#D97757]" },
   gemini: { icon: GeminiIcon, color: "text-[#4E82EE]" },
   openai: { icon: OpenAIIcon, color: "text-[#10A37F]" },
 };
 
 // --- Card Component ----------------------------------------------------------
-const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; onPick: (id: string) => void; active: boolean }) {
+const Card = memo(function Card({
+  item,
+  onPick,
+  active,
+}: {
+  item: RegistryItem;
+  onPick: (id: string) => void;
+  active: boolean;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const IconComponent = getKindIcon(item.kind);
 
   // Calculate quality score
-  const idHash = item.id.split('').reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0);
+  const idHash = item.id
+    .split("")
+    .reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0);
   const qualityScore = idHash % 7 === 0 ? 99 : 100;
 
   // Logic: All text-based agents/skills are inherently universal via the bridge.
   // So we show all 3 icons to signify "Universal Compatibility".
-  const showUniversalIcons = item.kind === 'agent' || item.kind === 'skill' || item.kind === 'workflow';
+  const showUniversalIcons =
+    item.kind === "agent" || item.kind === "skill" || item.kind === "workflow";
 
   async function copyInstallCmd(e: React.MouseEvent) {
     e.preventDefault();
@@ -80,7 +132,7 @@ const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; 
     await navigator.clipboard?.writeText(item.install);
     setCopied(true);
     toast.success("Install command copied!", {
-      description: item.install
+      description: item.install,
     });
     setTimeout(() => setCopied(false), 2000);
   }
@@ -93,12 +145,13 @@ const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; 
       exit={{ opacity: 0, scale: 0.98 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`item-card relative flex flex-col h-full transition-all duration-300 ${active
-        ? "border-[#00F0FF]/50 ring-1 ring-[#00F0FF]/20 bg-[#00F0FF]/5"
-        : isHovered
-          ? "border-blue-500/50 ring-1 ring-blue-500/20 bg-blue-500/5"
-          : ""
-        }`}
+      className={`item-card relative flex flex-col h-full transition-all duration-300 ${
+        active
+          ? "border-[#00F0FF]/50 ring-1 ring-[#00F0FF]/20 bg-[#00F0FF]/5"
+          : isHovered
+            ? "border-blue-500/50 ring-1 ring-blue-500/20 bg-blue-500/5"
+            : ""
+      }`}
       hoverEffect={true}
       showPlatformFooter={false} // Custom footer logic
     >
@@ -107,12 +160,18 @@ const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; 
         <div className="flex items-start justify-between gap-4 mb-3">
           <div className="flex items-center gap-3 min-w-0">
             <div className="h-12 w-12 rounded-xl bg-white/[0.03] border border-white/[0.08] grid place-items-center text-white flex-shrink-0 shadow-sm">
-              {IconComponent && <IconComponent size={24} className="opacity-90" />}
+              {IconComponent && (
+                <IconComponent size={24} className="opacity-90" />
+              )}
             </div>
             <div className="min-w-0">
               <div className="font-bold text-base text-white font-display truncate leading-tight mb-1">
                 {isHovered ? (
-                  <ScrambleText text={formatProductName(item.name)} trigger="hover" duration={400} />
+                  <ScrambleText
+                    text={formatProductName(item.name)}
+                    trigger="hover"
+                    duration={400}
+                  />
                 ) : (
                   formatProductName(item.name)
                 )}
@@ -163,10 +222,11 @@ const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; 
           {/* Primary: Add/Remove */}
           <button
             onClick={() => onPick(item.id)}
-            className={`h-9 px-4 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${active
-              ? "bg-[#00F0FF] text-black shadow-[0_0_15px_-5px_rgba(0,240,255,0.5)] hover:bg-[#00F0FF]/90"
-              : "bg-white text-black hover:bg-zinc-200"
-              }`}
+            className={`h-9 px-4 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+              active
+                ? "bg-[#00F0FF] text-black shadow-[0_0_15px_-5px_rgba(0,240,255,0.5)] hover:bg-[#00F0FF]/90"
+                : "bg-white text-black hover:bg-zinc-200"
+            }`}
           >
             {active ? (
               <>
@@ -185,7 +245,11 @@ const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; 
             className="h-9 w-9 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
             title="Copy Install Command"
           >
-            {copied ? <Check size={14} className="text-[#00F0FF]" /> : <Terminal size={14} />}
+            {copied ? (
+              <Check size={14} className="text-[#00F0FF]" />
+            ) : (
+              <Terminal size={14} />
+            )}
           </button>
 
           {/* Tertiary: Details Link */}
@@ -203,14 +267,20 @@ const Card = memo(function Card({ item, onPick, active }: { item: RegistryItem; 
 });
 
 // --- UI Component Card --------------------------------------------------------
-const UIComponentCard = memo(function UIComponentCard({ item, onClick }: { item: UIComponent; onClick: () => void }) {
+const UIComponentCard = memo(function UIComponentCard({
+  item,
+  onClick,
+}: {
+  item: UIComponent;
+  onClick: () => void;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const libraryColors: Record<string, string> = {
     "Aceternity UI": "#00F0FF",
     "Magic UI": "#7C3AED",
-    "gICM": "#00F0FF",
+    gICM: "#00F0FF",
   };
   const libraryColor = libraryColors[item.credit.library] || "#71717A";
 
@@ -273,7 +343,10 @@ const UIComponentCard = memo(function UIComponentCard({ item, onClick }: { item:
       </div>
 
       {/* Preview Area */}
-      <div data-testid="preview-area" className="h-[45%] w-full relative overflow-hidden bg-black/20">
+      <div
+        data-testid="preview-area"
+        className="h-[45%] w-full relative overflow-hidden bg-black/20"
+      >
         {getPreview()}
 
         {/* Hover Overlay */}
@@ -294,8 +367,12 @@ const UIComponentCard = memo(function UIComponentCard({ item, onClick }: { item:
 
       {/* Details Area */}
       <div className="flex-1 p-4 flex flex-col border-t border-[#00F0FF]/10 bg-white/[0.02]">
-        <h3 className="text-base font-bold text-white font-display leading-tight">{item.name}</h3>
-        <p className="text-xs text-zinc-400 mt-1.5 line-clamp-2 flex-1">{item.description}</p>
+        <h3 className="text-base font-bold text-white font-display leading-tight">
+          {item.name}
+        </h3>
+        <p className="text-xs text-zinc-400 mt-1.5 line-clamp-2 flex-1">
+          {item.description}
+        </p>
 
         {/* Filename */}
         <div className="mt-3 p-2 rounded-lg bg-black/40 border border-[#00F0FF]/10">
@@ -304,7 +381,9 @@ const UIComponentCard = memo(function UIComponentCard({ item, onClick }: { item:
             <code className="text-[10px] text-[#00F0FF] font-mono truncate flex-1">
               {item.code.filename}
             </code>
-            <span className="text-[9px] text-zinc-500">{item.code.component.split("\n").length} lines</span>
+            <span className="text-[9px] text-zinc-500">
+              {item.code.component.split("\n").length} lines
+            </span>
           </div>
         </div>
 
@@ -319,7 +398,9 @@ const UIComponentCard = memo(function UIComponentCard({ item, onClick }: { item:
             </span>
           ))}
           {item.tags.length > 4 && (
-            <span className="text-[9px] text-zinc-600">+{item.tags.length - 4}</span>
+            <span className="text-[9px] text-zinc-600">
+              +{item.tags.length - 4}
+            </span>
           )}
         </div>
       </div>
@@ -332,7 +413,9 @@ function CatalogPageContent() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [menuCategory, setMenuCategory] = useState<MenuCategory>("all");
-  const [platform, setPlatform] = useState<"all" | "claude" | "gemini" | "openai">("all");
+  const [platform, setPlatform] = useState<
+    "all" | "claude" | "gemini" | "openai"
+  >("all");
   const [contentFilter, setContentFilter] = useState<"all" | "react">("all");
   const [sort, setSort] = useState("popular");
   const [isStackManagerOpen, setIsStackManagerOpen] = useState(false);
@@ -340,8 +423,11 @@ function CatalogPageContent() {
   const [itemsToShow, setItemsToShow] = useState(12);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [selectedDesign, setSelectedDesign] = useState<RegistryItem | null>(null);
-  const [selectedUIComponent, setSelectedUIComponent] = useState<UIComponent | null>(null);
+  const [selectedDesign, setSelectedDesign] = useState<RegistryItem | null>(
+    null,
+  );
+  const [selectedUIComponent, setSelectedUIComponent] =
+    useState<UIComponent | null>(null);
 
   const { addItem, removeItem, hasItem, clearBundle } = useBundleStore();
 
@@ -351,63 +437,90 @@ function CatalogPageContent() {
     hasItem(id) ? removeItem(id) : addItem(item);
   };
 
-  const fuse = useMemo(() => new Fuse(REGISTRY, {
-    keys: ["name", "description", "tags", "category"],
-    threshold: 0.3,
-    distance: 100,
-  }), []);
+  const fuse = useMemo(
+    () =>
+      new Fuse(REGISTRY, {
+        keys: ["name", "description", "tags", "category"],
+        threshold: 0.3,
+        distance: 100,
+      }),
+    [],
+  );
 
   const filtered = useMemo(() => {
     let data = [...REGISTRY];
 
     if (menuCategory !== "all" && menuCategory !== "design") {
       const kindMap: Record<string, string> = {
-        "agents": "agent", "skills": "skill", "commands": "command",
-        "mcp": "mcp", "settings": "setting", "workflows": "workflow",
+        agents: "agent",
+        skills: "skill",
+        commands: "command",
+        mcp: "mcp",
+        settings: "setting",
+        workflows: "workflow",
       };
-      if (menuCategory in kindMap) data = data.filter((item) => item.kind === kindMap[menuCategory]);
+      if (menuCategory in kindMap)
+        data = data.filter((item) => item.kind === kindMap[menuCategory]);
     }
 
     if (platform !== "all") {
-      data = data.filter(item => {
-        const itemPlatforms = item.platforms || (item.tags.includes("Gemini") ? ["gemini"] : ["claude"]);
+      data = data.filter((item) => {
+        const itemPlatforms =
+          item.platforms ||
+          (item.tags.includes("Gemini") ? ["gemini"] : ["claude"]);
         return itemPlatforms.includes(platform);
       });
     }
 
     if (contentFilter === "react") {
-      data = data.filter(item =>
-        item.tags.some(tag => ["React", "UI", "Component", "Tailwind", "Frontend"].includes(tag))
+      data = data.filter((item) =>
+        item.tags.some((tag) =>
+          ["React", "UI", "Component", "Tailwind", "Frontend"].includes(tag),
+        ),
       );
     }
 
     if (query) {
       const results = fuse.search(query);
-      const ids = new Set(results.map(r => r.item.id));
-      data = data.filter(item => ids.has(item.id));
+      const ids = new Set(results.map((r) => r.item.id));
+      data = data.filter((item) => ids.has(item.id));
     }
 
-    if (sort === "popular") data = data.sort((a, b) => (b.installs || 0) - (a.installs || 0));
-    else if (sort === "name") data = data.sort((a, b) => a.name.localeCompare(b.name));
-    else if (sort === "newest") data = data.sort((a, b) => (a.installs || 0) - (b.installs || 0));
+    if (sort === "popular")
+      data = data.sort((a, b) => (b.installs || 0) - (a.installs || 0));
+    else if (sort === "name")
+      data = data.sort((a, b) => a.name.localeCompare(b.name));
+    else if (sort === "newest")
+      data = data.sort((a, b) => (a.installs || 0) - (b.installs || 0));
 
     return data;
   }, [menuCategory, query, sort, fuse, platform, contentFilter]);
 
   const trendingItems = useMemo(() => {
-    return [...REGISTRY].filter(item => (item.installs || 0) > 100).slice(0, 3);
+    return [...REGISTRY]
+      .filter((item) => (item.installs || 0) > 100)
+      .slice(0, 3);
   }, []);
 
-  const paginatedItems = useMemo(() => filtered.slice(0, itemsToShow), [filtered, itemsToShow]);
+  const paginatedItems = useMemo(
+    () => filtered.slice(0, itemsToShow),
+    [filtered, itemsToShow],
+  );
 
-  useEffect(() => { setItemsToShow(12); }, [query, menuCategory, sort, platform, contentFilter]);
-  useEffect(() => { setContentFilter("all"); }, [menuCategory]);
-  useEffect(() => { setIsLoading(false); }, []);
+  useEffect(() => {
+    setItemsToShow(12);
+  }, [query, menuCategory, sort, platform, contentFilter]);
+  useEffect(() => {
+    setContentFilter("all");
+  }, [menuCategory]);
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   const handleLoadMore = async () => {
     setIsLoadingMore(true);
-    await new Promise(resolve => setTimeout(resolve, 300));
-    setItemsToShow(prev => prev + 12);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    setItemsToShow((prev) => prev + 12);
     setIsLoadingMore(false);
   };
 
@@ -424,17 +537,39 @@ function CatalogPageContent() {
           <div className="flex items-center gap-2 p-1 bg-white/5 rounded-xl border border-white/5 backdrop-blur-sm">
             {[
               { id: "all", label: "All", icon: null },
-              { id: "claude", label: "Claude", icon: ClaudeIcon, color: "text-[#D97757]" },
-              { id: "gemini", label: "Gemini", icon: GeminiIcon, color: "text-[#4E82EE]" },
-              { id: "openai", label: "OpenAI", icon: OpenAIIcon, color: "text-[#10A37F]" },
+              {
+                id: "claude",
+                label: "Claude",
+                icon: ClaudeIcon,
+                color: "text-[#D97757]",
+              },
+              {
+                id: "gemini",
+                label: "Gemini",
+                icon: GeminiIcon,
+                color: "text-[#4E82EE]",
+              },
+              {
+                id: "openai",
+                label: "OpenAI",
+                icon: OpenAIIcon,
+                color: "text-[#10A37F]",
+              },
             ].map((p) => (
               <button
                 key={p.id}
                 onClick={() => setPlatform(p.id as any)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${platform === p.id ? "bg-white/10 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300"
-                  }`}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                  platform === p.id
+                    ? "bg-white/10 text-white shadow-sm"
+                    : "text-zinc-500 hover:text-zinc-300"
+                }`}
               >
-                {p.icon && <p.icon className={`w-3.5 h-3.5 ${platform === p.id ? "text-white" : p.color}`} />}
+                {p.icon && (
+                  <p.icon
+                    className={`w-3.5 h-3.5 ${platform === p.id ? "text-white" : p.color}`}
+                  />
+                )}
                 {p.label}
               </button>
             ))}
@@ -444,9 +579,13 @@ function CatalogPageContent() {
 
             {/* React UI Filter - Opens Design Grid */}
             <button
-              onClick={() => setMenuCategory(menuCategory === "design" ? "all" : "design")}
+              onClick={() =>
+                setMenuCategory(menuCategory === "design" ? "all" : "design")
+              }
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
-                menuCategory === "design" ? "bg-[#61DAFB]/20 text-[#61DAFB] shadow-sm" : "text-zinc-500 hover:text-zinc-300"
+                menuCategory === "design"
+                  ? "bg-[#61DAFB]/20 text-[#61DAFB] shadow-sm"
+                  : "text-zinc-500 hover:text-zinc-300"
               }`}
             >
               <ReactIcon className="w-3.5 h-3.5" />
@@ -461,7 +600,9 @@ function CatalogPageContent() {
             >
               <ComfyUIIcon className="w-3.5 h-3.5" />
               Comfy UI - Image/Video
-              <span className="text-[10px] bg-white/5 px-1.5 py-0.5 rounded">Soon</span>
+              <span className="text-[10px] bg-white/5 px-1.5 py-0.5 rounded">
+                Soon
+              </span>
             </button>
           </div>
           <div className="relative">
@@ -477,13 +618,18 @@ function CatalogPageContent() {
         </div>
       </div>
 
-      <div id="marketplace-section" className="max-w-7xl mx-auto px-6 md:px-10 py-4 pb-8">
+      <div
+        id="marketplace-section"
+        className="max-w-7xl mx-auto px-6 md:px-10 py-4 pb-8"
+      >
         {menuCategory === "design" ? (
           <div className="space-y-8">
             {/* UI Components with Actual Code - Premium Section */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-lg font-bold text-white">Components with Full Code</span>
+                <span className="text-lg font-bold text-white">
+                  Components with Full Code
+                </span>
                 <span className="text-[10px] px-2 py-1 rounded bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/20 font-bold">
                   COPY & PASTE READY
                 </span>
@@ -502,7 +648,9 @@ function CatalogPageContent() {
             {/* Regular Design Assets */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-lg font-bold text-white">External Libraries</span>
+                <span className="text-lg font-bold text-white">
+                  External Libraries
+                </span>
                 <span className="text-[10px] px-2 py-1 rounded bg-white/5 text-zinc-400 border border-white/10">
                   Links to docs
                 </span>
@@ -524,13 +672,20 @@ function CatalogPageContent() {
             <div className="lg:col-span-9">
               {isLoading ? (
                 <div className="grid sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                  {Array.from({ length: 6 }).map((_, i) => <CardSkeleton key={i} />)}
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <CardSkeleton key={i} />
+                  ))}
                 </div>
               ) : (
                 <div className="grid sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4">
                   <AnimatePresence mode="popLayout">
                     {paginatedItems.map((item) => (
-                      <Card key={item.id} item={item} onPick={toggle} active={hasItem(item.id)} />
+                      <Card
+                        key={item.id}
+                        item={item}
+                        onPick={toggle}
+                        active={hasItem(item.id)}
+                      />
                     ))}
                   </AnimatePresence>
                 </div>
@@ -560,10 +715,18 @@ function CatalogPageContent() {
                   <h3 className="text-sm font-bold text-white">Trending Now</h3>
                 </div>
                 <div className="space-y-2">
-                  {trendingItems.map(item => (
-                    <Link key={item.id} href={`/items/${item.slug}`} className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                      <div className="text-sm font-medium text-white truncate">{item.name}</div>
-                      <div className="text-xs text-zinc-500 mt-1">{formatNumber(item.installs || 0)} installs</div>
+                  {trendingItems.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={`/items/${item.slug}`}
+                      className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                    >
+                      <div className="text-sm font-medium text-white truncate">
+                        {item.name}
+                      </div>
+                      <div className="text-xs text-zinc-500 mt-1">
+                        {formatNumber(item.installs || 0)} installs
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -571,6 +734,20 @@ function CatalogPageContent() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Token Calculator Section */}
+      <div className="max-w-4xl mx-auto px-6 md:px-10 py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            Save 88-92% on Token Costs
+          </h2>
+          <p className="text-zinc-400 max-w-xl mx-auto">
+            Progressive Skills load only what you need, when you need it. See
+            how much you can save.
+          </p>
+        </div>
+        <TokenCalculator />
       </div>
 
       <ModelShowcase />
@@ -582,9 +759,20 @@ function CatalogPageContent() {
         <Layers className="w-6 h-6" />
       </button>
 
-      <StackManager isOpen={isStackManagerOpen} onClose={() => setIsStackManagerOpen(false)} />
-      <DesignDetailModal item={selectedDesign} isOpen={!!selectedDesign} onClose={() => setSelectedDesign(null)} />
-      <UIComponentModal item={selectedUIComponent} isOpen={!!selectedUIComponent} onClose={() => setSelectedUIComponent(null)} />
+      <StackManager
+        isOpen={isStackManagerOpen}
+        onClose={() => setIsStackManagerOpen(false)}
+      />
+      <DesignDetailModal
+        item={selectedDesign}
+        isOpen={!!selectedDesign}
+        onClose={() => setSelectedDesign(null)}
+      />
+      <UIComponentModal
+        item={selectedUIComponent}
+        isOpen={!!selectedUIComponent}
+        onClose={() => setSelectedUIComponent(null)}
+      />
     </AuroraBackground>
   );
 }

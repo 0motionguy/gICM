@@ -18,7 +18,7 @@ async function sendConfirmationEmail(email: string, position: number) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${resendApiKey}`,
+        Authorization: `Bearer ${resendApiKey}`,
       },
       body: JSON.stringify({
         from: fromEmail,
@@ -51,7 +51,7 @@ async function sendConfirmationEmail(email: string, position: number) {
                   <ul style="margin: 0; padding: 0; list-style: none;">
                     <li style="margin: 0 0 12px; font-size: 15px; color: #E4E4E7; padding-left: 28px; position: relative;">
                       <span style="position: absolute; left: 0; color: #D1FD0A;">✓</span>
-                      <strong>90 specialized AI agents</strong> - From Solana to full-stack development
+                      <strong>108 specialized AI agents</strong> - From Solana to full-stack development
                     </li>
                     <li style="margin: 0 0 12px; font-size: 15px; color: #E4E4E7; padding-left: 28px; position: relative;">
                       <span style="position: absolute; left: 0; color: #D1FD0A;">✓</span>
@@ -63,7 +63,7 @@ async function sendConfirmationEmail(email: string, position: number) {
                     </li>
                     <li style="margin: 0; font-size: 15px; color: #E4E4E7; padding-left: 28px; position: relative;">
                       <span style="position: absolute; left: 0; color: #D1FD0A;">✓</span>
-                      <strong>82 MCP integrations</strong> - Complete Web3 tooling
+                      <strong>95 MCP integrations</strong> - Complete Web3 tooling
                     </li>
                   </ul>
                 </div>
@@ -94,7 +94,6 @@ async function sendConfirmationEmail(email: string, position: number) {
 
     const data = await response.json();
     return { success: true, emailId: data.id };
-
   } catch (error) {
     console.error("Error sending confirmation email:", error);
     return { success: false, reason: "exception", error };
@@ -159,7 +158,7 @@ export async function POST(req: Request) {
     if (!validated.success) {
       return NextResponse.json(
         { error: "Invalid email address", details: validated.error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -172,8 +171,11 @@ export async function POST(req: Request) {
     // Check if email already exists
     if (waitlist.some((entry) => entry.email === normalizedEmail)) {
       return NextResponse.json(
-        { error: "Email already on waitlist", message: "You're already registered!" },
-        { status: 409 }
+        {
+          error: "Email already on waitlist",
+          message: "You're already registered!",
+        },
+        { status: 409 },
       );
     }
 
@@ -197,13 +199,13 @@ export async function POST(req: Request) {
         message: "Successfully joined waitlist!",
         position: waitlist.length,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Waitlist error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -211,19 +213,21 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const waitlist = readWaitlist();
-    const count = waitlist.length || 289; // Fallback to 289
+    const count = waitlist.length;
 
     return NextResponse.json({
       total: count,
       count: count,
-      message: `${count} people on the waitlist`,
+      message:
+        count === 0
+          ? "Be the first to join the waitlist!"
+          : `${count} ${count === 1 ? "person" : "people"} on the waitlist`,
     });
-  } catch {
-    // Return fallback count instead of error
-    return NextResponse.json({
-      total: 289,
-      count: 289,
-      message: "289 people on the waitlist",
-    });
+  } catch (error) {
+    console.error("Error reading waitlist:", error);
+    return NextResponse.json(
+      { error: "Failed to retrieve waitlist count" },
+      { status: 500 },
+    );
   }
 }

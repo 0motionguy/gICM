@@ -1,13 +1,50 @@
-import { NextResponse } from 'next/server';
-import type { AnalyticsEvent } from '@/types/analytics';
-import { writeFile, readFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
-import { incrementItemInstalls } from '@/lib/item-stats';
+import { NextResponse } from "next/server";
+import type { AnalyticsEvent } from "@/types/analytics";
+import { writeFile, readFile, mkdir, stat } from "fs/promises";
+import { join } from "path";
+import { existsSync } from "fs";
+import { incrementItemInstalls } from "@/lib/item-stats";
+import { z } from "zod";
 
 // Store events in a JSON file for persistence
-const ANALYTICS_DIR = join(process.cwd(), '.analytics');
-const EVENTS_FILE = join(ANALYTICS_DIR, 'events.json');
+const ANALYTICS_DIR = join(process.cwd(), ".analytics");
+const EVENTS_FILE = join(ANALYTICS_DIR, "events.json");
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB max file size
+
+// Zod schema for analytics events
+const EventTypeSchema = z.enum([
+  "item_view",
+  "item_add_to_stack",
+  "item_remove_from_stack",
+  "stack_export",
+  "stack_share",
+  "search_query",
+  "category_filter",
+  "page_view",
+  "session_start",
+  "session_end",
+  "workflow_start",
+  "workflow_complete",
+  "bundle_generate",
+  "installation_start",
+  "installation_complete",
+]);
+
+const AnalyticsEventSchema = z.object({
+  type: EventTypeSchema,
+  sessionId: z.string().min(1).max(100),
+  itemId: z.string().max(100).optional(),
+  searchQuery: z.string().max(500).optional(),
+  category: z.string().max(100).optional(),
+  page: z.string().max(200).optional(),
+  metadata: z.record(z.unknown()).optional(),
+});
+
+const GetParamsSchema = z.object({
+  limit: z.coerce.number().int().min(1).max(1000).default(100),
+  type: EventTypeSchema.optional(),
+  itemId: z.string().max(100).optional(),
+});
 
 async function ensureAnalyticsDir() {
   if (!existsSync(ANALYTICS_DIR)) {
@@ -21,10 +58,10 @@ async function readEvents(): Promise<AnalyticsEvent[]> {
     if (!existsSync(EVENTS_FILE)) {
       return [];
     }
-    const data = await readFile(EVENTS_FILE, 'utf-8');
+    const data = await readFile(EVENTS_FILE, "utf-8");
     return JSON.parse(data);
   } catch (error) {
-    console.error('Error reading events:', error);
+    console.error("Error reading events:", error);
     return [];
   }
 }
@@ -34,20 +71,39 @@ async function writeEvents(events: AnalyticsEvent[]): Promise<void> {
     await ensureAnalyticsDir();
     await writeFile(EVENTS_FILE, JSON.stringify(events, null, 2));
   } catch (error) {
-    console.error('Error writing events:', error);
+    console.error("Error writing events:", error);
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const event: Omit<AnalyticsEvent, 'id' | 'timestamp'> = await request.json();
+    const body = await request.json();
 
-    // Validate event
-    if (!event.type || !event.sessionId) {
+    // Validate event with Zod
+    const parseResult = AnalyticsEventSchema.safeParse(body);
+    if (!parseResult.success) {
       return NextResponse.json(
-        { error: 'Missing required fields: type, sessionId' },
-        { status: 400 }
+        { error: "Invalid event data", details: parseResult.error.flatten() },
+        { status: 400 },
       );
+    }
+
+    const event = parseResult.data;
+
+    // Check file size before writing
+    try {
+      if (existsSync(EVENTS_FILE)) {
+        const fileStats = await stat(EVENTS_FILE);
+        if (fileStats.size > MAX_FILE_SIZE) {
+          console.warn("Analytics file size exceeded, skipping write");
+          return NextResponse.json({
+            success: true,
+            eventId: "skipped-size-limit",
+          });
+        }
+      }
+    } catch {
+      // Continue if we can't check file size
     }
 
     // Create full event with ID and timestamp
@@ -64,11 +120,11 @@ export async function POST(request: Request) {
     events.push(fullEvent);
 
     // Track item installs when adding to stack
-    if (fullEvent.type === 'item_add_to_stack' && fullEvent.itemId) {
+    if (fullEvent.type === "item_add_to_stack" && fullEvent.itemId) {
       try {
         incrementItemInstalls(fullEvent.itemId, fullEvent.sessionId);
       } catch (error) {
-        console.error('Failed to increment item installs:', error);
+        console.error("Failed to increment item installs:", error);
         // Don't fail the analytics event if stats update fails
       }
     }
@@ -81,14 +137,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      eventId: fullEvent.id
+      eventId: fullEvent.id,
     });
-
   } catch (error) {
-    console.error('Analytics tracking error:', error);
+    console.error("Analytics tracking error:", error);
     return NextResponse.json(
-      { error: 'Failed to track event' },
-      { status: 500 }
+      { error: "Failed to track event" },
+      { status: 500 },
     );
   }
 }
@@ -96,39 +151,57 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit') || '100');
-    const type = searchParams.get('type');
-    const itemId = searchParams.get('itemId');
+
+    // Validate query parameters with Zod
+    const parseResult = GetParamsSchema.safeParse({
+      limit: searchParams.get("limit") || "100",
+      type: searchParams.get("type") || undefined,
+      itemId: searchParams.get("itemId") || undefined,
+    });
+
+    if (!parseResult.success) {
+      return NextResponse.json(
+        {
+          error: "Invalid query parameters",
+          details: parseResult.error.flatten(),
+        },
+        { status: 400 },
+      );
+    }
+
+    const { limit, type, itemId } = parseResult.data;
 
     // Read all events
     let events = await readEvents();
 
     // Apply filters
     if (type) {
-      events = events.filter(e => e.type === type);
+      events = events.filter((e) => e.type === type);
     }
     if (itemId) {
-      events = events.filter(e => e.itemId === itemId);
+      events = events.filter((e) => e.itemId === itemId);
     }
 
     // Sort by timestamp descending (newest first)
-    events.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    events.sort(
+      (a, b) =>
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+    );
 
     // Apply limit
     events = events.slice(0, limit);
 
     return NextResponse.json({
       events,
-      total: events.length
+      total: events.length,
     });
-
   } catch (error) {
-    console.error('Analytics fetch error:', error);
+    console.error("Analytics fetch error:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch events' },
-      { status: 500 }
+      { error: "Failed to fetch events" },
+      { status: 500 },
     );
   }
 }
 
-export const runtime = 'nodejs';
+export const runtime = "nodejs";

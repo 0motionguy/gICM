@@ -1,7 +1,29 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(node:*)",
+      "Bash(dir \"C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\")",
+      "Bash(cat:*)",
+      "Bash(pnpm dev)",
+      "Bash(taskkill:*)",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm start)",
+      "Bash(PORT=3007 pnpm start:*)",
+      "Bash(find:*)",
+      "Bash(pnpm update:*)",
+      "Bash(pnpm add:*)",
+      "WebSearch",
+      "Bash(git add:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(git push:*)",
+      "Bash(grep:*)",
+      "Bash(dir /b \"C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\\.claude\\memory\")",
+      "Bash(npm audit:*)",
+      "Bash(dir /b \"C:\\Users\\mirko\\OneDrive\\Desktop\\gICM\\.claude\\hooks\")",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
@@ -12,12 +34,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.js\"",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/session-start.js\"",
             "timeout": 30
           },
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/opus67-auto-detect.js\"",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/opus67-auto-detect.js\"",
             "timeout": 30
           }
         ]
@@ -29,8 +51,38 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-bash.js\"",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/pre-bash.js\"",
             "timeout": 60
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/opus67-pre-read.js\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/opus67-pre-mcp.js\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/opus67-pre-agent.js\"",
+            "timeout": 10
           }
         ]
       }
@@ -41,7 +93,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-write.js\"",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/post-write.js\"",
             "timeout": 60
           }
         ]
@@ -51,7 +103,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-bash.js\"",
+            "command": "node \"C:/Users/mirko/OneDrive/Desktop/gICM/.claude/hooks/post-bash.js\"",
             "timeout": 30
           }
         ]
