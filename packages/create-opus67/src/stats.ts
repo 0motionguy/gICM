@@ -5,11 +5,11 @@
 
 export const OPUS67_STATS = {
   skills: 141,
-  mcps: 82,
+  mcps: 83,
   modes: 30,
   agents: 107,
 } as const;
 
 export type InstallStats = typeof OPUS67_STATS;
 
-export const VERSION = '5.1.9';
+export const VERSION = "6.1.0";

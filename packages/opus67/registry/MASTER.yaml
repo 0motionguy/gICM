@@ -1,137 +1,133 @@
-# OPUS 67 v6.0.0 - MASTER REGISTRY
-# Single Source of Truth - Generated 2024-12-06
-# This file orchestrates ALL OPUS 67 components
+# OPUS 67 Master Registry
+# Version: 6.1.0 "Memory Unified"
+# Single source of truth for all OPUS 67 components
+# Generated: 2025-12-09
 
-version: "6.0.0"
-codename: "The Unification"
-generated: "2024-12-06T00:00:00Z"
-
-# ============================================================================
-# COMPONENT COUNTS (Updated at boot)
-# ============================================================================
 meta:
-  skills_count: 141
-  agents_count: 107
-  modes_count: 30
-  mcps_count: 82
-  hooks_count: 5
+  version: "6.1.0"
+  codename: "Memory Unified"
+  generated: "2025-12-09T00:00:00Z"
 
-# ============================================================================
-# SKILLS CONFIGURATION
-# ============================================================================
+  # Component counts (verified via audit)
+  stats:
+    skills: 141
+    agents: 107
+    modes: 30
+    mcps: 83
+    hooks: 9
+    memory_sources: 5
+
+# =============================================================================
+# COMPONENT SOURCES
+# =============================================================================
+
 skills:
+  count: 141
   source: "../skills/registry.yaml"
-  metadata_dir: "../skills/metadata/"
-  definitions_dir: "../skills/definitions/"
-  loaded_at_boot: true
-  auto_detect: true
-  max_concurrent: 5
+  definitions_path: "../skills/definitions/"
+  metadata_path: "../skills/metadata/"
+  auto_load: true
+  max_per_session: 5
   token_budget: 50000
 
-# ============================================================================
-# AGENTS CONFIGURATION
-# ============================================================================
 agents:
-  source: "../../../.claude/agents/"
-  format: "markdown"
-  loaded_at_boot: true
-  system_agents:
-    - "../agents/learning-observer.yaml"
-    - "../agents/skills-navigator.yaml"
+  count: 107
+  source: "../agents/"
+  definitions_path: "../agents/definitions/"
+  auto_load: false  # Agents load on-demand via Task tool
 
-# ============================================================================
-# MODES CONFIGURATION
-# ============================================================================
 modes:
+  count: 30
   source: "../modes/registry.yaml"
-  default: "AUTO"
-  loaded_at_boot: true
-  available:
-    - ULTRA    # Maximum intelligence
-    - THINK    # Deep analysis
-    - BUILD    # Production code
-    - VIBE     # Rapid prototyping
-    - LIGHT    # Minimal overhead
-    - CREATIVE # Design & content
-    - DATA     # Analytics & research
-    - AUDIT    # Security & quality
-    - SWARM    # Multi-agent
-    - AUTO     # Intelligent switching
+  default: "auto"
+  allow_override: true
 
-# ============================================================================
-# MCP CONFIGURATION (THE KEY FIX)
-# ============================================================================
 mcps:
+  count: 83
   source: "../mcp/connections.yaml"
   auto_connect: true
-  register_in_claude: true  # This triggers settings.json update
-  connection_timeout_ms: 5000
+  timeout_ms: 5000
   retry_attempts: 3
-  categories:
-    - blockchain
-    - social
-    - data
-    - productivity
-    - ai_search
-    - memory
-    - solana_stack
-    - ai_ml
-    - evm_chains
-    - databases
-    - monitoring
-    - design
-    - project_management
-    - communication
-    - hosting
-    - payments
-    - web3
-    - realtime
 
-# ============================================================================
-# HOOKS CONFIGURATION
-# ============================================================================
 hooks:
+  count: 9
   source: "../../../.claude/hooks/"
-  active:
-    - session-start.js
-    - opus67-auto-detect.js
-    - pre-bash.js
-    - post-write.js
-    - post-bash.js
-  visibility: true  # Log hook activity
+  types:
+    - session-start
+    - pre-bash
+    - post-bash
+    - post-write
+    - opus67-auto-detect
+    - opus67-pre-read
+    - opus67-pre-mcp
+    - opus67-pre-agent
 
-# ============================================================================
-# BOOT SEQUENCE
-# ============================================================================
-boot:
-  order:
-    - registry      # Load this file
-    - door          # Inject THE DOOR
-    - mcps          # Register MCPs in Claude settings
-    - skills        # Load skills registry
-    - agents        # Load agents
-    - modes         # Load modes
-    - hooks         # Activate hooks
-    - context       # Index workspace
-  display_banner: true
-  verify_access: true
+memory:
+  count: 5
+  sources:
+    - type: graphiti
+      name: GraphitiMemory
+      description: Graph database for entity relations
+    - type: markdown
+      name: MarkdownLoader
+      description: .claude/memory files
+    - type: learning
+      name: LearningSyncBridge
+      description: Pattern learnings across sessions
+    - type: hmlr
+      name: HMLRAdapter
+      description: Multi-hop reasoning
+    - type: session
+      name: SessionStore
+      description: Session facts and context
 
-# ============================================================================
-# THE DOOR CONFIGURATION
-# ============================================================================
-door:
+# =============================================================================
+# THE DOOR
+# =============================================================================
+
+the_door:
   source: "../THE_DOOR.md"
-  version: "5.1.0"
-  inject_to_claude: true
+  version: "6.1.0"
+  inject_to:
+    - "CLAUDE.md"
+    - ".claude/CLAUDE.md"
   marker: "<!-- OPUS 67 THE DOOR -->"
 
-# ============================================================================
-# UNIFIED SYSTEM FLAGS
-# ============================================================================
-unified:
-  version: "6.0.0"
-  single_boot_command: true
-  consistent_loading: true
-  all_mcps_registered: true
-  no_duplicate_doors: true
-  hooks_visible: true
+# =============================================================================
+# BOOT CONFIGURATION
+# =============================================================================
+
+boot:
+  entry_point: "../dist/unified-boot.js"
+  sequence:
+    1: load_registry      # Load this MASTER.yaml
+    2: init_memory        # Initialize unified memory
+    3: index_context      # Index workspace
+    4: load_skills        # Load skill registry
+    5: connect_mcps       # Auto-connect MCPs
+    6: inject_door        # Inject THE DOOR
+    7: register_hooks     # Register hooks
+    8: display_status     # Show boot status
+
+  display:
+    show_banner: true
+    show_stats: true
+    show_mode: true
+
+# =============================================================================
+# VERIFICATION
+# =============================================================================
+
+verification:
+  required_files:
+    - "../skills/registry.yaml"
+    - "../modes/registry.yaml"
+    - "../mcp/connections.yaml"
+    - "../THE_DOOR.md"
+    - "../src/boot.ts"
+
+  required_counts:
+    skills: 141
+    agents: 107
+    modes: 30
+    mcps: 83
