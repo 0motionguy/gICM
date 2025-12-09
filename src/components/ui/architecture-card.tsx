@@ -21,19 +21,21 @@ export function ArchitectureCard({
 
   return (
     <div
-      className="relative rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 cursor-pointer transition-all duration-200 hover:border-[#00F0FF]/50 hover:bg-zinc-900/80"
+      className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Card Face */}
-      <div className="flex items-center gap-3">
-        <div className={iconColor}>{icon}</div>
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 cursor-pointer transition-all duration-200 hover:border-[#00F0FF]/50 hover:bg-zinc-900/80">
+        <div className="flex items-center gap-3">
+          <div className={iconColor}>{icon}</div>
+          <h3 className="text-lg font-semibold text-white">{title}</h3>
+        </div>
+        <p className="mt-2 text-sm text-zinc-400">{description}</p>
+        <p className="mt-3 text-xs text-zinc-500">
+          Hover to see architecture <span className="text-[#00F0FF]">→</span>
+        </p>
       </div>
-      <p className="mt-2 text-sm text-zinc-400">{description}</p>
-      <p className="mt-3 text-xs text-zinc-500">
-        Hover to see architecture <span className="text-[#00F0FF]">→</span>
-      </p>
 
       {/* Hover Popup */}
       {isHovered && (
