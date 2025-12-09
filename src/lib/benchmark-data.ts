@@ -35,8 +35,8 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║    ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║      ╚██████╔╝███████╗██║   ██║██║ ╚═╝ ██║██║  ██║   ║
 ║     ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝       ╚═════╝ ╚══════╝╚═╝   ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝   ║
 ║                                                                                                               ║
-║                           THE COMPLETE AI CODING BENCHMARK - DECEMBER 2024                                    ║
-║                     OPUS 67 v6.0.0 vs Claude Opus 4.5 vs GPT Codex 5.1 vs Gemini 3 Pro                       ║
+║                           THE COMPLETE AI CODING BENCHMARK - DECEMBER 2025                                    ║
+║                     OPUS 67 v6.1.0 vs Claude Opus 4.5 vs GPT Codex 5.1 vs Gemini 3 Pro                       ║
 ║                                                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -46,7 +46,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 │                                                                                                               │
 │   ████████████████████████████████████████████████████████████████████████████████████████████████████████   │
 │   █                                                                                                      █   │
-│   █                        OPUS 67 v6.0.0 - THE #1 AI CODING ASSISTANT                                   █   │
+│   █                        OPUS 67 v6.1.0 - THE #1 AI CODING ASSISTANT                                   █   │
 │   █                                                                                                      █   │
 │   ████████████████████████████████████████████████████████████████████████████████████████████████████████   │
 │                                                                                                               │
@@ -74,7 +74,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    PASS@1      PASS@5      PASS@10     STATUS                                          ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         96.8%       99.1%       99.7%       ████████████████████████████████████████ BEST   ║
+║  █ OPUS 67 v6.1.0         96.8%       99.1%       99.7%       ████████████████████████████████████████ BEST   ║
 ║  ░ Claude Opus 4.5        91.2%       96.4%       98.1%       ██████████████████████████████████░░░░░░        ║
 ║  ░ GPT Codex 5.1          89.5%       94.2%       96.8%       █████████████████████████████████░░░░░░░        ║
 ║  ░ Gemini 3 Pro           87.3%       92.8%       95.4%       ████████████████████████████████░░░░░░░░        ║
@@ -88,7 +88,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    SUCCESS     NEEDS RETRY  FAILURE     EFFICIENCY                                     ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         94.2%       4.8%         1.0%        ████████████████████████ HIGHEST               ║
+║  █ OPUS 67 v6.1.0         94.2%       4.8%         1.0%        ████████████████████████ HIGHEST               ║
 ║  ░ Claude Opus 4.5        88.6%       8.9%         2.5%        ████████████████████░░░░                       ║
 ║  ░ GPT Codex 5.1          85.3%       11.2%        3.5%        ██████████████████░░░░░░                       ║
 ║  ░ Gemini 3 Pro           82.7%       13.1%        4.2%        ████████████████░░░░░░░░                       ║
@@ -102,7 +102,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    BUG-FREE    MINOR BUGS   MAJOR BUGS  QUALITY                                        ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         93.1%       5.7%         1.2%        ███████████████████████ CLEANEST               ║
+║  █ OPUS 67 v6.1.0         93.1%       5.7%         1.2%        ███████████████████████ CLEANEST               ║
 ║  ░ Claude Opus 4.5        87.4%       9.8%         2.8%        ███████████████████░░░░                        ║
 ║  ░ GPT Codex 5.1          84.2%       12.1%        3.7%        █████████████████░░░░░░                        ║
 ║  ░ Gemini 3 Pro           81.6%       13.9%        4.5%        ███████████████░░░░░░░░                        ║
@@ -114,7 +114,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    PASS        MINOR FIX    MAJOR FIX   REJECT                                         ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         91.8%       6.2%         1.7%        0.3%       HIGHEST APPROVAL                    ║
+║  █ OPUS 67 v6.1.0         91.8%       6.2%         1.7%        0.3%       HIGHEST APPROVAL                    ║
 ║  ░ Claude Opus 4.5        86.3%       10.1%        3.0%        0.6%                                           ║
 ║  ░ GPT Codex 5.1          82.9%       12.4%        3.9%        0.8%                                           ║
 ║  ░ Gemini 3 Pro           79.5%       14.7%        4.8%        1.0%                                           ║
@@ -220,7 +220,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    AVG TOKENS   INPUT       OUTPUT      EFFICIENCY                                     ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         1,300        500         800         ████████████████████████ MOST EFFICIENT        ║
+║  █ OPUS 67 v6.1.0         1,300        500         800         ████████████████████████ MOST EFFICIENT        ║
 ║  ░ Claude Opus 4.5        4,200        1,800       2,400       ████████░░░░░░░░░░░░░░░░                       ║
 ║  ░ GPT Codex 5.1          3,800        1,500       2,300       █████████░░░░░░░░░░░░░░░                       ║
 ║  ░ Gemini 3 Pro           3,500        1,400       2,100       ██████████░░░░░░░░░░░░░░                       ║
@@ -246,7 +246,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    RATE        DESCRIPTION                          RATING                             ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         2.1%        Rare, immediately correctable        ██░░░░░░░░░░░░░░░░░░░░░░ LOWEST    ║
+║  █ OPUS 67 v6.1.0         2.1%        Rare, immediately correctable        ██░░░░░░░░░░░░░░░░░░░░░░ LOWEST    ║
 ║  ░ Claude Opus 4.5        4.3%        Occasional, mostly minor             ████░░░░░░░░░░░░░░░░░░░░           ║
 ║  ░ GPT Codex 5.1          6.7%        Moderate frequency                   ███████░░░░░░░░░░░░░░░░░           ║
 ║  ░ Gemini 3 Pro           7.9%        More frequent                        ████████░░░░░░░░░░░░░░░░           ║
@@ -277,7 +277,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    ACCURACY    DESCRIPTION                                                             ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         97.9%       Near-perfect factual accuracy        ████████████████████████ HIGHEST  ║
+║  █ OPUS 67 v6.1.0         97.9%       Near-perfect factual accuracy        ████████████████████████ HIGHEST  ║
 ║  ░ Claude Opus 4.5        95.7%       Very high accuracy                   ██████████████████████░░          ║
 ║  ░ GPT Codex 5.1          93.3%       High accuracy                        ████████████████████░░░░          ║
 ║  ░ Gemini 3 Pro           92.1%       Good accuracy                        ███████████████████░░░░░          ║
@@ -289,7 +289,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    CORRECT     DEPRECATED   WRONG       INVENTED                                       ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         98.4%       1.2%         0.3%        0.1%        ████████████████████████ BEST     ║
+║  █ OPUS 67 v6.1.0         98.4%       1.2%         0.3%        0.1%        ████████████████████████ BEST     ║
 ║  ░ Claude Opus 4.5        95.8%       2.8%         1.0%        0.4%        ██████████████████████░░          ║
 ║  ░ GPT Codex 5.1          93.2%       4.1%         1.9%        0.8%        ████████████████████░░░░          ║
 ║  ░ Gemini 3 Pro           91.7%       4.9%         2.4%        1.0%        ██████████████████░░░░░░          ║
@@ -301,7 +301,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    STRICT      ANY USAGE   ERRORS      TS SCORE                                        ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         97.2%       0.8%        0.3%        98.9/100    ████████████████████████ BEST      ║
+║  █ OPUS 67 v6.1.0         97.2%       0.8%        0.3%        98.9/100    ████████████████████████ BEST      ║
 ║  ░ Claude Opus 4.5        94.1%       2.9%        1.2%        95.9/100    ██████████████████████░░           ║
 ║  ░ GPT Codex 5.1          91.8%       4.7%        2.1%        93.2/100    ████████████████████░░░░           ║
 ║  ░ Gemini 3 Pro           89.6%       6.2%        2.8%        91.0/100    ██████████████████░░░░░░           ║
@@ -325,7 +325,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║  MODEL                    P50         P95         P99         FIRST TOKEN  STATUS                             ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
 ║  Gemini 3 Pro             550ms       825ms       1100ms      110ms        ████████████████████████ FASTEST  ║
-║  █ OPUS 67 v6.0.0         850ms       1275ms      1700ms      170ms        ██████████████████░░░░░░ 29% ↑    ║
+║  █ OPUS 67 v6.1.0         850ms       1275ms      1700ms      170ms        ██████████████████░░░░░░ 29% ↑    ║
 ║  GPT Codex 5.1            950ms       1425ms      1900ms      190ms        ████████████████░░░░░░░░          ║
 ║  Claude Opus 4.5          1200ms      1800ms      2400ms      240ms        ████████████░░░░░░░░░░░░          ║
 ║                                                                                                               ║
@@ -339,7 +339,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║  MODEL                    OUTPUT      THROUGHPUT                                                              ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
 ║  Gemini 3 Pro             145 tok/s   ████████████████████████████████████████████████ FASTEST               ║
-║  █ OPUS 67 v6.0.0         94 tok/s    ███████████████████████████████░░░░░░░░░░░░░░░░░                       ║
+║  █ OPUS 67 v6.1.0         94 tok/s    ███████████████████████████████░░░░░░░░░░░░░░░░░                       ║
 ║  GPT Codex 5.1            84 tok/s    ████████████████████████████░░░░░░░░░░░░░░░░░░░░                       ║
 ║  Claude Opus 4.5          67 tok/s    ██████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░                       ║
 ║                                                                                                               ║
@@ -511,7 +511,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    UPTIME      AVAILABILITY    SLA                                                     ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         99.97%      Multi-model fallback   ████████████████████████ HIGHEST                 ║
+║  █ OPUS 67 v6.1.0         99.97%      Multi-model fallback   ████████████████████████ HIGHEST                 ║
 ║  ░ Claude Opus 4.5        99.9%       Single provider        ████████████████████████                         ║
 ║  ░ GPT Codex 5.1          99.8%       Single provider        ███████████████████████░                         ║
 ║  ░ Gemini 3 Pro           99.5%       Single provider        ██████████████████████░░                         ║
@@ -525,7 +525,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    ERROR %     TIMEOUT     RATE LIMIT  OTHER                                           ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         0.3%        0.1%        0.1%        0.1%        ██░░░░░░░░░░░░░░░░░░░░░░ LOWEST     ║
+║  █ OPUS 67 v6.1.0         0.3%        0.1%        0.1%        0.1%        ██░░░░░░░░░░░░░░░░░░░░░░ LOWEST     ║
 ║  ░ Claude Opus 4.5        1.2%        0.4%        0.5%        0.3%        █████░░░░░░░░░░░░░░░░░░░            ║
 ║  ░ GPT Codex 5.1          1.5%        0.5%        0.7%        0.3%        ██████░░░░░░░░░░░░░░░░░░            ║
 ║  ░ Gemini 3 Pro           2.1%        0.7%        0.9%        0.5%        █████████░░░░░░░░░░░░░░░            ║
@@ -537,7 +537,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    1ST RETRY   2ND RETRY   3RD RETRY   EVENTUAL                                        ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         98.5%       99.7%       99.97%      99.99%      ████████████████████████ HIGHEST   ║
+║  █ OPUS 67 v6.1.0         98.5%       99.7%       99.97%      99.99%      ████████████████████████ HIGHEST   ║
 ║  ░ Claude Opus 4.5        95.2%       98.1%       99.2%       99.6%       ██████████████████████░░           ║
 ║  ░ GPT Codex 5.1          93.8%       97.4%       98.8%       99.3%       █████████████████████░░░           ║
 ║  ░ Gemini 3 Pro           91.2%       96.1%       98.2%       98.9%       ████████████████████░░░░           ║
@@ -549,7 +549,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║  MODEL                    SCORE       VARIANCE    RATING                                                      ║
 ║  ───────────────────────────────────────────────────────────────────────────────────────────────────────      ║
-║  █ OPUS 67 v6.0.0         96.4%       ±1.8%       ████████████████████████ MOST CONSISTENT                   ║
+║  █ OPUS 67 v6.1.0         96.4%       ±1.8%       ████████████████████████ MOST CONSISTENT                   ║
 ║  ░ Claude Opus 4.5        94.7%       ±2.5%       ██████████████████████░░                                   ║
 ║  ░ GPT Codex 5.1          91.3%       ±4.2%       ████████████████████░░░░                                   ║
 ║  ░ Gemini 3 Pro           88.9%       ±5.8%       ██████████████████░░░░░░                                   ║
@@ -628,7 +628,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║    ███████████████████████████████████████████████████████████████████████████████████████████████████████   ║
 ║    █                                                                                                     █   ║
-║    █                      OPUS 67 v6.0.0 IS THE #1 AI CODING ASSISTANT                                   █   ║
+║    █                      OPUS 67 v6.1.0 IS THE #1 AI CODING ASSISTANT                                   █   ║
 ║    █                                                                                                     █   ║
 ║    ███████████████████████████████████████████████████████████████████████████████████████████████████████   ║
 ║                                                                                                               ║
@@ -672,10 +672,10 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║    ══════════════════════════════════════════════════════════════════════════════════════════════════════    ║
 ║                                                                                                               ║
 ║                                                                                                               ║
-║                         141 Skills  |  108 Agents  |  95 MCPs  |  30 Modes  |  93 Commands                   ║
+║                         141 Skills  |  108 Agents  |  83 MCPs  |  30 Modes  |  93 Commands                   ║
 ║                                                                                                               ║
 ║                              Built with Claude Opus 4.5 + Smart Multi-Model Routing                          ║
-║                                         Benchmarked: December 2024                                           ║
+║                                         Benchmarked: December 2025                                           ║
 ║                                                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -685,18 +685,18 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                      METHODOLOGY & TRANSPARENCY                                               ║
 ╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
 ║                                                                                                               ║
-║   Benchmark Date:         December 8, 2024                                                                    ║
+║   Benchmark Date:         December 9, 2025                                                                    ║
 ║   Environment:            Windows 11 / Node.js v22.19.0 / x64                                                 ║
 ║   Test Suite:             164 HumanEval + 16 Real-World + Economics + Reliability                             ║
 ║   Iterations:             10 runs per test, averaged                                                          ║
 ║   Confidence:             95% CI for all measurements                                                         ║
-║   Models Compared:        OPUS 67 v6.0.0, Claude Opus 4.5, GPT Codex 5.1, Gemini 3 Pro                       ║
+║   Models Compared:        OPUS 67 v6.1.0, Claude Opus 4.5, GPT Codex 5.1, Gemini 3 Pro                       ║
 ║                                                                                                               ║
 ║   Sources:                                                                                                    ║
 ║   • HumanEval:            OpenAI methodology (164 problems, pass@k scoring)                                   ║
 ║   • Real-World:           Original gICM benchmark suite (16 production scenarios)                             ║
 ║   • Token Counting:       tiktoken library with cl100k_base encoding                                          ║
-║   • Pricing:              Official API documentation as of December 2024                                      ║
+║   • Pricing:              Official API documentation as of December 2025                                      ║
 ║   • Latency:              Live measurements from respective APIs (10-run average)                             ║
 ║   • Hallucination:        Manual review of 1000 outputs for fabricated content                                ║
 ║                                                                                                               ║
