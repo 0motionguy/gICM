@@ -20,7 +20,7 @@ interface StackPreviewProps {
 
 export function StackPreview({ allItems }: StackPreviewProps) {
   const { getActiveStack, clearBundle, itemCount } = useBundleStore();
-  const [stackName, setStackName] = useState("My Aether Stack");
+  const [stackName, setStackName] = useState("My gICM Stack");
   const [tagsExpanded, setTagsExpanded] = useState(false);
   const [hoverHeader, setHoverHeader] = useState(false);
   const [hoverSelectedItems, setHoverSelectedItems] = useState(false);
@@ -38,7 +38,7 @@ export function StackPreview({ allItems }: StackPreviewProps) {
   const activeStack = getActiveStack();
   const selectedItems = useMemo(
     () => (activeStack?.items || []).map((bi) => bi.item),
-    [activeStack],
+    [activeStack]
   );
 
   const dependencies = useMemo(() => {
@@ -108,14 +108,14 @@ export function StackPreview({ allItems }: StackPreviewProps) {
   // Empty State
   if (!mounted || itemCount() === 0) {
     return (
-      <div className="sticky top-4 relative overflow-hidden rounded-xl border border-white/[0.08] bg-[#0F0F11] p-6 shadow-lg">
-        <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-4">
-          <div className="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+      <div className="relative sticky top-4 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0F0F11] p-6 shadow-lg">
+        <div className="relative z-10 flex flex-col items-center justify-center space-y-4 text-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5">
             <Package className="h-6 w-6 text-zinc-500" />
           </div>
           <div>
             <h3 className="text-sm font-bold text-white">Stack Empty</h3>
-            <p className="text-xs text-zinc-500 mt-1 max-w-[200px] mx-auto">
+            <p className="mx-auto mt-1 max-w-[200px] text-xs text-zinc-500">
               Select items from the catalog to build your custom workflow.
             </p>
           </div>
@@ -127,16 +127,16 @@ export function StackPreview({ allItems }: StackPreviewProps) {
   return (
     <div
       id="stack-preview"
-      className="sticky top-4 relative overflow-hidden rounded-xl border border-white/[0.08] bg-[#0F0F11] p-4 shadow-2xl"
+      className="relative sticky top-4 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0F0F11] p-4 shadow-2xl"
       onMouseEnter={() => setHoverHeader(true)}
       onMouseLeave={() => setHoverHeader(false)}
     >
       <div className="relative z-10">
         {/* Header */}
-        <div className="mb-4 pb-4 border-b border-white/5">
-          <div className="flex items-start justify-between mb-3">
+        <div className="mb-4 border-b border-white/5 pb-4">
+          <div className="mb-3 flex items-start justify-between">
             <div className="flex-1">
-              <div className="text-xs font-bold text-[#00F0FF] uppercase tracking-wider">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#00F0FF]">
                 {hoverHeader ? (
                   <ScrambleText
                     text="Current Stack"
@@ -147,13 +147,13 @@ export function StackPreview({ allItems }: StackPreviewProps) {
                   "Current Stack"
                 )}
               </div>
-              <div className="text-[10px] text-zinc-400 mt-1">
+              <div className="mt-1 text-[10px] text-zinc-400">
                 {selectedItems.length} items • {stats.tokenSavings}% efficiency
               </div>
             </div>
             <button
               onClick={handleClear}
-              className="text-[10px] text-zinc-500 hover:text-white transition-colors"
+              className="text-[10px] text-zinc-500 transition-colors hover:text-white"
             >
               Clear
             </button>
@@ -163,22 +163,22 @@ export function StackPreview({ allItems }: StackPreviewProps) {
             type="text"
             value={stackName}
             onChange={(e) => setStackName(e.target.value)}
-            placeholder="My Aether Stack"
-            className="w-full px-3 py-2 rounded-lg border border-white/10 bg-black/20 outline-none text-sm text-white placeholder:text-zinc-600 focus:border-[#00F0FF]/50 transition-colors"
+            placeholder="My gICM Stack"
+            className="w-full rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors placeholder:text-zinc-600 focus:border-[#00F0FF]/50"
           />
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-2 mb-4">
+        <div className="mb-4 grid grid-cols-2 gap-2">
           {Object.entries(stats.breakdown).map(([key, value]) => {
             if (value === 0) return null;
             return (
               <div
                 key={key}
-                className="bg-white/[0.03] rounded-lg p-2 text-center border border-white/[0.02]"
+                className="rounded-lg border border-white/[0.02] bg-white/[0.03] p-2 text-center"
               >
                 <div className="text-lg font-bold text-white">{value}</div>
-                <div className="text-[10px] text-zinc-500 uppercase tracking-wider">
+                <div className="text-[10px] uppercase tracking-wider text-zinc-500">
                   {key}
                 </div>
               </div>
@@ -188,19 +188,19 @@ export function StackPreview({ allItems }: StackPreviewProps) {
 
         {/* Selected Items List */}
         <div className="mb-4">
-          <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-2">
+          <h4 className="mb-2 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
             Manifest
           </h4>
-          <div className="max-h-48 overflow-y-auto space-y-1 pr-1 scrollbar-thin">
+          <div className="scrollbar-thin max-h-48 space-y-1 overflow-y-auto pr-1">
             {selectedItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between text-xs p-2 rounded bg-white/[0.03] hover:bg-white/[0.06] border border-transparent hover:border-white/5 transition-colors"
+                className="flex items-center justify-between rounded border border-transparent bg-white/[0.03] p-2 text-xs transition-colors hover:border-white/5 hover:bg-white/[0.06]"
               >
-                <span className="truncate text-zinc-300 font-medium max-w-[140px]">
+                <span className="max-w-[140px] truncate font-medium text-zinc-300">
                   {formatProductName(item.name)}
                 </span>
-                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-white/5 text-zinc-500 uppercase">
+                <span className="rounded bg-white/5 px-1.5 py-0.5 text-[9px] font-bold uppercase text-zinc-500">
                   {item.kind}
                 </span>
               </div>
@@ -212,14 +212,14 @@ export function StackPreview({ allItems }: StackPreviewProps) {
         <div className="flex gap-2">
           <button
             onClick={handleCopyInstall}
-            className="flex-1 py-3 rounded-lg bg-[#00F0FF] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#00F0FF]/90 hover:shadow-[0_0_20px_-5px_rgba(0,240,255,0.5)] transition-all flex items-center justify-center gap-2"
+            className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#00F0FF] py-3 text-xs font-bold uppercase tracking-wider text-black transition-all hover:bg-[#00F0FF]/90 hover:shadow-[0_0_20px_-5px_rgba(0,240,255,0.5)]"
           >
             <Copy size={14} />
             Copy CLI
           </button>
           <button
             onClick={() => setIsSharePanelOpen(true)}
-            className="py-3 px-4 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-zinc-700"
             title="Share Stack"
           >
             <Share2 size={14} />

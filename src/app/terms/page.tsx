@@ -44,7 +44,7 @@ export default function TermsPage() {
             className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
-            Back to Aether Catalog
+            Back to gICM Catalog
           </Link>
         </div>
       </div>
@@ -70,8 +70,8 @@ export default function TermsPage() {
                 1. Agreement to Terms
               </h2>
               <p className="leading-relaxed text-zinc-300">
-                By accessing or using Aether ("Service", "Platform"), you agree
-                to be bound by these Terms of Service ("Terms"). If you disagree
+                By accessing or using gICM ("Service", "Platform"), you agree to
+                be bound by these Terms of Service ("Terms"). If you disagree
                 with any part of these terms, you do not have permission to
                 access the Service.
               </p>
@@ -82,7 +82,7 @@ export default function TermsPage() {
                 2. Description of Service
               </h2>
               <p className="mb-3 leading-relaxed text-zinc-300">
-                Aether is a marketplace platform that provides:
+                gICM is a marketplace platform that provides:
               </p>
               <ul className="list-disc space-y-2 pl-6 text-zinc-300">
                 <li>
@@ -163,7 +163,7 @@ export default function TermsPage() {
                   <p className="leading-relaxed">
                     The Service and its original content (excluding
                     user-generated content and third-party items), features, and
-                    functionality are owned by Aether and are protected by
+                    functionality are owned by gICM and are protected by
                     international copyright, trademark, and other intellectual
                     property laws.
                   </p>
@@ -173,7 +173,7 @@ export default function TermsPage() {
                     5.2 Registry Items
                   </h3>
                   <p className="leading-relaxed">
-                    Items in the Aether marketplace (agents, skills, commands,
+                    Items in the gICM marketplace (agents, skills, commands,
                     etc.) are provided by third parties and are subject to their
                     own licenses. We do not claim ownership of these items. Each
                     item's license terms are specified in its individual
@@ -185,7 +185,7 @@ export default function TermsPage() {
                     5.3 User-Generated Content
                   </h3>
                   <p className="leading-relaxed">
-                    By sharing stacks, reviews, or other content on Aether, you
+                    By sharing stacks, reviews, or other content on gICM, you
                     grant us a worldwide, non-exclusive, royalty-free license to
                     use, reproduce, and distribute that content in connection
                     with the Service.
@@ -263,7 +263,7 @@ export default function TermsPage() {
                     8.3 Limitation of Liability
                   </h3>
                   <p className="leading-relaxed">
-                    To the maximum extent permitted by law, Aether shall not be
+                    To the maximum extent permitted by law, gICM shall not be
                     liable for any indirect, incidental, special, consequential,
                     or punitive damages resulting from your use of the Service,
                     including loss of data, revenue, or profits.
@@ -297,10 +297,10 @@ export default function TermsPage() {
                 10. Pricing and Payments
               </h2>
               <p className="leading-relaxed text-zinc-300">
-                Currently, Aether is free to use during alpha/beta. Future
-                pricing will be communicated clearly before any charges are
-                implemented. If we introduce paid features, you will have the
-                option to opt-in before being charged.
+                Currently, gICM is free to use during alpha/beta. Future pricing
+                will be communicated clearly before any charges are implemented.
+                If we introduce paid features, you will have the option to
+                opt-in before being charged.
               </p>
             </section>
 
@@ -349,8 +349,7 @@ export default function TermsPage() {
               </p>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-zinc-300">
                 <p>
-                  <strong className="text-white">Email:</strong>{" "}
-                  legal@aether.dev
+                  <strong className="text-white">Email:</strong> legal@gicm.app
                 </p>
                 <p>
                   <strong className="text-white">GitHub:</strong>{" "}
@@ -377,8 +376,8 @@ export default function TermsPage() {
               </h2>
               <p className="leading-relaxed text-zinc-300">
                 These Terms, together with our Privacy Policy, constitute the
-                entire agreement between you and Aether regarding the Service
-                and supersede all prior agreements and understandings.
+                entire agreement between you and gICM regarding the Service and
+                supersede all prior agreements and understandings.
               </p>
             </section>
           </div>

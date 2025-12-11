@@ -16,7 +16,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Performance Calculator | Aether",
+  title: "Performance Calculator | gICM",
   description:
     "Calculate your context reduction, token savings, and speed improvements with Progressive Disclosure technology.",
 };
@@ -25,11 +25,11 @@ export default function SavingsPage() {
   return (
     <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white">
       {/* Header */}
-      <div className="border-b border-white/10 bg-black/40 backdrop-blur sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
+      <div className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
             Back to Marketplace
@@ -37,36 +37,36 @@ export default function SavingsPage() {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-6 md:px-10 py-12">
+      <main className="mx-auto max-w-7xl px-6 py-12 md:px-10">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/20 mb-6">
-            <Sparkles className="w-4 h-4 text-[#00F0FF]" />
-            <span className="text-[#00F0FF] font-bold text-sm tracking-wide">
+        <div className="mb-16 text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00F0FF]/20 bg-[#00F0FF]/10 px-4 py-2">
+            <Sparkles className="h-4 w-4 text-[#00F0FF]" />
+            <span className="text-sm font-bold tracking-wide text-[#00F0FF]">
               88-92% Context Reduction
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
+          <h1 className="mb-6 font-display text-4xl font-bold tracking-tight text-white md:text-6xl">
             Supercharge Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F]">
+            <span className="bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] bg-clip-text text-transparent">
               AI Performance
             </span>
           </h1>
 
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-zinc-400">
             Progressive Disclosure technology loads only the context you need,
             when you need it. The result? Dramatically smaller prompts, faster
             responses, and more efficient AI interactions.
           </p>
 
           {/* Key Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
-            <GlassCard className="p-8 text-center group hover:border-[#00F0FF]/30 transition-colors">
-              <div className="w-16 h-16 rounded-2xl bg-[#00F0FF]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#00F0FF]/20">
-                <TrendingDown className="w-8 h-8 text-[#00F0FF]" />
+          <div className="mx-auto mb-16 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+            <GlassCard className="group p-8 text-center transition-colors hover:border-[#00F0FF]/30">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 transition-transform duration-300 group-hover:scale-110">
+                <TrendingDown className="h-8 w-8 text-[#00F0FF]" />
               </div>
-              <h3 className="font-bold text-white text-lg mb-2">
+              <h3 className="mb-2 text-lg font-bold text-white">
                 90% Smaller Context
               </h3>
               <p className="text-sm text-zinc-400">
@@ -74,11 +74,11 @@ export default function SavingsPage() {
               </p>
             </GlassCard>
 
-            <GlassCard className="p-8 text-center group hover:border-[#00F0FF]/30 transition-colors">
-              <div className="w-16 h-16 rounded-2xl bg-[#00F0FF]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#00F0FF]/20">
-                <Gauge className="w-8 h-8 text-[#00F0FF]" />
+            <GlassCard className="group p-8 text-center transition-colors hover:border-[#00F0FF]/30">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 transition-transform duration-300 group-hover:scale-110">
+                <Gauge className="h-8 w-8 text-[#00F0FF]" />
               </div>
-              <h3 className="font-bold text-white text-lg mb-2">
+              <h3 className="mb-2 text-lg font-bold text-white">
                 10-12x Faster Responses
               </h3>
               <p className="text-sm text-zinc-400">
@@ -86,11 +86,11 @@ export default function SavingsPage() {
               </p>
             </GlassCard>
 
-            <GlassCard className="p-8 text-center group hover:border-[#00F0FF]/30 transition-colors">
-              <div className="w-16 h-16 rounded-2xl bg-[#00F0FF]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#00F0FF]/20">
-                <Activity className="w-8 h-8 text-[#00F0FF]" />
+            <GlassCard className="group p-8 text-center transition-colors hover:border-[#00F0FF]/30">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 transition-transform duration-300 group-hover:scale-110">
+                <Activity className="h-8 w-8 text-[#00F0FF]" />
               </div>
-              <h3 className="font-bold text-white text-lg mb-2">
+              <h3 className="mb-2 text-lg font-bold text-white">
                 Maximum Efficiency
               </h3>
               <p className="text-sm text-zinc-400">
@@ -106,21 +106,21 @@ export default function SavingsPage() {
         </div>
 
         {/* Performance Examples */}
-        <div className="mt-16 mb-20">
-          <h2 className="text-3xl font-display font-bold text-white text-center mb-12">
+        <div className="mb-20 mt-16">
+          <h2 className="mb-12 text-center font-display text-3xl font-bold text-white">
             Real-World Performance Gains
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Solo Dev */}
-            <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
-              <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
+            <GlassCard className="relative overflow-hidden p-8">
+              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#00F0FF]/10 blur-[60px]" />
+              <div className="relative z-10 mb-6 flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/20 text-2xl">
                   👤
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-xl">
+                  <h3 className="text-xl font-bold text-white">
                     Solo Developer
                   </h3>
                   <p className="text-sm text-zinc-400">
@@ -129,23 +129,23 @@ export default function SavingsPage() {
                 </div>
               </div>
 
-              <div className="space-y-4 mb-6 relative z-10">
+              <div className="relative z-10 mb-6 space-y-4">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">10 skill uses per day</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">Claude Sonnet 3.5</span>
                 </div>
               </div>
 
-              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
-                <div className="flex items-center justify-between mb-2">
+              <div className="relative z-10 rounded-xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 p-5">
+                <div className="mb-2 flex items-center justify-between">
                   <span className="text-sm text-zinc-400">
                     Tokens Saved Daily
                   </span>
@@ -163,39 +163,39 @@ export default function SavingsPage() {
             </GlassCard>
 
             {/* 5-Person Team */}
-            <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
-              <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
+            <GlassCard className="relative overflow-hidden p-8">
+              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#00F0FF]/10 blur-[60px]" />
+              <div className="relative z-10 mb-6 flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/20 text-2xl">
                   👥
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-xl">
+                  <h3 className="text-xl font-bold text-white">
                     5-Person Team
                   </h3>
                   <p className="text-sm text-zinc-400">Web3 startup</p>
                 </div>
               </div>
 
-              <div className="space-y-4 mb-6 relative z-10">
+              <div className="relative z-10 mb-6 space-y-4">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">
                     25 skill uses per day (total)
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">Mix of Sonnet & Opus</span>
                 </div>
               </div>
 
-              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
-                <div className="flex items-center justify-between mb-2">
+              <div className="relative z-10 rounded-xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 p-5">
+                <div className="mb-2 flex items-center justify-between">
                   <span className="text-sm text-zinc-400">
                     Tokens Saved Daily
                   </span>
@@ -213,14 +213,14 @@ export default function SavingsPage() {
             </GlassCard>
 
             {/* Agency */}
-            <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
-              <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
+            <GlassCard className="relative overflow-hidden p-8">
+              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#00F0FF]/10 blur-[60px]" />
+              <div className="relative z-10 mb-6 flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/20 text-2xl">
                   🏢
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-xl">
+                  <h3 className="text-xl font-bold text-white">
                     20-Person Agency
                   </h3>
                   <p className="text-sm text-zinc-400">
@@ -229,23 +229,23 @@ export default function SavingsPage() {
                 </div>
               </div>
 
-              <div className="space-y-4 mb-6 relative z-10">
+              <div className="relative z-10 mb-6 space-y-4">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">100 skill uses per day</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">Heavy Opus usage</span>
                 </div>
               </div>
 
-              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
-                <div className="flex items-center justify-between mb-2">
+              <div className="relative z-10 rounded-xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 p-5">
+                <div className="mb-2 flex items-center justify-between">
                   <span className="text-sm text-zinc-400">
                     Tokens Saved Daily
                   </span>
@@ -263,30 +263,30 @@ export default function SavingsPage() {
             </GlassCard>
 
             {/* Enterprise */}
-            <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
-              <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
+            <GlassCard className="relative overflow-hidden p-8">
+              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-[#00F0FF]/10 blur-[60px]" />
+              <div className="relative z-10 mb-6 flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/20 text-2xl">
                   🏗️
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-xl">
+                  <h3 className="text-xl font-bold text-white">
                     Enterprise Team
                   </h3>
                   <p className="text-sm text-zinc-400">Large-scale platform</p>
                 </div>
               </div>
 
-              <div className="space-y-4 mb-6 relative z-10">
+              <div className="relative z-10 mb-6 space-y-4">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">500+ skill uses per day</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#00F0FF]" />
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00F0FF]/20">
+                    <Check className="h-3 w-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">
                     Opus for complex workflows
@@ -294,8 +294,8 @@ export default function SavingsPage() {
                 </div>
               </div>
 
-              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
-                <div className="flex items-center justify-between mb-2">
+              <div className="relative z-10 rounded-xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 p-5">
+                <div className="mb-2 flex items-center justify-between">
                   <span className="text-sm text-zinc-400">
                     Tokens Saved Daily
                   </span>
@@ -316,24 +316,24 @@ export default function SavingsPage() {
 
         {/* Technical Details */}
         <div className="mb-12">
-          <h2 className="text-3xl font-display font-bold text-white text-center mb-12">
+          <h2 className="mb-12 text-center font-display text-3xl font-bold text-white">
             How It Works
           </h2>
 
-          <GlassCard className="p-8 max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <GlassCard className="mx-auto max-w-5xl p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <Badge variant="destructive" className="text-sm px-3 py-1">
+                <div className="mb-4 flex items-center gap-3">
+                  <Badge variant="destructive" className="px-3 py-1 text-sm">
                     Traditional
                   </Badge>
                 </div>
-                <p className="text-sm text-zinc-400 mb-6 leading-relaxed">
+                <p className="mb-6 text-sm leading-relaxed text-zinc-400">
                   Traditional prompts send entire codebases, documentation, and
                   context in every request, even when most of it isn't needed.
                 </p>
-                <div className="bg-zinc-800/50 border border-zinc-700/30 rounded-xl p-5 font-mono">
-                  <code className="text-xs text-zinc-400 block leading-loose">
+                <div className="rounded-xl border border-zinc-700/30 bg-zinc-800/50 p-5 font-mono">
+                  <code className="block text-xs leading-loose text-zinc-400">
                     // Sends 12,500 tokens
                     <br />
                     - Full codebase (8,000 tokens)
@@ -347,18 +347,18 @@ export default function SavingsPage() {
               </div>
 
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <Badge className="text-sm px-3 py-1 bg-[#00F0FF] text-black hover:bg-[#00F0FF]/90">
+                <div className="mb-4 flex items-center gap-3">
+                  <Badge className="bg-[#00F0FF] px-3 py-1 text-sm text-black hover:bg-[#00F0FF]/90">
                     Progressive
                   </Badge>
                 </div>
-                <p className="text-sm text-zinc-400 mb-6 leading-relaxed">
+                <p className="mb-6 text-sm leading-relaxed text-zinc-400">
                   Progressive Disclosure intelligently loads only relevant
                   context for each step, dramatically reducing token usage while
                   maintaining quality.
                 </p>
-                <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/30 rounded-xl p-5 font-mono">
-                  <code className="text-xs text-[#00F0FF] block leading-loose">
+                <div className="rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/10 p-5 font-mono">
+                  <code className="block text-xs leading-loose text-[#00F0FF]">
                     // Sends 980 tokens
                     <br />
                     - Relevant code snippet (400 tokens)
@@ -372,27 +372,27 @@ export default function SavingsPage() {
               </div>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-white/10">
-              <div className="flex items-center gap-3 mb-6 justify-center">
-                <Zap className="w-6 h-6 text-[#00F0FF]" />
-                <h3 className="font-bold text-white text-lg">The Result</h3>
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <div className="mb-6 flex items-center justify-center gap-3">
+                <Zap className="h-6 w-6 text-[#00F0FF]" />
+                <h3 className="text-lg font-bold text-white">The Result</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-4">
+              <div className="grid grid-cols-1 gap-4 text-center md:grid-cols-3">
+                <div className="rounded-xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 p-4">
                   <p className="text-3xl font-black text-[#00F0FF]">92%</p>
-                  <p className="text-xs text-zinc-400 uppercase tracking-wider mt-1">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-zinc-400">
                     Context Reduction
                   </p>
                 </div>
-                <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-4">
+                <div className="rounded-xl border border-[#00F0FF]/20 bg-[#00F0FF]/10 p-4">
                   <p className="text-3xl font-black text-[#00F0FF]">12.7x</p>
-                  <p className="text-xs text-zinc-400 uppercase tracking-wider mt-1">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-zinc-400">
                     Faster Responses
                   </p>
                 </div>
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                   <p className="text-3xl font-black text-white">100%</p>
-                  <p className="text-xs text-zinc-400 uppercase tracking-wider mt-1">
+                  <p className="mt-1 text-xs uppercase tracking-wider text-zinc-400">
                     Quality Output
                   </p>
                 </div>

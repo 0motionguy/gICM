@@ -109,14 +109,18 @@ export function Web3HeroSection() {
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
-              Aether connects every runtime. Build with
+              gICM connects every runtime. Build with
               <span className="font-medium text-white">
                 {" "}
-                {stats.agents + stats.skills + stats.commands + stats.mcps}+
-                verified items
+                {stats.agents +
+                  stats.skills +
+                  stats.commands +
+                  stats.mcps +
+                  stats.workflows}
+                + verified items
               </span>{" "}
-              across agents, skills, and commands. Cross-chain compatible with
-              Claude, Gemini, and OpenAI.
+              across agents, skills, MCPs, and workflows. Cross-platform
+              compatible with Claude, Gemini, and OpenAI.
             </p>
 
             {/* AWS Startup Partner - Featured Badge */}

@@ -193,7 +193,7 @@ export default async function ItemDetailsPage({ params }: PageProps) {
               className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
             >
               <ArrowLeft size={16} />
-              Back to Aether Catalog
+              Back to gICM Catalog
             </Link>
           </div>
         </div>
