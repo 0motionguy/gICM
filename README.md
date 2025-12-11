@@ -6,9 +6,9 @@ The world's first truly cross-platform AI marketplace. Write once, run on any su
 
 | Platform | Agents | Skills | Commands | MCPs | Total |
 | -------- | ------ | ------ | -------- | ---- | ----- |
-| Claude   | 104    | 95     | 94       | 124  | 417   |
-| Gemini   | 107    | 95     | 94       | -    | 296   |
-| OpenAI   | 104    | 95     | 94       | -    | 293   |
+| Claude   | 108    | 96     | 93       | 95   | 392   |
+| Gemini   | 108    | 96     | 93       | -    | 297   |
+| OpenAI   | 108    | 96     | 93       | -    | 297   |
 
 [![GitHub](https://img.shields.io/badge/GitHub-0motionguy%2FgICM-black?style=for-the-badge&logo=github)](https://github.com/0motionguy/gICM)
 [![NPM](https://img.shields.io/badge/NPM-@gicm/cli-00F0FF?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@gicm/cli)
@@ -21,6 +21,38 @@ The world's first truly cross-platform AI marketplace. Write once, run on any su
 
 **Competitors:** Locked to one ecosystem (only Claude or only GPTs)
 **gICM:** The Universal Adapter. Install any tool for **Claude** OR **Gemini** with a single click.
+
+---
+
+## OPUS 67 - AI Enhancement Layer
+
+> **Our flagship product.** OPUS 67 is a self-evolving AI runtime that makes Claude Code dramatically more capable.
+
+| Component | Count | Description                                            |
+| --------- | ----- | ------------------------------------------------------ |
+| Skills    | 141   | Domain expertise modules (Solana, React, DevOps, etc.) |
+| Agents    | 107   | Specialized sub-agents for parallel execution          |
+| MCPs      | 83    | Model Context Protocol integrations                    |
+| Modes     | 30    | Intelligent operating modes (ULTRA, BUILD, VIBE, etc.) |
+
+**Key Features:**
+
+- **Auto-Detection**: Skills load automatically based on task context
+- **Token Optimization**: 88-92% savings via progressive disclosure
+- **Multi-Agent Swarm**: Up to 20 parallel agents for complex tasks
+- **Learning Layer**: Self-improves from your workflows
+
+```bash
+# Install OPUS 67
+npx create-opus67@latest
+
+# Or add to existing project
+npx @gicm/cli add opus67
+```
+
+[View OPUS 67 Documentation](./packages/opus67/README.md)
+
+---
 
 ## Installation
 
@@ -81,12 +113,12 @@ npm run dev
 - **ICM Brand Design System** (acid lime #D1FD0A, dark mode, custom utilities)
 - **Zustand, Framer Motion, Zod, jszip** installed and ready
 
-### Registry System (388 Items)
+### Registry System (392 Items)
 
-- **74 Specialized Agents** across Web3/Solana, Development, Security, DevOps, ML/Data, Testing, and Documentation
-- **92 Progressive Skills** with 88-92% token savings
+- **108 Specialized Agents** across Web3/Solana, Development, Security, DevOps, ML/Data, Testing, and Documentation
+- **96 Progressive Skills** with 88-92% token savings
 - **93 Commands** for development, testing, deployment, security, and blockchain workflows
-- **82 MCP Integrations** across blockchain, cloud, database, AI, and monitoring platforms
+- **95 MCP Integrations** across blockchain, cloud, database, AI, and monitoring platforms
 - **48 Production Settings** for customization
 - Zod validation schemas and TypeScript types
 
@@ -107,7 +139,7 @@ npm run dev
 
 ## Registry Contents
 
-### 68 Specialized Agents
+### 108 Specialized Agents
 
 **Web3 & Solana Specialists (15+):**
 
@@ -160,7 +192,7 @@ npm run dev
 - **Solana Guardian Auditor** - Real-time security scanning with PDA validation
 - **Progressive Skills System** - 88-92% token savings across all workflows
 
-### 92 Progressive Skills
+### 96 Progressive Skills
 
 **Blockchain & Web3 (25+):**
 Solana Anchor Mastery, Web3 Wallet Integration, Bonding Curve Mathematics, NFT Metadata Standards, Cross-Program Invocations, Transaction Retry Logic, Helius RPC Optimization, Jupiter Aggregator Integration, DEX Screener API, Solana Program Optimization, Anchor Macros Deep Dive, EVM Development, Smart Contract Patterns, Gas Optimization Techniques, Layer 2 Integration, and more
@@ -188,7 +220,7 @@ Vercel Deployment Optimization, GitHub Actions Workflows, Docker Containerizatio
 **Git/Workflow:** `/git-workflow`, `/pr-enhance`, `/code-review`
 **Documentation:** `/doc-generate`, `/changelog-gen`, `/release-notes`
 
-### 66 MCP Integrations
+### 95 MCP Integrations
 
 **Blockchain:** Alchemy, Infura, QuickNode, The Graph, Tenderly, Helius
 **Cloud:** AWS, Azure, GCP, Cloudflare, Vercel, Netlify, Railway
@@ -293,17 +325,17 @@ See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap
 
 ### Phase 1: Foundation (Complete)
 
-- 74 specialized agents across Web3, development, security, DevOps, ML/Data
-- 92 progressive skills with token optimization
+- 108 specialized agents across Web3, development, security, DevOps, ML/Data
+- 96 progressive skills with token optimization
 - 93 commands for all workflows
-- 82 MCP integrations
+- 95 MCP integrations
 - 48 production-ready settings
 - Complete marketplace pages (agents, skills, settings, stack builder)
 - Analytics dashboard with real-time tracking
 - Gamification system (points, achievements, localStorage)
 - Onboarding tour (interactive guide)
 - Social sharing (achievements, stacks)
-- All duplicate IDs resolved (388 unique items)
+- All duplicate IDs resolved (392 unique items)
 
 ### Phase 2: Premium Features (In Progress)
 
@@ -338,7 +370,7 @@ Skills load in **30-50 tokens** initially, then expand on-demand to full documen
 
 ### Agent Specialization
 
-Each of the 27 agents has a specific domain. Route tasks appropriately:
+Each of the 108 agents has a specific domain. Route tasks appropriately:
 
 - UI work → `Frontend Fusion Engine` or `UI/UX Designer`
 - Security → `Solana Guardian Auditor` or `Smart Contract Forensics`
@@ -347,20 +379,6 @@ Each of the 27 agents has a specific domain. Route tasks appropriately:
 ### Dependency Resolution
 
 The stack builder automatically resolves dependencies. If you select an item that depends on others, they're auto-included in the export.
-
----
-
-## Success Metrics (Launch + 30 Days)
-
-With 90 agents, 96 skills, 93 commands, and 82 MCPs:
-
-- **10k+** unique site visits
-- **2k+** stack exports
-- **500+** GitHub stars
-- **1k+** remixes (offspring) via Remix feature
-- **2k+** pre-registrations
-- **5k+** total points earned by community
-- **100+** active builders with 5+ stacks created
 
 ---
 
