@@ -8,9 +8,24 @@ Disallow: /api/
 Disallow: /analytics
 Disallow: /.analytics/
 Disallow: /.waitlist/
+Disallow: /_next/
+Disallow: /settings
 
-# Sitemap
-Sitemap: https://gicm.io/sitemap.xml
+# Sitemaps
+Sitemap: https://gicm.app/sitemap.xml
 
-# Crawl delay (optional)
-Crawl-delay: 1
+# Host directive for search engines
+Host: https://gicm.app
+
+# AI crawlers (Perplexity, Claude, ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /

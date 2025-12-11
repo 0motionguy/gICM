@@ -1,6 +1,16 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { GlassCard } from "@/components/ui/glass-card";
-import { ArrowLeft, ArrowRight, BookOpen, Sparkles, Zap, Brain, Rocket, Code2, LucideIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  Sparkles,
+  Zap,
+  Brain,
+  Rocket,
+  Code2,
+  LucideIcon,
+} from "lucide-react";
 import { ClaudeIcon, GeminiIcon, OpenAIIcon } from "@/components/ui/icons";
 import Link from "next/link";
 import { ComponentType, SVGProps } from "react";
@@ -9,9 +19,28 @@ export const metadata = {
   title: "Setup Guides | gICM - Universal AI Coding Hub",
   description:
     "Step-by-step guides to set up Claude Code, Gemini AI, and OpenAI GPT for AI-powered development. Start vibe coding in minutes.",
+  keywords: [
+    "Claude Code setup",
+    "Gemini AI setup",
+    "OpenAI GPT setup",
+    "AI coding",
+    "vibe coding",
+    "AI development guide",
+  ],
+  openGraph: {
+    title: "AI Setup Guides - Claude, Gemini, OpenAI | gICM",
+    description:
+      "Step-by-step guides to set up Claude Code, Gemini AI, and OpenAI GPT for AI-powered development.",
+    url: "https://gicm.app/guides",
+  },
+  alternates: {
+    canonical: "https://gicm.app/guides",
+  },
 };
 
-type IconComponent = LucideIcon | ComponentType<SVGProps<SVGSVGElement> & { className?: string }>;
+type IconComponent =
+  | LucideIcon
+  | ComponentType<SVGProps<SVGSVGElement> & { className?: string }>;
 
 interface Guide {
   id: string;
@@ -29,7 +58,8 @@ const guides: Guide[] = [
   {
     id: "claude-setup",
     title: "Claude Code Setup",
-    description: "Set up Claude Code with Opus 4.5 for the most powerful AI coding experience. Complete guide from API key to first agent.",
+    description:
+      "Set up Claude Code with Opus 4.5 for the most powerful AI coding experience. Complete guide from API key to first agent.",
     icon: ClaudeIcon,
     color: "#D97757",
     badge: "Recommended",
@@ -40,7 +70,8 @@ const guides: Guide[] = [
   {
     id: "gemini-setup",
     title: "Gemini AI Setup",
-    description: "Configure Google Gemini 2.0 Flash with multimodal capabilities, code execution, and real-time features.",
+    description:
+      "Configure Google Gemini 2.0 Flash with multimodal capabilities, code execution, and real-time features.",
     icon: GeminiIcon,
     color: "#4E82EE",
     badge: "Multimodal",
@@ -51,7 +82,8 @@ const guides: Guide[] = [
   {
     id: "openai-setup",
     title: "OpenAI GPT Setup",
-    description: "Set up GPT-4o, o1 reasoning, and DALL-E for advanced code generation and image creation.",
+    description:
+      "Set up GPT-4o, o1 reasoning, and DALL-E for advanced code generation and image creation.",
     icon: OpenAIIcon,
     color: "#10A37F",
     badge: "Popular",
@@ -62,7 +94,8 @@ const guides: Guide[] = [
   {
     id: "vibe-coding",
     title: "Vibe Coding Guide",
-    description: "Complete beginner guide to AI-assisted development. Learn to build full-stack apps with natural language.",
+    description:
+      "Complete beginner guide to AI-assisted development. Learn to build full-stack apps with natural language.",
     icon: Rocket,
     color: "#FF6B6B",
     badge: "Start Here",
@@ -94,11 +127,11 @@ export default function GuidesPage() {
   return (
     <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white">
       {/* Header */}
-      <div className="border-b border-white/10 bg-black/40 backdrop-blur sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
+      <div className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
             Back to Marketplace
@@ -106,36 +139,41 @@ export default function GuidesPage() {
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-6 md:px-10 py-12">
+      <main className="mx-auto max-w-7xl px-6 py-12 md:px-10">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/20 mb-6">
-            <BookOpen className="w-4 h-4 text-[#00F0FF]" />
-            <span className="text-[#00F0FF] font-bold text-sm tracking-wide">
+        <div className="mb-16 text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00F0FF]/20 bg-[#00F0FF]/10 px-4 py-2">
+            <BookOpen className="h-4 w-4 text-[#00F0FF]" />
+            <span className="text-sm font-bold tracking-wide text-[#00F0FF]">
               Setup Guides
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
+          <h1 className="mb-6 font-display text-4xl font-bold tracking-tight text-white md:text-6xl">
             Start Coding with{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F]">
+            <span className="bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] bg-clip-text text-transparent">
               Any AI Model
             </span>
           </h1>
 
-          <p className="text-xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-zinc-400">
             Complete setup guides for Claude Code, Gemini AI, and OpenAI GPT.
             Choose your preferred AI model and start building in minutes.
           </p>
 
           {/* Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
+          <div className="mx-auto mb-16 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
             {features.map((feature, index) => (
-              <div key={index} className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-3">
-                  <feature.icon className="w-6 h-6 text-[#00F0FF]" />
+              <div
+                key={index}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                  <feature.icon className="h-6 w-6 text-[#00F0FF]" />
                 </div>
-                <h3 className="font-bold text-white text-sm mb-1">{feature.title}</h3>
+                <h3 className="mb-1 text-sm font-bold text-white">
+                  {feature.title}
+                </h3>
                 <p className="text-xs text-zinc-500">{feature.description}</p>
               </div>
             ))}
@@ -143,93 +181,103 @@ export default function GuidesPage() {
         </div>
 
         {/* Guides Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-2">
           {guides.map((guide) => {
             const Icon = guide.icon;
             return (
-            <Link key={guide.id} href={guide.href}>
-              <GlassCard className="p-6 h-full group hover:border-white/20 transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-14 h-14 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                    style={{
-                      borderColor: `${guide.color}40`,
-                      backgroundColor: `${guide.color}10`,
-                    }}
-                  >
-                    <Icon className="w-7 h-7" style={{ color: guide.color }} />
-                  </div>
-
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span
-                        className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
-                        style={{
-                          backgroundColor: `${guide.color}20`,
-                          color: guide.color,
-                        }}
-                      >
-                        {guide.badge}
-                      </span>
-                      <span className="text-[10px] text-zinc-500">
-                        {guide.difficulty} · {guide.time}
-                      </span>
+              <Link key={guide.id} href={guide.href}>
+                <GlassCard className="group h-full cursor-pointer p-6 transition-all duration-300 hover:border-white/20">
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="flex h-14 w-14 items-center justify-center rounded-xl border transition-all duration-300 group-hover:scale-110"
+                      style={{
+                        borderColor: `${guide.color}40`,
+                        backgroundColor: `${guide.color}10`,
+                      }}
+                    >
+                      <Icon
+                        className="h-7 w-7"
+                        style={{ color: guide.color }}
+                      />
                     </div>
 
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors">
-                      {guide.title}
-                    </h3>
+                    <div className="flex-1">
+                      <div className="mb-2 flex items-center gap-2">
+                        <span
+                          className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+                          style={{
+                            backgroundColor: `${guide.color}20`,
+                            color: guide.color,
+                          }}
+                        >
+                          {guide.badge}
+                        </span>
+                        <span className="text-[10px] text-zinc-500">
+                          {guide.difficulty} · {guide.time}
+                        </span>
+                      </div>
 
-                    <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-                      {guide.description}
-                    </p>
+                      <h3 className="mb-2 text-lg font-bold text-white transition-colors group-hover:text-[#00F0FF]">
+                        {guide.title}
+                      </h3>
 
-                    <div className="flex items-center gap-2 text-sm font-medium text-zinc-500 group-hover:text-[#00F0FF] transition-colors">
-                      Start Guide
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <p className="mb-4 text-sm leading-relaxed text-zinc-400">
+                        {guide.description}
+                      </p>
+
+                      <div className="flex items-center gap-2 text-sm font-medium text-zinc-500 transition-colors group-hover:text-[#00F0FF]">
+                        Start Guide
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </GlassCard>
-            </Link>
-          );
+                </GlassCard>
+              </Link>
+            );
           })}
         </div>
 
         {/* Model Comparison */}
-        <GlassCard className="p-8 mb-16">
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+        <GlassCard className="mb-16 p-8">
+          <h2 className="mb-6 text-center text-2xl font-bold text-white">
             Which Model Should I Use?
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-4 rounded-xl bg-[#D97757]/5 border border-[#D97757]/20">
-              <ClaudeIcon className="w-10 h-10 mx-auto mb-3 text-[#D97757]" />
-              <h3 className="font-bold text-white mb-2">Claude (Opus 4.5)</h3>
-              <p className="text-sm text-zinc-400 mb-3">Best for complex reasoning, long code generation, and nuanced tasks</p>
-              <ul className="text-xs text-zinc-500 space-y-1">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-[#D97757]/20 bg-[#D97757]/5 p-4 text-center">
+              <ClaudeIcon className="mx-auto mb-3 h-10 w-10 text-[#D97757]" />
+              <h3 className="mb-2 font-bold text-white">Claude (Opus 4.5)</h3>
+              <p className="mb-3 text-sm text-zinc-400">
+                Best for complex reasoning, long code generation, and nuanced
+                tasks
+              </p>
+              <ul className="space-y-1 text-xs text-zinc-500">
                 <li>Most capable model</li>
                 <li>Extended thinking</li>
                 <li>Best code quality</li>
               </ul>
             </div>
 
-            <div className="text-center p-4 rounded-xl bg-[#4E82EE]/5 border border-[#4E82EE]/20">
-              <GeminiIcon className="w-10 h-10 mx-auto mb-3 text-[#4E82EE]" />
-              <h3 className="font-bold text-white mb-2">Gemini 2.0 Flash</h3>
-              <p className="text-sm text-zinc-400 mb-3">Best for multimodal, code execution, and real-time streaming</p>
-              <ul className="text-xs text-zinc-500 space-y-1">
+            <div className="rounded-xl border border-[#4E82EE]/20 bg-[#4E82EE]/5 p-4 text-center">
+              <GeminiIcon className="mx-auto mb-3 h-10 w-10 text-[#4E82EE]" />
+              <h3 className="mb-2 font-bold text-white">Gemini 2.0 Flash</h3>
+              <p className="mb-3 text-sm text-zinc-400">
+                Best for multimodal, code execution, and real-time streaming
+              </p>
+              <ul className="space-y-1 text-xs text-zinc-500">
                 <li>Ultra-fast responses</li>
                 <li>Native code execution</li>
                 <li>Image + code generation</li>
               </ul>
             </div>
 
-            <div className="text-center p-4 rounded-xl bg-[#10A37F]/5 border border-[#10A37F]/20">
-              <OpenAIIcon className="w-10 h-10 mx-auto mb-3 text-[#10A37F]" />
-              <h3 className="font-bold text-white mb-2">GPT-4o / o1</h3>
-              <p className="text-sm text-zinc-400 mb-3">Best for function calling, DALL-E images, and voice interaction</p>
-              <ul className="text-xs text-zinc-500 space-y-1">
+            <div className="rounded-xl border border-[#10A37F]/20 bg-[#10A37F]/5 p-4 text-center">
+              <OpenAIIcon className="mx-auto mb-3 h-10 w-10 text-[#10A37F]" />
+              <h3 className="mb-2 font-bold text-white">GPT-4o / o1</h3>
+              <p className="mb-3 text-sm text-zinc-400">
+                Best for function calling, DALL-E images, and voice interaction
+              </p>
+              <ul className="space-y-1 text-xs text-zinc-500">
                 <li>Best function calling</li>
                 <li>DALL-E integration</li>
                 <li>Realtime voice API</li>
@@ -240,16 +288,14 @@ export default function GuidesPage() {
 
         {/* CTA */}
         <div className="text-center">
-          <p className="text-zinc-400 mb-4">
-            Not sure where to start?
-          </p>
+          <p className="mb-4 text-zinc-400">Not sure where to start?</p>
           <Link
             href="/guides/vibe-coding"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] text-white font-bold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-6 py-3 font-bold text-white transition-opacity hover:opacity-90"
           >
-            <Rocket className="w-5 h-5" />
+            <Rocket className="h-5 w-5" />
             Start the Vibe Coding Guide
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
       </main>
