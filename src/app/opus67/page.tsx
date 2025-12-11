@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   ArrowLeft,
   Zap,
@@ -47,7 +46,7 @@ export default function Opus67BenchmarkPage() {
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/">
+              <a href="https://gicm.app">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -56,7 +55,7 @@ export default function Opus67BenchmarkPage() {
                   <ArrowLeft size={16} />
                   Back
                 </Button>
-              </Link>
+              </a>
               <div className="flex items-center gap-2">
                 <Zap className="h-6 w-6 text-[#00F0FF]" />
                 <h1 className="text-xl font-bold text-white">
