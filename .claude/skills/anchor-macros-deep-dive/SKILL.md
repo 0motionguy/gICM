@@ -1,3 +1,14 @@
+---
+name: anchor-macros-deep-dive
+description: "Progressive disclosure skill: Quick reference in 42 tokens, expands to 5200 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [42, 5200]
+---
+
 # Anchor Macros Deep Dive
 
 > Progressive disclosure skill: Quick reference in 42 tokens, expands to 5200 tokens

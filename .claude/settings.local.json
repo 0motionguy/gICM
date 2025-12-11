@@ -22,7 +22,16 @@
       "Bash(git -C /c/Users/mirko/OneDrive/Desktop/gICM push)",
       "Bash(vercel env add:*)",
       "Bash(npm run build:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: gICM Marketplace Ultimate Upgrade - Agent Skills v2 & Community Content\n\nMajor marketplace overhaul with 20-agent swarm execution:\n\nSchema & Infrastructure:\n- Add Agent Skills v2 types (src/types/skill-v2.ts) with progressive disclosure\n- Update RegistryItem schema with skillId, codeExecution, resources fields\n- Add dependency-resolver.ts for item dependency mapping\n\nCommunity Content (40+ new items):\n- Add registry-plugins-community.ts with DevOps, Security, Testing, Docs plugins\n- Add registry-community-integration.ts helpers\n- Add registry-audit.ts for quality tracking\n\nSDK & Infrastructure:\n- Update v2-adapter.ts with Tool Search, Programmatic Tool Calling\n- Add orchestration-patterns.ts (Pipeline, Parallel Specialization patterns)\n- Add agents/index.ts exports\n\nCLI Commands:\n- Add validate.ts - Schema compliance checking\n- Add audit.ts - Quality scoring\n- Add sync.ts - GitHub repo syncing\n- Add publish.ts - Skill publishing\n\nBuild Scripts:\n- Add sync-community-repos.ts\n- Add audit-marketplace.ts\n- Add generate-progressive-disclosure.ts\n- Add validate-skills-schema.ts\n\nAPI Routes:\n- Add /api/skills endpoint for SDK integration\n- Add /api/skills/validate for schema validation\n- Add /api/skills/[skillId] for individual skills\n- Update /api/registry with new fields\n\nDocumentation:\n- Add CONTRIBUTING-SKILLS.md\n- Add MARKETPLACE-V2.md\n- Add MCP-INTEGRATION.md\n\nBuild: 634 pages generated successfully\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(npx ts-node:*)",
+      "Bash(npx tsx:*)",
+      "Bash(git -C \"c:\\Users\\mirko\\OneDrive\\Desktop\\gICM\" status)",
+      "Bash(pnpm marketplace:deps:report:*)",
+      "Bash(test:*)",
+      "Bash(node analyze-registry.js:*)",
+      "Bash(node scripts/show-auto-add.js:*)",
+      "Bash(node scripts/show-review-add.js:*)"
     ],
     "deny": [],
     "ask": []

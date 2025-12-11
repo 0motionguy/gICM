@@ -1,3 +1,11 @@
+---
+name: kafka-stream-processing
+description: "Event stream processing with Kafka Streams and Apache Flink for real-time data."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Kafka Stream Processing
 
 > Event stream processing with Kafka Streams and Apache Flink for real-time data.

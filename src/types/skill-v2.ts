@@ -358,3 +358,99 @@ export interface SkillSearchResult {
   score: number;
   matchedPatterns: string[];
 }
+
+// ============================================================================
+// OpenSkills Compatibility Types
+// ============================================================================
+
+/**
+ * OpenSkills YAML frontmatter schema.
+ * Compatible with Anthropic SKILL.md standard for:
+ * - Claude Code (native)
+ * - Cursor (via openskills)
+ * - Windsurf (via openskills)
+ * - Aider (via openskills)
+ */
+export const OpenSkillsFrontmatterSchema = z.object({
+  name: z.string().min(1).max(64),
+  description: z.string().min(1).max(1024),
+  version: z
+    .string()
+    .regex(/^\d+\.\d+\.\d+$/)
+    .default("1.0.0"),
+  author: z.string().default("gICM Community"),
+  license: z.string().default("Apache-2.0"),
+
+  // gICM-specific extensions (optional, stripped for pure OpenSkills)
+  gicm: z
+    .object({
+      progressiveDisclosure: z.boolean().default(false),
+      tokenBudgets: z.array(z.number()).optional(), // [compact, expanded]
+      tier: z.number().int().min(1).max(3).optional(),
+      mcpConnections: z.array(z.string()).optional(),
+    })
+    .optional(),
+});
+
+export type OpenSkillsFrontmatter = z.infer<typeof OpenSkillsFrontmatterSchema>;
+
+/**
+ * Bundled resources for OpenSkills skills.
+ * Maps to the `references/`, `scripts/`, `assets/` directories.
+ */
+export const OpenSkillsBundledResourcesSchema = z.object({
+  references: z.array(z.string()).optional(), // Reference docs
+  scripts: z.array(z.string()).optional(), // Executable scripts
+  assets: z.array(z.string()).optional(), // Images, data files
+});
+
+export type OpenSkillsBundledResources = z.infer<
+  typeof OpenSkillsBundledResourcesSchema
+>;
+
+/**
+ * Complete OpenSkills-compatible skill definition.
+ */
+export const OpenSkillsSkillSchema = z.object({
+  // YAML frontmatter
+  frontmatter: OpenSkillsFrontmatterSchema,
+
+  // Markdown content (after frontmatter)
+  content: z.string(),
+
+  // Bundled resources (optional)
+  resources: OpenSkillsBundledResourcesSchema.optional(),
+
+  // Source path (for internal tracking)
+  sourcePath: z.string().optional(),
+});
+
+export type OpenSkillsSkill = z.infer<typeof OpenSkillsSkillSchema>;
+
+/**
+ * OpenSkills catalog entry for AGENTS.md generation.
+ */
+export interface OpenSkillsCatalogEntry {
+  name: string;
+  description: string;
+  location: "project" | "global" | "plugin";
+  skillId?: string;
+  tags?: string[];
+}
+
+/**
+ * Check if a skill has gICM extensions.
+ */
+export function hasGicmExtensions(skill: OpenSkillsSkill): boolean {
+  return skill.frontmatter.gicm !== undefined;
+}
+
+/**
+ * Strip gICM extensions for pure OpenSkills export.
+ */
+export function stripGicmExtensions(
+  frontmatter: OpenSkillsFrontmatter
+): Omit<OpenSkillsFrontmatter, "gicm"> {
+  const { gicm: _, ...rest } = frontmatter;
+  return rest;
+}

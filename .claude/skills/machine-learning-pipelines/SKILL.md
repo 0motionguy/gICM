@@ -1,3 +1,11 @@
+---
+name: machine-learning-pipelines
+description: "End-to-end ML: data preprocessing, features, training, evaluation, and production deployment."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Machine Learning Pipelines
 
 > End-to-end ML: data preprocessing, features, training, evaluation, and production deployment.

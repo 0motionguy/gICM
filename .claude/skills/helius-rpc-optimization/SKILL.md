@@ -1,3 +1,14 @@
+---
+name: helius-rpc-optimization
+description: "Progressive disclosure skill: Quick reference in 38 tokens, expands to 4800 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [38, 4800]
+---
+
 # Helius RPC Optimization
 
 > Progressive disclosure skill: Quick reference in 38 tokens, expands to 4800 tokens

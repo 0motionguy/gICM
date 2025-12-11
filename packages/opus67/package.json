@@ -1,7 +1,7 @@
 {
   "name": "@gicm/opus67",
-  "version": "6.2.0",
-  "description": "OPUS 67 v6.2.0 'Claude Harmony' - 141 Skills • 82 MCPs • 10 Modes • 107 Agents - Claude Code 2.0.65 Compatible",
+  "version": "6.3.0",
+  "description": "OPUS 67 v6.3.0 'Context Engineering' - 141 Skills • 82 MCPs • 10 Modes • 107 Agents - Multi-stage retrieval, hierarchical memory, OpenSkills compatible",
   "main": "dist/index.js",
   "type": "module",
   "bin": {

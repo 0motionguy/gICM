@@ -1,3 +1,13 @@
+---
+name: zod-schema-validation
+description: "new Date())"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Zod Schema Validation
 
 Master runtime validation and type-safe schema composition with Zod for bulletproof data validation in TypeScript applications.

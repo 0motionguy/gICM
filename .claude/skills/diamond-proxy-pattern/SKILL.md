@@ -1,3 +1,14 @@
+---
+name: diamond-proxy-pattern
+description: "Progressive disclosure skill: Quick reference in 42 tokens, expands to 5600 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [42, 5600]
+---
+
 # Diamond Proxy Pattern (EIP-2535)
 
 > Progressive disclosure skill: Quick reference in 42 tokens, expands to 5600 tokens

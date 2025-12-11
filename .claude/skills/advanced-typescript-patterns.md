@@ -1,3 +1,11 @@
+---
+name: advanced-typescript-patterns
+description: "= T extends (...args: any[]) => infer R ? R : never;"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Advanced TypeScript Patterns
 
 Master-level TypeScript patterns for type-safe, scalable applications.

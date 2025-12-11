@@ -1,3 +1,14 @@
+---
+name: ethersjs-v6-migration
+description: "Progressive disclosure skill: Quick reference in 45 tokens, expands to 4400 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [45, 4400]
+---
+
 # Ethers.js v6 Migration
 
 > Progressive disclosure skill: Quick reference in 45 tokens, expands to 4400 tokens

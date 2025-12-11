@@ -1,3 +1,11 @@
+---
+name: circuit-breaker-patterns
+description: "Resilience patterns: circuit breaker, bulkhead, timeout, retry with exponential backoff."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Circuit Breaker Patterns
 
 > Resilience patterns: circuit breaker, bulkhead, timeout, retry with exponential backoff.

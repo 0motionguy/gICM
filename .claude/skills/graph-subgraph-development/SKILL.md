@@ -1,3 +1,14 @@
+---
+name: graph-subgraph-development
+description: "Progressive disclosure skill: Quick reference in 45 tokens, expands to 6200 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [45, 6200]
+---
+
 # The Graph: Subgraph Development
 
 > Progressive disclosure skill: Quick reference in 45 tokens, expands to 6200 tokens

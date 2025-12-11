@@ -1,3 +1,13 @@
+---
+name: refactoring-patterns
+description: "sum + o.amount, 0)"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Refactoring Patterns
 
 Master code refactoring techniques for improving code quality, maintainability, and performance without changing behavior.

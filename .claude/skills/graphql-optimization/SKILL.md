@@ -1,3 +1,13 @@
+---
+name: graphql-optimization
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # GraphQL Optimization
 
 Master GraphQL performance optimization, N+1 prevention, and query complexity management.

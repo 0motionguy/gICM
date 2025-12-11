@@ -1,3 +1,11 @@
+---
+name: blockchain-consensus
+description: "PoW, PoS, BFT algorithms, mining, staking, and validator economics."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Blockchain Consensus Mechanisms
 
 > PoW, PoS, BFT algorithms, mining, staking, and validator economics.

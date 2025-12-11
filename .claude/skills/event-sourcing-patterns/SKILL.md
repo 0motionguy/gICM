@@ -1,3 +1,13 @@
+---
+name: event-sourcing-patterns
+description: "Event-driven architecture: event stores, temporal queries, rebuilding state from events."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Event Sourcing Patterns
 
 > Event-driven architecture: event stores, temporal queries, rebuilding state from events.

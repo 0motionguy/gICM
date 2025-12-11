@@ -1,3 +1,11 @@
+---
+name: rate-limiting-advanced
+description: "Token bucket, leaky bucket, sliding window, and distributed rate limiting patterns."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Advanced Rate Limiting
 
 > Token bucket, leaky bucket, sliding window, and distributed rate limiting patterns.

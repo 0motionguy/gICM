@@ -1,3 +1,11 @@
+---
+name: full-text-search-engine
+description: "Elasticsearch/OpenSearch deployment, text analysis, faceted search, and relevance ranking."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Full-Text Search Engine
 
 > Elasticsearch/OpenSearch deployment, text analysis, faceted search, and relevance ranking.

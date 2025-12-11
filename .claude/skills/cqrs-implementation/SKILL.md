@@ -1,3 +1,11 @@
+---
+name: cqrs-implementation
+description: "Command Query Responsibility Segregation: separate read and write models for scalability."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # CQRS Implementation
 
 > Command Query Responsibility Segregation: separate read and write models for scalability.

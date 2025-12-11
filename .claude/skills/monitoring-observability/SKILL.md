@@ -1,3 +1,13 @@
+---
+name: monitoring-observability
+description: "Master application monitoring, logging, metrics, and tracing for production systems."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Monitoring and Observability
 
 Master application monitoring, logging, metrics, and tracing for production systems.

@@ -57,7 +57,10 @@
     "marketplace:validate": "ts-node scripts/validate-skills-schema.ts",
     "marketplace:audit": "ts-node scripts/audit-marketplace.ts",
     "marketplace:tokens": "ts-node scripts/generate-progressive-disclosure.ts",
-    "marketplace:all": "pnpm marketplace:sync && pnpm marketplace:validate && pnpm marketplace:audit && pnpm marketplace:tokens"
+    "marketplace:all": "pnpm marketplace:sync && pnpm marketplace:validate && pnpm marketplace:audit && pnpm marketplace:tokens",
+    "marketplace:deps": "ts-node scripts/map-dependencies.ts",
+    "marketplace:deps:dry": "ts-node scripts/map-dependencies.ts --dry-run --verbose",
+    "marketplace:deps:report": "ts-node scripts/map-dependencies.ts --report-only"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",

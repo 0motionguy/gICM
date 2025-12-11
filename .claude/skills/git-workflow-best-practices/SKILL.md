@@ -1,3 +1,11 @@
+---
+name: git-workflow-best-practices
+description: "Git Flow, conventional commits, PR templates. Clean version control."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Git Workflow Best Practices
 
 Git workflow patterns: Git Flow branching strategy, conventional commits, pull request templates, code review processes, and semantic versioning. Includes rebase vs merge guidance.

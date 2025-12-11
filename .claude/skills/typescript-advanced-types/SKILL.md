@@ -1,3 +1,13 @@
+---
+name: typescript-advanced-types
+description: "= { [P in keyof T]?: T[P] }"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # TypeScript Advanced Types
 
 ## Quick Reference

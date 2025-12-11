@@ -1,3 +1,14 @@
+---
+name: jupiter-aggregator-integration
+description: "Progressive disclosure skill: Quick reference in 36 tokens, expands to 4600 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [36, 4600]
+---
+
 # Jupiter Aggregator Integration
 
 > Progressive disclosure skill: Quick reference in 36 tokens, expands to 4600 tokens

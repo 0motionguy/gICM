@@ -1,3 +1,14 @@
+---
+name: aave-flashloan-patterns
+description: "Progressive disclosure skill: Quick reference in 41 tokens, expands to 4400 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [41, 4400]
+---
+
 # Aave Flash Loan Patterns
 
 > Progressive disclosure skill: Quick reference in 41 tokens, expands to 4400 tokens

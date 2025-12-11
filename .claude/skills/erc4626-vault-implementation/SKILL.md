@@ -1,3 +1,14 @@
+---
+name: erc4626-vault-implementation
+description: "Progressive disclosure skill: Quick reference in 38 tokens, expands to 6000 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [38, 6000]
+---
+
 # ERC-4626 Vault Implementation
 
 > Progressive disclosure skill: Quick reference in 38 tokens, expands to 6000 tokens

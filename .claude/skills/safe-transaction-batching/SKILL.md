@@ -1,3 +1,14 @@
+---
+name: safe-transaction-batching
+description: "Progressive disclosure skill: Quick reference in 44 tokens, expands to 6100 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [44, 6100]
+---
+
 # Safe Transaction Batching & Multi-Sig Execution
 
 > Progressive disclosure skill: Quick reference in 44 tokens, expands to 6100 tokens

@@ -20,7 +20,7 @@ const GEMINI_SETUP_STEPS = [
   },
   {
     name: "Install gICM Tools",
-    text: "Add gICM skills compatible with Gemini: npx @gicm/cli add skill/typescript-precision-engineer. All 96 skills work cross-platform.",
+    text: "Add gICM skills compatible with Gemini: npx @gicm/cli add skill/typescript-precision-engineer. All 120 skills work cross-platform.",
   },
 ];
 

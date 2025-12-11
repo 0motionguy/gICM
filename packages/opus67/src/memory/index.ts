@@ -18,23 +18,32 @@ export type {
   Improvement,
   Goal,
   SearchResult,
-  GraphitiConfig
-} from './graphiti.js';
+  GraphitiConfig,
+} from "./graphiti.js";
 
 // Additional types
-export type { MemoryStats, GraphitiEvents } from './types.js';
+export type { MemoryStats, GraphitiEvents } from "./types.js";
 
 // Embedding utilities
-export { simpleEmbed, cosineSimilarity, generateEmbedding } from './embeddings.js';
+export {
+  simpleEmbed,
+  cosineSimilarity,
+  generateEmbedding,
+} from "./embeddings.js";
 
 // Local cache
-export { LocalMemoryCache } from './cache.js';
+export { LocalMemoryCache } from "./cache.js";
 
 // Search operations
-export { searchLocalCache, searchNeo4j, formatContext, type SearchOptions } from './search.js';
+export {
+  searchLocalCache,
+  searchNeo4j,
+  formatContext,
+  type SearchOptions,
+} from "./search.js";
 
 // Main class and factory
-export { GraphitiMemory, memory, createMemory } from './graphiti.js';
+export { GraphitiMemory, memory, createMemory } from "./graphiti.js";
 
 export {
   ContextEnhancer,
@@ -44,5 +53,43 @@ export {
   getContextFor,
   type ContextWindow,
   type ContextEnhancement,
-  type ContextConfig
-} from './context.js';
+  type ContextConfig,
+} from "./context.js";
+
+// Hierarchical Memory (v6.3.0)
+export {
+  HierarchicalMemory,
+  createHierarchicalMemory,
+  DEFAULT_HIERARCHICAL_CONFIG,
+  type MemoryEntry as HierarchicalMemoryEntry,
+  type MemoryLayer,
+  type HierarchicalConfig,
+  type ConsolidationResult as HierarchicalConsolidationResult,
+  type HierarchicalMemoryStats,
+  type HierarchicalMemoryEvents,
+} from "./hierarchical.js";
+
+// Memory Consolidation Loop (v6.3.0)
+export {
+  MemoryConsolidationLoop,
+  createConsolidationLoop,
+  DEFAULT_CONSOLIDATION_CONFIG,
+  type ConsolidationConfig,
+  type ConsolidationResult,
+  type ConsolidationEvents,
+} from "./consolidation.js";
+
+// Adaptive Context Pruner (v6.3.0)
+export {
+  AdaptiveContextPruner,
+  createPruner,
+  quickPrune,
+  optimalPrune,
+  diversePrune,
+  createContextItem,
+  DEFAULT_PRUNER_CONFIG,
+  type ContextItem,
+  type PruneResult,
+  type PruneStrategy,
+  type PrunerConfig,
+} from "./pruner.js";

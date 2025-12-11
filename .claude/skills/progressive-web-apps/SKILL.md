@@ -1,3 +1,13 @@
+---
+name: progressive-web-apps
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Progressive Web Apps
 
 Master PWA development with service workers, offline support, and app-like experience.

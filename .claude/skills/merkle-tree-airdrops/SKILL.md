@@ -1,3 +1,14 @@
+---
+name: merkle-tree-airdrops
+description: "Progressive disclosure skill: Quick reference in 40 tokens, expands to 5900 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [40, 5900]
+---
+
 # Merkle Tree Airdrops
 
 > Progressive disclosure skill: Quick reference in 40 tokens, expands to 5900 tokens

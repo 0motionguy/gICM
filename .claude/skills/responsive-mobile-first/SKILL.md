@@ -1,3 +1,13 @@
+---
+name: responsive-mobile-first
+description: "{/* 16px mobile, 24px tablet, 32px desktop */}"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Responsive Mobile-First Design
 
 **Skill ID:** `responsive-mobile-first`

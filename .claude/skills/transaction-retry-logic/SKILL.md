@@ -1,3 +1,14 @@
+---
+name: transaction-retry-logic
+description: "Progressive disclosure skill: Quick reference in 32 tokens, expands to 3500 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [32, 3500]
+---
+
 # Transaction Retry Logic
 
 > Progressive disclosure skill: Quick reference in 32 tokens, expands to 3500 tokens

@@ -1,3 +1,13 @@
+---
+name: terraform-infrastructure
+description: "5.0\""
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Terraform Infrastructure as Code
 
 Master Terraform for managing cloud infrastructure with code.

@@ -1,3 +1,11 @@
+---
+name: kubernetes-patterns
+description: "Production-grade Kubernetes patterns for resilient, scalable deployments."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Kubernetes Patterns
 
 Production-grade Kubernetes patterns for resilient, scalable deployments.

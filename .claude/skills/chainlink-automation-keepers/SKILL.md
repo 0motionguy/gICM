@@ -1,3 +1,14 @@
+---
+name: chainlink-automation-keepers
+description: "Progressive disclosure skill: Quick reference in 42 tokens, expands to 5800 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [42, 5800]
+---
+
 # Chainlink Automation & Keepers
 
 > Progressive disclosure skill: Quick reference in 42 tokens, expands to 5800 tokens

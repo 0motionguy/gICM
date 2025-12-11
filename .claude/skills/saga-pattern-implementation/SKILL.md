@@ -1,3 +1,11 @@
+---
+name: saga-pattern-implementation
+description: "Distributed transactions: orchestration vs choreography patterns for multi-service transactions."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Saga Pattern Implementation
 
 > Distributed transactions: orchestration vs choreography patterns for multi-service transactions.

@@ -1,3 +1,13 @@
+---
+name: grpc-communication
+description: "High-performance RPC with protocol buffers, streaming, and service mesh integration."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # gRPC Communication
 
 > High-performance RPC with protocol buffers, streaming, and service mesh integration.

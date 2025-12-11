@@ -1,3 +1,13 @@
+---
+name: react-performance-optimization
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # React Performance Optimization
 
 **Skill ID:** `react-performance-optimization`

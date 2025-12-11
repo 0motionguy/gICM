@@ -1,3 +1,14 @@
+---
+name: bonding-curve-mathematics
+description: "Progressive disclosure skill: Quick reference in 36 tokens, expands to 4500 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [36, 4500]
+---
+
 # Bonding Curve Mathematics
 
 > Progressive disclosure skill: Quick reference in 36 tokens, expands to 4500 tokens

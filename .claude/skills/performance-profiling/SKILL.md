@@ -1,3 +1,11 @@
+---
+name: performance-profiling
+description: "CPU profiling, memory profiling, flame graphs, bottleneck identification, and optimization."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Performance Profiling & Analysis
 
 > CPU profiling, memory profiling, flame graphs, bottleneck identification, and optimization.

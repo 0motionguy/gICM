@@ -1,3 +1,14 @@
+---
+name: solana-program-optimization
+description: "Progressive disclosure skill: Quick reference in 40 tokens, expands to 5000 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [40, 5000]
+---
+
 # Solana Program Optimization
 
 > Progressive disclosure skill: Quick reference in 40 tokens, expands to 5000 tokens

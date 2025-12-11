@@ -1,3 +1,11 @@
+---
+name: redis-advanced-patterns
+description: "Redis Streams, Bloom filters, HyperLogLog, Geospatial indexing, and advanced data structures."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Redis Advanced Patterns
 
 > Redis Streams, Bloom filters, HyperLogLog, Geospatial indexing, and advanced data structures.

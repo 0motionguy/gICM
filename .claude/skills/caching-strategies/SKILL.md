@@ -1,3 +1,11 @@
+---
+name: caching-strategies
+description: "Multi-level caching, cache invalidation, L1/L2/L3 cache hierarchies, and cache coherence."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Caching Strategies & Hierarchies
 
 > Multi-level caching, cache invalidation, L1/L2/L3 cache hierarchies, and cache coherence.

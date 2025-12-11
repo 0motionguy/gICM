@@ -1,3 +1,13 @@
+---
+name: message-queue-patterns
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Message Queue Patterns
 
 Master asynchronous messaging patterns with RabbitMQ, Redis, and Kafka.

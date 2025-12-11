@@ -1,3 +1,11 @@
+---
+name: data-consistency-patterns
+description: "Strong consistency, eventual consistency, CAP theorem, multi-database synchronization strategies."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Data Consistency Patterns
 
 > Strong consistency, eventual consistency, CAP theorem, multi-database synchronization strategies.

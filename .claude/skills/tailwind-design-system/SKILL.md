@@ -1,3 +1,13 @@
+---
+name: tailwind-design-system
+description: "<h1 className=\"text-2xl font-bold text-gray-900 dark:text-white\">"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Tailwind CSS Design System
 
 **Skill ID:** `tailwind-design-system`

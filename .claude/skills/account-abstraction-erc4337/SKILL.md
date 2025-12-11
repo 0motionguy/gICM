@@ -1,3 +1,14 @@
+---
+name: account-abstraction-erc4337
+description: "Progressive disclosure skill: Quick reference in 44 tokens, expands to 5700 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [44, 5700]
+---
+
 # Account Abstraction ERC-4337
 
 > Progressive disclosure skill: Quick reference in 44 tokens, expands to 5700 tokens

@@ -1,3 +1,11 @@
+---
+name: smart-contract-security
+description: "Vulnerabilities: reentrancy, overflow, frontrunning audit strategies and tools."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Smart Contract Security Auditing
 
 > Vulnerabilities: reentrancy, overflow, frontrunning audit strategies and tools.

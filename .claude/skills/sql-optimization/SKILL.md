@@ -1,3 +1,13 @@
+---
+name: sql-optimization
+description: "Master database query optimization, indexing strategies, and performance tuning."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # SQL Query Optimization
 
 Master database query optimization, indexing strategies, and performance tuning.

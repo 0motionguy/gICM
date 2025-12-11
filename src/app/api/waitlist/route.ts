@@ -55,7 +55,7 @@ async function sendConfirmationEmail(email: string, position: number) {
                     </li>
                     <li style="margin: 0 0 12px; font-size: 15px; color: #E4E4E7; padding-left: 28px; position: relative;">
                       <span style="position: absolute; left: 0; color: #D1FD0A;">✓</span>
-                      <strong>96 progressive skills</strong> - 88-92% token savings
+                      <strong>120 progressive skills</strong> - 88-92% token savings
                     </li>
                     <li style="margin: 0 0 12px; font-size: 15px; color: #E4E4E7; padding-left: 28px; position: relative;">
                       <span style="position: absolute; left: 0; color: #D1FD0A;">✓</span>
@@ -158,7 +158,7 @@ export async function POST(req: Request) {
     if (!validated.success) {
       return NextResponse.json(
         { error: "Invalid email address", details: validated.error.issues },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -175,7 +175,7 @@ export async function POST(req: Request) {
           error: "Email already on waitlist",
           message: "You're already registered!",
         },
-        { status: 409 },
+        { status: 409 }
       );
     }
 
@@ -199,13 +199,13 @@ export async function POST(req: Request) {
         message: "Successfully joined waitlist!",
         position: waitlist.length,
       },
-      { status: 201 },
+      { status: 201 }
     );
   } catch (error) {
     console.error("Waitlist error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -227,7 +227,7 @@ export async function GET() {
     console.error("Error reading waitlist:", error);
     return NextResponse.json(
       { error: "Failed to retrieve waitlist count" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

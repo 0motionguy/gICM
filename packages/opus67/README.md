@@ -1,6 +1,6 @@
 # OPUS 67
 
-> Self-Evolving AI Runtime v6.2.0 - 141 Skills • 82 MCPs • 10 Modes • 107 Agents
+> Self-Evolving AI Runtime v6.3.0 - 141 Skills • 82 MCPs • 10 Modes • 107 Agents
 
 ---
 
@@ -47,7 +47,7 @@ See [docs/WHAT-IS-OPUS67.md](./docs/WHAT-IS-OPUS67.md) for the full explanation.
 ║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║                    ║
 ║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝                    ║
 ║                                                                           ║
-║                    Self-Evolving AI Runtime v6.2.0                         ║
+║                    Self-Evolving AI Runtime v6.3.0                         ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 ```

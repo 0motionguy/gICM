@@ -1,3 +1,13 @@
+---
+name: playwright-e2e-testing
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Playwright E2E Testing
 
 ## Quick Reference

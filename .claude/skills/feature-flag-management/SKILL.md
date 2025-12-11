@@ -1,3 +1,11 @@
+---
+name: feature-flag-management
+description: "Feature toggles, canary releases, A/B testing infrastructure, and decoupled deployments."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Feature Flag Management
 
 > Feature toggles, canary releases, A/B testing infrastructure, and decoupled deployments.

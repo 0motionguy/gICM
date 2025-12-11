@@ -1,3 +1,11 @@
+---
+name: event-driven-architecture
+description: "Publish-subscribe, event brokers, reactive systems, and loose coupling with events."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Event-Driven Architecture
 
 > Publish-subscribe, event brokers, reactive systems, and loose coupling with events.

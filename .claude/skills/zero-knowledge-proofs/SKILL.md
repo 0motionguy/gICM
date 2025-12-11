@@ -1,3 +1,11 @@
+---
+name: zero-knowledge-proofs
+description: "zkSNARKs, zkSTARKs, proving and verifying without revealing private data."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Zero-Knowledge Proofs
 
 > zkSNARKs, zkSTARKs, proving and verifying without revealing private data.

@@ -1,3 +1,13 @@
+---
+name: debugging-techniques
+description: "Master systematic debugging strategies, tools, and techniques for identifying and fixing bugs efficiently."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Debugging Techniques
 
 Master systematic debugging strategies, tools, and techniques for identifying and fixing bugs efficiently.

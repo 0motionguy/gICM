@@ -1,3 +1,14 @@
+---
+name: solana-anchor-mastery
+description: "Progressive disclosure skill: Quick reference in 34 tokens, expands to 5200 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [34, 5200]
+---
+
 # Solana Anchor Mastery
 
 > Progressive disclosure skill: Quick reference in 34 tokens, expands to 5200 tokens

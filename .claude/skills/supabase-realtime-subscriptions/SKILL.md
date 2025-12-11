@@ -1,3 +1,13 @@
+---
+name: supabase-realtime-subscriptions
+description: "console.log('New message:', payload.new)"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Supabase Realtime Subscriptions
 
 Master database subscriptions, presence tracking, and broadcast channels for building real-time collaborative applications.

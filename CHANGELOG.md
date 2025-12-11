@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+#### Phase 2: OpenSkills Compatibility
+
+- **16 Anthropic Skills** - Migrated from `.claude/skills/` to registry
+  - Advanced TypeScript Patterns
+  - Kubernetes Patterns
+  - Microservices Architecture
+  - MLOps Best Practices
+  - React Native Performance
+  - And 11 more domain expertise skills
+- **8 Obra Superpowers** - Legacy content transformed to Agent Skills v2
+  - AI Stack Builder, Codebase Analyzer, Cursor Composer, DeepSeek Engineer
+  - Documentation Generator, Git Expert, Next.js Expert, Project Orchestrator
+- **Dependency Mapping System** - Automated cross-reference analysis
+  - 104 skills analyzed for internal dependencies
+  - Automated documentation updates with dependency graphs
+  - Validation system for cross-skill references
+
+#### Registry Updates
+
+- **Updated Registry Counts**:
+  - 120 Skills (was 96) - +24 from Anthropic and Obra migrations
+  - Total marketplace items: 617+ (was 593+)
+- **OpenSkills Export Command** - New CLI tool for Anthropic compatibility
+  - `npx @gicm/cli openskills-export` - Export skills to OpenSkills format
+  - Automated YAML frontmatter generation
+  - Bidirectional compatibility with Anthropic's system
+
+### Changed
+
+- **Skill Registry** - Merged Anthropic Skills and Obra Superpowers into unified registry
+- **Documentation** - Auto-updated dependency references across all skills
+- **Validation** - Extended validator to check cross-skill dependencies
+
 ## [2.0.0] - 2025-12-11
 
 ### Added

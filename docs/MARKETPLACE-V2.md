@@ -12,14 +12,19 @@ gICM Marketplace v2 introduces the **Agent Skills Protocol** - a standardized wa
 +------------------------------------------------------------------+
 |                                                                   |
 |  +-------------------+  +-------------------+  +----------------+ |
-|  |   Agent Skills    |  |     Commands      |  |      MCPs      | |
-|  |   v2 Protocol     |  |   (93 total)      |  |   (82 total)   | |
+|  | Anthropic Skills  |  |   Superpowers     |  |     Commands   | |
+|  |   (16 total)      |  |   (8 total)       |  |   (93 total)   | |
 |  +-------------------+  +-------------------+  +----------------+ |
 |                                                                   |
 |  +-------------------+  +-------------------+  +----------------+ |
-|  |     Agents        |  |    Workflows      |  |   Settings     | |
-|  |   (108 total)     |  |   (15 total)      |  |   (7 total)    | |
+|  |     Agents        |  |      MCPs         |  |   Workflows    | |
+|  |   (108 total)     |  |   (82 total)      |  |   (15 total)   | |
 |  +-------------------+  +-------------------+  +----------------+ |
+|                                                                   |
+|  +-------------------+                                            |
+|  |    Settings       |                                            |
+|  |   (7 total)       |                                            |
+|  +-------------------+                                            |
 |                                                                   |
 +------------------------------------------------------------------+
 |                     Progressive Disclosure                        |

@@ -1,3 +1,13 @@
+---
+name: solana-program-testing
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Solana Program Testing
 
 ## Quick Reference

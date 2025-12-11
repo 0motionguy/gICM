@@ -1,3 +1,14 @@
+---
+name: foundry-fuzzing-techniques
+description: "Progressive disclosure skill: Quick reference in 38 tokens, expands to 4200 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [38, 4200]
+---
+
 # Foundry Fuzzing Techniques
 
 > Progressive disclosure skill: Quick reference in 38 tokens, expands to 4200 tokens

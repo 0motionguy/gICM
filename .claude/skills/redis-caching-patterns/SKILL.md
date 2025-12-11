@@ -1,3 +1,13 @@
+---
+name: redis-caching-patterns
+description: "Math.min(times * 50, 2000)"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Redis Caching Patterns
 
 Master Redis caching strategies including cache-aside, write-through, write-behind, pub/sub, and distributed locking for high-performance applications.

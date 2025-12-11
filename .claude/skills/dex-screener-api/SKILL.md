@@ -1,3 +1,14 @@
+---
+name: dex-screener-api
+description: "Progressive disclosure skill: Quick reference in 32 tokens, expands to 4200 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [32, 4200]
+---
+
 # DEX Screener API
 
 > Progressive disclosure skill: Quick reference in 32 tokens, expands to 4200 tokens

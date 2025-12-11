@@ -1,3 +1,11 @@
+---
+name: distributed-tracing
+description: "OpenTelemetry, Jaeger, tracing across microservices for full request visibility."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Distributed Tracing
 
 > OpenTelemetry, Jaeger, tracing across microservices for full request visibility.

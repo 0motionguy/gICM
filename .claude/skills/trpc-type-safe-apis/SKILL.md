@@ -1,3 +1,13 @@
+---
+name: trpc-type-safe-apis
+description: "().create()"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # tRPC Type-Safe APIs
 
 Master end-to-end type safety with tRPC for building robust, type-safe APIs without code generation or manual type definitions.

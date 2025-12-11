@@ -1,3 +1,14 @@
+---
+name: nft-metadata-standards
+description: "Progressive disclosure skill: Quick reference in 32 tokens, expands to 3800 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [32, 3800]
+---
+
 # NFT Metadata Standards
 
 > Progressive disclosure skill: Quick reference in 32 tokens, expands to 3800 tokens

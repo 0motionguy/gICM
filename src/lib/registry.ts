@@ -5,6 +5,8 @@ import { GEMINI_TOOLS } from "@/lib/registry-gemini";
 import { OPENAI_TOOLS } from "@/lib/registry-openai";
 import { DESIGN_ASSETS } from "@/lib/registry-design";
 import { CONTENT_AGENTS } from "@/lib/registry-content";
+import { ANTHROPIC_SKILLS } from "@/lib/registry-anthropic-skills";
+import { SUPERPOWERS } from "@/lib/registry-superpowers";
 // import { readItemStats } from "@/lib/item-stats"; // Temporarily disabled for edge runtime compatibility
 
 // ============================================================================
@@ -13100,6 +13102,8 @@ export const REGISTRY: RegistryItem[] = [
   ...OPENAI_TOOLS,
   ...DESIGN_ASSETS,
   ...CONTENT_AGENTS,
+  ...ANTHROPIC_SKILLS,
+  ...SUPERPOWERS,
 ];
 
 export function getItemsByKind(

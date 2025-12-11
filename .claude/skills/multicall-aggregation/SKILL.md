@@ -1,3 +1,14 @@
+---
+name: multicall-aggregation
+description: "Progressive disclosure skill: Quick reference in 40 tokens, expands to 5400 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [40, 5400]
+---
+
 # Multicall Aggregation Patterns
 
 > Progressive disclosure skill: Quick reference in 40 tokens, expands to 5400 tokens

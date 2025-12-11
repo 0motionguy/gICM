@@ -1,3 +1,14 @@
+---
+name: cross-program-invocations
+description: "Progressive disclosure skill: Quick reference in 35 tokens, expands to 4200 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [35, 4200]
+---
+
 # Cross-Program Invocations (CPI)
 
 > Progressive disclosure skill: Quick reference in 35 tokens, expands to 4200 tokens

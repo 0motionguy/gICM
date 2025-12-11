@@ -1,3 +1,13 @@
+---
+name: container-security
+description: "Master Docker and Kubernetes security best practices for production deployments."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Container Security
 
 Master Docker and Kubernetes security best practices for production deployments.

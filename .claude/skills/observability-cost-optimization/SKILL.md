@@ -1,3 +1,11 @@
+---
+name: observability-cost-optimization
+description: "Sampling strategies, log aggregation, metric cardinality control to reduce observability costs."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Observability Cost Optimization
 
 > Sampling strategies, log aggregation, metric cardinality control to reduce observability costs.

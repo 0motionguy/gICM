@@ -1,3 +1,13 @@
+---
+name: documentation-automation
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Documentation Automation
 
 Master automated documentation generation, API docs, code comments, and living documentation systems.

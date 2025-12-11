@@ -1,3 +1,11 @@
+---
+name: mlops-best-practices
+description: "results_b.mean() else 'B'"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # MLOps Best Practices
 
 Production ML lifecycle management: training, deployment, monitoring, and continuous improvement.

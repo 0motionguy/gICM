@@ -1,3 +1,11 @@
+---
+name: load-balancing-strategies
+description: "Round-robin, least connections, consistent hashing and advanced load balancing techniques."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Load Balancing Strategies
 
 > Round-robin, least connections, consistent hashing and advanced load balancing techniques.

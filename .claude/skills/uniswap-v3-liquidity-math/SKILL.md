@@ -1,3 +1,14 @@
+---
+name: uniswap-v3-liquidity-math
+description: "Progressive disclosure skill: Quick reference in 40 tokens, expands to 4500 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [40, 4500]
+---
+
 # Uniswap V3 Liquidity Math
 
 > Progressive disclosure skill: Quick reference in 40 tokens, expands to 4500 tokens

@@ -1,3 +1,11 @@
+---
+name: api-gateway-patterns
+description: "Routing, authentication, rate limiting, service aggregation, and API composition."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # API Gateway Patterns
 
 > Routing, authentication, rate limiting, service aggregation, and API composition.

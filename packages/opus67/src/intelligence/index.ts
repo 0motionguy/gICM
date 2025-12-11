@@ -15,8 +15,8 @@ export {
   type SkillCapability,
   type AntiHallucinationRule,
   type SkillExample,
-  type SkillSynergies
-} from './skill-metadata.js';
+  type SkillSynergies,
+} from "./skill-metadata.js";
 
 // Capability Matrix
 export {
@@ -26,8 +26,8 @@ export {
   type CapabilityCheck,
   type TaskValidation,
   type SkillMatch,
-  type TaskAnalysis
-} from './capability-matrix.js';
+  type TaskAnalysis,
+} from "./capability-matrix.js";
 
 // Synergy Graph
 export {
@@ -36,8 +36,8 @@ export {
   resetSynergyGraph,
   type SynergyEdge,
   type SkillNode,
-  type CombinationScore
-} from './synergy-graph.js';
+  type CombinationScore,
+} from "./synergy-graph.js";
 
 // MCP Validator
 export {
@@ -47,8 +47,8 @@ export {
   type MCPEndpoint,
   type MCPParameter,
   type MCPServer,
-  type ValidationResult
-} from './mcp-validator.js';
+  type ValidationResult,
+} from "./mcp-validator.js";
 
 // Knowledge Store (unified interface)
 export {
@@ -62,8 +62,8 @@ export {
   type StorageConfig,
   type StorageMode,
   type KnowledgeStats,
-  type QueryResult
-} from './knowledge-store.js';
+  type QueryResult,
+} from "./knowledge-store.js";
 
 // SQLite Storage (production)
 export {
@@ -71,8 +71,8 @@ export {
   getSQLiteStore,
   resetSQLiteStore,
   type SQLiteConfig,
-  type SearchResult as SQLiteSearchResult
-} from './sqlite-store.js';
+  type SearchResult as SQLiteSearchResult,
+} from "./sqlite-store.js";
 
 // Confidence Scorer
 export {
@@ -81,8 +81,8 @@ export {
   resetConfidenceScorer,
   type ConfidenceResult,
   type ConfidenceFactors,
-  type TaskProfile
-} from './confidence-scorer.js';
+  type TaskProfile,
+} from "./confidence-scorer.js";
 
 // Similarity Search
 export {
@@ -91,8 +91,8 @@ export {
   resetSimilaritySearch,
   TFIDFVectorizer,
   type SimilarityResult,
-  type EmbeddingVector
-} from './similarity-search.js';
+  type EmbeddingVector,
+} from "./similarity-search.js";
 
 // Learning Loop (v4.1: AContext integration)
 export {
@@ -104,8 +104,8 @@ export {
   type LearnedPattern,
   type LearningStats,
   type LearningConfig,
-  type AContextSyncResult
-} from './learning-loop.js';
+  type AContextSyncResult,
+} from "./learning-loop.js";
 
 // Skill Search (v4.1: Vector embeddings for skill discovery)
 export {
@@ -114,8 +114,32 @@ export {
   resetSkillSearch,
   LocalEmbeddings,
   type SkillSearchResult,
-  type SkillSearchConfig
-} from './skill-search.js';
+  type SkillSearchConfig,
+} from "./skill-search.js";
+
+// Multi-Stage Retrieval (v6.3.0: 4-stage pipeline for +17% precision)
+export {
+  MultiStageRetrieval,
+  createMultiStageRetrieval,
+  DEFAULT_RETRIEVAL_CONFIG,
+  type RetrievalConfig,
+  type RetrievalStats,
+  type SkillCandidate,
+} from "./multi-stage-retrieval.js";
+
+// Query Augmentation (v6.3.0: Intent classification, term expansion)
+export {
+  augmentQuery,
+  classifyIntent,
+  expandTerms,
+  extractEntities,
+  classify,
+  expand,
+  extract,
+  type QueryIntent,
+  type AugmentedQuery,
+  type ExtractedEntity,
+} from "./query-augmentation.js";
 
 // Cloud Sync
 export {
@@ -124,16 +148,16 @@ export {
   resetCloudSync,
   type SyncConfig,
   type SyncResult,
-  type SyncStatus
-} from './cloud-sync.js';
+  type SyncStatus,
+} from "./cloud-sync.js";
 
 // =============================================================================
 // QUICK START API
 // =============================================================================
 
-import { getKnowledgeStore } from './knowledge-store.js';
-import { getConfidenceScorer } from './confidence-scorer.js';
-import { getSimilaritySearch } from './similarity-search.js';
+import { getKnowledgeStore } from "./knowledge-store.js";
+import { getConfidenceScorer } from "./confidence-scorer.js";
+import { getSimilaritySearch } from "./similarity-search.js";
 
 /**
  * Initialize all intelligence systems
@@ -143,13 +167,18 @@ export async function initIntelligence(): Promise<void> {
   await store.initialize();
 
   // Initialize similarity search in background
-  getSimilaritySearch().initialize().catch(() => {});
+  getSimilaritySearch()
+    .initialize()
+    .catch(() => {});
 }
 
 /**
  * Score confidence for a task
  */
-export async function scoreConfidence(task: string, skillIds: string[]): Promise<{
+export async function scoreConfidence(
+  task: string,
+  skillIds: string[]
+): Promise<{
   score: number;
   grade: string;
   canProceed: boolean;
@@ -161,17 +190,22 @@ export async function scoreConfidence(task: string, skillIds: string[]): Promise
     score: result.score,
     grade: result.grade,
     canProceed: result.canProceed,
-    warnings: result.warnings
+    warnings: result.warnings,
   };
 }
 
 /**
  * Find similar skills using semantic search
  */
-export async function findSimilarSkills(query: string, topK: number = 5): Promise<Array<{
-  skillId: string;
-  score: number;
-}>> {
+export async function findSimilarSkills(
+  query: string,
+  topK: number = 5
+): Promise<
+  Array<{
+    skillId: string;
+    score: number;
+  }>
+> {
   const search = getSimilaritySearch();
   await search.initialize();
   return search.search(query, topK);
@@ -180,7 +214,10 @@ export async function findSimilarSkills(query: string, topK: number = 5): Promis
 /**
  * Pre-flight check for a task
  */
-export async function preFlightCheck(task: string, skillIds: string[]): Promise<{
+export async function preFlightCheck(
+  task: string,
+  skillIds: string[]
+): Promise<{
   pass: boolean;
   confidence: number;
   blockers: string[];
@@ -195,11 +232,16 @@ export async function preFlightCheck(task: string, skillIds: string[]): Promise<
 /**
  * Find best skills for a task
  */
-export async function findBestSkills(task: string, maxResults: number = 5): Promise<Array<{
-  skillId: string;
-  score: number;
-  matchedCapabilities: string[];
-}>> {
+export async function findBestSkills(
+  task: string,
+  maxResults: number = 5
+): Promise<
+  Array<{
+    skillId: string;
+    score: number;
+    matchedCapabilities: string[];
+  }>
+> {
   const store = getKnowledgeStore();
   await store.initialize();
   const result = await store.findSkillsForTask(task, maxResults);
@@ -222,21 +264,21 @@ export async function getIntelligenceStats(): Promise<{
   return {
     skills: {
       total: stats.skills.total,
-      withCapabilities: stats.skills.withCapabilities
+      withCapabilities: stats.skills.withCapabilities,
     },
     synergies: {
       totalEdges: stats.synergies.totalEdges,
       amplifying: stats.synergies.amplifying,
-      conflicting: stats.synergies.conflicting
+      conflicting: stats.synergies.conflicting,
     },
     mcps: {
       totalServers: stats.mcps.totalServers,
-      totalEndpoints: stats.mcps.totalEndpoints
+      totalEndpoints: stats.mcps.totalEndpoints,
     },
     storage: {
       mode: stats.storage.mode,
       cacheHits: stats.storage.cacheHits,
-      cacheMisses: stats.storage.cacheMisses
-    }
+      cacheMisses: stats.storage.cacheMisses,
+    },
   };
 }

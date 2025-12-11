@@ -1,3 +1,11 @@
+---
+name: react-native-performance
+description: "<TokenCard token={item} />}"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # React Native Performance
 
 High-performance mobile app optimization techniques for 60 FPS experiences.

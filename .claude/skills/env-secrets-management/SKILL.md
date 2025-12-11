@@ -1,3 +1,11 @@
+---
+name: env-secrets-management
+description: "Vercel env vars, .env.local, secret rotation. Secure config management."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Environment & Secrets Management
 
 Environment variable and secrets management: .env files, Vercel environment variables, secret rotation, and multi-environment configuration. Covers Doppler and AWS Secrets Manager integration.

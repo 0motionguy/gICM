@@ -1,3 +1,14 @@
+---
+name: eip712-typed-signatures
+description: "Progressive disclosure skill: Quick reference in 38 tokens, expands to 5500 tokens"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+  tokenBudgets: [38, 5500]
+---
+
 # EIP-712 Typed Signatures
 
 > Progressive disclosure skill: Quick reference in 38 tokens, expands to 5500 tokens

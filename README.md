@@ -2,15 +2,15 @@
 
 **Ship 10x faster. Pay 74% less. Score 96.8% on HumanEval.**
 
-Stop copy-pasting prompts. Stop paying for tokens you don't need. Start building with 593+ battle-tested AI components that load on-demand.
+Stop copy-pasting prompts. Stop paying for tokens you don't need. Start building with 617+ battle-tested AI components that load on-demand.
 
 [![npm version](https://img.shields.io/npm/v/@gicm/opus67.svg?style=flat-square)](https://www.npmjs.com/package/@gicm/opus67)
 [![HumanEval Score](https://img.shields.io/badge/HumanEval-96.8%25-brightgreen?style=flat-square)](https://github.com/icm-motion/gICM)
 [![Token Reduction](https://img.shields.io/badge/Token%20Reduction-89%25-blue?style=flat-square)](https://github.com/icm-motion/gICM)
 [![Agents](https://img.shields.io/badge/Agents-108-purple?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Skills](https://img.shields.io/badge/Skills-96-orange?style=flat-square)](https://github.com/icm-motion/gICM)
-[![MCPs](https://img.shields.io/badge/MCPs-82-cyan?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Total Items](https://img.shields.io/badge/Total%20Items-593+-success?style=flat-square)](https://github.com/icm-motion/gICM)
+[![Skills](https://img.shields.io/badge/Skills-120-orange?style=flat-square)](https://github.com/icm-motion/gICM)
+[![MCPs](https://img.shields.io/badge/MCPs-95-cyan?style=flat-square)](https://github.com/icm-motion/gICM)
+[![Total Items](https://img.shields.io/badge/Total%20Items-617+-success?style=flat-square)](https://github.com/icm-motion/gICM)
 [![Star History](https://img.shields.io/github/stars/icm-motion/gICM?style=flat-square)](https://github.com/icm-motion/gICM/stargazers)
 
 ---
@@ -23,13 +23,13 @@ OPUS 67 transforms Claude from a general assistant into a domain expert. Instead
 npx @gicm/opus67 init
 ```
 
-That's it. One command. Claude now has access to 593+ components:
+That's it. One command. Claude now has access to 617+ components:
 
 - **108 Agents** - Specialized AI workers for every task
-- **96 Skills** - Domain expertise (Solana, React, TypeScript, Security...)
+- **120 Skills** - Domain expertise (Solana, React, TypeScript, Security...) + 16 Anthropic Official + 8 Superpowers
 - **93 Commands** - Slash commands for common workflows
-- **82 MCPs** - Model Context Protocol integrations
-- **214 Utilities** - Prompts, templates, and tools
+- **95 MCPs** - Model Context Protocol integrations
+- **201 Utilities** - Prompts, templates, and tools
 
 ![OPUS 67 Demo](https://raw.githubusercontent.com/icm-motion/gICM/main/assets/demo.gif)
 

@@ -1,3 +1,13 @@
+---
+name: authentication-patterns
+description: "{"
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Authentication Patterns
 
 Master authentication strategies including JWT, OAuth 2.0, and session management.

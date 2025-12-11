@@ -1,3 +1,11 @@
+---
+name: elasticsearch-optimization
+description: "Query optimization, aggregations, relevance tuning for production search systems."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Elasticsearch Query Optimization
 
 > Query optimization, aggregations, relevance tuning for production search systems.

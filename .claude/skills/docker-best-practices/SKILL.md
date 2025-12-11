@@ -1,3 +1,13 @@
+---
+name: docker-best-practices
+description: "{process.exit(r.statusCode === 200 ? 0 : 1)})\""
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+gicm:
+  progressiveDisclosure: true
+---
+
 # Docker Best Practices
 
 ## Quick Reference

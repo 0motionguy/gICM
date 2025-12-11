@@ -5,7 +5,7 @@ const BUILD_PAGE_FAQS = [
   {
     question: "What is the AI Stack Builder?",
     answer:
-      "The AI Stack Builder uses Claude to analyze your project requirements and recommend the perfect combination of agents, skills, and tools from our 593+ item marketplace. It's like having an AI architect design your development stack.",
+      "The AI Stack Builder uses Claude to analyze your project requirements and recommend the perfect combination of agents, skills, and tools from our 617+ item marketplace. It's like having an AI architect design your development stack.",
   },
   {
     question: "How does the stack recommendation work?",
@@ -15,14 +15,14 @@ const BUILD_PAGE_FAQS = [
   {
     question: "How many components are available?",
     answer:
-      "gICM offers 593+ components: 108 AI agents, 96 skills, 93 commands, and 95 MCP integrations. All are free, open-source, and work across Claude, Gemini, and OpenAI.",
+      "gICM offers 617+ components: 108 AI agents, 120 skills, 93 commands, and 95 MCP integrations. All are free, open-source, and work across Claude, Gemini, and OpenAI.",
   },
 ];
 
 export const metadata: Metadata = {
   title: "AI Stack Builder | gICM - Build Your Perfect AI Dev Stack",
   description:
-    "Describe your project and let Claude recommend the perfect combination of AI agents, skills, and tools. Build with 400+ components across Claude, Gemini, and OpenAI.",
+    "Describe your project and let Claude recommend the perfect combination of AI agents, skills, and tools. Build with 617+ components across Claude, Gemini, and OpenAI.",
   keywords: [
     "AI stack builder",
     "AI development tools",

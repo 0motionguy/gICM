@@ -1,3 +1,11 @@
+---
+name: service-mesh-istio
+description: "Istio service mesh: traffic management, security policies, observability integration."
+version: 1.0.0
+author: gICM Community
+license: Apache-2.0
+---
+
 # Service Mesh (Istio)
 
 > Istio service mesh: traffic management, security policies, observability integration.
