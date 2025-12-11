@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "opus67.com" }],
+      "destination": "/opus67"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.opus67.com" }],
+      "destination": "/opus67"
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "opus67.com" }],
+      "destination": "/opus67/:path*"
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.opus67.com" }],
+      "destination": "/opus67/:path*"
+    }
+  ]
+}
