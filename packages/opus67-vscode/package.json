@@ -1,8 +1,8 @@
 {
   "name": "opus67",
   "displayName": "OPUS 67",
-  "description": "The AI Engine That Ships Code - 141 skills, 83 MCPs, 30 modes, 107 agents",
-  "version": "1.0.4",
+  "description": "The AI Engine That Ships Code - 141 skills, 82 MCPs, 10 modes, 107 agents - Claude Code 2.0.65 Compatible",
+  "version": "1.0.5",
   "publisher": "gicm",
   "icon": "icon.png",
   "engines": {
@@ -64,7 +64,7 @@
       "opus67": [
         {
           "id": "opus67.modes",
-          "name": "Modes (30)"
+          "name": "Modes (10)"
         },
         {
           "id": "opus67.skills",
