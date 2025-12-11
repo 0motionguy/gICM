@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
@@ -15,12 +14,14 @@ import {
 import {
   TrendingDown,
   Zap,
-  DollarSign,
   Clock,
   Sparkles,
   AlertCircle,
   ArrowRight,
+  Gauge,
+  Activity,
 } from "lucide-react";
+import { GlassCard } from "@/components/ui/glass-card";
 
 interface SkillExample {
   id: string;
@@ -86,83 +87,63 @@ const SKILL_EXAMPLES: SkillExample[] = [
   },
 ];
 
-// Claude pricing (as of 2024)
-const CLAUDE_PRICING = {
-  sonnet: {
-    input: 3.0, // per million tokens
-    output: 15.0,
-    name: "Claude Sonnet 3.5",
-  },
-  opus: {
-    input: 15.0,
-    output: 75.0,
-    name: "Claude Opus 3",
-  },
-};
-
 export function TokenSavingsCalculator() {
-  const [selectedSkill, setSelectedSkill] = useState<SkillExample>(SKILL_EXAMPLES[0]);
+  const [selectedSkill, setSelectedSkill] = useState<SkillExample>(
+    SKILL_EXAMPLES[0],
+  );
   const [usagePerDay, setUsagePerDay] = useState([5]);
-  const [model, setModel] = useState<"sonnet" | "opus">("sonnet");
 
   const usage = usagePerDay[0];
-  const pricing = CLAUDE_PRICING[model];
 
-  // Calculate costs
-  const traditionalCostPerUse =
-    (selectedSkill.traditionalTokens / 1_000_000) * pricing.input +
-    (selectedSkill.traditionalTokens * 0.3 / 1_000_000) * pricing.output;
-
-  const progressiveCostPerUse =
-    (selectedSkill.progressiveTokens / 1_000_000) * pricing.input +
-    (selectedSkill.progressiveTokens * 0.3 / 1_000_000) * pricing.output;
-
-  const dailyCostTraditional = traditionalCostPerUse * usage;
-  const dailyCostProgressive = progressiveCostPerUse * usage;
-  const dailySavings = dailyCostTraditional - dailyCostProgressive;
-
-  const monthlySavings = dailySavings * 22; // 22 working days
-  const yearlySavings = dailySavings * 250; // 250 working days
-
-  const tokensSavedPerUse = selectedSkill.traditionalTokens - selectedSkill.progressiveTokens;
+  // Calculate performance metrics
+  const contextReduction = selectedSkill.savingsPercent;
+  const tokensSavedPerUse =
+    selectedSkill.traditionalTokens - selectedSkill.progressiveTokens;
   const dailyTokensSaved = tokensSavedPerUse * usage;
   const monthlyTokensSaved = dailyTokensSaved * 22;
+  const responseBoost = (
+    selectedSkill.traditionalTokens / selectedSkill.progressiveTokens
+  ).toFixed(1);
 
   // Time savings (assuming 2 seconds per 100 tokens)
   const timeSavedPerUseSeconds = (tokensSavedPerUse / 100) * 2;
   const dailyTimeSavedMinutes = (timeSavedPerUseSeconds * usage) / 60;
   const monthlyTimeSavedHours = (dailyTimeSavedMinutes * 22) / 60;
 
+  // Estimated response time improvement
+  const responseTimeReduction = Math.round(contextReduction);
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center mb-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-lime-300/20 border border-lime-300/50 mb-3">
-          <Sparkles size={14} className="text-lime-600" />
-          <span className="text-lime-600 text-sm font-bold">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/50 mb-3">
+          <Sparkles size={14} className="text-blue-400" />
+          <span className="text-blue-400 text-sm font-bold">
             Progressive Disclosure Technology
           </span>
         </div>
-        <h2 className="text-3xl font-black text-black mb-2">
-          Calculate Your Savings
+        <h2 className="text-3xl font-black text-white mb-2">
+          Calculate Your Performance Boost
         </h2>
-        <p className="text-zinc-600 max-w-2xl mx-auto">
-          See how much you save in tokens, costs, and time with gICM's Progressive Disclosure skills
+        <p className="text-zinc-400 max-w-2xl mx-auto">
+          See how much context reduction and speed improvement you get with
+          Progressive Disclosure
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Configuration */}
         <div className="space-y-4">
-          <Card className="p-6">
-            <h3 className="font-semibold text-black mb-4 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-lime-600" />
+          <GlassCard className="p-6">
+            <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+              <Zap className="w-5 h-5 text-blue-400" />
               Configure Your Usage
             </h3>
 
             {/* Skill Selection */}
             <div className="mb-4">
-              <label className="text-sm font-medium text-black block mb-2">
+              <label className="text-sm font-medium text-white block mb-2">
                 Select Skill
               </label>
               <Select
@@ -172,48 +153,38 @@ export function TokenSavingsCalculator() {
                   if (skill) setSelectedSkill(skill);
                 }}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-white/5 border-white/10 text-white">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-900 border-white/10">
                   {SKILL_EXAMPLES.map((skill) => (
-                    <SelectItem key={skill.id} value={skill.id}>
+                    <SelectItem
+                      key={skill.id}
+                      value={skill.id}
+                      className="text-white focus:bg-white/10 focus:text-white"
+                    >
                       <div className="flex items-center justify-between gap-4">
                         <span>{skill.name}</span>
-                        <Badge variant="outline" className="text-xs">
-                          {skill.savingsPercent}% savings
+                        <Badge
+                          variant="outline"
+                          className="text-xs border-blue-500/50 text-blue-400"
+                        >
+                          {skill.savingsPercent}% reduction
                         </Badge>
                       </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              <p className="text-xs text-zinc-500 mt-1">{selectedSkill.description}</p>
-            </div>
-
-            {/* Model Selection */}
-            <div className="mb-4">
-              <label className="text-sm font-medium text-black block mb-2">
-                Claude Model
-              </label>
-              <Select value={model} onValueChange={(v: "sonnet" | "opus") => setModel(v)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="sonnet">Claude Sonnet 3.5</SelectItem>
-                  <SelectItem value="opus">Claude Opus 3</SelectItem>
-                </SelectContent>
-              </Select>
               <p className="text-xs text-zinc-500 mt-1">
-                ${pricing.input}/M input • ${pricing.output}/M output
+                {selectedSkill.description}
               </p>
             </div>
 
             {/* Usage Frequency */}
             <div className="mb-4">
-              <label className="text-sm font-medium text-black block mb-2">
-                Uses Per Day: <span className="text-lime-600">{usage}</span>
+              <label className="text-sm font-medium text-white block mb-2">
+                Uses Per Day: <span className="text-blue-400">{usage}</span>
               </label>
               <Slider
                 value={usagePerDay}
@@ -230,49 +201,63 @@ export function TokenSavingsCalculator() {
             </div>
 
             {/* Use Case */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
               <div className="flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                <div className="text-xs text-blue-900">
-                  <p className="font-medium mb-1">Example Use Case</p>
+                <AlertCircle className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                <div className="text-xs text-zinc-300">
+                  <p className="font-medium mb-1 text-blue-400">
+                    Example Use Case
+                  </p>
                   <p>{selectedSkill.useCase}</p>
                 </div>
               </div>
             </div>
-          </Card>
+          </GlassCard>
 
           {/* Token Comparison */}
-          <Card className="p-6">
-            <h3 className="font-semibold text-black mb-4">Token Usage Comparison</h3>
+          <GlassCard className="p-6">
+            <h3 className="font-semibold text-white mb-4">
+              Token Usage Comparison
+            </h3>
 
             <div className="space-y-3">
               {/* Traditional */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-zinc-600">Traditional Prompt</span>
-                  <span className="font-bold text-red-600">
+                  <span className="text-sm text-zinc-400">
+                    Traditional Prompt
+                  </span>
+                  <span className="font-bold text-zinc-400">
                     {selectedSkill.traditionalTokens.toLocaleString()} tokens
                   </span>
                 </div>
-                <div className="h-3 bg-zinc-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-red-500 rounded-full" style={{ width: "100%" }} />
+                <div className="h-3 bg-white/5 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-zinc-500 rounded-full"
+                    style={{ width: "100%" }}
+                  />
                 </div>
               </div>
 
               {/* Progressive */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-zinc-600">Progressive Disclosure</span>
-                  <span className="font-bold text-lime-600">
+                  <span className="text-sm text-zinc-400">
+                    Progressive Disclosure
+                  </span>
+                  <span className="font-bold text-blue-400">
                     {selectedSkill.progressiveTokens.toLocaleString()} tokens
                   </span>
                 </div>
-                <div className="h-3 bg-zinc-100 rounded-full overflow-hidden">
+                <div className="h-3 bg-white/5 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-lime-500 rounded-full"
+                    className="h-full bg-blue-500 rounded-full"
                     style={{
-                      width: `${(selectedSkill.progressiveTokens / selectedSkill.traditionalTokens) * 100
-                        }%`,
+                      width: `${
+                        (selectedSkill.progressiveTokens /
+                          selectedSkill.traditionalTokens) *
+                        100
+                      }%`,
                     }}
                   />
                 </div>
@@ -281,139 +266,151 @@ export function TokenSavingsCalculator() {
 
             {/* Savings Badge */}
             <div className="mt-4 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-lime-500 to-emerald-500 text-white">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white">
                 <TrendingDown className="w-5 h-5" />
                 <span className="font-bold text-lg">
-                  {selectedSkill.savingsPercent}% Token Reduction
+                  {selectedSkill.savingsPercent}% Context Reduction
                 </span>
               </div>
             </div>
-          </Card>
+          </GlassCard>
         </div>
 
-        {/* Right: Savings Breakdown */}
+        {/* Right: Performance Metrics */}
         <div className="space-y-4">
-          {/* Cost Savings */}
-          <Card className="p-6 bg-gradient-to-br from-lime-50 to-emerald-50 border-lime-200">
-            <h3 className="font-semibold text-black mb-4 flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-lime-600" />
-              Cost Savings
+          {/* Performance Boost */}
+          <GlassCard className="p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-500/30">
+            <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+              <Gauge className="w-5 h-5 text-blue-400" />
+              Performance Boost
             </h3>
 
             <div className="space-y-4">
-              {/* Daily */}
+              {/* Context Reduction */}
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-zinc-600">Daily Savings</span>
-                  <span className="text-2xl font-black text-lime-600">
-                    ${dailySavings.toFixed(2)}
+                  <span className="text-sm text-zinc-400">
+                    Context Reduction
+                  </span>
+                  <span className="text-2xl font-black text-blue-400">
+                    {contextReduction}%
                   </span>
                 </div>
                 <p className="text-xs text-zinc-500">
-                  ${dailyCostTraditional.toFixed(2)} → ${dailyCostProgressive.toFixed(2)}
+                  {selectedSkill.traditionalTokens.toLocaleString()} →{" "}
+                  {selectedSkill.progressiveTokens.toLocaleString()} tokens
                 </p>
               </div>
 
-              <div className="border-t border-lime-200 pt-3">
+              <div className="border-t border-white/10 pt-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-zinc-600">Monthly Savings</span>
-                  <span className="text-2xl font-black text-lime-600">
-                    ${monthlySavings.toFixed(2)}
+                  <span className="text-sm text-zinc-400">Response Speed</span>
+                  <span className="text-2xl font-black text-blue-400">
+                    {responseBoost}x faster
                   </span>
                 </div>
-                <p className="text-xs text-zinc-500">22 working days</p>
+                <p className="text-xs text-zinc-500">
+                  {responseTimeReduction}% faster response time
+                </p>
               </div>
 
-              <div className="border-t border-lime-200 pt-3">
+              <div className="border-t border-white/10 pt-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-zinc-600">Yearly Savings</span>
-                  <span className="text-3xl font-black text-lime-600">
-                    ${yearlySavings.toFixed(2)}
+                  <span className="text-sm text-zinc-400">
+                    Tokens Saved Per Use
+                  </span>
+                  <span className="text-2xl font-black text-blue-400">
+                    {tokensSavedPerUse.toLocaleString()}
                   </span>
                 </div>
-                <p className="text-xs text-zinc-500">250 working days</p>
+                <p className="text-xs text-zinc-500">Every single request</p>
               </div>
             </div>
-          </Card>
+          </GlassCard>
 
-          {/* Token Savings */}
-          <Card className="p-6">
-            <h3 className="font-semibold text-black mb-4 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-purple-600" />
-              Token Savings
+          {/* Token Efficiency */}
+          <GlassCard className="p-6">
+            <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+              <Activity className="w-5 h-5 text-cyan-400" />
+              Token Efficiency
             </h3>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-3 bg-purple-50 rounded-lg">
-                <p className="text-2xl font-black text-purple-600">
+              <div className="text-center p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-lg">
+                <p className="text-2xl font-black text-cyan-400">
                   {(dailyTokensSaved / 1000).toFixed(1)}K
                 </p>
-                <p className="text-xs text-zinc-600 mt-1">Daily</p>
+                <p className="text-xs text-zinc-400 mt-1">Saved Daily</p>
               </div>
-              <div className="text-center p-3 bg-purple-50 rounded-lg">
-                <p className="text-2xl font-black text-purple-600">
+              <div className="text-center p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-lg">
+                <p className="text-2xl font-black text-cyan-400">
                   {(monthlyTokensSaved / 1000).toFixed(1)}K
                 </p>
-                <p className="text-xs text-zinc-600 mt-1">Monthly</p>
+                <p className="text-xs text-zinc-400 mt-1">Saved Monthly</p>
               </div>
             </div>
-          </Card>
+          </GlassCard>
 
           {/* Time Savings */}
-          <Card className="p-6">
-            <h3 className="font-semibold text-black mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-blue-600" />
+          <GlassCard className="p-6">
+            <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-blue-400" />
               Time Savings
             </h3>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-3 bg-blue-50 rounded-lg">
-                <p className="text-2xl font-black text-blue-600">
+              <div className="text-center p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                <p className="text-2xl font-black text-blue-400">
                   {dailyTimeSavedMinutes.toFixed(1)}m
                 </p>
-                <p className="text-xs text-zinc-600 mt-1">Per Day</p>
+                <p className="text-xs text-zinc-400 mt-1">Per Day</p>
               </div>
-              <div className="text-center p-3 bg-blue-50 rounded-lg">
-                <p className="text-2xl font-black text-blue-600">
+              <div className="text-center p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                <p className="text-2xl font-black text-blue-400">
                   {monthlyTimeSavedHours.toFixed(1)}h
                 </p>
-                <p className="text-xs text-zinc-600 mt-1">Per Month</p>
+                <p className="text-xs text-zinc-400 mt-1">Per Month</p>
               </div>
             </div>
 
             <p className="text-xs text-zinc-500 text-center mt-3">
-              Faster response times mean more productive work
+              Faster responses mean more productive work
             </p>
-          </Card>
+          </GlassCard>
 
           {/* CTA */}
-          <Card className="p-6 bg-gradient-to-r from-black to-zinc-800 text-white">
-            <h3 className="font-bold text-white mb-2">Start Saving Today</h3>
-            <p className="text-sm text-zinc-300 mb-4">
-              Join {247} developers already saving with gICM
+          <GlassCard className="p-6 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-blue-500/30">
+            <h3 className="font-bold text-white mb-2">
+              Boost Your AI Performance
+            </h3>
+            <p className="text-sm text-zinc-400 mb-4">
+              Join developers getting {responseBoost}x faster responses
             </p>
-            <Button className="w-full bg-lime-300 text-black hover:bg-lime-400">
+            <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">
               Get Started
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-          </Card>
+          </GlassCard>
         </div>
       </div>
 
       {/* Bottom Info */}
-      <Card className="p-4 bg-zinc-50">
+      <GlassCard className="p-4">
         <div className="flex items-start gap-3">
-          <Sparkles className="w-5 h-5 text-lime-600 flex-shrink-0 mt-0.5" />
-          <div className="text-sm text-zinc-700">
-            <p className="font-medium text-black mb-1">How Progressive Disclosure Works</p>
+          <Sparkles className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+          <div className="text-sm text-zinc-400">
+            <p className="font-medium text-white mb-1">
+              How Progressive Disclosure Works
+            </p>
             <p>
-              Instead of sending entire codebases or documentation in every prompt, Progressive
-              Disclosure skills intelligently load only the relevant context needed for each step.
-              This results in 88-92% token savings while maintaining the same quality output.
+              Instead of sending entire codebases or documentation in every
+              prompt, Progressive Disclosure skills intelligently load only the
+              relevant context needed for each step. This results in 88-92%
+              smaller context while maintaining the same quality output.
             </p>
           </div>
         </div>
-      </Card>
+      </GlassCard>
     </div>
   );
 }

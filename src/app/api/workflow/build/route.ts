@@ -24,9 +24,11 @@ const anthropic = new Anthropic({
 export async function POST(request: Request) {
   const startTime = Date.now();
   let sessionId = "anonymous";
+  let parsedPrompt = "";
 
   try {
     const body = await request.json();
+    parsedPrompt = body.prompt || "";
 
     // Validate with Zod
     const parseResult = WorkflowRequestSchema.safeParse(body);
@@ -233,8 +235,8 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
     // Fallback response if API key is not configured
     if (!process.env.ANTHROPIC_API_KEY) {
       // Return a basic recommendation based on keywords
-      const promptLower = (await request.json()).prompt.toLowerCase();
-      let items = [];
+      const promptLower = parsedPrompt.toLowerCase();
+      let items: RegistryItem[] = [];
 
       if (promptLower.includes("solana") || promptLower.includes("defi")) {
         items = REGISTRY.filter((item) =>

@@ -2,8 +2,9 @@
   "name": "opus67",
   "displayName": "OPUS 67",
   "description": "The AI Engine That Ships Code - 141 skills, 83 MCPs, 30 modes, 107 agents",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "publisher": "gicm",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },

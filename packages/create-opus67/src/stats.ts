@@ -12,4 +12,4 @@ export const OPUS67_STATS = {
 
 export type InstallStats = typeof OPUS67_STATS;
 
-export const VERSION = "6.1.0";
+export const VERSION = "6.1.1";

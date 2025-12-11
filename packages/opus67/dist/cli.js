@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import { SkillLoader, MCPHub, AutonomyEngine } from './chunk-64IVSL5H.js';
 import { ContextIndexer } from './chunk-XVOLIGJS.js';
-import { createUnifiedMemory } from './chunk-CHIT2KIS.js';
-import './chunk-2BMLDUKW.js';
 import { generateBootScreen } from './chunk-KRJAO3QU.js';
 import './chunk-WHBX6V2T.js';
 import { VERSION } from './chunk-IEE3QXBQ.js';
+import { createUnifiedMemory, createEventConsumer } from './chunk-GCLGOCG5.js';
+import './chunk-2BMLDUKW.js';
 import './chunk-Z7YWWTEP.js';
 import './chunk-JD6NEK3D.js';
 import './chunk-J7GF6OJU.js';
@@ -26,6 +26,7 @@ var OPUS67 = class extends EventEmitter {
   mcp;
   autonomy;
   unifiedMemory = null;
+  eventConsumer = null;
   theDoorPrompt = "";
   isReady = false;
   constructor(config) {
@@ -86,6 +87,17 @@ var OPUS67 = class extends EventEmitter {
         maxResults: 10,
         maxHops: 3
       });
+      this.eventConsumer = createEventConsumer({
+        projectRoot: this.config.projectRoot
+      });
+      if (this.eventConsumer.hasEvents()) {
+        const consumed = await this.eventConsumer.consume(this.unifiedMemory);
+        if (consumed.processed > 0) {
+          console.log(
+            `[OPUS67] Consumed ${consumed.processed} memory events from hooks`
+          );
+        }
+      }
       const stats = await this.unifiedMemory.getStats();
       this.emit("memory:ready", stats);
       console.log(

@@ -103,6 +103,44 @@ export const BENCHMARK_MODELS: Record<string, ModelConfig> = {
       humanEvalPass10: 95.4,
     },
   },
+  "deepseek-v3": {
+    id: "deepseek-v3",
+    name: "DeepSeek V3",
+    description: "DeepSeek latest MoE model - 671B params",
+    costPer1kInput: 0.00014,
+    costPer1kOutput: 0.00028,
+    avgLatencyMs: 600,
+    capabilities: {
+      codeGeneration: 92,
+      reasoning: 90,
+      speed: 94,
+      costEfficiency: 99,
+    },
+    publishedScores: {
+      humanEvalPass1: 92.4,
+      humanEvalPass5: 97.1,
+      humanEvalPass10: 98.5,
+    },
+  },
+  "grok-3": {
+    id: "grok-3",
+    name: "Grok 3",
+    description: "xAI flagship model - real-time knowledge",
+    costPer1kInput: 0.005,
+    costPer1kOutput: 0.015,
+    avgLatencyMs: 750,
+    capabilities: {
+      codeGeneration: 88,
+      reasoning: 91,
+      speed: 85,
+      costEfficiency: 82,
+    },
+    publishedScores: {
+      humanEvalPass1: 88.7,
+      humanEvalPass5: 93.5,
+      humanEvalPass10: 96.2,
+    },
+  },
 };
 
 // Benchmark task types

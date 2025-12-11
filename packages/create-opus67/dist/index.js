@@ -9,11 +9,11 @@ import chalk from "chalk";
 // src/stats.ts
 var OPUS67_STATS = {
   skills: 141,
-  mcps: 82,
+  mcps: 83,
   modes: 30,
   agents: 107
 };
-var VERSION = "5.1.9";
+var VERSION = "6.1.1";
 
 // src/banner.ts
 var OPUS67_ASCII = `
@@ -26,33 +26,89 @@ var OPUS67_ASCII = `
 `;
 function printBanner() {
   console.log(chalk.cyan(OPUS67_ASCII));
-  console.log(chalk.gray(`                 Self-Evolving AI Runtime v${VERSION}`));
+  console.log(
+    chalk.gray(`                 Self-Evolving AI Runtime v${VERSION}`)
+  );
   console.log();
-  console.log(chalk.white(`  ${OPUS67_STATS.skills} Skills \u2022 ${OPUS67_STATS.mcps} MCPs \u2022 ${OPUS67_STATS.modes} Modes \u2022 ${OPUS67_STATS.agents} Agents`));
+  console.log(
+    chalk.white(
+      `  ${OPUS67_STATS.skills} Skills \u2022 ${OPUS67_STATS.mcps} MCPs \u2022 ${OPUS67_STATS.modes} Modes \u2022 ${OPUS67_STATS.agents} Agents`
+    )
+  );
   console.log();
-  console.log(chalk.gray("  Created by ") + chalk.cyan("@0motionguy") + chalk.gray(" \u2022 4ms routing \u2022 566x faster"));
+  console.log(
+    chalk.gray("  Created by ") + chalk.cyan("@0motionguy") + chalk.gray(" \u2022 4ms routing \u2022 566x faster")
+  );
   console.log();
 }
 function printSuccessBanner() {
   console.log();
-  console.log(chalk.green('  \u2713 OPUS 67 v5.1.8 "THE PRECISION UPDATE" installed successfully!'));
+  console.log(
+    chalk.green(
+      `  \u2713 OPUS 67 v${VERSION} "THE UNIFICATION" installed successfully!`
+    )
+  );
   console.log();
   console.log(chalk.gray("  What you get:"));
-  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.skills} specialist skills (auto-loaded based on task)`));
-  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.mcps} MCP connections (live data, APIs, blockchain)`));
-  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.modes} optimized modes (right context for each task)`));
-  console.log(chalk.white(`    \u2022 ${OPUS67_STATS.agents} expert agents (domain-specific personas)`));
-  console.log(chalk.white("    \u2022 Multi-model routing (Opus/Sonnet/Haiku)"));
+  console.log(
+    chalk.white(
+      `    \u2022 ${OPUS67_STATS.skills} specialist skills (auto-loaded based on task)`
+    )
+  );
+  console.log(
+    chalk.white(
+      `    \u2022 ${OPUS67_STATS.mcps} MCP connections (live data, APIs, blockchain)`
+    )
+  );
+  console.log(
+    chalk.white(
+      `    \u2022 ${OPUS67_STATS.modes} optimized modes (right context for each task)`
+    )
+  );
+  console.log(
+    chalk.white(
+      `    \u2022 ${OPUS67_STATS.agents} expert agents (domain-specific personas)`
+    )
+  );
+  console.log(
+    chalk.white("    \u2022 Unified Memory System (graph + learning + markdown)")
+  );
   console.log();
-  console.log(chalk.cyan("  \u{1F9E0} NEW in v5.0:"));
-  console.log(chalk.white("    \u2022 Extended Thinking - Claude Opus 4.5 with 4 complexity modes"));
-  console.log(chalk.white("    \u2022 Prompt Caching - 90% cost savings on repeated context"));
-  console.log(chalk.white("    \u2022 Dynamic Tool Discovery - AI-powered MCP recommendations"));
-  console.log(chalk.white("    \u2022 File-Aware Memory - Track dependencies across 14 languages"));
-  console.log(chalk.white("    \u2022 SWE-bench Patterns - Precise multi-file code edits"));
-  console.log(chalk.white("    \u2022 Long-Horizon Planning - Multi-step task decomposition"));
-  console.log(chalk.white("    \u2022 Verification Loops - Auto-verify code changes"));
-  console.log(chalk.white("    \u2022 Unified Brain API - One simple API for everything"));
+  console.log(chalk.cyan("  \u{1F9E0} NEW in v6.0:"));
+  console.log(
+    chalk.white(
+      "    \u2022 Unified Memory - GraphitiMemory + LearningStore + MarkdownMemory"
+    )
+  );
+  console.log(
+    chalk.white(
+      "    \u2022 Context Indexing - 85%+ cache hit rate, <72ms E2E queries"
+    )
+  );
+  console.log(
+    chalk.white("    \u2022 HMLR Adapter - Multi-hop reasoning (3-5 hop queries)")
+  );
+  console.log(
+    chalk.white(
+      "    \u2022 VS Code Extension - Browse modes, skills, agents in sidebar"
+    )
+  );
+  console.log(
+    chalk.white("    \u2022 Performance - 141 skills loaded in 44ms (0.32ms/skill)")
+  );
+  console.log(
+    chalk.white(
+      "    \u2022 Token Efficiency - Hierarchical loading, context windowing"
+    )
+  );
+  console.log(
+    chalk.white(
+      "    \u2022 30 Operating Modes - AUTO, ULTRA, THINK, BUILD, SWARM, etc."
+    )
+  );
+  console.log(
+    chalk.white("    \u2022 107 Expert Agents - Domain-specific task automation")
+  );
   console.log();
   console.log(chalk.cyan("  Your AI just got superpowers. Start building."));
   console.log();

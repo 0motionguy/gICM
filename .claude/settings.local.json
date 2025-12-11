@@ -27,7 +27,11 @@
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
       "Bash(git stash:*)",
-      "Bash(pnpm tsc:*)"
+      "Bash(pnpm tsc:*)",
+      "WebFetch(domain:gicm.vercel.app)",
+      "WebFetch(domain:gicm-marketplace.vercel.app)",
+      "WebFetch(domain:platform.claude.com)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

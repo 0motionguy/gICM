@@ -60,7 +60,6 @@ import { toast } from "sonner";
 import { getStackPresetById } from "@/lib/remix";
 import { formatProductName } from "@/lib/utils";
 import { ModelShowcase } from "@/components/molecules/model-showcase";
-import { TokenCalculator } from "@/components/organisms/token-calculator";
 import { DesignCard } from "@/components/molecules/design-card";
 import { DESIGN_ASSETS, UI_COMPONENTS } from "@/lib/registry-design";
 import { PREVIEW_COMPONENTS } from "@/components/registry";
@@ -734,20 +733,6 @@ function CatalogPageContent() {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Token Calculator Section */}
-      <div className="max-w-4xl mx-auto px-6 md:px-10 py-16">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Save 88-92% on Token Costs
-          </h2>
-          <p className="text-zinc-400 max-w-xl mx-auto">
-            Progressive Skills load only what you need, when you need it. See
-            how much you can save.
-          </p>
-        </div>
-        <TokenCalculator />
       </div>
 
       <ModelShowcase />

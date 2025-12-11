@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import { VERSION } from './chunk-IEE3QXBQ.js';
+import { getUnifiedMemory, initializeUnifiedMemory } from './chunk-GCLGOCG5.js';
+import './chunk-2BMLDUKW.js';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema, ListPromptsRequestSchema, GetPromptRequestSchema, ListResourcesRequestSchema, ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js';
@@ -214,10 +216,94 @@ var TOOL_DEFINITIONS = [
       properties: {},
       required: []
     }
+  },
+  // Memory tools
+  {
+    name: "opus67_queryMemory",
+    description: "Query OPUS 67 unified memory (semantic + keyword search across all sources)",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: "The search query"
+        },
+        type: {
+          type: "string",
+          enum: ["semantic", "keyword", "graph", "temporal", "multi-hop"],
+          description: "Query type (default: auto-detect)"
+        },
+        limit: {
+          type: "number",
+          description: "Maximum results to return (default: 10)"
+        }
+      },
+      required: ["query"]
+    }
+  },
+  {
+    name: "opus67_multiHopQuery",
+    description: "Multi-hop reasoning query - follows relationships across memories (1-5 hops)",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: 'The reasoning query (e.g., "why did we choose X")'
+        },
+        maxHops: {
+          type: "number",
+          description: "Maximum relationship hops (1-5, default: 3)"
+        }
+      },
+      required: ["query"]
+    }
+  },
+  {
+    name: "opus67_writeMemory",
+    description: "Write a fact, episode, learning, or win to unified memory",
+    inputSchema: {
+      type: "object",
+      properties: {
+        content: {
+          type: "string",
+          description: "The content to remember"
+        },
+        type: {
+          type: "string",
+          enum: ["fact", "episode", "learning", "win", "decision"],
+          description: "Type of memory"
+        },
+        key: {
+          type: "string",
+          description: "Optional unique key for this memory"
+        }
+      },
+      required: ["content", "type"]
+    }
+  },
+  {
+    name: "opus67_memoryStats",
+    description: "Get unified memory statistics across all sources",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: []
+    }
   }
 ];
 
 // src/mcp-server/handlers.ts
+var memoryInstance = null;
+async function getMemory() {
+  if (!memoryInstance) {
+    memoryInstance = getUnifiedMemory();
+    if (!memoryInstance) {
+      memoryInstance = await initializeUnifiedMemory();
+    }
+  }
+  return memoryInstance;
+}
 function handleBoot(ctx) {
   const bootScreen = `
 \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557
@@ -254,10 +340,12 @@ function handleGetSkill(ctx, args) {
   const skill = ctx.skills.find((s) => s.id === skillId);
   if (!skill) {
     return {
-      content: [{
-        type: "text",
-        text: `Skill "${skillId}" not found. Use opus67_list_skills to see available skills.`
-      }]
+      content: [
+        {
+          type: "text",
+          text: `Skill "${skillId}" not found. Use opus67_list_skills to see available skills.`
+        }
+      ]
     };
   }
   const fullPrompt = loadSkillDefinition(skillId, ctx.packageRoot);
@@ -284,7 +372,9 @@ ${fullPrompt}` : ""}
 }
 function handleListSkills(ctx, args) {
   const category = args.category;
-  const filtered = category ? ctx.skills.filter((s) => s.category.toLowerCase() === category.toLowerCase()) : ctx.skills;
+  const filtered = category ? ctx.skills.filter(
+    (s) => s.category.toLowerCase() === category.toLowerCase()
+  ) : ctx.skills;
   const grouped = {};
   for (const skill of filtered) {
     if (!grouped[skill.category]) grouped[skill.category] = [];
@@ -354,10 +444,12 @@ function handleGetMode(ctx, args) {
   const mode = ctx.modes.find((m) => m.id === modeId);
   if (!mode) {
     return {
-      content: [{
-        type: "text",
-        text: `Mode "${modeId}" not found. Available: ${ctx.modes.map((m) => m.id).join(", ")}`
-      }]
+      content: [
+        {
+          type: "text",
+          text: `Mode "${modeId}" not found. Available: ${ctx.modes.map((m) => m.id).join(", ")}`
+        }
+      ]
     };
   }
   const output = `
@@ -380,7 +472,9 @@ function handleListModes(ctx) {
 }
 function handleListMcps(ctx, args) {
   const category = args.category;
-  const filtered = category ? ctx.mcpConnections.filter((m) => m.category?.toLowerCase() === category.toLowerCase()) : ctx.mcpConnections;
+  const filtered = category ? ctx.mcpConnections.filter(
+    (m) => m.category?.toLowerCase() === category.toLowerCase()
+  ) : ctx.mcpConnections;
   let output = `# OPUS 67 MCP Connections (${filtered.length})
 
 `;
@@ -423,10 +517,14 @@ function handleGetContext(ctx, args) {
   detectedSkills.sort((a, b) => b.priority - a.priority);
   const topSkills = detectedSkills.slice(0, 3);
   let suggestedMode = "build";
-  if (queryLower.includes("review") || queryLower.includes("audit")) suggestedMode = "review";
-  else if (queryLower.includes("architect") || queryLower.includes("design")) suggestedMode = "architect";
-  else if (queryLower.includes("debug") || queryLower.includes("fix")) suggestedMode = "debug";
-  else if (queryLower.includes("scan") || queryLower.includes("find")) suggestedMode = "scan";
+  if (queryLower.includes("review") || queryLower.includes("audit"))
+    suggestedMode = "review";
+  else if (queryLower.includes("architect") || queryLower.includes("design"))
+    suggestedMode = "architect";
+  else if (queryLower.includes("debug") || queryLower.includes("fix"))
+    suggestedMode = "debug";
+  else if (queryLower.includes("scan") || queryLower.includes("find"))
+    suggestedMode = "scan";
   const mode = ctx.modes.find((m) => m.id === suggestedMode) || ctx.modes[0];
   const output = `
 # OPUS 67 Context Enhancement
@@ -468,7 +566,142 @@ function handleStatus(ctx) {
 `;
   return { content: [{ type: "text", text: output }] };
 }
-function handleToolCall(name, args, ctx) {
+async function handleQueryMemory(args) {
+  try {
+    const memory = await getMemory();
+    const results = await memory.query({
+      query: args.query,
+      type: args.type,
+      limit: args.limit ?? 10
+    });
+    let output = `# Memory Query Results
+
+`;
+    output += `**Query:** ${args.query}
+`;
+    output += `**Results:** ${results.length}
+
+`;
+    if (results.length === 0) {
+      output += `No matching memories found.
+`;
+    } else {
+      for (const result of results) {
+        output += `### ${result.metadata?.key || result.id}
+`;
+        output += `**Source:** ${result.source} | **Score:** ${result.score.toFixed(2)}
+`;
+        output += `${result.content.slice(0, 200)}${result.content.length > 200 ? "..." : ""}
+
+`;
+      }
+    }
+    return { content: [{ type: "text", text: output }] };
+  } catch (error) {
+    return {
+      content: [{ type: "text", text: `Memory query failed: ${error}` }],
+      isError: true
+    };
+  }
+}
+async function handleMultiHopQuery(args) {
+  try {
+    const memory = await getMemory();
+    const results = await memory.multiHopQuery(args.query, args.maxHops ?? 3);
+    let output = `# Multi-Hop Query Results
+
+`;
+    output += `**Query:** ${args.query}
+`;
+    output += `**Max Hops:** ${args.maxHops ?? 3}
+`;
+    output += `**Results:** ${results.length}
+
+`;
+    if (results.length === 0) {
+      output += `No reasoning chain found.
+`;
+    } else {
+      for (let i = 0; i < results.length; i++) {
+        const result = results[i];
+        output += `### Hop ${i + 1}: ${result.metadata?.key || result.id}
+`;
+        output += `**Source:** ${result.source}
+`;
+        output += `${result.content.slice(0, 300)}${result.content.length > 300 ? "..." : ""}
+
+`;
+      }
+    }
+    return { content: [{ type: "text", text: output }] };
+  } catch (error) {
+    return {
+      content: [{ type: "text", text: `Multi-hop query failed: ${error}` }],
+      isError: true
+    };
+  }
+}
+async function handleWriteMemory(args) {
+  try {
+    const memory = await getMemory();
+    const result = await memory.write({
+      content: args.content,
+      type: args.type,
+      key: args.key
+    });
+    const output = `# Memory Written
+
+**Type:** ${args.type}
+**Key:** ${args.key || "(auto-generated)"}
+**Status:** ${result.success ? "Success" : "Failed"}
+**IDs:** ${result.ids.join(", ") || "None"}`;
+    return { content: [{ type: "text", text: output }] };
+  } catch (error) {
+    return {
+      content: [{ type: "text", text: `Memory write failed: ${error}` }],
+      isError: true
+    };
+  }
+}
+async function handleMemoryStats() {
+  try {
+    const memory = await getMemory();
+    const stats = await memory.getStats();
+    let output = `# Unified Memory Statistics
+
+`;
+    output += `## Sources
+
+`;
+    for (const [source, info] of Object.entries(stats.sources)) {
+      if (info.available) {
+        output += `- **${source}**: ${info.count} memories`;
+        if (info.lastSync) {
+          output += ` (last sync: ${new Date(info.lastSync).toLocaleString()})`;
+        }
+        output += `
+`;
+      }
+    }
+    output += `
+## Totals
+
+`;
+    output += `- **Total Memories:** ${stats.totalMemories}
+`;
+    output += `- **Neo4j:** ${stats.backends.neo4j ? "Connected" : "Local mode"}
+`;
+    output += `- **HMLR (Multi-hop):** ${stats.backends.hmlr ? "Enabled" : "Disabled"}
+`;
+    return { content: [{ type: "text", text: output }] };
+  } catch (error) {
+    return {
+      content: [{ type: "text", text: `Memory stats failed: ${error}` }],
+      isError: true
+    };
+  }
+}
+async function handleToolCall(name, args, ctx) {
   switch (name) {
     case "opus67_boot":
       return handleBoot(ctx);
@@ -488,8 +721,20 @@ function handleToolCall(name, args, ctx) {
       return handleGetContext(ctx, args);
     case "opus67_status":
       return handleStatus(ctx);
+    // Memory tools
+    case "opus67_queryMemory":
+      return handleQueryMemory(args);
+    case "opus67_multiHopQuery":
+      return handleMultiHopQuery(args);
+    case "opus67_writeMemory":
+      return handleWriteMemory(args);
+    case "opus67_memoryStats":
+      return handleMemoryStats();
     default:
-      return { content: [{ type: "text", text: `Unknown tool: ${name}` }], isError: true };
+      return {
+        content: [{ type: "text", text: `Unknown tool: ${name}` }],
+        isError: true
+      };
   }
 }
 

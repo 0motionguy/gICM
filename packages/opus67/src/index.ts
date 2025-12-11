@@ -3,16 +3,18 @@
  * Version 4.1 "Learning Layer" - AContext integration, vector skill search, auto-SOP generation
  */
 
-import { appendFileSync, mkdirSync, existsSync } from 'fs';
-import { join } from 'path';
+import { appendFileSync, mkdirSync, existsSync } from "fs";
+import { join } from "path";
 
 // Performance Logger for OPUS67 vs Opus 4.5 comparison
-const perfLogPath = join(process.cwd(), '.gicm', 'opus67-perf.log');
+const perfLogPath = join(process.cwd(), ".gicm", "opus67-perf.log");
 
 function ensureLogDir() {
-  const dir = join(process.cwd(), '.gicm');
+  const dir = join(process.cwd(), ".gicm");
   if (!existsSync(dir)) {
-    try { mkdirSync(dir, { recursive: true }); } catch {}
+    try {
+      mkdirSync(dir, { recursive: true });
+    } catch {}
   }
 }
 
@@ -21,12 +23,12 @@ export function perfLog(event: string, data: Record<string, unknown>) {
   const entry = {
     timestamp: new Date().toISOString(),
     event,
-    runtime: 'opus67',
-    ...data
+    runtime: "opus67",
+    ...data,
   };
   console.log(`[OPUS67] ${event}:`, JSON.stringify(data));
   try {
-    appendFileSync(perfLogPath, JSON.stringify(entry) + '\n');
+    appendFileSync(perfLogPath, JSON.stringify(entry) + "\n");
   } catch {}
 }
 
@@ -46,8 +48,8 @@ import {
   formatSkillsForPrompt,
   type LoadContext,
   type LoadResult,
-  type Skill
-} from './skill-loader.js';
+  type Skill,
+} from "./skill-loader.js";
 export { loadSkills, loadCombination, formatSkillsForPrompt };
 export type { LoadContext, LoadResult, Skill };
 
@@ -58,9 +60,15 @@ import {
   getConnectionsForKeywords,
   formatConnectionsForPrompt,
   generateConnectionCode,
-  type MCPConnection
-} from './mcp-hub.js';
-export { getAllConnections, getConnectionsForSkills, getConnectionsForKeywords, formatConnectionsForPrompt, generateConnectionCode };
+  type MCPConnection,
+} from "./mcp-hub.js";
+export {
+  getAllConnections,
+  getConnectionsForSkills,
+  getConnectionsForKeywords,
+  formatConnectionsForPrompt,
+  generateConnectionCode,
+};
 export type { MCPConnection };
 
 // Import and re-export from mode-selector
@@ -75,9 +83,17 @@ import {
   type ModeName,
   type Mode,
   type DetectionResult,
-  type ModeContext
-} from './mode-selector.js';
-export { detectMode, getMode, getAllModes, formatModeDisplay, loadModeRegistry, modeSelector, ModeSelector };
+  type ModeContext,
+} from "./mode-selector.js";
+export {
+  detectMode,
+  getMode,
+  getAllModes,
+  formatModeDisplay,
+  loadModeRegistry,
+  modeSelector,
+  ModeSelector,
+};
 export type { ModeName, Mode, DetectionResult, ModeContext };
 
 // Import and re-export from boot-sequence
@@ -89,9 +105,16 @@ import {
   generateHelpScreen,
   generateInlineStatus,
   type BootConfig,
-  type SystemStatus
-} from './boot-sequence.js';
-export { generateBootScreen, generateStatusLine, generateModeSwitchNotification, generateAgentSpawnNotification, generateHelpScreen, generateInlineStatus };
+  type SystemStatus,
+} from "./boot-sequence.js";
+export {
+  generateBootScreen,
+  generateStatusLine,
+  generateModeSwitchNotification,
+  generateAgentSpawnNotification,
+  generateHelpScreen,
+  generateInlineStatus,
+};
 export type { BootConfig, SystemStatus };
 
 // Import and re-export from autonomy-logger
@@ -99,8 +122,8 @@ import {
   autonomyLogger,
   AutonomyLogger,
   type InteractionLog,
-  type PatternAnalysis
-} from './autonomy-logger.js';
+  type PatternAnalysis,
+} from "./autonomy-logger.js";
 export { autonomyLogger, AutonomyLogger };
 export type { InteractionLog, PatternAnalysis };
 
@@ -153,8 +176,8 @@ import {
   type ComparisonTask,
   type RuntimeResult,
   type ComparisonResult,
-  type ComparisonSuite
-} from './benchmark/index.js';
+  type ComparisonSuite,
+} from "./benchmark/index.js";
 export {
   metricsCollector,
   MetricsCollector,
@@ -175,7 +198,7 @@ export {
   comparisonRunner,
   ComparisonRunner,
   createComparisonRunner,
-  runComparisonCLI
+  runComparisonCLI,
 };
 export type {
   BenchmarkMetrics,
@@ -201,7 +224,7 @@ export type {
   ComparisonTask,
   RuntimeResult,
   ComparisonResult,
-  ComparisonSuite
+  ComparisonSuite,
 };
 
 // Import and re-export from models module
@@ -231,8 +254,8 @@ import {
   type CostEntry,
   type CostBudget,
   type CostAlert,
-  type CostSummary
-} from './models/index.js';
+  type CostSummary,
+} from "./models/index.js";
 export {
   router,
   MultiModelRouter,
@@ -246,7 +269,7 @@ export {
   formatModelList,
   validateEnv,
   costTracker,
-  CostTracker
+  CostTracker,
 };
 export type {
   ModelTier,
@@ -261,7 +284,7 @@ export type {
   CostEntry,
   CostBudget,
   CostAlert,
-  CostSummary
+  CostSummary,
 };
 
 // Import and re-export from council module
@@ -284,8 +307,8 @@ import {
   type RankingScore,
   type RankingAggregation,
   type SynthesisPrompt,
-  type SynthesisStrategy
-} from './council/index.js';
+  type SynthesisStrategy,
+} from "./council/index.js";
 export {
   LLMCouncil,
   council,
@@ -296,7 +319,7 @@ export {
   generateSynthesisPrompt,
   parseSynthesisResponse,
   formatSynthesis,
-  SYNTHESIS_PROMPTS
+  SYNTHESIS_PROMPTS,
 };
 export type {
   CouncilMember,
@@ -307,7 +330,7 @@ export type {
   RankingScore,
   RankingAggregation,
   SynthesisPrompt,
-  SynthesisStrategy
+  SynthesisStrategy,
 };
 
 // Import and re-export from memory module
@@ -329,8 +352,8 @@ import {
   type GraphitiConfig,
   type ContextWindow,
   type ContextEnhancement,
-  type ContextConfig
-} from './memory/index.js';
+  type ContextConfig,
+} from "./memory/index.js";
 export {
   GraphitiMemory,
   memory,
@@ -339,7 +362,7 @@ export {
   contextEnhancer,
   createContextEnhancer,
   enhancePrompt,
-  getContextFor
+  getContextFor,
 };
 export type {
   MemoryNode,
@@ -351,7 +374,7 @@ export type {
   GraphitiConfig,
   ContextWindow,
   ContextEnhancement,
-  ContextConfig
+  ContextConfig,
 };
 
 // Import and re-export from evolution module
@@ -375,8 +398,8 @@ import {
   type PatternDetectorConfig,
   type CodeChange,
   type ImprovementResult,
-  type CodeImproverConfig
-} from './evolution/index.js';
+  type CodeImproverConfig,
+} from "./evolution/index.js";
 export {
   EvolutionLoop,
   evolutionLoop,
@@ -386,7 +409,7 @@ export {
   createPatternDetector,
   CodeImprover,
   codeImprover,
-  createCodeImprover
+  createCodeImprover,
 };
 export type {
   EvolutionConfig,
@@ -399,7 +422,7 @@ export type {
   PatternDetectorConfig,
   CodeChange,
   ImprovementResult,
-  CodeImproverConfig
+  CodeImproverConfig,
 };
 
 // Import and re-export from brain module
@@ -419,8 +442,8 @@ import {
   type ApiRequest,
   type ApiResponse,
   type WebSocketMessage,
-  type ServerConfig
-} from './brain/index.js';
+  type ServerConfig,
+} from "./brain/index.js";
 export {
   BrainRuntime,
   brainRuntime,
@@ -429,7 +452,7 @@ export {
   brainAPI,
   createBrainAPI,
   createBrainServer,
-  startBrainServer
+  startBrainServer,
 };
 export type {
   BrainConfig,
@@ -439,21 +462,21 @@ export type {
   ApiRequest,
   ApiResponse,
   WebSocketMessage,
-  ServerConfig
+  ServerConfig,
 };
 
 // =============================================================================
 // INTELLIGENCE LAYER (v4.1 Self-Contained Intelligence + Learning)
 // =============================================================================
-export * from './intelligence/index.js';
+export * from "./intelligence/index.js";
 
 // =============================================================================
 // ADDITIONAL MODULES (v4.1 Code Quality)
 // =============================================================================
-export * from './autonomy/index.js';
-export * from './context/index.js';
-export * from './skills/index.js';
-export * from './mcp/index.js';
+export * from "./autonomy/index.js";
+export * from "./context/index.js";
+export * from "./skills/index.js";
+export * from "./mcp/index.js";
 
 // =============================================================================
 // v4.1 LEARNING AGENTS
@@ -466,8 +489,8 @@ export {
   type ToolCall,
   type SOP,
   type SuccessMetric,
-  type LearningObserverConfig
-} from './agents/learning-observer.js';
+  type LearningObserverConfig,
+} from "./agents/learning-observer.js";
 
 export {
   SkillsNavigatorAgent,
@@ -476,8 +499,94 @@ export {
   type SkillCombination,
   type ActivationResult,
   type UsageRecord,
-  type SkillsNavigatorConfig
-} from './agents/skills-navigator.js';
+  type SkillsNavigatorConfig,
+} from "./agents/skills-navigator.js";
+
+// =============================================================================
+// v6.1 ASYNC SUBAGENT SYSTEM
+// =============================================================================
+export {
+  SubagentOrchestrator,
+  subagentOrchestrator,
+  createOrchestrator,
+  type AgentPlan,
+  type AgentSuggestion,
+  type AgentDefinition,
+  type AggregatedResult,
+  type AgentResult as SubagentResult,
+} from "./agents/subagent-orchestrator.js";
+
+export {
+  AsyncAgentRunner,
+  asyncAgentRunner,
+  createAsyncRunner,
+  type AgentJobStatus,
+  type AgentConfig,
+  type AgentJob,
+  type AgentMessage,
+} from "./agents/async-runner.js";
+
+export {
+  AgentJobQueue,
+  agentJobQueue,
+  createJobQueue,
+  type JobPriority,
+  type ExecutionMode,
+  type QueuedJob,
+  type QueueStats,
+} from "./agents/job-queue.js";
+
+// Mode-Agent Mapping
+export {
+  MODE_AGENT_MAP,
+  getModeConfig,
+  getAutoSpawnModes,
+  getModesByPriority,
+  getAllMappedAgents,
+  isAsyncMode,
+  type AgentMode,
+  type AgentSelector,
+  type AgentTriggerConfig,
+} from "./modes/agent-mapping.js";
+
+// Auto-Trigger Hook
+export {
+  evaluateTrigger,
+  executeTrigger,
+  onTaskDetected,
+  onModeSwitch,
+  onHighScoreSkillMatch,
+  TRIGGER_THRESHOLDS,
+  type AutoTriggerConfig,
+  type TriggerResult,
+  type HookContext,
+} from "./hooks/subagent-auto-trigger.js";
+
+// SDK V2 Adapter
+export {
+  OPUS67AgentSDK,
+  opus67SDK,
+  createSDK,
+  type SDKAgentDefinition,
+  type AgentSession,
+  type FinalResult,
+} from "./sdk/v2-adapter.js";
+
+// MCP Spawn Agent Tools
+export {
+  SPAWN_AGENTS_TOOL,
+  AGENT_STATUS_TOOL,
+  LIST_AGENTS_TOOL,
+  handleSpawnAgents,
+  handleAgentStatus,
+  handleListAgents,
+  registerSpawnTools,
+  spawnTools,
+  type SpawnAgentsInput,
+  type SpawnAgentsOutput,
+  type AgentStatusInput,
+  type AgentStatusOutput,
+} from "./mcp/spawn-agent-tool.js";
 
 // Types
 export interface Opus67Config {
@@ -509,8 +618,8 @@ export class Opus67 {
       tokenBudget: config.tokenBudget ?? 50000,
       maxSkills: config.maxSkills ?? 5,
       autoConnectMcps: config.autoConnectMcps ?? true,
-      defaultMode: config.defaultMode ?? 'auto',
-      showBootScreen: config.showBootScreen ?? true
+      defaultMode: config.defaultMode ?? "auto",
+      showBootScreen: config.showBootScreen ?? true,
     };
     this.currentMode = this.config.defaultMode!;
   }
@@ -522,10 +631,10 @@ export class Opus67 {
     const start = performance.now();
     const result = generateBootScreen({ defaultMode: this.currentMode });
     const bootTime = performance.now() - start;
-    perfLog('boot', {
+    perfLog("boot", {
       durationMs: Math.round(bootTime * 100) / 100,
       mode: this.currentMode,
-      config: this.config
+      config: this.config,
     });
     return result;
   }
@@ -541,7 +650,8 @@ export class Opus67 {
     const detection = detectMode({
       query,
       ...context,
-      userPreference: this.currentMode !== 'auto' ? this.currentMode : undefined
+      userPreference:
+        this.currentMode !== "auto" ? this.currentMode : undefined,
     });
     const detectTime = performance.now() - startDetect;
 
@@ -551,7 +661,7 @@ export class Opus67 {
     const startSkills = performance.now();
     const skills = loadSkills({
       query,
-      activeFiles: context?.activeFiles
+      activeFiles: context?.activeFiles,
     });
     const skillsTime = performance.now() - startSkills;
 
@@ -563,7 +673,7 @@ export class Opus67 {
     const startMcps = performance.now();
     let mcpConnections: Array<{ id: string; connection: MCPConnection }> = [];
     if (this.config.autoConnectMcps) {
-      const skillIds = skills.skills.map(s => s.id);
+      const skillIds = skills.skills.map((s) => s.id);
       mcpConnections = getConnectionsForSkills(skillIds);
     }
     const mcpsTime = performance.now() - startMcps;
@@ -574,7 +684,7 @@ export class Opus67 {
     const totalTime = performance.now() - startTotal;
 
     // Log performance metrics
-    perfLog('process', {
+    perfLog("process", {
       totalMs: Math.round(totalTime * 100) / 100,
       detectMs: Math.round(detectTime * 100) / 100,
       skillsMs: Math.round(skillsTime * 100) / 100,
@@ -583,7 +693,7 @@ export class Opus67 {
       confidence: detection.confidence,
       complexity: detection.complexity_score,
       skillsLoaded: skills.skills.length,
-      mcpsConnected: mcpConnections.length
+      mcpsConnected: mcpConnections.length,
     });
 
     return {
@@ -592,7 +702,7 @@ export class Opus67 {
       skills,
       mcpConnections,
       prompt,
-      bootScreen: this.config.showBootScreen ? this.boot() : undefined
+      bootScreen: this.config.showBootScreen ? this.boot() : undefined,
     };
   }
 
@@ -617,22 +727,22 @@ export class Opus67 {
   private generatePrompt(
     detection: DetectionResult,
     skills: LoadResult,
-    mcps: Array<{ id: string; connection: MCPConnection }>
+    mcps: Array<{ id: string; connection: MCPConnection }>,
   ): string {
     const modeConfig = getMode(detection.mode)!;
-    
+
     return `
 <!-- OPUS 67 SESSION -->
 Mode: ${modeConfig.icon} ${detection.mode.toUpperCase()} (${(detection.confidence * 100).toFixed(0)}% confidence)
 Complexity: ${detection.complexity_score}/10
 Token Budget: ${modeConfig.token_budget}
 Thinking: ${modeConfig.thinking_depth}
-Sub-agents: ${modeConfig.sub_agents.enabled ? `Up to ${modeConfig.sub_agents.max_agents}` : 'Disabled'}
+Sub-agents: ${modeConfig.sub_agents.enabled ? `Up to ${modeConfig.sub_agents.max_agents}` : "Disabled"}
 
-Skills Loaded: ${skills.skills.map(s => s.id).join(', ')}
-MCPs Available: ${mcps.map(m => m.id).join(', ')}
+Skills Loaded: ${skills.skills.map((s) => s.id).join(", ")}
+MCPs Available: ${mcps.map((m) => m.id).join(", ")}
 
-Detected by: ${detection.reasons.join('; ')}
+Detected by: ${detection.reasons.join("; ")}
 <!-- /OPUS 67 SESSION -->
 
 ${formatSkillsForPrompt(skills)}
@@ -653,13 +763,16 @@ ${formatConnectionsForPrompt(mcps)}
 export const opus67 = new Opus67();
 
 // CLI
-if (process.argv[1]?.endsWith('index.ts') || process.argv[1]?.endsWith('index.js')) {
+if (
+  process.argv[1]?.endsWith("index.ts") ||
+  process.argv[1]?.endsWith("index.js")
+) {
   console.log(opus67.boot());
-  
-  console.log('\n--- Processing test query ---\n');
-  
-  const session = opus67.process('design the entire system architecture');
+
+  console.log("\n--- Processing test query ---\n");
+
+  const session = opus67.process("design the entire system architecture");
   console.log(`Mode: ${session.mode}`);
   console.log(`Confidence: ${session.modeConfig.description}`);
-  console.log(`Skills: ${session.skills.skills.map(s => s.id).join(', ')}`);
+  console.log(`Skills: ${session.skills.skills.map((s) => s.id).join(", ")}`);
 }

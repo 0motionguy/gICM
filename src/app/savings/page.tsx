@@ -1,24 +1,24 @@
 import { TokenSavingsCalculator } from "@/components/organisms/token-savings-calculator";
-import { PageHeader } from "@/components/page-header";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Sparkles,
   TrendingDown,
   Zap,
-  DollarSign,
   Clock,
   Check,
   ArrowLeft,
+  Gauge,
+  Activity,
 } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { GlassCard } from "@/components/ui/glass-card";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Token Savings Calculator | Aether",
+  title: "Performance Calculator | Aether",
   description:
-    "Calculate how much you save in tokens, costs, and time with Progressive Disclosure technology.",
+    "Calculate your context reduction, token savings, and speed improvements with Progressive Disclosure technology.",
 };
 
 export default function SavingsPage() {
@@ -32,7 +32,7 @@ export default function SavingsPage() {
             className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
-            Back to Aether Catalog
+            Back to Marketplace
           </Link>
         </div>
       </div>
@@ -43,21 +43,21 @@ export default function SavingsPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/20 mb-6">
             <Sparkles className="w-4 h-4 text-[#00F0FF]" />
             <span className="text-[#00F0FF] font-bold text-sm tracking-wide">
-              88-92% Token Reduction
+              88-92% Context Reduction
             </span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
-            Stop Paying for{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 line-through decoration-white/30">
-              Wasted Tokens
+            Supercharge Your{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F]">
+              AI Performance
             </span>
           </h1>
 
           <p className="text-xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed">
             Progressive Disclosure technology loads only the context you need,
-            when you need it. The result? Massive savings in tokens, costs, and
-            time.
+            when you need it. The result? Dramatically smaller prompts, faster
+            responses, and more efficient AI interactions.
           </p>
 
           {/* Key Benefits */}
@@ -67,34 +67,34 @@ export default function SavingsPage() {
                 <TrendingDown className="w-8 h-8 text-[#00F0FF]" />
               </div>
               <h3 className="font-bold text-white text-lg mb-2">
-                88-92% Less Tokens
+                90% Smaller Context
               </h3>
               <p className="text-sm text-zinc-400">
-                Dramatically reduce token usage without sacrificing quality
+                Dramatically reduce prompt size without sacrificing quality
               </p>
             </GlassCard>
 
-            <GlassCard className="p-8 text-center group hover:border-[#7000FF]/30 transition-colors">
-              <div className="w-16 h-16 rounded-2xl bg-[#7000FF]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#7000FF]/20">
-                <DollarSign className="w-8 h-8 text-[#7000FF]" />
+            <GlassCard className="p-8 text-center group hover:border-[#00F0FF]/30 transition-colors">
+              <div className="w-16 h-16 rounded-2xl bg-[#00F0FF]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#00F0FF]/20">
+                <Gauge className="w-8 h-8 text-[#00F0FF]" />
               </div>
               <h3 className="font-bold text-white text-lg mb-2">
-                Massive Cost Savings
+                10-12x Faster Responses
               </h3>
               <p className="text-sm text-zinc-400">
-                Save hundreds to thousands per month on AI costs
+                Less context means faster processing and quicker results
               </p>
             </GlassCard>
 
-            <GlassCard className="p-8 text-center group hover:border-[#10A37F]/30 transition-colors">
-              <div className="w-16 h-16 rounded-2xl bg-[#10A37F]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#10A37F]/20">
-                <Clock className="w-8 h-8 text-[#10A37F]" />
+            <GlassCard className="p-8 text-center group hover:border-[#00F0FF]/30 transition-colors">
+              <div className="w-16 h-16 rounded-2xl bg-[#00F0FF]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-[#00F0FF]/20">
+                <Activity className="w-8 h-8 text-[#00F0FF]" />
               </div>
               <h3 className="font-bold text-white text-lg mb-2">
-                Faster Responses
+                Maximum Efficiency
               </h3>
               <p className="text-sm text-zinc-400">
-                Smaller prompts mean quicker AI responses and more productivity
+                Get more done with fewer tokens and faster turnaround
               </p>
             </GlassCard>
           </div>
@@ -105,18 +105,18 @@ export default function SavingsPage() {
           <TokenSavingsCalculator />
         </div>
 
-        {/* ROI Examples */}
+        {/* Performance Examples */}
         <div className="mt-16 mb-20">
           <h2 className="text-3xl font-display font-bold text-white text-center mb-12">
-            Real-World ROI Examples
+            Real-World Performance Gains
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Solo Dev */}
             <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[60px] rounded-full" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
               <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center text-2xl border border-blue-500/30">
+                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
                   👤
                 </div>
                 <div>
@@ -131,28 +131,32 @@ export default function SavingsPage() {
 
               <div className="space-y-4 mb-6 relative z-10">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-blue-500/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-blue-400" />
+                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">10 skill uses per day</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-blue-500/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-blue-400" />
+                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">Claude Sonnet 3.5</span>
                 </div>
               </div>
 
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-5 relative z-10">
+              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-zinc-400">Monthly Savings</span>
-                  <span className="text-2xl font-black text-blue-400">$87</span>
+                  <span className="text-sm text-zinc-400">
+                    Tokens Saved Daily
+                  </span>
+                  <span className="text-2xl font-black text-[#00F0FF]">
+                    115K
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-zinc-400">Yearly Savings</span>
-                  <span className="text-3xl font-black text-blue-400">
-                    $1,044
+                  <span className="text-sm text-zinc-400">Response Boost</span>
+                  <span className="text-3xl font-black text-[#00F0FF]">
+                    12.7x faster
                   </span>
                 </div>
               </div>
@@ -160,9 +164,9 @@ export default function SavingsPage() {
 
             {/* 5-Person Team */}
             <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#7000FF]/10 blur-[60px] rounded-full" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
               <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-[#7000FF]/20 flex items-center justify-center text-2xl border border-[#7000FF]/30">
+                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
                   👥
                 </div>
                 <div>
@@ -175,32 +179,34 @@ export default function SavingsPage() {
 
               <div className="space-y-4 mb-6 relative z-10">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#7000FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#A060FF]" />
+                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">
                     25 skill uses per day (total)
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-[#7000FF]/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-[#A060FF]" />
+                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">Mix of Sonnet & Opus</span>
                 </div>
               </div>
 
-              <div className="bg-[#7000FF]/10 border border-[#7000FF]/20 rounded-xl p-5 relative z-10">
+              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-zinc-400">Monthly Savings</span>
-                  <span className="text-2xl font-black text-[#A060FF]">
-                    $478
+                  <span className="text-sm text-zinc-400">
+                    Tokens Saved Daily
+                  </span>
+                  <span className="text-2xl font-black text-[#00F0FF]">
+                    288K
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-zinc-400">Yearly Savings</span>
-                  <span className="text-3xl font-black text-[#A060FF]">
-                    $5,736
+                  <span className="text-sm text-zinc-400">Response Boost</span>
+                  <span className="text-3xl font-black text-[#00F0FF]">
+                    11.3x faster
                   </span>
                 </div>
               </div>
@@ -208,9 +214,9 @@ export default function SavingsPage() {
 
             {/* Agency */}
             <GlassCard className="p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 blur-[60px] rounded-full" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-[60px] rounded-full" />
               <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-xl bg-orange-500/20 flex items-center justify-center text-2xl border border-orange-500/30">
+                <div className="w-14 h-14 rounded-xl bg-[#00F0FF]/20 flex items-center justify-center text-2xl border border-[#00F0FF]/30">
                   🏢
                 </div>
                 <div>
@@ -225,30 +231,32 @@ export default function SavingsPage() {
 
               <div className="space-y-4 mb-6 relative z-10">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-orange-500/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-orange-400" />
+                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-[#00F0FF]" />
                   </div>
                   <span className="text-zinc-300">100 skill uses per day</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="h-5 w-5 rounded-full bg-orange-500/20 flex items-center justify-center">
-                    <Check className="w-3 h-3 text-orange-400" />
+                  <div className="h-5 w-5 rounded-full bg-[#00F0FF]/20 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-[#00F0FF]" />
                   </div>
-                  <span className="text-zinc-300">Heavy Claude Opus usage</span>
+                  <span className="text-zinc-300">Heavy Opus usage</span>
                 </div>
               </div>
 
-              <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-5 relative z-10">
+              <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-zinc-400">Monthly Savings</span>
-                  <span className="text-2xl font-black text-orange-400">
-                    $2,340
+                  <span className="text-sm text-zinc-400">
+                    Tokens Saved Daily
+                  </span>
+                  <span className="text-2xl font-black text-[#00F0FF]">
+                    1.15M
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-zinc-400">Yearly Savings</span>
-                  <span className="text-3xl font-black text-orange-400">
-                    $28,080
+                  <span className="text-sm text-zinc-400">Response Boost</span>
+                  <span className="text-3xl font-black text-[#00F0FF]">
+                    10.8x faster
                   </span>
                 </div>
               </div>
@@ -288,15 +296,17 @@ export default function SavingsPage() {
 
               <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-5 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-zinc-400">Monthly Savings</span>
+                  <span className="text-sm text-zinc-400">
+                    Tokens Saved Daily
+                  </span>
                   <span className="text-2xl font-black text-[#00F0FF]">
-                    $14,200
+                    5.75M
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-zinc-400">Yearly Savings</span>
+                  <span className="text-sm text-zinc-400">Response Boost</span>
                   <span className="text-3xl font-black text-[#00F0FF]">
-                    $170,400
+                    12.1x faster
                   </span>
                 </div>
               </div>
@@ -322,8 +332,8 @@ export default function SavingsPage() {
                   Traditional prompts send entire codebases, documentation, and
                   context in every request, even when most of it isn't needed.
                 </p>
-                <div className="bg-red-900/20 border border-red-500/30 rounded-xl p-5 font-mono">
-                  <code className="text-xs text-red-200 block leading-loose">
+                <div className="bg-zinc-800/50 border border-zinc-700/30 rounded-xl p-5 font-mono">
+                  <code className="text-xs text-zinc-400 block leading-loose">
                     // Sends 12,500 tokens
                     <br />
                     - Full codebase (8,000 tokens)
@@ -371,13 +381,13 @@ export default function SavingsPage() {
                 <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-4">
                   <p className="text-3xl font-black text-[#00F0FF]">92%</p>
                   <p className="text-xs text-zinc-400 uppercase tracking-wider mt-1">
-                    Token Reduction
+                    Context Reduction
                   </p>
                 </div>
-                <div className="bg-[#7000FF]/10 border border-[#7000FF]/20 rounded-xl p-4">
-                  <p className="text-3xl font-black text-[#A060FF]">4.7x</p>
+                <div className="bg-[#00F0FF]/10 border border-[#00F0FF]/20 rounded-xl p-4">
+                  <p className="text-3xl font-black text-[#00F0FF]">12.7x</p>
                   <p className="text-xs text-zinc-400 uppercase tracking-wider mt-1">
-                    Faster Builds
+                    Faster Responses
                   </p>
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-xl p-4">

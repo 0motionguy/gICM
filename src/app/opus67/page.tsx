@@ -66,7 +66,7 @@ export default function Opus67BenchmarkPage() {
             </div>
             <div className="flex items-center gap-2 text-sm text-zinc-400">
               <Sparkles className="h-4 w-4 text-[#00F0FF]" />
-              <span>v6.1.0</span>
+              <span>v6.2.0</span>
             </div>
           </div>
         </div>

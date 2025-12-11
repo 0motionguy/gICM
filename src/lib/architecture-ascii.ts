@@ -4,7 +4,7 @@
 
 export const OPUS67_ARCHITECTURE_ASCII = `
 ┌─────────────────────────────────────────────────────┐
-│                    OPUS 67 v6.1.0                   │
+│                    OPUS 67 v6.2.0                   │
 ├─────────────────────────────────────────────────────┤
 │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌────────┐ │
 │  │ Skills  │  │  MCPs   │  │  Modes  │  │ Agents │ │
@@ -61,24 +61,23 @@ export const USP_ASCII = `
 │    └─ Skills cached → 85%+ cache hit rate          │
 │    └─ Saves tokens, faster responses               │
 │                                                     │
-│  ✓ AUTO PRE-BINDING                                │
-│    └─ Detects project type on session start        │
-│    └─ Pre-loads relevant skills before you ask     │
-│                                                     │
-│  ✓ MULTI-MODEL ROUTING                             │
-│    └─ Complex → Opus | Fast → Sonnet | Simple → Haiku│
+│  ✓ MULTI-MODEL ROUTING (6 MODELS)                  │
+│    └─ OPUS 67, DeepSeek V3, Claude 4.5             │
+│    └─ Grok 3, GPT 5.1, Gemini 3 Pro                │
 │    └─ 30 modes auto-select the right model         │
 │                                                     │
-│  ✓ ZERO CONFIG                                     │
-│    └─ Works in Claude Code instantly               │
-│    └─ No API keys, no setup, just works            │
+│  ✓ ASYNC AGENT SPAWNING (NEW)                      │
+│    └─ 108 specialized agents available             │
+│    └─ 0.09ms spawn latency | 52K+ agents/sec       │
+│    └─ SDK V2: send() → receive() → done()          │
 │                                                     │
 │  ✓ CROSS-SESSION MEMORY                            │
 │    └─ Remembers decisions, patterns, wins          │
 │    └─ Multi-hop reasoning (1-5 hops)               │
 │                                                     │
-│  ✓ 8 ACTIVE HOOKS                                  │
-│    └─ Pre-bash, post-write, session-start          │
+│  ✓ ZERO CONFIG                                     │
+│    └─ Works in Claude Code instantly               │
+│    └─ No API keys, no setup, just works            │
 │                                                     │
 └─────────────────────────────────────────────────────┘
 `;

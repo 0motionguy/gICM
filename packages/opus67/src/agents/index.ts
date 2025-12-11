@@ -12,8 +12,8 @@ export {
   type ToolCall,
   type SOP,
   type SuccessMetric,
-  type LearningObserverConfig
-} from './learning-observer.js';
+  type LearningObserverConfig,
+} from "./learning-observer.js";
 
 export {
   SkillsNavigatorAgent,
@@ -22,5 +22,40 @@ export {
   type SkillCombination,
   type ActivationResult,
   type UsageRecord,
-  type SkillsNavigatorConfig
-} from './skills-navigator.js';
+  type SkillsNavigatorConfig,
+} from "./skills-navigator.js";
+
+// =============================================================================
+// OPUS 67 v6.1 - Async Subagent System
+// =============================================================================
+
+export {
+  SubagentOrchestrator,
+  subagentOrchestrator,
+  createOrchestrator,
+  type AgentPlan,
+  type AgentSuggestion,
+  type AgentDefinition,
+  type AggregatedResult,
+  type AgentResult,
+} from "./subagent-orchestrator.js";
+
+export {
+  AsyncAgentRunner,
+  asyncAgentRunner,
+  createAsyncRunner,
+  type AgentJobStatus,
+  type AgentConfig,
+  type AgentJob,
+  type AgentMessage,
+} from "./async-runner.js";
+
+export {
+  AgentJobQueue,
+  agentJobQueue,
+  createJobQueue,
+  type JobPriority,
+  type ExecutionMode,
+  type QueuedJob,
+  type QueueStats,
+} from "./job-queue.js";
