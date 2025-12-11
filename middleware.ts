@@ -6,16 +6,15 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // opus67.com or www.opus67.com → show /opus67 content
-  if (
-    (host === "opus67.com" || host === "www.opus67.com") &&
-    pathname === "/"
-  ) {
-    return NextResponse.rewrite(new URL("/opus67", request.url));
+  if (host.includes("opus67.com") && pathname === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/opus67";
+    return NextResponse.rewrite(url);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
