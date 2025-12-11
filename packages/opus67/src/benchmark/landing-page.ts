@@ -123,7 +123,7 @@ ${colors.green}╔════════════════════�
   // Sort by pass@1 score
   const sorted = [...models].sort(
     (a, b) =>
-      b.publishedScores.humanEvalPass1 - a.publishedScores.humanEvalPass1,
+      b.publishedScores.humanEvalPass1 - a.publishedScores.humanEvalPass1
   );
 
   sorted.forEach((m, i) => {
@@ -217,7 +217,7 @@ ${colors.blue}╔═════════════════════
     tasks.reduce((a, t) => a + t.claude, 0) / tasks.length
   ).toFixed(1);
   const avgGpt = (tasks.reduce((a, t) => a + t.gpt, 0) / tasks.length).toFixed(
-    1,
+    1
   );
   const avgGemini = (
     tasks.reduce((a, t) => a + t.gemini, 0) / tasks.length
@@ -396,7 +396,7 @@ ${colors.bgGreen}${colors.bright}╔══════════════�
 ║                                                                                           ║
 ║   ═══════════════════════════════════════════════════════════════════════════════        ║
 ║                                                                                           ║
-║                         ${colors.bright}npx @gicm/opus67 init${colors.green}                                             ║
+║                         ${colors.bright}npx create-opus67@latest${colors.green}                                          ║
 ║                                                                                           ║
 ║   ═══════════════════════════════════════════════════════════════════════════════        ║
 ║                                                                                           ║
@@ -455,7 +455,7 @@ ${colors.cyan}╔═════════════════════
 ║                                                                       ║
 ║  ${colors.yellow}Overall Score: 93.8/100${colors.cyan}  │  ${colors.bright}#1 vs Claude, GPT, Gemini${colors.cyan}          ║
 ║                                                                       ║
-║  ${colors.dim}npx @gicm/opus67 init${colors.cyan}                                             ║
+║  ${colors.dim}npx create-opus67@latest${colors.cyan}                                          ║
 ╚═══════════════════════════════════════════════════════════════════════╝${colors.reset}`;
 }
 

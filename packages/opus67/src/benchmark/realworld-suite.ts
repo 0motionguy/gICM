@@ -508,7 +508,7 @@ Include:
 - Package name: @gicm/opus67
 - Purpose: AI enhancement layer for Claude Code
 - Features: 141 skills, 82 MCPs, 10 modes, 107 agents
-- Installation: npx @gicm/opus67 init
+- Installation: npx create-opus67@latest
 
 Include:
 - Badges (npm version, license, downloads)

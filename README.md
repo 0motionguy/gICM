@@ -20,7 +20,7 @@ Stop copy-pasting prompts. Stop paying for tokens you don't need. Start building
 OPUS 67 transforms Claude from a general assistant into a domain expert. Instead of stuffing your system prompt with thousands of tokens, OPUS 67 loads only what you need, when you need it.
 
 ```bash
-npx @gicm/opus67 init
+npx create-opus67@latest
 ```
 
 That's it. One command. Claude now has access to 617+ components:
@@ -81,13 +81,13 @@ You're paying for thousands of context tokens every request, whether you need th
 
 ```bash
 # Using npm
-npx @gicm/opus67 init
+npx create-opus67@latest
 
 # Using pnpm
-pnpm dlx @gicm/opus67 init
+pnpm dlx create-opus67@latest
 
 # Using bun
-bunx @gicm/opus67 init
+bunx create-opus67@latest
 ```
 
 ### Add Components

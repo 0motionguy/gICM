@@ -1,7 +1,7 @@
 // OPUS 67 Benchmark Data
 // Generated from BENCHMARK_ULTIMATE.md
 
-export const BENCHMARK_INSTALL_COMMAND = "npx @gicm/opus67 init";
+export const BENCHMARK_INSTALL_COMMAND = "npx create-opus67@latest";
 
 export const BENCHMARK_METRICS = {
   humanEval: {
@@ -699,7 +699,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║    ══════════════════════════════════════════════════════════════════════════════════════════════════════    ║
 ║                                                                                                               ║
-║                                     npx @gicm/opus67 init                                                     ║
+║                                     npx create-opus67@latest                                                  ║
 ║                                                                                                               ║
 ║    ══════════════════════════════════════════════════════════════════════════════════════════════════════    ║
 ║                                                                                                               ║
