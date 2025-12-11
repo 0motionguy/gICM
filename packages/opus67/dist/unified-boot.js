@@ -9,8 +9,8 @@ import { loadRegistry } from './chunk-L3KXA3WY.js';
 import './chunk-YINZDDDM.js';
 
 // src/unified-boot.ts
-var VERSION = "6.0.0";
-var CODENAME = "The Unification";
+var VERSION = "6.2.0";
+var CODENAME = "Claude Harmony";
 function displayBanner() {
   console.log(`
 \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557
@@ -41,11 +41,15 @@ async function boot() {
     step(1, totalSteps, "Loading master registry...");
     const registry = await loadMasterRegistry();
     console.log(`   \u2713 Registry v${registry.version} loaded`);
-    console.log(`   \u2713 Target: ${registry.meta.skills_count} skills, ${registry.meta.agents_count} agents, ${registry.meta.mcps_count} MCPs
-`);
+    console.log(
+      `   \u2713 Target: ${registry.meta.skills_count} skills, ${registry.meta.agents_count} agents, ${registry.meta.mcps_count} MCPs
+`
+    );
     step(2, totalSteps, "Injecting THE DOOR...");
     const doorResult = await injectTheDoor(projectRoot);
-    console.log(`   \u2713 THE DOOR injected into ${doorResult.injected} CLAUDE.md files`);
+    console.log(
+      `   \u2713 THE DOOR injected into ${doorResult.injected} CLAUDE.md files`
+    );
     if (doorResult.skipped > 0) {
       console.log(`   \u2713 ${doorResult.skipped} files already up to date
 `);
@@ -55,10 +59,14 @@ async function boot() {
     step(3, totalSteps, "Registering MCPs in Claude settings...");
     const mcpResult = await registerAllMCPs(projectRoot);
     console.log(`   \u2713 ${mcpResult.registered} MCPs registered`);
-    console.log(`   \u2713 Categories: ${mcpResult.categories.slice(0, 5).join(", ")}...`);
+    console.log(
+      `   \u2713 Categories: ${mcpResult.categories.slice(0, 5).join(", ")}...`
+    );
     if (mcpResult.skipped > 0) {
-      console.log(`   \u26A0 ${mcpResult.skipped} MCPs skipped (no command defined)
-`);
+      console.log(
+        `   \u26A0 ${mcpResult.skipped} MCPs skipped (no command defined)
+`
+      );
     } else {
       console.log("");
     }
@@ -111,7 +119,10 @@ async function boot() {
 Claude now has access to EVERYTHING. Run 'opus67 status' to verify.
 `);
   } catch (error) {
-    console.error("\n\u274C Boot failed:", error instanceof Error ? error.message : error);
+    console.error(
+      "\n\u274C Boot failed:",
+      error instanceof Error ? error.message : error
+    );
     process.exit(1);
   }
 }

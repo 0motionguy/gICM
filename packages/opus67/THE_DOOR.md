@@ -1,9 +1,9 @@
-# THE DOOR - OPUS 67 Orchestrator v6.1.0
+# THE DOOR - OPUS 67 Orchestrator v6.2.0
 
-> **Version:** 6.1.0 "Memory Unified"
-> **Features:** 30 Operating Modes + Extended Thinking + Unified Brain API + Unified Memory
+> **Version:** 6.2.0 "Claude Harmony"
+> **Features:** 10 Operating Modes + Extended Thinking + Unified Brain API + Unified Memory + Claude Code 2.0.65 Compatible
 > **Purpose:** Self-evolving AI runtime with intelligent mode selection and cross-session memory
-> **Stats:** 141 Skills • 83 MCPs • 30 Modes • 107 Agents • 5 Memory Sources
+> **Stats:** 141 Skills • 82 MCPs • 10 Modes • 107 Agents • 5 Memory Sources
 
 ---
 

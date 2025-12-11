@@ -1,20 +1,72 @@
 # OPUS 67 Version History
 
-## Current Version: v5.1.0 "The Precision Update"
+## Current Version: v6.2.0 "Claude Harmony"
 
-Verified capability counts through comprehensive deep codebase audit.
+Claude Code 2.0.65 compatibility release with launch-ready improvements.
 
 ---
 
 ## Statistics by Version
 
-| Metric | v3.0 | v3.3 | v4.0 | v4.1 | v5.1 |
-|--------|------|------|------|------|------|
-| **Skills** | 48 | 95 | 95 | 95 | **140** |
-| **Agents** | 50 | 82 | 82 | 82 | **84** |
-| **Modes** | 22 | 30 | 30 | 30 | **30** |
-| **MCPs** | 40 | 84 | 84 | 84 | **82** |
-| **Tests** | - | - | 174 | 190 | **205** |
+| Metric     | v3.0 | v4.0 | v5.1 | v6.0 | v6.2    |
+| ---------- | ---- | ---- | ---- | ---- | ------- |
+| **Skills** | 48   | 95   | 140  | 141  | **141** |
+| **Agents** | 50   | 82   | 84   | 107  | **107** |
+| **Modes**  | 22   | 30   | 30   | 10   | **10**  |
+| **MCPs**   | 40   | 84   | 82   | 82   | **82**  |
+| **Tests**  | -    | 174  | 205  | 205  | **205** |
+
+---
+
+## v6.2.0 "Claude Harmony" (2025-12-11)
+
+**Claude Code 2.0.65 compatibility release with launch-ready improvements.**
+
+### What's New
+
+- **Claude Code 2.0.65 Compatibility** - Full support for latest Claude Code features including Rewind, background agents, and built-in ripgrep
+- **Professional GitHub Structure** - Launch-ready repository organization
+- **Domain Routing** - Improved opus67.com middleware handling
+- **Updated Documentation** - All docs aligned with current capability counts
+
+### Compatibility
+
+- Claude Code 2.0.55+ (recommended: 2.0.65)
+- Node.js 18+
+- npm 9+ / pnpm 8+
+
+### Official Counts
+
+```
+141 Skills • 82 MCPs • 10 Modes • 107 Agents
+```
+
+---
+
+## v6.1.0 "Memory Unified" (2025-12-09)
+
+**Full Memory System Integration with unified session management.**
+
+### Key Features
+
+- Unified memory system with HMLR multi-hop reasoning
+- Memory hooks and MCP tools
+- Session store integration
+- Benchmark dashboard with hover cards
+
+---
+
+## v6.0.0 "The Unification" (2025-12-08)
+
+**ONE COMMAND, EVERYTHING WORKS. Complete system unification.**
+
+### Key Features
+
+- Single `opus67` command boots everything
+- Unified skill registry
+- Streamlined mode system (30 → 10 core modes)
+- 107 expert agents
+- Pre-launch security audit
 
 ---
 
@@ -23,29 +75,34 @@ Verified capability counts through comprehensive deep codebase audit.
 **Comprehensive deep audit of all OPUS 67 capabilities with verified counts.**
 
 ### What Changed
+
 - ✅ **Skill count verified:** 140 individual skills (was advertised as 130+)
 - ✅ **MCP count corrected:** 82 unique MCP server configs (was 84)
 - ✅ **Agent count verified:** 84 expert agents (was 82)
 - ✅ **Modes verified:** 30 operating modes (unchanged)
 
 ### Why This is Good News
+
 1. **We've been underselling!** 10 MORE skills than advertised (140 vs 130+)
 2. **Complete transparency:** Every number verified from actual source code
 3. **Professional accuracy:** Honest capability reporting builds trust
 4. **All v5.0 features included:** Extended thinking, caching, unified Brain API
 
 ### Verification Sources
+
 - **Skills:** Counted from `packages/opus67/skills/registry.yaml` (140 skill definitions)
 - **MCPs:** Counted from `.claude/mcp/` directory (82 JSON config files)
 - **Modes:** Counted from `packages/opus67/THE_DOOR.md` (30 mode definitions)
 - **Agents:** Verified from `packages/opus67/skills/registry.yaml` metadata (84 agents)
 
 ### New Official Counts
+
 ```
 140 Skills • 82 MCPs • 30 Modes • 84 Agents
 ```
 
 ### All v5.0 Features Included
+
 - Extended Thinking (Claude Opus 4.5)
 - Prompt Caching (90% cost savings)
 - Dynamic Tool Discovery
@@ -64,17 +121,18 @@ Verified capability counts through comprehensive deep codebase audit.
 
 ### Refactored Modules
 
-| File | Before | After | Reduction |
-|------|--------|-------|-----------|
-| `skill-loader.ts` | 449 lines, 80 complexity | 137 lines | **-70%** |
-| `graphiti.ts` | 63 complexity | 5 modules, avg 12 | **-81%** |
-| `mcp-server.ts` | 77 complexity | 4 modules, avg 15 | **-80%** |
-| `mode-selector.ts` | 56 complexity | 3 modules, avg 18 | **-68%** |
-| `model-client.ts` | 50 complexity | 4 modules, avg 12 | **-76%** |
+| File               | Before                   | After             | Reduction |
+| ------------------ | ------------------------ | ----------------- | --------- |
+| `skill-loader.ts`  | 449 lines, 80 complexity | 137 lines         | **-70%**  |
+| `graphiti.ts`      | 63 complexity            | 5 modules, avg 12 | **-81%**  |
+| `mcp-server.ts`    | 77 complexity            | 4 modules, avg 15 | **-80%**  |
+| `mode-selector.ts` | 56 complexity            | 3 modules, avg 18 | **-68%**  |
+| `model-client.ts`  | 50 complexity            | 4 modules, avg 12 | **-76%**  |
 
 ### New Module Structure
 
 **Skills Module (`src/skills/`):**
+
 - `types.ts` - Type definitions
 - `fragment.ts` - Fragment loading and caching
 - `registry.ts` - Registry loading
@@ -82,17 +140,20 @@ Verified capability counts through comprehensive deep codebase audit.
 - `formatter.ts` - Output formatting
 
 **Memory Module (`src/memory/`):**
+
 - `types.ts` - Type definitions
 - `embeddings.ts` - Vector embeddings
 - `cache.ts` - Local memory cache
 - `context.ts` - Context management
 
 **Models Module (`src/models/`):**
+
 - `pricing.ts` - Cost calculations
 - `providers.ts` - Model provider configs
 - `router.ts` - Multi-model routing
 
 **Modes Module (`src/modes/`):**
+
 - `registry.ts` - Mode loading
 - `detection.ts` - Auto-detection
 - `display.ts` - Format output
@@ -120,6 +181,7 @@ Self-test: 10/10 passing
 **Self-evolving AI runtime with AContext integration.**
 
 ### Key Features
+
 - Vector skill search
 - Auto-SOP generation
 - Learning loop improvements
@@ -132,6 +194,7 @@ Self-test: 10/10 passing
 **Full integration of v3.1 + v3.2 features into a single documented release.**
 
 ### Key Changes
+
 - Unified documentation for all features
 - Added "What is OPUS 67?" clarity section everywhere
 - Boot screen shows clarity message
@@ -144,7 +207,9 @@ Self-test: 10/10 passing
 **Solana-native AI development system with universal infrastructure.**
 
 ### New MCPs (22)
+
 **Tier 1 - Universal Dev Tools:**
+
 - GitHub MCP (official) - Repo automation
 - Mem0 MCP - Persistent semantic memory
 - Qdrant MCP - Vector DB for RAG
@@ -152,6 +217,7 @@ Self-test: 10/10 passing
 - Docker MCP - Container management
 
 **Tier 2 - Solana Stack (UNIQUE MOAT):**
+
 - Jupiter MCP - Token swaps
 - Solana RPC MCP - Blockchain queries
 - Solana Web3.js MCP - Program deployment
@@ -159,22 +225,26 @@ Self-test: 10/10 passing
 - Chainstack Solana MCP - Analytics
 
 **Tier 3 - DevOps:**
+
 - Notion MCP - Documentation
 - Sentry MCP - Error tracking
 
 ### New Modes (4)
+
 - SOLANA 🪙 - Blockchain-native development
 - INFRA 🏗️ - Infrastructure as conversation
 - MEMORY 🧠 - Persistent context management
 - DEBUG 🐛 - Error → Root cause → PR
 
 ### New Agents (16)
+
 **Infrastructure:** Repo Master, Memory Keeper, Vector Wizard, DB Commander, Container Chief
 **Solana:** Jupiter Trader, Chain Reader, Program Builder, Anchor Architect, DeFi Analyst
 **DevOps:** Notion Navigator, Error Hunter, CI/CD Automator
 **Composite:** Full Stack Builder, Solana Stack, Research Synth
 
 ### Killer Use Case
+
 ```
 User: "Build me a Pump.fun clone"
 
@@ -197,7 +267,9 @@ Result: Hours, not weeks
 **Visual-first + Data-first development with 35+ new integrations.**
 
 ### New MCPs (22)
+
 **Web Scraping:**
+
 - Firecrawl MCP - Production-grade crawling ($16/mo or self-host)
 - Jina Reader - FREE URL→markdown
 - Crawl4AI - Self-hosted, privacy-first
@@ -205,37 +277,47 @@ Result: Hours, not weeks
 - Exa MCP - Semantic + code search
 
 **Browser Automation:**
+
 - Playwright MCP (Microsoft official) - 44% faster
 - Stagehand MCP - act/extract/observe primitives
 - Browserbase MCP - Cloud browser infrastructure
 
 **Documentation:**
+
 - Context7 MCP - Always-current library docs (FREE)
 
 **Desktop:**
+
 - ScreenPipe MCP - 24/7 desktop recording (FREE, local)
 
 ### New Skills (30) - GRAB Skills
+
 **UI/Frontend:**
+
 - react-grab, theme-grab, form-grab, chart-grab
 - icon-grab, dashboard-grab, landing-grab
 
 **Backend/Data:**
+
 - db-grab, api-grab
 
 **Design/Motion:**
+
 - wireframe-grab, figma-grab, animation-grab
 
 **Templates:**
+
 - email-grab, pdf-grab, mobile-grab
 
 ### New Modes (4)
+
 - GRAB 👁️ - Visual-first development
 - CLONE 🔄 - Full site cloning
 - RESEARCH 🔍 - Multi-source synthesis
 - CONTEXT 🖥️ - Desktop awareness
 
 ### New Agents (16)
+
 **Vision:** Grabber, Cloner, Theme Extractor, Schema Builder, Form Wizard, Chart Master, Email Builder, Animator
 **Data:** Deep Researcher, Web Spider, Docs Expert, Desktop Oracle
 **Browser:** Browser Controller, Stagehand, Test Generator, Auth Agent
@@ -247,6 +329,7 @@ Result: Hours, not weeks
 **Multi-model routing and cost optimization.**
 
 ### Key Features
+
 - Multi-model router (Claude/Gemini/DeepSeek)
 - LLM Council for complex decisions
 - Graphiti memory persistence
@@ -254,6 +337,7 @@ Result: Hours, not weeks
 - $7/month base cost optimization
 
 ### Base Stats
+
 - 48 Skills
 - 50 Agents
 - 22 Modes
@@ -264,6 +348,7 @@ Result: Hours, not weeks
 ## Roadmap: v3.4+
 
 ### Planned MCPs
+
 - Helius Webhooks MCP (real-time alerts)
 - Birdeye API MCP (token analytics)
 - Metaplex MCP (NFT operations)
@@ -272,6 +357,7 @@ Result: Hours, not weeks
 - Phantom Deeplink MCP (wallet signing)
 
 ### Custom Builds
+
 - ICM Motion MCP (full curve control)
 - Pump.fun Monitor MCP (competitor tracking)
 - DEX Analytics MCP (cross-DEX data)
@@ -282,12 +368,14 @@ Result: Hours, not weeks
 ## Upgrade Paths
 
 ### v3.0 → v3.3
+
 ```bash
 ./scripts/upgrade-v31.sh
 ./scripts/upgrade-v32.sh
 ```
 
 ### Fresh Install
+
 ```bash
 npm install -g @gicm/opus67
 opus67 init
@@ -295,4 +383,4 @@ opus67 init
 
 ---
 
-*OPUS 67 - Claude with superpowers.*
+_OPUS 67 - Claude with superpowers._

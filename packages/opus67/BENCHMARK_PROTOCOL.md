@@ -32,7 +32,7 @@ cd packages/opus67 && pnpm test:llm
 cd packages/opus67 && pnpm test --run
 ```
 
-## Target Metrics (v6.1.0+)
+## Target Metrics (v6.2.0+)
 
 | Metric          | Target | Acceptable | Critical |
 | --------------- | ------ | ---------- | -------- |
@@ -48,7 +48,8 @@ cd packages/opus67 && pnpm test --run
 
 | Version   | Date       | Boot  | Skills | Cache | Memory | Cost Savings |
 | --------- | ---------- | ----- | ------ | ----- | ------ | ------------ |
-| **6.1.0** | 2025-12-09 | 89ms  | 39ms   | 96%   | 160MB  | 86.4%        |
+| **6.2.0** | 2025-12-11 | 89ms  | 39ms   | 96%   | 160MB  | 86.4%        |
+| 6.1.0     | 2025-12-09 | 89ms  | 39ms   | 96%   | 160MB  | 86.4%        |
 | 6.0.0     | 2025-12-08 | 70ms  | 30ms   | 85%   | 160MB  | -            |
 | 5.1.14    | 2025-12-07 | 102ms | 36ms   | 85%   | 160MB  | -            |
 

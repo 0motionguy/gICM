@@ -1,6 +1,6 @@
 # OPUS 67
 
-> Self-Evolving AI Runtime v5.1 - 140 Skills • 82 MCPs • 30 Modes • 84 Agents
+> Self-Evolving AI Runtime v6.2.0 - 141 Skills • 82 MCPs • 10 Modes • 107 Agents
 
 ---
 
@@ -21,10 +21,11 @@
 ```
 
 **OPUS 67** wraps Claude with:
-- **140 specialist skills** (auto-loaded based on task)
+
+- **141 specialist skills** (auto-loaded based on task)
 - **82 MCP connections** (live data, APIs, blockchain)
-- **30 optimized modes** (right context for each task)
-- **84 expert agents** (domain-specific personas)
+- **10 optimized modes** (right context for each task)
+- **107 expert agents** (domain-specific personas)
 - **Persistent memory** (remembers across sessions)
 - **Multi-model routing** (Opus/Sonnet/Haiku for cost optimization)
 
@@ -46,12 +47,12 @@ See [docs/WHAT-IS-OPUS67.md](./docs/WHAT-IS-OPUS67.md) for the full explanation.
 ║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║                    ║
 ║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝                    ║
 ║                                                                           ║
-║                    Self-Evolving AI Runtime v5.1                          ║
+║                    Self-Evolving AI Runtime v6.2.0                         ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 ```
 
-**140 Skills • 82 MCPs • 30 Modes • 84 Agents • Unified Brain API**
+**141 Skills • 82 MCPs • 10 Modes • 107 Agents • Unified Brain API**
 
 </div>
 
@@ -111,7 +112,7 @@ curl -X POST http://localhost:3100/api/brain/mode \
 ### 3. WebSocket Real-time Updates
 
 ```javascript
-const ws = new WebSocket('ws://localhost:3100/api/brain/ws');
+const ws = new WebSocket("ws://localhost:3100/api/brain/ws");
 
 ws.onmessage = (event) => {
   const msg = JSON.parse(event.data);
@@ -119,10 +120,12 @@ ws.onmessage = (event) => {
 };
 
 // Send query via WebSocket
-ws.send(JSON.stringify({
-  method: 'query',
-  payload: { query: 'Optimize this function' }
-}));
+ws.send(
+  JSON.stringify({
+    method: "query",
+    payload: { query: "Optimize this function" },
+  })
+);
 ```
 
 ## Programmatic Usage
@@ -134,31 +137,31 @@ import {
   router,
   council,
   memory,
-  evolutionLoop
-} from '@gicm/opus67';
+  evolutionLoop,
+} from "@gicm/opus67";
 
 // Simple usage
 const opus = new Opus67();
 console.log(opus.boot());
 
-const session = opus.process('design a microservices architecture');
-console.log(session.mode);        // 'architect'
-console.log(session.skills);      // loaded skills
-console.log(session.prompt);      // generated context prompt
+const session = opus.process("design a microservices architecture");
+console.log(session.mode); // 'architect'
+console.log(session.skills); // loaded skills
+console.log(session.prompt); // generated context prompt
 
 // Advanced: Use BRAIN Runtime
 const brain = brainRuntime;
 brain.boot();
 
 const response = await brain.process({
-  query: 'Build a trading bot',
-  forceCouncil: true  // Use LLM council for complex decisions
+  query: "Build a trading bot",
+  forceCouncil: true, // Use LLM council for complex decisions
 });
 
-console.log(response.response);   // AI response
-console.log(response.model);      // Model used
-console.log(response.cost);       // Cost in $
-console.log(response.latencyMs);  // Response time
+console.log(response.response); // AI response
+console.log(response.model); // Model used
+console.log(response.cost); // Cost in $
+console.log(response.latencyMs); // Response time
 ```
 
 ## Environment Variables
@@ -179,42 +182,42 @@ LOG_LEVEL=info                   # Logging level
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/health` | Health check |
-| GET | `/api/brain/boot` | Boot screen |
-| GET | `/api/brain/status` | Runtime status |
-| GET | `/api/brain/metrics` | Comprehensive metrics |
-| GET | `/api/brain/history` | Query history |
-| GET | `/api/brain/mode` | Get current mode |
-| POST | `/api/brain/mode` | Set mode |
-| POST | `/api/brain/query` | Process query |
-| POST | `/api/brain/evolution` | Control evolution engine |
-| POST | `/api/brain/deliberate` | Invoke LLM council |
-| WS | `/api/brain/ws` | Real-time updates |
+| Method | Endpoint                | Description              |
+| ------ | ----------------------- | ------------------------ |
+| GET    | `/health`               | Health check             |
+| GET    | `/api/brain/boot`       | Boot screen              |
+| GET    | `/api/brain/status`     | Runtime status           |
+| GET    | `/api/brain/metrics`    | Comprehensive metrics    |
+| GET    | `/api/brain/history`    | Query history            |
+| GET    | `/api/brain/mode`       | Get current mode         |
+| POST   | `/api/brain/mode`       | Set mode                 |
+| POST   | `/api/brain/query`      | Process query            |
+| POST   | `/api/brain/evolution`  | Control evolution engine |
+| POST   | `/api/brain/deliberate` | Invoke LLM council       |
+| WS     | `/api/brain/ws`         | Real-time updates        |
 
-## 12 Operating Modes
+## 10 Operating Modes
 
-| Mode | Icon | Description |
-|------|------|-------------|
-| AUTO | 🤖 | Auto-detect best mode |
-| SCAN | 👀 | Quick file scanning |
-| BUILD | 🔨 | Code generation |
-| REVIEW | 📊 | Code review |
-| ARCHITECT | 🧠 | System design |
-| DEBUG | 🐛 | Debugging |
-| ULTRA | ⚡ | Maximum power |
-| THINK | 💭 | Deep reasoning |
-| VIBE | 🎨 | Creative mode |
-| LIGHT | 💡 | Fast/cheap mode |
-| SWARM | 🐝 | Multi-agent |
-| BG | 🌙 | Background tasks |
+| Mode      | Icon | Description           |
+| --------- | ---- | --------------------- |
+| AUTO      | 🤖   | Auto-detect best mode |
+| SCAN      | 👀   | Quick file scanning   |
+| BUILD     | 🔨   | Code generation       |
+| REVIEW    | 📊   | Code review           |
+| ARCHITECT | 🧠   | System design         |
+| DEBUG     | 🐛   | Debugging             |
+| ULTRA     | ⚡   | Maximum power         |
+| THINK     | 💭   | Deep reasoning        |
+| VIBE      | 🎨   | Creative mode         |
+| LIGHT     | 💡   | Fast/cheap mode       |
+| SWARM     | 🐝   | Multi-agent           |
+| BG        | 🌙   | Background tasks      |
 
 ## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      OPUS 67 v4 BRAIN                           │
+│                      OPUS 67 v6 BRAIN                           │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌─────────────────────────────────────────────────────────┐   │
@@ -234,14 +237,16 @@ LOG_LEVEL=info                   # Logging level
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  95 Skills │ 84 MCPs │ 30 Modes │ Cost Tracking │ 190 Tests    │
+│  141 Skills │ 82 MCPs │ 10 Modes │ Cost Tracking │ 205 Tests   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## v4 Features
+## v6 Features
 
 ### Multi-Model Router
+
 Automatically routes to the best model based on task type:
+
 - **Claude Opus** - Complex reasoning
 - **Claude Sonnet** - Balanced tasks
 - **Claude Haiku** - Fast/cheap queries
@@ -249,34 +254,40 @@ Automatically routes to the best model based on task type:
 - **DeepSeek** - Cost-effective coding
 
 ### LLM Council
+
 For high-complexity decisions, multiple models deliberate:
+
 ```typescript
 const result = await brain.deliberate(
-  'Should we use microservices or monolith?'
+  "Should we use microservices or monolith?"
 );
-console.log(result.finalAnswer);     // Synthesized answer
-console.log(result.responses);       // Individual model responses
-console.log(result.consensus);       // Agreement level
+console.log(result.finalAnswer); // Synthesized answer
+console.log(result.responses); // Individual model responses
+console.log(result.consensus); // Agreement level
 ```
 
 ### Graphiti Memory
+
 Persistent memory across sessions:
+
 ```typescript
-import { memory } from '@gicm/opus67';
+import { memory } from "@gicm/opus67";
 
 await memory.addEpisode({
-  name: 'user-preference',
-  content: 'User prefers functional programming',
-  type: 'preference'
+  name: "user-preference",
+  content: "User prefers functional programming",
+  type: "preference",
 });
 
-const context = await memory.search('programming style');
+const context = await memory.search("programming style");
 ```
 
 ### Evolution Engine
+
 Self-improvement through pattern detection:
+
 ```typescript
-import { evolutionLoop } from '@gicm/opus67';
+import { evolutionLoop } from "@gicm/opus67";
 
 evolutionLoop.start();
 
@@ -289,7 +300,7 @@ const opportunities = evolutionLoop.getPendingOpportunities();
 Run benchmarks to compare OPUS 67 vs raw model:
 
 ```typescript
-import { runComparisonCLI, runStressTestCLI } from '@gicm/opus67';
+import { runComparisonCLI, runStressTestCLI } from "@gicm/opus67";
 
 // Compare runtimes
 await runComparisonCLI();
