@@ -4,12 +4,24 @@
  */
 
 // OPUS 67 BRAIN URL (separate from Hub - runs on port 3102 locally)
-export const OPUS67_URL = process.env.NEXT_PUBLIC_OPUS67_URL || "http://localhost:3102";
-export const OPUS67_WS_URL = OPUS67_URL.replace(/^http/, "ws") + "/api/brain/ws";
+export const OPUS67_URL =
+  process.env.NEXT_PUBLIC_OPUS67_URL || "http://localhost:3102";
+export const OPUS67_WS_URL =
+  OPUS67_URL.replace(/^http/, "ws") + "/api/brain/ws";
 
 // Types matching packages/opus67/src/brain/brain-runtime.ts
-export type ModeName = "auto" | "scan" | "build" | "review" | "architect" | "debug";
-export type ConnectionStatus = "connecting" | "connected" | "disconnected" | "error";
+export type ModeName =
+  | "auto"
+  | "scan"
+  | "build"
+  | "review"
+  | "architect"
+  | "debug";
+export type ConnectionStatus =
+  | "connecting"
+  | "connected"
+  | "disconnected"
+  | "error";
 
 export interface BrainStatus {
   running: boolean;
@@ -80,7 +92,10 @@ export interface ApiResponse<T = unknown> {
 }
 
 // Generic fetch helper
-async function fetchOpus67<T>(endpoint: string, options?: RequestInit): Promise<T | null> {
+async function fetchOpus67<T>(
+  endpoint: string,
+  options?: RequestInit
+): Promise<T | null> {
   try {
     const res = await fetch(`${OPUS67_URL}${endpoint}`, {
       ...options,
@@ -119,84 +134,117 @@ export const opus67Api = {
 
   // Status
   getStatus: async () => {
-    const result = await fetchOpus67<ApiResponse<BrainStatus>>("/api/brain/status");
+    const result =
+      await fetchOpus67<ApiResponse<BrainStatus>>("/api/brain/status");
     return result?.data || null;
   },
 
   // Metrics
   getMetrics: async () => {
-    const result = await fetchOpus67<ApiResponse<BrainMetrics>>("/api/brain/metrics");
+    const result =
+      await fetchOpus67<ApiResponse<BrainMetrics>>("/api/brain/metrics");
     return result?.data || null;
   },
 
   // History
   getHistory: async (limit = 10) => {
-    const result = await fetchOpus67<ApiResponse<BrainResponse[]>>(`/api/brain/history?limit=${limit}`);
+    const result = await fetchOpus67<ApiResponse<BrainResponse[]>>(
+      `/api/brain/history?limit=${limit}`
+    );
     return result?.data || [];
   },
 
   // Mode
   getMode: async () => {
-    const result = await fetchOpus67<ApiResponse<{ mode: ModeName }>>("/api/brain/mode");
+    const result =
+      await fetchOpus67<ApiResponse<{ mode: ModeName }>>("/api/brain/mode");
     return result?.data?.mode || "auto";
   },
 
   setMode: async (mode: ModeName) => {
-    const result = await fetchOpus67<ApiResponse<{ mode: ModeName }>>("/api/brain/mode", {
-      method: "POST",
-      body: JSON.stringify({ mode }),
-    });
+    const result = await fetchOpus67<ApiResponse<{ mode: ModeName }>>(
+      "/api/brain/mode",
+      {
+        method: "POST",
+        body: JSON.stringify({ mode }),
+      }
+    );
     return result?.data?.mode || null;
   },
 
   // Query
-  query: async (query: string, options?: { forceMode?: ModeName; forceCouncil?: boolean; skipMemory?: boolean }) => {
-    const result = await fetchOpus67<ApiResponse<BrainResponse>>("/api/brain/query", {
-      method: "POST",
-      body: JSON.stringify({ query, ...options }),
-    });
+  query: async (
+    query: string,
+    options?: {
+      forceMode?: ModeName;
+      forceCouncil?: boolean;
+      skipMemory?: boolean;
+    }
+  ) => {
+    const result = await fetchOpus67<ApiResponse<BrainResponse>>(
+      "/api/brain/query",
+      {
+        method: "POST",
+        body: JSON.stringify({ query, ...options }),
+      }
+    );
     return result?.data || null;
   },
 
   // Evolution
   startEvolution: async () => {
-    const result = await fetchOpus67<ApiResponse<{ status: string }>>("/api/brain/evolution", {
-      method: "POST",
-      body: JSON.stringify({ action: "start" }),
-    });
+    const result = await fetchOpus67<ApiResponse<{ status: string }>>(
+      "/api/brain/evolution",
+      {
+        method: "POST",
+        body: JSON.stringify({ action: "start" }),
+      }
+    );
     return result?.success || false;
   },
 
   stopEvolution: async () => {
-    const result = await fetchOpus67<ApiResponse<{ status: string }>>("/api/brain/evolution", {
-      method: "POST",
-      body: JSON.stringify({ action: "stop" }),
-    });
+    const result = await fetchOpus67<ApiResponse<{ status: string }>>(
+      "/api/brain/evolution",
+      {
+        method: "POST",
+        body: JSON.stringify({ action: "stop" }),
+      }
+    );
     return result?.success || false;
   },
 
   runEvolutionCycle: async () => {
-    const result = await fetchOpus67<ApiResponse<{ status: string }>>("/api/brain/evolution", {
-      method: "POST",
-      body: JSON.stringify({ action: "cycle" }),
-    });
+    const result = await fetchOpus67<ApiResponse<{ status: string }>>(
+      "/api/brain/evolution",
+      {
+        method: "POST",
+        body: JSON.stringify({ action: "cycle" }),
+      }
+    );
     return result?.success || false;
   },
 
   getPendingOpportunities: async () => {
-    const result = await fetchOpus67<ApiResponse<{ opportunities: unknown[] }>>("/api/brain/evolution", {
-      method: "POST",
-      body: JSON.stringify({ action: "pending" }),
-    });
+    const result = await fetchOpus67<ApiResponse<{ opportunities: unknown[] }>>(
+      "/api/brain/evolution",
+      {
+        method: "POST",
+        body: JSON.stringify({ action: "pending" }),
+      }
+    );
     return result?.data?.opportunities || [];
   },
 
   // Deliberation (Council)
   deliberate: async (question: string) => {
-    const result = await fetchOpus67<ApiResponse<DeliberationResult>>("/api/brain/deliberate", {
-      method: "POST",
-      body: JSON.stringify({ question }),
-    });
+    const result = await fetchOpus67<ApiResponse<DeliberationResult>>(
+      "/api/brain/deliberate",
+      {
+        method: "POST",
+        body: JSON.stringify({ question }),
+      }
+    );
     return result?.data || null;
   },
 };
@@ -205,7 +253,13 @@ export const opus67Api = {
  * OPUS 67 WebSocket for real-time updates
  */
 export interface Opus67WebSocketMessage {
-  type: "status" | "response" | "mode_change" | "evolution_cycle" | "error" | "pong";
+  type:
+    | "status"
+    | "response"
+    | "mode_change"
+    | "evolution_cycle"
+    | "error"
+    | "pong";
   payload: unknown;
   timestamp: string;
 }
@@ -225,7 +279,6 @@ export class Opus67WebSocket {
       this.ws = new WebSocket(OPUS67_WS_URL);
 
       this.ws.onopen = () => {
-        console.log("[OPUS67-WS] Connected");
         this.reconnectAttempts = 0;
         this.startPing();
         this.emit("connected", {});
@@ -242,7 +295,6 @@ export class Opus67WebSocket {
       };
 
       this.ws.onclose = () => {
-        console.log("[OPUS67-WS] Disconnected");
         this.stopPing();
         this.emit("disconnected", {});
         this.attemptReconnect();
@@ -251,7 +303,9 @@ export class Opus67WebSocket {
       this.ws.onerror = () => {
         // Only log on first attempt to avoid console spam
         if (!this.silentMode && this.reconnectAttempts === 0) {
-          console.warn("[OPUS67-WS] OPUS67 Brain not available (this is OK if not running locally)");
+          console.warn(
+            "[OPUS67-WS] OPUS67 Brain not available (this is OK if not running locally)"
+          );
         }
         this.emit("error", {});
       };
@@ -278,19 +332,12 @@ export class Opus67WebSocket {
 
   private attemptReconnect(): void {
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      if (!this.silentMode) {
-        console.log("[OPUS67-WS] OPUS67 Brain not running - disabling reconnects");
-        this.silentMode = true;
-      }
+      this.silentMode = true;
       return;
     }
 
     this.reconnectAttempts++;
     const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);
-    if (!this.silentMode) {
-      console.log(`[OPUS67-WS] Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts})`);
-    }
-
     setTimeout(() => this.connect(), delay);
   }
 

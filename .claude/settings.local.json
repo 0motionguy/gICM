@@ -31,7 +31,13 @@
       "WebFetch(domain:gicm.vercel.app)",
       "WebFetch(domain:gicm-marketplace.vercel.app)",
       "WebFetch(domain:platform.claude.com)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(test:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(for dir in \".next\" \"OPUS67-STANDALONE-COMPLETE\" \"opus67-website\" \"node_modules\" \"apps/gicm-dashboard/.next\" \"apps/dashboard/.next\" \"apps/hedge-fund-dashboard/.next\")",
+      "Bash(do if [ -d \"$dir\" ])",
+      "Bash(git rev-list:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "ask": []

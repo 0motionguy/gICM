@@ -93,3 +93,21 @@ packages/*/dist/
 
 # Encryption keys (NEVER commit)
 encryption_key.json
+
+# Test outputs
+playwright-report/
+test-results/
+src/app/build/
+lighthouse-report.json
+
+# Audit findings (regenerate fresh)
+*_findings.md
+SECURITY_FINDINGS.md
+audit/
+color-analysis/
+
+# Database files
+*.db
+
+# Large images (use CDN)
+SAMPLE.png

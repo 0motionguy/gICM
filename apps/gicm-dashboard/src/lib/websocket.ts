@@ -23,17 +23,14 @@ export function useWebSocket() {
       const ws = new WebSocket(WS_URL);
 
       ws.onopen = () => {
-        console.log("[WS] Connected");
         setConnected(true);
       };
 
       ws.onclose = () => {
-        console.log("[WS] Disconnected");
         setConnected(false);
 
         // Attempt reconnect
         reconnectTimeoutRef.current = setTimeout(() => {
-          console.log("[WS] Reconnecting...");
           connect();
         }, 3000);
       };

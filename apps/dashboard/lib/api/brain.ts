@@ -44,7 +44,9 @@ export const brainApi = {
   // Health & Stats
   health: async () => {
     const result = await hubApi.getBrain();
-    return result ? { status: "ok", online: result.ok, uptime: Date.now() } : null;
+    return result
+      ? { status: "ok", online: result.ok, uptime: Date.now() }
+      : null;
   },
 
   stats: async () => {
@@ -65,7 +67,10 @@ export const brainApi = {
     return result?.items || null;
   },
 
-  byTopic: async (topic: string, limit = 20): Promise<KnowledgeItem[] | null> => {
+  byTopic: async (
+    topic: string,
+    limit = 20
+  ): Promise<KnowledgeItem[] | null> => {
     const result = await hubApi.getBrainKnowledgeByTopic(topic, limit);
     return result?.items || null;
   },
@@ -78,7 +83,11 @@ export const brainApi = {
   similar: async (id: string, limit = 10): Promise<SearchResult[] | null> => {
     const result = await hubApi.getBrainKnowledgeSimilar(id, limit);
     if (!result) return null;
-    return result.results.map(r => ({ item: r.item, score: r.score, highlights: [] }));
+    return result.results.map((r) => ({
+      item: r.item,
+      score: r.score,
+      highlights: [],
+    }));
   },
 
   // Search
@@ -86,7 +95,11 @@ export const brainApi = {
     const result = await hubApi.searchBrain(query);
     if (!result) return null;
     return {
-      results: result.results.map((item) => ({ item, score: 1, highlights: [] })),
+      results: result.results.map((item) => ({
+        item,
+        score: 1,
+        highlights: [],
+      })),
       total: result.count,
     };
   },
@@ -102,7 +115,11 @@ export const brainApi = {
     const result = await hubApi.searchBrain(_params.query);
     if (!result) return null;
     return {
-      results: result.results.map((item) => ({ item, score: 1, highlights: [] })),
+      results: result.results.map((item) => ({
+        item,
+        score: 1,
+        highlights: [],
+      })),
       total: result.count,
     };
   },
@@ -129,7 +146,10 @@ export const brainApi = {
     return result?.prediction || null;
   },
 
-  generatePredictions: async (type: "market" | "technology" | "opportunity" | "risk", count = 5) => {
+  generatePredictions: async (
+    type: "market" | "technology" | "opportunity" | "risk",
+    count = 5
+  ) => {
     const result = await hubApi.generateBrainPredictions(type, count);
     return result?.predictions || [];
   },
@@ -169,7 +189,6 @@ export class BrainWebSocket {
       this.ws = new WebSocket(BRAIN_WS_URL);
 
       this.ws.onopen = () => {
-        console.log("[BrainWS] Connected to Hub");
         this.reconnectAttempts = 0;
       };
 
@@ -178,7 +197,8 @@ export class BrainWebSocket {
           const message = JSON.parse(event.data);
 
           // Hub events have category/type structure
-          const eventType = message.type || `${message.category}.${message.type}`;
+          const eventType =
+            message.type || `${message.category}.${message.type}`;
 
           // Filter for brain-related events
           if (
@@ -189,7 +209,9 @@ export class BrainWebSocket {
           ) {
             const handlers = this.handlers.get(eventType);
             if (handlers) {
-              handlers.forEach((handler) => handler(message.payload || message));
+              handlers.forEach((handler) =>
+                handler(message.payload || message)
+              );
             }
           }
 
@@ -204,7 +226,6 @@ export class BrainWebSocket {
       };
 
       this.ws.onclose = () => {
-        console.log("[BrainWS] Disconnected");
         this.attemptReconnect();
       };
 
@@ -218,14 +239,11 @@ export class BrainWebSocket {
 
   private attemptReconnect(): void {
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.log("[BrainWS] Max reconnection attempts reached");
       return;
     }
 
     this.reconnectAttempts++;
     const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);
-    console.log(`[BrainWS] Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts})`);
-
     setTimeout(() => this.connect(), delay);
   }
 

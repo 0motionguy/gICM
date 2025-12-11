@@ -8,16 +8,33 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ErrorBoundary } from "@/components/error-boundary";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  preload: true,
+});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+  preload: true,
+});
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "Aether | The Universal AI Workflow Marketplace",
-  description: "The cross-chain marketplace for AI agents, skills, and workflows. Compatible with Claude, Gemini, and OpenAI.",
+  description:
+    "The cross-chain marketplace for AI agents, skills, and workflows. Compatible with Claude, Gemini, and OpenAI.",
   openGraph: {
     title: "gICM://SEND - The AI Marketplace for Web3 Builders",
-    description: "Build your custom AI dev stack with 91 agents, 96 skills, 93 commands, and 82 MCP integrations. Progressive Disclosure saves 88-92% tokens.",
+    description:
+      "Build your custom AI dev stack with 91 agents, 96 skills, 93 commands, and 82 MCP integrations. Progressive Disclosure saves 88-92% tokens.",
     type: "website",
     url: "https://gicm.io",
     siteName: "gICM",
@@ -33,16 +50,17 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "gICM://SEND - The AI Marketplace for Web3 Builders",
-    description: "91 agents • 96 skills • 93 commands • 82 MCPs • 88-92% token savings",
+    description:
+      "91 agents • 96 skills • 93 commands • 82 MCPs • 88-92% token savings",
     images: ["/og-image.png"],
     creator: "@icm_motion",
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: "/apple-touch-icon.png",
   },
   metadataBase: new URL("https://gicm.io"),
 };
@@ -52,17 +70,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Cache-busting key to force fresh CSS load
-  const cacheKey = Date.now();
-
   return (
-    <html lang="en" suppressHydrationWarning key={cacheKey}>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-        <meta httpEquiv="Pragma" content="no-cache" />
-        <meta httpEquiv="Expires" content="0" />
+        {/* Cache headers managed by Next.js for optimal performance */}
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakarta.variable} font-sans flex flex-col min-h-screen`}>
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakarta.variable} flex min-h-screen flex-col font-sans`}
+      >
         <ErrorBoundary>
           <ThemeProvider
             attribute="class"
@@ -70,9 +85,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <main className="flex-1">
-              {children}
-            </main>
+            <main className="flex-1">{children}</main>
             <Footer />
             <StackBuilderWidget />
             <Toaster position="bottom-right" richColors closeButton />
