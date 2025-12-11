@@ -18,455 +18,651 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "ICM Anchor Architect",
     slug: "icm-anchor-architect",
-    description: "Solana program specialist: bonding curves, PDAs, CPI orchestration. 4.2x faster than generic blockchain agents.",
-    longDescription: "Elite Anchor framework specialist with deep Solana runtime expertise. Handles program initialization, state management, PDA derivation with bump seeds, Cross-Program Invocations (CPI), and liquidity pool mathematics. Implements production-grade bonding curves (constant product, linear, exponential) with overflow protection and slippage controls. Optimized for ICM Motion-style launch platforms featuring instant fee routing, LP provisioning, and secure token launches. Includes comprehensive security patterns: checked arithmetic, signer validation, account ownership verification, and reentrancy guards. Works seamlessly with Rust Systems Architect for low-level optimizations and Solana Guardian Auditor for security validation.",
+    description:
+      "Solana program specialist: bonding curves, PDAs, CPI orchestration. 4.2x faster than generic blockchain agents.",
+    longDescription:
+      "Elite Anchor framework specialist with deep Solana runtime expertise. Handles program initialization, state management, PDA derivation with bump seeds, Cross-Program Invocations (CPI), and liquidity pool mathematics. Implements production-grade bonding curves (constant product, linear, exponential) with overflow protection and slippage controls. Optimized for ICM Motion-style launch platforms featuring instant fee routing, LP provisioning, and secure token launches. Includes comprehensive security patterns: checked arithmetic, signer validation, account ownership verification, and reentrancy guards. Works seamlessly with Rust Systems Architect for low-level optimizations and Solana Guardian Auditor for security validation.",
     category: "Development Team",
     tags: ["Solana", "Rust", "Anchor", "Blockchain", "DeFi", "Launch Platform"],
     dependencies: ["rust-systems-architect", "solana-guardian-auditor"],
-    files: [".claude/agents/icm-anchor-architect.md", ".gemini/agents/icm-anchor-architect.md", ".openai/agents/icm-anchor-architect.md"],
+    files: [
+      ".claude/agents/icm-anchor-architect.md",
+      ".gemini/agents/icm-anchor-architect.md",
+      ".openai/agents/icm-anchor-architect.md",
+    ],
     install: "npx @gicm/cli add agent/icm-anchor-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SOLANA_RPC_URL", "ANCHOR_WALLET"],
     installs: 1547,
     remixes: 623,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/icm-anchor-architect",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "frontend-fusion-engine",
     kind: "agent",
     name: "Frontend Fusion Engine",
     slug: "frontend-fusion-engine",
-    description: "Next.js 14 + React specialist. Wallet integration, real-time feeds, server actions. 89% faster component delivery.",
-    longDescription: "Builds production-grade Next.js apps with App Router, React Server Components, Tailwind, and Web3 wallet adapters. Specializes in dynamic UI, WebSocket feeds, optimistic updates, and shadcn/ui integration. Perfect for crypto frontends.",
+    description:
+      "Next.js 14 + React specialist. Wallet integration, real-time feeds, server actions. 89% faster component delivery.",
+    longDescription:
+      "Builds production-grade Next.js apps with App Router, React Server Components, Tailwind, and Web3 wallet adapters. Specializes in dynamic UI, WebSocket feeds, optimistic updates, and shadcn/ui integration. Perfect for crypto frontends.",
     category: "Development Team",
-    tags: ["Next.js", "React", "TypeScript", "Web3", "Frontend", "Wallet Integration"],
-    dependencies: [],
-    files: [".claude/agents/frontend-fusion-engine.md", ".gemini/agents/frontend-fusion-engine.md", ".openai/agents/frontend-fusion-engine.md"],
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Web3",
+      "Frontend",
+      "Wallet Integration",
+    ],
+    dependencies: ["typescript-precision-engineer"],
+    files: [
+      ".claude/agents/frontend-fusion-engine.md",
+      ".gemini/agents/frontend-fusion-engine.md",
+      ".openai/agents/frontend-fusion-engine.md",
+    ],
     install: "npx @gicm/cli add agent/frontend-fusion-engine",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["NEXT_PUBLIC_RPC_ENDPOINT", "NEXT_PUBLIC_WALLET_ADAPTER"],
     installs: 1243,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/frontend-fusion-engine",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "rust-systems-architect",
     kind: "agent",
     name: "Rust Systems Architect",
     slug: "rust-systems-architect",
-    description: "Low-level Rust expert. Memory safety, unsafe blocks, async runtime optimization. Zero-copy deserialization specialist.",
-    longDescription: "Deep Rust expertise covering ownership, lifetimes, trait bounds, and unsafe code. Specializes in performance-critical paths, async runtime tuning (Tokio), and Solana program optimization. Audits for common Rust pitfalls.",
+    description:
+      "Low-level Rust expert. Memory safety, unsafe blocks, async runtime optimization. Zero-copy deserialization specialist.",
+    longDescription:
+      "Deep Rust expertise covering ownership, lifetimes, trait bounds, and unsafe code. Specializes in performance-critical paths, async runtime tuning (Tokio), and Solana program optimization. Audits for common Rust pitfalls.",
     category: "Development Team",
-    tags: ["Rust", "Systems Programming", "Performance", "Async", "Memory Safety"],
+    tags: [
+      "Rust",
+      "Systems Programming",
+      "Performance",
+      "Async",
+      "Memory Safety",
+    ],
     dependencies: [],
-    files: [".claude/agents/rust-systems-architect.md", ".gemini/agents/rust-systems-architect.md", ".openai/agents/rust-systems-architect.md"],
+    files: [
+      ".claude/agents/rust-systems-architect.md",
+      ".gemini/agents/rust-systems-architect.md",
+      ".openai/agents/rust-systems-architect.md",
+    ],
     install: "npx @gicm/cli add agent/rust-systems-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 623,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/rust-systems-architect",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "typescript-precision-engineer",
     kind: "agent",
     name: "TypeScript Precision Engineer",
     slug: "typescript-precision-engineer",
-    description: "Strict mode enforcer. Advanced types, conditional types, mapped types. 3.1x fewer runtime errors.",
-    longDescription: "TypeScript expert specializing in strict mode, advanced type inference, generics, and type-level programming. Creates bullet-proof APIs with Zod validation and exhaustive type checking. Refactors JavaScript to idiomatic TypeScript.",
+    description:
+      "Strict mode enforcer. Advanced types, conditional types, mapped types. 3.1x fewer runtime errors.",
+    longDescription:
+      "TypeScript expert specializing in strict mode, advanced type inference, generics, and type-level programming. Creates bullet-proof APIs with Zod validation and exhaustive type checking. Refactors JavaScript to idiomatic TypeScript.",
     category: "Development Team",
     tags: ["TypeScript", "Type Safety", "Zod", "API Design"],
-    dependencies: [],
-    files: [".claude/agents/typescript-precision-engineer.md", ".gemini/agents/typescript-precision-engineer.md", ".openai/agents/typescript-precision-engineer.md"],
+    dependencies: ["advanced-typescript-patterns"],
+    files: [
+      ".claude/agents/typescript-precision-engineer.md",
+      ".gemini/agents/typescript-precision-engineer.md",
+      ".openai/agents/typescript-precision-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/typescript-precision-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 891,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/typescript-precision-engineer",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "database-schema-oracle",
     kind: "agent",
     name: "Database Schema Oracle",
     slug: "database-schema-oracle",
-    description: "PostgreSQL + Supabase expert. RLS policies, migrations, query optimization. 5.7x faster schema design.",
-    longDescription: "Database architect specializing in Supabase (PostgreSQL), schema design, Row Level Security, real-time subscriptions, and migration strategies. Optimizes queries, indexes, and handles multi-tenant architectures.",
+    description:
+      "PostgreSQL + Supabase expert. RLS policies, migrations, query optimization. 5.7x faster schema design.",
+    longDescription:
+      "Database architect specializing in Supabase (PostgreSQL), schema design, Row Level Security, real-time subscriptions, and migration strategies. Optimizes queries, indexes, and handles multi-tenant architectures.",
     category: "Development Team",
     tags: ["PostgreSQL", "Supabase", "Database", "RLS", "Schema Design"],
-    dependencies: [],
-    files: [".claude/agents/database-schema-oracle.md", ".gemini/agents/database-schema-oracle.md", ".openai/agents/database-schema-oracle.md"],
+    dependencies: ["sql-optimization", "mcp-postgresql", "mcp-supabase"],
+    files: [
+      ".claude/agents/database-schema-oracle.md",
+      ".gemini/agents/database-schema-oracle.md",
+      ".openai/agents/database-schema-oracle.md",
+    ],
     install: "npx @gicm/cli add agent/database-schema-oracle",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DATABASE_URL", "SUPABASE_URL", "SUPABASE_ANON_KEY"],
     installs: 734,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/database-schema-oracle",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "api-contract-designer",
     kind: "agent",
     name: "API Contract Designer",
     slug: "api-contract-designer",
-    description: "RESTful + tRPC specialist. OpenAPI generation, type-safe endpoints. 4.3x API consistency improvement.",
-    longDescription: "Designs robust API contracts with OpenAPI specs, tRPC procedures, and Zod validation. Creates type-safe client-server communication with automatic code generation. Handles versioning and backward compatibility.",
+    description:
+      "RESTful + tRPC specialist. OpenAPI generation, type-safe endpoints. 4.3x API consistency improvement.",
+    longDescription:
+      "Designs robust API contracts with OpenAPI specs, tRPC procedures, and Zod validation. Creates type-safe client-server communication with automatic code generation. Handles versioning and backward compatibility.",
     category: "Development Team",
     tags: ["API", "tRPC", "OpenAPI", "REST", "Type Safety"],
     dependencies: ["typescript-precision-engineer"],
-    files: [".claude/agents/api-contract-designer.md", ".gemini/agents/api-contract-designer.md", ".openai/agents/api-contract-designer.md"],
+    files: [
+      ".claude/agents/api-contract-designer.md",
+      ".gemini/agents/api-contract-designer.md",
+      ".openai/agents/api-contract-designer.md",
+    ],
     install: "npx @gicm/cli add agent/api-contract-designer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 542,
     remixes: 156,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/api-contract-designer",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "web3-integration-maestro",
     kind: "agent",
     name: "Web3 Integration Maestro",
     slug: "web3-integration-maestro",
-    description: "Wallet adapters, transaction signing, RPC optimization. Handles Solana, Ethereum, Polygon. 92% success rate.",
-    longDescription: "Web3 integration specialist covering wallet connections (Phantom, MetaMask), transaction construction, signature verification, and RPC provider optimization. Implements retry logic, fallback RPCs, and transaction monitoring.",
+    description:
+      "Wallet adapters, transaction signing, RPC optimization. Handles Solana, Ethereum, Polygon. 92% success rate.",
+    longDescription:
+      "Web3 integration specialist covering wallet connections (Phantom, MetaMask), transaction construction, signature verification, and RPC provider optimization. Implements retry logic, fallback RPCs, and transaction monitoring.",
     category: "Development Team",
     tags: ["Web3", "Wallet", "Blockchain", "Solana", "Ethereum", "RPC"],
     dependencies: ["frontend-fusion-engine"],
-    files: [".claude/agents/web3-integration-maestro.md", ".gemini/agents/web3-integration-maestro.md", ".openai/agents/web3-integration-maestro.md"],
+    files: [
+      ".claude/agents/web3-integration-maestro.md",
+      ".gemini/agents/web3-integration-maestro.md",
+      ".openai/agents/web3-integration-maestro.md",
+    ],
     install: "npx @gicm/cli add agent/web3-integration-maestro",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["RPC_ENDPOINT", "BACKUP_RPC_ENDPOINT"],
     installs: 981,
     remixes: 312,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/web3-integration-maestro",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "fullstack-orchestrator",
     kind: "agent",
     name: "Fullstack Orchestrator",
     slug: "fullstack-orchestrator",
-    description: "End-to-end feature builder. Coordinates frontend, backend, database, blockchain. 6.2x faster feature delivery.",
-    longDescription: "Generalist fullstack developer capable of implementing complete features across all layers. Coordinates between specialized agents, handles integration points, and ensures consistency. Perfect for MVP development and rapid prototyping.",
+    description:
+      "End-to-end feature builder. Coordinates frontend, backend, database, blockchain. 6.2x faster feature delivery.",
+    longDescription:
+      "Generalist fullstack developer capable of implementing complete features across all layers. Coordinates between specialized agents, handles integration points, and ensures consistency. Perfect for MVP development and rapid prototyping.",
     category: "Development Team",
     tags: ["Fullstack", "Coordination", "Integration", "MVP"],
-    dependencies: ["frontend-fusion-engine", "icm-anchor-architect", "database-schema-oracle"],
-    files: [".claude/agents/fullstack-orchestrator.md", ".gemini/agents/fullstack-orchestrator.md", ".openai/agents/fullstack-orchestrator.md"],
+    dependencies: [
+      "frontend-fusion-engine",
+      "icm-anchor-architect",
+      "database-schema-oracle",
+    ],
+    files: [
+      ".claude/agents/fullstack-orchestrator.md",
+      ".gemini/agents/fullstack-orchestrator.md",
+      ".openai/agents/fullstack-orchestrator.md",
+    ],
     install: "npx @gicm/cli add agent/fullstack-orchestrator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1456,
     remixes: 478,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/fullstack-orchestrator",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "react-native-expert",
     kind: "agent",
     name: "React Native Expert",
     slug: "react-native-expert",
-    description: "Elite mobile development specialist for cross-platform iOS/Android applications with Web3 wallet integration.",
-    longDescription: "Expert in React Native, Expo, navigation, state management, performance optimization (Hermes, JSI, Turbo Modules), native modules, and Web3 mobile integration with WalletConnect.",
+    description:
+      "Elite mobile development specialist for cross-platform iOS/Android applications with Web3 wallet integration.",
+    longDescription:
+      "Expert in React Native, Expo, navigation, state management, performance optimization (Hermes, JSI, Turbo Modules), native modules, and Web3 mobile integration with WalletConnect.",
     category: "Development Team",
     tags: ["Mobile", "React Native", "Expo", "Web3", "Performance"],
-    dependencies: ["frontend-fusion-engine", "web3-integration-maestro", "performance-profiler"],
-    files: [".claude/agents/react-native-expert.md", ".gemini/agents/react-native-expert.md", ".openai/agents/react-native-expert.md"],
+    dependencies: [
+      "frontend-fusion-engine",
+      "web3-integration-maestro",
+      "performance-profiler",
+    ],
+    files: [
+      ".claude/agents/react-native-expert.md",
+      ".gemini/agents/react-native-expert.md",
+      ".openai/agents/react-native-expert.md",
+    ],
     install: "npx @gicm/cli add agent/react-native-expert",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["EXPO_TOKEN", "SENTRY_DSN", "WALLETCONNECT_PROJECT_ID"],
     installs: 2145,
     remixes: 623,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/react-native-expert",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "ml-engineer",
     kind: "agent",
     name: "ML Engineer",
     slug: "ml-engineer",
-    description: "Machine learning and AI specialist for model training, deployment, and MLOps infrastructure.",
-    longDescription: "Expert in PyTorch, TensorFlow, Hugging Face Transformers, NLP, computer vision, MLOps with Weights & Biases, MLflow, DVC, and deployment pipelines.",
+    description:
+      "Machine learning and AI specialist for model training, deployment, and MLOps infrastructure.",
+    longDescription:
+      "Expert in PyTorch, TensorFlow, Hugging Face Transformers, NLP, computer vision, MLOps with Weights & Biases, MLflow, DVC, and deployment pipelines.",
     category: "Development Team",
     tags: ["Machine Learning", "AI", "PyTorch", "MLOps", "Deep Learning"],
-    dependencies: ["typescript-precision-engineer", "api-contract-designer", "performance-profiler"],
-    files: [".claude/agents/ml-engineer.md", ".gemini/agents/ml-engineer.md", ".openai/agents/ml-engineer.md"],
+    dependencies: [
+      "typescript-precision-engineer",
+      "api-contract-designer",
+      "performance-profiler",
+    ],
+    files: [
+      ".claude/agents/ml-engineer.md",
+      ".gemini/agents/ml-engineer.md",
+      ".openai/agents/ml-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/ml-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
-    envKeys: ["OPENAI_API_KEY", "HUGGINGFACE_TOKEN", "WANDB_API_KEY", "AWS_ACCESS_KEY_ID"],
+    envKeys: [
+      "OPENAI_API_KEY",
+      "HUGGINGFACE_TOKEN",
+      "WANDB_API_KEY",
+      "AWS_ACCESS_KEY_ID",
+    ],
     installs: 1876,
     remixes: 534,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/ml-engineer",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "kubernetes-architect",
     kind: "agent",
     name: "Kubernetes Architect",
     slug: "kubernetes-architect",
-    description: "Container orchestration specialist for production-grade Kubernetes deployments and cloud-native architecture.",
-    longDescription: "Expert in Kubernetes core concepts, StatefulSets, Service Mesh (Istio, Linkerd), RBAC, Network Policies, Prometheus, Grafana, and GitOps with ArgoCD/Flux.",
+    description:
+      "Container orchestration specialist for production-grade Kubernetes deployments and cloud-native architecture.",
+    longDescription:
+      "Expert in Kubernetes core concepts, StatefulSets, Service Mesh (Istio, Linkerd), RBAC, Network Policies, Prometheus, Grafana, and GitOps with ArgoCD/Flux.",
     category: "Development Team",
-    tags: ["Kubernetes", "DevOps", "Cloud Native", "Containers", "Orchestration"],
-    dependencies: ["ci-cd-pipeline-engineer", "database-schema-oracle", "performance-profiler"],
-    files: [".claude/agents/kubernetes-architect.md", ".gemini/agents/kubernetes-architect.md", ".openai/agents/kubernetes-architect.md"],
+    tags: [
+      "Kubernetes",
+      "DevOps",
+      "Cloud Native",
+      "Containers",
+      "Orchestration",
+    ],
+    dependencies: [
+      "ci-cd-pipeline-engineer",
+      "database-schema-oracle",
+      "performance-profiler",
+    ],
+    files: [
+      ".claude/agents/kubernetes-architect.md",
+      ".gemini/agents/kubernetes-architect.md",
+      ".openai/agents/kubernetes-architect.md",
+    ],
     install: "npx @gicm/cli add agent/kubernetes-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["KUBECONFIG", "K8S_CLUSTER_NAME", "K8S_NAMESPACE"],
     installs: 1654,
     remixes: 478,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/kubernetes-architect",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "ios-expert",
     kind: "agent",
     name: "iOS Expert",
     slug: "ios-expert",
-    description: "Native iOS development specialist for SwiftUI, UIKit, and Web3 wallet applications.",
-    longDescription: "Expert in SwiftUI, UIKit, Swift concurrency (async/await), MVVM architecture, Core Data, WalletConnect, Solana Swift SDK, and biometric authentication.",
+    description:
+      "Native iOS development specialist for SwiftUI, UIKit, and Web3 wallet applications.",
+    longDescription:
+      "Expert in SwiftUI, UIKit, Swift concurrency (async/await), MVVM architecture, Core Data, WalletConnect, Solana Swift SDK, and biometric authentication.",
     category: "Development Team",
     tags: ["iOS", "Swift", "SwiftUI", "Mobile", "Web3"],
-    dependencies: ["typescript-precision-engineer", "web3-integration-maestro", "performance-profiler"],
-    files: [".claude/agents/ios-expert.md", ".gemini/agents/ios-expert.md", ".openai/agents/ios-expert.md"],
+    dependencies: [
+      "typescript-precision-engineer",
+      "web3-integration-maestro",
+      "performance-profiler",
+    ],
+    files: [
+      ".claude/agents/ios-expert.md",
+      ".gemini/agents/ios-expert.md",
+      ".openai/agents/ios-expert.md",
+    ],
     install: "npx @gicm/cli add agent/ios-expert",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["XCODE_VERSION", "SWIFT_VERSION", "WALLETCONNECT_PROJECT_ID"],
     installs: 1432,
     remixes: 389,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/ios-expert",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "data-scientist",
     kind: "agent",
     name: "Data Scientist",
     slug: "data-scientist",
-    description: "Data analysis and statistical modeling specialist for insights, predictions, and data-driven decision making.",
-    longDescription: "Expert in statistical analysis, data visualization (Matplotlib, Seaborn, Plotly), Pandas, scikit-learn, blockchain analytics, and predictive modeling.",
+    description:
+      "Data analysis and statistical modeling specialist for insights, predictions, and data-driven decision making.",
+    longDescription:
+      "Expert in statistical analysis, data visualization (Matplotlib, Seaborn, Plotly), Pandas, scikit-learn, blockchain analytics, and predictive modeling.",
     category: "Development Team",
     tags: ["Data Science", "Analytics", "Statistics", "Visualization", "ML"],
-    dependencies: ["ml-engineer", "database-schema-oracle", "performance-profiler"],
-    files: [".claude/agents/data-scientist.md", ".gemini/agents/data-scientist.md", ".openai/agents/data-scientist.md"],
+    dependencies: [
+      "ml-engineer",
+      "database-schema-oracle",
+      "performance-profiler",
+    ],
+    files: [
+      ".claude/agents/data-scientist.md",
+      ".gemini/agents/data-scientist.md",
+      ".openai/agents/data-scientist.md",
+    ],
     install: "npx @gicm/cli add agent/data-scientist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
-    envKeys: ["JUPYTER_TOKEN", "DATABRICKS_TOKEN", "SNOWFLAKE_ACCOUNT", "BIGQUERY_CREDENTIALS"],
+    envKeys: [
+      "JUPYTER_TOKEN",
+      "DATABRICKS_TOKEN",
+      "SNOWFLAKE_ACCOUNT",
+      "BIGQUERY_CREDENTIALS",
+    ],
     installs: 1567,
     remixes: 445,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/data-scientist",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
 
   // === SECURITY & AUDIT (4 agents) ===
@@ -475,57 +671,81 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Solana Guardian Auditor",
     slug: "solana-guardian-auditor",
-    description: "Real-time Solana security scanner. Detects reentrancy, signer checks, arithmetic overflows. 5.7x better vulnerability detection.",
-    longDescription: "Automated security auditor for Anchor programs. Scans for common exploits: missing signer checks, unchecked account ownership, integer overflow, CPI vulnerabilities, and reentrancy attacks. Provides remediation guidance and security best practices.",
+    description:
+      "Real-time Solana security scanner. Detects reentrancy, signer checks, arithmetic overflows. 5.7x better vulnerability detection.",
+    longDescription:
+      "Automated security auditor for Anchor programs. Scans for common exploits: missing signer checks, unchecked account ownership, integer overflow, CPI vulnerabilities, and reentrancy attacks. Provides remediation guidance and security best practices.",
     category: "Security & Audit",
     tags: ["Security", "Audit", "Solana", "Rust", "Vulnerability Detection"],
-    dependencies: [],
-    files: [".claude/agents/solana-guardian-auditor.md", ".gemini/agents/solana-guardian-auditor.md", ".openai/agents/solana-guardian-auditor.md"],
+    dependencies: ["solana-program-security", "smart-contract-security"],
+    files: [
+      ".claude/agents/solana-guardian-auditor.md",
+      ".gemini/agents/solana-guardian-auditor.md",
+      ".openai/agents/solana-guardian-auditor.md",
+    ],
     install: "npx @gicm/cli add agent/solana-guardian-auditor",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 712,
     remixes: 198,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/solana-guardian-auditor",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "smart-contract-forensics",
     kind: "agent",
     name: "Smart Contract Forensics",
     slug: "smart-contract-forensics",
-    description: "Deep-dive smart contract analysis. Formal verification, invariant checking. Used by top audit firms.",
-    longDescription: "Advanced smart contract auditor using formal verification techniques, symbolic execution, and property-based testing. Discovers edge cases, invariant violations, and economic exploits. Generates comprehensive audit reports.",
+    description:
+      "Deep-dive smart contract analysis. Formal verification, invariant checking. Used by top audit firms.",
+    longDescription:
+      "Advanced smart contract auditor using formal verification techniques, symbolic execution, and property-based testing. Discovers edge cases, invariant violations, and economic exploits. Generates comprehensive audit reports.",
     category: "Security & Audit",
     tags: ["Smart Contracts", "Audit", "Formal Verification", "Security"],
     dependencies: ["solana-guardian-auditor"],
-    files: [".claude/agents/smart-contract-forensics.md", ".gemini/agents/smart-contract-forensics.md", ".openai/agents/smart-contract-forensics.md"],
+    files: [
+      ".claude/agents/smart-contract-forensics.md",
+      ".gemini/agents/smart-contract-forensics.md",
+      ".openai/agents/smart-contract-forensics.md",
+    ],
     install: "npx @gicm/cli add agent/smart-contract-forensics",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 423,
     remixes: 103,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -538,22 +758,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Penetration Testing Specialist",
     slug: "penetration-testing-specialist",
-    description: "Offensive security expert. OWASP Top 10, authentication bypass, injection attacks. 4.8x vulnerability discovery rate.",
-    longDescription: "Ethical hacker specializing in web application security, API testing, and authentication bypasses. Tests for SQL injection, XSS, CSRF, SSRF, and authentication flaws. Provides exploit PoCs and remediation steps.",
+    description:
+      "Offensive security expert. OWASP Top 10, authentication bypass, injection attacks. 4.8x vulnerability discovery rate.",
+    longDescription:
+      "Ethical hacker specializing in web application security, API testing, and authentication bypasses. Tests for SQL injection, XSS, CSRF, SSRF, and authentication flaws. Provides exploit PoCs and remediation steps.",
     category: "Security & Audit",
     tags: ["Penetration Testing", "Security", "OWASP", "Ethical Hacking"],
-    dependencies: [],
-    files: [".claude/agents/penetration-testing-specialist.md", ".gemini/agents/penetration-testing-specialist.md", ".openai/agents/penetration-testing-specialist.md"],
+    dependencies: ["vulnerability-management", "authentication-patterns"],
+    files: [
+      ".claude/agents/penetration-testing-specialist.md",
+      ".gemini/agents/penetration-testing-specialist.md",
+      ".openai/agents/penetration-testing-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/penetration-testing-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 534,
     remixes: 142,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -566,22 +799,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Compliance Guardian",
     slug: "compliance-guardian",
-    description: "Legal & regulatory compliance. GDPR, CCPA, securities law awareness. Protects from regulatory risk.",
-    longDescription: "Compliance specialist ensuring adherence to data protection laws (GDPR, CCPA), accessibility standards (WCAG 2.1 AA), and crypto regulations. Reviews terms of service, privacy policies, and regulatory disclosures.",
+    description:
+      "Legal & regulatory compliance. GDPR, CCPA, securities law awareness. Protects from regulatory risk.",
+    longDescription:
+      "Compliance specialist ensuring adherence to data protection laws (GDPR, CCPA), accessibility standards (WCAG 2.1 AA), and crypto regulations. Reviews terms of service, privacy policies, and regulatory disclosures.",
     category: "Security & Audit",
     tags: ["Compliance", "Legal", "GDPR", "CCPA", "Regulations"],
     dependencies: [],
-    files: [".claude/agents/compliance-guardian.md", ".gemini/agents/compliance-guardian.md", ".openai/agents/compliance-guardian.md"],
+    files: [
+      ".claude/agents/compliance-guardian.md",
+      ".gemini/agents/compliance-guardian.md",
+      ".openai/agents/compliance-guardian.md",
+    ],
     install: "npx @gicm/cli add agent/compliance-guardian",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 289,
     remixes: 67,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -596,175 +842,233 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Context Sculptor",
     slug: "context-sculptor",
-    description: "Token optimizer. Strips bloat, preserves logic. 68% context token reduction, 4.2x faster task completion.",
-    longDescription: "Analyzes codebases and refactors for minimal token usage. Removes redundant comments, consolidates imports, applies progressive disclosure patterns, and optimizes file structure. Maintains functionality while dramatically reducing context size.",
+    description:
+      "Token optimizer. Strips bloat, preserves logic. 68% context token reduction, 4.2x faster task completion.",
+    longDescription:
+      "Analyzes codebases and refactors for minimal token usage. Removes redundant comments, consolidates imports, applies progressive disclosure patterns, and optimizes file structure. Maintains functionality while dramatically reducing context size.",
     category: "DevTools & Optimization",
     tags: ["Optimization", "Context", "Refactoring", "Token Efficiency"],
-    dependencies: [],
-    files: [".claude/agents/context-sculptor.md", ".gemini/agents/context-sculptor.md", ".openai/agents/context-sculptor.md"],
+    dependencies: ["refactoring-patterns"],
+    files: [
+      ".claude/agents/context-sculptor.md",
+      ".gemini/agents/context-sculptor.md",
+      ".openai/agents/context-sculptor.md",
+    ],
     install: "npx @gicm/cli add agent/context-sculptor",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1123,
     remixes: 389,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/context-sculptor",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "performance-profiler",
     kind: "agent",
     name: "Performance Profiler",
     slug: "performance-profiler",
-    description: "Bundle analysis, Core Web Vitals, gas optimization. 3.8x faster load times, 42% gas savings.",
-    longDescription: "Performance engineer optimizing frontend (bundle size, lazy loading, image optimization) and blockchain (gas optimization, transaction batching). Uses Lighthouse, Webpack Bundle Analyzer, and Solana profilers.",
+    description:
+      "Bundle analysis, Core Web Vitals, gas optimization. 3.8x faster load times, 42% gas savings.",
+    longDescription:
+      "Performance engineer optimizing frontend (bundle size, lazy loading, image optimization) and blockchain (gas optimization, transaction batching). Uses Lighthouse, Webpack Bundle Analyzer, and Solana profilers.",
     category: "DevTools & Optimization",
     tags: ["Performance", "Optimization", "Web Vitals", "Gas Optimization"],
-    dependencies: [],
-    files: [".claude/agents/performance-profiler.md", ".gemini/agents/performance-profiler.md", ".openai/agents/performance-profiler.md"],
+    dependencies: [
+      "performance-profiling",
+      "monitoring-observability-advanced",
+    ],
+    files: [
+      ".claude/agents/performance-profiler.md",
+      ".gemini/agents/performance-profiler.md",
+      ".openai/agents/performance-profiler.md",
+    ],
     install: "npx @gicm/cli add agent/performance-profiler",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 678,
     remixes: 203,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/performance-profiler",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "ci-cd-pipeline-engineer",
     kind: "agent",
     name: "CI/CD Pipeline Engineer",
     slug: "ci-cd-pipeline-engineer",
-    description: "GitHub Actions, Vercel, automated testing. Zero-downtime deployments. 91% deployment success rate.",
-    longDescription: "DevOps specialist setting up CI/CD pipelines with GitHub Actions, automated testing, preview deployments, and production releases. Handles Vercel, AWS, and custom deployment workflows with rollback strategies.",
+    description:
+      "GitHub Actions, Vercel, automated testing. Zero-downtime deployments. 91% deployment success rate.",
+    longDescription:
+      "DevOps specialist setting up CI/CD pipelines with GitHub Actions, automated testing, preview deployments, and production releases. Handles Vercel, AWS, and custom deployment workflows with rollback strategies.",
     category: "DevTools & Optimization",
     tags: ["CI/CD", "DevOps", "GitHub Actions", "Vercel", "Deployment"],
-    dependencies: [],
-    files: [".claude/agents/ci-cd-pipeline-engineer.md", ".gemini/agents/ci-cd-pipeline-engineer.md", ".openai/agents/ci-cd-pipeline-engineer.md"],
+    dependencies: ["mcp/mcp-github", "feature-flag-management"],
+    files: [
+      ".claude/agents/ci-cd-pipeline-engineer.md",
+      ".gemini/agents/ci-cd-pipeline-engineer.md",
+      ".openai/agents/ci-cd-pipeline-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/ci-cd-pipeline-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["GITHUB_TOKEN", "VERCEL_TOKEN"],
     installs: 512,
     remixes: 147,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/ci-cd-pipeline-engineer",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "git-flow-coordinator",
     kind: "agent",
     name: "Git Flow Coordinator",
     slug: "git-flow-coordinator",
-    description: "Git workflow enforcer. Feature branches, conventional commits, PR automation. 5.1x cleaner history.",
-    longDescription: "Git expert implementing Git Flow, conventional commits, automated PR reviews, and merge conflict resolution. Sets up branch protection rules, semantic versioning, and changelog generation.",
+    description:
+      "Git workflow enforcer. Feature branches, conventional commits, PR automation. 5.1x cleaner history.",
+    longDescription:
+      "Git expert implementing Git Flow, conventional commits, automated PR reviews, and merge conflict resolution. Sets up branch protection rules, semantic versioning, and changelog generation.",
     category: "DevTools & Optimization",
     tags: ["Git", "Version Control", "Git Flow", "Automation"],
-    dependencies: [],
-    files: [".claude/agents/git-flow-coordinator.md", ".gemini/agents/git-flow-coordinator.md", ".openai/agents/git-flow-coordinator.md"],
+    dependencies: ["mcp-git"],
+    files: [
+      ".claude/agents/git-flow-coordinator.md",
+      ".gemini/agents/git-flow-coordinator.md",
+      ".openai/agents/git-flow-coordinator.md",
+    ],
     install: "npx @gicm/cli add agent/git-flow-coordinator",
     layer: ".claude",
     modelRecommendation: "haiku",
     envKeys: [],
     installs: 823,
     remixes: 241,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/git-flow-coordinator",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "debugging-detective",
     kind: "agent",
     name: "Debugging Detective",
     slug: "debugging-detective",
-    description: "Root cause analyzer. Stack trace decoding, edge case discovery. 6.4x faster bug resolution.",
-    longDescription: "Debugging specialist analyzing stack traces, reproducing edge cases, and identifying root causes. Uses systematic debugging strategies, binary search techniques, and logging analysis to isolate issues quickly.",
+    description:
+      "Root cause analyzer. Stack trace decoding, edge case discovery. 6.4x faster bug resolution.",
+    longDescription:
+      "Debugging specialist analyzing stack traces, reproducing edge cases, and identifying root causes. Uses systematic debugging strategies, binary search techniques, and logging analysis to isolate issues quickly.",
     category: "DevTools & Optimization",
     tags: ["Debugging", "Problem Solving", "Root Cause Analysis"],
-    dependencies: [],
-    files: [".claude/agents/debugging-detective.md", ".gemini/agents/debugging-detective.md", ".openai/agents/debugging-detective.md"],
+    dependencies: ["debugging-techniques", "distributed-tracing"],
+    files: [
+      ".claude/agents/debugging-detective.md",
+      ".gemini/agents/debugging-detective.md",
+      ".openai/agents/debugging-detective.md",
+    ],
     install: "npx @gicm/cli add agent/debugging-detective",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 934,
     remixes: 287,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/debugging-detective",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
 
   // === DOCUMENTATION & CONTENT (5 agents) ===
@@ -773,57 +1077,81 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Technical Writer Pro",
     slug: "technical-writer-pro",
-    description: "API documentation, user guides, ADRs. 4.6x faster docs creation, 89% user satisfaction.",
-    longDescription: "Technical documentation specialist creating API references, integration guides, architecture decision records (ADRs), and user manuals. Uses clear language, code examples, and diagrams for comprehensive documentation.",
+    description:
+      "API documentation, user guides, ADRs. 4.6x faster docs creation, 89% user satisfaction.",
+    longDescription:
+      "Technical documentation specialist creating API references, integration guides, architecture decision records (ADRs), and user manuals. Uses clear language, code examples, and diagrams for comprehensive documentation.",
     category: "Documentation & Content",
     tags: ["Documentation", "Technical Writing", "ADR", "User Guides"],
-    dependencies: [],
-    files: [".claude/agents/technical-writer-pro.md", ".gemini/agents/technical-writer-pro.md", ".openai/agents/technical-writer-pro.md"],
+    dependencies: ["documentation-automation"],
+    files: [
+      ".claude/agents/technical-writer-pro.md",
+      ".gemini/agents/technical-writer-pro.md",
+      ".openai/agents/technical-writer-pro.md",
+    ],
     install: "npx @gicm/cli add agent/technical-writer-pro",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 645,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     implementations: {
       claude: {
         install: "npx @gicm/cli add agent/technical-writer-pro",
       },
-        
     },
     audit: {
-            lastAudited: "2025-11-27",
-            qualityScore: 85,
-            status: "VERIFIED",
-        
-    }
+      lastAudited: "2025-11-27",
+      qualityScore: 85,
+      status: "VERIFIED",
+    },
   },
   {
     id: "readme-architect",
     kind: "agent",
     name: "README Architect",
     slug: "readme-architect",
-    description: "GitHub README optimization. Badges, quick starts, visual diagrams. 3.2x more GitHub stars.",
-    longDescription: "README specialist crafting compelling project READMEs with badges, quick start guides, feature highlights, and visual diagrams. Optimized for GitHub discovery and developer engagement.",
+    description:
+      "GitHub README optimization. Badges, quick starts, visual diagrams. 3.2x more GitHub stars.",
+    longDescription:
+      "README specialist crafting compelling project READMEs with badges, quick start guides, feature highlights, and visual diagrams. Optimized for GitHub discovery and developer engagement.",
     category: "Documentation & Content",
     tags: ["README", "Documentation", "GitHub", "Marketing"],
     dependencies: ["technical-writer-pro"],
-    files: [".claude/agents/readme-architect.md", ".gemini/agents/readme-architect.md", ".openai/agents/readme-architect.md"],
+    files: [
+      ".claude/agents/readme-architect.md",
+      ".gemini/agents/readme-architect.md",
+      ".openai/agents/readme-architect.md",
+    ],
     install: "npx @gicm/cli add agent/readme-architect",
     layer: ".claude",
     modelRecommendation: "haiku",
     envKeys: [],
     installs: 734,
     remixes: 212,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -836,22 +1164,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Changelog Generator",
     slug: "changelog-generator",
-    description: "Automated CHANGELOG.md from commits. Semantic versioning, breaking change detection.",
-    longDescription: "Automatically generates changelogs from conventional commits, categorizes changes (Added, Changed, Deprecated, Removed, Fixed, Security), and suggests semantic version bumps. Integrates with release workflows.",
+    description:
+      "Automated CHANGELOG.md from commits. Semantic versioning, breaking change detection.",
+    longDescription:
+      "Automatically generates changelogs from conventional commits, categorizes changes (Added, Changed, Deprecated, Removed, Fixed, Security), and suggests semantic version bumps. Integrates with release workflows.",
     category: "Documentation & Content",
     tags: ["Changelog", "Versioning", "Automation", "Documentation"],
     dependencies: ["git-flow-coordinator"],
-    files: [".claude/agents/changelog-generator.md", ".gemini/agents/changelog-generator.md", ".openai/agents/changelog-generator.md"],
+    files: [
+      ".claude/agents/changelog-generator.md",
+      ".gemini/agents/changelog-generator.md",
+      ".openai/agents/changelog-generator.md",
+    ],
     install: "npx @gicm/cli add agent/changelog-generator",
     layer: ".claude",
     modelRecommendation: "haiku",
     envKeys: [],
     installs: 412,
     remixes: 103,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -864,22 +1205,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Content Strategist",
     slug: "content-strategist",
-    description: "Marketing copy, landing pages, Twitter threads. 5.9x engagement boost.",
-    longDescription: "Content specialist writing marketing copy, landing page content, Twitter threads, and blog posts. Understands crypto/DeFi terminology, meme culture, and viral content patterns. Optimized for engagement.",
+    description:
+      "Marketing copy, landing pages, Twitter threads. 5.9x engagement boost.",
+    longDescription:
+      "Content specialist writing marketing copy, landing page content, Twitter threads, and blog posts. Understands crypto/DeFi terminology, meme culture, and viral content patterns. Optimized for engagement.",
     category: "Documentation & Content",
     tags: ["Marketing", "Content", "Copywriting", "Social Media"],
     dependencies: [],
-    files: [".claude/agents/content-strategist.md", ".gemini/agents/content-strategist.md", ".openai/agents/content-strategist.md"],
+    files: [
+      ".claude/agents/content-strategist.md",
+      ".gemini/agents/content-strategist.md",
+      ".openai/agents/content-strategist.md",
+    ],
     install: "npx @gicm/cli add agent/content-strategist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 567,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -892,22 +1246,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Diagram Illustrator",
     slug: "diagram-illustrator",
-    description: "System architecture diagrams, flow charts, sequence diagrams. Mermaid + ASCII art.",
-    longDescription: "Creates visual diagrams using Mermaid.js, ASCII art, and PlantUML. Illustrates system architecture, data flow, sequence diagrams, and ER diagrams for technical documentation.",
+    description:
+      "System architecture diagrams, flow charts, sequence diagrams. Mermaid + ASCII art.",
+    longDescription:
+      "Creates visual diagrams using Mermaid.js, ASCII art, and PlantUML. Illustrates system architecture, data flow, sequence diagrams, and ER diagrams for technical documentation.",
     category: "Documentation & Content",
     tags: ["Diagrams", "Visualization", "Architecture", "Mermaid"],
     dependencies: ["technical-writer-pro"],
-    files: [".claude/agents/diagram-illustrator.md", ".gemini/agents/diagram-illustrator.md", ".openai/agents/diagram-illustrator.md"],
+    files: [
+      ".claude/agents/diagram-illustrator.md",
+      ".gemini/agents/diagram-illustrator.md",
+      ".openai/agents/diagram-illustrator.md",
+    ],
     install: "npx @gicm/cli add agent/diagram-illustrator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 398,
     remixes: 112,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -922,22 +1289,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Test Automation Engineer",
     slug: "test-automation-engineer",
-    description: "Unit, integration, E2E tests. Jest, Vitest, Playwright. 87% code coverage achiever.",
-    longDescription: "Testing specialist writing comprehensive test suites using Jest, Vitest, and Playwright. Implements unit tests, integration tests, and E2E tests with high coverage. Sets up test CI/CD pipelines.",
+    description:
+      "Unit, integration, E2E tests. Jest, Vitest, Playwright. 87% code coverage achiever.",
+    longDescription:
+      "Testing specialist writing comprehensive test suites using Jest, Vitest, and Playwright. Implements unit tests, integration tests, and E2E tests with high coverage. Sets up test CI/CD pipelines.",
     category: "Testing & QA",
     tags: ["Testing", "Automation", "Jest", "Playwright", "E2E"],
     dependencies: [],
-    files: [".claude/agents/test-automation-engineer.md", ".gemini/agents/test-automation-engineer.md", ".openai/agents/test-automation-engineer.md"],
+    files: [
+      ".claude/agents/test-automation-engineer.md",
+      ".gemini/agents/test-automation-engineer.md",
+      ".openai/agents/test-automation-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/test-automation-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 689,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -950,22 +1330,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "QA Stress Tester",
     slug: "qa-stress-tester",
-    description: "Load testing, stress testing, chaos engineering. k6, Artillery, Locust. Finds breaking points.",
-    longDescription: "Performance testing specialist running load tests, stress tests, and chaos experiments to find system breaking points. Uses k6, Artillery, and Locust to simulate traffic and identify bottlenecks.",
+    description:
+      "Load testing, stress testing, chaos engineering. k6, Artillery, Locust. Finds breaking points.",
+    longDescription:
+      "Performance testing specialist running load tests, stress tests, and chaos experiments to find system breaking points. Uses k6, Artillery, and Locust to simulate traffic and identify bottlenecks.",
     category: "Testing & QA",
     tags: ["Load Testing", "Stress Testing", "Performance", "QA"],
     dependencies: [],
-    files: [".claude/agents/qa-stress-tester.md", ".gemini/agents/qa-stress-tester.md", ".openai/agents/qa-stress-tester.md"],
+    files: [
+      ".claude/agents/qa-stress-tester.md",
+      ".gemini/agents/qa-stress-tester.md",
+      ".openai/agents/qa-stress-tester.md",
+    ],
     install: "npx @gicm/cli add agent/qa-stress-tester",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 423,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -978,22 +1371,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Accessibility Advocate",
     slug: "accessibility-advocate",
-    description: "WCAG 2.1 AA/AAA compliance. Screen reader testing, keyboard navigation. 95% accessibility score.",
-    longDescription: "Accessibility expert ensuring WCAG 2.1 compliance, semantic HTML, ARIA attributes, keyboard navigation, and screen reader compatibility. Uses Axe, Lighthouse, and manual testing to validate accessibility.",
+    description:
+      "WCAG 2.1 AA/AAA compliance. Screen reader testing, keyboard navigation. 95% accessibility score.",
+    longDescription:
+      "Accessibility expert ensuring WCAG 2.1 compliance, semantic HTML, ARIA attributes, keyboard navigation, and screen reader compatibility. Uses Axe, Lighthouse, and manual testing to validate accessibility.",
     category: "Testing & QA",
     tags: ["Accessibility", "WCAG", "A11y", "Inclusive Design"],
     dependencies: [],
-    files: [".claude/agents/accessibility-advocate.md", ".gemini/agents/accessibility-advocate.md", ".openai/agents/accessibility-advocate.md"],
+    files: [
+      ".claude/agents/accessibility-advocate.md",
+      ".gemini/agents/accessibility-advocate.md",
+      ".openai/agents/accessibility-advocate.md",
+    ],
     install: "npx @gicm/cli add agent/accessibility-advocate",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1008,22 +1414,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Project Coordinator",
     slug: "project-coordinator",
-    description: "Task routing, agent delegation, dependency resolution. 7.3x faster multi-agent workflows.",
-    longDescription: "Meta-agent coordinating workflows across specialized agents. Routes tasks based on complexity, manages dependencies, resolves conflicts, and ensures quality gates. Optimizes for parallel execution when possible.",
+    description:
+      "Task routing, agent delegation, dependency resolution. 7.3x faster multi-agent workflows.",
+    longDescription:
+      "Meta-agent coordinating workflows across specialized agents. Routes tasks based on complexity, manages dependencies, resolves conflicts, and ensures quality gates. Optimizes for parallel execution when possible.",
     category: "Coordination & Workflow",
     tags: ["Coordination", "Workflow", "Orchestration", "Project Management"],
     dependencies: [],
-    files: [".claude/agents/project-coordinator.md", ".gemini/agents/project-coordinator.md", ".openai/agents/project-coordinator.md"],
+    files: [
+      ".claude/agents/project-coordinator.md",
+      ".gemini/agents/project-coordinator.md",
+      ".openai/agents/project-coordinator.md",
+    ],
     install: "npx @gicm/cli add agent/project-coordinator",
     layer: ".agent",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 891,
     remixes: 276,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1036,22 +1455,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Code Reviewer",
     slug: "code-reviewer",
-    description: "Automated code review. Style enforcement, best practices, anti-pattern detection. 4.7x fewer bugs in production.",
-    longDescription: "Code review specialist analyzing pull requests for code quality, best practices, security issues, and performance problems. Provides constructive feedback with specific suggestions and rationale.",
+    description:
+      "Automated code review. Style enforcement, best practices, anti-pattern detection. 4.7x fewer bugs in production.",
+    longDescription:
+      "Code review specialist analyzing pull requests for code quality, best practices, security issues, and performance problems. Provides constructive feedback with specific suggestions and rationale.",
     category: "Coordination & Workflow",
     tags: ["Code Review", "Quality", "Best Practices", "Automation"],
     dependencies: [],
-    files: [".claude/agents/code-reviewer.md", ".gemini/agents/code-reviewer.md", ".openai/agents/code-reviewer.md"],
+    files: [
+      ".claude/agents/code-reviewer.md",
+      ".gemini/agents/code-reviewer.md",
+      ".openai/agents/code-reviewer.md",
+    ],
     install: "npx @gicm/cli add agent/code-reviewer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1034,
     remixes: 312,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1066,22 +1498,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Hardhat Deployment Specialist",
     slug: "hardhat-deployment-specialist",
-    description: "Hardhat deployment scripts, multi-network configs, contract verification. 4.5x faster EVM deployments.",
-    longDescription: "Expert in Hardhat deployment workflows: deployment scripts with ethers.js, network configuration, contract verification on Etherscan/Blockscout, upgrade scripts, and gas optimization. Handles multiple networks (mainnet, testnet, L2s) with consistent deployment patterns.",
+    description:
+      "Hardhat deployment scripts, multi-network configs, contract verification. 4.5x faster EVM deployments.",
+    longDescription:
+      "Expert in Hardhat deployment workflows: deployment scripts with ethers.js, network configuration, contract verification on Etherscan/Blockscout, upgrade scripts, and gas optimization. Handles multiple networks (mainnet, testnet, L2s) with consistent deployment patterns.",
     category: "Development Team",
     tags: ["Ethereum", "Hardhat", "Deployment", "EVM"],
     dependencies: [],
-    files: [".claude/agents/hardhat-deployment-specialist.md", ".gemini/agents/hardhat-deployment-specialist.md", ".openai/agents/hardhat-deployment-specialist.md"],
+    files: [
+      ".claude/agents/hardhat-deployment-specialist.md",
+      ".gemini/agents/hardhat-deployment-specialist.md",
+      ".openai/agents/hardhat-deployment-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/hardhat-deployment-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DEPLOYER_PRIVATE_KEY", "ETHERSCAN_API_KEY", "RPC_URL"],
     installs: 734,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1094,22 +1539,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Foundry Testing Expert",
     slug: "foundry-testing-expert",
-    description: "Foundry test suites, fuzzing, invariant testing. 5.2x better test coverage for Solidity.",
-    longDescription: "Foundry testing specialist building comprehensive test suites with forge test, property-based testing with fuzzing, invariant testing, and gas snapshots. Uses cheatcodes for advanced testing scenarios and integrates with CI/CD.",
+    description:
+      "Foundry test suites, fuzzing, invariant testing. 5.2x better test coverage for Solidity.",
+    longDescription:
+      "Foundry testing specialist building comprehensive test suites with forge test, property-based testing with fuzzing, invariant testing, and gas snapshots. Uses cheatcodes for advanced testing scenarios and integrates with CI/CD.",
     category: "Testing & QA",
     tags: ["Foundry", "Testing", "Solidity", "Fuzzing"],
     dependencies: [],
-    files: [".claude/agents/foundry-testing-expert.md", ".gemini/agents/foundry-testing-expert.md", ".openai/agents/foundry-testing-expert.md"],
+    files: [
+      ".claude/agents/foundry-testing-expert.md",
+      ".gemini/agents/foundry-testing-expert.md",
+      ".openai/agents/foundry-testing-expert.md",
+    ],
     install: "npx @gicm/cli add agent/foundry-testing-expert",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 612,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1122,22 +1580,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Ethers.js Integration Architect",
     slug: "ethersjs-integration-architect",
-    description: "Ethers.js v6 integration, contract interaction, event listening. 89% cleaner Web3 code.",
-    longDescription: "Frontend Web3 specialist using ethers.js v6 for contract interactions, wallet connections, transaction construction, event listening, and error handling. Optimized for React/Next.js with TypeScript type generation from ABIs.",
+    description:
+      "Ethers.js v6 integration, contract interaction, event listening. 89% cleaner Web3 code.",
+    longDescription:
+      "Frontend Web3 specialist using ethers.js v6 for contract interactions, wallet connections, transaction construction, event listening, and error handling. Optimized for React/Next.js with TypeScript type generation from ABIs.",
     category: "Development Team",
     tags: ["Ethers.js", "Web3", "Frontend", "TypeScript"],
     dependencies: ["frontend-fusion-engine"],
-    files: [".claude/agents/ethersjs-integration-architect.md", ".gemini/agents/ethersjs-integration-architect.md", ".openai/agents/ethersjs-integration-architect.md"],
+    files: [
+      ".claude/agents/ethersjs-integration-architect.md",
+      ".gemini/agents/ethersjs-integration-architect.md",
+      ".openai/agents/ethersjs-integration-architect.md",
+    ],
     install: "npx @gicm/cli add agent/ethersjs-integration-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["NEXT_PUBLIC_RPC_URL", "NEXT_PUBLIC_CHAIN_ID"],
     installs: 892,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1150,22 +1621,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "EVM Security Auditor",
     slug: "evm-security-auditor",
-    description: "Automated Solidity security audits. Slither, Mythril, reentrancy detection. 6.1x vulnerability discovery.",
-    longDescription: "Smart contract security specialist for EVM chains. Runs automated audits with Slither and Mythril, identifies reentrancy vulnerabilities, unchecked external calls, integer overflows, and front-running risks. Provides remediation guidance following best practices.",
+    description:
+      "Automated Solidity security audits. Slither, Mythril, reentrancy detection. 6.1x vulnerability discovery.",
+    longDescription:
+      "Smart contract security specialist for EVM chains. Runs automated audits with Slither and Mythril, identifies reentrancy vulnerabilities, unchecked external calls, integer overflows, and front-running risks. Provides remediation guidance following best practices.",
     category: "Security & Audit",
     tags: ["Security", "Solidity", "Audit", "EVM"],
     dependencies: [],
-    files: [".claude/agents/evm-security-auditor.md", ".gemini/agents/evm-security-auditor.md", ".openai/agents/evm-security-auditor.md"],
+    files: [
+      ".claude/agents/evm-security-auditor.md",
+      ".gemini/agents/evm-security-auditor.md",
+      ".openai/agents/evm-security-auditor.md",
+    ],
     install: "npx @gicm/cli add agent/evm-security-auditor",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 823,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1178,22 +1662,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Uniswap V3 Integration Specialist",
     slug: "uniswap-v3-integration-specialist",
-    description: "Uniswap V3 pool integration, concentrated liquidity, position management. 92% efficient LP strategies.",
-    longDescription: "DeFi specialist integrating Uniswap V3 pools: concentrated liquidity positions, tick calculations, fee tier selection, price oracles, and swap routing. Handles position NFTs and liquidity management strategies.",
+    description:
+      "Uniswap V3 pool integration, concentrated liquidity, position management. 92% efficient LP strategies.",
+    longDescription:
+      "DeFi specialist integrating Uniswap V3 pools: concentrated liquidity positions, tick calculations, fee tier selection, price oracles, and swap routing. Handles position NFTs and liquidity management strategies.",
     category: "Development Team",
     tags: ["DeFi", "Uniswap", "Ethereum", "Liquidity"],
     dependencies: ["ethersjs-integration-architect"],
-    files: [".claude/agents/uniswap-v3-integration-specialist.md", ".gemini/agents/uniswap-v3-integration-specialist.md", ".openai/agents/uniswap-v3-integration-specialist.md"],
+    files: [
+      ".claude/agents/uniswap-v3-integration-specialist.md",
+      ".gemini/agents/uniswap-v3-integration-specialist.md",
+      ".openai/agents/uniswap-v3-integration-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/uniswap-v3-integration-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1206,22 +1703,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Aave Protocol Integrator",
     slug: "aave-protocol-integrator",
-    description: "Aave lending/borrowing integration, flash loans, liquidation bots. 4.7x DeFi integration speed.",
-    longDescription: "Aave protocol expert implementing lending, borrowing, flash loan strategies, and liquidation monitoring. Covers health factor calculations, interest rate models, and multi-collateral positions across Aave V2/V3.",
+    description:
+      "Aave lending/borrowing integration, flash loans, liquidation bots. 4.7x DeFi integration speed.",
+    longDescription:
+      "Aave protocol expert implementing lending, borrowing, flash loan strategies, and liquidation monitoring. Covers health factor calculations, interest rate models, and multi-collateral positions across Aave V2/V3.",
     category: "Development Team",
     tags: ["DeFi", "Aave", "Lending", "Flash Loans"],
     dependencies: ["ethersjs-integration-architect"],
-    files: [".claude/agents/aave-protocol-integrator.md", ".gemini/agents/aave-protocol-integrator.md", ".openai/agents/aave-protocol-integrator.md"],
+    files: [
+      ".claude/agents/aave-protocol-integrator.md",
+      ".gemini/agents/aave-protocol-integrator.md",
+      ".openai/agents/aave-protocol-integrator.md",
+    ],
     install: "npx @gicm/cli add agent/aave-protocol-integrator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 534,
     remixes: 156,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1234,22 +1744,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Chainlink Oracle Specialist",
     slug: "chainlink-oracle-specialist",
-    description: "Chainlink price feeds, VRF, Automation (Keepers). Reliable off-chain data integration.",
-    longDescription: "Chainlink integration expert implementing price feeds for accurate asset pricing, VRF for verifiable randomness, and Automation (formerly Keepers) for automated contract execution. Handles staleness checks and fallback oracles.",
+    description:
+      "Chainlink price feeds, VRF, Automation (Keepers). Reliable off-chain data integration.",
+    longDescription:
+      "Chainlink integration expert implementing price feeds for accurate asset pricing, VRF for verifiable randomness, and Automation (formerly Keepers) for automated contract execution. Handles staleness checks and fallback oracles.",
     category: "Development Team",
     tags: ["Chainlink", "Oracles", "VRF", "Automation"],
     dependencies: [],
-    files: [".claude/agents/chainlink-oracle-specialist.md", ".gemini/agents/chainlink-oracle-specialist.md", ".openai/agents/chainlink-oracle-specialist.md"],
+    files: [
+      ".claude/agents/chainlink-oracle-specialist.md",
+      ".gemini/agents/chainlink-oracle-specialist.md",
+      ".openai/agents/chainlink-oracle-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/chainlink-oracle-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 612,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1262,22 +1785,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "OpenZeppelin Patterns Expert",
     slug: "openzeppelin-patterns-expert",
-    description: "OpenZeppelin contracts, access control, upgradeable patterns. Battle-tested smart contract foundations.",
-    longDescription: "Smart contract architect using OpenZeppelin libraries: ERC token standards, access control (Ownable, AccessControl), security utilities (ReentrancyGuard, Pausable), and proxy patterns (UUPS, Transparent). Follows audited contract patterns.",
+    description:
+      "OpenZeppelin contracts, access control, upgradeable patterns. Battle-tested smart contract foundations.",
+    longDescription:
+      "Smart contract architect using OpenZeppelin libraries: ERC token standards, access control (Ownable, AccessControl), security utilities (ReentrancyGuard, Pausable), and proxy patterns (UUPS, Transparent). Follows audited contract patterns.",
     category: "Development Team",
     tags: ["OpenZeppelin", "Solidity", "Smart Contracts", "Security"],
     dependencies: [],
-    files: [".claude/agents/openzeppelin-patterns-expert.md", ".gemini/agents/openzeppelin-patterns-expert.md", ".openai/agents/openzeppelin-patterns-expert.md"],
+    files: [
+      ".claude/agents/openzeppelin-patterns-expert.md",
+      ".gemini/agents/openzeppelin-patterns-expert.md",
+      ".openai/agents/openzeppelin-patterns-expert.md",
+    ],
     install: "npx @gicm/cli add agent/openzeppelin-patterns-expert",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 945,
     remixes: 278,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1290,22 +1826,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Graph Protocol Indexer",
     slug: "graph-protocol-indexer",
-    description: "The Graph subgraph development, schema design, efficient indexing. 5.8x faster blockchain data queries.",
-    longDescription: "The Graph specialist building subgraphs for efficient blockchain data indexing. Designs GraphQL schemas, writes AssemblyScript mappings, handles entity relationships, and optimizes query performance. Deploys to hosted service or decentralized network.",
+    description:
+      "The Graph subgraph development, schema design, efficient indexing. 5.8x faster blockchain data queries.",
+    longDescription:
+      "The Graph specialist building subgraphs for efficient blockchain data indexing. Designs GraphQL schemas, writes AssemblyScript mappings, handles entity relationships, and optimizes query performance. Deploys to hosted service or decentralized network.",
     category: "Backend & Data",
     tags: ["The Graph", "Indexing", "GraphQL", "Blockchain"],
     dependencies: [],
-    files: [".claude/agents/graph-protocol-indexer.md", ".gemini/agents/graph-protocol-indexer.md", ".openai/agents/graph-protocol-indexer.md"],
+    files: [
+      ".claude/agents/graph-protocol-indexer.md",
+      ".gemini/agents/graph-protocol-indexer.md",
+      ".openai/agents/graph-protocol-indexer.md",
+    ],
     install: "npx @gicm/cli add agent/graph-protocol-indexer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["GRAPH_API_KEY"],
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1318,22 +1867,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "ERC Standards Implementer",
     slug: "erc-standards-implementer",
-    description: "ERC-20/721/1155/4626 implementation expert. Token standards specialist.",
-    longDescription: "Token standard specialist implementing ERC-20 (fungible tokens), ERC-721 (NFTs), ERC-1155 (multi-tokens), and ERC-4626 (tokenized vaults). Ensures compliance with specifications and integrates with OpenZeppelin base contracts.",
+    description:
+      "ERC-20/721/1155/4626 implementation expert. Token standards specialist.",
+    longDescription:
+      "Token standard specialist implementing ERC-20 (fungible tokens), ERC-721 (NFTs), ERC-1155 (multi-tokens), and ERC-4626 (tokenized vaults). Ensures compliance with specifications and integrates with OpenZeppelin base contracts.",
     category: "Development Team",
     tags: ["ERC", "Token Standards", "Solidity", "NFT"],
     dependencies: ["openzeppelin-patterns-expert"],
-    files: [".claude/agents/erc-standards-implementer.md", ".gemini/agents/erc-standards-implementer.md", ".openai/agents/erc-standards-implementer.md"],
+    files: [
+      ".claude/agents/erc-standards-implementer.md",
+      ".gemini/agents/erc-standards-implementer.md",
+      ".openai/agents/erc-standards-implementer.md",
+    ],
     install: "npx @gicm/cli add agent/erc-standards-implementer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 734,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1346,22 +1908,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Layer 2 Optimism Specialist",
     slug: "layer2-optimism-specialist",
-    description: "Optimism/Base deployment, L1<>L2 bridging, gas optimization. 95% lower transaction costs.",
-    longDescription: "Layer 2 expert for Optimism and Base networks. Handles deployment to L2s, cross-chain message passing, token bridging, and L2-specific gas optimizations. Optimized for OP Stack chains.",
+    description:
+      "Optimism/Base deployment, L1<>L2 bridging, gas optimization. 95% lower transaction costs.",
+    longDescription:
+      "Layer 2 expert for Optimism and Base networks. Handles deployment to L2s, cross-chain message passing, token bridging, and L2-specific gas optimizations. Optimized for OP Stack chains.",
     category: "Development Team",
     tags: ["Layer 2", "Optimism", "Base", "Scaling"],
     dependencies: ["hardhat-deployment-specialist"],
-    files: [".claude/agents/layer2-optimism-specialist.md", ".gemini/agents/layer2-optimism-specialist.md", ".openai/agents/layer2-optimism-specialist.md"],
+    files: [
+      ".claude/agents/layer2-optimism-specialist.md",
+      ".gemini/agents/layer2-optimism-specialist.md",
+      ".openai/agents/layer2-optimism-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/layer2-optimism-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["L2_RPC_URL", "L1_RPC_URL"],
     installs: 478,
     remixes: 134,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1374,22 +1949,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Layer 2 Arbitrum Specialist",
     slug: "layer2-arbitrum-specialist",
-    description: "Arbitrum deployment, Stylus (Rust contracts), retryable tickets. Advanced L2 patterns.",
-    longDescription: "Arbitrum specialist handling Arbitrum One/Nova deployments, Stylus smart contracts in Rust, retryable tickets for L1<>L2 messaging, and Arbitrum-specific gas mechanics. Covers Orbit chain deployments.",
+    description:
+      "Arbitrum deployment, Stylus (Rust contracts), retryable tickets. Advanced L2 patterns.",
+    longDescription:
+      "Arbitrum specialist handling Arbitrum One/Nova deployments, Stylus smart contracts in Rust, retryable tickets for L1<>L2 messaging, and Arbitrum-specific gas mechanics. Covers Orbit chain deployments.",
     category: "Development Team",
     tags: ["Layer 2", "Arbitrum", "Stylus", "Scaling"],
     dependencies: ["hardhat-deployment-specialist"],
-    files: [".claude/agents/layer2-arbitrum-specialist.md", ".gemini/agents/layer2-arbitrum-specialist.md", ".openai/agents/layer2-arbitrum-specialist.md"],
+    files: [
+      ".claude/agents/layer2-arbitrum-specialist.md",
+      ".gemini/agents/layer2-arbitrum-specialist.md",
+      ".openai/agents/layer2-arbitrum-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/layer2-arbitrum-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["ARBITRUM_RPC_URL"],
     installs: 423,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1402,22 +1990,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Gnosis Safe Integrator",
     slug: "gnosis-safe-integrator",
-    description: "Safe multisig integration, transaction batching, Safe{Core} SDK. Secure treasury management.",
-    longDescription: "Gnosis Safe (now Safe) integration specialist implementing multisig wallets, transaction batching, signature collection, and Safe{Core} Protocol SDK usage. Handles module development and delegate calls.",
+    description:
+      "Safe multisig integration, transaction batching, Safe{Core} SDK. Secure treasury management.",
+    longDescription:
+      "Gnosis Safe (now Safe) integration specialist implementing multisig wallets, transaction batching, signature collection, and Safe{Core} Protocol SDK usage. Handles module development and delegate calls.",
     category: "Development Team",
     tags: ["Safe", "Multisig", "Security", "Treasury"],
     dependencies: ["ethersjs-integration-architect"],
-    files: [".claude/agents/gnosis-safe-integrator.md", ".gemini/agents/gnosis-safe-integrator.md", ".openai/agents/gnosis-safe-integrator.md"],
+    files: [
+      ".claude/agents/gnosis-safe-integrator.md",
+      ".gemini/agents/gnosis-safe-integrator.md",
+      ".openai/agents/gnosis-safe-integrator.md",
+    ],
     install: "npx @gicm/cli add agent/gnosis-safe-integrator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1430,22 +2031,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Upgradeable Contracts Architect",
     slug: "upgradeable-contracts-architect",
-    description: "UUPS/Transparent proxy patterns, storage layouts, upgrade safety. Zero-downtime contract upgrades.",
-    longDescription: "Smart contract upgrade specialist implementing UUPS and Transparent proxy patterns using OpenZeppelin. Manages storage layouts, initialization functions, and upgrade safety checks. Prevents storage collisions and ensures backward compatibility.",
+    description:
+      "UUPS/Transparent proxy patterns, storage layouts, upgrade safety. Zero-downtime contract upgrades.",
+    longDescription:
+      "Smart contract upgrade specialist implementing UUPS and Transparent proxy patterns using OpenZeppelin. Manages storage layouts, initialization functions, and upgrade safety checks. Prevents storage collisions and ensures backward compatibility.",
     category: "Development Team",
     tags: ["Upgradeable", "Proxy", "Solidity", "OpenZeppelin"],
     dependencies: ["openzeppelin-patterns-expert"],
-    files: [".claude/agents/upgradeable-contracts-architect.md", ".gemini/agents/upgradeable-contracts-architect.md", ".openai/agents/upgradeable-contracts-architect.md"],
+    files: [
+      ".claude/agents/upgradeable-contracts-architect.md",
+      ".gemini/agents/upgradeable-contracts-architect.md",
+      ".openai/agents/upgradeable-contracts-architect.md",
+    ],
     install: "npx @gicm/cli add agent/upgradeable-contracts-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 445,
     remixes: 124,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1458,22 +2072,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Gas Optimization Specialist",
     slug: "gas-optimization-specialist",
-    description: "EVM gas optimization, assembly optimization, storage packing. 45-70% gas cost reduction.",
-    longDescription: "Gas optimization expert analyzing and optimizing Solidity contracts for minimal gas usage. Techniques include storage packing, memory vs storage optimization, unchecked arithmetic, assembly optimization, and batch operations. Achieves significant gas savings.",
+    description:
+      "EVM gas optimization, assembly optimization, storage packing. 45-70% gas cost reduction.",
+    longDescription:
+      "Gas optimization expert analyzing and optimizing Solidity contracts for minimal gas usage. Techniques include storage packing, memory vs storage optimization, unchecked arithmetic, assembly optimization, and batch operations. Achieves significant gas savings.",
     category: "DevTools & Optimization",
     tags: ["Gas Optimization", "EVM", "Solidity", "Assembly"],
     dependencies: [],
-    files: [".claude/agents/gas-optimization-specialist.md", ".gemini/agents/gas-optimization-specialist.md", ".openai/agents/gas-optimization-specialist.md"],
+    files: [
+      ".claude/agents/gas-optimization-specialist.md",
+      ".gemini/agents/gas-optimization-specialist.md",
+      ".openai/agents/gas-optimization-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/gas-optimization-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1486,22 +2113,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "DevOps Platform Engineer",
     slug: "devops-platform-engineer",
-    description: "DevOps and infrastructure specialist for CI/CD, cloud platforms, and deployment automation",
-    longDescription: "Elite infrastructure and deployment specialist focused on building robust CI/CD pipelines, managing cloud infrastructure, and automating deployment workflows. Expertise spans containerization, orchestration, infrastructure as code, and cloud-native architectures across AWS, GCP, and Azure.",
+    description:
+      "DevOps and infrastructure specialist for CI/CD, cloud platforms, and deployment automation",
+    longDescription:
+      "Elite infrastructure and deployment specialist focused on building robust CI/CD pipelines, managing cloud infrastructure, and automating deployment workflows. Expertise spans containerization, orchestration, infrastructure as code, and cloud-native architectures across AWS, GCP, and Azure.",
     category: "DevOps & Infrastructure",
     tags: ["DevOps", "CI/CD", "Kubernetes", "Docker", "AWS", "Terraform"],
     dependencies: [],
-    files: [".claude/agents/devops-platform-engineer.md", ".gemini/agents/devops-platform-engineer.md", ".openai/agents/devops-platform-engineer.md"],
+    files: [
+      ".claude/agents/devops-platform-engineer.md",
+      ".gemini/agents/devops-platform-engineer.md",
+      ".openai/agents/devops-platform-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/devops-platform-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "KUBECONFIG"],
     installs: 1876,
     remixes: 534,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1514,22 +2154,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "API Design Architect",
     slug: "api-design-architect",
-    description: "REST/GraphQL/tRPC API design specialist with OpenAPI, type safety, and scalability expertise",
-    longDescription: "Elite API specialist focused on designing robust, scalable, and type-safe APIs. Expertise spans RESTful design, GraphQL schemas, tRPC procedures, OpenAPI specifications, and API gateway patterns. Implements authentication, rate limiting, and performance optimizations.",
+    description:
+      "REST/GraphQL/tRPC API design specialist with OpenAPI, type safety, and scalability expertise",
+    longDescription:
+      "Elite API specialist focused on designing robust, scalable, and type-safe APIs. Expertise spans RESTful design, GraphQL schemas, tRPC procedures, OpenAPI specifications, and API gateway patterns. Implements authentication, rate limiting, and performance optimizations.",
     category: "Development Team",
     tags: ["API", "REST", "GraphQL", "tRPC", "OpenAPI", "Architecture"],
     dependencies: ["typescript-precision-engineer"],
-    files: [".claude/agents/api-design-architect.md", ".gemini/agents/api-design-architect.md", ".openai/agents/api-design-architect.md"],
+    files: [
+      ".claude/agents/api-design-architect.md",
+      ".gemini/agents/api-design-architect.md",
+      ".openai/agents/api-design-architect.md",
+    ],
     install: "npx @gicm/cli add agent/api-design-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1543,
     remixes: 467,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1542,22 +2195,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Mobile App Developer",
     slug: "mobile-app-developer",
-    description: "Cross-platform mobile development specialist for React Native, Expo, and native iOS/Android",
-    longDescription: "Expert in cross-platform mobile development with React Native and Expo. Specializes in building high-performance mobile applications with native features, seamless UX, and Web3 wallet integration. Expertise in Hermes, performance optimization, and mobile-specific patterns.",
+    description:
+      "Cross-platform mobile development specialist for React Native, Expo, and native iOS/Android",
+    longDescription:
+      "Expert in cross-platform mobile development with React Native and Expo. Specializes in building high-performance mobile applications with native features, seamless UX, and Web3 wallet integration. Expertise in Hermes, performance optimization, and mobile-specific patterns.",
     category: "Development Team",
     tags: ["Mobile", "React Native", "Expo", "iOS", "Android", "Performance"],
     dependencies: ["frontend-fusion-engine", "web3-integration-maestro"],
-    files: [".claude/agents/mobile-app-developer.md", ".gemini/agents/mobile-app-developer.md", ".openai/agents/mobile-app-developer.md"],
+    files: [
+      ".claude/agents/mobile-app-developer.md",
+      ".gemini/agents/mobile-app-developer.md",
+      ".openai/agents/mobile-app-developer.md",
+    ],
     install: "npx @gicm/cli add agent/mobile-app-developer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["EXPO_TOKEN", "SENTRY_DSN"],
     installs: 1678,
     remixes: 489,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1570,22 +2236,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Data Engineering Specialist",
     slug: "data-engineering-specialist",
-    description: "Data pipeline and ETL specialist for analytics, warehousing, and real-time processing",
-    longDescription: "Expert in building scalable data pipelines, ETL workflows, and analytics infrastructure. Specializes in data warehousing, stream processing, and building data platforms with Airflow, dbt, Kafka, and modern data stack tools.",
+    description:
+      "Data pipeline and ETL specialist for analytics, warehousing, and real-time processing",
+    longDescription:
+      "Expert in building scalable data pipelines, ETL workflows, and analytics infrastructure. Specializes in data warehousing, stream processing, and building data platforms with Airflow, dbt, Kafka, and modern data stack tools.",
     category: "Backend & Data",
-    tags: ["Data Engineering", "ETL", "Data Warehouse", "Airflow", "dbt", "Analytics"],
+    tags: [
+      "Data Engineering",
+      "ETL",
+      "Data Warehouse",
+      "Airflow",
+      "dbt",
+      "Analytics",
+    ],
     dependencies: ["database-schema-oracle"],
-    files: [".claude/agents/data-engineering-specialist.md", ".gemini/agents/data-engineering-specialist.md", ".openai/agents/data-engineering-specialist.md"],
+    files: [
+      ".claude/agents/data-engineering-specialist.md",
+      ".gemini/agents/data-engineering-specialist.md",
+      ".openai/agents/data-engineering-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/data-engineering-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SNOWFLAKE_ACCOUNT", "BIGQUERY_PROJECT_ID", "AIRFLOW_HOME"],
     installs: 1234,
     remixes: 378,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1598,22 +2284,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Security Engineer",
     slug: "security-engineer",
-    description: "Application security specialist for vulnerability assessment, penetration testing, and secure coding",
-    longDescription: "Elite application security specialist focused on identifying and remediating vulnerabilities, implementing security best practices, and building secure-by-design systems. Expertise spans OWASP Top 10, penetration testing, cryptography, and security automation.",
+    description:
+      "Application security specialist for vulnerability assessment, penetration testing, and secure coding",
+    longDescription:
+      "Elite application security specialist focused on identifying and remediating vulnerabilities, implementing security best practices, and building secure-by-design systems. Expertise spans OWASP Top 10, penetration testing, cryptography, and security automation.",
     category: "Security & Auditing",
-    tags: ["Security", "Penetration Testing", "OWASP", "Cryptography", "Vulnerability Assessment"],
+    tags: [
+      "Security",
+      "Penetration Testing",
+      "OWASP",
+      "Cryptography",
+      "Vulnerability Assessment",
+    ],
     dependencies: [],
-    files: [".claude/agents/security-engineer.md", ".gemini/agents/security-engineer.md", ".openai/agents/security-engineer.md"],
+    files: [
+      ".claude/agents/security-engineer.md",
+      ".gemini/agents/security-engineer.md",
+      ".openai/agents/security-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/security-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1987,
     remixes: 612,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1626,22 +2331,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Game Developer",
     slug: "game-developer",
-    description: "Game development specialist for Unity, Unreal Engine, and Web3 gaming integration",
-    longDescription: "Expert in game development with Unity, Unreal Engine, and Web3 gaming integration. Specializes in gameplay mechanics, physics, AI, multiplayer networking, and blockchain-based game economies with NFT integration.",
+    description:
+      "Game development specialist for Unity, Unreal Engine, and Web3 gaming integration",
+    longDescription:
+      "Expert in game development with Unity, Unreal Engine, and Web3 gaming integration. Specializes in gameplay mechanics, physics, AI, multiplayer networking, and blockchain-based game economies with NFT integration.",
     category: "Development Team",
     tags: ["Game Development", "Unity", "Unreal Engine", "Web3 Gaming", "NFT"],
     dependencies: [],
-    files: [".claude/agents/game-developer.md", ".gemini/agents/game-developer.md", ".openai/agents/game-developer.md"],
+    files: [
+      ".claude/agents/game-developer.md",
+      ".gemini/agents/game-developer.md",
+      ".openai/agents/game-developer.md",
+    ],
     install: "npx @gicm/cli add agent/game-developer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1123,
     remixes: 334,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1654,22 +2372,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Backend API Specialist",
     slug: "backend-api-specialist",
-    description: "Backend development specialist for Node.js, Python, and Go API servers with database optimization",
-    longDescription: "Expert in building high-performance, scalable backend services and APIs. Specializes in Node.js, Python, and Go backends with expertise in database optimization, caching strategies, and microservices architecture.",
+    description:
+      "Backend development specialist for Node.js, Python, and Go API servers with database optimization",
+    longDescription:
+      "Expert in building high-performance, scalable backend services and APIs. Specializes in Node.js, Python, and Go backends with expertise in database optimization, caching strategies, and microservices architecture.",
     category: "Development Team",
     tags: ["Backend", "API", "Node.js", "Python", "Go", "Database"],
     dependencies: ["database-schema-oracle", "api-contract-designer"],
-    files: [".claude/agents/backend-api-specialist.md", ".gemini/agents/backend-api-specialist.md", ".openai/agents/backend-api-specialist.md"],
+    files: [
+      ".claude/agents/backend-api-specialist.md",
+      ".gemini/agents/backend-api-specialist.md",
+      ".openai/agents/backend-api-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/backend-api-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DATABASE_URL", "REDIS_URL"],
     installs: 1765,
     remixes: 523,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1682,22 +2413,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "UI/UX Designer",
     slug: "ui-ux-designer",
-    description: "UI/UX design specialist for interface design, accessibility, and design systems",
-    longDescription: "Expert in user interface design, user experience optimization, and design system implementation. Specializes in creating accessible, intuitive, and visually appealing interfaces with a focus on usability and conversion optimization.",
+    description:
+      "UI/UX design specialist for interface design, accessibility, and design systems",
+    longDescription:
+      "Expert in user interface design, user experience optimization, and design system implementation. Specializes in creating accessible, intuitive, and visually appealing interfaces with a focus on usability and conversion optimization.",
     category: "Design & UX",
-    tags: ["UI/UX", "Design Systems", "Accessibility", "Figma", "Responsive Design"],
+    tags: [
+      "UI/UX",
+      "Design Systems",
+      "Accessibility",
+      "Figma",
+      "Responsive Design",
+    ],
     dependencies: ["frontend-fusion-engine"],
-    files: [".claude/agents/ui-ux-designer.md", ".gemini/agents/ui-ux-designer.md", ".openai/agents/ui-ux-designer.md"],
+    files: [
+      ".claude/agents/ui-ux-designer.md",
+      ".gemini/agents/ui-ux-designer.md",
+      ".openai/agents/ui-ux-designer.md",
+    ],
     install: "npx @gicm/cli add agent/ui-ux-designer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1456,
     remixes: 423,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1710,22 +2460,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Blockchain Indexer Specialist",
     slug: "blockchain-indexer-specialist",
-    description: "Blockchain data indexing specialist for The Graph, custom indexers, and on-chain analytics",
-    longDescription: "Expert in indexing blockchain data for efficient querying and analytics. Specializes in The Graph protocol, custom indexer development, and building real-time blockchain data pipelines with proper reorg handling.",
+    description:
+      "Blockchain data indexing specialist for The Graph, custom indexers, and on-chain analytics",
+    longDescription:
+      "Expert in indexing blockchain data for efficient querying and analytics. Specializes in The Graph protocol, custom indexer development, and building real-time blockchain data pipelines with proper reorg handling.",
     category: "Backend & Data",
     tags: ["The Graph", "Indexing", "Blockchain Data", "Analytics", "GraphQL"],
     dependencies: ["graph-protocol-indexer"],
-    files: [".claude/agents/blockchain-indexer-specialist.md", ".gemini/agents/blockchain-indexer-specialist.md", ".openai/agents/blockchain-indexer-specialist.md"],
+    files: [
+      ".claude/agents/blockchain-indexer-specialist.md",
+      ".gemini/agents/blockchain-indexer-specialist.md",
+      ".openai/agents/blockchain-indexer-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/blockchain-indexer-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["GRAPH_API_KEY", "RPC_ENDPOINT"],
     installs: 987,
     remixes: 289,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1738,22 +2501,46 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Cloud Architect",
     slug: "cloud-architect",
-    description: "Cloud infrastructure architect for AWS, GCP, Azure with focus on cost optimization and scalability",
-    longDescription: "Expert in designing and implementing cloud infrastructure on AWS, GCP, and Azure. Specializes in building scalable, cost-effective, and highly available cloud architectures with a focus on infrastructure as code and cloud-native services.",
+    description:
+      "Cloud infrastructure architect for AWS, GCP, Azure with focus on cost optimization and scalability",
+    longDescription:
+      "Expert in designing and implementing cloud infrastructure on AWS, GCP, and Azure. Specializes in building scalable, cost-effective, and highly available cloud architectures with a focus on infrastructure as code and cloud-native services.",
     category: "DevOps & Infrastructure",
-    tags: ["Cloud", "AWS", "GCP", "Azure", "Infrastructure", "Cost Optimization"],
+    tags: [
+      "Cloud",
+      "AWS",
+      "GCP",
+      "Azure",
+      "Infrastructure",
+      "Cost Optimization",
+    ],
     dependencies: [],
-    files: [".claude/agents/cloud-architect.md", ".gemini/agents/cloud-architect.md", ".openai/agents/cloud-architect.md"],
+    files: [
+      ".claude/agents/cloud-architect.md",
+      ".gemini/agents/cloud-architect.md",
+      ".openai/agents/cloud-architect.md",
+    ],
     install: "npx @gicm/cli add agent/cloud-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
-    envKeys: ["AWS_ACCESS_KEY_ID", "GOOGLE_APPLICATION_CREDENTIALS", "AZURE_CLIENT_ID"],
+    envKeys: [
+      "AWS_ACCESS_KEY_ID",
+      "GOOGLE_APPLICATION_CREDENTIALS",
+      "AZURE_CLIENT_ID",
+    ],
     installs: 2134,
     remixes: 645,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1767,22 +2554,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Site Reliability Engineer (SRE)",
     slug: "site-reliability-engineer",
-    description: "High-availability infrastructure specialist. Uptime maximization, incident response, disaster recovery. 99.99% SLO design.",
-    longDescription: "Elite Site Reliability Engineer specializing in high-availability blockchain infrastructure. Focuses on uptime maximization, incident response, disaster recovery, and operational excellence for mission-critical dApps and smart contract platforms. Expert in Kubernetes orchestration, service mesh, monitoring and observability, blockchain-specific SRE patterns, and incident management.",
+    description:
+      "High-availability infrastructure specialist. Uptime maximization, incident response, disaster recovery. 99.99% SLO design.",
+    longDescription:
+      "Elite Site Reliability Engineer specializing in high-availability blockchain infrastructure. Focuses on uptime maximization, incident response, disaster recovery, and operational excellence for mission-critical dApps and smart contract platforms. Expert in Kubernetes orchestration, service mesh, monitoring and observability, blockchain-specific SRE patterns, and incident management.",
     category: "Phase 4 Specialists",
-    tags: ["SRE", "Kubernetes", "Monitoring", "Incident Response", "Disaster Recovery", "Observability"],
+    tags: [
+      "SRE",
+      "Kubernetes",
+      "Monitoring",
+      "Incident Response",
+      "Disaster Recovery",
+      "Observability",
+    ],
     dependencies: ["devops-platform-engineer"],
-    files: [".claude/agents/site-reliability-engineer.md", ".gemini/agents/site-reliability-engineer.md", ".openai/agents/site-reliability-engineer.md"],
+    files: [
+      ".claude/agents/site-reliability-engineer.md",
+      ".gemini/agents/site-reliability-engineer.md",
+      ".openai/agents/site-reliability-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/site-reliability-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["PROMETHEUS_URL", "DATADOG_API_KEY", "PAGERDUTY_API_KEY"],
     installs: 1420,
     remixes: 512,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1795,22 +2602,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Platform Engineer",
     slug: "platform-engineer",
-    description: "Internal Developer Platform builder. SDK development, self-service tooling, API abstraction. 4.5x faster developer onboarding.",
-    longDescription: "Expert platform engineer building developer-friendly infrastructure and tools for internal engineering teams. Specializes in platform abstractions, self-service capabilities, and reducing cognitive load for product teams building on blockchain infrastructure. Designs IDPs, microservices, SDKs, and developer experience improvements.",
+    description:
+      "Internal Developer Platform builder. SDK development, self-service tooling, API abstraction. 4.5x faster developer onboarding.",
+    longDescription:
+      "Expert platform engineer building developer-friendly infrastructure and tools for internal engineering teams. Specializes in platform abstractions, self-service capabilities, and reducing cognitive load for product teams building on blockchain infrastructure. Designs IDPs, microservices, SDKs, and developer experience improvements.",
     category: "Phase 4 Specialists",
-    tags: ["Platform Engineering", "SDK Development", "Developer Experience", "API Design", "CLI Tools"],
+    tags: [
+      "Platform Engineering",
+      "SDK Development",
+      "Developer Experience",
+      "API Design",
+      "CLI Tools",
+    ],
     dependencies: ["api-design-architect", "typescript-precision-engineer"],
-    files: [".claude/agents/platform-engineer.md", ".gemini/agents/platform-engineer.md", ".openai/agents/platform-engineer.md"],
+    files: [
+      ".claude/agents/platform-engineer.md",
+      ".gemini/agents/platform-engineer.md",
+      ".openai/agents/platform-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/platform-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1250,
     remixes: 423,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1823,22 +2649,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Solutions Architect",
     slug: "solutions-architect",
-    description: "Enterprise blockchain consultant. Business-to-technical translation, system design, risk management. RFP → architecture in 48 hours.",
-    longDescription: "Senior solutions architect translating business requirements into technical strategies for blockchain-based solutions. Excels at enterprise consulting, design patterns, architectural decision-making, and complex problem decomposition. Specializes in tokenomics design, smart contract architecture, compliance frameworks, and enterprise blockchain integration.",
+    description:
+      "Enterprise blockchain consultant. Business-to-technical translation, system design, risk management. RFP → architecture in 48 hours.",
+    longDescription:
+      "Senior solutions architect translating business requirements into technical strategies for blockchain-based solutions. Excels at enterprise consulting, design patterns, architectural decision-making, and complex problem decomposition. Specializes in tokenomics design, smart contract architecture, compliance frameworks, and enterprise blockchain integration.",
     category: "Phase 4 Specialists",
-    tags: ["Solutions Architecture", "Enterprise", "System Design", "Risk Management", "Tokenomics"],
+    tags: [
+      "Solutions Architecture",
+      "Enterprise",
+      "System Design",
+      "Risk Management",
+      "Tokenomics",
+    ],
     dependencies: ["smart-contract-forensics", "database-schema-oracle"],
-    files: [".claude/agents/solutions-architect.md", ".gemini/agents/solutions-architect.md", ".openai/agents/solutions-architect.md"],
+    files: [
+      ".claude/agents/solutions-architect.md",
+      ".gemini/agents/solutions-architect.md",
+      ".openai/agents/solutions-architect.md",
+    ],
     install: "npx @gicm/cli add agent/solutions-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1180,
     remixes: 380,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1851,22 +2696,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Technical Writer",
     slug: "technical-writer",
-    description: "Blockchain documentation specialist. API docs, smart contract specs, user guides. 6.1x better developer comprehension.",
-    longDescription: "Expert technical writer specializing in blockchain documentation, creating clear, accurate, and comprehensive documentation for developers, users, and auditors. Transforms complex smart contract logic into understandable guides. Maintains documentation systems, creates visual aids, and ensures technical accuracy.",
+    description:
+      "Blockchain documentation specialist. API docs, smart contract specs, user guides. 6.1x better developer comprehension.",
+    longDescription:
+      "Expert technical writer specializing in blockchain documentation, creating clear, accurate, and comprehensive documentation for developers, users, and auditors. Transforms complex smart contract logic into understandable guides. Maintains documentation systems, creates visual aids, and ensures technical accuracy.",
     category: "Phase 4 Specialists",
-    tags: ["Documentation", "Technical Writing", "API Docs", "User Guides", "Specification Writing"],
+    tags: [
+      "Documentation",
+      "Technical Writing",
+      "API Docs",
+      "User Guides",
+      "Specification Writing",
+    ],
     dependencies: ["api-design-architect"],
-    files: [".claude/agents/technical-writer.md", ".gemini/agents/technical-writer.md", ".openai/agents/technical-writer.md"],
+    files: [
+      ".claude/agents/technical-writer.md",
+      ".gemini/agents/technical-writer.md",
+      ".openai/agents/technical-writer.md",
+    ],
     install: "npx @gicm/cli add agent/technical-writer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1050,
     remixes: 340,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1879,22 +2743,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "QA Automation Lead",
     slug: "qa-automation-lead",
-    description: "Test strategy architect. Smart contract fuzzing, E2E automation, quality gates. 8.3x fewer production bugs.",
-    longDescription: "Leader in quality assurance automation specializing in comprehensive test strategies for blockchain applications. Designs scalable testing frameworks, automates quality gates, and ensures reliability across smart contracts, APIs, and frontends. Expert in smart contract testing, fuzzing campaigns, and blockchain-specific QA patterns.",
+    description:
+      "Test strategy architect. Smart contract fuzzing, E2E automation, quality gates. 8.3x fewer production bugs.",
+    longDescription:
+      "Leader in quality assurance automation specializing in comprehensive test strategies for blockchain applications. Designs scalable testing frameworks, automates quality gates, and ensures reliability across smart contracts, APIs, and frontends. Expert in smart contract testing, fuzzing campaigns, and blockchain-specific QA patterns.",
     category: "Phase 4 Specialists",
-    tags: ["QA Automation", "Test Strategy", "Smart Contract Testing", "Fuzzing", "Quality Assurance"],
+    tags: [
+      "QA Automation",
+      "Test Strategy",
+      "Smart Contract Testing",
+      "Fuzzing",
+      "Quality Assurance",
+    ],
     dependencies: ["test-automation-engineer", "solana-guardian-auditor"],
-    files: [".claude/agents/qa-automation-lead.md", ".gemini/agents/qa-automation-lead.md", ".openai/agents/qa-automation-lead.md"],
+    files: [
+      ".claude/agents/qa-automation-lead.md",
+      ".gemini/agents/qa-automation-lead.md",
+      ".openai/agents/qa-automation-lead.md",
+    ],
     install: "npx @gicm/cli add agent/qa-automation-lead",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1325,
     remixes: 470,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1907,22 +2790,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Performance Engineer",
     slug: "performance-engineer",
-    description: "Bottleneck eliminator. Profiling, optimization, benchmarking. 5.8x throughput improvement for blockchain APIs.",
-    longDescription: "Performance specialist focused on analyzing, identifying, and eliminating bottlenecks across blockchain systems. Excels in profiling, benchmarking, optimization, and ensuring applications meet strict SLA requirements. Specializes in RPC optimization, smart contract gas optimization, and infrastructure tuning.",
+    description:
+      "Bottleneck eliminator. Profiling, optimization, benchmarking. 5.8x throughput improvement for blockchain APIs.",
+    longDescription:
+      "Performance specialist focused on analyzing, identifying, and eliminating bottlenecks across blockchain systems. Excels in profiling, benchmarking, optimization, and ensuring applications meet strict SLA requirements. Specializes in RPC optimization, smart contract gas optimization, and infrastructure tuning.",
     category: "Phase 4 Specialists",
-    tags: ["Performance", "Optimization", "Profiling", "Benchmarking", "Blockchain"],
+    tags: [
+      "Performance",
+      "Optimization",
+      "Profiling",
+      "Benchmarking",
+      "Blockchain",
+    ],
     dependencies: ["rust-systems-architect", "database-schema-oracle"],
-    files: [".claude/agents/performance-engineer.md", ".gemini/agents/performance-engineer.md", ".openai/agents/performance-engineer.md"],
+    files: [
+      ".claude/agents/performance-engineer.md",
+      ".gemini/agents/performance-engineer.md",
+      ".openai/agents/performance-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/performance-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1450,
     remixes: 530,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1935,22 +2837,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Blockchain Auditor",
     slug: "blockchain-auditor",
-    description: "Smart contract security specialist. Vulnerability identification, fuzzing, formal verification. Zero exploits pre-launch.",
-    longDescription: "Specialized smart contract auditor with expertise in identifying security vulnerabilities, design flaws, and economic exploits in blockchain applications. Conducts thorough code reviews, fuzzing campaigns, and formal verification. Expert in DeFi exploits, access control flaws, and blockchain-specific security issues.",
+    description:
+      "Smart contract security specialist. Vulnerability identification, fuzzing, formal verification. Zero exploits pre-launch.",
+    longDescription:
+      "Specialized smart contract auditor with expertise in identifying security vulnerabilities, design flaws, and economic exploits in blockchain applications. Conducts thorough code reviews, fuzzing campaigns, and formal verification. Expert in DeFi exploits, access control flaws, and blockchain-specific security issues.",
     category: "Phase 4 Specialists",
-    tags: ["Security Audit", "Smart Contracts", "Vulnerability Analysis", "Fuzzing", "Formal Verification"],
+    tags: [
+      "Security Audit",
+      "Smart Contracts",
+      "Vulnerability Analysis",
+      "Fuzzing",
+      "Formal Verification",
+    ],
     dependencies: ["solana-guardian-auditor", "smart-contract-forensics"],
-    files: [".claude/agents/blockchain-auditor.md", ".gemini/agents/blockchain-auditor.md", ".openai/agents/blockchain-auditor.md"],
+    files: [
+      ".claude/agents/blockchain-auditor.md",
+      ".gemini/agents/blockchain-auditor.md",
+      ".openai/agents/blockchain-auditor.md",
+    ],
     install: "npx @gicm/cli add agent/blockchain-auditor",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1680,
     remixes: 620,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1963,22 +2884,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "IoT Developer",
     slug: "iot-developer",
-    description: "Embedded systems specialist. Hardware integration, low-power design, blockchain IoT networks. Connected sensors to tokens.",
-    longDescription: "Embedded systems specialist building Internet of Things applications with blockchain integration. Expert in low-power devices, edge computing, hardware communication protocols, and decentralized IoT networks. Specializes in firmware development, blockchain IoT integration, and hardware-software co-design.",
+    description:
+      "Embedded systems specialist. Hardware integration, low-power design, blockchain IoT networks. Connected sensors to tokens.",
+    longDescription:
+      "Embedded systems specialist building Internet of Things applications with blockchain integration. Expert in low-power devices, edge computing, hardware communication protocols, and decentralized IoT networks. Specializes in firmware development, blockchain IoT integration, and hardware-software co-design.",
     category: "Phase 4 Specialists",
-    tags: ["IoT", "Embedded Systems", "Firmware", "Blockchain", "Hardware", "Sensors"],
+    tags: [
+      "IoT",
+      "Embedded Systems",
+      "Firmware",
+      "Blockchain",
+      "Hardware",
+      "Sensors",
+    ],
     dependencies: ["rust-systems-architect"],
-    files: [".claude/agents/iot-developer.md", ".gemini/agents/iot-developer.md", ".openai/agents/iot-developer.md"],
+    files: [
+      ".claude/agents/iot-developer.md",
+      ".gemini/agents/iot-developer.md",
+      ".openai/agents/iot-developer.md",
+    ],
     install: "npx @gicm/cli add agent/iot-developer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 850,
     remixes: 280,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -1991,22 +2932,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "AR/VR Developer",
     slug: "ar-vr-developer",
-    description: "Immersive experience builder. VR games, AR overlays, metaverse integration. NFT visualization in 3D space.",
-    longDescription: "Specialist in augmented reality and virtual reality development with blockchain integration. Creates immersive experiences on Web3 platforms, metaverse applications, and decentralized gaming. Expert in 3D graphics, VR platforms, blockchain NFT integration, and cross-platform development.",
+    description:
+      "Immersive experience builder. VR games, AR overlays, metaverse integration. NFT visualization in 3D space.",
+    longDescription:
+      "Specialist in augmented reality and virtual reality development with blockchain integration. Creates immersive experiences on Web3 platforms, metaverse applications, and decentralized gaming. Expert in 3D graphics, VR platforms, blockchain NFT integration, and cross-platform development.",
     category: "Phase 4 Specialists",
     tags: ["AR/VR", "3D Graphics", "Metaverse", "NFT", "Web3", "Gaming"],
     dependencies: ["frontend-fusion-engine"],
-    files: [".claude/agents/ar-vr-developer.md", ".gemini/agents/ar-vr-developer.md", ".openai/agents/ar-vr-developer.md"],
+    files: [
+      ".claude/agents/ar-vr-developer.md",
+      ".gemini/agents/ar-vr-developer.md",
+      ".openai/agents/ar-vr-developer.md",
+    ],
     install: "npx @gicm/cli add agent/ar-vr-developer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 920,
     remixes: 310,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2019,22 +2973,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Machine Learning Engineer",
     slug: "machine-learning-engineer",
-    description: "AI model specialist. Price prediction, fraud detection, trading signals. 73% accuracy on token movements.",
-    longDescription: "ML specialist building intelligent systems for blockchain and crypto applications. Expert in model development, training pipelines, inference optimization, and practical ML applications for trading, fraud detection, and data analysis. Specializes in time series forecasting and blockchain-specific ML patterns.",
+    description:
+      "AI model specialist. Price prediction, fraud detection, trading signals. 73% accuracy on token movements.",
+    longDescription:
+      "ML specialist building intelligent systems for blockchain and crypto applications. Expert in model development, training pipelines, inference optimization, and practical ML applications for trading, fraud detection, and data analysis. Specializes in time series forecasting and blockchain-specific ML patterns.",
     category: "Phase 4 Specialists",
-    tags: ["Machine Learning", "AI", "Price Prediction", "Fraud Detection", "Data Science"],
+    tags: [
+      "Machine Learning",
+      "AI",
+      "Price Prediction",
+      "Fraud Detection",
+      "Data Science",
+    ],
     dependencies: ["data-scientist"],
-    files: [".claude/agents/machine-learning-engineer.md", ".gemini/agents/machine-learning-engineer.md", ".openai/agents/machine-learning-engineer.md"],
+    files: [
+      ".claude/agents/machine-learning-engineer.md",
+      ".gemini/agents/machine-learning-engineer.md",
+      ".openai/agents/machine-learning-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/machine-learning-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1550,
     remixes: 580,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2047,22 +3020,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Data Engineer",
     slug: "data-engineer",
-    description: "Data pipeline architect. ETL orchestration, data warehouses, real-time indexing. On-chain data → insights.",
-    longDescription: "Data engineer specializing in building scalable data infrastructure for blockchain analytics and business intelligence. Expert in ETL pipelines, data warehouses, real-time streaming, and analytics platforms. Specializes in on-chain data extraction, blockchain indexing, and analytics infrastructure.",
+    description:
+      "Data pipeline architect. ETL orchestration, data warehouses, real-time indexing. On-chain data → insights.",
+    longDescription:
+      "Data engineer specializing in building scalable data infrastructure for blockchain analytics and business intelligence. Expert in ETL pipelines, data warehouses, real-time streaming, and analytics platforms. Specializes in on-chain data extraction, blockchain indexing, and analytics infrastructure.",
     category: "Phase 4 Specialists",
-    tags: ["Data Engineering", "ETL", "Data Warehouse", "Real-time Indexing", "Analytics"],
+    tags: [
+      "Data Engineering",
+      "ETL",
+      "Data Warehouse",
+      "Real-time Indexing",
+      "Analytics",
+    ],
     dependencies: ["database-schema-oracle", "blockchain-indexer-specialist"],
-    files: [".claude/agents/data-engineer.md", ".gemini/agents/data-engineer.md", ".openai/agents/data-engineer.md"],
+    files: [
+      ".claude/agents/data-engineer.md",
+      ".gemini/agents/data-engineer.md",
+      ".openai/agents/data-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/data-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1200,
     remixes: 420,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2075,22 +3067,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Infrastructure Architect",
     slug: "infrastructure-architect",
-    description: "Enterprise cloud architect. Multi-region deployment, disaster recovery, cost optimization. 99.99% uptime infrastructure.",
-    longDescription: "Senior infrastructure architect designing enterprise-grade cloud systems for blockchain applications. Expert in distributed systems, cloud architecture, cost optimization, and scalable infrastructure design. Specializes in Kubernetes orchestration, multi-cloud strategy, and blockchain node infrastructure.",
+    description:
+      "Enterprise cloud architect. Multi-region deployment, disaster recovery, cost optimization. 99.99% uptime infrastructure.",
+    longDescription:
+      "Senior infrastructure architect designing enterprise-grade cloud systems for blockchain applications. Expert in distributed systems, cloud architecture, cost optimization, and scalable infrastructure design. Specializes in Kubernetes orchestration, multi-cloud strategy, and blockchain node infrastructure.",
     category: "Phase 4 Specialists",
-    tags: ["Infrastructure", "Cloud Architecture", "Kubernetes", "Terraform", "High Availability"],
+    tags: [
+      "Infrastructure",
+      "Cloud Architecture",
+      "Kubernetes",
+      "Terraform",
+      "High Availability",
+    ],
     dependencies: ["devops-platform-engineer", "site-reliability-engineer"],
-    files: [".claude/agents/infrastructure-architect.md", ".gemini/agents/infrastructure-architect.md", ".openai/agents/infrastructure-architect.md"],
+    files: [
+      ".claude/agents/infrastructure-architect.md",
+      ".gemini/agents/infrastructure-architect.md",
+      ".openai/agents/infrastructure-architect.md",
+    ],
     install: "npx @gicm/cli add agent/infrastructure-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1380,
     remixes: 490,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2103,22 +3114,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Game Developer (Web3)",
     slug: "game-developer-web3",
-    description: "P2E game specialist. Gameplay mechanics, tokenomics, NFT integration. Player acquisition funnel optimization.",
-    longDescription: "Game developer specializing in blockchain-integrated games and play-to-earn (P2E) mechanics. Expert in game design, physics engines, networking, and Web3 game economies. Specializes in P2E mechanics, NFT integration, and decentralized game development.",
+    description:
+      "P2E game specialist. Gameplay mechanics, tokenomics, NFT integration. Player acquisition funnel optimization.",
+    longDescription:
+      "Game developer specializing in blockchain-integrated games and play-to-earn (P2E) mechanics. Expert in game design, physics engines, networking, and Web3 game economies. Specializes in P2E mechanics, NFT integration, and decentralized game development.",
     category: "Phase 4 Specialists",
-    tags: ["Game Development", "P2E", "NFT Gaming", "Tokenomics", "Player Psychology"],
+    tags: [
+      "Game Development",
+      "P2E",
+      "NFT Gaming",
+      "Tokenomics",
+      "Player Psychology",
+    ],
     dependencies: ["frontend-fusion-engine", "machine-learning-engineer"],
-    files: [".claude/agents/game-developer.md", ".gemini/agents/game-developer.md", ".openai/agents/game-developer.md"],
+    files: [
+      ".claude/agents/game-developer.md",
+      ".gemini/agents/game-developer.md",
+      ".openai/agents/game-developer.md",
+    ],
     install: "npx @gicm/cli add agent/game-developer-web3",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1100,
     remixes: 390,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2131,22 +3161,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "UI/UX Designer (Web3)",
     slug: "ui-ux-designer-web3",
-    description: "Web3 user experience specialist. Wallet flows, transaction clarity, DeFi usability. 4.2x conversion improvement.",
-    longDescription: "User experience and interface designer specializing in Web3 and blockchain applications. Expert in usability research, interaction design, and creating intuitive interfaces for complex blockchain operations. Specializes in wallet integration, transaction design, and accessible blockchain UI.",
+    description:
+      "Web3 user experience specialist. Wallet flows, transaction clarity, DeFi usability. 4.2x conversion improvement.",
+    longDescription:
+      "User experience and interface designer specializing in Web3 and blockchain applications. Expert in usability research, interaction design, and creating intuitive interfaces for complex blockchain operations. Specializes in wallet integration, transaction design, and accessible blockchain UI.",
     category: "Phase 4 Specialists",
-    tags: ["UX/UI Design", "User Research", "Interaction Design", "Web3", "Accessibility"],
+    tags: [
+      "UX/UI Design",
+      "User Research",
+      "Interaction Design",
+      "Web3",
+      "Accessibility",
+    ],
     dependencies: [],
-    files: [".claude/agents/ui-ux-designer.md", ".gemini/agents/ui-ux-designer.md", ".openai/agents/ui-ux-designer.md"],
+    files: [
+      ".claude/agents/ui-ux-designer.md",
+      ".gemini/agents/ui-ux-designer.md",
+      ".openai/agents/ui-ux-designer.md",
+    ],
     install: "npx @gicm/cli add agent/ui-ux-designer-web3",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1320,
     remixes: 460,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2159,22 +3208,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Security Engineer (Blockchain)",
     slug: "security-engineer-blockchain",
-    description: "Comprehensive security specialist. Threat modeling, penetration testing, DevSecOps. 94% vulnerability prevention.",
-    longDescription: "Comprehensive security specialist protecting blockchain systems, APIs, and infrastructure. Expert in threat modeling, penetration testing, secure development practices, and security operations. Specializes in blockchain security, smart contract analysis, and DevSecOps implementation.",
+    description:
+      "Comprehensive security specialist. Threat modeling, penetration testing, DevSecOps. 94% vulnerability prevention.",
+    longDescription:
+      "Comprehensive security specialist protecting blockchain systems, APIs, and infrastructure. Expert in threat modeling, penetration testing, secure development practices, and security operations. Specializes in blockchain security, smart contract analysis, and DevSecOps implementation.",
     category: "Phase 4 Specialists",
-    tags: ["Security", "Threat Modeling", "Penetration Testing", "DevSecOps", "Risk Management"],
+    tags: [
+      "Security",
+      "Threat Modeling",
+      "Penetration Testing",
+      "DevSecOps",
+      "Risk Management",
+    ],
     dependencies: ["solana-guardian-auditor"],
-    files: [".claude/agents/security-engineer.md", ".gemini/agents/security-engineer.md", ".openai/agents/security-engineer.md"],
+    files: [
+      ".claude/agents/security-engineer.md",
+      ".gemini/agents/security-engineer.md",
+      ".openai/agents/security-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/security-engineer-blockchain",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 1510,
     remixes: 560,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2187,22 +3255,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Quality Assurance Specialist",
     slug: "quality-assurance-specialist",
-    description: "Manual + automation QA expert. Test planning, defect management, quality metrics. End-to-end quality assurance.",
-    longDescription: "Comprehensive QA specialist ensuring product quality through manual testing, test automation, and quality assurance processes. Expert in test planning, test execution, and quality metrics for blockchain applications. Specializes in multi-chain testing, regulatory compliance validation, and blockchain-specific QA.",
+    description:
+      "Manual + automation QA expert. Test planning, defect management, quality metrics. End-to-end quality assurance.",
+    longDescription:
+      "Comprehensive QA specialist ensuring product quality through manual testing, test automation, and quality assurance processes. Expert in test planning, test execution, and quality metrics for blockchain applications. Specializes in multi-chain testing, regulatory compliance validation, and blockchain-specific QA.",
     category: "Phase 4 Specialists",
-    tags: ["QA", "Testing", "Quality Assurance", "Test Management", "Defect Management"],
+    tags: [
+      "QA",
+      "Testing",
+      "Quality Assurance",
+      "Test Management",
+      "Defect Management",
+    ],
     dependencies: ["qa-automation-lead"],
-    files: [".claude/agents/quality-assurance-specialist.md", ".gemini/agents/quality-assurance-specialist.md", ".openai/agents/quality-assurance-specialist.md"],
+    files: [
+      ".claude/agents/quality-assurance-specialist.md",
+      ".gemini/agents/quality-assurance-specialist.md",
+      ".openai/agents/quality-assurance-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/quality-assurance-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 980,
     remixes: 340,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2215,21 +3302,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "api-documentation-specialist",
     slug: "api-documentation-specialist",
-    description: "OpenAPI, tRPC, GraphQL schema documentation expert for API reference, interactive docs, and client SDK generation",
+    description:
+      "OpenAPI, tRPC, GraphQL schema documentation expert for API reference, interactive docs, and client SDK generation",
     category: "Development Team",
     tags: ["Documentation", "API", "OpenAPI"],
     dependencies: [],
-    files: [".claude/agents/api-documentation-specialist.md", ".gemini/agents/api-documentation-specialist.md", ".openai/agents/api-documentation-specialist.md"],
+    files: [
+      ".claude/agents/api-documentation-specialist.md",
+      ".gemini/agents/api-documentation-specialist.md",
+      ".openai/agents/api-documentation-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/api-documentation-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2242,21 +3341,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "build-system-engineer",
     slug: "build-system-engineer",
-    description: "Webpack, Vite, and Turbopack configuration expert for module resolution, plugins, and build optimization",
+    description:
+      "Webpack, Vite, and Turbopack configuration expert for module resolution, plugins, and build optimization",
     category: "Development Team",
     tags: ["Build Tools", "Webpack", "Vite"],
     dependencies: [],
-    files: [".claude/agents/build-system-engineer.md", ".gemini/agents/build-system-engineer.md", ".openai/agents/build-system-engineer.md"],
+    files: [
+      ".claude/agents/build-system-engineer.md",
+      ".gemini/agents/build-system-engineer.md",
+      ".openai/agents/build-system-engineer.md",
+    ],
     install: "npx @gicm/cli add agent/build-system-engineer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2269,21 +3380,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "bundler-optimizer",
     slug: "bundler-optimizer",
-    description: "Tree-shaking, code splitting, and lazy loading expert for bundle analysis and optimization strategies",
+    description:
+      "Tree-shaking, code splitting, and lazy loading expert for bundle analysis and optimization strategies",
     category: "Development Team",
     tags: ["Optimization", "Bundling", "Performance"],
     dependencies: [],
-    files: [".claude/agents/bundler-optimizer.md", ".gemini/agents/bundler-optimizer.md", ".openai/agents/bundler-optimizer.md"],
+    files: [
+      ".claude/agents/bundler-optimizer.md",
+      ".gemini/agents/bundler-optimizer.md",
+      ".openai/agents/bundler-optimizer.md",
+    ],
     install: "npx @gicm/cli add agent/bundler-optimizer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2296,21 +3419,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "ci-cd-architect",
     slug: "ci-cd-architect",
-    description: "GitHub Actions and deployment pipelines specialist for CI/CD best practices, automated testing, and deployment strategies",
+    description:
+      "GitHub Actions and deployment pipelines specialist for CI/CD best practices, automated testing, and deployment strategies",
     category: "Development Team",
     tags: ["CI/CD", "GitHub Actions", "Deployment"],
-    dependencies: [],
-    files: [".claude/agents/ci-cd-architect.md", ".gemini/agents/ci-cd-architect.md", ".openai/agents/ci-cd-architect.md"],
+    dependencies: ["ci-cd-pipeline-engineer", "mcp/mcp-github"],
+    files: [
+      ".claude/agents/ci-cd-architect.md",
+      ".gemini/agents/ci-cd-architect.md",
+      ".openai/agents/ci-cd-architect.md",
+    ],
     install: "npx @gicm/cli add agent/ci-cd-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2323,21 +3458,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "code-example-generator",
     slug: "code-example-generator",
-    description: "Production-ready code snippet expert for real-world examples, best practices showcase, and integration patterns",
+    description:
+      "Production-ready code snippet expert for real-world examples, best practices showcase, and integration patterns",
     category: "Development Team",
     tags: ["Documentation", "Examples", "Best Practices"],
     dependencies: [],
-    files: [".claude/agents/code-example-generator.md", ".gemini/agents/code-example-generator.md", ".openai/agents/code-example-generator.md"],
+    files: [
+      ".claude/agents/code-example-generator.md",
+      ".gemini/agents/code-example-generator.md",
+      ".openai/agents/code-example-generator.md",
+    ],
     install: "npx @gicm/cli add agent/code-example-generator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2350,21 +3497,37 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "defi-integration-architect",
     slug: "defi-integration-architect",
-    description: "DeFi protocol integration specialist for AMMs, lending, liquidity pools, and yield optimization",
+    description:
+      "DeFi protocol integration specialist for AMMs, lending, liquidity pools, and yield optimization",
     category: "Development Team",
     tags: ["DeFi", "Blockchain", "Integration"],
-    dependencies: [],
-    files: [".claude/agents/defi-integration-architect.md", ".gemini/agents/defi-integration-architect.md", ".openai/agents/defi-integration-architect.md"],
+    dependencies: [
+      "defi-integration",
+      "aave-flashloan-patterns",
+      "uniswap-v3-integration",
+    ],
+    files: [
+      ".claude/agents/defi-integration-architect.md",
+      ".gemini/agents/defi-integration-architect.md",
+      ".openai/agents/defi-integration-architect.md",
+    ],
     install: "npx @gicm/cli add agent/defi-integration-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2377,21 +3540,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "deployment-strategist",
     slug: "deployment-strategist",
-    description: "Vercel, AWS, Docker deployment specialist for zero-downtime production releases",
+    description:
+      "Vercel, AWS, Docker deployment specialist for zero-downtime production releases",
     category: "Development Team",
     tags: ["Deployment", "Vercel", "Docker"],
-    dependencies: [],
-    files: [".claude/agents/deployment-strategist.md", ".gemini/agents/deployment-strategist.md", ".openai/agents/deployment-strategist.md"],
+    dependencies: ["skill/docker-best-practices", "kubernetes-patterns"],
+    files: [
+      ".claude/agents/deployment-strategist.md",
+      ".gemini/agents/deployment-strategist.md",
+      ".openai/agents/deployment-strategist.md",
+    ],
     install: "npx @gicm/cli add agent/deployment-strategist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2404,21 +3579,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "devtools-optimizer",
     slug: "devtools-optimizer",
-    description: "Browser DevTools expert specializing in Chrome/Firefox debugging, profiling, memory leak detection, and performance optimization",
+    description:
+      "Browser DevTools expert specializing in Chrome/Firefox debugging, profiling, memory leak detection, and performance optimization",
     category: "Development Team",
     tags: ["DevTools", "Debugging", "Performance"],
-    dependencies: [],
-    files: [".claude/agents/devtools-optimizer.md", ".gemini/agents/devtools-optimizer.md", ".openai/agents/devtools-optimizer.md"],
+    dependencies: ["debugging-techniques", "performance-profiling"],
+    files: [
+      ".claude/agents/devtools-optimizer.md",
+      ".gemini/agents/devtools-optimizer.md",
+      ".openai/agents/devtools-optimizer.md",
+    ],
     install: "npx @gicm/cli add agent/devtools-optimizer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2431,21 +3618,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "e2e-testing-specialist",
     slug: "e2e-testing-specialist",
-    description: "End-to-end test scenarios expert specializing in user journey testing and visual regression",
+    description:
+      "End-to-end test scenarios expert specializing in user journey testing and visual regression",
     category: "Development Team",
     tags: ["Testing", "E2E", "QA"],
-    dependencies: [],
-    files: [".claude/agents/e2e-testing-specialist.md", ".gemini/agents/e2e-testing-specialist.md", ".openai/agents/e2e-testing-specialist.md"],
+    dependencies: ["mcp-playwright"],
+    files: [
+      ".claude/agents/e2e-testing-specialist.md",
+      ".gemini/agents/e2e-testing-specialist.md",
+      ".openai/agents/e2e-testing-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/e2e-testing-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2458,21 +3657,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "integration-test-architect",
     slug: "integration-test-architect",
-    description: "API integration testing expert specializing in database testing and external service mocks",
+    description:
+      "API integration testing expert specializing in database testing and external service mocks",
     category: "Development Team",
     tags: ["Testing", "Integration", "API"],
-    dependencies: [],
-    files: [".claude/agents/integration-test-architect.md", ".gemini/agents/integration-test-architect.md", ".openai/agents/integration-test-architect.md"],
+    dependencies: ["api-architecture-patterns"],
+    files: [
+      ".claude/agents/integration-test-architect.md",
+      ".gemini/agents/integration-test-architect.md",
+      ".openai/agents/integration-test-architect.md",
+    ],
     install: "npx @gicm/cli add agent/integration-test-architect",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2485,21 +3696,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "log-aggregation-expert",
     slug: "log-aggregation-expert",
-    description: "Structured logging and log aggregation specialist for production debugging",
+    description:
+      "Structured logging and log aggregation specialist for production debugging",
     category: "Development Team",
     tags: ["Logging", "Monitoring", "Debugging"],
-    dependencies: [],
-    files: [".claude/agents/log-aggregation-expert.md", ".gemini/agents/log-aggregation-expert.md", ".openai/agents/log-aggregation-expert.md"],
+    dependencies: ["monitoring-observability-advanced", "distributed-tracing"],
+    files: [
+      ".claude/agents/log-aggregation-expert.md",
+      ".gemini/agents/log-aggregation-expert.md",
+      ".openai/agents/log-aggregation-expert.md",
+    ],
     install: "npx @gicm/cli add agent/log-aggregation-expert",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2512,21 +3735,36 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "monitoring-specialist",
     slug: "monitoring-specialist",
-    description: "Sentry, Datadog, observability expert for error tracking and performance monitoring",
+    description:
+      "Sentry, Datadog, observability expert for error tracking and performance monitoring",
     category: "Development Team",
     tags: ["Monitoring", "Sentry", "Observability"],
-    dependencies: [],
-    files: [".claude/agents/monitoring-specialist.md", ".gemini/agents/monitoring-specialist.md", ".openai/agents/monitoring-specialist.md"],
+    dependencies: [
+      "monitoring-observability-advanced",
+      "observability-cost-optimization",
+    ],
+    files: [
+      ".claude/agents/monitoring-specialist.md",
+      ".gemini/agents/monitoring-specialist.md",
+      ".openai/agents/monitoring-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/monitoring-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2539,21 +3777,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "package-manager-expert",
     slug: "package-manager-expert",
-    description: "npm, pnpm, and yarn optimization specialist for dependency management, monorepos, and lockfile strategies",
+    description:
+      "npm, pnpm, and yarn optimization specialist for dependency management, monorepos, and lockfile strategies",
     category: "Development Team",
     tags: ["npm", "Package Management", "Monorepo"],
     dependencies: [],
-    files: [".claude/agents/package-manager-expert.md", ".gemini/agents/package-manager-expert.md", ".openai/agents/package-manager-expert.md"],
+    files: [
+      ".claude/agents/package-manager-expert.md",
+      ".gemini/agents/package-manager-expert.md",
+      ".openai/agents/package-manager-expert.md",
+    ],
     install: "npx @gicm/cli add agent/package-manager-expert",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2566,21 +3816,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "smart-contract-auditor",
     slug: "smart-contract-auditor",
-    description: "EVM smart contract security auditor specializing in Solidity vulnerabilities, reentrancy, and economic exploits",
+    description:
+      "EVM smart contract security auditor specializing in Solidity vulnerabilities, reentrancy, and economic exploits",
     category: "Development Team",
     tags: ["Security", "Solidity", "Auditing"],
-    dependencies: [],
-    files: [".claude/agents/smart-contract-auditor.md", ".gemini/agents/smart-contract-auditor.md", ".openai/agents/smart-contract-auditor.md"],
+    dependencies: ["smart-contract-security", "evm-solidity-mastery"],
+    files: [
+      ".claude/agents/smart-contract-auditor.md",
+      ".gemini/agents/smart-contract-auditor.md",
+      ".openai/agents/smart-contract-auditor.md",
+    ],
     install: "npx @gicm/cli add agent/smart-contract-auditor",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2593,21 +3855,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "tutorial-creator",
     slug: "tutorial-creator",
-    description: "Interactive tutorial and learning path specialist for step-by-step guides, code walkthroughs, and hands-on learning experiences",
+    description:
+      "Interactive tutorial and learning path specialist for step-by-step guides, code walkthroughs, and hands-on learning experiences",
     category: "Development Team",
     tags: ["Documentation", "Tutorials", "Education"],
     dependencies: [],
-    files: [".claude/agents/tutorial-creator.md", ".gemini/agents/tutorial-creator.md", ".openai/agents/tutorial-creator.md"],
+    files: [
+      ".claude/agents/tutorial-creator.md",
+      ".gemini/agents/tutorial-creator.md",
+      ".openai/agents/tutorial-creator.md",
+    ],
     install: "npx @gicm/cli add agent/tutorial-creator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2620,21 +3894,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "unit-test-generator",
     slug: "unit-test-generator",
-    description: "Unit test creation and mocking patterns specialist for comprehensive test coverage",
+    description:
+      "Unit test creation and mocking patterns specialist for comprehensive test coverage",
     category: "Development Team",
     tags: ["Testing", "Unit Tests", "Mocking"],
-    dependencies: [],
-    files: [".claude/agents/unit-test-generator.md", ".gemini/agents/unit-test-generator.md", ".openai/agents/unit-test-generator.md"],
+    dependencies: ["code-review-best-practices"],
+    files: [
+      ".claude/agents/unit-test-generator.md",
+      ".gemini/agents/unit-test-generator.md",
+      ".openai/agents/unit-test-generator.md",
+    ],
     install: "npx @gicm/cli add agent/unit-test-generator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2647,21 +3933,33 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "web3-security-specialist",
     slug: "web3-security-specialist",
-    description: "Cross-chain Web3 security expert covering wallet security, transaction signing, and frontend attack vectors",
+    description:
+      "Cross-chain Web3 security expert covering wallet security, transaction signing, and frontend attack vectors",
     category: "Development Team",
     tags: ["Security", "Web3", "Blockchain"],
-    dependencies: [],
-    files: [".claude/agents/web3-security-specialist.md", ".gemini/agents/web3-security-specialist.md", ".openai/agents/web3-security-specialist.md"],
+    dependencies: ["smart-contract-security", "web3-wallet-integration"],
+    files: [
+      ".claude/agents/web3-security-specialist.md",
+      ".gemini/agents/web3-security-specialist.md",
+      ".openai/agents/web3-security-specialist.md",
+    ],
     install: "npx @gicm/cli add agent/web3-security-specialist",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2676,22 +3974,43 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "ICM Analyst",
     slug: "icm-analyst",
-    description: "ICM launch research specialist. Analyzes new token launches for red flags, whale concentration, bot activity, and liquidity depth. Provides risk scores and entry/exit recommendations.",
-    longDescription: "Elite ICM (Initial Coin Market) analyst specializing in crypto launch due diligence. Performs comprehensive research on new token launches to identify opportunities and risks. Analyzes social media bot detection (Twitter/X, Telegram, Discord), whale wallet concentration, liquidity pool depth assessment, contract security quick-checks, community health scoring, launch timing and momentum analysis, and provides risk scoring (0-100 scale) with entry/exit recommendations.",
+    description:
+      "ICM launch research specialist. Analyzes new token launches for red flags, whale concentration, bot activity, and liquidity depth. Provides risk scores and entry/exit recommendations.",
+    longDescription:
+      "Elite ICM (Initial Coin Market) analyst specializing in crypto launch due diligence. Performs comprehensive research on new token launches to identify opportunities and risks. Analyzes social media bot detection (Twitter/X, Telegram, Discord), whale wallet concentration, liquidity pool depth assessment, contract security quick-checks, community health scoring, launch timing and momentum analysis, and provides risk scoring (0-100 scale) with entry/exit recommendations.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Crypto", "Trading", "Research", "Risk Assessment", "Solana", "Due Diligence"],
+    tags: [
+      "ICM",
+      "Crypto",
+      "Trading",
+      "Research",
+      "Risk Assessment",
+      "Solana",
+      "Due Diligence",
+    ],
     dependencies: [],
-    files: [".claude/agents/icm-analyst.md", ".gemini/agents/icm-analyst.md", ".openai/agents/icm-analyst.md"],
+    files: [
+      ".claude/agents/icm-analyst.md",
+      ".gemini/agents/icm-analyst.md",
+      ".openai/agents/icm-analyst.md",
+    ],
     install: "npx @gicm/cli add agent/icm-analyst",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SOLANA_RPC_URL", "DEXSCREENER_API_KEY", "BIRDEYE_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2704,22 +4023,49 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Whale Tracker",
     slug: "whale-tracker",
-    description: "Whale wallet monitoring specialist. Tracks smart money addresses, detects large token purchases, analyzes trading patterns, and provides copy-trade signals with historical performance metrics.",
-    longDescription: "Elite whale wallet tracking specialist focused on monitoring \"smart money\" addresses in crypto markets. Identifies successful traders, tracks their positions, analyzes their patterns, and provides copy-trade signals to help users follow profitable strategies. Features 4-tier whale classification system (Elite 90%+ win rate, Proven 70-89%, Active 50-69%, Degen <50%), real-time transaction monitoring, trade pattern analysis and success rate calculation, entry/exit timing detection, portfolio composition tracking, copy-trade signal generation, risk assessment per whale, and historical performance analysis.",
+    description:
+      "Whale wallet monitoring specialist. Tracks smart money addresses, detects large token purchases, analyzes trading patterns, and provides copy-trade signals with historical performance metrics.",
+    longDescription:
+      'Elite whale wallet tracking specialist focused on monitoring "smart money" addresses in crypto markets. Identifies successful traders, tracks their positions, analyzes their patterns, and provides copy-trade signals to help users follow profitable strategies. Features 4-tier whale classification system (Elite 90%+ win rate, Proven 70-89%, Active 50-69%, Degen <50%), real-time transaction monitoring, trade pattern analysis and success rate calculation, entry/exit timing detection, portfolio composition tracking, copy-trade signal generation, risk assessment per whale, and historical performance analysis.',
     category: "ICM & Crypto",
-    tags: ["ICM", "Crypto", "Trading", "Whale Tracking", "Copy Trading", "Solana", "On-Chain", "Analytics"],
+    tags: [
+      "ICM",
+      "Crypto",
+      "Trading",
+      "Whale Tracking",
+      "Copy Trading",
+      "Solana",
+      "On-Chain",
+      "Analytics",
+    ],
     dependencies: [],
-    files: [".claude/agents/whale-tracker.md", ".gemini/agents/whale-tracker.md", ".openai/agents/whale-tracker.md"],
+    files: [
+      ".claude/agents/whale-tracker.md",
+      ".gemini/agents/whale-tracker.md",
+      ".openai/agents/whale-tracker.md",
+    ],
     install: "npx @gicm/cli add agent/whale-tracker",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
-    envKeys: ["SOLANA_RPC_URL", "HELIUS_API_KEY", "QUICKNODE_URL", "BIRDEYE_API_KEY"],
+    envKeys: [
+      "SOLANA_RPC_URL",
+      "HELIUS_API_KEY",
+      "QUICKNODE_URL",
+      "BIRDEYE_API_KEY",
+    ],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2732,22 +4078,49 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Rug Detector",
     slug: "rug-detector",
-    description: "Real-time rug pull detection specialist. Monitors liquidity pools, dev wallet movements, contract behavior, and social sentiment. Provides rug risk scoring and automated exit triggers.",
-    longDescription: "Real-time rug pull detection specialist monitoring crypto projects for safety risks. Classifies 4 rug pull types (Hard Rug - instant LP drain, Soft Rug - gradual selling, Honeypot - can't sell, Slow Bleed - declining momentum). Features continuous liquidity monitoring with 3-tier alerts, dev/team wallet tracking with automated exit triggers, contract behavior monitoring (mint functions, ownership changes), social sentiment monitoring for panic detection, price action anomaly detection, multi-signal rug scoring system (0-100), automated exit execution with 3 trigger levels, and post-rug forensics for learning.",
+    description:
+      "Real-time rug pull detection specialist. Monitors liquidity pools, dev wallet movements, contract behavior, and social sentiment. Provides rug risk scoring and automated exit triggers.",
+    longDescription:
+      "Real-time rug pull detection specialist monitoring crypto projects for safety risks. Classifies 4 rug pull types (Hard Rug - instant LP drain, Soft Rug - gradual selling, Honeypot - can't sell, Slow Bleed - declining momentum). Features continuous liquidity monitoring with 3-tier alerts, dev/team wallet tracking with automated exit triggers, contract behavior monitoring (mint functions, ownership changes), social sentiment monitoring for panic detection, price action anomaly detection, multi-signal rug scoring system (0-100), automated exit execution with 3 trigger levels, and post-rug forensics for learning.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Crypto", "Security", "Rug Detection", "Safety", "Protection", "Solana", "DeFi"],
+    tags: [
+      "ICM",
+      "Crypto",
+      "Security",
+      "Rug Detection",
+      "Safety",
+      "Protection",
+      "Solana",
+      "DeFi",
+    ],
     dependencies: ["icm-analyst"],
-    files: [".claude/agents/rug-detector.md", ".gemini/agents/rug-detector.md", ".openai/agents/rug-detector.md"],
+    files: [
+      ".claude/agents/rug-detector.md",
+      ".gemini/agents/rug-detector.md",
+      ".openai/agents/rug-detector.md",
+    ],
     install: "npx @gicm/cli add agent/rug-detector",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
-    envKeys: ["SOLANA_RPC_URL", "HELIUS_API_KEY", "RUGCHECK_API_KEY", "DEXSCREENER_API_KEY"],
+    envKeys: [
+      "SOLANA_RPC_URL",
+      "HELIUS_API_KEY",
+      "RUGCHECK_API_KEY",
+      "DEXSCREENER_API_KEY",
+    ],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2760,22 +4133,50 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Sentiment Analyzer",
     slug: "sentiment-analyzer",
-    description: "Social sentiment analysis specialist. Tracks Twitter/X, Telegram, Discord sentiment, detects bot activity, measures community health, and identifies pump coordination patterns.",
-    longDescription: "Elite social sentiment analysis specialist tracking crypto community dynamics across Twitter/X, Telegram, and Discord. Identifies sentiment shifts, detects bot manipulation, measures community health, and provides early warning signals for pumps and dumps. Features multi-platform sentiment tracking with 5 sentiment levels (Mega Bullish 95-100, Bullish 70-94, Neutral 40-69, Bearish 20-39, Panic 0-19), bot detection algorithms with confidence scoring, influencer impact measurement across 4 tiers, community health scoring (0-100), FUD detection and validation (4 FUD types), pump coordination detection with 0-100 scoring, sentiment shift early warning system, and real-time monitoring dashboards.",
+    description:
+      "Social sentiment analysis specialist. Tracks Twitter/X, Telegram, Discord sentiment, detects bot activity, measures community health, and identifies pump coordination patterns.",
+    longDescription:
+      "Elite social sentiment analysis specialist tracking crypto community dynamics across Twitter/X, Telegram, and Discord. Identifies sentiment shifts, detects bot manipulation, measures community health, and provides early warning signals for pumps and dumps. Features multi-platform sentiment tracking with 5 sentiment levels (Mega Bullish 95-100, Bullish 70-94, Neutral 40-69, Bearish 20-39, Panic 0-19), bot detection algorithms with confidence scoring, influencer impact measurement across 4 tiers, community health scoring (0-100), FUD detection and validation (4 FUD types), pump coordination detection with 0-100 scoring, sentiment shift early warning system, and real-time monitoring dashboards.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Crypto", "Social", "Sentiment", "Community", "Analytics", "Twitter", "Telegram", "Discord"],
+    tags: [
+      "ICM",
+      "Crypto",
+      "Social",
+      "Sentiment",
+      "Community",
+      "Analytics",
+      "Twitter",
+      "Telegram",
+      "Discord",
+    ],
     dependencies: [],
-    files: [".claude/agents/sentiment-analyzer.md", ".gemini/agents/sentiment-analyzer.md", ".openai/agents/sentiment-analyzer.md"],
+    files: [
+      ".claude/agents/sentiment-analyzer.md",
+      ".gemini/agents/sentiment-analyzer.md",
+      ".openai/agents/sentiment-analyzer.md",
+    ],
     install: "npx @gicm/cli add agent/sentiment-analyzer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
-    envKeys: ["TWITTER_API_KEY", "TELEGRAM_BOT_TOKEN", "DISCORD_BOT_TOKEN", "LUNARCRUSH_API_KEY"],
+    envKeys: [
+      "TWITTER_API_KEY",
+      "TELEGRAM_BOT_TOKEN",
+      "DISCORD_BOT_TOKEN",
+      "LUNARCRUSH_API_KEY",
+    ],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2790,21 +4191,41 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Portfolio Manager",
     slug: "portfolio-manager",
-    description: "ICM portfolio management specialist. Tracks multiple positions, calculates real-time PnL, monitors portfolio health, and provides risk-adjusted performance metrics across all ICM trades.",
-    longDescription: "Multi-position tracking and portfolio optimization specialist for ICM trading. Maintains position registry tracking all open positions with entry prices, sizes, and timestamps. Calculates real-time unrealized PnL and realized PnL for completed trades. Monitors portfolio health including concentration risk, correlation analysis, liquidity monitoring, and drawdown tracking. Provides performance analytics: win rate calculation, average win/loss ratio, Sharpe ratio, and monthly/weekly performance breakdowns. Integrates with all other ICM agents for comprehensive portfolio management.",
+    description:
+      "ICM portfolio management specialist. Tracks multiple positions, calculates real-time PnL, monitors portfolio health, and provides risk-adjusted performance metrics across all ICM trades.",
+    longDescription:
+      "Multi-position tracking and portfolio optimization specialist for ICM trading. Maintains position registry tracking all open positions with entry prices, sizes, and timestamps. Calculates real-time unrealized PnL and realized PnL for completed trades. Monitors portfolio health including concentration risk, correlation analysis, liquidity monitoring, and drawdown tracking. Provides performance analytics: win rate calculation, average win/loss ratio, Sharpe ratio, and monthly/weekly performance breakdowns. Integrates with all other ICM agents for comprehensive portfolio management.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Portfolio", "Trading", "Risk Management", "PnL", "Performance"],
+    tags: [
+      "ICM",
+      "Portfolio",
+      "Trading",
+      "Risk Management",
+      "PnL",
+      "Performance",
+    ],
     dependencies: [],
-    files: [".claude/agents/portfolio-manager.md", ".gemini/agents/portfolio-manager.md", ".openai/agents/portfolio-manager.md"],
+    files: [
+      ".claude/agents/portfolio-manager.md",
+      ".gemini/agents/portfolio-manager.md",
+      ".openai/agents/portfolio-manager.md",
+    ],
     install: "npx @gicm/cli add agent/portfolio-manager",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2817,22 +4238,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Entry Optimizer",
     slug: "entry-optimizer",
-    description: "ICM entry timing specialist. Identifies optimal entry points using technical analysis, volume profiles, and whale accumulation signals. Prevents FOMO entries and maximizes entry efficiency.",
-    longDescription: "Optimal entry timing specialist for ICM token launches. Implements 3 entry strategies: post-launch consolidation (70% of entries), whale accumulation zones (20%), and breakout entries (10%). Uses entry scoring system (0-100) combining technical signals (40pts), whale activity (30pts), order book depth (20pts), and risk factors (10pts). Prevents FOMO with mandatory cooling-off periods and discipline enforcement. Uses limit orders to improve entry prices by 2-5%. Anti-FOMO logic detects and blocks emotional entries during pumps.",
+    description:
+      "ICM entry timing specialist. Identifies optimal entry points using technical analysis, volume profiles, and whale accumulation signals. Prevents FOMO entries and maximizes entry efficiency.",
+    longDescription:
+      "Optimal entry timing specialist for ICM token launches. Implements 3 entry strategies: post-launch consolidation (70% of entries), whale accumulation zones (20%), and breakout entries (10%). Uses entry scoring system (0-100) combining technical signals (40pts), whale activity (30pts), order book depth (20pts), and risk factors (10pts). Prevents FOMO with mandatory cooling-off periods and discipline enforcement. Uses limit orders to improve entry prices by 2-5%. Anti-FOMO logic detects and blocks emotional entries during pumps.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Entry", "Timing", "Technical Analysis", "Trading", "Signals"],
+    tags: [
+      "ICM",
+      "Entry",
+      "Timing",
+      "Technical Analysis",
+      "Trading",
+      "Signals",
+    ],
     dependencies: ["whale-tracker", "icm-analyst"],
-    files: [".claude/agents/entry-optimizer.md", ".gemini/agents/entry-optimizer.md", ".openai/agents/entry-optimizer.md"],
+    files: [
+      ".claude/agents/entry-optimizer.md",
+      ".gemini/agents/entry-optimizer.md",
+      ".openai/agents/entry-optimizer.md",
+    ],
     install: "npx @gicm/cli add agent/entry-optimizer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DEXSCREENER_API_KEY", "BIRDEYE_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2845,22 +4286,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Exit Coordinator",
     slug: "exit-coordinator",
-    description: "ICM exit strategy specialist. Manages profit-taking, stop losses, and exit timing. Implements partial exits, trailing stops, and intelligent position trimming to maximize returns.",
-    longDescription: "Intelligent exit strategy orchestration for ICM positions. Implements 4 exit strategies: scaled profit-taking (25% at 2x, 25% at 3x, 25% at 5x, 25% moon bag), trailing stops for strong trends, whale exit mirroring, and emergency exits for rug pulls. Features dynamic stop loss management progressing from initial -20% through breakeven, profit protection, and trailing stops. Calculates exit urgency (0-100) based on price action, whale activity, sentiment shifts, and risk changes. Partial exit execution with detailed PnL tracking.",
+    description:
+      "ICM exit strategy specialist. Manages profit-taking, stop losses, and exit timing. Implements partial exits, trailing stops, and intelligent position trimming to maximize returns.",
+    longDescription:
+      "Intelligent exit strategy orchestration for ICM positions. Implements 4 exit strategies: scaled profit-taking (25% at 2x, 25% at 3x, 25% at 5x, 25% moon bag), trailing stops for strong trends, whale exit mirroring, and emergency exits for rug pulls. Features dynamic stop loss management progressing from initial -20% through breakeven, profit protection, and trailing stops. Calculates exit urgency (0-100) based on price action, whale activity, sentiment shifts, and risk changes. Partial exit execution with detailed PnL tracking.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Exit", "Profit-Taking", "Stop Loss", "Trading", "Risk Management"],
+    tags: [
+      "ICM",
+      "Exit",
+      "Profit-Taking",
+      "Stop Loss",
+      "Trading",
+      "Risk Management",
+    ],
     dependencies: ["portfolio-manager", "whale-tracker", "rug-detector"],
-    files: [".claude/agents/exit-coordinator.md", ".gemini/agents/exit-coordinator.md", ".openai/agents/exit-coordinator.md"],
+    files: [
+      ".claude/agents/exit-coordinator.md",
+      ".gemini/agents/exit-coordinator.md",
+      ".openai/agents/exit-coordinator.md",
+    ],
     install: "npx @gicm/cli add agent/exit-coordinator",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DEXSCREENER_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2873,21 +4334,34 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Risk Manager",
     slug: "risk-manager",
-    description: "ICM risk management specialist. Calculates position sizing, enforces risk limits, monitors portfolio concentration, and prevents over-leverage. Ensures all trades respect risk parameters.",
-    longDescription: "Portfolio risk management and position sizing for ICM trading. Enforces 5 core risk rules: max 2% risk per trade, max 10% position size, max 10-15 concurrent positions, max 30% correlated exposure, and min 20% cash reserve. Advanced position sizing formula adjusts for rug score and entry quality. Monitors concentration risk, correlation risk, drawdown risk, and stop loss coverage. Risk approval process validates all positions before entry. Implements portfolio circuit breaker at -25% drawdown with emergency protocols.",
+    description:
+      "ICM risk management specialist. Calculates position sizing, enforces risk limits, monitors portfolio concentration, and prevents over-leverage. Ensures all trades respect risk parameters.",
+    longDescription:
+      "Portfolio risk management and position sizing for ICM trading. Enforces 5 core risk rules: max 2% risk per trade, max 10% position size, max 10-15 concurrent positions, max 30% correlated exposure, and min 20% cash reserve. Advanced position sizing formula adjusts for rug score and entry quality. Monitors concentration risk, correlation risk, drawdown risk, and stop loss coverage. Risk approval process validates all positions before entry. Implements portfolio circuit breaker at -25% drawdown with emergency protocols.",
     category: "ICM & Crypto",
     tags: ["ICM", "Risk Management", "Position Sizing", "Portfolio", "Trading"],
     dependencies: ["portfolio-manager"],
-    files: [".claude/agents/risk-manager.md", ".gemini/agents/risk-manager.md", ".openai/agents/risk-manager.md"],
+    files: [
+      ".claude/agents/risk-manager.md",
+      ".gemini/agents/risk-manager.md",
+      ".openai/agents/risk-manager.md",
+    ],
     install: "npx @gicm/cli add agent/risk-manager",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2900,22 +4374,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Sniper Bot",
     slug: "sniper-bot",
-    description: "ICM launch sniper specialist. Detects new token launches instantly, analyzes safety in <5 seconds, and executes buys within first block for ultra-early entry.",
-    longDescription: "Lightning-fast ICM launch detection and execution specialist. Monitors blockchain mempools and DEX pair creation events for instant launch detection (<500ms latency). Performs critical safety checks in <3 seconds: liquidity >$10k, LP locked, mint/freeze authority revoked, top holder <20%, contract verified, no honeypot, clean creator history. Implements 2 sniper modes: first block entry (highest risk/reward) and fast follower (lower risk). Uses priority fees for fast transaction inclusion. Includes test sell functionality to detect honeypots before full entry.",
+    description:
+      "ICM launch sniper specialist. Detects new token launches instantly, analyzes safety in <5 seconds, and executes buys within first block for ultra-early entry.",
+    longDescription:
+      "Lightning-fast ICM launch detection and execution specialist. Monitors blockchain mempools and DEX pair creation events for instant launch detection (<500ms latency). Performs critical safety checks in <3 seconds: liquidity >$10k, LP locked, mint/freeze authority revoked, top holder <20%, contract verified, no honeypot, clean creator history. Implements 2 sniper modes: first block entry (highest risk/reward) and fast follower (lower risk). Uses priority fees for fast transaction inclusion. Includes test sell functionality to detect honeypots before full entry.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Sniper", "Launch Detection", "Fast Entry", "Trading", "Automation"],
+    tags: [
+      "ICM",
+      "Sniper",
+      "Launch Detection",
+      "Fast Entry",
+      "Trading",
+      "Automation",
+    ],
     dependencies: ["rug-detector"],
-    files: [".claude/agents/sniper-bot.md", ".gemini/agents/sniper-bot.md", ".openai/agents/sniper-bot.md"],
+    files: [
+      ".claude/agents/sniper-bot.md",
+      ".gemini/agents/sniper-bot.md",
+      ".openai/agents/sniper-bot.md",
+    ],
     install: "npx @gicm/cli add agent/sniper-bot",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SOLANA_RPC_URL", "HELIUS_API_KEY", "RUGCHECK_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2928,22 +4422,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Liquidity Analyzer",
     slug: "liquidity-analyzer",
-    description: "ICM liquidity specialist. Analyzes market depth, order book structure, slippage impact, and liquidity sustainability. Ensures efficient entry/exit without excessive slippage.",
-    longDescription: "Market depth and liquidity assessment for ICM trading. Performs order book depth analysis tracking bid/ask liquidity within 1%, 2%, and 5% of mid price. Calculates slippage for different order sizes by walking through order book levels. Analyzes liquidity pool health including total liquidity, volume/liquidity ratio, LP holder distribution, and lock status. Liquidity scoring system (0-100) combines order book depth (40pts), spread (15pts), pool health (25pts), and slippage (20pts). Provides position size recommendations based on liquidity score and exit feasibility analysis.",
+    description:
+      "ICM liquidity specialist. Analyzes market depth, order book structure, slippage impact, and liquidity sustainability. Ensures efficient entry/exit without excessive slippage.",
+    longDescription:
+      "Market depth and liquidity assessment for ICM trading. Performs order book depth analysis tracking bid/ask liquidity within 1%, 2%, and 5% of mid price. Calculates slippage for different order sizes by walking through order book levels. Analyzes liquidity pool health including total liquidity, volume/liquidity ratio, LP holder distribution, and lock status. Liquidity scoring system (0-100) combines order book depth (40pts), spread (15pts), pool health (25pts), and slippage (20pts). Provides position size recommendations based on liquidity score and exit feasibility analysis.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Liquidity", "Order Book", "Slippage", "Market Depth", "Trading"],
+    tags: [
+      "ICM",
+      "Liquidity",
+      "Order Book",
+      "Slippage",
+      "Market Depth",
+      "Trading",
+    ],
     dependencies: [],
-    files: [".claude/agents/liquidity-analyzer.md", ".gemini/agents/liquidity-analyzer.md", ".openai/agents/liquidity-analyzer.md"],
+    files: [
+      ".claude/agents/liquidity-analyzer.md",
+      ".gemini/agents/liquidity-analyzer.md",
+      ".openai/agents/liquidity-analyzer.md",
+    ],
     install: "npx @gicm/cli add agent/liquidity-analyzer",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DEXSCREENER_API_KEY", "BIRDEYE_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2956,22 +4470,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Smart Money Copier",
     slug: "smart-money-copier",
-    description: "ICM copy trading specialist. Automatically mirrors trades from elite whale wallets with proven track records. Detects whale buys/sells and executes matching orders within seconds.",
-    longDescription: "Automated copy trading from elite whale wallets. Tracks elite whales with >70% win rate, >50 tracked trades, and >+500% cumulative returns. Real-time transaction monitoring via WebSocket detects whale buys/sells within 1 second. Implements intelligent copy sizing based on whale position size, our portfolio value, and whale copy weight. Features include whale performance tracking, automatic demotion for underperformers, copy trade filters for quality control, mirrored exits when whales sell, and independent stop loss overrides for protection. Maintains whale leaderboard with 30-day performance metrics.",
+    description:
+      "ICM copy trading specialist. Automatically mirrors trades from elite whale wallets with proven track records. Detects whale buys/sells and executes matching orders within seconds.",
+    longDescription:
+      "Automated copy trading from elite whale wallets. Tracks elite whales with >70% win rate, >50 tracked trades, and >+500% cumulative returns. Real-time transaction monitoring via WebSocket detects whale buys/sells within 1 second. Implements intelligent copy sizing based on whale position size, our portfolio value, and whale copy weight. Features include whale performance tracking, automatic demotion for underperformers, copy trade filters for quality control, mirrored exits when whales sell, and independent stop loss overrides for protection. Maintains whale leaderboard with 30-day performance metrics.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Copy Trading", "Whale Tracking", "Smart Money", "Automation", "Trading"],
+    tags: [
+      "ICM",
+      "Copy Trading",
+      "Whale Tracking",
+      "Smart Money",
+      "Automation",
+      "Trading",
+    ],
     dependencies: ["whale-tracker", "portfolio-manager"],
-    files: [".claude/agents/smart-money-copier.md", ".gemini/agents/smart-money-copier.md", ".openai/agents/smart-money-copier.md"],
+    files: [
+      ".claude/agents/smart-money-copier.md",
+      ".gemini/agents/smart-money-copier.md",
+      ".openai/agents/smart-money-copier.md",
+    ],
     install: "npx @gicm/cli add agent/smart-money-copier",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SOLANA_RPC_URL", "HELIUS_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -2984,22 +4518,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Chart Pattern Detector",
     slug: "chart-pattern-detector",
-    description: "ICM technical analysis specialist. Detects chart patterns, support/resistance levels, trend lines, and candlestick formations. Provides technical entry/exit signals based on price action.",
-    longDescription: "Technical analysis and pattern recognition for ICM trading. Detects 10 key patterns: 5 bullish (ascending triangle, bull flag, cup and handle, double bottom, golden cross) and 5 bearish (descending triangle, bear flag, head and shoulders, double top, death cross). Identifies support and resistance levels using swing high/low analysis with clustering. Implements technical indicators: RSI for overbought/oversold conditions and volume analysis for breakout confirmation. Provides pattern-based entry signals with target prices, stop losses, and confidence scores (0-100). Combines with whale signals and liquidity analysis for comprehensive trading decisions.",
+    description:
+      "ICM technical analysis specialist. Detects chart patterns, support/resistance levels, trend lines, and candlestick formations. Provides technical entry/exit signals based on price action.",
+    longDescription:
+      "Technical analysis and pattern recognition for ICM trading. Detects 10 key patterns: 5 bullish (ascending triangle, bull flag, cup and handle, double bottom, golden cross) and 5 bearish (descending triangle, bear flag, head and shoulders, double top, death cross). Identifies support and resistance levels using swing high/low analysis with clustering. Implements technical indicators: RSI for overbought/oversold conditions and volume analysis for breakout confirmation. Provides pattern-based entry signals with target prices, stop losses, and confidence scores (0-100). Combines with whale signals and liquidity analysis for comprehensive trading decisions.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Technical Analysis", "Chart Patterns", "Trading", "Price Action", "Indicators"],
+    tags: [
+      "ICM",
+      "Technical Analysis",
+      "Chart Patterns",
+      "Trading",
+      "Price Action",
+      "Indicators",
+    ],
     dependencies: [],
-    files: [".claude/agents/chart-pattern-detector.md", ".gemini/agents/chart-pattern-detector.md", ".openai/agents/chart-pattern-detector.md"],
+    files: [
+      ".claude/agents/chart-pattern-detector.md",
+      ".gemini/agents/chart-pattern-detector.md",
+      ".openai/agents/chart-pattern-detector.md",
+    ],
     install: "npx @gicm/cli add agent/chart-pattern-detector",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["DEXSCREENER_API_KEY", "BIRDEYE_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3012,22 +4566,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "News Monitor",
     slug: "news-monitor",
-    description: "ICM news and announcement monitoring specialist. Tracks project announcements, influencer calls, exchange listings, partnerships, and major events for immediate market-moving alerts.",
-    longDescription: "Real-time news and announcement tracking for ICM tokens. Monitors multiple sources: Twitter for project/dev/influencer accounts, Telegram and Discord for official project channels, news sites (CoinDesk, CoinTelegraph, DeFiLlama, Medium), and on-chain events (contract changes, large transfers, liquidity changes). Categorizes news by impact: Tier 1 immediate impact (CEX listings, major partnerships, influencer calls, burn events, buybacks), Tier 2 moderate impact (product launches, audits, milestones, AMAs, staking), and Tier 3 low impact (giveaways, memes, general updates). Provides instant alerts (<30 seconds) for high-priority news with expected price impact and recommended actions.",
+    description:
+      "ICM news and announcement monitoring specialist. Tracks project announcements, influencer calls, exchange listings, partnerships, and major events for immediate market-moving alerts.",
+    longDescription:
+      "Real-time news and announcement tracking for ICM tokens. Monitors multiple sources: Twitter for project/dev/influencer accounts, Telegram and Discord for official project channels, news sites (CoinDesk, CoinTelegraph, DeFiLlama, Medium), and on-chain events (contract changes, large transfers, liquidity changes). Categorizes news by impact: Tier 1 immediate impact (CEX listings, major partnerships, influencer calls, burn events, buybacks), Tier 2 moderate impact (product launches, audits, milestones, AMAs, staking), and Tier 3 low impact (giveaways, memes, general updates). Provides instant alerts (<30 seconds) for high-priority news with expected price impact and recommended actions.",
     category: "ICM & Crypto",
     tags: ["ICM", "News", "Announcements", "Monitoring", "Alerts", "Events"],
     dependencies: [],
-    files: [".claude/agents/news-monitor.md", ".gemini/agents/news-monitor.md", ".openai/agents/news-monitor.md"],
+    files: [
+      ".claude/agents/news-monitor.md",
+      ".gemini/agents/news-monitor.md",
+      ".openai/agents/news-monitor.md",
+    ],
     install: "npx @gicm/cli add agent/news-monitor",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["TWITTER_API_KEY", "TELEGRAM_BOT_TOKEN"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3040,22 +4607,42 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Multi-Chain Scanner",
     slug: "multi-chain-scanner",
-    description: "Cross-chain ICM opportunity scanner. Monitors token launches across Solana, Ethereum, BSC, Base, and other chains. Identifies best opportunities regardless of blockchain.",
-    longDescription: "Cross-chain ICM launch monitoring and opportunity identification. Monitors 8 blockchains: primary chains with real-time monitoring (Solana on Raydium/Orca/Jupiter, Ethereum on Uniswap/SushiSwap, Base on BaseSwap/Aerodrome, BSC on PancakeSwap, Polygon on QuickSwap) and secondary chains with periodic checks (Arbitrum, Optimism, Avalanche). Chain-specific analysis accounts for speed, fees, liquidity depth, rug pull risk, and sniper bot competition. Cross-chain scoring system applies chain multipliers and compares opportunities across blockchains. Provides cross-chain comparison view showing top opportunities with scores and recommendations.",
+    description:
+      "Cross-chain ICM opportunity scanner. Monitors token launches across Solana, Ethereum, BSC, Base, and other chains. Identifies best opportunities regardless of blockchain.",
+    longDescription:
+      "Cross-chain ICM launch monitoring and opportunity identification. Monitors 8 blockchains: primary chains with real-time monitoring (Solana on Raydium/Orca/Jupiter, Ethereum on Uniswap/SushiSwap, Base on BaseSwap/Aerodrome, BSC on PancakeSwap, Polygon on QuickSwap) and secondary chains with periodic checks (Arbitrum, Optimism, Avalanche). Chain-specific analysis accounts for speed, fees, liquidity depth, rug pull risk, and sniper bot competition. Cross-chain scoring system applies chain multipliers and compares opportunities across blockchains. Provides cross-chain comparison view showing top opportunities with scores and recommendations.",
     category: "ICM & Crypto",
-    tags: ["ICM", "Multi-Chain", "Scanner", "Cross-Chain", "Opportunities", "Trading"],
+    tags: [
+      "ICM",
+      "Multi-Chain",
+      "Scanner",
+      "Cross-Chain",
+      "Opportunities",
+      "Trading",
+    ],
     dependencies: [],
-    files: [".claude/agents/multi-chain-scanner.md", ".gemini/agents/multi-chain-scanner.md", ".openai/agents/multi-chain-scanner.md"],
+    files: [
+      ".claude/agents/multi-chain-scanner.md",
+      ".gemini/agents/multi-chain-scanner.md",
+      ".openai/agents/multi-chain-scanner.md",
+    ],
     install: "npx @gicm/cli add agent/multi-chain-scanner",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SOLANA_RPC_URL", "ETHEREUM_RPC_URL", "DEXSCREENER_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3068,22 +4655,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Arbitrage Finder",
     slug: "arbitrage-finder",
-    description: "Cross-DEX arbitrage opportunity scanner. Identifies price discrepancies across different DEXs and chains for risk-free profit opportunities with fee/slippage accounting.",
-    longDescription: "Cross-DEX and cross-chain arbitrage opportunity identification. Scans for price discrepancies across DEXs with two arbitrage types: same-chain DEX arbitrage (Raydium vs Orca on Solana, atomic execution possible, min 1% profit) and cross-chain arbitrage (Uniswap ETH vs PancakeSwap BSC, bridge required, min 5% profit). Comprehensive profit calculation accounts for buy/sell fees (0.3%), slippage (0.1%), gas costs, and bridge fees. Implements execution strategy with atomic transactions when possible, execution timeouts, and MEV bot protection. Risk management includes 2x minimum profit margin requirement and partial execution prevention.",
+    description:
+      "Cross-DEX arbitrage opportunity scanner. Identifies price discrepancies across different DEXs and chains for risk-free profit opportunities with fee/slippage accounting.",
+    longDescription:
+      "Cross-DEX and cross-chain arbitrage opportunity identification. Scans for price discrepancies across DEXs with two arbitrage types: same-chain DEX arbitrage (Raydium vs Orca on Solana, atomic execution possible, min 1% profit) and cross-chain arbitrage (Uniswap ETH vs PancakeSwap BSC, bridge required, min 5% profit). Comprehensive profit calculation accounts for buy/sell fees (0.3%), slippage (0.1%), gas costs, and bridge fees. Implements execution strategy with atomic transactions when possible, execution timeouts, and MEV bot protection. Risk management includes 2x minimum profit margin requirement and partial execution prevention.",
     category: "ICM & Crypto",
     tags: ["ICM", "Arbitrage", "DEX", "Cross-Chain", "Trading", "Profit"],
     dependencies: [],
-    files: [".claude/agents/arbitrage-finder.md", ".gemini/agents/arbitrage-finder.md", ".openai/agents/arbitrage-finder.md"],
+    files: [
+      ".claude/agents/arbitrage-finder.md",
+      ".gemini/agents/arbitrage-finder.md",
+      ".openai/agents/arbitrage-finder.md",
+    ],
     install: "npx @gicm/cli add agent/arbitrage-finder",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["SOLANA_RPC_URL", "DEXSCREENER_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3096,21 +4696,34 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Airdrop Hunter",
     slug: "airdrop-hunter",
-    description: "Crypto airdrop opportunity scanner. Identifies upcoming airdrops, tracks eligibility criteria, and maximizes airdrop farming across multiple protocols for free tokens.",
-    longDescription: "Airdrop opportunity identification and farming optimization specialist. Tracks 3 airdrop tiers: confirmed (officially announced with known dates), likely (strong hints without official confirmation, 60-90% probability), and speculative (pure speculation based on patterns). Implements 3 farming strategies: volume farming (daily swaps on DEXs/bridges, $5-20/month cost), liquidity mining (LP provision and lending, IL risk + opportunity cost), and zero-cost testnet farming (testnet transactions and quests). Maintains active airdrop list with progress tracking, ROI calculation (expected value / costs), multi-wallet strategy for maximum allocations, and weekly farming reports with estimated total value and projected ROI.",
+    description:
+      "Crypto airdrop opportunity scanner. Identifies upcoming airdrops, tracks eligibility criteria, and maximizes airdrop farming across multiple protocols for free tokens.",
+    longDescription:
+      "Airdrop opportunity identification and farming optimization specialist. Tracks 3 airdrop tiers: confirmed (officially announced with known dates), likely (strong hints without official confirmation, 60-90% probability), and speculative (pure speculation based on patterns). Implements 3 farming strategies: volume farming (daily swaps on DEXs/bridges, $5-20/month cost), liquidity mining (LP provision and lending, IL risk + opportunity cost), and zero-cost testnet farming (testnet transactions and quests). Maintains active airdrop list with progress tracking, ROI calculation (expected value / costs), multi-wallet strategy for maximum allocations, and weekly farming reports with estimated total value and projected ROI.",
     category: "ICM & Crypto",
     tags: ["Airdrop", "Farming", "Free Money", "Opportunities", "Crypto"],
     dependencies: [],
-    files: [".claude/agents/airdrop-hunter.md", ".gemini/agents/airdrop-hunter.md", ".openai/agents/airdrop-hunter.md"],
+    files: [
+      ".claude/agents/airdrop-hunter.md",
+      ".gemini/agents/airdrop-hunter.md",
+      ".openai/agents/airdrop-hunter.md",
+    ],
     install: "npx @gicm/cli add agent/airdrop-hunter",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3123,22 +4736,35 @@ export const AGENTS: RegistryItem[] = [
     kind: "agent",
     name: "Influencer Tracker",
     slug: "influencer-tracker",
-    description: "Crypto influencer monitoring specialist. Tracks calls from top crypto influencers, analyzes their track records, and alerts on new token calls to ride influencer-driven pumps.",
-    longDescription: "Crypto influencer monitoring and call tracking specialist. Tracks 3 influencer tiers: elite callers (100k+ followers, >80% win rate, >50 calls, +200% avg pump), proven callers (50k-100k followers, 60-80% win rate, 20+ calls, +100% avg pump), and emerging callers (10k-50k followers, <60% win rate, <20 calls, variable performance). Real-time call detection using keyword analysis (buying, aping, gem, moon, 100x) and conviction detection (high: all in, life savings; medium: loading, accumulating; low: other). Maintains influencer performance database with win rates, average pumps, best/worst calls, and recent form. Entry strategy based on influencer tier, conviction level, and independent token analysis with dynamic position sizing.",
+    description:
+      "Crypto influencer monitoring specialist. Tracks calls from top crypto influencers, analyzes their track records, and alerts on new token calls to ride influencer-driven pumps.",
+    longDescription:
+      "Crypto influencer monitoring and call tracking specialist. Tracks 3 influencer tiers: elite callers (100k+ followers, >80% win rate, >50 calls, +200% avg pump), proven callers (50k-100k followers, 60-80% win rate, 20+ calls, +100% avg pump), and emerging callers (10k-50k followers, <60% win rate, <20 calls, variable performance). Real-time call detection using keyword analysis (buying, aping, gem, moon, 100x) and conviction detection (high: all in, life savings; medium: loading, accumulating; low: other). Maintains influencer performance database with win rates, average pumps, best/worst calls, and recent form. Entry strategy based on influencer tier, conviction level, and independent token analysis with dynamic position sizing.",
     category: "ICM & Crypto",
     tags: ["ICM", "Influencer", "Calls", "Tracking", "Social", "Trading"],
     dependencies: [],
-    files: [".claude/agents/influencer-tracker.md", ".gemini/agents/influencer-tracker.md", ".openai/agents/influencer-tracker.md"],
+    files: [
+      ".claude/agents/influencer-tracker.md",
+      ".gemini/agents/influencer-tracker.md",
+      ".openai/agents/influencer-tracker.md",
+    ],
     install: "npx @gicm/cli add agent/influencer-tracker",
     layer: ".claude",
     modelRecommendation: "opus-4.5",
     envKeys: ["TWITTER_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3159,20 +4785,32 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Solana Anchor Mastery",
     slug: "solana-anchor-mastery",
-    description: "Complete Anchor framework guide. PDAs, CPIs, security patterns. Loads in 34 tokens, expands to 5.2k.",
-    longDescription: "Comprehensive Anchor skill covering program structure, account validation, PDA derivation, CPI invocations, error handling, and security best practices. Progressive disclosure from quick reference to deep implementation patterns.",
+    description:
+      "Complete Anchor framework guide. PDAs, CPIs, security patterns. Loads in 34 tokens, expands to 5.2k.",
+    longDescription:
+      "Comprehensive Anchor skill covering program structure, account validation, PDA derivation, CPI invocations, error handling, and security best practices. Progressive disclosure from quick reference to deep implementation patterns.",
     category: "Blockchain & Web3",
     tags: ["Solana", "Anchor", "Rust", "Blockchain"],
     dependencies: [],
-    files: [".claude/skills/solana-anchor-mastery/SKILL.md", ".claude/skills/solana-anchor-mastery/references/"],
+    files: [
+      ".claude/skills/solana-anchor-mastery/SKILL.md",
+      ".claude/skills/solana-anchor-mastery/references/",
+    ],
     install: "npx @gicm/cli add skill/solana-anchor-mastery",
     tokenSavings: 92,
     installs: 1567,
     remixes: 423,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3185,20 +4823,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Web3 Wallet Integration",
     slug: "web3-wallet-integration",
-    description: "Phantom, MetaMask, WalletConnect integration. React hooks, transaction signing. 88% token savings.",
-    longDescription: "Wallet integration patterns for Solana (Phantom, Solflare) and EVM chains (MetaMask, Rainbow). Covers wallet connection, account switching, transaction signing, and error handling with React hooks.",
+    description:
+      "Phantom, MetaMask, WalletConnect integration. React hooks, transaction signing. 88% token savings.",
+    longDescription:
+      "Wallet integration patterns for Solana (Phantom, Solflare) and EVM chains (MetaMask, Rainbow). Covers wallet connection, account switching, transaction signing, and error handling with React hooks.",
     category: "Blockchain & Web3",
     tags: ["Web3", "Wallet", "React", "Integration"],
-    dependencies: [],
-    files: [".claude/skills/web3-wallet-integration/SKILL.md", ".gemini/skills/web3-wallet-integration/SKILL.md", ".openai/skills/web3-wallet-integration/SKILL.md"],
+    dependencies: ["nextjs-app-router-mastery"],
+    files: [
+      ".claude/skills/web3-wallet-integration/SKILL.md",
+      ".gemini/skills/web3-wallet-integration/SKILL.md",
+      ".openai/skills/web3-wallet-integration/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/web3-wallet-integration",
     tokenSavings: 88,
     installs: 1342,
     remixes: 389,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3211,20 +4862,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Bonding Curve Mathematics",
     slug: "bonding-curve-mathematics",
-    description: "Linear, exponential, sigmoid curves. Price calculation, slippage. Used by top launch platforms.",
-    longDescription: "Mathematical implementations of bonding curves for token launches. Covers constant-product (xy=k), linear, exponential, and custom curves. Includes slippage calculation and fair launch mechanics.",
+    description:
+      "Linear, exponential, sigmoid curves. Price calculation, slippage. Used by top launch platforms.",
+    longDescription:
+      "Mathematical implementations of bonding curves for token launches. Covers constant-product (xy=k), linear, exponential, and custom curves. Includes slippage calculation and fair launch mechanics.",
     category: "Blockchain & Web3",
     tags: ["DeFi", "Mathematics", "Bonding Curves", "Launch Platform"],
-    dependencies: [],
-    files: [".claude/skills/bonding-curve-mathematics/SKILL.md", ".gemini/skills/bonding-curve-mathematics/SKILL.md", ".openai/skills/bonding-curve-mathematics/SKILL.md"],
+    dependencies: ["solana-anchor-mastery"],
+    files: [
+      ".claude/skills/bonding-curve-mathematics/SKILL.md",
+      ".gemini/skills/bonding-curve-mathematics/SKILL.md",
+      ".openai/skills/bonding-curve-mathematics/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/bonding-curve-mathematics",
     tokenSavings: 85,
     installs: 934,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3237,20 +4901,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "NFT Metadata Standards",
     slug: "nft-metadata-standards",
-    description: "Metaplex metadata, attributes, rarity. IPFS + Arweave storage. 91% token reduction.",
-    longDescription: "NFT metadata standards for Solana (Metaplex) and Ethereum (ERC-721/1155). Covers JSON schema, trait specifications, rarity calculations, and decentralized storage (IPFS, Arweave, Shadow Drive).",
+    description:
+      "Metaplex metadata, attributes, rarity. IPFS + Arweave storage. 91% token reduction.",
+    longDescription:
+      "NFT metadata standards for Solana (Metaplex) and Ethereum (ERC-721/1155). Covers JSON schema, trait specifications, rarity calculations, and decentralized storage (IPFS, Arweave, Shadow Drive).",
     category: "Blockchain & Web3",
     tags: ["NFT", "Metadata", "Metaplex", "IPFS"],
-    dependencies: [],
-    files: [".claude/skills/nft-metadata-standards/SKILL.md", ".gemini/skills/nft-metadata-standards/SKILL.md", ".openai/skills/nft-metadata-standards/SKILL.md"],
+    dependencies: ["solana-anchor-mastery"],
+    files: [
+      ".claude/skills/nft-metadata-standards/SKILL.md",
+      ".gemini/skills/nft-metadata-standards/SKILL.md",
+      ".openai/skills/nft-metadata-standards/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/nft-metadata-standards",
     tokenSavings: 91,
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3263,20 +4940,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Cross-Program Invocations",
     slug: "cross-program-invocations",
-    description: "CPI patterns, program composability. Invoke other programs safely. 87% context savings.",
-    longDescription: "Advanced CPI techniques for Solana programs. Covers invoke, invoke_signed, account passing, PDA signing, and composability patterns. Includes security considerations and common pitfalls.",
+    description:
+      "CPI patterns, program composability. Invoke other programs safely. 87% context savings.",
+    longDescription:
+      "Advanced CPI techniques for Solana programs. Covers invoke, invoke_signed, account passing, PDA signing, and composability patterns. Includes security considerations and common pitfalls.",
     category: "Blockchain & Web3",
     tags: ["Solana", "CPI", "Composability", "Advanced"],
     dependencies: ["solana-anchor-mastery"],
-    files: [".claude/skills/cross-program-invocations/SKILL.md", ".gemini/skills/cross-program-invocations/SKILL.md", ".openai/skills/cross-program-invocations/SKILL.md"],
+    files: [
+      ".claude/skills/cross-program-invocations/SKILL.md",
+      ".gemini/skills/cross-program-invocations/SKILL.md",
+      ".openai/skills/cross-program-invocations/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/cross-program-invocations",
     tokenSavings: 87,
     installs: 512,
     remixes: 134,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3289,20 +4979,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Transaction Retry Logic",
     slug: "transaction-retry-logic",
-    description: "Exponential backoff, RPC fallbacks, blockhash refresh. 96% transaction success rate.",
-    longDescription: "Robust transaction submission patterns for Solana and EVM chains. Handles RPC failures, blockhash expiration, and network congestion with exponential backoff, fallback RPCs, and confirmation polling.",
+    description:
+      "Exponential backoff, RPC fallbacks, blockhash refresh. 96% transaction success rate.",
+    longDescription:
+      "Robust transaction submission patterns for Solana and EVM chains. Handles RPC failures, blockhash expiration, and network congestion with exponential backoff, fallback RPCs, and confirmation polling.",
     category: "Blockchain & Web3",
     tags: ["Transactions", "Retry Logic", "RPC", "Reliability"],
-    dependencies: [],
-    files: [".claude/skills/transaction-retry-logic/SKILL.md", ".gemini/skills/transaction-retry-logic/SKILL.md", ".openai/skills/transaction-retry-logic/SKILL.md"],
+    dependencies: ["web3-wallet-integration"],
+    files: [
+      ".claude/skills/transaction-retry-logic/SKILL.md",
+      ".gemini/skills/transaction-retry-logic/SKILL.md",
+      ".openai/skills/transaction-retry-logic/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/transaction-retry-logic",
     tokenSavings: 83,
     installs: 823,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3315,20 +5018,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Helius RPC Optimization",
     slug: "helius-rpc-optimization",
-    description: "Helius webhooks, transaction parsing, geyser plugins. 4.2x faster data fetching.",
-    longDescription: "Helius RPC optimization techniques including webhooks for real-time events, enhanced transaction parsing, and geyser plugin integration. Reduces RPC calls and improves data freshness.",
+    description:
+      "Helius webhooks, transaction parsing, geyser plugins. 4.2x faster data fetching.",
+    longDescription:
+      "Helius RPC optimization techniques including webhooks for real-time events, enhanced transaction parsing, and geyser plugin integration. Reduces RPC calls and improves data freshness.",
     category: "Blockchain & Web3",
     tags: ["Solana", "Helius", "RPC", "Optimization"],
-    dependencies: [],
-    files: [".claude/skills/helius-rpc-optimization/SKILL.md", ".gemini/skills/helius-rpc-optimization/SKILL.md", ".openai/skills/helius-rpc-optimization/SKILL.md"],
+    dependencies: ["transaction-retry-logic"],
+    files: [
+      ".claude/skills/helius-rpc-optimization/SKILL.md",
+      ".gemini/skills/helius-rpc-optimization/SKILL.md",
+      ".openai/skills/helius-rpc-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/helius-rpc-optimization",
     tokenSavings: 89,
     installs: 634,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3341,20 +5057,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Jupiter Aggregator Integration",
     slug: "jupiter-aggregator-integration",
-    description: "Best price routing, slippage protection. Jupiter API integration. 90% token savings.",
-    longDescription: "Jupiter DEX aggregator integration for optimal swap routing. Covers quote fetching, route comparison, slippage configuration, and transaction execution with Jupiter V6 API.",
+    description:
+      "Best price routing, slippage protection. Jupiter API integration. 90% token savings.",
+    longDescription:
+      "Jupiter DEX aggregator integration for optimal swap routing. Covers quote fetching, route comparison, slippage configuration, and transaction execution with Jupiter V6 API.",
     category: "Blockchain & Web3",
     tags: ["Solana", "DeFi", "Jupiter", "Swaps"],
     dependencies: ["solana-anchor-mastery"],
-    files: [".claude/skills/jupiter-aggregator-integration/SKILL.md", ".gemini/skills/jupiter-aggregator-integration/SKILL.md", ".openai/skills/jupiter-aggregator-integration/SKILL.md"],
+    files: [
+      ".claude/skills/jupiter-aggregator-integration/SKILL.md",
+      ".gemini/skills/jupiter-aggregator-integration/SKILL.md",
+      ".openai/skills/jupiter-aggregator-integration/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/jupiter-aggregator-integration",
     tokenSavings: 90,
     installs: 745,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3367,20 +5096,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "DEX Screener API",
     slug: "dex-screener-api",
-    description: "Token charts, price data, holder tracking. Real-time DeFi analytics.",
-    longDescription: "DEX Screener API integration for token analytics, price charts, liquidity data, and holder metrics. Covers multiple chains and DEX platforms with rate limiting and caching strategies.",
+    description:
+      "Token charts, price data, holder tracking. Real-time DeFi analytics.",
+    longDescription:
+      "DEX Screener API integration for token analytics, price charts, liquidity data, and holder metrics. Covers multiple chains and DEX platforms with rate limiting and caching strategies.",
     category: "Blockchain & Web3",
     tags: ["DeFi", "Analytics", "API", "DEX"],
-    dependencies: [],
-    files: [".claude/skills/dex-screener-api/SKILL.md", ".gemini/skills/dex-screener-api/SKILL.md", ".openai/skills/dex-screener-api/SKILL.md"],
+    dependencies: ["api-architecture-patterns"],
+    files: [
+      ".claude/skills/dex-screener-api/SKILL.md",
+      ".gemini/skills/dex-screener-api/SKILL.md",
+      ".openai/skills/dex-screener-api/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/dex-screener-api",
     tokenSavings: 86,
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3393,20 +5135,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Solana Program Optimization",
     slug: "solana-program-optimization",
-    description: "Compute unit optimization, account packing, zero-copy deserialization. 63% gas savings.",
-    longDescription: "Advanced Solana program optimization techniques: compute unit reduction, account size optimization, zero-copy deserialization, and instruction batching. Achieves significant gas savings and performance improvements.",
+    description:
+      "Compute unit optimization, account packing, zero-copy deserialization. 63% gas savings.",
+    longDescription:
+      "Advanced Solana program optimization techniques: compute unit reduction, account size optimization, zero-copy deserialization, and instruction batching. Achieves significant gas savings and performance improvements.",
     category: "Blockchain & Web3",
     tags: ["Solana", "Optimization", "Performance", "Gas"],
     dependencies: ["solana-anchor-mastery"],
-    files: [".claude/skills/solana-program-optimization/SKILL.md", ".gemini/skills/solana-program-optimization/SKILL.md", ".openai/skills/solana-program-optimization/SKILL.md"],
+    files: [
+      ".claude/skills/solana-program-optimization/SKILL.md",
+      ".gemini/skills/solana-program-optimization/SKILL.md",
+      ".openai/skills/solana-program-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/solana-program-optimization",
     tokenSavings: 84,
     installs: 423,
     remixes: 112,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3419,20 +5174,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Anchor Macros Deep Dive",
     slug: "anchor-macros-deep-dive",
-    description: "#[account], #[program], custom constraints. Macro expansion understanding.",
-    longDescription: "In-depth exploration of Anchor's procedural macros: #[program], #[account], #[derive], and custom constraints. Understand macro expansion, account validation, and advanced patterns.",
+    description:
+      "#[account], #[program], custom constraints. Macro expansion understanding.",
+    longDescription:
+      "In-depth exploration of Anchor's procedural macros: #[program], #[account], #[derive], and custom constraints. Understand macro expansion, account validation, and advanced patterns.",
     category: "Blockchain & Web3",
     tags: ["Anchor", "Rust", "Macros", "Advanced"],
     dependencies: ["solana-anchor-mastery"],
-    files: [".claude/skills/anchor-macros-deep-dive/SKILL.md", ".gemini/skills/anchor-macros-deep-dive/SKILL.md", ".openai/skills/anchor-macros-deep-dive/SKILL.md"],
+    files: [
+      ".claude/skills/anchor-macros-deep-dive/SKILL.md",
+      ".gemini/skills/anchor-macros-deep-dive/SKILL.md",
+      ".openai/skills/anchor-macros-deep-dive/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/anchor-macros-deep-dive",
     tokenSavings: 88,
     installs: 378,
     remixes: 98,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3447,20 +5215,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Next.js App Router Patterns",
     slug: "nextjs-app-router-patterns",
-    description: "Server Components, streaming, parallel routes. Next.js 14 best practices. 89% token reduction.",
-    longDescription: "Comprehensive Next.js 14 App Router guide covering Server Components, Client Components, streaming SSR, parallel routes, intercepting routes, and server actions. Optimized patterns for performance and SEO.",
+    description:
+      "Server Components, streaming, parallel routes. Next.js 14 best practices. 89% token reduction.",
+    longDescription:
+      "Comprehensive Next.js 14 App Router guide covering Server Components, Client Components, streaming SSR, parallel routes, intercepting routes, and server actions. Optimized patterns for performance and SEO.",
     category: "Frontend & UI",
     tags: ["Next.js", "React", "App Router", "SSR"],
-    dependencies: [],
-    files: [".claude/skills/nextjs-app-router-patterns/SKILL.md", ".gemini/skills/nextjs-app-router-patterns/SKILL.md", ".openai/skills/nextjs-app-router-patterns/SKILL.md"],
+    dependencies: ["advanced-typescript-patterns"],
+    files: [
+      ".claude/skills/nextjs-app-router-patterns/SKILL.md",
+      ".gemini/skills/nextjs-app-router-patterns/SKILL.md",
+      ".openai/skills/nextjs-app-router-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/nextjs-app-router-patterns",
     tokenSavings: 89,
     installs: 1423,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3473,20 +5254,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "shadcn Component System",
     slug: "shadcn-component-system",
-    description: "shadcn/ui setup, customization, Radix primitives. Consistent, accessible components.",
-    longDescription: "shadcn/ui component library integration and customization. Covers installation, theming, variant creation, and composition patterns. Built on Radix UI primitives for accessibility.",
+    description:
+      "shadcn/ui setup, customization, Radix primitives. Consistent, accessible components.",
+    longDescription:
+      "shadcn/ui component library integration and customization. Covers installation, theming, variant creation, and composition patterns. Built on Radix UI primitives for accessibility.",
     category: "Frontend & UI",
     tags: ["shadcn", "Components", "UI", "Radix"],
-    dependencies: [],
-    files: [".claude/skills/shadcn-component-system/SKILL.md", ".gemini/skills/shadcn-component-system/SKILL.md", ".openai/skills/shadcn-component-system/SKILL.md"],
+    dependencies: ["tailwind-design-system", "nextjs-app-router-patterns"],
+    files: [
+      ".claude/skills/shadcn-component-system/SKILL.md",
+      ".gemini/skills/shadcn-component-system/SKILL.md",
+      ".openai/skills/shadcn-component-system/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/shadcn-component-system",
     tokenSavings: 87,
     installs: 1234,
     remixes: 367,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3499,20 +5293,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Tailwind Design System",
     slug: "tailwind-design-system",
-    description: "Design tokens, custom utilities, responsive patterns. Brand-consistent styling.",
-    longDescription: "Building design systems with Tailwind CSS: custom colors, typography, spacing scales, responsive breakpoints, and dark mode. Includes plugin creation and CSS variable integration.",
+    description:
+      "Design tokens, custom utilities, responsive patterns. Brand-consistent styling.",
+    longDescription:
+      "Building design systems with Tailwind CSS: custom colors, typography, spacing scales, responsive breakpoints, and dark mode. Includes plugin creation and CSS variable integration.",
     category: "Frontend & UI",
     tags: ["Tailwind", "CSS", "Design System", "Styling"],
     dependencies: [],
-    files: [".claude/skills/tailwind-design-system/SKILL.md", ".gemini/skills/tailwind-design-system/SKILL.md", ".openai/skills/tailwind-design-system/SKILL.md"],
+    files: [
+      ".claude/skills/tailwind-design-system/SKILL.md",
+      ".gemini/skills/tailwind-design-system/SKILL.md",
+      ".openai/skills/tailwind-design-system/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/tailwind-design-system",
     tokenSavings: 85,
     installs: 1089,
     remixes: 298,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3525,20 +5332,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Framer Motion Animations",
     slug: "framer-motion-animations",
-    description: "Page transitions, gesture animations, scroll triggers. Smooth, performant motion.",
-    longDescription: "Framer Motion animation patterns: layout animations, page transitions, gesture controls, scroll-triggered animations, and orchestration. Optimized for 60fps performance.",
+    description:
+      "Page transitions, gesture animations, scroll triggers. Smooth, performant motion.",
+    longDescription:
+      "Framer Motion animation patterns: layout animations, page transitions, gesture controls, scroll-triggered animations, and orchestration. Optimized for 60fps performance.",
     category: "Frontend & UI",
     tags: ["Animation", "Framer Motion", "React", "UX"],
-    dependencies: [],
-    files: [".claude/skills/framer-motion-animations/SKILL.md", ".gemini/skills/framer-motion-animations/SKILL.md", ".openai/skills/framer-motion-animations/SKILL.md"],
+    dependencies: ["nextjs-app-router-patterns"],
+    files: [
+      ".claude/skills/framer-motion-animations/SKILL.md",
+      ".gemini/skills/framer-motion-animations/SKILL.md",
+      ".openai/skills/framer-motion-animations/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/framer-motion-animations",
     tokenSavings: 88,
     installs: 934,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3551,20 +5371,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "React Performance Optimization",
     slug: "react-performance-optimization",
-    description: "useMemo, useCallback, code splitting, lazy loading. 3.7x faster renders.",
-    longDescription: "React performance optimization techniques: memoization, virtualization, code splitting, lazy loading, and avoiding unnecessary re-renders. Includes profiling strategies and bundle optimization.",
+    description:
+      "useMemo, useCallback, code splitting, lazy loading. 3.7x faster renders.",
+    longDescription:
+      "React performance optimization techniques: memoization, virtualization, code splitting, lazy loading, and avoiding unnecessary re-renders. Includes profiling strategies and bundle optimization.",
     category: "Frontend & UI",
     tags: ["React", "Performance", "Optimization", "Hooks"],
-    dependencies: [],
-    files: [".claude/skills/react-performance-optimization/SKILL.md", ".gemini/skills/react-performance-optimization/SKILL.md", ".openai/skills/react-performance-optimization/SKILL.md"],
+    dependencies: ["nextjs-app-router-patterns"],
+    files: [
+      ".claude/skills/react-performance-optimization/SKILL.md",
+      ".gemini/skills/react-performance-optimization/SKILL.md",
+      ".openai/skills/react-performance-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/react-performance-optimization",
     tokenSavings: 86,
     installs: 812,
     remixes: 223,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3577,20 +5410,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Responsive Mobile-First",
     slug: "responsive-mobile-first",
-    description: "Mobile-first design, breakpoints, touch targets. 95% mobile usability score.",
-    longDescription: "Mobile-first responsive design principles: fluid layouts, flexible images, touch-friendly interactions, and progressive enhancement. Covers Tailwind breakpoints and device testing strategies.",
+    description:
+      "Mobile-first design, breakpoints, touch targets. 95% mobile usability score.",
+    longDescription:
+      "Mobile-first responsive design principles: fluid layouts, flexible images, touch-friendly interactions, and progressive enhancement. Covers Tailwind breakpoints and device testing strategies.",
     category: "Frontend & UI",
     tags: ["Responsive", "Mobile", "UX", "Design"],
     dependencies: ["tailwind-design-system"],
-    files: [".claude/skills/responsive-mobile-first/SKILL.md", ".gemini/skills/responsive-mobile-first/SKILL.md", ".openai/skills/responsive-mobile-first/SKILL.md"],
+    files: [
+      ".claude/skills/responsive-mobile-first/SKILL.md",
+      ".gemini/skills/responsive-mobile-first/SKILL.md",
+      ".openai/skills/responsive-mobile-first/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/responsive-mobile-first",
     tokenSavings: 84,
     installs: 723,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3605,20 +5451,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Supabase Realtime Subscriptions",
     slug: "supabase-realtime-subscriptions",
-    description: "Realtime database subscriptions, presence, broadcast. PostgreSQL triggers + WebSockets.",
-    longDescription: "Supabase realtime features: database subscriptions, presence tracking, broadcast messaging, and conflict resolution. Covers PostgreSQL triggers, RLS policies, and React integration.",
+    description:
+      "Realtime database subscriptions, presence, broadcast. PostgreSQL triggers + WebSockets.",
+    longDescription:
+      "Supabase realtime features: database subscriptions, presence tracking, broadcast messaging, and conflict resolution. Covers PostgreSQL triggers, RLS policies, and React integration.",
     category: "Backend & Data",
     tags: ["Supabase", "Realtime", "PostgreSQL", "WebSockets"],
-    dependencies: [],
-    files: [".claude/skills/supabase-realtime-subscriptions/SKILL.md", ".gemini/skills/supabase-realtime-subscriptions/SKILL.md", ".openai/skills/supabase-realtime-subscriptions/SKILL.md"],
+    dependencies: ["mcp-supabase", "mcp-postgresql"],
+    files: [
+      ".claude/skills/supabase-realtime-subscriptions/SKILL.md",
+      ".gemini/skills/supabase-realtime-subscriptions/SKILL.md",
+      ".openai/skills/supabase-realtime-subscriptions/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/supabase-realtime-subscriptions",
     tokenSavings: 90,
     installs: 867,
     remixes: 245,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3631,20 +5490,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "tRPC Type-Safe APIs",
     slug: "trpc-type-safe-apis",
-    description: "End-to-end type safety, procedures, middleware. Zero API boilerplate.",
-    longDescription: "tRPC setup for type-safe APIs: procedures, routers, middleware, error handling, and context. Achieves end-to-end type safety between frontend and backend without code generation.",
+    description:
+      "End-to-end type safety, procedures, middleware. Zero API boilerplate.",
+    longDescription:
+      "tRPC setup for type-safe APIs: procedures, routers, middleware, error handling, and context. Achieves end-to-end type safety between frontend and backend without code generation.",
     category: "Backend & Data",
     tags: ["tRPC", "TypeScript", "API", "Type Safety"],
-    dependencies: [],
-    files: [".claude/skills/trpc-type-safe-apis/SKILL.md", ".gemini/skills/trpc-type-safe-apis/SKILL.md", ".openai/skills/trpc-type-safe-apis/SKILL.md"],
+    dependencies: ["zod-schema-validation", "advanced-typescript-patterns"],
+    files: [
+      ".claude/skills/trpc-type-safe-apis/SKILL.md",
+      ".gemini/skills/trpc-type-safe-apis/SKILL.md",
+      ".openai/skills/trpc-type-safe-apis/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/trpc-type-safe-apis",
     tokenSavings: 88,
     installs: 734,
     remixes: 212,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3657,20 +5529,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Zod Schema Validation",
     slug: "zod-schema-validation",
-    description: "Runtime type validation, form schemas, API contracts. TypeScript integration.",
-    longDescription: "Zod validation patterns for forms, API endpoints, and environment variables. Covers schema composition, refinements, transforms, and error handling with TypeScript inference.",
+    description:
+      "Runtime type validation, form schemas, API contracts. TypeScript integration.",
+    longDescription:
+      "Zod validation patterns for forms, API endpoints, and environment variables. Covers schema composition, refinements, transforms, and error handling with TypeScript inference.",
     category: "Backend & Data",
     tags: ["Zod", "Validation", "TypeScript", "Schemas"],
-    dependencies: [],
-    files: [".claude/skills/zod-schema-validation/SKILL.md", ".gemini/skills/zod-schema-validation/SKILL.md", ".openai/skills/zod-schema-validation/SKILL.md"],
+    dependencies: ["advanced-typescript-patterns"],
+    files: [
+      ".claude/skills/zod-schema-validation/SKILL.md",
+      ".gemini/skills/zod-schema-validation/SKILL.md",
+      ".openai/skills/zod-schema-validation/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/zod-schema-validation",
     tokenSavings: 85,
     installs: 1012,
     remixes: 289,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3683,20 +5568,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Database Migration Strategies",
     slug: "database-migration-strategies",
-    description: "Zero-downtime migrations, rollback strategies. Prisma + Supabase patterns.",
-    longDescription: "Database migration best practices: schema versioning, zero-downtime deployments, rollback strategies, and data backfills. Covers Prisma, Supabase migrations, and PostgreSQL-specific techniques.",
+    description:
+      "Zero-downtime migrations, rollback strategies. Prisma + Supabase patterns.",
+    longDescription:
+      "Database migration best practices: schema versioning, zero-downtime deployments, rollback strategies, and data backfills. Covers Prisma, Supabase migrations, and PostgreSQL-specific techniques.",
     category: "Backend & Data",
     tags: ["Database", "Migrations", "PostgreSQL", "DevOps"],
     dependencies: [],
-    files: [".claude/skills/database-migration-strategies/SKILL.md", ".gemini/skills/database-migration-strategies/SKILL.md", ".openai/skills/database-migration-strategies/SKILL.md"],
+    files: [
+      ".claude/skills/database-migration-strategies/SKILL.md",
+      ".gemini/skills/database-migration-strategies/SKILL.md",
+      ".openai/skills/database-migration-strategies/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/database-migration-strategies",
     tokenSavings: 87,
     installs: 512,
     remixes: 134,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3709,20 +5607,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Redis Caching Patterns",
     slug: "redis-caching-patterns",
-    description: "Cache-aside, write-through, pub/sub. Upstash Redis integration.",
-    longDescription: "Redis caching strategies for performance: cache-aside, write-through, write-behind, and invalidation patterns. Covers Upstash Redis integration, pub/sub messaging, and rate limiting.",
+    description:
+      "Cache-aside, write-through, pub/sub. Upstash Redis integration.",
+    longDescription:
+      "Redis caching strategies for performance: cache-aside, write-through, write-behind, and invalidation patterns. Covers Upstash Redis integration, pub/sub messaging, and rate limiting.",
     category: "Backend & Data",
     tags: ["Redis", "Caching", "Performance", "Upstash"],
     dependencies: [],
-    files: [".claude/skills/redis-caching-patterns/SKILL.md", ".gemini/skills/redis-caching-patterns/SKILL.md", ".openai/skills/redis-caching-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/redis-caching-patterns/SKILL.md",
+      ".gemini/skills/redis-caching-patterns/SKILL.md",
+      ".openai/skills/redis-caching-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/redis-caching-patterns",
     tokenSavings: 86,
     installs: 623,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3737,20 +5648,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Playwright E2E Testing",
     slug: "playwright-e2e-testing",
-    description: "Browser automation, visual regression, wallet mocking. Reliable E2E tests.",
-    longDescription: "Playwright end-to-end testing patterns: page objects, fixtures, visual regression testing, and wallet mocking for Web3 apps. Includes CI integration and parallel execution.",
+    description:
+      "Browser automation, visual regression, wallet mocking. Reliable E2E tests.",
+    longDescription:
+      "Playwright end-to-end testing patterns: page objects, fixtures, visual regression testing, and wallet mocking for Web3 apps. Includes CI integration and parallel execution.",
     category: "Testing & QA",
     tags: ["Playwright", "E2E", "Testing", "Automation"],
     dependencies: [],
-    files: [".claude/skills/playwright-e2e-testing/SKILL.md", ".gemini/skills/playwright-e2e-testing/SKILL.md", ".openai/skills/playwright-e2e-testing/SKILL.md"],
+    files: [
+      ".claude/skills/playwright-e2e-testing/SKILL.md",
+      ".gemini/skills/playwright-e2e-testing/SKILL.md",
+      ".openai/skills/playwright-e2e-testing/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/playwright-e2e-testing",
     tokenSavings: 89,
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3763,20 +5687,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Jest Unit Testing",
     slug: "jest-unit-testing",
-    description: "Unit tests, mocks, snapshots, coverage. React Testing Library integration.",
-    longDescription: "Jest testing patterns for unit tests: mocking, snapshot testing, coverage reporting, and React Testing Library integration. Covers async testing and custom matchers.",
+    description:
+      "Unit tests, mocks, snapshots, coverage. React Testing Library integration.",
+    longDescription:
+      "Jest testing patterns for unit tests: mocking, snapshot testing, coverage reporting, and React Testing Library integration. Covers async testing and custom matchers.",
     category: "Testing & QA",
     tags: ["Jest", "Testing", "Unit Tests", "React"],
     dependencies: [],
-    files: [".claude/skills/jest-unit-testing/SKILL.md", ".gemini/skills/jest-unit-testing/SKILL.md", ".openai/skills/jest-unit-testing/SKILL.md"],
+    files: [
+      ".claude/skills/jest-unit-testing/SKILL.md",
+      ".gemini/skills/jest-unit-testing/SKILL.md",
+      ".openai/skills/jest-unit-testing/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/jest-unit-testing",
     tokenSavings: 84,
     installs: 823,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3789,20 +5726,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Solana Program Testing",
     slug: "solana-program-testing",
-    description: "Anchor tests, BankrunProvider, account mocking. Comprehensive program testing.",
-    longDescription: "Solana program testing with Anchor test framework: unit tests, integration tests, account mocking, and error testing. Uses BankrunProvider for faster local testing.",
+    description:
+      "Anchor tests, BankrunProvider, account mocking. Comprehensive program testing.",
+    longDescription:
+      "Solana program testing with Anchor test framework: unit tests, integration tests, account mocking, and error testing. Uses BankrunProvider for faster local testing.",
     category: "Testing & QA",
     tags: ["Solana", "Testing", "Anchor", "Blockchain"],
     dependencies: ["solana-anchor-mastery"],
-    files: [".claude/skills/solana-program-testing/SKILL.md", ".gemini/skills/solana-program-testing/SKILL.md", ".openai/skills/solana-program-testing/SKILL.md"],
+    files: [
+      ".claude/skills/solana-program-testing/SKILL.md",
+      ".gemini/skills/solana-program-testing/SKILL.md",
+      ".openai/skills/solana-program-testing/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/solana-program-testing",
     tokenSavings: 87,
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3815,20 +5765,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Load Testing with k6",
     slug: "load-testing-k6",
-    description: "Performance testing, load scenarios, metrics. Find breaking points.",
-    longDescription: "k6 load testing patterns: virtual users, ramp-up scenarios, threshold definitions, and custom metrics. Identifies performance bottlenecks and capacity limits.",
+    description:
+      "Performance testing, load scenarios, metrics. Find breaking points.",
+    longDescription:
+      "k6 load testing patterns: virtual users, ramp-up scenarios, threshold definitions, and custom metrics. Identifies performance bottlenecks and capacity limits.",
     category: "Testing & QA",
     tags: ["Load Testing", "k6", "Performance", "QA"],
     dependencies: [],
-    files: [".claude/skills/load-testing-k6/SKILL.md", ".gemini/skills/load-testing-k6/SKILL.md", ".openai/skills/load-testing-k6/SKILL.md"],
+    files: [
+      ".claude/skills/load-testing-k6/SKILL.md",
+      ".gemini/skills/load-testing-k6/SKILL.md",
+      ".openai/skills/load-testing-k6/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/load-testing-k6",
     tokenSavings: 85,
     installs: 398,
     remixes: 102,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3843,20 +5806,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Vercel Deployment Optimization",
     slug: "vercel-deployment-optimization",
-    description: "Edge functions, ISR, preview deployments. Vercel-specific optimizations.",
-    longDescription: "Vercel deployment best practices: edge functions, incremental static regeneration (ISR), preview deployments, environment variables, and analytics integration. Optimized for Next.js apps.",
+    description:
+      "Edge functions, ISR, preview deployments. Vercel-specific optimizations.",
+    longDescription:
+      "Vercel deployment best practices: edge functions, incremental static regeneration (ISR), preview deployments, environment variables, and analytics integration. Optimized for Next.js apps.",
     category: "DevOps & Tools",
     tags: ["Vercel", "Deployment", "Edge", "Next.js"],
     dependencies: [],
-    files: [".claude/skills/vercel-deployment-optimization/SKILL.md", ".gemini/skills/vercel-deployment-optimization/SKILL.md", ".openai/skills/vercel-deployment-optimization/SKILL.md"],
+    files: [
+      ".claude/skills/vercel-deployment-optimization/SKILL.md",
+      ".gemini/skills/vercel-deployment-optimization/SKILL.md",
+      ".openai/skills/vercel-deployment-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/vercel-deployment-optimization",
     tokenSavings: 88,
     installs: 934,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3869,20 +5845,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "GitHub Actions Workflows",
     slug: "github-actions-workflows",
-    description: "CI/CD pipelines, matrix builds, caching. Automated testing + deployment.",
-    longDescription: "GitHub Actions workflow patterns: CI pipelines, automated testing, matrix builds, artifact caching, and deployment automation. Includes secrets management and status badges.",
+    description:
+      "CI/CD pipelines, matrix builds, caching. Automated testing + deployment.",
+    longDescription:
+      "GitHub Actions workflow patterns: CI pipelines, automated testing, matrix builds, artifact caching, and deployment automation. Includes secrets management and status badges.",
     category: "DevOps & Tools",
     tags: ["GitHub Actions", "CI/CD", "Automation", "DevOps"],
     dependencies: [],
-    files: [".claude/skills/github-actions-workflows/SKILL.md", ".gemini/skills/github-actions-workflows/SKILL.md", ".openai/skills/github-actions-workflows/SKILL.md"],
+    files: [
+      ".claude/skills/github-actions-workflows/SKILL.md",
+      ".gemini/skills/github-actions-workflows/SKILL.md",
+      ".openai/skills/github-actions-workflows/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/github-actions-workflows",
     tokenSavings: 86,
     installs: 723,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3895,20 +5884,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Docker Containerization",
     slug: "docker-containerization",
-    description: "Multi-stage builds, compose files, optimization. Production-ready containers.",
-    longDescription: "Docker best practices: multi-stage builds, layer caching, compose orchestration, and security hardening. Optimized for Next.js and Node.js applications.",
+    description:
+      "Multi-stage builds, compose files, optimization. Production-ready containers.",
+    longDescription:
+      "Docker best practices: multi-stage builds, layer caching, compose orchestration, and security hardening. Optimized for Next.js and Node.js applications.",
     category: "DevOps & Tools",
     tags: ["Docker", "Containers", "DevOps", "Infrastructure"],
     dependencies: [],
-    files: [".claude/skills/docker-containerization/SKILL.md", ".gemini/skills/docker-containerization/SKILL.md", ".openai/skills/docker-containerization/SKILL.md"],
+    files: [
+      ".claude/skills/docker-containerization/SKILL.md",
+      ".gemini/skills/docker-containerization/SKILL.md",
+      ".openai/skills/docker-containerization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/docker-containerization",
     tokenSavings: 84,
     installs: 612,
     remixes: 167,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3921,20 +5923,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Monitoring & Observability",
     slug: "monitoring-observability",
-    description: "Sentry, DataDog, custom metrics. Production monitoring setup.",
-    longDescription: "Production monitoring and observability: error tracking (Sentry), performance monitoring (DataDog), custom metrics, alerts, and dashboards. Covers logging strategies and distributed tracing.",
+    description:
+      "Sentry, DataDog, custom metrics. Production monitoring setup.",
+    longDescription:
+      "Production monitoring and observability: error tracking (Sentry), performance monitoring (DataDog), custom metrics, alerts, and dashboards. Covers logging strategies and distributed tracing.",
     category: "DevOps & Tools",
     tags: ["Monitoring", "Observability", "Sentry", "DevOps"],
     dependencies: [],
-    files: [".claude/skills/monitoring-observability/SKILL.md", ".gemini/skills/monitoring-observability/SKILL.md", ".openai/skills/monitoring-observability/SKILL.md"],
+    files: [
+      ".claude/skills/monitoring-observability/SKILL.md",
+      ".gemini/skills/monitoring-observability/SKILL.md",
+      ".openai/skills/monitoring-observability/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/monitoring-observability",
     tokenSavings: 87,
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3947,20 +5962,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Environment & Secrets Management",
     slug: "env-secrets-management",
-    description: "Vercel env vars, .env.local, secret rotation. Secure config management.",
-    longDescription: "Environment variable and secrets management: .env files, Vercel environment variables, secret rotation, and multi-environment configuration. Covers Doppler and AWS Secrets Manager integration.",
+    description:
+      "Vercel env vars, .env.local, secret rotation. Secure config management.",
+    longDescription:
+      "Environment variable and secrets management: .env files, Vercel environment variables, secret rotation, and multi-environment configuration. Covers Doppler and AWS Secrets Manager integration.",
     category: "DevOps & Tools",
     tags: ["Secrets", "Environment Variables", "Security", "Config"],
     dependencies: [],
-    files: [".claude/skills/env-secrets-management/SKILL.md", ".gemini/skills/env-secrets-management/SKILL.md", ".openai/skills/env-secrets-management/SKILL.md"],
+    files: [
+      ".claude/skills/env-secrets-management/SKILL.md",
+      ".gemini/skills/env-secrets-management/SKILL.md",
+      ".openai/skills/env-secrets-management/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/env-secrets-management",
     tokenSavings: 83,
     installs: 734,
     remixes: 198,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -3973,20 +6001,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Git Workflow Best Practices",
     slug: "git-workflow-best-practices",
-    description: "Git Flow, conventional commits, PR templates. Clean version control.",
-    longDescription: "Git workflow patterns: Git Flow branching strategy, conventional commits, pull request templates, code review processes, and semantic versioning. Includes rebase vs merge guidance.",
+    description:
+      "Git Flow, conventional commits, PR templates. Clean version control.",
+    longDescription:
+      "Git workflow patterns: Git Flow branching strategy, conventional commits, pull request templates, code review processes, and semantic versioning. Includes rebase vs merge guidance.",
     category: "DevOps & Tools",
     tags: ["Git", "Version Control", "Workflow", "Best Practices"],
     dependencies: [],
-    files: [".claude/skills/git-workflow-best-practices/SKILL.md", ".gemini/skills/git-workflow-best-practices/SKILL.md", ".openai/skills/git-workflow-best-practices/SKILL.md"],
+    files: [
+      ".claude/skills/git-workflow-best-practices/SKILL.md",
+      ".gemini/skills/git-workflow-best-practices/SKILL.md",
+      ".openai/skills/git-workflow-best-practices/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/git-workflow-best-practices",
     tokenSavings: 82,
     installs: 1023,
     remixes: 289,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4001,20 +6042,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Hardhat Deployment Scripts",
     slug: "hardhat-deployment-scripts",
-    description: "Automated deployments with Hardhat, verification, constructor args. 88% token savings.",
-    longDescription: "Comprehensive Hardhat deployment guide: writing deployment scripts with ethers.js, multi-network configuration, constructor arguments handling, contract verification on Etherscan, and upgrade script patterns. Progressive disclosure from quick reference to complex deployment scenarios.",
+    description:
+      "Automated deployments with Hardhat, verification, constructor args. 88% token savings.",
+    longDescription:
+      "Comprehensive Hardhat deployment guide: writing deployment scripts with ethers.js, multi-network configuration, constructor arguments handling, contract verification on Etherscan, and upgrade script patterns. Progressive disclosure from quick reference to complex deployment scenarios.",
     category: "Blockchain & Web3",
     tags: ["Hardhat", "Deployment", "Ethereum", "EVM"],
     dependencies: [],
-    files: [".claude/skills/hardhat-deployment-scripts/SKILL.md", ".gemini/skills/hardhat-deployment-scripts/SKILL.md", ".openai/skills/hardhat-deployment-scripts/SKILL.md"],
+    files: [
+      ".claude/skills/hardhat-deployment-scripts/SKILL.md",
+      ".gemini/skills/hardhat-deployment-scripts/SKILL.md",
+      ".openai/skills/hardhat-deployment-scripts/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/hardhat-deployment-scripts",
     tokenSavings: 88,
     installs: 634,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4027,20 +6081,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Foundry Fuzzing Techniques",
     slug: "foundry-fuzzing-techniques",
-    description: "Property-based testing, invariant testing, bound fuzzing. Comprehensive Foundry testing.",
-    longDescription: "Advanced Foundry testing patterns: property-based fuzzing, invariant testing, bound constraints, assume/vm.assume usage, and gas snapshots. Discovers edge cases and ensures contract correctness through automated test generation.",
+    description:
+      "Property-based testing, invariant testing, bound fuzzing. Comprehensive Foundry testing.",
+    longDescription:
+      "Advanced Foundry testing patterns: property-based fuzzing, invariant testing, bound constraints, assume/vm.assume usage, and gas snapshots. Discovers edge cases and ensures contract correctness through automated test generation.",
     category: "Testing & QA",
     tags: ["Foundry", "Fuzzing", "Testing", "Solidity"],
     dependencies: [],
-    files: [".claude/skills/foundry-fuzzing-techniques/SKILL.md", ".gemini/skills/foundry-fuzzing-techniques/SKILL.md", ".openai/skills/foundry-fuzzing-techniques/SKILL.md"],
+    files: [
+      ".claude/skills/foundry-fuzzing-techniques/SKILL.md",
+      ".gemini/skills/foundry-fuzzing-techniques/SKILL.md",
+      ".openai/skills/foundry-fuzzing-techniques/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/foundry-fuzzing-techniques",
     tokenSavings: 86,
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4053,20 +6120,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Ethers.js V6 Migration",
     slug: "ethersjs-v6-migration",
-    description: "Migrate ethers v5 to v6, breaking changes, type updates. Complete migration guide.",
-    longDescription: "Complete migration guide from ethers.js v5 to v6: breaking changes (providers, signers, contracts), new WebSocketProvider patterns, BigInt instead of BigNumber, and TypeScript type updates. Includes before/after code examples.",
+    description:
+      "Migrate ethers v5 to v6, breaking changes, type updates. Complete migration guide.",
+    longDescription:
+      "Complete migration guide from ethers.js v5 to v6: breaking changes (providers, signers, contracts), new WebSocketProvider patterns, BigInt instead of BigNumber, and TypeScript type updates. Includes before/after code examples.",
     category: "Blockchain & Web3",
     tags: ["Ethers.js", "Migration", "TypeScript", "Web3"],
     dependencies: [],
-    files: [".claude/skills/ethersjs-v6-migration/SKILL.md", ".gemini/skills/ethersjs-v6-migration/SKILL.md", ".openai/skills/ethersjs-v6-migration/SKILL.md"],
+    files: [
+      ".claude/skills/ethersjs-v6-migration/SKILL.md",
+      ".gemini/skills/ethersjs-v6-migration/SKILL.md",
+      ".openai/skills/ethersjs-v6-migration/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/ethersjs-v6-migration",
     tokenSavings: 84,
     installs: 734,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4079,20 +6159,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Uniswap V3 Liquidity Math",
     slug: "uniswap-v3-liquidity-math",
-    description: "Tick calculations, concentrated liquidity positions, impermanent loss. Advanced UniV3 math.",
-    longDescription: "Uniswap V3 mathematical foundations: tick spacing and price calculations, concentrated liquidity range selection, liquidity amount calculations, fee calculations, and impermanent loss modeling for concentrated positions. Includes position NFT management.",
+    description:
+      "Tick calculations, concentrated liquidity positions, impermanent loss. Advanced UniV3 math.",
+    longDescription:
+      "Uniswap V3 mathematical foundations: tick spacing and price calculations, concentrated liquidity range selection, liquidity amount calculations, fee calculations, and impermanent loss modeling for concentrated positions. Includes position NFT management.",
     category: "Blockchain & Web3",
     tags: ["Uniswap", "DeFi", "Mathematics", "Liquidity"],
     dependencies: [],
-    files: [".claude/skills/uniswap-v3-liquidity-math/SKILL.md", ".gemini/skills/uniswap-v3-liquidity-math/SKILL.md", ".openai/skills/uniswap-v3-liquidity-math/SKILL.md"],
+    files: [
+      ".claude/skills/uniswap-v3-liquidity-math/SKILL.md",
+      ".gemini/skills/uniswap-v3-liquidity-math/SKILL.md",
+      ".openai/skills/uniswap-v3-liquidity-math/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/uniswap-v3-liquidity-math",
     tokenSavings: 89,
     installs: 478,
     remixes: 134,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4105,20 +6198,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Aave Flash Loan Patterns",
     slug: "aave-flashloan-patterns",
-    description: "Flash loan arbitrage, liquidation strategies, atomic transactions. Production-ready patterns.",
-    longDescription: "Aave flash loan implementation patterns: executeOperation callback structure, multi-asset flash loans, arbitrage strategies, liquidation execution, and gas optimization. Covers flash loan premium calculations and safety checks.",
+    description:
+      "Flash loan arbitrage, liquidation strategies, atomic transactions. Production-ready patterns.",
+    longDescription:
+      "Aave flash loan implementation patterns: executeOperation callback structure, multi-asset flash loans, arbitrage strategies, liquidation execution, and gas optimization. Covers flash loan premium calculations and safety checks.",
     category: "Blockchain & Web3",
     tags: ["Aave", "Flash Loans", "DeFi", "Arbitrage"],
     dependencies: [],
-    files: [".claude/skills/aave-flashloan-patterns/SKILL.md", ".gemini/skills/aave-flashloan-patterns/SKILL.md", ".openai/skills/aave-flashloan-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/aave-flashloan-patterns/SKILL.md",
+      ".gemini/skills/aave-flashloan-patterns/SKILL.md",
+      ".openai/skills/aave-flashloan-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/aave-flashloan-patterns",
     tokenSavings: 87,
     installs: 423,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4131,20 +6237,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Chainlink Automation (Keepers)",
     slug: "chainlink-automation-keepers",
-    description: "Automated contract execution, custom logic upkeeps, log triggers. Chainlink Automation patterns.",
-    longDescription: "Chainlink Automation (formerly Keepers) integration: checkUpkeep and performUpkeep implementation, custom logic triggers, log-based triggers, time-based execution, and gas optimization for automated tasks. Handles upkeep registration and monitoring.",
+    description:
+      "Automated contract execution, custom logic upkeeps, log triggers. Chainlink Automation patterns.",
+    longDescription:
+      "Chainlink Automation (formerly Keepers) integration: checkUpkeep and performUpkeep implementation, custom logic triggers, log-based triggers, time-based execution, and gas optimization for automated tasks. Handles upkeep registration and monitoring.",
     category: "Blockchain & Web3",
     tags: ["Chainlink", "Automation", "Smart Contracts", "Oracles"],
     dependencies: [],
-    files: [".claude/skills/chainlink-automation-keepers/SKILL.md", ".gemini/skills/chainlink-automation-keepers/SKILL.md", ".openai/skills/chainlink-automation-keepers/SKILL.md"],
+    files: [
+      ".claude/skills/chainlink-automation-keepers/SKILL.md",
+      ".gemini/skills/chainlink-automation-keepers/SKILL.md",
+      ".openai/skills/chainlink-automation-keepers/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/chainlink-automation-keepers",
     tokenSavings: 85,
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4157,20 +6276,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "ERC-4626 Vault Implementation",
     slug: "erc4626-vault-implementation",
-    description: "Tokenized vault standard, deposit/withdraw, share calculations. ERC-4626 complete guide.",
-    longDescription: "ERC-4626 tokenized vault standard implementation: asset and share calculations, deposit/mint/withdraw/redeem functions, preview functions, and yield strategies integration. Follows OpenZeppelin's ERC4626 base implementation with customization patterns.",
+    description:
+      "Tokenized vault standard, deposit/withdraw, share calculations. ERC-4626 complete guide.",
+    longDescription:
+      "ERC-4626 tokenized vault standard implementation: asset and share calculations, deposit/mint/withdraw/redeem functions, preview functions, and yield strategies integration. Follows OpenZeppelin's ERC4626 base implementation with customization patterns.",
     category: "Blockchain & Web3",
     tags: ["ERC-4626", "Vaults", "DeFi", "Token Standards"],
     dependencies: [],
-    files: [".claude/skills/erc4626-vault-implementation/SKILL.md", ".gemini/skills/erc4626-vault-implementation/SKILL.md", ".openai/skills/erc4626-vault-implementation/SKILL.md"],
+    files: [
+      ".claude/skills/erc4626-vault-implementation/SKILL.md",
+      ".gemini/skills/erc4626-vault-implementation/SKILL.md",
+      ".openai/skills/erc4626-vault-implementation/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/erc4626-vault-implementation",
     tokenSavings: 88,
     installs: 398,
     remixes: 112,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4183,20 +6315,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Merkle Tree Airdrops",
     slug: "merkle-tree-airdrops",
-    description: "Gas-efficient airdrops with Merkle proofs, claim mechanisms. 95% gas savings vs direct transfers.",
-    longDescription: "Gas-efficient airdrop implementation using Merkle trees: tree generation from recipient lists, Merkle proof verification in Solidity, claim contract patterns, and frontend proof generation. Achieves massive gas savings compared to snapshot approaches.",
+    description:
+      "Gas-efficient airdrops with Merkle proofs, claim mechanisms. 95% gas savings vs direct transfers.",
+    longDescription:
+      "Gas-efficient airdrop implementation using Merkle trees: tree generation from recipient lists, Merkle proof verification in Solidity, claim contract patterns, and frontend proof generation. Achieves massive gas savings compared to snapshot approaches.",
     category: "Blockchain & Web3",
     tags: ["Merkle Tree", "Airdrop", "Gas Optimization", "Solidity"],
     dependencies: [],
-    files: [".claude/skills/merkle-tree-airdrops/SKILL.md", ".gemini/skills/merkle-tree-airdrops/SKILL.md", ".openai/skills/merkle-tree-airdrops/SKILL.md"],
+    files: [
+      ".claude/skills/merkle-tree-airdrops/SKILL.md",
+      ".gemini/skills/merkle-tree-airdrops/SKILL.md",
+      ".openai/skills/merkle-tree-airdrops/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/merkle-tree-airdrops",
     tokenSavings: 86,
     installs: 612,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4209,20 +6354,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "The Graph Subgraph Development",
     slug: "graph-subgraph-development",
-    description: "Subgraph schema, mappings, entities, queries. Complete Graph protocol integration.",
-    longDescription: "The Graph subgraph development guide: schema.graphql design, AssemblyScript mapping handlers, entity relationships, event handling, and efficient indexing patterns. Covers deployment to hosted service, Subgraph Studio, and querying with GraphQL.",
+    description:
+      "Subgraph schema, mappings, entities, queries. Complete Graph protocol integration.",
+    longDescription:
+      "The Graph subgraph development guide: schema.graphql design, AssemblyScript mapping handlers, entity relationships, event handling, and efficient indexing patterns. Covers deployment to hosted service, Subgraph Studio, and querying with GraphQL.",
     category: "Backend & Data",
     tags: ["The Graph", "GraphQL", "Indexing", "Blockchain"],
     dependencies: [],
-    files: [".claude/skills/graph-subgraph-development/SKILL.md", ".gemini/skills/graph-subgraph-development/SKILL.md", ".openai/skills/graph-subgraph-development/SKILL.md"],
+    files: [
+      ".claude/skills/graph-subgraph-development/SKILL.md",
+      ".gemini/skills/graph-subgraph-development/SKILL.md",
+      ".openai/skills/graph-subgraph-development/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/graph-subgraph-development",
     tokenSavings: 89,
     installs: 445,
     remixes: 124,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4235,20 +6393,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Safe Transaction Batching",
     slug: "safe-transaction-batching",
-    description: "Batch multiple transactions in Safe multisig, atomic execution. Efficient treasury operations.",
-    longDescription: "Gnosis Safe (Safe{Core}) transaction batching patterns: MultiSend contract usage, transaction encoding, signature collection, and atomic execution. Optimizes treasury operations and reduces signature collection rounds.",
+    description:
+      "Batch multiple transactions in Safe multisig, atomic execution. Efficient treasury operations.",
+    longDescription:
+      "Gnosis Safe (Safe{Core}) transaction batching patterns: MultiSend contract usage, transaction encoding, signature collection, and atomic execution. Optimizes treasury operations and reduces signature collection rounds.",
     category: "Blockchain & Web3",
     tags: ["Safe", "Multisig", "Batching", "Treasury"],
     dependencies: [],
-    files: [".claude/skills/safe-transaction-batching/SKILL.md", ".gemini/skills/safe-transaction-batching/SKILL.md", ".openai/skills/safe-transaction-batching/SKILL.md"],
+    files: [
+      ".claude/skills/safe-transaction-batching/SKILL.md",
+      ".gemini/skills/safe-transaction-batching/SKILL.md",
+      ".openai/skills/safe-transaction-batching/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/safe-transaction-batching",
     tokenSavings: 84,
     installs: 423,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4261,20 +6432,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "EIP-712 Typed Signatures",
     slug: "eip712-typed-signatures",
-    description: "Structured data signing, human-readable messages, gasless transactions. EIP-712 patterns.",
-    longDescription: "EIP-712 typed structured data signing: domain separator creation, type hash generation, signature verification, and meta-transaction patterns for gasless operations. Covers wallet integration and security best practices.",
+    description:
+      "Structured data signing, human-readable messages, gasless transactions. EIP-712 patterns.",
+    longDescription:
+      "EIP-712 typed structured data signing: domain separator creation, type hash generation, signature verification, and meta-transaction patterns for gasless operations. Covers wallet integration and security best practices.",
     category: "Blockchain & Web3",
     tags: ["EIP-712", "Signatures", "Security", "Meta-transactions"],
     dependencies: [],
-    files: [".claude/skills/eip712-typed-signatures/SKILL.md", ".gemini/skills/eip712-typed-signatures/SKILL.md", ".openai/skills/eip712-typed-signatures/SKILL.md"],
+    files: [
+      ".claude/skills/eip712-typed-signatures/SKILL.md",
+      ".gemini/skills/eip712-typed-signatures/SKILL.md",
+      ".openai/skills/eip712-typed-signatures/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/eip712-typed-signatures",
     tokenSavings: 87,
     installs: 534,
     remixes: 156,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4287,20 +6471,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Multicall Aggregation",
     slug: "multicall-aggregation",
-    description: "Batch multiple contract calls, reduce RPC requests, atomic reads. 90% fewer RPC calls.",
-    longDescription: "Multicall pattern for batching multiple contract read calls into single RPC request: Multicall3 contract usage, ethers.js integration, batching strategies, and error handling. Dramatically reduces RPC load and improves frontend performance.",
+    description:
+      "Batch multiple contract calls, reduce RPC requests, atomic reads. 90% fewer RPC calls.",
+    longDescription:
+      "Multicall pattern for batching multiple contract read calls into single RPC request: Multicall3 contract usage, ethers.js integration, batching strategies, and error handling. Dramatically reduces RPC load and improves frontend performance.",
     category: "Blockchain & Web3",
     tags: ["Multicall", "Optimization", "RPC", "Performance"],
     dependencies: [],
-    files: [".claude/skills/multicall-aggregation/SKILL.md", ".gemini/skills/multicall-aggregation/SKILL.md", ".openai/skills/multicall-aggregation/SKILL.md"],
+    files: [
+      ".claude/skills/multicall-aggregation/SKILL.md",
+      ".gemini/skills/multicall-aggregation/SKILL.md",
+      ".openai/skills/multicall-aggregation/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/multicall-aggregation",
     tokenSavings: 85,
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4313,20 +6510,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Diamond Proxy Pattern (EIP-2535)",
     slug: "diamond-proxy-pattern",
-    description: "Modular contract architecture, unlimited contract size, facet upgrades. Advanced proxy pattern.",
-    longDescription: "EIP-2535 Diamond standard implementation: facet contracts, diamond storage patterns, function selectors, loupe functions, and modular upgrade strategies. Breaks 24KB contract size limit through modular architecture.",
+    description:
+      "Modular contract architecture, unlimited contract size, facet upgrades. Advanced proxy pattern.",
+    longDescription:
+      "EIP-2535 Diamond standard implementation: facet contracts, diamond storage patterns, function selectors, loupe functions, and modular upgrade strategies. Breaks 24KB contract size limit through modular architecture.",
     category: "Blockchain & Web3",
     tags: ["Diamond", "Proxy", "EIP-2535", "Architecture"],
     dependencies: [],
-    files: [".claude/skills/diamond-proxy-pattern/SKILL.md", ".gemini/skills/diamond-proxy-pattern/SKILL.md", ".openai/skills/diamond-proxy-pattern/SKILL.md"],
+    files: [
+      ".claude/skills/diamond-proxy-pattern/SKILL.md",
+      ".gemini/skills/diamond-proxy-pattern/SKILL.md",
+      ".openai/skills/diamond-proxy-pattern/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/diamond-proxy-pattern",
     tokenSavings: 88,
     installs: 312,
     remixes: 87,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4339,20 +6549,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Account Abstraction (ERC-4337)",
     slug: "account-abstraction-erc4337",
-    description: "Smart contract wallets, UserOperations, paymasters, bundlers. Next-gen wallet UX.",
-    longDescription: "ERC-4337 account abstraction implementation: smart contract wallet development, UserOperation construction, paymaster integration for gas sponsorship, bundler interaction, and session keys for improved UX. Enables gasless transactions and advanced wallet features.",
+    description:
+      "Smart contract wallets, UserOperations, paymasters, bundlers. Next-gen wallet UX.",
+    longDescription:
+      "ERC-4337 account abstraction implementation: smart contract wallet development, UserOperation construction, paymaster integration for gas sponsorship, bundler interaction, and session keys for improved UX. Enables gasless transactions and advanced wallet features.",
     category: "Blockchain & Web3",
     tags: ["Account Abstraction", "ERC-4337", "Wallets", "UX"],
     dependencies: [],
-    files: [".claude/skills/account-abstraction-erc4337/SKILL.md", ".gemini/skills/account-abstraction-erc4337/SKILL.md", ".openai/skills/account-abstraction-erc4337/SKILL.md"],
+    files: [
+      ".claude/skills/account-abstraction-erc4337/SKILL.md",
+      ".gemini/skills/account-abstraction-erc4337/SKILL.md",
+      ".openai/skills/account-abstraction-erc4337/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/account-abstraction-erc4337",
     tokenSavings: 90,
     installs: 478,
     remixes: 134,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4365,20 +6588,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "CREATE2 Deterministic Deployment",
     slug: "create2-deterministic-deployment",
-    description: "Deterministic contract addresses, cross-chain deployment, counterfactual contracts.",
-    longDescription: "CREATE2 opcode usage for deterministic contract deployment: address calculation before deployment, salt generation, cross-chain deployment to same address, and counterfactual contract patterns. Enables predictable addresses across networks.",
+    description:
+      "Deterministic contract addresses, cross-chain deployment, counterfactual contracts.",
+    longDescription:
+      "CREATE2 opcode usage for deterministic contract deployment: address calculation before deployment, salt generation, cross-chain deployment to same address, and counterfactual contract patterns. Enables predictable addresses across networks.",
     category: "Blockchain & Web3",
     tags: ["CREATE2", "Deployment", "EVM", "Advanced"],
     dependencies: [],
-    files: [".claude/skills/create2-deterministic-deployment/SKILL.md", ".gemini/skills/create2-deterministic-deployment/SKILL.md", ".openai/skills/create2-deterministic-deployment/SKILL.md"],
+    files: [
+      ".claude/skills/create2-deterministic-deployment/SKILL.md",
+      ".gemini/skills/create2-deterministic-deployment/SKILL.md",
+      ".openai/skills/create2-deterministic-deployment/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/create2-deterministic-deployment",
     tokenSavings: 83,
     installs: 398,
     remixes: 112,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4391,8 +6627,10 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Advanced TypeScript Patterns",
     slug: "advanced-typescript-patterns",
-    description: "Master-level TypeScript patterns: conditional types, template literals, branded types, builder pattern, discriminated unions.",
-    longDescription: "Advanced TypeScript type system mastery including conditional types, mapped types, template literal types, branded types, fluent interfaces, discriminated unions, type guards, and type-safe patterns for Web3 development.",
+    description:
+      "Master-level TypeScript patterns: conditional types, template literals, branded types, builder pattern, discriminated unions.",
+    longDescription:
+      "Advanced TypeScript type system mastery including conditional types, mapped types, template literal types, branded types, fluent interfaces, discriminated unions, type guards, and type-safe patterns for Web3 development.",
     category: "TypeScript Mastery",
     tags: ["TypeScript", "Advanced", "Type Safety", "Patterns"],
     dependencies: [],
@@ -4401,10 +6639,17 @@ export const SKILLS: RegistryItem[] = [
     tokenSavings: 92,
     installs: 2456,
     remixes: 734,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4417,8 +6662,10 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Kubernetes Patterns",
     slug: "kubernetes-patterns",
-    description: "Production-grade Kubernetes patterns: blue-green deployment, canary, rolling updates, HPA, VPA, StatefulSets.",
-    longDescription: "Enterprise Kubernetes patterns for resilient deployments including blue-green, canary with Istio, Pod Disruption Budgets, init containers, sidecars, HPA, VPA, StatefulSets, Network Policies, and ServiceMonitors.",
+    description:
+      "Production-grade Kubernetes patterns: blue-green deployment, canary, rolling updates, HPA, VPA, StatefulSets.",
+    longDescription:
+      "Enterprise Kubernetes patterns for resilient deployments including blue-green, canary with Istio, Pod Disruption Budgets, init containers, sidecars, HPA, VPA, StatefulSets, Network Policies, and ServiceMonitors.",
     category: "Kubernetes & Cloud Native",
     tags: ["Kubernetes", "DevOps", "Cloud Native", "Patterns"],
     dependencies: [],
@@ -4427,10 +6674,17 @@ export const SKILLS: RegistryItem[] = [
     tokenSavings: 88,
     installs: 1876,
     remixes: 523,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4443,8 +6697,10 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "React Native Performance",
     slug: "react-native-performance",
-    description: "High-performance mobile optimization: FlashList, Reanimated, Hermes, MMKV, image optimization for 60 FPS.",
-    longDescription: "React Native performance optimization techniques including FlashList, React.memo, useCallback/useMemo, Reanimated animations, Hermes engine, MMKV storage, FastImage, bundle optimization, and Web3 performance patterns.",
+    description:
+      "High-performance mobile optimization: FlashList, Reanimated, Hermes, MMKV, image optimization for 60 FPS.",
+    longDescription:
+      "React Native performance optimization techniques including FlashList, React.memo, useCallback/useMemo, Reanimated animations, Hermes engine, MMKV storage, FastImage, bundle optimization, and Web3 performance patterns.",
     category: "React Native Optimization",
     tags: ["React Native", "Performance", "Mobile", "Optimization"],
     dependencies: [],
@@ -4453,10 +6709,17 @@ export const SKILLS: RegistryItem[] = [
     tokenSavings: 90,
     installs: 2134,
     remixes: 645,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4469,8 +6732,10 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Microservices Architecture",
     slug: "microservices-architecture",
-    description: "Enterprise microservices patterns: API Gateway, service mesh, circuit breaker, saga, CQRS, event-driven architecture.",
-    longDescription: "Comprehensive microservices architecture patterns including Domain-Driven Design, API Gateway, service discovery, circuit breaker, event-driven with Kafka, saga pattern, CQRS, service mesh with Istio, and distributed tracing.",
+    description:
+      "Enterprise microservices patterns: API Gateway, service mesh, circuit breaker, saga, CQRS, event-driven architecture.",
+    longDescription:
+      "Comprehensive microservices architecture patterns including Domain-Driven Design, API Gateway, service discovery, circuit breaker, event-driven with Kafka, saga pattern, CQRS, service mesh with Istio, and distributed tracing.",
     category: "Software Architecture",
     tags: ["Microservices", "Architecture", "Distributed Systems", "Patterns"],
     dependencies: [],
@@ -4479,10 +6744,17 @@ export const SKILLS: RegistryItem[] = [
     tokenSavings: 85,
     installs: 1654,
     remixes: 478,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4495,8 +6767,10 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "MLOps Best Practices",
     slug: "mlops-best-practices",
-    description: "Production ML lifecycle: MLflow, DVC, feature stores, model registry, CI/CD for ML, monitoring, A/B testing.",
-    longDescription: "Complete MLOps workflow including experiment tracking with MLflow, data versioning with DVC, feature stores (Feast), model registry, CI/CD for ML pipelines, model serving, monitoring, drift detection, and automated retraining.",
+    description:
+      "Production ML lifecycle: MLflow, DVC, feature stores, model registry, CI/CD for ML, monitoring, A/B testing.",
+    longDescription:
+      "Complete MLOps workflow including experiment tracking with MLflow, data versioning with DVC, feature stores (Feast), model registry, CI/CD for ML pipelines, model serving, monitoring, drift detection, and automated retraining.",
     category: "MLOps & Production ML",
     tags: ["MLOps", "Machine Learning", "Production", "DevOps"],
     dependencies: [],
@@ -4505,10 +6779,17 @@ export const SKILLS: RegistryItem[] = [
     tokenSavings: 87,
     installs: 1789,
     remixes: 534,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4521,20 +6802,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Code Review Best Practices",
     slug: "code-review-best-practices",
-    description: "Effective code review techniques for improving code quality, knowledge sharing, and team collaboration",
-    longDescription: "Master effective code review process including pre-review preparation, constructive feedback, review metrics, and automated checks. Learn to balance thoroughness with velocity while maintaining team morale.",
+    description:
+      "Effective code review techniques for improving code quality, knowledge sharing, and team collaboration",
+    longDescription:
+      "Master effective code review process including pre-review preparation, constructive feedback, review metrics, and automated checks. Learn to balance thoroughness with velocity while maintaining team morale.",
     category: "Development Practices",
     tags: ["Code Review", "Collaboration", "Quality", "Best Practices"],
     dependencies: [],
-    files: [".claude/skills/code-review-best-practices/SKILL.md", ".gemini/skills/code-review-best-practices/SKILL.md", ".openai/skills/code-review-best-practices/SKILL.md"],
+    files: [
+      ".claude/skills/code-review-best-practices/SKILL.md",
+      ".gemini/skills/code-review-best-practices/SKILL.md",
+      ".openai/skills/code-review-best-practices/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/code-review-best-practices",
     tokenSavings: 84,
     installs: 1654,
     remixes: 478,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4547,20 +6841,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Documentation Automation",
     slug: "documentation-automation",
-    description: "Automated documentation generation, API docs, code comments, and living documentation systems",
-    longDescription: "Master JSDoc/TSDoc, OpenAPI/Swagger generation, TypeDoc, and documentation automation. Create living documentation that stays in sync with code using automated tools and CI/CD integration.",
+    description:
+      "Automated documentation generation, API docs, code comments, and living documentation systems",
+    longDescription:
+      "Master JSDoc/TSDoc, OpenAPI/Swagger generation, TypeDoc, and documentation automation. Create living documentation that stays in sync with code using automated tools and CI/CD integration.",
     category: "Development Practices",
     tags: ["Documentation", "Automation", "JSDoc", "OpenAPI", "TypeDoc"],
     dependencies: [],
-    files: [".claude/skills/documentation-automation/SKILL.md", ".gemini/skills/documentation-automation/SKILL.md", ".openai/skills/documentation-automation/SKILL.md"],
+    files: [
+      ".claude/skills/documentation-automation/SKILL.md",
+      ".gemini/skills/documentation-automation/SKILL.md",
+      ".openai/skills/documentation-automation/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/documentation-automation",
     tokenSavings: 86,
     installs: 1432,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4573,20 +6880,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Debugging Techniques",
     slug: "debugging-techniques",
-    description: "Systematic debugging strategies, tools, and techniques for identifying and fixing bugs efficiently",
-    longDescription: "Master debugging strategies including binary search debugging, rubber duck debugging, and git bisect. Learn to use Chrome DevTools, VS Code debugger, and identify common bug patterns like race conditions and memory leaks.",
+    description:
+      "Systematic debugging strategies, tools, and techniques for identifying and fixing bugs efficiently",
+    longDescription:
+      "Master debugging strategies including binary search debugging, rubber duck debugging, and git bisect. Learn to use Chrome DevTools, VS Code debugger, and identify common bug patterns like race conditions and memory leaks.",
     category: "Development Practices",
     tags: ["Debugging", "DevTools", "Troubleshooting", "Best Practices"],
     dependencies: [],
-    files: [".claude/skills/debugging-techniques/SKILL.md", ".gemini/skills/debugging-techniques/SKILL.md", ".openai/skills/debugging-techniques/SKILL.md"],
+    files: [
+      ".claude/skills/debugging-techniques/SKILL.md",
+      ".gemini/skills/debugging-techniques/SKILL.md",
+      ".openai/skills/debugging-techniques/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/debugging-techniques",
     tokenSavings: 82,
     installs: 1789,
     remixes: 534,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4599,20 +6919,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Refactoring Patterns",
     slug: "refactoring-patterns",
-    description: "Code refactoring techniques for improving code quality, maintainability, and performance",
-    longDescription: "Master common refactoring patterns including Extract Method, Replace Conditional with Polymorphism, and Introduce Parameter Object. Learn to identify code smells and refactor safely with tests.",
+    description:
+      "Code refactoring techniques for improving code quality, maintainability, and performance",
+    longDescription:
+      "Master common refactoring patterns including Extract Method, Replace Conditional with Polymorphism, and Introduce Parameter Object. Learn to identify code smells and refactor safely with tests.",
     category: "Development Practices",
     tags: ["Refactoring", "Code Quality", "Design Patterns", "Clean Code"],
     dependencies: [],
-    files: [".claude/skills/refactoring-patterns/SKILL.md", ".gemini/skills/refactoring-patterns/SKILL.md", ".openai/skills/refactoring-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/refactoring-patterns/SKILL.md",
+      ".gemini/skills/refactoring-patterns/SKILL.md",
+      ".openai/skills/refactoring-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/refactoring-patterns",
     tokenSavings: 85,
     installs: 1567,
     remixes: 445,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4625,20 +6958,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "API Versioning Strategies",
     slug: "api-versioning-strategies",
-    description: "API versioning techniques for backward compatibility and smooth migrations",
-    longDescription: "Master API versioning approaches including URL versioning, header versioning, and content negotiation. Learn to deprecate old versions gracefully and provide migration guides.",
+    description:
+      "API versioning techniques for backward compatibility and smooth migrations",
+    longDescription:
+      "Master API versioning approaches including URL versioning, header versioning, and content negotiation. Learn to deprecate old versions gracefully and provide migration guides.",
     category: "API Design",
     tags: ["API", "Versioning", "Backward Compatibility", "Migration"],
     dependencies: [],
-    files: [".claude/skills/api-versioning-strategies/SKILL.md", ".gemini/skills/api-versioning-strategies/SKILL.md", ".openai/skills/api-versioning-strategies/SKILL.md"],
+    files: [
+      ".claude/skills/api-versioning-strategies/SKILL.md",
+      ".gemini/skills/api-versioning-strategies/SKILL.md",
+      ".openai/skills/api-versioning-strategies/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/api-versioning-strategies",
     tokenSavings: 79,
     installs: 1234,
     remixes: 367,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4651,20 +6997,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Monitoring and Observability (Advanced)",
     slug: "monitoring-observability-advanced",
-    description: "Application monitoring, logging, metrics, and tracing for production systems",
-    longDescription: "Master the three pillars of observability: metrics (Prometheus), logs (structured logging), and traces (distributed tracing). Learn to set up dashboards, alerts, and health checks for production systems.",
+    description:
+      "Application monitoring, logging, metrics, and tracing for production systems",
+    longDescription:
+      "Master the three pillars of observability: metrics (Prometheus), logs (structured logging), and traces (distributed tracing). Learn to set up dashboards, alerts, and health checks for production systems.",
     category: "DevOps",
     tags: ["Monitoring", "Observability", "Prometheus", "Logging", "Tracing"],
     dependencies: [],
-    files: [".claude/skills/monitoring-observability/SKILL.md", ".gemini/skills/monitoring-observability/SKILL.md", ".openai/skills/monitoring-observability/SKILL.md"],
+    files: [
+      ".claude/skills/monitoring-observability/SKILL.md",
+      ".gemini/skills/monitoring-observability/SKILL.md",
+      ".openai/skills/monitoring-observability/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/monitoring-observability-advanced",
     tokenSavings: 88,
     installs: 1876,
     remixes: 556,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4678,19 +7037,31 @@ export const SKILLS: RegistryItem[] = [
     name: "Terraform Infrastructure as Code",
     slug: "terraform-infrastructure",
     description: "Terraform for managing cloud infrastructure with code",
-    longDescription: "Master Terraform for defining and managing cloud infrastructure. Learn modules, workspaces, remote state, and best practices for AWS, GCP, and Azure infrastructure as code.",
+    longDescription:
+      "Master Terraform for defining and managing cloud infrastructure. Learn modules, workspaces, remote state, and best practices for AWS, GCP, and Azure infrastructure as code.",
     category: "DevOps",
     tags: ["Terraform", "Infrastructure as Code", "IaC", "Cloud"],
     dependencies: [],
-    files: [".claude/skills/terraform-infrastructure/SKILL.md", ".gemini/skills/terraform-infrastructure/SKILL.md", ".openai/skills/terraform-infrastructure/SKILL.md"],
+    files: [
+      ".claude/skills/terraform-infrastructure/SKILL.md",
+      ".gemini/skills/terraform-infrastructure/SKILL.md",
+      ".openai/skills/terraform-infrastructure/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/terraform-infrastructure",
     tokenSavings: 83,
     installs: 1654,
     remixes: 489,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4703,20 +7074,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "GraphQL Optimization",
     slug: "graphql-optimization",
-    description: "GraphQL performance optimization, N+1 prevention, and query complexity management",
-    longDescription: "Master GraphQL performance optimization with DataLoader for N+1 prevention, query complexity limits, persisted queries, and caching strategies. Build high-performance GraphQL APIs.",
+    description:
+      "GraphQL performance optimization, N+1 prevention, and query complexity management",
+    longDescription:
+      "Master GraphQL performance optimization with DataLoader for N+1 prevention, query complexity limits, persisted queries, and caching strategies. Build high-performance GraphQL APIs.",
     category: "API Design",
     tags: ["GraphQL", "Performance", "Optimization", "DataLoader"],
     dependencies: [],
-    files: [".claude/skills/graphql-optimization/SKILL.md", ".gemini/skills/graphql-optimization/SKILL.md", ".openai/skills/graphql-optimization/SKILL.md"],
+    files: [
+      ".claude/skills/graphql-optimization/SKILL.md",
+      ".gemini/skills/graphql-optimization/SKILL.md",
+      ".openai/skills/graphql-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/graphql-optimization",
     tokenSavings: 81,
     installs: 1345,
     remixes: 398,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4729,20 +7113,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "WebSocket Real-Time Communication",
     slug: "websocket-realtime",
-    description: "WebSocket implementation for real-time bidirectional communication",
-    longDescription: "Master WebSocket and Socket.IO for real-time communication. Implement rooms, namespaces, authentication, reconnection handling, and message acknowledgments for production real-time features.",
+    description:
+      "WebSocket implementation for real-time bidirectional communication",
+    longDescription:
+      "Master WebSocket and Socket.IO for real-time communication. Implement rooms, namespaces, authentication, reconnection handling, and message acknowledgments for production real-time features.",
     category: "Backend",
     tags: ["WebSocket", "Real-Time", "Socket.IO", "Bidirectional"],
     dependencies: [],
-    files: [".claude/skills/websocket-realtime/SKILL.md", ".gemini/skills/websocket-realtime/SKILL.md", ".openai/skills/websocket-realtime/SKILL.md"],
+    files: [
+      ".claude/skills/websocket-realtime/SKILL.md",
+      ".gemini/skills/websocket-realtime/SKILL.md",
+      ".openai/skills/websocket-realtime/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/websocket-realtime",
     tokenSavings: 80,
     installs: 1456,
     remixes: 423,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4755,20 +7152,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Authentication Patterns",
     slug: "authentication-patterns",
-    description: "Authentication strategies including JWT, OAuth 2.0, and session management",
-    longDescription: "Master authentication patterns including JWT with refresh tokens, OAuth 2.0 flows, session management, and 2FA. Implement secure authentication with proper token storage and rotation.",
+    description:
+      "Authentication strategies including JWT, OAuth 2.0, and session management",
+    longDescription:
+      "Master authentication patterns including JWT with refresh tokens, OAuth 2.0 flows, session management, and 2FA. Implement secure authentication with proper token storage and rotation.",
     category: "Security",
     tags: ["Authentication", "JWT", "OAuth", "Security", "Session"],
     dependencies: [],
-    files: [".claude/skills/authentication-patterns/SKILL.md", ".gemini/skills/authentication-patterns/SKILL.md", ".openai/skills/authentication-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/authentication-patterns/SKILL.md",
+      ".gemini/skills/authentication-patterns/SKILL.md",
+      ".openai/skills/authentication-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/authentication-patterns",
     tokenSavings: 85,
     installs: 1789,
     remixes: 534,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4781,20 +7191,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Message Queue Patterns",
     slug: "message-queue-patterns",
-    description: "Asynchronous messaging patterns with RabbitMQ, Redis, and Kafka",
-    longDescription: "Master message queue patterns including work queues, pub/sub, and request/reply with BullMQ, RabbitMQ, and Kafka. Implement reliable background jobs with retries and dead letter queues.",
+    description:
+      "Asynchronous messaging patterns with RabbitMQ, Redis, and Kafka",
+    longDescription:
+      "Master message queue patterns including work queues, pub/sub, and request/reply with BullMQ, RabbitMQ, and Kafka. Implement reliable background jobs with retries and dead letter queues.",
     category: "Backend",
     tags: ["Message Queue", "RabbitMQ", "Redis", "Kafka", "Async"],
     dependencies: [],
-    files: [".claude/skills/message-queue-patterns/SKILL.md", ".gemini/skills/message-queue-patterns/SKILL.md", ".openai/skills/message-queue-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/message-queue-patterns/SKILL.md",
+      ".gemini/skills/message-queue-patterns/SKILL.md",
+      ".openai/skills/message-queue-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/message-queue-patterns",
     tokenSavings: 82,
     installs: 1543,
     remixes: 456,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4807,20 +7230,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "SQL Query Optimization",
     slug: "sql-optimization",
-    description: "Database query optimization, indexing strategies, and performance tuning",
-    longDescription: "Master SQL optimization with proper indexing (B-tree, composite, partial), query analysis with EXPLAIN ANALYZE, and connection pooling. Learn to avoid common pitfalls and optimize for read-heavy workloads.",
+    description:
+      "Database query optimization, indexing strategies, and performance tuning",
+    longDescription:
+      "Master SQL optimization with proper indexing (B-tree, composite, partial), query analysis with EXPLAIN ANALYZE, and connection pooling. Learn to avoid common pitfalls and optimize for read-heavy workloads.",
     category: "Database",
     tags: ["SQL", "Optimization", "Database", "Performance", "Indexing"],
     dependencies: [],
-    files: [".claude/skills/sql-optimization/SKILL.md", ".gemini/skills/sql-optimization/SKILL.md", ".openai/skills/sql-optimization/SKILL.md"],
+    files: [
+      ".claude/skills/sql-optimization/SKILL.md",
+      ".gemini/skills/sql-optimization/SKILL.md",
+      ".openai/skills/sql-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/sql-optimization",
     tokenSavings: 87,
     installs: 1876,
     remixes: 567,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4833,20 +7269,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Container Security",
     slug: "container-security",
-    description: "Docker and Kubernetes security best practices for production deployments",
-    longDescription: "Master container security with secure Dockerfile patterns, vulnerability scanning (Trivy, Syft), non-root users, and Kubernetes security contexts. Implement network policies and resource limits.",
+    description:
+      "Docker and Kubernetes security best practices for production deployments",
+    longDescription:
+      "Master container security with secure Dockerfile patterns, vulnerability scanning (Trivy, Syft), non-root users, and Kubernetes security contexts. Implement network policies and resource limits.",
     category: "Security",
     tags: ["Security", "Docker", "Kubernetes", "Containers", "DevOps"],
     dependencies: [],
-    files: [".claude/skills/container-security/SKILL.md", ".gemini/skills/container-security/SKILL.md", ".openai/skills/container-security/SKILL.md"],
+    files: [
+      ".claude/skills/container-security/SKILL.md",
+      ".gemini/skills/container-security/SKILL.md",
+      ".openai/skills/container-security/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/container-security",
     tokenSavings: 84,
     installs: 1654,
     remixes: 489,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4859,20 +7308,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Progressive Web Apps",
     slug: "progressive-web-apps",
-    description: "PWA development with service workers, offline support, and app-like experience",
-    longDescription: "Master PWA development with service workers for offline support, web app manifest for installability, push notifications, and background sync. Create app-like experiences on the web.",
+    description:
+      "PWA development with service workers, offline support, and app-like experience",
+    longDescription:
+      "Master PWA development with service workers for offline support, web app manifest for installability, push notifications, and background sync. Create app-like experiences on the web.",
     category: "Frontend",
     tags: ["PWA", "Service Workers", "Offline", "Web App", "Mobile"],
     dependencies: [],
-    files: [".claude/skills/progressive-web-apps/SKILL.md", ".gemini/skills/progressive-web-apps/SKILL.md", ".openai/skills/progressive-web-apps/SKILL.md"],
+    files: [
+      ".claude/skills/progressive-web-apps/SKILL.md",
+      ".gemini/skills/progressive-web-apps/SKILL.md",
+      ".openai/skills/progressive-web-apps/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/progressive-web-apps",
     tokenSavings: 81,
     installs: 1345,
     remixes: 398,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4885,20 +7347,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Serverless Architecture",
     slug: "serverless-architecture",
-    description: "Serverless development with AWS Lambda, API Gateway, and event-driven patterns",
-    longDescription: "Master serverless architecture with AWS Lambda, API Gateway, and event-driven patterns. Implement functions with proper error handling, environment variables, and monitoring. Use Serverless Framework for deployment.",
+    description:
+      "Serverless development with AWS Lambda, API Gateway, and event-driven patterns",
+    longDescription:
+      "Master serverless architecture with AWS Lambda, API Gateway, and event-driven patterns. Implement functions with proper error handling, environment variables, and monitoring. Use Serverless Framework for deployment.",
     category: "Backend",
     tags: ["Serverless", "AWS Lambda", "Event-Driven", "Cloud"],
     dependencies: [],
-    files: [".claude/skills/serverless-architecture/SKILL.md", ".gemini/skills/serverless-architecture/SKILL.md", ".openai/skills/serverless-architecture/SKILL.md"],
+    files: [
+      ".claude/skills/serverless-architecture/SKILL.md",
+      ".gemini/skills/serverless-architecture/SKILL.md",
+      ".openai/skills/serverless-architecture/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/serverless-architecture",
     tokenSavings: 83,
     installs: 1567,
     remixes: 467,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4913,20 +7388,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Event Sourcing Patterns",
     slug: "event-sourcing-patterns",
-    description: "Event-driven architecture: event stores, temporal queries, rebuilding state from events.",
-    longDescription: "Event sourcing patterns: append-only event stores, event versioning, snapshot strategies, temporal queries, state rebuilding from events, and audit trail capabilities.",
+    description:
+      "Event-driven architecture: event stores, temporal queries, rebuilding state from events.",
+    longDescription:
+      "Event sourcing patterns: append-only event stores, event versioning, snapshot strategies, temporal queries, state rebuilding from events, and audit trail capabilities.",
     category: "Software Architecture",
     tags: ["Event Sourcing", "Architecture", "CQRS", "Distributed Systems"],
     dependencies: [],
-    files: [".claude/skills/event-sourcing-patterns/SKILL.md", ".gemini/skills/event-sourcing-patterns/SKILL.md", ".openai/skills/event-sourcing-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/event-sourcing-patterns/SKILL.md",
+      ".gemini/skills/event-sourcing-patterns/SKILL.md",
+      ".openai/skills/event-sourcing-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/event-sourcing-patterns",
     tokenSavings: 85,
     installs: 1245,
     remixes: 378,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4939,20 +7427,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "CQRS Implementation",
     slug: "cqrs-implementation",
-    description: "Command Query Responsibility Segregation: separate read and write models for scalability.",
-    longDescription: "CQRS pattern implementation: separating command and query models, eventual consistency, read model synchronization, and handling complex queries with separate databases.",
+    description:
+      "Command Query Responsibility Segregation: separate read and write models for scalability.",
+    longDescription:
+      "CQRS pattern implementation: separating command and query models, eventual consistency, read model synchronization, and handling complex queries with separate databases.",
     category: "Software Architecture",
     tags: ["CQRS", "Architecture", "Distributed Systems", "Scalability"],
     dependencies: [],
-    files: [".claude/skills/cqrs-implementation/SKILL.md", ".gemini/skills/cqrs-implementation/SKILL.md", ".openai/skills/cqrs-implementation/SKILL.md"],
+    files: [
+      ".claude/skills/cqrs-implementation/SKILL.md",
+      ".gemini/skills/cqrs-implementation/SKILL.md",
+      ".openai/skills/cqrs-implementation/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/cqrs-implementation",
     tokenSavings: 85,
     installs: 987,
     remixes: 301,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4965,20 +7466,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "gRPC Communication",
     slug: "grpc-communication",
-    description: "High-performance RPC with protocol buffers, streaming, and service mesh integration.",
-    longDescription: "gRPC framework mastery: protocol buffer definitions, service interfaces, client/server/bidirectional streaming, interceptors, and service mesh integration.",
+    description:
+      "High-performance RPC with protocol buffers, streaming, and service mesh integration.",
+    longDescription:
+      "gRPC framework mastery: protocol buffer definitions, service interfaces, client/server/bidirectional streaming, interceptors, and service mesh integration.",
     category: "Backend",
     tags: ["gRPC", "Microservices", "Protocol Buffers", "Communication"],
     dependencies: [],
-    files: [".claude/skills/grpc-communication/SKILL.md", ".gemini/skills/grpc-communication/SKILL.md", ".openai/skills/grpc-communication/SKILL.md"],
+    files: [
+      ".claude/skills/grpc-communication/SKILL.md",
+      ".gemini/skills/grpc-communication/SKILL.md",
+      ".openai/skills/grpc-communication/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/grpc-communication",
     tokenSavings: 85,
     installs: 876,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -4991,20 +7505,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Redis Advanced Patterns",
     slug: "redis-advanced-patterns",
-    description: "Redis Streams, Bloom filters, HyperLogLog, Geospatial indexing, and advanced data structures.",
-    longDescription: "Advanced Redis features: Streams for message queues, Bloom filters for membership testing, HyperLogLog for cardinality estimation, geospatial indexing, and Lua scripting.",
+    description:
+      "Redis Streams, Bloom filters, HyperLogLog, Geospatial indexing, and advanced data structures.",
+    longDescription:
+      "Advanced Redis features: Streams for message queues, Bloom filters for membership testing, HyperLogLog for cardinality estimation, geospatial indexing, and Lua scripting.",
     category: "Backend & Data",
     tags: ["Redis", "Advanced", "Data Structures", "Caching"],
     dependencies: [],
-    files: [".claude/skills/redis-advanced-patterns/SKILL.md", ".gemini/skills/redis-advanced-patterns/SKILL.md", ".openai/skills/redis-advanced-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/redis-advanced-patterns/SKILL.md",
+      ".gemini/skills/redis-advanced-patterns/SKILL.md",
+      ".openai/skills/redis-advanced-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/redis-advanced-patterns",
     tokenSavings: 85,
     installs: 1234,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5017,20 +7544,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Elasticsearch Query Optimization",
     slug: "elasticsearch-optimization",
-    description: "Query optimization, aggregations, relevance tuning for production search systems.",
-    longDescription: "Elasticsearch performance: query optimization with bool/filter queries, aggregation patterns for analytics, BM25 relevance tuning, mapping strategies, and index lifecycle management.",
+    description:
+      "Query optimization, aggregations, relevance tuning for production search systems.",
+    longDescription:
+      "Elasticsearch performance: query optimization with bool/filter queries, aggregation patterns for analytics, BM25 relevance tuning, mapping strategies, and index lifecycle management.",
     category: "Backend & Data",
     tags: ["Elasticsearch", "Search", "Optimization", "Performance"],
     dependencies: [],
-    files: [".claude/skills/elasticsearch-optimization/SKILL.md", ".gemini/skills/elasticsearch-optimization/SKILL.md", ".openai/skills/elasticsearch-optimization/SKILL.md"],
+    files: [
+      ".claude/skills/elasticsearch-optimization/SKILL.md",
+      ".gemini/skills/elasticsearch-optimization/SKILL.md",
+      ".openai/skills/elasticsearch-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/elasticsearch-optimization",
     tokenSavings: 85,
     installs: 756,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5043,20 +7583,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Kafka Stream Processing",
     slug: "kafka-stream-processing",
-    description: "Event stream processing with Kafka Streams and Apache Flink for real-time data.",
-    longDescription: "Kafka Streams API: topologies, stateless/stateful transformations, aggregations, joins, windowing, and exactly-once semantics.",
+    description:
+      "Event stream processing with Kafka Streams and Apache Flink for real-time data.",
+    longDescription:
+      "Kafka Streams API: topologies, stateless/stateful transformations, aggregations, joins, windowing, and exactly-once semantics.",
     category: "Backend & Data",
     tags: ["Kafka", "Stream Processing", "Flink", "Real-time"],
     dependencies: [],
-    files: [".claude/skills/kafka-stream-processing/SKILL.md", ".gemini/skills/kafka-stream-processing/SKILL.md", ".openai/skills/kafka-stream-processing/SKILL.md"],
+    files: [
+      ".claude/skills/kafka-stream-processing/SKILL.md",
+      ".gemini/skills/kafka-stream-processing/SKILL.md",
+      ".openai/skills/kafka-stream-processing/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/kafka-stream-processing",
     tokenSavings: 85,
     installs: 1123,
     remixes: 356,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5069,20 +7622,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Service Mesh (Istio)",
     slug: "service-mesh-istio",
-    description: "Istio service mesh: traffic management, security policies, observability integration.",
-    longDescription: "Istio service mesh: VirtualServices, DestinationRules for traffic control, AuthorizationPolicies for mTLS security, and observability integration.",
+    description:
+      "Istio service mesh: traffic management, security policies, observability integration.",
+    longDescription:
+      "Istio service mesh: VirtualServices, DestinationRules for traffic control, AuthorizationPolicies for mTLS security, and observability integration.",
     category: "Kubernetes & Cloud Native",
     tags: ["Istio", "Service Mesh", "Kubernetes", "Traffic Management"],
     dependencies: [],
-    files: [".claude/skills/service-mesh-istio/SKILL.md", ".gemini/skills/service-mesh-istio/SKILL.md", ".openai/skills/service-mesh-istio/SKILL.md"],
+    files: [
+      ".claude/skills/service-mesh-istio/SKILL.md",
+      ".gemini/skills/service-mesh-istio/SKILL.md",
+      ".openai/skills/service-mesh-istio/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/service-mesh-istio",
     tokenSavings: 85,
     installs: 834,
     remixes: 289,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5095,20 +7661,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Circuit Breaker Patterns",
     slug: "circuit-breaker-patterns",
-    description: "Resilience patterns: circuit breaker, bulkhead, timeout, retry with exponential backoff.",
-    longDescription: "Implementing resilience patterns: circuit breakers to prevent cascading failures, bulkhead isolation, timeout strategies, exponential backoff retry logic, and fallback mechanisms.",
+    description:
+      "Resilience patterns: circuit breaker, bulkhead, timeout, retry with exponential backoff.",
+    longDescription:
+      "Implementing resilience patterns: circuit breakers to prevent cascading failures, bulkhead isolation, timeout strategies, exponential backoff retry logic, and fallback mechanisms.",
     category: "Software Architecture",
     tags: ["Circuit Breaker", "Resilience", "Patterns", "Fault Tolerance"],
     dependencies: [],
-    files: [".claude/skills/circuit-breaker-patterns/SKILL.md", ".gemini/skills/circuit-breaker-patterns/SKILL.md", ".openai/skills/circuit-breaker-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/circuit-breaker-patterns/SKILL.md",
+      ".gemini/skills/circuit-breaker-patterns/SKILL.md",
+      ".openai/skills/circuit-breaker-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/circuit-breaker-patterns",
     tokenSavings: 85,
     installs: 1456,
     remixes: 445,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5121,20 +7700,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Saga Pattern Implementation",
     slug: "saga-pattern-implementation",
-    description: "Distributed transactions: orchestration vs choreography patterns for multi-service transactions.",
-    longDescription: "Saga pattern for distributed transactions: orchestrator-based with central controller, choreography-based event-driven, compensating transactions.",
+    description:
+      "Distributed transactions: orchestration vs choreography patterns for multi-service transactions.",
+    longDescription:
+      "Saga pattern for distributed transactions: orchestrator-based with central controller, choreography-based event-driven, compensating transactions.",
     category: "Software Architecture",
     tags: ["Saga", "Distributed Transactions", "Patterns", "Orchestration"],
     dependencies: [],
-    files: [".claude/skills/saga-pattern-implementation/SKILL.md", ".gemini/skills/saga-pattern-implementation/SKILL.md", ".openai/skills/saga-pattern-implementation/SKILL.md"],
+    files: [
+      ".claude/skills/saga-pattern-implementation/SKILL.md",
+      ".gemini/skills/saga-pattern-implementation/SKILL.md",
+      ".openai/skills/saga-pattern-implementation/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/saga-pattern-implementation",
     tokenSavings: 85,
     installs: 912,
     remixes: 298,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5147,20 +7739,38 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Distributed Tracing",
     slug: "distributed-tracing",
-    description: "OpenTelemetry, Jaeger, tracing across microservices for full request visibility.",
-    longDescription: "Distributed tracing with OpenTelemetry: instrumentation, spans, trace propagation, Jaeger visualization, and bottleneck identification.",
+    description:
+      "OpenTelemetry, Jaeger, tracing across microservices for full request visibility.",
+    longDescription:
+      "Distributed tracing with OpenTelemetry: instrumentation, spans, trace propagation, Jaeger visualization, and bottleneck identification.",
     category: "DevOps & Tools",
-    tags: ["Distributed Tracing", "OpenTelemetry", "Observability", "Monitoring"],
+    tags: [
+      "Distributed Tracing",
+      "OpenTelemetry",
+      "Observability",
+      "Monitoring",
+    ],
     dependencies: [],
-    files: [".claude/skills/distributed-tracing/SKILL.md", ".gemini/skills/distributed-tracing/SKILL.md", ".openai/skills/distributed-tracing/SKILL.md"],
+    files: [
+      ".claude/skills/distributed-tracing/SKILL.md",
+      ".gemini/skills/distributed-tracing/SKILL.md",
+      ".openai/skills/distributed-tracing/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/distributed-tracing",
     tokenSavings: 85,
     installs: 1089,
     remixes: 334,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5173,20 +7783,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Load Balancing Strategies",
     slug: "load-balancing-strategies",
-    description: "Round-robin, least connections, consistent hashing and advanced load balancing.",
-    longDescription: "Load balancing algorithms: round-robin, weighted, least connections, consistent hashing, health checks, and sticky sessions.",
+    description:
+      "Round-robin, least connections, consistent hashing and advanced load balancing.",
+    longDescription:
+      "Load balancing algorithms: round-robin, weighted, least connections, consistent hashing, health checks, and sticky sessions.",
     category: "Backend",
     tags: ["Load Balancing", "Scalability", "Networking", "Infrastructure"],
     dependencies: [],
-    files: [".claude/skills/load-balancing-strategies/SKILL.md", ".gemini/skills/load-balancing-strategies/SKILL.md", ".openai/skills/load-balancing-strategies/SKILL.md"],
+    files: [
+      ".claude/skills/load-balancing-strategies/SKILL.md",
+      ".gemini/skills/load-balancing-strategies/SKILL.md",
+      ".openai/skills/load-balancing-strategies/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/load-balancing-strategies",
     tokenSavings: 85,
     installs: 765,
     remixes: 212,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5199,20 +7822,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Data Consistency Patterns",
     slug: "data-consistency-patterns",
-    description: "Strong consistency, eventual consistency, CAP theorem, and multi-database sync.",
-    longDescription: "Database consistency models: strong, eventual, read-your-writes, CAP theorem trade-offs, multi-master replication, conflict resolution.",
+    description:
+      "Strong consistency, eventual consistency, CAP theorem, and multi-database sync.",
+    longDescription:
+      "Database consistency models: strong, eventual, read-your-writes, CAP theorem trade-offs, multi-master replication, conflict resolution.",
     category: "Backend & Data",
     tags: ["Consistency", "CAP", "Database", "Distributed Systems"],
     dependencies: [],
-    files: [".claude/skills/data-consistency-patterns/SKILL.md", ".gemini/skills/data-consistency-patterns/SKILL.md", ".openai/skills/data-consistency-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/data-consistency-patterns/SKILL.md",
+      ".gemini/skills/data-consistency-patterns/SKILL.md",
+      ".openai/skills/data-consistency-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/data-consistency-patterns",
     tokenSavings: 85,
     installs: 1178,
     remixes: 367,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5225,20 +7861,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Caching Strategies & Hierarchies",
     slug: "caching-strategies",
-    description: "Multi-level caching, cache invalidation, L1/L2/L3 hierarchies, and coherence.",
-    longDescription: "Caching architecture: multi-tier hierarchies, cache-aside, write-through, write-behind patterns, invalidation strategies, TTL management.",
+    description:
+      "Multi-level caching, cache invalidation, L1/L2/L3 hierarchies, and coherence.",
+    longDescription:
+      "Caching architecture: multi-tier hierarchies, cache-aside, write-through, write-behind patterns, invalidation strategies, TTL management.",
     category: "Backend & Data",
     tags: ["Caching", "Performance", "Architecture", "Optimization"],
     dependencies: [],
-    files: [".claude/skills/caching-strategies/SKILL.md", ".gemini/skills/caching-strategies/SKILL.md", ".openai/skills/caching-strategies/SKILL.md"],
+    files: [
+      ".claude/skills/caching-strategies/SKILL.md",
+      ".gemini/skills/caching-strategies/SKILL.md",
+      ".openai/skills/caching-strategies/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/caching-strategies",
     tokenSavings: 85,
     installs: 1345,
     remixes: 401,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5251,20 +7900,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Advanced Rate Limiting",
     slug: "rate-limiting-advanced",
-    description: "Token bucket, leaky bucket, sliding window, and distributed rate limiting.",
-    longDescription: "Rate limiting algorithms: token bucket, leaky bucket, sliding window, distributed with Redis/Memcached implementations.",
+    description:
+      "Token bucket, leaky bucket, sliding window, and distributed rate limiting.",
+    longDescription:
+      "Rate limiting algorithms: token bucket, leaky bucket, sliding window, distributed with Redis/Memcached implementations.",
     category: "Backend",
     tags: ["Rate Limiting", "API Protection", "Security", "Scalability"],
     dependencies: [],
-    files: [".claude/skills/rate-limiting-advanced/SKILL.md", ".gemini/skills/rate-limiting-advanced/SKILL.md", ".openai/skills/rate-limiting-advanced/SKILL.md"],
+    files: [
+      ".claude/skills/rate-limiting-advanced/SKILL.md",
+      ".gemini/skills/rate-limiting-advanced/SKILL.md",
+      ".openai/skills/rate-limiting-advanced/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/rate-limiting-advanced",
     tokenSavings: 85,
     installs: 1012,
     remixes: 321,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5277,20 +7939,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Full-Text Search Engine",
     slug: "full-text-search-engine",
-    description: "Elasticsearch/OpenSearch, text analysis, faceted search, and relevance ranking.",
-    longDescription: "Building production search systems: text analysis, mapping, faceted navigation, autocomplete, typo tolerance, relevance tuning.",
+    description:
+      "Elasticsearch/OpenSearch, text analysis, faceted search, and relevance ranking.",
+    longDescription:
+      "Building production search systems: text analysis, mapping, faceted navigation, autocomplete, typo tolerance, relevance tuning.",
     category: "Backend & Data",
     tags: ["Search", "Elasticsearch", "OpenSearch", "Information Retrieval"],
     dependencies: [],
-    files: [".claude/skills/full-text-search-engine/SKILL.md", ".gemini/skills/full-text-search-engine/SKILL.md", ".openai/skills/full-text-search-engine/SKILL.md"],
+    files: [
+      ".claude/skills/full-text-search-engine/SKILL.md",
+      ".gemini/skills/full-text-search-engine/SKILL.md",
+      ".openai/skills/full-text-search-engine/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/full-text-search-engine",
     tokenSavings: 85,
     installs: 934,
     remixes: 289,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5303,20 +7978,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Machine Learning Pipelines",
     slug: "machine-learning-pipelines",
-    description: "End-to-end ML: preprocessing, features, training, evaluation, and deployment.",
-    longDescription: "Complete ML pipeline: data cleaning, feature engineering, model selection, tuning, evaluation, deployment, and monitoring.",
+    description:
+      "End-to-end ML: preprocessing, features, training, evaluation, and deployment.",
+    longDescription:
+      "Complete ML pipeline: data cleaning, feature engineering, model selection, tuning, evaluation, deployment, and monitoring.",
     category: "MLOps & Production ML",
     tags: ["Machine Learning", "Pipelines", "Data Science", "Production ML"],
     dependencies: [],
-    files: [".claude/skills/machine-learning-pipelines/SKILL.md", ".gemini/skills/machine-learning-pipelines/SKILL.md", ".openai/skills/machine-learning-pipelines/SKILL.md"],
+    files: [
+      ".claude/skills/machine-learning-pipelines/SKILL.md",
+      ".gemini/skills/machine-learning-pipelines/SKILL.md",
+      ".openai/skills/machine-learning-pipelines/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/machine-learning-pipelines",
     tokenSavings: 85,
     installs: 1234,
     remixes: 445,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5329,20 +8017,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Blockchain Consensus Mechanisms",
     slug: "blockchain-consensus",
-    description: "PoW, PoS, BFT algorithms, mining, staking, and validator economics.",
-    longDescription: "Consensus mechanisms: PoW mining, PoS staking, BFT protocols, validator economics, practical implementations.",
+    description:
+      "PoW, PoS, BFT algorithms, mining, staking, and validator economics.",
+    longDescription:
+      "Consensus mechanisms: PoW mining, PoS staking, BFT protocols, validator economics, practical implementations.",
     category: "Blockchain & Web3",
     tags: ["Blockchain", "Consensus", "Proof of Work", "Proof of Stake"],
     dependencies: [],
-    files: [".claude/skills/blockchain-consensus/SKILL.md", ".gemini/skills/blockchain-consensus/SKILL.md", ".openai/skills/blockchain-consensus/SKILL.md"],
+    files: [
+      ".claude/skills/blockchain-consensus/SKILL.md",
+      ".gemini/skills/blockchain-consensus/SKILL.md",
+      ".openai/skills/blockchain-consensus/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/blockchain-consensus",
     tokenSavings: 85,
     installs: 1089,
     remixes: 356,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5355,20 +8056,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Smart Contract Security Auditing",
     slug: "smart-contract-security",
-    description: "Vulnerabilities: reentrancy, overflow, frontrunning audit strategies.",
-    longDescription: "Smart contract security: reentrancy, overflow/underflow, front-running, access control, external calls, tools, review techniques.",
+    description:
+      "Vulnerabilities: reentrancy, overflow, frontrunning audit strategies.",
+    longDescription:
+      "Smart contract security: reentrancy, overflow/underflow, front-running, access control, external calls, tools, review techniques.",
     category: "Security",
     tags: ["Smart Contract", "Security", "Auditing", "Vulnerabilities"],
     dependencies: [],
-    files: [".claude/skills/smart-contract-security/SKILL.md", ".gemini/skills/smart-contract-security/SKILL.md", ".openai/skills/smart-contract-security/SKILL.md"],
+    files: [
+      ".claude/skills/smart-contract-security/SKILL.md",
+      ".gemini/skills/smart-contract-security/SKILL.md",
+      ".openai/skills/smart-contract-security/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/smart-contract-security",
     tokenSavings: 85,
     installs: 1456,
     remixes: 523,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5381,20 +8095,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Zero-Knowledge Proofs",
     slug: "zero-knowledge-proofs",
-    description: "zkSNARKs, zkSTARKs, proving without revealing data privacy tech.",
-    longDescription: "Zero-knowledge systems: zkSNARKs, zkSTARKs, Circom circuits, verification, privacy applications.",
+    description:
+      "zkSNARKs, zkSTARKs, proving without revealing data privacy tech.",
+    longDescription:
+      "Zero-knowledge systems: zkSNARKs, zkSTARKs, Circom circuits, verification, privacy applications.",
     category: "Blockchain & Web3",
     tags: ["Zero-Knowledge", "Cryptography", "Privacy", "Blockchain"],
     dependencies: [],
-    files: [".claude/skills/zero-knowledge-proofs/SKILL.md", ".gemini/skills/zero-knowledge-proofs/SKILL.md", ".openai/skills/zero-knowledge-proofs/SKILL.md"],
+    files: [
+      ".claude/skills/zero-knowledge-proofs/SKILL.md",
+      ".gemini/skills/zero-knowledge-proofs/SKILL.md",
+      ".openai/skills/zero-knowledge-proofs/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/zero-knowledge-proofs",
     tokenSavings: 85,
     installs: 789,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5407,20 +8134,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "API Gateway Patterns",
     slug: "api-gateway-patterns",
-    description: "Routing, authentication, rate limiting, service aggregation, composition.",
-    longDescription: "API Gateway architecture: routing, protocol translation, transformation, auth, rate limiting, service aggregation.",
+    description:
+      "Routing, authentication, rate limiting, service aggregation, composition.",
+    longDescription:
+      "API Gateway architecture: routing, protocol translation, transformation, auth, rate limiting, service aggregation.",
     category: "Backend",
     tags: ["API Gateway", "Microservices", "Routing", "Pattern"],
     dependencies: [],
-    files: [".claude/skills/api-gateway-patterns/SKILL.md", ".gemini/skills/api-gateway-patterns/SKILL.md", ".openai/skills/api-gateway-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/api-gateway-patterns/SKILL.md",
+      ".gemini/skills/api-gateway-patterns/SKILL.md",
+      ".openai/skills/api-gateway-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/api-gateway-patterns",
     tokenSavings: 85,
     installs: 1178,
     remixes: 378,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5433,20 +8173,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Event-Driven Architecture",
     slug: "event-driven-architecture",
-    description: "Publish-subscribe, event brokers, reactive systems loose coupling.",
-    longDescription: "Event-driven patterns: producers, consumers, brokers, routing, error handling, reactive systems.",
+    description:
+      "Publish-subscribe, event brokers, reactive systems loose coupling.",
+    longDescription:
+      "Event-driven patterns: producers, consumers, brokers, routing, error handling, reactive systems.",
     category: "Software Architecture",
     tags: ["Event-Driven", "Pub/Sub", "Architecture", "Reactive"],
     dependencies: [],
-    files: [".claude/skills/event-driven-architecture/SKILL.md", ".gemini/skills/event-driven-architecture/SKILL.md", ".openai/skills/event-driven-architecture/SKILL.md"],
+    files: [
+      ".claude/skills/event-driven-architecture/SKILL.md",
+      ".gemini/skills/event-driven-architecture/SKILL.md",
+      ".openai/skills/event-driven-architecture/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/event-driven-architecture",
     tokenSavings: 85,
     installs: 1345,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5459,20 +8212,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Performance Profiling & Analysis",
     slug: "performance-profiling",
-    description: "CPU profiling, memory, flame graphs, bottleneck identification.",
-    longDescription: "Profiling tools: CPU/memory profilers, flame graphs, visualization, systematic analysis, optimization.",
+    description:
+      "CPU profiling, memory, flame graphs, bottleneck identification.",
+    longDescription:
+      "Profiling tools: CPU/memory profilers, flame graphs, visualization, systematic analysis, optimization.",
     category: "DevOps & Tools",
     tags: ["Performance", "Profiling", "Debugging", "Optimization"],
     dependencies: [],
-    files: [".claude/skills/performance-profiling/SKILL.md", ".gemini/skills/performance-profiling/SKILL.md", ".openai/skills/performance-profiling/SKILL.md"],
+    files: [
+      ".claude/skills/performance-profiling/SKILL.md",
+      ".gemini/skills/performance-profiling/SKILL.md",
+      ".openai/skills/performance-profiling/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/performance-profiling",
     tokenSavings: 85,
     installs: 1089,
     remixes: 334,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5485,20 +8251,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Vulnerability Management",
     slug: "vulnerability-management",
-    description: "Dependency scanning, CVE tracking, patch management, posture.",
-    longDescription: "Vulnerability management: scanning, CVE tracking, prioritization, patch workflows, posture tracking.",
+    description:
+      "Dependency scanning, CVE tracking, patch management, posture.",
+    longDescription:
+      "Vulnerability management: scanning, CVE tracking, prioritization, patch workflows, posture tracking.",
     category: "Security",
     tags: ["Vulnerability Management", "Security", "DevSecOps", "Compliance"],
     dependencies: [],
-    files: [".claude/skills/vulnerability-management/SKILL.md", ".gemini/skills/vulnerability-management/SKILL.md", ".openai/skills/vulnerability-management/SKILL.md"],
+    files: [
+      ".claude/skills/vulnerability-management/SKILL.md",
+      ".gemini/skills/vulnerability-management/SKILL.md",
+      ".openai/skills/vulnerability-management/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/vulnerability-management",
     tokenSavings: 85,
     installs: 912,
     remixes: 298,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5512,19 +8291,31 @@ export const SKILLS: RegistryItem[] = [
     name: "Observability Cost Optimization",
     slug: "observability-cost-optimization",
     description: "Sampling, log aggregation, metric cardinality control cost.",
-    longDescription: "Cost-effective observability: sampling, cardinality management, compression, retention, smart monitoring.",
+    longDescription:
+      "Cost-effective observability: sampling, cardinality management, compression, retention, smart monitoring.",
     category: "DevOps & Tools",
     tags: ["Observability", "Cost Optimization", "Monitoring", "Efficiency"],
     dependencies: [],
-    files: [".claude/skills/observability-cost-optimization/SKILL.md", ".gemini/skills/observability-cost-optimization/SKILL.md", ".openai/skills/observability-cost-optimization/SKILL.md"],
+    files: [
+      ".claude/skills/observability-cost-optimization/SKILL.md",
+      ".gemini/skills/observability-cost-optimization/SKILL.md",
+      ".openai/skills/observability-cost-optimization/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/observability-cost-optimization",
     tokenSavings: 85,
     installs: 756,
     remixes: 212,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5537,20 +8328,33 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Feature Flag Management",
     slug: "feature-flag-management",
-    description: "Feature toggles, canary releases, A/B testing infrastructure.",
-    longDescription: "Feature flags: gradual rollouts, canary deployments, A/B testing, experiment tracking, cleanup.",
+    description:
+      "Feature toggles, canary releases, A/B testing infrastructure.",
+    longDescription:
+      "Feature flags: gradual rollouts, canary deployments, A/B testing, experiment tracking, cleanup.",
     category: "DevOps & Tools",
     tags: ["Feature Flags", "Canary", "A/B Testing", "Deployment"],
     dependencies: [],
-    files: [".claude/skills/feature-flag-management/SKILL.md", ".gemini/skills/feature-flag-management/SKILL.md", ".openai/skills/feature-flag-management/SKILL.md"],
+    files: [
+      ".claude/skills/feature-flag-management/SKILL.md",
+      ".gemini/skills/feature-flag-management/SKILL.md",
+      ".openai/skills/feature-flag-management/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/feature-flag-management",
     tokenSavings: 85,
     installs: 1234,
     remixes: 389,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5563,19 +8367,31 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "API Rate Limiting",
     slug: "api-rate-limiting",
-    description: "API rate limiting patterns, token bucket, sliding window, and distributed rate limiting strategies",
+    description:
+      "API rate limiting patterns, token bucket, sliding window, and distributed rate limiting strategies",
     category: "Development & Tools",
     tags: ["API", "Rate Limiting", "Performance"],
     dependencies: [],
-    files: [".claude/skills/api-rate-limiting/SKILL.md", ".gemini/skills/api-rate-limiting/SKILL.md", ".openai/skills/api-rate-limiting/SKILL.md"],
+    files: [
+      ".claude/skills/api-rate-limiting/SKILL.md",
+      ".gemini/skills/api-rate-limiting/SKILL.md",
+      ".openai/skills/api-rate-limiting/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/api-rate-limiting",
     tokenSavings: 85,
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5588,19 +8404,31 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Docker Best Practices",
     slug: "docker-best-practices",
-    description: "Docker best practices: multi-stage builds, layer caching, security scanning, and production optimization",
+    description:
+      "Docker best practices: multi-stage builds, layer caching, security scanning, and production optimization",
     category: "Development & Tools",
     tags: ["Docker", "DevOps", "Best Practices"],
     dependencies: [],
-    files: [".claude/skills/docker-best-practices/SKILL.md", ".gemini/skills/docker-best-practices/SKILL.md", ".openai/skills/docker-best-practices/SKILL.md"],
+    files: [
+      ".claude/skills/docker-best-practices/SKILL.md",
+      ".gemini/skills/docker-best-practices/SKILL.md",
+      ".openai/skills/docker-best-practices/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/docker-best-practices",
     tokenSavings: 85,
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5613,19 +8441,31 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "Error Handling Patterns",
     slug: "error-handling-patterns",
-    description: "Error handling patterns: Result types, custom errors, retry logic, and graceful degradation strategies",
+    description:
+      "Error handling patterns: Result types, custom errors, retry logic, and graceful degradation strategies",
     category: "Development & Tools",
     tags: ["Error Handling", "Best Practices", "Reliability"],
     dependencies: [],
-    files: [".claude/skills/error-handling-patterns/SKILL.md", ".gemini/skills/error-handling-patterns/SKILL.md", ".openai/skills/error-handling-patterns/SKILL.md"],
+    files: [
+      ".claude/skills/error-handling-patterns/SKILL.md",
+      ".gemini/skills/error-handling-patterns/SKILL.md",
+      ".openai/skills/error-handling-patterns/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/error-handling-patterns",
     tokenSavings: 85,
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5638,19 +8478,31 @@ export const SKILLS: RegistryItem[] = [
     kind: "skill",
     name: "TypeScript Advanced Types",
     slug: "typescript-advanced-types",
-    description: "Advanced TypeScript: conditional types, mapped types, template literals, and type-level programming",
+    description:
+      "Advanced TypeScript: conditional types, mapped types, template literals, and type-level programming",
     category: "Development & Tools",
     tags: ["TypeScript", "Advanced Types", "Type Safety"],
     dependencies: [],
-    files: [".claude/skills/typescript-advanced-types/SKILL.md", ".gemini/skills/typescript-advanced-types/SKILL.md", ".openai/skills/typescript-advanced-types/SKILL.md"],
+    files: [
+      ".claude/skills/typescript-advanced-types/SKILL.md",
+      ".gemini/skills/typescript-advanced-types/SKILL.md",
+      ".openai/skills/typescript-advanced-types/SKILL.md",
+    ],
     install: "npx @gicm/cli add skill/typescript-advanced-types",
     tokenSavings: 85,
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5666,18 +8518,26 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/feature",
     slug: "feature",
-    description: "Start new Git Flow feature branch. Automatic naming, branch protection.",
+    description:
+      "Start new Git Flow feature branch. Automatic naming, branch protection.",
     category: "Git Workflow",
     tags: ["Git", "Workflow", "Feature"],
-    dependencies: [],
+    dependencies: ["git-flow-coordinator", "mcp-git"],
     files: [".claude/commands/feature.md"],
     install: "npx @gicm/cli add command/feature",
     installs: 1234,
     remixes: 356,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5690,7 +8550,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/code-review",
     slug: "code-review",
-    description: "Comprehensive code review. Style, security, performance checks.",
+    description:
+      "Comprehensive code review. Style, security, performance checks.",
     category: "Quality & Review",
     tags: ["Code Review", "Quality", "Automation"],
     dependencies: ["code-reviewer"],
@@ -5698,10 +8559,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/code-review",
     installs: 1567,
     remixes: 423,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5716,7 +8584,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-hardhat",
     slug: "deploy-hardhat",
-    description: "Deploy contract with Hardhat to specified network. Automatic verification.",
+    description:
+      "Deploy contract with Hardhat to specified network. Automatic verification.",
     category: "Deployment",
     tags: ["Hardhat", "Deployment", "Ethereum"],
     dependencies: ["hardhat-deployment-specialist"],
@@ -5724,10 +8593,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-hardhat",
     installs: 823,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5740,7 +8616,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-foundry",
     slug: "deploy-foundry",
-    description: "Deploy contract with Foundry (forge script). Fast, efficient deployment.",
+    description:
+      "Deploy contract with Foundry (forge script). Fast, efficient deployment.",
     category: "Deployment",
     tags: ["Foundry", "Deployment", "Solidity"],
     dependencies: ["hardhat-deployment-specialist"],
@@ -5748,10 +8625,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-foundry",
     installs: 734,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5764,18 +8648,26 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/verify-contract",
     slug: "verify-contract",
-    description: "Verify contract on Etherscan/Blockscout. Multi-network support.",
+    description:
+      "Verify contract on Etherscan/Blockscout. Multi-network support.",
     category: "Deployment",
     tags: ["Verification", "Etherscan", "Deployment"],
-    dependencies: [],
+    dependencies: ["command/deploy-hardhat", "command/deploy-foundry"],
     files: [".claude/commands/verify-contract.md"],
     install: "npx @gicm/cli add command/verify-contract",
     installs: 912,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5788,7 +8680,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/test-coverage",
     slug: "test-coverage",
-    description: "Run coverage report for smart contracts (forge coverage / hardhat coverage).",
+    description:
+      "Run coverage report for smart contracts (forge coverage / hardhat coverage).",
     category: "Testing",
     tags: ["Testing", "Coverage", "Quality"],
     dependencies: ["foundry-testing-expert"],
@@ -5796,10 +8689,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/test-coverage",
     installs: 645,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5812,7 +8712,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/gas-report",
     slug: "gas-report",
-    description: "Generate detailed gas usage report (forge test --gas-report).",
+    description:
+      "Generate detailed gas usage report (forge test --gas-report).",
     category: "Optimization",
     tags: ["Gas", "Optimization", "Testing"],
     dependencies: ["gas-optimization-specialist"],
@@ -5820,10 +8721,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/gas-report",
     installs: 723,
     remixes: 198,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5836,7 +8744,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/audit-security",
     slug: "audit-security",
-    description: "Run security audit tools (Slither, Mythril, Aderyn). Comprehensive vulnerability scan.",
+    description:
+      "Run security audit tools (Slither, Mythril, Aderyn). Comprehensive vulnerability scan.",
     category: "Security",
     tags: ["Security", "Audit", "Vulnerability"],
     dependencies: ["evm-security-auditor"],
@@ -5844,10 +8753,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/audit-security",
     installs: 867,
     remixes: 245,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5860,18 +8776,26 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/fork-mainnet",
     slug: "fork-mainnet",
-    description: "Fork mainnet for local testing (Hardhat/Foundry). Test against live state.",
+    description:
+      "Fork mainnet for local testing (Hardhat/Foundry). Test against live state.",
     category: "Testing",
     tags: ["Testing", "Forking", "Development"],
-    dependencies: [],
+    dependencies: ["foundry-testing-expert", "mcp-alchemy"],
     files: [".claude/commands/fork-mainnet.md"],
     install: "npx @gicm/cli add command/fork-mainnet",
     installs: 612,
     remixes: 167,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5887,15 +8811,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Impersonate any address in local fork for testing.",
     category: "Testing",
     tags: ["Testing", "Forking", "Development"],
-    dependencies: [],
+    dependencies: ["command/fork-mainnet"],
     files: [".claude/commands/impersonate-account.md"],
     install: "npx @gicm/cli add command/impersonate-account",
     installs: 534,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5916,10 +8847,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/create-subgraph",
     installs: 445,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5935,15 +8873,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Generate ABI and TypeChain types from contracts.",
     category: "Development",
     tags: ["ABI", "TypeChain", "TypeScript"],
-    dependencies: [],
+    dependencies: ["typescript-precision-engineer"],
     files: [".claude/commands/generate-abi.md"],
     install: "npx @gicm/cli add command/generate-abi",
     installs: 789,
     remixes: 223,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5964,10 +8909,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/upgrade-proxy",
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -5983,15 +8935,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Flatten contract for verification (hardhat flatten).",
     category: "Development",
     tags: ["Flatten", "Verification", "Development"],
-    dependencies: [],
+    dependencies: ["command/verify-contract"],
     files: [".claude/commands/flatten-contract.md"],
     install: "npx @gicm/cli add command/flatten-contract",
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6007,15 +8966,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Decode transaction calldata to human-readable format.",
     category: "Development",
     tags: ["Decoding", "Transactions", "Development"],
-    dependencies: [],
+    dependencies: ["command/generate-abi"],
     files: [".claude/commands/decode-tx.md"],
     install: "npx @gicm/cli add command/decode-tx",
     installs: 456,
     remixes: 124,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6031,15 +8997,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Estimate gas for contract deployment and function calls.",
     category: "Optimization",
     tags: ["Gas", "Estimation", "Optimization"],
-    dependencies: [],
+    dependencies: ["command/gas-report"],
     files: [".claude/commands/estimate-gas.md"],
     install: "npx @gicm/cli add command/estimate-gas",
     installs: 612,
     remixes: 167,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6060,10 +9033,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/snapshot-state",
     installs: 478,
     remixes: 134,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6079,15 +9059,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Trace transaction execution with detailed logs.",
     category: "Debugging",
     tags: ["Tracing", "Debugging", "Development"],
-    dependencies: [],
+    dependencies: ["debugging-detective", "mcp-tenderly"],
     files: [".claude/commands/trace-tx.md"],
     install: "npx @gicm/cli add command/trace-tx",
     installs: 534,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6103,15 +9090,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Show contract storage layout (forge inspect storage).",
     category: "Development",
     tags: ["Storage", "Layout", "Development"],
-    dependencies: [],
+    dependencies: ["command/upgrade-proxy"],
     files: [".claude/commands/storage-layout.md"],
     install: "npx @gicm/cli add command/storage-layout",
     installs: 445,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6132,10 +9126,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/create-safe",
     installs: 398,
     remixes: 102,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6151,15 +9152,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Generate Merkle tree for airdrop from CSV/JSON.",
     category: "Development",
     tags: ["Merkle", "Airdrop", "Development"],
-    dependencies: [],
+    dependencies: ["evm-solidity-mastery"],
     files: [".claude/commands/generate-merkle.md"],
     install: "npx @gicm/cli add command/generate-merkle",
     installs: 512,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6175,15 +9183,22 @@ export const COMMANDS: RegistryItem[] = [
     description: "Simulate Flashbots bundle before submission.",
     category: "Advanced",
     tags: ["Flashbots", "MEV", "Advanced"],
-    dependencies: [],
+    dependencies: ["mev-protection-patterns", "transaction-simulation"],
     files: [".claude/commands/simulate-bundle.md"],
     install: "npx @gicm/cli add command/simulate-bundle",
     installs: 312,
     remixes: 87,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6198,7 +9213,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/test-generate-cases",
     slug: "test-generate-cases",
-    description: "Analyzes code to generate comprehensive unit, integration, and edge case tests.",
+    description:
+      "Analyzes code to generate comprehensive unit, integration, and edge case tests.",
     category: "Testing",
     tags: ["Testing", "Test Generation", "Quality"],
     dependencies: ["test-automation-engineer"],
@@ -6206,10 +9222,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/test-generate-cases",
     installs: 645,
     remixes: 178,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6222,7 +9245,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/test-write-tests",
     slug: "test-write-tests",
-    description: "Automatic test scaffold with Jest/Mocha/Hardhat framework support and mocking setup.",
+    description:
+      "Automatic test scaffold with Jest/Mocha/Hardhat framework support and mocking setup.",
     category: "Testing",
     tags: ["Testing", "Automation", "Jest", "Hardhat"],
     dependencies: ["test-automation-engineer"],
@@ -6230,10 +9254,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/test-write-tests",
     installs: 723,
     remixes: 198,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6246,7 +9277,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/test-e2e-setup",
     slug: "test-e2e-setup",
-    description: "Establishes Playwright/Cypress infrastructure with wallet connection and transaction testing.",
+    description:
+      "Establishes Playwright/Cypress infrastructure with wallet connection and transaction testing.",
     category: "Testing",
     tags: ["E2E", "Playwright", "Cypress", "Web3"],
     dependencies: ["test-automation-engineer"],
@@ -6254,10 +9286,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/test-e2e-setup",
     installs: 534,
     remixes: 143,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6270,7 +9309,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/test-coverage-report",
     slug: "test-coverage-report",
-    description: "Line, branch, function, and statement coverage analysis with reporting.",
+    description:
+      "Line, branch, function, and statement coverage analysis with reporting.",
     category: "Testing",
     tags: ["Coverage", "Testing", "Quality"],
     dependencies: [],
@@ -6278,10 +9318,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/test-coverage-report",
     installs: 612,
     remixes: 167,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6294,7 +9341,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/tdd-cycle",
     slug: "tdd-cycle",
-    description: "Red-Green-Refactor workflow orchestration for test-driven development.",
+    description:
+      "Red-Green-Refactor workflow orchestration for test-driven development.",
     category: "Testing",
     tags: ["TDD", "Testing", "Workflow"],
     dependencies: ["test-automation-engineer"],
@@ -6302,10 +9350,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/tdd-cycle",
     installs: 445,
     remixes: 118,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6320,7 +9375,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-prepare-release",
     slug: "deploy-prepare-release",
-    description: "Validates and prepares release packages with version updates, changelog, and git tags.",
+    description:
+      "Validates and prepares release packages with version updates, changelog, and git tags.",
     category: "Deployment",
     tags: ["Deployment", "Release", "Versioning"],
     dependencies: ["ci-cd-pipeline-engineer"],
@@ -6328,10 +9384,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-prepare-release",
     installs: 789,
     remixes: 223,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6344,7 +9407,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-containerize",
     slug: "deploy-containerize",
-    description: "Creates Docker containers with optimized Dockerfile, docker-compose.yml, and multi-stage builds.",
+    description:
+      "Creates Docker containers with optimized Dockerfile, docker-compose.yml, and multi-stage builds.",
     category: "Deployment",
     tags: ["Docker", "Containers", "DevOps"],
     dependencies: [],
@@ -6352,10 +9416,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-containerize",
     installs: 856,
     remixes: 241,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6368,7 +9439,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-kubernetes",
     slug: "deploy-kubernetes",
-    description: "Configures Kubernetes manifests: Deployment, Service, Ingress, ConfigMaps, Secrets YAML.",
+    description:
+      "Configures Kubernetes manifests: Deployment, Service, Ingress, ConfigMaps, Secrets YAML.",
     category: "Deployment",
     tags: ["Kubernetes", "DevOps", "Deployment"],
     dependencies: [],
@@ -6376,10 +9448,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-kubernetes",
     installs: 734,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6392,7 +9471,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-ci-setup",
     slug: "deploy-ci-setup",
-    description: "Establishes CI/CD pipelines for GitHub/GitLab/CircleCI with automated testing and deployment.",
+    description:
+      "Establishes CI/CD pipelines for GitHub/GitLab/CircleCI with automated testing and deployment.",
     category: "Deployment",
     tags: ["CI/CD", "GitHub Actions", "GitLab", "CircleCI"],
     dependencies: ["ci-cd-pipeline-engineer"],
@@ -6400,10 +9480,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-ci-setup",
     installs: 912,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6416,7 +9503,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/deploy-rollback",
     slug: "deploy-rollback",
-    description: "Reverts to previous deployment versions with automated health checks and DNS updates.",
+    description:
+      "Reverts to previous deployment versions with automated health checks and DNS updates.",
     category: "Deployment",
     tags: ["Rollback", "Deployment", "DevOps"],
     dependencies: [],
@@ -6424,10 +9512,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/deploy-rollback",
     installs: 567,
     remixes: 156,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6442,7 +9537,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/dev-code-review",
     slug: "dev-code-review",
-    description: "Performs comprehensive code reviews: quality, security, performance, architecture, smart contract safety.",
+    description:
+      "Performs comprehensive code reviews: quality, security, performance, architecture, smart contract safety.",
     category: "Quality & Review",
     tags: ["Code Review", "Quality", "Security"],
     dependencies: ["code-reviewer"],
@@ -6450,10 +9546,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/dev-code-review",
     installs: 1234,
     remixes: 389,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6466,7 +9569,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/dev-refactor",
     slug: "dev-refactor",
-    description: "Refactors code for improved maintainability: extract duplicates, simplify functions, apply patterns.",
+    description:
+      "Refactors code for improved maintainability: extract duplicates, simplify functions, apply patterns.",
     category: "Quality & Review",
     tags: ["Refactoring", "Code Quality", "Patterns"],
     dependencies: [],
@@ -6474,10 +9578,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/dev-refactor",
     installs: 1089,
     remixes: 312,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6490,7 +9601,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/full-review",
     slug: "full-review",
-    description: "Executes complete codebase audit: architecture, security, performance, technical debt, smart contracts.",
+    description:
+      "Executes complete codebase audit: architecture, security, performance, technical debt, smart contracts.",
     category: "Quality & Review",
     tags: ["Audit", "Review", "Quality", "Security"],
     dependencies: ["code-reviewer", "smart-contract-forensics"],
@@ -6498,10 +9610,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/full-review",
     installs: 891,
     remixes: 267,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6514,7 +9633,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/refactor-clean",
     slug: "refactor-clean",
-    description: "Removes unused code and dependencies: dead imports, orphaned files, commented code.",
+    description:
+      "Removes unused code and dependencies: dead imports, orphaned files, commented code.",
     category: "Quality & Review",
     tags: ["Cleanup", "Refactoring", "Optimization"],
     dependencies: [],
@@ -6522,10 +9642,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/refactor-clean",
     installs: 756,
     remixes: 213,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6538,7 +9665,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/api-scaffold",
     slug: "api-scaffold",
-    description: "Generates REST/GraphQL API scaffolding with Zod validation, error handling, and documentation.",
+    description:
+      "Generates REST/GraphQL API scaffolding with Zod validation, error handling, and documentation.",
     category: "Development",
     tags: ["API", "Scaffolding", "REST", "GraphQL"],
     dependencies: ["api-contract-designer"],
@@ -6546,10 +9674,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/api-scaffold",
     installs: 823,
     remixes: 234,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6564,18 +9699,29 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/security-audit",
     slug: "security-audit",
-    description: "Performs comprehensive security analysis: SQL injection, XSS, CSRF, reentrancy, integer overflow.",
+    description:
+      "Performs comprehensive security analysis: SQL injection, XSS, CSRF, reentrancy, integer overflow.",
     category: "Security",
     tags: ["Security", "Audit", "Vulnerability"],
-    dependencies: ["smart-contract-forensics", "penetration-testing-specialist"],
+    dependencies: [
+      "smart-contract-forensics",
+      "penetration-testing-specialist",
+    ],
     files: [".claude/commands/security-audit.md"],
     install: "npx @gicm/cli add command/security-audit",
     installs: 1456,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6588,7 +9734,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/security-dependency-audit",
     slug: "security-dependency-audit",
-    description: "Audits dependencies for security vulnerabilities, CVEs, malicious packages, and license compliance.",
+    description:
+      "Audits dependencies for security vulnerabilities, CVEs, malicious packages, and license compliance.",
     category: "Security",
     tags: ["Security", "Dependencies", "CVE", "Supply Chain"],
     dependencies: [],
@@ -6596,10 +9743,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/security-dependency-audit",
     installs: 934,
     remixes: 278,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6612,7 +9766,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/performance-audit",
     slug: "performance-audit",
-    description: "Analyzes application performance: Core Web Vitals, bundle size, memory leaks, RPC efficiency.",
+    description:
+      "Analyzes application performance: Core Web Vitals, bundle size, memory leaks, RPC efficiency.",
     category: "Optimization",
     tags: ["Performance", "Optimization", "Web Vitals"],
     dependencies: ["performance-profiler"],
@@ -6620,10 +9775,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/performance-audit",
     installs: 1123,
     remixes: 334,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6636,7 +9798,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/performance-optimize-db",
     slug: "performance-optimize-db",
-    description: "Optimizes database queries and schema: indexes, query plans, N+1 detection, connection pooling.",
+    description:
+      "Optimizes database queries and schema: indexes, query plans, N+1 detection, connection pooling.",
     category: "Optimization",
     tags: ["Database", "Performance", "Optimization"],
     dependencies: ["database-schema-oracle"],
@@ -6644,10 +9807,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/performance-optimize-db",
     installs: 678,
     remixes: 189,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6660,7 +9830,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/performance-caching",
     slug: "performance-caching",
-    description: "Implements caching strategies: Redis, in-memory, CDN, service workers, blockchain data caching.",
+    description:
+      "Implements caching strategies: Redis, in-memory, CDN, service workers, blockchain data caching.",
     category: "Optimization",
     tags: ["Caching", "Performance", "Redis"],
     dependencies: [],
@@ -6668,10 +9839,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/performance-caching",
     installs: 789,
     remixes: 221,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6686,7 +9864,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/git-workflow",
     slug: "git-workflow",
-    description: "Orchestrates complete git workflows: feature branches, hotfixes, releases, commit conventions.",
+    description:
+      "Orchestrates complete git workflows: feature branches, hotfixes, releases, commit conventions.",
     category: "Git Workflow",
     tags: ["Git", "Workflow", "Branching"],
     dependencies: ["git-flow-coordinator"],
@@ -6694,10 +9873,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/git-workflow",
     installs: 1345,
     remixes: 398,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6710,7 +9896,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/pr-enhance",
     slug: "pr-enhance",
-    description: "Enhances pull request descriptions with summaries, impact analysis, test coverage, breaking changes.",
+    description:
+      "Enhances pull request descriptions with summaries, impact analysis, test coverage, breaking changes.",
     category: "Git Workflow",
     tags: ["PR", "Documentation", "Review"],
     dependencies: [],
@@ -6718,10 +9905,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/pr-enhance",
     installs: 867,
     remixes: 245,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6734,7 +9928,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/context-save",
     slug: "context-save",
-    description: "Saves development context for session continuity: task state, changes, decisions, contract addresses.",
+    description:
+      "Saves development context for session continuity: task state, changes, decisions, contract addresses.",
     category: "Documentation",
     tags: ["Context", "Session", "Documentation"],
     dependencies: [],
@@ -6742,10 +9937,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/context-save",
     installs: 723,
     remixes: 201,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6758,7 +9960,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/doc-generate",
     slug: "doc-generate",
-    description: "Generates comprehensive documentation: API reference, components, architecture, smart contracts.",
+    description:
+      "Generates comprehensive documentation: API reference, components, architecture, smart contracts.",
     category: "Documentation",
     tags: ["Documentation", "API", "Architecture"],
     dependencies: ["technical-writer-pro"],
@@ -6766,10 +9969,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/doc-generate",
     installs: 956,
     remixes: 281,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6782,7 +9992,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/feature-development",
     slug: "feature-development",
-    description: "Orchestrates end-to-end feature development: branch, scaffold, implement, test, document, PR, deploy.",
+    description:
+      "Orchestrates end-to-end feature development: branch, scaffold, implement, test, document, PR, deploy.",
     category: "Development",
     tags: ["Feature", "Workflow", "Automation"],
     dependencies: ["fullstack-orchestrator"],
@@ -6790,10 +10001,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/feature-development",
     installs: 1678,
     remixes: 489,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6806,7 +10024,8 @@ export const COMMANDS: RegistryItem[] = [
     kind: "command",
     name: "/anchor-init",
     slug: "anchor-init",
-    description: "Initializes a new Solana Anchor program with best practices, templates, and security patterns.",
+    description:
+      "Initializes a new Solana Anchor program with best practices, templates, and security patterns.",
     category: "Blockchain",
     tags: ["Solana", "Anchor", "Blockchain", "Initialization"],
     dependencies: ["icm-anchor-architect"],
@@ -6814,10 +10033,17 @@ export const COMMANDS: RegistryItem[] = [
     install: "npx @gicm/cli add command/anchor-init",
     installs: 1345,
     remixes: 412,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6825,53 +10051,681 @@ export const COMMANDS: RegistryItem[] = [
       status: "NEEDS_FIX",
     },
   },
-  { id: "command/refactor", kind: "command", name: "/refactor", slug: "refactor", description: "Intelligent code refactoring with pattern detection and architectural improvements", category: "Development", tags: ["Refactoring", "Code Quality"], dependencies: [], files: [".claude/commands/refactor.md"], install: "npx @gicm/cli add command/refactor", installs: 1876, remixes: 534 },
-  { id: "command/optimize", kind: "command", name: "/optimize", slug: "optimize", description: "Performance optimization with profiling, bottleneck detection, and benchmarking", category: "Performance", tags: ["Optimization", "Performance"], dependencies: [], files: [".claude/commands/optimize.md"], install: "npx @gicm/cli add command/optimize", installs: 1654, remixes: 489 },
-  { id: "command/test-gen", kind: "command", name: "/test-gen", slug: "test-gen", description: "Automatic test generation with edge case detection and coverage analysis", category: "Testing", tags: ["Testing", "Automation"], dependencies: [], files: [".claude/commands/test-gen.md"], install: "npx @gicm/cli add command/test-gen", installs: 1789, remixes: 523 },
-  { id: "command/migration-gen", kind: "command", name: "/migration-gen", slug: "migration-gen", description: "Database migration generation with rollback support and validation", category: "Database", tags: ["Migration", "Database"], dependencies: [], files: [".claude/commands/migration-gen.md"], install: "npx @gicm/cli add command/migration-gen", installs: 1432, remixes: 412 },
-  { id: "command/component-gen", kind: "command", name: "/component-gen", slug: "component-gen", description: "React/Vue component generation with TypeScript, Storybook, and tests", category: "Frontend", tags: ["Component", "React", "Generator"], dependencies: [], files: [".claude/commands/component-gen.md"], install: "npx @gicm/cli add command/component-gen", installs: 1987, remixes: 612 },
-  { id: "command/api-gen", kind: "command", name: "/api-gen", slug: "api-gen", description: "REST/GraphQL/tRPC API endpoint generation with validation and documentation", category: "API", tags: ["API", "Generator", "Backend"], dependencies: [], files: [".claude/commands/api-gen.md"], install: "npx @gicm/cli add command/api-gen", installs: 1765, remixes: 523 },
-  { id: "command/dockerfile-gen", kind: "command", name: "/dockerfile-gen", slug: "dockerfile-gen", description: "Production-ready Dockerfile generation with multi-stage builds and optimization", category: "DevOps", tags: ["Docker", "Container", "Generator"], dependencies: [], files: [".claude/commands/dockerfile-gen.md"], install: "npx @gicm/cli add command/dockerfile-gen", installs: 1543, remixes: 467 },
-  { id: "command/env-setup", kind: "command", name: "/env-setup", slug: "env-setup", description: "Environment configuration setup with validation and secret management", category: "Configuration", tags: ["Environment", "Config", "Security"], dependencies: [], files: [".claude/commands/env-setup.md"], install: "npx @gicm/cli add command/env-setup", installs: 1456, remixes: 423 },
-  { id: "command/schema-gen", kind: "command", name: "/schema-gen", slug: "schema-gen", description: "Database schema generation with ORMs, validation, and migrations", category: "Database", tags: ["Schema", "ORM", "Database"], dependencies: [], files: [".claude/commands/schema-gen.md"], install: "npx @gicm/cli add command/schema-gen", installs: 1678, remixes: 489 },
-  { id: "command/ci-gen", kind: "command", name: "/ci-gen", slug: "ci-gen", description: "CI/CD pipeline generation for GitHub Actions, GitLab CI, CircleCI", category: "DevOps", tags: ["CI/CD", "Automation", "Pipeline"], dependencies: [], files: [".claude/commands/ci-gen.md"], install: "npx @gicm/cli add command/ci-gen", installs: 1789, remixes: 534 },
-  { id: "command/mock-gen", kind: "command", name: "/mock-gen", slug: "mock-gen", description: "Mock data and API response generation for testing and development", category: "Testing", tags: ["Mock", "Testing", "Data"], dependencies: [], files: [".claude/commands/mock-gen.md"], install: "npx @gicm/cli add command/mock-gen", installs: 1345, remixes: 398 },
-  { id: "command/hook-gen", kind: "command", name: "/hook-gen", slug: "hook-gen", description: "React/Vue custom hook generation with TypeScript and tests", category: "Frontend", tags: ["Hooks", "React", "Generator"], dependencies: [], files: [".claude/commands/hook-gen.md"], install: "npx @gicm/cli add command/hook-gen", installs: 1234, remixes: 367 },
-  { id: "command/config-gen", kind: "command", name: "/config-gen", slug: "config-gen", description: "Configuration file generation for build tools, linters, and formatters", category: "Configuration", tags: ["Config", "Setup", "Tools"], dependencies: [], files: [".claude/commands/config-gen.md"], install: "npx @gicm/cli add command/config-gen", installs: 1567, remixes: 445 },
-  { id: "command/benchmark", kind: "command", name: "/benchmark", slug: "benchmark", description: "Performance benchmarking with statistical analysis and comparison", category: "Performance", tags: ["Benchmark", "Performance", "Testing"], dependencies: [], files: [".claude/commands/benchmark.md"], install: "npx @gicm/cli add command/benchmark", installs: 1432, remixes: 412 },
-  { id: "command/lint-fix", kind: "command", name: "/lint-fix", slug: "lint-fix", description: "Automated linting and code style fixes with conflict resolution", category: "Code Quality", tags: ["Linting", "Formatting", "Automation"], dependencies: [], files: [".claude/commands/lint-fix.md"], install: "npx @gicm/cli add command/lint-fix", installs: 1876, remixes: 556 },
-  { id: "command/type-gen", kind: "command", name: "/type-gen", slug: "type-gen", description: "TypeScript type generation from schemas, APIs, and databases", category: "TypeScript", tags: ["Types", "TypeScript", "Generator"], dependencies: [], files: [".claude/commands/type-gen.md"], install: "npx @gicm/cli add command/type-gen", installs: 1654, remixes: 489 },
-  { id: "command/monorepo-init", kind: "command", name: "/monorepo-init", slug: "monorepo-init", description: "Initialize monorepo with Turborepo, pnpm workspaces, and shared configs", category: "Setup", tags: ["Monorepo", "Turborepo", "Setup"], dependencies: [], files: [".claude/commands/monorepo-init.md"], install: "npx @gicm/cli add command/monorepo-init", installs: 1543, remixes: 467 },
-  { id: "command/db-seed", kind: "command", name: "/db-seed", slug: "db-seed", description: "Database seeding with realistic test data and relation handling", category: "Database", tags: ["Database", "Seeding", "Testing"], dependencies: [], files: [".claude/commands/db-seed.md"], install: "npx @gicm/cli add command/db-seed", installs: 1456, remixes: 423 },
-  { id: "command/storybook-gen", kind: "command", name: "/storybook-gen", slug: "storybook-gen", description: "Storybook story generation with controls, actions, and variants", category: "Frontend", tags: ["Storybook", "Component", "Documentation"], dependencies: [], files: [".claude/commands/storybook-gen.md"], install: "npx @gicm/cli add command/storybook-gen", installs: 1345, remixes: 398 },
-  { id: "command/graphql-gen", kind: "command", name: "/graphql-gen", slug: "graphql-gen", description: "GraphQL schema, resolver, and type generation with best practices", category: "GraphQL", tags: ["GraphQL", "Generator", "API"], dependencies: [], files: [".claude/commands/graphql-gen.md"], install: "npx @gicm/cli add command/graphql-gen", installs: 1234, remixes: 367 },
+  {
+    id: "command/refactor",
+    kind: "command",
+    name: "/refactor",
+    slug: "refactor",
+    description:
+      "Intelligent code refactoring with pattern detection and architectural improvements",
+    category: "Development",
+    tags: ["Refactoring", "Code Quality"],
+    dependencies: [],
+    files: [".claude/commands/refactor.md"],
+    install: "npx @gicm/cli add command/refactor",
+    installs: 1876,
+    remixes: 534,
+  },
+  {
+    id: "command/optimize",
+    kind: "command",
+    name: "/optimize",
+    slug: "optimize",
+    description:
+      "Performance optimization with profiling, bottleneck detection, and benchmarking",
+    category: "Performance",
+    tags: ["Optimization", "Performance"],
+    dependencies: [],
+    files: [".claude/commands/optimize.md"],
+    install: "npx @gicm/cli add command/optimize",
+    installs: 1654,
+    remixes: 489,
+  },
+  {
+    id: "command/test-gen",
+    kind: "command",
+    name: "/test-gen",
+    slug: "test-gen",
+    description:
+      "Automatic test generation with edge case detection and coverage analysis",
+    category: "Testing",
+    tags: ["Testing", "Automation"],
+    dependencies: [],
+    files: [".claude/commands/test-gen.md"],
+    install: "npx @gicm/cli add command/test-gen",
+    installs: 1789,
+    remixes: 523,
+  },
+  {
+    id: "command/migration-gen",
+    kind: "command",
+    name: "/migration-gen",
+    slug: "migration-gen",
+    description:
+      "Database migration generation with rollback support and validation",
+    category: "Database",
+    tags: ["Migration", "Database"],
+    dependencies: [],
+    files: [".claude/commands/migration-gen.md"],
+    install: "npx @gicm/cli add command/migration-gen",
+    installs: 1432,
+    remixes: 412,
+  },
+  {
+    id: "command/component-gen",
+    kind: "command",
+    name: "/component-gen",
+    slug: "component-gen",
+    description:
+      "React/Vue component generation with TypeScript, Storybook, and tests",
+    category: "Frontend",
+    tags: ["Component", "React", "Generator"],
+    dependencies: [],
+    files: [".claude/commands/component-gen.md"],
+    install: "npx @gicm/cli add command/component-gen",
+    installs: 1987,
+    remixes: 612,
+  },
+  {
+    id: "command/api-gen",
+    kind: "command",
+    name: "/api-gen",
+    slug: "api-gen",
+    description:
+      "REST/GraphQL/tRPC API endpoint generation with validation and documentation",
+    category: "API",
+    tags: ["API", "Generator", "Backend"],
+    dependencies: [],
+    files: [".claude/commands/api-gen.md"],
+    install: "npx @gicm/cli add command/api-gen",
+    installs: 1765,
+    remixes: 523,
+  },
+  {
+    id: "command/dockerfile-gen",
+    kind: "command",
+    name: "/dockerfile-gen",
+    slug: "dockerfile-gen",
+    description:
+      "Production-ready Dockerfile generation with multi-stage builds and optimization",
+    category: "DevOps",
+    tags: ["Docker", "Container", "Generator"],
+    dependencies: [],
+    files: [".claude/commands/dockerfile-gen.md"],
+    install: "npx @gicm/cli add command/dockerfile-gen",
+    installs: 1543,
+    remixes: 467,
+  },
+  {
+    id: "command/env-setup",
+    kind: "command",
+    name: "/env-setup",
+    slug: "env-setup",
+    description:
+      "Environment configuration setup with validation and secret management",
+    category: "Configuration",
+    tags: ["Environment", "Config", "Security"],
+    dependencies: [],
+    files: [".claude/commands/env-setup.md"],
+    install: "npx @gicm/cli add command/env-setup",
+    installs: 1456,
+    remixes: 423,
+  },
+  {
+    id: "command/schema-gen",
+    kind: "command",
+    name: "/schema-gen",
+    slug: "schema-gen",
+    description:
+      "Database schema generation with ORMs, validation, and migrations",
+    category: "Database",
+    tags: ["Schema", "ORM", "Database"],
+    dependencies: [],
+    files: [".claude/commands/schema-gen.md"],
+    install: "npx @gicm/cli add command/schema-gen",
+    installs: 1678,
+    remixes: 489,
+  },
+  {
+    id: "command/ci-gen",
+    kind: "command",
+    name: "/ci-gen",
+    slug: "ci-gen",
+    description:
+      "CI/CD pipeline generation for GitHub Actions, GitLab CI, CircleCI",
+    category: "DevOps",
+    tags: ["CI/CD", "Automation", "Pipeline"],
+    dependencies: [],
+    files: [".claude/commands/ci-gen.md"],
+    install: "npx @gicm/cli add command/ci-gen",
+    installs: 1789,
+    remixes: 534,
+  },
+  {
+    id: "command/mock-gen",
+    kind: "command",
+    name: "/mock-gen",
+    slug: "mock-gen",
+    description:
+      "Mock data and API response generation for testing and development",
+    category: "Testing",
+    tags: ["Mock", "Testing", "Data"],
+    dependencies: [],
+    files: [".claude/commands/mock-gen.md"],
+    install: "npx @gicm/cli add command/mock-gen",
+    installs: 1345,
+    remixes: 398,
+  },
+  {
+    id: "command/hook-gen",
+    kind: "command",
+    name: "/hook-gen",
+    slug: "hook-gen",
+    description: "React/Vue custom hook generation with TypeScript and tests",
+    category: "Frontend",
+    tags: ["Hooks", "React", "Generator"],
+    dependencies: [],
+    files: [".claude/commands/hook-gen.md"],
+    install: "npx @gicm/cli add command/hook-gen",
+    installs: 1234,
+    remixes: 367,
+  },
+  {
+    id: "command/config-gen",
+    kind: "command",
+    name: "/config-gen",
+    slug: "config-gen",
+    description:
+      "Configuration file generation for build tools, linters, and formatters",
+    category: "Configuration",
+    tags: ["Config", "Setup", "Tools"],
+    dependencies: [],
+    files: [".claude/commands/config-gen.md"],
+    install: "npx @gicm/cli add command/config-gen",
+    installs: 1567,
+    remixes: 445,
+  },
+  {
+    id: "command/benchmark",
+    kind: "command",
+    name: "/benchmark",
+    slug: "benchmark",
+    description:
+      "Performance benchmarking with statistical analysis and comparison",
+    category: "Performance",
+    tags: ["Benchmark", "Performance", "Testing"],
+    dependencies: [],
+    files: [".claude/commands/benchmark.md"],
+    install: "npx @gicm/cli add command/benchmark",
+    installs: 1432,
+    remixes: 412,
+  },
+  {
+    id: "command/lint-fix",
+    kind: "command",
+    name: "/lint-fix",
+    slug: "lint-fix",
+    description:
+      "Automated linting and code style fixes with conflict resolution",
+    category: "Code Quality",
+    tags: ["Linting", "Formatting", "Automation"],
+    dependencies: [],
+    files: [".claude/commands/lint-fix.md"],
+    install: "npx @gicm/cli add command/lint-fix",
+    installs: 1876,
+    remixes: 556,
+  },
+  {
+    id: "command/type-gen",
+    kind: "command",
+    name: "/type-gen",
+    slug: "type-gen",
+    description: "TypeScript type generation from schemas, APIs, and databases",
+    category: "TypeScript",
+    tags: ["Types", "TypeScript", "Generator"],
+    dependencies: [],
+    files: [".claude/commands/type-gen.md"],
+    install: "npx @gicm/cli add command/type-gen",
+    installs: 1654,
+    remixes: 489,
+  },
+  {
+    id: "command/monorepo-init",
+    kind: "command",
+    name: "/monorepo-init",
+    slug: "monorepo-init",
+    description:
+      "Initialize monorepo with Turborepo, pnpm workspaces, and shared configs",
+    category: "Setup",
+    tags: ["Monorepo", "Turborepo", "Setup"],
+    dependencies: [],
+    files: [".claude/commands/monorepo-init.md"],
+    install: "npx @gicm/cli add command/monorepo-init",
+    installs: 1543,
+    remixes: 467,
+  },
+  {
+    id: "command/db-seed",
+    kind: "command",
+    name: "/db-seed",
+    slug: "db-seed",
+    description:
+      "Database seeding with realistic test data and relation handling",
+    category: "Database",
+    tags: ["Database", "Seeding", "Testing"],
+    dependencies: [],
+    files: [".claude/commands/db-seed.md"],
+    install: "npx @gicm/cli add command/db-seed",
+    installs: 1456,
+    remixes: 423,
+  },
+  {
+    id: "command/storybook-gen",
+    kind: "command",
+    name: "/storybook-gen",
+    slug: "storybook-gen",
+    description:
+      "Storybook story generation with controls, actions, and variants",
+    category: "Frontend",
+    tags: ["Storybook", "Component", "Documentation"],
+    dependencies: [],
+    files: [".claude/commands/storybook-gen.md"],
+    install: "npx @gicm/cli add command/storybook-gen",
+    installs: 1345,
+    remixes: 398,
+  },
+  {
+    id: "command/graphql-gen",
+    kind: "command",
+    name: "/graphql-gen",
+    slug: "graphql-gen",
+    description:
+      "GraphQL schema, resolver, and type generation with best practices",
+    category: "GraphQL",
+    tags: ["GraphQL", "Generator", "API"],
+    dependencies: [],
+    files: [".claude/commands/graphql-gen.md"],
+    install: "npx @gicm/cli add command/graphql-gen",
+    installs: 1234,
+    remixes: 367,
+  },
 
   // === PHASE 4: ADVANCED & POWER-USER COMMANDS (25 commands) ===
-  { id: "command/architecture-gen", kind: "command", name: "/architecture-gen", slug: "architecture-gen", description: "Generate system architecture diagrams, documentation, and decision records from codebase", category: "Architecture", tags: ["Architecture", "Documentation", "Diagrams"], dependencies: [], files: [".claude/commands/architecture-gen.md"], install: "npx @gicm/cli add command/architecture-gen", installs: 1456, remixes: 412 },
-  { id: "command/perf-trace", kind: "command", name: "/perf-trace", slug: "perf-trace", description: "Performance profiling, flame graphs, and bottleneck identification for Node.js and browsers", category: "Performance", tags: ["Performance", "Profiling", "Debugging"], dependencies: [], files: [".claude/commands/perf-trace.md"], install: "npx @gicm/cli add command/perf-trace", installs: 1234, remixes: 356 },
-  { id: "command/bundle-analyze", kind: "command", name: "/bundle-analyze", slug: "bundle-analyze", description: "Analyze bundle size, dependencies, and generate optimization recommendations", category: "Optimization", tags: ["Bundle", "Size Analysis", "Performance"], dependencies: [], files: [".claude/commands/bundle-analyze.md"], install: "npx @gicm/cli add command/bundle-analyze", installs: 1367, remixes: 389 },
-  { id: "command/deps-upgrade", kind: "command", name: "/deps-upgrade", slug: "deps-upgrade", description: "Smart dependency upgrades with breaking change detection and migration guides", category: "Maintenance", tags: ["Dependencies", "Upgrade", "Maintenance"], dependencies: [], files: [".claude/commands/deps-upgrade.md"], install: "npx @gicm/cli add command/deps-upgrade", installs: 1545, remixes: 423 },
-  { id: "command/changelog-gen", kind: "command", name: "/changelog-gen", slug: "changelog-gen", description: "Auto-generate CHANGELOG from conventional commits with categorization and linking", category: "Release", tags: ["Changelog", "Release", "Documentation"], dependencies: [], files: [".claude/commands/changelog-gen.md"], install: "npx @gicm/cli add command/changelog-gen", installs: 1123, remixes: 334 },
-  { id: "command/release-notes", kind: "command", name: "/release-notes", slug: "release-notes", description: "Generate comprehensive release notes with features, fixes, breaking changes, and migration guides", category: "Release", tags: ["Release", "Notes", "Communication"], dependencies: [], files: [".claude/commands/release-notes.md"], install: "npx @gicm/cli add command/release-notes", installs: 1087, remixes: 312 },
-  { id: "command/api-mock-gen", kind: "command", name: "/api-mock-gen", slug: "api-mock-gen", description: "Generate mock API servers with OpenAPI/GraphQL support and realistic data generation", category: "Testing", tags: ["Mocking", "API", "Testing"], dependencies: [], files: [".claude/commands/api-mock-gen.md"], install: "npx @gicm/cli add command/api-mock-gen", installs: 1456, remixes: 398 },
-  { id: "command/load-test", kind: "command", name: "/load-test", slug: "load-test", description: "Load testing with k6/Artillery: concurrency simulation, spike testing, soak testing", category: "Testing", tags: ["Load Testing", "Performance", "k6"], dependencies: [], files: [".claude/commands/load-test.md"], install: "npx @gicm/cli add command/load-test", installs: 987, remixes: 289 },
-  { id: "command/cache-strategy", kind: "command", name: "/cache-strategy", slug: "cache-strategy", description: "Cache strategy optimization: Redis, HTTP caching, in-memory patterns, invalidation", category: "Optimization", tags: ["Caching", "Performance", "Redis"], dependencies: [], files: [".claude/commands/cache-strategy.md"], install: "npx @gicm/cli add command/cache-strategy", installs: 1234, remixes: 345 },
-  { id: "command/error-boundary-gen", kind: "command", name: "/error-boundary-gen", slug: "error-boundary-gen", description: "Generate React error boundaries with fallback UI, error logging, and recovery strategies", category: "Frontend", tags: ["React", "Error Handling", "Components"], dependencies: [], files: [".claude/commands/error-boundary-gen.md"], install: "npx @gicm/cli add command/error-boundary-gen", installs: 1156, remixes: 334 },
-  { id: "command/seo-audit", kind: "command", name: "/seo-audit", slug: "seo-audit", description: "SEO and accessibility audit with recommendations for meta tags, structured data, WCAG compliance", category: "Optimization", tags: ["SEO", "Accessibility", "Audit"], dependencies: [], files: [".claude/commands/seo-audit.md"], install: "npx @gicm/cli add command/seo-audit", installs: 945, remixes: 267 },
-  { id: "command/lighthouse-check", kind: "command", name: "/lighthouse-check", slug: "lighthouse-check", description: "Run Lighthouse performance audit with scoring, metrics, and optimization suggestions", category: "Performance", tags: ["Lighthouse", "Performance", "Audit"], dependencies: [], files: [".claude/commands/lighthouse-check.md"], install: "npx @gicm/cli add command/lighthouse-check", installs: 1089, remixes: 312 },
-  { id: "command/env-validator", kind: "command", name: "/env-validator", slug: "env-validator", description: "Generate environment variable validation with Zod schemas, type safety, and documentation", category: "Configuration", tags: ["Environment", "Validation", "Configuration"], dependencies: [], files: [".claude/commands/env-validator.md"], install: "npx @gicm/cli add command/env-validator", installs: 1234, remixes: 356 },
-  { id: "command/secrets-scan", kind: "command", name: "/secrets-scan", slug: "secrets-scan", description: "Scan codebase for exposed secrets, API keys, and credentials with remediation guidance", category: "Security", tags: ["Security", "Secrets", "Scanning"], dependencies: [], files: [".claude/commands/secrets-scan.md"], install: "npx @gicm/cli add command/secrets-scan", installs: 1456, remixes: 423 },
-  { id: "command/idor-scan", kind: "command", name: "/idor-scan", slug: "idor-scan", description: "IDOR vulnerability scanning: test authorization, resource access, enumeration attacks", category: "Security", tags: ["Security", "IDOR", "Testing"], dependencies: [], files: [".claude/commands/idor-scan.md"], install: "npx @gicm/cli add command/idor-scan", installs: 834, remixes: 234 },
-  { id: "command/sql-injection-scan", kind: "command", name: "/sql-injection-scan", slug: "sql-injection-scan", description: "SQL injection vulnerability detection, parameterization audit, and query safety verification", category: "Security", tags: ["Security", "SQL Injection", "Scanning"], dependencies: [], files: [".claude/commands/sql-injection-scan.md"], install: "npx @gicm/cli add command/sql-injection-scan", installs: 1123, remixes: 312 },
-  { id: "command/xss-scan", kind: "command", name: "/xss-scan", slug: "xss-scan", description: "XSS vulnerability detection: sanitization audit, DOM safety, CSP policy verification", category: "Security", tags: ["Security", "XSS", "Frontend"], dependencies: [], files: [".claude/commands/xss-scan.md"], install: "npx @gicm/cli add command/xss-scan", installs: 1089, remixes: 301 },
-  { id: "command/cors-config", kind: "command", name: "/cors-config", slug: "cors-config", description: "Generate CORS configuration with security best practices and origin validation", category: "Security", tags: ["CORS", "Security", "Configuration"], dependencies: [], files: [".claude/commands/cors-config.md"], install: "npx @gicm/cli add command/cors-config", installs: 1234, remixes: 345 },
-  { id: "command/rate-limit-setup", kind: "command", name: "/rate-limit-setup", slug: "rate-limit-setup", description: "Implement rate limiting with sliding window, token bucket, and distributed strategies", category: "Backend", tags: ["Rate Limiting", "Performance", "Security"], dependencies: [], files: [".claude/commands/rate-limit-setup.md"], install: "npx @gicm/cli add command/rate-limit-setup", installs: 1345, remixes: 378 },
-  { id: "command/pagination-gen", kind: "command", name: "/pagination-gen", slug: "pagination-gen", description: "Generate pagination logic: cursor-based, offset-based, with client/server implementations", category: "Backend", tags: ["Pagination", "API", "Database"], dependencies: [], files: [".claude/commands/pagination-gen.md"], install: "npx @gicm/cli add command/pagination-gen", installs: 1456, remixes: 401 },
-  { id: "command/filtering-gen", kind: "command", name: "/filtering-gen", slug: "filtering-gen", description: "Advanced filtering implementation: multi-field, nested, range queries, type-safe", category: "Backend", tags: ["Filtering", "Query", "API"], dependencies: [], files: [".claude/commands/filtering-gen.md"], install: "npx @gicm/cli add command/filtering-gen", installs: 1234, remixes: 356 },
-  { id: "command/sorting-gen", kind: "command", name: "/sorting-gen", slug: "sorting-gen", description: "Multi-column sorting setup with direction, priority, and database query optimization", category: "Backend", tags: ["Sorting", "Database", "Query"], dependencies: [], files: [".claude/commands/sorting-gen.md"], install: "npx @gicm/cli add command/sorting-gen", installs: 1089, remixes: 301 },
-  { id: "command/search-optimize", kind: "command", name: "/search-optimize", slug: "search-optimize", description: "Search optimization: indexing strategies, full-text search, fuzzy matching, ranking", category: "Backend", tags: ["Search", "Performance", "Database"], dependencies: [], files: [".claude/commands/search-optimize.md"], install: "npx @gicm/cli add command/search-optimize", installs: 1167, remixes: 334 },
-  { id: "command/analytics-setup", kind: "command", name: "/analytics-setup", slug: "analytics-setup", description: "Analytics and tracking setup: event tracking, property management, data collection patterns", category: "Analytics", tags: ["Analytics", "Tracking", "Events"], dependencies: [], files: [".claude/commands/analytics-setup.md"], install: "npx @gicm/cli add command/analytics-setup", installs: 1345, remixes: 389 },
-  { id: "command/monitoring-setup", kind: "command", name: "/monitoring-setup", slug: "monitoring-setup", description: "Monitoring and alerting configuration: metrics, logs, traces, dashboards, thresholds", category: "DevOps", tags: ["Monitoring", "Alerting", "Observability"], dependencies: [], files: [".claude/commands/monitoring-setup.md"], install: "npx @gicm/cli add command/monitoring-setup", installs: 1456, remixes: 423 },
+  {
+    id: "command/architecture-gen",
+    kind: "command",
+    name: "/architecture-gen",
+    slug: "architecture-gen",
+    description:
+      "Generate system architecture diagrams, documentation, and decision records from codebase",
+    category: "Architecture",
+    tags: ["Architecture", "Documentation", "Diagrams"],
+    dependencies: [],
+    files: [".claude/commands/architecture-gen.md"],
+    install: "npx @gicm/cli add command/architecture-gen",
+    installs: 1456,
+    remixes: 412,
+  },
+  {
+    id: "command/perf-trace",
+    kind: "command",
+    name: "/perf-trace",
+    slug: "perf-trace",
+    description:
+      "Performance profiling, flame graphs, and bottleneck identification for Node.js and browsers",
+    category: "Performance",
+    tags: ["Performance", "Profiling", "Debugging"],
+    dependencies: [],
+    files: [".claude/commands/perf-trace.md"],
+    install: "npx @gicm/cli add command/perf-trace",
+    installs: 1234,
+    remixes: 356,
+  },
+  {
+    id: "command/bundle-analyze",
+    kind: "command",
+    name: "/bundle-analyze",
+    slug: "bundle-analyze",
+    description:
+      "Analyze bundle size, dependencies, and generate optimization recommendations",
+    category: "Optimization",
+    tags: ["Bundle", "Size Analysis", "Performance"],
+    dependencies: [],
+    files: [".claude/commands/bundle-analyze.md"],
+    install: "npx @gicm/cli add command/bundle-analyze",
+    installs: 1367,
+    remixes: 389,
+  },
+  {
+    id: "command/deps-upgrade",
+    kind: "command",
+    name: "/deps-upgrade",
+    slug: "deps-upgrade",
+    description:
+      "Smart dependency upgrades with breaking change detection and migration guides",
+    category: "Maintenance",
+    tags: ["Dependencies", "Upgrade", "Maintenance"],
+    dependencies: [],
+    files: [".claude/commands/deps-upgrade.md"],
+    install: "npx @gicm/cli add command/deps-upgrade",
+    installs: 1545,
+    remixes: 423,
+  },
+  {
+    id: "command/changelog-gen",
+    kind: "command",
+    name: "/changelog-gen",
+    slug: "changelog-gen",
+    description:
+      "Auto-generate CHANGELOG from conventional commits with categorization and linking",
+    category: "Release",
+    tags: ["Changelog", "Release", "Documentation"],
+    dependencies: [],
+    files: [".claude/commands/changelog-gen.md"],
+    install: "npx @gicm/cli add command/changelog-gen",
+    installs: 1123,
+    remixes: 334,
+  },
+  {
+    id: "command/release-notes",
+    kind: "command",
+    name: "/release-notes",
+    slug: "release-notes",
+    description:
+      "Generate comprehensive release notes with features, fixes, breaking changes, and migration guides",
+    category: "Release",
+    tags: ["Release", "Notes", "Communication"],
+    dependencies: [],
+    files: [".claude/commands/release-notes.md"],
+    install: "npx @gicm/cli add command/release-notes",
+    installs: 1087,
+    remixes: 312,
+  },
+  {
+    id: "command/api-mock-gen",
+    kind: "command",
+    name: "/api-mock-gen",
+    slug: "api-mock-gen",
+    description:
+      "Generate mock API servers with OpenAPI/GraphQL support and realistic data generation",
+    category: "Testing",
+    tags: ["Mocking", "API", "Testing"],
+    dependencies: [],
+    files: [".claude/commands/api-mock-gen.md"],
+    install: "npx @gicm/cli add command/api-mock-gen",
+    installs: 1456,
+    remixes: 398,
+  },
+  {
+    id: "command/load-test",
+    kind: "command",
+    name: "/load-test",
+    slug: "load-test",
+    description:
+      "Load testing with k6/Artillery: concurrency simulation, spike testing, soak testing",
+    category: "Testing",
+    tags: ["Load Testing", "Performance", "k6"],
+    dependencies: [],
+    files: [".claude/commands/load-test.md"],
+    install: "npx @gicm/cli add command/load-test",
+    installs: 987,
+    remixes: 289,
+  },
+  {
+    id: "command/cache-strategy",
+    kind: "command",
+    name: "/cache-strategy",
+    slug: "cache-strategy",
+    description:
+      "Cache strategy optimization: Redis, HTTP caching, in-memory patterns, invalidation",
+    category: "Optimization",
+    tags: ["Caching", "Performance", "Redis"],
+    dependencies: [],
+    files: [".claude/commands/cache-strategy.md"],
+    install: "npx @gicm/cli add command/cache-strategy",
+    installs: 1234,
+    remixes: 345,
+  },
+  {
+    id: "command/error-boundary-gen",
+    kind: "command",
+    name: "/error-boundary-gen",
+    slug: "error-boundary-gen",
+    description:
+      "Generate React error boundaries with fallback UI, error logging, and recovery strategies",
+    category: "Frontend",
+    tags: ["React", "Error Handling", "Components"],
+    dependencies: [],
+    files: [".claude/commands/error-boundary-gen.md"],
+    install: "npx @gicm/cli add command/error-boundary-gen",
+    installs: 1156,
+    remixes: 334,
+  },
+  {
+    id: "command/seo-audit",
+    kind: "command",
+    name: "/seo-audit",
+    slug: "seo-audit",
+    description:
+      "SEO and accessibility audit with recommendations for meta tags, structured data, WCAG compliance",
+    category: "Optimization",
+    tags: ["SEO", "Accessibility", "Audit"],
+    dependencies: [],
+    files: [".claude/commands/seo-audit.md"],
+    install: "npx @gicm/cli add command/seo-audit",
+    installs: 945,
+    remixes: 267,
+  },
+  {
+    id: "command/lighthouse-check",
+    kind: "command",
+    name: "/lighthouse-check",
+    slug: "lighthouse-check",
+    description:
+      "Run Lighthouse performance audit with scoring, metrics, and optimization suggestions",
+    category: "Performance",
+    tags: ["Lighthouse", "Performance", "Audit"],
+    dependencies: [],
+    files: [".claude/commands/lighthouse-check.md"],
+    install: "npx @gicm/cli add command/lighthouse-check",
+    installs: 1089,
+    remixes: 312,
+  },
+  {
+    id: "command/env-validator",
+    kind: "command",
+    name: "/env-validator",
+    slug: "env-validator",
+    description:
+      "Generate environment variable validation with Zod schemas, type safety, and documentation",
+    category: "Configuration",
+    tags: ["Environment", "Validation", "Configuration"],
+    dependencies: [],
+    files: [".claude/commands/env-validator.md"],
+    install: "npx @gicm/cli add command/env-validator",
+    installs: 1234,
+    remixes: 356,
+  },
+  {
+    id: "command/secrets-scan",
+    kind: "command",
+    name: "/secrets-scan",
+    slug: "secrets-scan",
+    description:
+      "Scan codebase for exposed secrets, API keys, and credentials with remediation guidance",
+    category: "Security",
+    tags: ["Security", "Secrets", "Scanning"],
+    dependencies: [],
+    files: [".claude/commands/secrets-scan.md"],
+    install: "npx @gicm/cli add command/secrets-scan",
+    installs: 1456,
+    remixes: 423,
+  },
+  {
+    id: "command/idor-scan",
+    kind: "command",
+    name: "/idor-scan",
+    slug: "idor-scan",
+    description:
+      "IDOR vulnerability scanning: test authorization, resource access, enumeration attacks",
+    category: "Security",
+    tags: ["Security", "IDOR", "Testing"],
+    dependencies: [],
+    files: [".claude/commands/idor-scan.md"],
+    install: "npx @gicm/cli add command/idor-scan",
+    installs: 834,
+    remixes: 234,
+  },
+  {
+    id: "command/sql-injection-scan",
+    kind: "command",
+    name: "/sql-injection-scan",
+    slug: "sql-injection-scan",
+    description:
+      "SQL injection vulnerability detection, parameterization audit, and query safety verification",
+    category: "Security",
+    tags: ["Security", "SQL Injection", "Scanning"],
+    dependencies: [],
+    files: [".claude/commands/sql-injection-scan.md"],
+    install: "npx @gicm/cli add command/sql-injection-scan",
+    installs: 1123,
+    remixes: 312,
+  },
+  {
+    id: "command/xss-scan",
+    kind: "command",
+    name: "/xss-scan",
+    slug: "xss-scan",
+    description:
+      "XSS vulnerability detection: sanitization audit, DOM safety, CSP policy verification",
+    category: "Security",
+    tags: ["Security", "XSS", "Frontend"],
+    dependencies: [],
+    files: [".claude/commands/xss-scan.md"],
+    install: "npx @gicm/cli add command/xss-scan",
+    installs: 1089,
+    remixes: 301,
+  },
+  {
+    id: "command/cors-config",
+    kind: "command",
+    name: "/cors-config",
+    slug: "cors-config",
+    description:
+      "Generate CORS configuration with security best practices and origin validation",
+    category: "Security",
+    tags: ["CORS", "Security", "Configuration"],
+    dependencies: [],
+    files: [".claude/commands/cors-config.md"],
+    install: "npx @gicm/cli add command/cors-config",
+    installs: 1234,
+    remixes: 345,
+  },
+  {
+    id: "command/rate-limit-setup",
+    kind: "command",
+    name: "/rate-limit-setup",
+    slug: "rate-limit-setup",
+    description:
+      "Implement rate limiting with sliding window, token bucket, and distributed strategies",
+    category: "Backend",
+    tags: ["Rate Limiting", "Performance", "Security"],
+    dependencies: [],
+    files: [".claude/commands/rate-limit-setup.md"],
+    install: "npx @gicm/cli add command/rate-limit-setup",
+    installs: 1345,
+    remixes: 378,
+  },
+  {
+    id: "command/pagination-gen",
+    kind: "command",
+    name: "/pagination-gen",
+    slug: "pagination-gen",
+    description:
+      "Generate pagination logic: cursor-based, offset-based, with client/server implementations",
+    category: "Backend",
+    tags: ["Pagination", "API", "Database"],
+    dependencies: [],
+    files: [".claude/commands/pagination-gen.md"],
+    install: "npx @gicm/cli add command/pagination-gen",
+    installs: 1456,
+    remixes: 401,
+  },
+  {
+    id: "command/filtering-gen",
+    kind: "command",
+    name: "/filtering-gen",
+    slug: "filtering-gen",
+    description:
+      "Advanced filtering implementation: multi-field, nested, range queries, type-safe",
+    category: "Backend",
+    tags: ["Filtering", "Query", "API"],
+    dependencies: [],
+    files: [".claude/commands/filtering-gen.md"],
+    install: "npx @gicm/cli add command/filtering-gen",
+    installs: 1234,
+    remixes: 356,
+  },
+  {
+    id: "command/sorting-gen",
+    kind: "command",
+    name: "/sorting-gen",
+    slug: "sorting-gen",
+    description:
+      "Multi-column sorting setup with direction, priority, and database query optimization",
+    category: "Backend",
+    tags: ["Sorting", "Database", "Query"],
+    dependencies: [],
+    files: [".claude/commands/sorting-gen.md"],
+    install: "npx @gicm/cli add command/sorting-gen",
+    installs: 1089,
+    remixes: 301,
+  },
+  {
+    id: "command/search-optimize",
+    kind: "command",
+    name: "/search-optimize",
+    slug: "search-optimize",
+    description:
+      "Search optimization: indexing strategies, full-text search, fuzzy matching, ranking",
+    category: "Backend",
+    tags: ["Search", "Performance", "Database"],
+    dependencies: [],
+    files: [".claude/commands/search-optimize.md"],
+    install: "npx @gicm/cli add command/search-optimize",
+    installs: 1167,
+    remixes: 334,
+  },
+  {
+    id: "command/analytics-setup",
+    kind: "command",
+    name: "/analytics-setup",
+    slug: "analytics-setup",
+    description:
+      "Analytics and tracking setup: event tracking, property management, data collection patterns",
+    category: "Analytics",
+    tags: ["Analytics", "Tracking", "Events"],
+    dependencies: [],
+    files: [".claude/commands/analytics-setup.md"],
+    install: "npx @gicm/cli add command/analytics-setup",
+    installs: 1345,
+    remixes: 389,
+  },
+  {
+    id: "command/monitoring-setup",
+    kind: "command",
+    name: "/monitoring-setup",
+    slug: "monitoring-setup",
+    description:
+      "Monitoring and alerting configuration: metrics, logs, traces, dashboards, thresholds",
+    category: "DevOps",
+    tags: ["Monitoring", "Alerting", "Observability"],
+    dependencies: [],
+    files: [".claude/commands/monitoring-setup.md"],
+    install: "npx @gicm/cli add command/monitoring-setup",
+    installs: 1456,
+    remixes: 423,
+  },
 ];
 
 export const MCPS: RegistryItem[] = [
@@ -6890,10 +10744,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: [],
     installs: 2134,
     remixes: 567,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6906,7 +10760,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Supabase MCP",
     slug: "supabase",
-    description: "Query database, manage tables, RLS policies. 85% token reduction.",
+    description:
+      "Query database, manage tables, RLS policies. 85% token reduction.",
     category: "Backend MCPs",
     tags: ["MCP", "Supabase", "Database"],
     dependencies: [],
@@ -6916,10 +10771,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"],
     installs: 1234,
     remixes: 389,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6932,7 +10787,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Context7 MCP",
     slug: "context7",
-    description: "AI-powered documentation search. 87% token savings on docs queries.",
+    description:
+      "AI-powered documentation search. 87% token savings on docs queries.",
     category: "DevTools MCPs",
     tags: ["MCP", "Documentation", "Search"],
     dependencies: [],
@@ -6942,10 +10798,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["CONTEXT7_API_KEY"],
     installs: 1089,
     remixes: 312,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6968,10 +10824,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["E2B_API_KEY"],
     installs: 934,
     remixes: 267,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -6984,7 +10840,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "GitHub MCP",
     slug: "github",
-    description: "GitHub repository operations. 88% token savings on repo interactions.",
+    description:
+      "GitHub repository operations. 88% token savings on repo interactions.",
     category: "DevTools MCPs",
     tags: ["MCP", "GitHub", "Version Control"],
     dependencies: [],
@@ -6994,10 +10851,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["GITHUB_TOKEN"],
     installs: 1456,
     remixes: 412,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7012,7 +10869,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Alchemy MCP",
     slug: "alchemy",
-    description: "Alchemy API integration: enhanced APIs, webhooks, NFT API, gas optimization. 85% token reduction.",
+    description:
+      "Alchemy API integration: enhanced APIs, webhooks, NFT API, gas optimization. 85% token reduction.",
     category: "Backend MCPs",
     tags: ["MCP", "Alchemy", "Ethereum", "RPC"],
     dependencies: [],
@@ -7022,10 +10880,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["ALCHEMY_API_KEY"],
     installs: 823,
     remixes: 234,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7038,7 +10896,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Infura MCP",
     slug: "infura",
-    description: "Infura RPC and IPFS integration. Multi-chain RPC access. 83% context savings.",
+    description:
+      "Infura RPC and IPFS integration. Multi-chain RPC access. 83% context savings.",
     category: "Backend MCPs",
     tags: ["MCP", "Infura", "RPC", "IPFS"],
     dependencies: [],
@@ -7048,10 +10907,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["INFURA_API_KEY", "INFURA_PROJECT_ID"],
     installs: 734,
     remixes: 201,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7064,20 +10923,22 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "The Graph MCP",
     slug: "thegraph",
-    description: "The Graph API queries, subgraph management, indexing status. 87% query efficiency.",
+    description:
+      "The Graph API queries, subgraph management, indexing status. 87% query efficiency.",
     category: "Backend MCPs",
     tags: ["MCP", "The Graph", "GraphQL", "Indexing"],
     dependencies: [],
     files: [".claude/mcp/thegraph.json", ".claude/mcp/thegraph-README.md"],
     install: "npx -y @thegraph/mcp-server",
-    setup: "Configure GRAPH_API_KEY for hosted service and decentralized network",
+    setup:
+      "Configure GRAPH_API_KEY for hosted service and decentralized network",
     envKeys: ["GRAPH_API_KEY"],
     installs: 612,
     remixes: 178,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7090,7 +10951,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "QuickNode MCP",
     slug: "quicknode",
-    description: "QuickNode RPC, add-ons, NFT API, token API. High-performance node access.",
+    description:
+      "QuickNode RPC, add-ons, NFT API, token API. High-performance node access.",
     category: "Backend MCPs",
     tags: ["MCP", "QuickNode", "RPC", "Performance"],
     dependencies: [],
@@ -7100,10 +10962,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["QUICKNODE_ENDPOINT"],
     installs: 512,
     remixes: 143,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7116,7 +10978,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Tenderly MCP",
     slug: "tenderly",
-    description: "Tenderly simulation, monitoring, alerting, debugging. 90% debugging efficiency.",
+    description:
+      "Tenderly simulation, monitoring, alerting, debugging. 90% debugging efficiency.",
     category: "DevTools MCPs",
     tags: ["MCP", "Tenderly", "Debugging", "Simulation"],
     dependencies: [],
@@ -7126,10 +10989,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["TENDERLY_ACCESS_KEY", "TENDERLY_PROJECT_SLUG"],
     installs: 445,
     remixes: 124,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7144,7 +11007,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "PostgreSQL MCP",
     slug: "postgresql",
-    description: "PostgreSQL database operations: schema exploration, read-only queries, Azure PostgreSQL support. 88% token savings.",
+    description:
+      "PostgreSQL database operations: schema exploration, read-only queries, Azure PostgreSQL support. 88% token savings.",
     category: "Backend MCPs",
     tags: ["MCP", "PostgreSQL", "Database", "SQL"],
     dependencies: [],
@@ -7154,10 +11018,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["DATABASE_URL"],
     installs: 1456,
     remixes: 412,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7170,7 +11034,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "MongoDB MCP",
     slug: "mongodb",
-    description: "MongoDB/NoSQL operations: aggregation pipelines, Atlas support, NFT rarity analysis. 85% query efficiency.",
+    description:
+      "MongoDB/NoSQL operations: aggregation pipelines, Atlas support, NFT rarity analysis. 85% query efficiency.",
     category: "Backend MCPs",
     tags: ["MCP", "MongoDB", "NoSQL", "Database"],
     dependencies: [],
@@ -7180,10 +11045,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["MONGODB_URI"],
     installs: 1234,
     remixes: 367,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7196,7 +11061,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Redis MCP",
     slug: "redis",
-    description: "Caching, session management, rate limiting, vector embeddings. 92% cache hit optimization.",
+    description:
+      "Caching, session management, rate limiting, vector embeddings. 92% cache hit optimization.",
     category: "Backend MCPs",
     tags: ["MCP", "Redis", "Caching", "Session"],
     dependencies: [],
@@ -7206,10 +11072,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["REDIS_URL"],
     installs: 1089,
     remixes: 298,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7222,20 +11088,25 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Elasticsearch MCP",
     slug: "elasticsearch",
-    description: "Full-text search, log analysis, blockchain data indexing. 87% search efficiency.",
+    description:
+      "Full-text search, log analysis, blockchain data indexing. 87% search efficiency.",
     category: "Backend MCPs",
     tags: ["MCP", "Elasticsearch", "Search", "Analytics"],
     dependencies: [],
-    files: [".claude/mcp/elasticsearch.json", ".claude/mcp/elasticsearch-README.md"],
-    install: "# Package does not exist. Use: npm install @elastic/elasticsearch",
+    files: [
+      ".claude/mcp/elasticsearch.json",
+      ".claude/mcp/elasticsearch-README.md",
+    ],
+    install:
+      "# Package does not exist. Use: npm install @elastic/elasticsearch",
     setup: "Configure ELASTICSEARCH_URL and authentication",
     envKeys: ["ELASTICSEARCH_URL", "ELASTICSEARCH_API_KEY"],
     installs: 867,
     remixes: 234,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7248,20 +11119,22 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "SQLite MCP",
     slug: "sqlite",
-    description: "Lightweight local database for development and testing. 90% setup time reduction.",
+    description:
+      "Lightweight local database for development and testing. 90% setup time reduction.",
     category: "Backend MCPs",
     tags: ["MCP", "SQLite", "Database", "Local"],
     dependencies: [],
     files: [".claude/mcp/sqlite.json", ".claude/mcp/sqlite-README.md"],
-    install: "# Package does not exist. Use @modelcontextprotocol/server-filesystem or npm install better-sqlite3",
+    install:
+      "# Package does not exist. Use @modelcontextprotocol/server-filesystem or npm install better-sqlite3",
     setup: "Configure SQLITE_DB_PATH for database file location",
     envKeys: ["SQLITE_DB_PATH"],
     installs: 723,
     remixes: 198,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7276,20 +11149,24 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Web3 Multichain MCP",
     slug: "web3-multichain",
-    description: "Multi-chain support: Ethereum, Solana, TON, Cardano, XRP. Unified interface for cross-chain ops.",
+    description:
+      "Multi-chain support: Ethereum, Solana, TON, Cardano, XRP. Unified interface for cross-chain ops.",
     category: "Backend MCPs",
     tags: ["MCP", "Web3", "Multichain", "Blockchain"],
     dependencies: [],
-    files: [".claude/mcp/web3-multichain.json", ".claude/mcp/web3-multichain-README.md"],
+    files: [
+      ".claude/mcp/web3-multichain.json",
+      ".claude/mcp/web3-multichain-README.md",
+    ],
     install: "npm install -g @web3mcp/server-multichain",
     setup: "Configure RPC endpoints for each supported chain",
     envKeys: ["ETH_RPC_URL", "SOLANA_RPC_URL", "TON_RPC_URL"],
     installs: 1345,
     remixes: 389,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7302,7 +11179,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Chainstack MCP",
     slug: "chainstack",
-    description: "Enterprise-grade Ethereum RPC access. Smart contract state queries, archive data. 91% uptime.",
+    description:
+      "Enterprise-grade Ethereum RPC access. Smart contract state queries, archive data. 91% uptime.",
     category: "Backend MCPs",
     tags: ["MCP", "Chainstack", "Ethereum", "RPC"],
     dependencies: [],
@@ -7312,10 +11190,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["CHAINSTACK_API_KEY", "CHAINSTACK_ENDPOINT"],
     installs: 645,
     remixes: 178,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7328,20 +11206,24 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Solana Agent Kit MCP",
     slug: "solana-agent-kit",
-    description: "Solana-specific operations: SPL tokens, NFTs, Anchor programs, staking. 94% operation success.",
+    description:
+      "Solana-specific operations: SPL tokens, NFTs, Anchor programs, staking. 94% operation success.",
     category: "Backend MCPs",
     tags: ["MCP", "Solana", "SPL", "NFT"],
     dependencies: [],
-    files: [".claude/mcp/solana-agent-kit.json", ".claude/mcp/solana-agent-kit-README.md"],
+    files: [
+      ".claude/mcp/solana-agent-kit.json",
+      ".claude/mcp/solana-agent-kit-README.md",
+    ],
     install: "npm install -g @solana/agent-kit-mcp",
     setup: "Configure SOLANA_RPC_URL and wallet private key",
     envKeys: ["SOLANA_RPC_URL", "SOLANA_PRIVATE_KEY"],
     installs: 1567,
     remixes: 445,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7356,20 +11238,24 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "AWS Bedrock MCP",
     slug: "aws-bedrock",
-    description: "Knowledge base queries, RAG applications, embeddings. 86% query accuracy.",
+    description:
+      "Knowledge base queries, RAG applications, embeddings. 86% query accuracy.",
     category: "Backend MCPs",
     tags: ["MCP", "AWS", "Bedrock", "AI"],
     dependencies: [],
-    files: [".claude/mcp/aws-bedrock.json", ".claude/mcp/aws-bedrock-README.md"],
+    files: [
+      ".claude/mcp/aws-bedrock.json",
+      ".claude/mcp/aws-bedrock-README.md",
+    ],
     install: "npm install -g @aws/bedrock-mcp-server",
     setup: "Configure AWS credentials and Bedrock region",
     envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"],
     installs: 934,
     remixes: 267,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7382,7 +11268,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Cloudflare MCP",
     slug: "cloudflare",
-    description: "Workers, R2, DNS, CDN management. Edge computing operations. 89% edge performance.",
+    description:
+      "Workers, R2, DNS, CDN management. Edge computing operations. 89% edge performance.",
     category: "Backend MCPs",
     tags: ["MCP", "Cloudflare", "Edge", "CDN"],
     dependencies: [],
@@ -7392,10 +11279,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["CLOUDFLARE_API_TOKEN", "CLOUDFLARE_ACCOUNT_ID"],
     installs: 1123,
     remixes: 334,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7408,20 +11295,24 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Google Cloud Run MCP",
     slug: "google-cloud-run",
-    description: "Serverless containers, auto-scaling, deployment automation. 93% deployment success.",
+    description:
+      "Serverless containers, auto-scaling, deployment automation. 93% deployment success.",
     category: "Backend MCPs",
     tags: ["MCP", "Google Cloud", "Serverless", "Containers"],
     dependencies: [],
-    files: [".claude/mcp/google-cloud-run.json", ".claude/mcp/google-cloud-run-README.md"],
+    files: [
+      ".claude/mcp/google-cloud-run.json",
+      ".claude/mcp/google-cloud-run-README.md",
+    ],
     install: "npm install -g @google-cloud/run-mcp-server",
     setup: "Configure GCP_PROJECT_ID and service account credentials",
     envKeys: ["GCP_PROJECT_ID", "GOOGLE_APPLICATION_CREDENTIALS"],
     installs: 789,
     remixes: 221,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7434,7 +11325,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Docker MCP",
     slug: "docker",
-    description: "Container management: build, run, compose orchestration. 88% containerization efficiency.",
+    description:
+      "Container management: build, run, compose orchestration. 88% containerization efficiency.",
     category: "DevTools MCPs",
     tags: ["MCP", "Docker", "Containers", "DevOps"],
     dependencies: [],
@@ -7444,10 +11336,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["DOCKER_HOST"],
     installs: 1678,
     remixes: 489,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7460,20 +11352,22 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Kubernetes MCP",
     slug: "kubernetes",
-    description: "Native Kubernetes API: deployments, services, pods, scaling. 91% orchestration accuracy.",
+    description:
+      "Native Kubernetes API: deployments, services, pods, scaling. 91% orchestration accuracy.",
     category: "DevTools MCPs",
     tags: ["MCP", "Kubernetes", "Orchestration", "DevOps"],
     dependencies: [],
     files: [".claude/mcp/kubernetes.json", ".claude/mcp/kubernetes-README.md"],
-    install: "# Package does not exist. Use: npm install @kubernetes/client-node",
+    install:
+      "# Package does not exist. Use: npm install @kubernetes/client-node",
     setup: "Configure KUBECONFIG path for cluster access",
     envKeys: ["KUBECONFIG"],
     installs: 1456,
     remixes: 412,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7488,7 +11382,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "GitLab MCP",
     slug: "gitlab",
-    description: "GitLab CI/CD integration: pipelines, merge requests, issue tracking. 87% CI efficiency.",
+    description:
+      "GitLab CI/CD integration: pipelines, merge requests, issue tracking. 87% CI efficiency.",
     category: "DevTools MCPs",
     tags: ["MCP", "GitLab", "CI/CD", "DevOps"],
     dependencies: [],
@@ -7498,10 +11393,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["GITLAB_TOKEN", "GITLAB_URL"],
     installs: 823,
     remixes: 234,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7514,20 +11409,22 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Git MCP",
     slug: "git",
-    description: "Core git operations: commits, branches, logs, diffs, merges. 92% workflow automation.",
+    description:
+      "Core git operations: commits, branches, logs, diffs, merges. 92% workflow automation.",
     category: "DevTools MCPs",
     tags: ["MCP", "Git", "Version Control"],
     dependencies: [],
     files: [".claude/mcp/git.json", ".claude/mcp/git-README.md"],
-    install: "# Use @modelcontextprotocol/server-github instead: npx -y @modelcontextprotocol/server-github",
+    install:
+      "# Use @modelcontextprotocol/server-github instead: npx -y @modelcontextprotocol/server-github",
     setup: "Works with local git repositories",
     envKeys: [],
     installs: 2134,
     remixes: 623,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7540,7 +11437,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "CircleCI MCP",
     slug: "circleci",
-    description: "CI/CD automation: pipeline management, workflow orchestration, artifact storage. 89% build success.",
+    description:
+      "CI/CD automation: pipeline management, workflow orchestration, artifact storage. 89% build success.",
     category: "DevTools MCPs",
     tags: ["MCP", "CircleCI", "CI/CD", "Automation"],
     dependencies: [],
@@ -7550,10 +11448,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["CIRCLECI_API_TOKEN"],
     installs: 645,
     remixes: 178,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7566,7 +11464,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Playwright MCP",
     slug: "playwright",
-    description: "Browser automation, E2E testing, visual regression, Web3 wallet testing. 94% test reliability.",
+    description:
+      "Browser automation, E2E testing, visual regression, Web3 wallet testing. 94% test reliability.",
     category: "DevTools MCPs",
     tags: ["MCP", "Playwright", "Testing", "E2E"],
     dependencies: [],
@@ -7576,10 +11475,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: [],
     installs: 1234,
     remixes: 356,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7594,7 +11493,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Stripe MCP",
     slug: "stripe",
-    description: "Payment processing: subscriptions, invoices, customer management. 96% payment success rate.",
+    description:
+      "Payment processing: subscriptions, invoices, customer management. 96% payment success rate.",
     category: "Backend MCPs",
     tags: ["MCP", "Stripe", "Payments", "Billing"],
     dependencies: [],
@@ -7604,10 +11504,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["STRIPE_API_KEY"],
     installs: 1567,
     remixes: 445,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7620,7 +11520,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Notion MCP",
     slug: "notion",
-    description: "Workspace management: pages, databases, project tracking. 91% productivity boost.",
+    description:
+      "Workspace management: pages, databases, project tracking. 91% productivity boost.",
     category: "DevTools MCPs",
     tags: ["MCP", "Notion", "Productivity", "Documentation"],
     dependencies: [],
@@ -7630,10 +11531,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["NOTION_API_KEY"],
     installs: 1345,
     remixes: 389,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7646,7 +11547,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Slack MCP",
     slug: "slack",
-    description: "Team communication: messages, channels, notifications, slash commands. 88% team efficiency.",
+    description:
+      "Team communication: messages, channels, notifications, slash commands. 88% team efficiency.",
     category: "DevTools MCPs",
     tags: ["MCP", "Slack", "Communication", "Collaboration"],
     dependencies: [],
@@ -7656,10 +11558,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["SLACK_BOT_TOKEN", "SLACK_SIGNING_SECRET"],
     installs: 1789,
     remixes: 512,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7674,20 +11576,24 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Brave Search MCP",
     slug: "brave-search",
-    description: "Privacy-focused search API: web search, news, local results. 89% search relevance.",
+    description:
+      "Privacy-focused search API: web search, news, local results. 89% search relevance.",
     category: "DevTools MCPs",
     tags: ["MCP", "Brave", "Search", "Privacy"],
     dependencies: [],
-    files: [".claude/mcp/brave-search.json", ".claude/mcp/brave-search-README.md"],
+    files: [
+      ".claude/mcp/brave-search.json",
+      ".claude/mcp/brave-search-README.md",
+    ],
     install: "npx -y @brave/search-mcp-server",
     setup: "Configure BRAVE_SEARCH_API_KEY",
     envKeys: ["BRAVE_SEARCH_API_KEY"],
     installs: 934,
     remixes: 267,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7700,7 +11606,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Firecrawl MCP",
     slug: "firecrawl",
-    description: "Web scraping and crawling: structured data extraction, sitemap parsing. 92% extraction accuracy.",
+    description:
+      "Web scraping and crawling: structured data extraction, sitemap parsing. 92% extraction accuracy.",
     category: "DevTools MCPs",
     tags: ["MCP", "Scraping", "Crawling", "Data"],
     dependencies: [],
@@ -7710,10 +11617,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["FIRECRAWL_API_KEY"],
     installs: 823,
     remixes: 234,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7726,7 +11633,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Perplexity MCP",
     slug: "perplexity",
-    description: "AI-powered research: real-time web search, citations, source verification. 94% answer accuracy.",
+    description:
+      "AI-powered research: real-time web search, citations, source verification. 94% answer accuracy.",
     category: "DevTools MCPs",
     tags: ["MCP", "Perplexity", "Research", "AI"],
     dependencies: [],
@@ -7736,10 +11644,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["PERPLEXITY_API_KEY"],
     installs: 1089,
     remixes: 312,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7754,7 +11662,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Linear MCP",
     slug: "linear",
-    description: "Project management and issue tracking: issues, projects, sprints, GraphQL queries. 93% workflow efficiency.",
+    description:
+      "Project management and issue tracking: issues, projects, sprints, GraphQL queries. 93% workflow efficiency.",
     category: "DevTools MCPs",
     tags: ["MCP", "Linear", "Project Management", "Issues"],
     dependencies: [],
@@ -7764,10 +11673,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["LINEAR_API_KEY", "LINEAR_TEAM_ID"],
     installs: 1456,
     remixes: 412,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7780,20 +11689,26 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Sentry MCP",
     slug: "sentry",
-    description: "Error tracking and performance monitoring: issues, releases, transactions, breadcrumbs. 91% error detection.",
+    description:
+      "Error tracking and performance monitoring: issues, releases, transactions, breadcrumbs. 91% error detection.",
     category: "DevTools MCPs",
     tags: ["MCP", "Sentry", "Monitoring", "Observability"],
     dependencies: [],
     files: [".claude/mcp/sentry.json", ".claude/mcp/sentry-README.md"],
     install: "npx -y @sentry/mcp-server",
     setup: "Configure SENTRY_DSN and auth token",
-    envKeys: ["SENTRY_DSN", "SENTRY_AUTH_TOKEN", "SENTRY_ORG", "SENTRY_PROJECT"],
+    envKeys: [
+      "SENTRY_DSN",
+      "SENTRY_AUTH_TOKEN",
+      "SENTRY_ORG",
+      "SENTRY_PROJECT",
+    ],
     installs: 1789,
     remixes: 523,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7808,7 +11723,8 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Datadog MCP",
     slug: "datadog",
-    description: "Comprehensive monitoring and observability: metrics, traces, logs, RUM. 89% monitoring coverage.",
+    description:
+      "Comprehensive monitoring and observability: metrics, traces, logs, RUM. 89% monitoring coverage.",
     category: "DevTools MCPs",
     tags: ["MCP", "Datadog", "Monitoring", "Observability", "APM"],
     dependencies: [],
@@ -7818,10 +11734,10 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["DD_API_KEY", "DD_APP_KEY", "DD_SITE"],
     installs: 1654,
     remixes: 478,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7834,20 +11750,24 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "OpenAI GPT Image MCP",
     slug: "openai-image",
-    description: "AI-powered image generation with DALL-E 3 and GPT-4 Vision. 94% generation quality.",
+    description:
+      "AI-powered image generation with DALL-E 3 and GPT-4 Vision. 94% generation quality.",
     category: "AI Services",
     tags: ["MCP", "OpenAI", "DALL-E", "Image Generation", "AI"],
     dependencies: [],
-    files: [".claude/mcp/openai-image.json", ".claude/mcp/openai-image-README.md"],
+    files: [
+      ".claude/mcp/openai-image.json",
+      ".claude/mcp/openai-image-README.md",
+    ],
     install: "npm install -g @openai/image-mcp-server",
     setup: "Configure OPENAI_API_KEY",
     envKeys: ["OPENAI_API_KEY", "OPENAI_ORG_ID"],
     installs: 2234,
     remixes: 689,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7860,20 +11780,28 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Google Drive MCP",
     slug: "google-drive",
-    description: "Cloud file storage and collaboration: upload, download, sharing, folders. 92% sync reliability.",
+    description:
+      "Cloud file storage and collaboration: upload, download, sharing, folders. 92% sync reliability.",
     category: "Cloud Storage",
     tags: ["MCP", "Google Drive", "Storage", "Collaboration", "Files"],
     dependencies: [],
-    files: [".claude/mcp/google-drive.json", ".claude/mcp/google-drive-README.md"],
+    files: [
+      ".claude/mcp/google-drive.json",
+      ".claude/mcp/google-drive-README.md",
+    ],
     install: "npm install -g @google/drive-mcp-server",
     setup: "Configure GOOGLE_DRIVE_CLIENT_ID, CLIENT_SECRET, and REFRESH_TOKEN",
-    envKeys: ["GOOGLE_DRIVE_CLIENT_ID", "GOOGLE_DRIVE_CLIENT_SECRET", "GOOGLE_DRIVE_REFRESH_TOKEN"],
+    envKeys: [
+      "GOOGLE_DRIVE_CLIENT_ID",
+      "GOOGLE_DRIVE_CLIENT_SECRET",
+      "GOOGLE_DRIVE_REFRESH_TOKEN",
+    ],
     installs: 1876,
     remixes: 545,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-27",
@@ -7881,130 +11809,984 @@ export const MCPS: RegistryItem[] = [
       status: "NEEDS_FIX",
     },
   },
-  { id: "mcp-vercel", kind: "mcp", name: "Vercel MCP", slug: "vercel", description: "Vercel deployment platform: projects, deployments, domains. 94% uptime.", category: "Deployment MCPs", tags: ["MCP", "Vercel", "Deployment"], dependencies: [], files: [".claude/mcp/vercel.json"], install: "# Package does not exist. Use: npm install @vercel/client", setup: "Configure VERCEL_TOKEN", envKeys: ["VERCEL_TOKEN"], installs: 2134, remixes: 645 },
-  { id: "mcp/mcp-netlify", kind: "mcp", name: "Netlify MCP", slug: "netlify", description: "Netlify hosting: sites, builds, functions. 92% deployment success.", category: "Deployment MCPs", tags: ["MCP", "Netlify", "Hosting"], dependencies: [], files: [".claude/mcp/netlify.json"], install: "# Package does not exist. Use: npm install netlify", setup: "Configure NETLIFY_TOKEN", envKeys: ["NETLIFY_TOKEN"], installs: 1789, remixes: 534 },
-  { id: "mcp/mcp-railway", kind: "mcp", name: "Railway MCP", slug: "railway", description: "Railway infrastructure: services, databases, deployments. 89% faster deploys.", category: "Deployment MCPs", tags: ["MCP", "Railway", "Infrastructure"], dependencies: [], files: [".claude/mcp/railway.json"], install: "# Package does not exist. Use Railway API directly", setup: "Configure RAILWAY_TOKEN", envKeys: ["RAILWAY_TOKEN"], installs: 1543, remixes: 467 },
-  { id: "mcp/mcp-discord", kind: "mcp", name: "Discord MCP", slug: "discord", description: "Discord bot integration: servers, channels, webhooks. 88% community activity.", category: "Communication MCPs", tags: ["MCP", "Discord", "Bots"], dependencies: [], files: [".claude/mcp/discord.json"], install: "# Package does not exist. Use: npm install discord.js", setup: "Configure DISCORD_BOT_TOKEN", envKeys: ["DISCORD_BOT_TOKEN"], installs: 1654, remixes: 489 },
-  { id: "mcp/mcp-aws", kind: "mcp", name: "AWS MCP", slug: "aws", description: "AWS cloud services: EC2, S3, Lambda, RDS. 91% infrastructure automation.", category: "Cloud MCPs", tags: ["MCP", "AWS", "Cloud"], dependencies: [], files: [".claude/mcp/aws.json"], install: "# Use @modelcontextprotocol/server-aws-kb-retrieval instead: npx -y @modelcontextprotocol/server-aws-kb-retrieval", setup: "Configure AWS credentials", envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"], installs: 2456, remixes: 734 },
-  { id: "mcp/mcp-gcp", kind: "mcp", name: "Google Cloud MCP", slug: "gcp", description: "GCP services: Compute Engine, Cloud Storage, BigQuery. 89% cost savings.", category: "Cloud MCPs", tags: ["MCP", "GCP", "Cloud"], dependencies: [], files: [".claude/mcp/gcp.json"], install: "# Package does not exist. Use Google Cloud client libraries", setup: "Configure GOOGLE_APPLICATION_CREDENTIALS", envKeys: ["GOOGLE_APPLICATION_CREDENTIALS"], installs: 1987, remixes: 612 },
-  { id: "mcp/mcp-azure", kind: "mcp", name: "Azure MCP", slug: "azure", description: "Azure cloud platform: VMs, Storage, Functions. 87% enterprise adoption.", category: "Cloud MCPs", tags: ["MCP", "Azure", "Cloud"], dependencies: [], files: [".claude/mcp/azure.json"], install: "# Package does not exist. Use Azure SDK", setup: "Configure Azure credentials", envKeys: ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET"], installs: 1765, remixes: 523 },
-  { id: "mcp/mcp-postgres", kind: "mcp", name: "PostgreSQL MCP", slug: "postgres", description: "PostgreSQL database: queries, tables, indexes. 92% query performance.", category: "Database MCPs", tags: ["MCP", "PostgreSQL", "Database"], dependencies: [], files: [".claude/mcp/postgres.json"], install: "npx -y @modelcontextprotocol/server-postgres", setup: "Configure DATABASE_URL", envKeys: ["DATABASE_URL"], installs: 2134, remixes: 645 },
-  { id: "mcp/mcp-jira", kind: "mcp", name: "Jira MCP", slug: "jira", description: "Jira project management: issues, sprints, boards. 88% team productivity.", category: "Productivity MCPs", tags: ["MCP", "Jira", "Project Management"], dependencies: [], files: [".claude/mcp/jira.json"], install: "# Package does not exist. Use: npm install jira-client", setup: "Configure Jira credentials", envKeys: ["JIRA_HOST", "JIRA_EMAIL", "JIRA_API_TOKEN"], installs: 1789, remixes: 534 },
-  { id: "mcp/mcp-figma", kind: "mcp", name: "Figma MCP", slug: "figma", description: "Figma design tools: files, components, exports. 93% design consistency.", category: "Design MCPs", tags: ["MCP", "Figma", "Design"], dependencies: [], files: [".claude/mcp/figma.json"], install: "# Use community package: npm install figma-mcp", setup: "Configure FIGMA_ACCESS_TOKEN", envKeys: ["FIGMA_ACCESS_TOKEN"], installs: 1987, remixes: 612 },
-  { id: "mcp/mcp-prisma", kind: "mcp", name: "Prisma MCP", slug: "prisma", description: "Prisma ORM: schema, migrations, queries. 90% type safety.", category: "Database MCPs", tags: ["MCP", "Prisma", "ORM"], dependencies: [], files: [".claude/mcp/prisma.json"], install: "# Package does not exist. Use: npm install @prisma/client", setup: "Configure DATABASE_URL", envKeys: ["DATABASE_URL"], installs: 1765, remixes: 523 },
-  { id: "mcp/mcp-planetscale", kind: "mcp", name: "PlanetScale MCP", slug: "planetscale", description: "PlanetScale serverless MySQL: databases, branches, deploys. 94% availability.", category: "Database MCPs", tags: ["MCP", "PlanetScale", "MySQL"], dependencies: [], files: [".claude/mcp/planetscale.json"], install: "# Package does not exist. Use: npm install @planetscale/database", setup: "Configure PLANETSCALE_TOKEN", envKeys: ["PLANETSCALE_TOKEN", "PLANETSCALE_ORG"], installs: 1543, remixes: 467 },
-  { id: "mcp/mcp-pinecone", kind: "mcp", name: "Pinecone MCP", slug: "pinecone", description: "Pinecone vector database: indexes, queries, embeddings. 88% search accuracy.", category: "AI MCPs", tags: ["MCP", "Pinecone", "Vector DB"], dependencies: [], files: [".claude/mcp/pinecone.json"], install: "# Package does not exist. Use: npm install @pinecone-database/pinecone", setup: "Configure PINECONE_API_KEY", envKeys: ["PINECONE_API_KEY", "PINECONE_ENVIRONMENT"], installs: 1456, remixes: 423 },
-  { id: "mcp/mcp-openai", kind: "mcp", name: "OpenAI MCP", slug: "openai", description: "OpenAI API: GPT models, embeddings, assistants. 91% response quality.", category: "AI MCPs", tags: ["MCP", "OpenAI", "AI"], dependencies: [], files: [".claude/mcp/openai.json"], install: "# Package does not exist. Use: npm install openai", setup: "Configure OPENAI_API_KEY", envKeys: ["OPENAI_API_KEY"], installs: 2456, remixes: 734 },
-  { id: "mcp/mcp-anthropic", kind: "mcp", name: "Anthropic MCP", slug: "anthropic", description: "Anthropic Claude API: models, messages, streaming. 93% helpful responses.", category: "AI MCPs", tags: ["MCP", "Anthropic", "Claude"], dependencies: [], files: [".claude/mcp/anthropic.json"], install: "# Package does not exist. Use: npm install @anthropic-ai/sdk", setup: "Configure ANTHROPIC_API_KEY", envKeys: ["ANTHROPIC_API_KEY"], installs: 2134, remixes: 645 },
-  { id: "mcp/mcp-twilio", kind: "mcp", name: "Twilio MCP", slug: "twilio", description: "Twilio communications: SMS, voice, video. 99.9% message delivery.", category: "Communication MCPs", tags: ["MCP", "Twilio", "SMS"], dependencies: [], files: [".claude/mcp/twilio.json"], install: "# Package does not exist. Use: npm install twilio", setup: "Configure Twilio credentials", envKeys: ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"], installs: 1654, remixes: 489 },
-  { id: "mcp/mcp-sendgrid", kind: "mcp", name: "SendGrid MCP", slug: "sendgrid", description: "SendGrid email: templates, campaigns, analytics. 96% deliverability.", category: "Communication MCPs", tags: ["MCP", "SendGrid", "Email"], dependencies: [], files: [".claude/mcp/sendgrid.json"], install: "# Package does not exist. Use: npm install @sendgrid/mail", setup: "Configure SENDGRID_API_KEY", envKeys: ["SENDGRID_API_KEY"], installs: 1789, remixes: 534 },
-  { id: "mcp/mcp-airtable", kind: "mcp", name: "Airtable MCP", slug: "airtable", description: "Airtable databases: bases, tables, records. 89% data organization.", category: "Productivity MCPs", tags: ["MCP", "Airtable", "Database"], dependencies: [], files: [".claude/mcp/airtable.json"], install: "# Package does not exist. Use: npm install airtable", setup: "Configure AIRTABLE_API_KEY", envKeys: ["AIRTABLE_API_KEY"], installs: 1543, remixes: 467 },
+  {
+    id: "mcp-vercel",
+    kind: "mcp",
+    name: "Vercel MCP",
+    slug: "vercel",
+    description:
+      "Vercel deployment platform: projects, deployments, domains. 94% uptime.",
+    category: "Deployment MCPs",
+    tags: ["MCP", "Vercel", "Deployment"],
+    dependencies: [],
+    files: [".claude/mcp/vercel.json"],
+    install: "# Package does not exist. Use: npm install @vercel/client",
+    setup: "Configure VERCEL_TOKEN",
+    envKeys: ["VERCEL_TOKEN"],
+    installs: 2134,
+    remixes: 645,
+  },
+  {
+    id: "mcp/mcp-netlify",
+    kind: "mcp",
+    name: "Netlify MCP",
+    slug: "netlify",
+    description:
+      "Netlify hosting: sites, builds, functions. 92% deployment success.",
+    category: "Deployment MCPs",
+    tags: ["MCP", "Netlify", "Hosting"],
+    dependencies: [],
+    files: [".claude/mcp/netlify.json"],
+    install: "# Package does not exist. Use: npm install netlify",
+    setup: "Configure NETLIFY_TOKEN",
+    envKeys: ["NETLIFY_TOKEN"],
+    installs: 1789,
+    remixes: 534,
+  },
+  {
+    id: "mcp/mcp-railway",
+    kind: "mcp",
+    name: "Railway MCP",
+    slug: "railway",
+    description:
+      "Railway infrastructure: services, databases, deployments. 89% faster deploys.",
+    category: "Deployment MCPs",
+    tags: ["MCP", "Railway", "Infrastructure"],
+    dependencies: [],
+    files: [".claude/mcp/railway.json"],
+    install: "# Package does not exist. Use Railway API directly",
+    setup: "Configure RAILWAY_TOKEN",
+    envKeys: ["RAILWAY_TOKEN"],
+    installs: 1543,
+    remixes: 467,
+  },
+  {
+    id: "mcp/mcp-discord",
+    kind: "mcp",
+    name: "Discord MCP",
+    slug: "discord",
+    description:
+      "Discord bot integration: servers, channels, webhooks. 88% community activity.",
+    category: "Communication MCPs",
+    tags: ["MCP", "Discord", "Bots"],
+    dependencies: [],
+    files: [".claude/mcp/discord.json"],
+    install: "# Package does not exist. Use: npm install discord.js",
+    setup: "Configure DISCORD_BOT_TOKEN",
+    envKeys: ["DISCORD_BOT_TOKEN"],
+    installs: 1654,
+    remixes: 489,
+  },
+  {
+    id: "mcp/mcp-aws",
+    kind: "mcp",
+    name: "AWS MCP",
+    slug: "aws",
+    description:
+      "AWS cloud services: EC2, S3, Lambda, RDS. 91% infrastructure automation.",
+    category: "Cloud MCPs",
+    tags: ["MCP", "AWS", "Cloud"],
+    dependencies: [],
+    files: [".claude/mcp/aws.json"],
+    install:
+      "# Use @modelcontextprotocol/server-aws-kb-retrieval instead: npx -y @modelcontextprotocol/server-aws-kb-retrieval",
+    setup: "Configure AWS credentials",
+    envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"],
+    installs: 2456,
+    remixes: 734,
+  },
+  {
+    id: "mcp/mcp-gcp",
+    kind: "mcp",
+    name: "Google Cloud MCP",
+    slug: "gcp",
+    description:
+      "GCP services: Compute Engine, Cloud Storage, BigQuery. 89% cost savings.",
+    category: "Cloud MCPs",
+    tags: ["MCP", "GCP", "Cloud"],
+    dependencies: [],
+    files: [".claude/mcp/gcp.json"],
+    install: "# Package does not exist. Use Google Cloud client libraries",
+    setup: "Configure GOOGLE_APPLICATION_CREDENTIALS",
+    envKeys: ["GOOGLE_APPLICATION_CREDENTIALS"],
+    installs: 1987,
+    remixes: 612,
+  },
+  {
+    id: "mcp/mcp-azure",
+    kind: "mcp",
+    name: "Azure MCP",
+    slug: "azure",
+    description:
+      "Azure cloud platform: VMs, Storage, Functions. 87% enterprise adoption.",
+    category: "Cloud MCPs",
+    tags: ["MCP", "Azure", "Cloud"],
+    dependencies: [],
+    files: [".claude/mcp/azure.json"],
+    install: "# Package does not exist. Use Azure SDK",
+    setup: "Configure Azure credentials",
+    envKeys: ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET"],
+    installs: 1765,
+    remixes: 523,
+  },
+  {
+    id: "mcp/mcp-postgres",
+    kind: "mcp",
+    name: "PostgreSQL MCP",
+    slug: "postgres",
+    description:
+      "PostgreSQL database: queries, tables, indexes. 92% query performance.",
+    category: "Database MCPs",
+    tags: ["MCP", "PostgreSQL", "Database"],
+    dependencies: [],
+    files: [".claude/mcp/postgres.json"],
+    install: "npx -y @modelcontextprotocol/server-postgres",
+    setup: "Configure DATABASE_URL",
+    envKeys: ["DATABASE_URL"],
+    installs: 2134,
+    remixes: 645,
+  },
+  {
+    id: "mcp/mcp-jira",
+    kind: "mcp",
+    name: "Jira MCP",
+    slug: "jira",
+    description:
+      "Jira project management: issues, sprints, boards. 88% team productivity.",
+    category: "Productivity MCPs",
+    tags: ["MCP", "Jira", "Project Management"],
+    dependencies: [],
+    files: [".claude/mcp/jira.json"],
+    install: "# Package does not exist. Use: npm install jira-client",
+    setup: "Configure Jira credentials",
+    envKeys: ["JIRA_HOST", "JIRA_EMAIL", "JIRA_API_TOKEN"],
+    installs: 1789,
+    remixes: 534,
+  },
+  {
+    id: "mcp/mcp-figma",
+    kind: "mcp",
+    name: "Figma MCP",
+    slug: "figma",
+    description:
+      "Figma design tools: files, components, exports. 93% design consistency.",
+    category: "Design MCPs",
+    tags: ["MCP", "Figma", "Design"],
+    dependencies: [],
+    files: [".claude/mcp/figma.json"],
+    install: "# Use community package: npm install figma-mcp",
+    setup: "Configure FIGMA_ACCESS_TOKEN",
+    envKeys: ["FIGMA_ACCESS_TOKEN"],
+    installs: 1987,
+    remixes: 612,
+  },
+  {
+    id: "mcp/mcp-prisma",
+    kind: "mcp",
+    name: "Prisma MCP",
+    slug: "prisma",
+    description: "Prisma ORM: schema, migrations, queries. 90% type safety.",
+    category: "Database MCPs",
+    tags: ["MCP", "Prisma", "ORM"],
+    dependencies: [],
+    files: [".claude/mcp/prisma.json"],
+    install: "# Package does not exist. Use: npm install @prisma/client",
+    setup: "Configure DATABASE_URL",
+    envKeys: ["DATABASE_URL"],
+    installs: 1765,
+    remixes: 523,
+  },
+  {
+    id: "mcp/mcp-planetscale",
+    kind: "mcp",
+    name: "PlanetScale MCP",
+    slug: "planetscale",
+    description:
+      "PlanetScale serverless MySQL: databases, branches, deploys. 94% availability.",
+    category: "Database MCPs",
+    tags: ["MCP", "PlanetScale", "MySQL"],
+    dependencies: [],
+    files: [".claude/mcp/planetscale.json"],
+    install: "# Package does not exist. Use: npm install @planetscale/database",
+    setup: "Configure PLANETSCALE_TOKEN",
+    envKeys: ["PLANETSCALE_TOKEN", "PLANETSCALE_ORG"],
+    installs: 1543,
+    remixes: 467,
+  },
+  {
+    id: "mcp/mcp-pinecone",
+    kind: "mcp",
+    name: "Pinecone MCP",
+    slug: "pinecone",
+    description:
+      "Pinecone vector database: indexes, queries, embeddings. 88% search accuracy.",
+    category: "AI MCPs",
+    tags: ["MCP", "Pinecone", "Vector DB"],
+    dependencies: [],
+    files: [".claude/mcp/pinecone.json"],
+    install:
+      "# Package does not exist. Use: npm install @pinecone-database/pinecone",
+    setup: "Configure PINECONE_API_KEY",
+    envKeys: ["PINECONE_API_KEY", "PINECONE_ENVIRONMENT"],
+    installs: 1456,
+    remixes: 423,
+  },
+  {
+    id: "mcp/mcp-openai",
+    kind: "mcp",
+    name: "OpenAI MCP",
+    slug: "openai",
+    description:
+      "OpenAI API: GPT models, embeddings, assistants. 91% response quality.",
+    category: "AI MCPs",
+    tags: ["MCP", "OpenAI", "AI"],
+    dependencies: [],
+    files: [".claude/mcp/openai.json"],
+    install: "# Package does not exist. Use: npm install openai",
+    setup: "Configure OPENAI_API_KEY",
+    envKeys: ["OPENAI_API_KEY"],
+    installs: 2456,
+    remixes: 734,
+  },
+  {
+    id: "mcp/mcp-anthropic",
+    kind: "mcp",
+    name: "Anthropic MCP",
+    slug: "anthropic",
+    description:
+      "Anthropic Claude API: models, messages, streaming. 93% helpful responses.",
+    category: "AI MCPs",
+    tags: ["MCP", "Anthropic", "Claude"],
+    dependencies: [],
+    files: [".claude/mcp/anthropic.json"],
+    install: "# Package does not exist. Use: npm install @anthropic-ai/sdk",
+    setup: "Configure ANTHROPIC_API_KEY",
+    envKeys: ["ANTHROPIC_API_KEY"],
+    installs: 2134,
+    remixes: 645,
+  },
+  {
+    id: "mcp/mcp-twilio",
+    kind: "mcp",
+    name: "Twilio MCP",
+    slug: "twilio",
+    description:
+      "Twilio communications: SMS, voice, video. 99.9% message delivery.",
+    category: "Communication MCPs",
+    tags: ["MCP", "Twilio", "SMS"],
+    dependencies: [],
+    files: [".claude/mcp/twilio.json"],
+    install: "# Package does not exist. Use: npm install twilio",
+    setup: "Configure Twilio credentials",
+    envKeys: ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"],
+    installs: 1654,
+    remixes: 489,
+  },
+  {
+    id: "mcp/mcp-sendgrid",
+    kind: "mcp",
+    name: "SendGrid MCP",
+    slug: "sendgrid",
+    description:
+      "SendGrid email: templates, campaigns, analytics. 96% deliverability.",
+    category: "Communication MCPs",
+    tags: ["MCP", "SendGrid", "Email"],
+    dependencies: [],
+    files: [".claude/mcp/sendgrid.json"],
+    install: "# Package does not exist. Use: npm install @sendgrid/mail",
+    setup: "Configure SENDGRID_API_KEY",
+    envKeys: ["SENDGRID_API_KEY"],
+    installs: 1789,
+    remixes: 534,
+  },
+  {
+    id: "mcp/mcp-airtable",
+    kind: "mcp",
+    name: "Airtable MCP",
+    slug: "airtable",
+    description:
+      "Airtable databases: bases, tables, records. 89% data organization.",
+    category: "Productivity MCPs",
+    tags: ["MCP", "Airtable", "Database"],
+    dependencies: [],
+    files: [".claude/mcp/airtable.json"],
+    install: "# Package does not exist. Use: npm install airtable",
+    setup: "Configure AIRTABLE_API_KEY",
+    envKeys: ["AIRTABLE_API_KEY"],
+    installs: 1543,
+    remixes: 467,
+  },
 
   // === PHASE 4: ADVANCED ENTERPRISE MCPs (25 NEW MCPs) ===
 
   // Temporal - Workflow Orchestration
-  { id: "mcp-temporal", kind: "mcp", name: "Temporal MCP", slug: "temporal", description: "Temporal workflow orchestration: durable execution, retries, saga patterns. 96% reliability.", category: "Orchestration MCPs", tags: ["MCP", "Temporal", "Workflows", "Distributed Systems"], dependencies: [], files: [".claude/mcp/temporal.json"], install: "npm install -g @temporal/mcp-server", setup: "Configure TEMPORAL_ENDPOINT and namespace", envKeys: ["TEMPORAL_ENDPOINT", "TEMPORAL_NAMESPACE"], installs: 1245, remixes: 378 },
+  {
+    id: "mcp-temporal",
+    kind: "mcp",
+    name: "Temporal MCP",
+    slug: "temporal",
+    description:
+      "Temporal workflow orchestration: durable execution, retries, saga patterns. 96% reliability.",
+    category: "Orchestration MCPs",
+    tags: ["MCP", "Temporal", "Workflows", "Distributed Systems"],
+    dependencies: [],
+    files: [".claude/mcp/temporal.json"],
+    install: "npm install -g @temporal/mcp-server",
+    setup: "Configure TEMPORAL_ENDPOINT and namespace",
+    envKeys: ["TEMPORAL_ENDPOINT", "TEMPORAL_NAMESPACE"],
+    installs: 1245,
+    remixes: 378,
+  },
 
   // Hasura - GraphQL Engine
-  { id: "mcp-hasura", kind: "mcp", name: "Hasura MCP", slug: "hasura", description: "Hasura GraphQL engine: instant APIs, real-time subscriptions, permissions. 93% query optimization.", category: "Backend MCPs", tags: ["MCP", "Hasura", "GraphQL", "Database"], dependencies: [], files: [".claude/mcp/hasura.json"], install: "npm install -g @hasura/mcp-server", setup: "Configure HASURA_ENDPOINT and admin secret", envKeys: ["HASURA_ENDPOINT", "HASURA_ADMIN_SECRET"], installs: 1456, remixes: 423 },
+  {
+    id: "mcp-hasura",
+    kind: "mcp",
+    name: "Hasura MCP",
+    slug: "hasura",
+    description:
+      "Hasura GraphQL engine: instant APIs, real-time subscriptions, permissions. 93% query optimization.",
+    category: "Backend MCPs",
+    tags: ["MCP", "Hasura", "GraphQL", "Database"],
+    dependencies: [],
+    files: [".claude/mcp/hasura.json"],
+    install: "npm install -g @hasura/mcp-server",
+    setup: "Configure HASURA_ENDPOINT and admin secret",
+    envKeys: ["HASURA_ENDPOINT", "HASURA_ADMIN_SECRET"],
+    installs: 1456,
+    remixes: 423,
+  },
 
   // PostHog - Analytics & Feature Flags
-  { id: "mcp-posthog", kind: "mcp", name: "PostHog MCP", slug: "posthog", description: "PostHog product analytics: events, feature flags, cohorts, experiments. 91% feature adoption.", category: "Analytics MCPs", tags: ["MCP", "PostHog", "Analytics", "Feature Flags"], dependencies: [], files: [".claude/mcp/posthog.json"], install: "npm install -g @posthog/mcp-server", setup: "Configure POSTHOG_API_KEY and project token", envKeys: ["POSTHOG_API_KEY", "POSTHOG_PROJECT_TOKEN"], installs: 1234, remixes: 356 },
+  {
+    id: "mcp-posthog",
+    kind: "mcp",
+    name: "PostHog MCP",
+    slug: "posthog",
+    description:
+      "PostHog product analytics: events, feature flags, cohorts, experiments. 91% feature adoption.",
+    category: "Analytics MCPs",
+    tags: ["MCP", "PostHog", "Analytics", "Feature Flags"],
+    dependencies: [],
+    files: [".claude/mcp/posthog.json"],
+    install: "npm install -g @posthog/mcp-server",
+    setup: "Configure POSTHOG_API_KEY and project token",
+    envKeys: ["POSTHOG_API_KEY", "POSTHOG_PROJECT_TOKEN"],
+    installs: 1234,
+    remixes: 356,
+  },
 
   // Mixpanel - Advanced Analytics
-  { id: "mcp-mixpanel", kind: "mcp", name: "Mixpanel MCP", slug: "mixpanel", description: "Mixpanel advanced analytics: user segmentation, funnel analysis, retention cohorts. 94% insights accuracy.", category: "Analytics MCPs", tags: ["MCP", "Mixpanel", "Analytics", "User Insights"], dependencies: [], files: [".claude/mcp/mixpanel.json"], install: "npm install -g @mixpanel/mcp-server", setup: "Configure MIXPANEL_TOKEN and project token", envKeys: ["MIXPANEL_TOKEN", "MIXPANEL_PROJECT_TOKEN"], installs: 1123, remixes: 334 },
+  {
+    id: "mcp-mixpanel",
+    kind: "mcp",
+    name: "Mixpanel MCP",
+    slug: "mixpanel",
+    description:
+      "Mixpanel advanced analytics: user segmentation, funnel analysis, retention cohorts. 94% insights accuracy.",
+    category: "Analytics MCPs",
+    tags: ["MCP", "Mixpanel", "Analytics", "User Insights"],
+    dependencies: [],
+    files: [".claude/mcp/mixpanel.json"],
+    install: "npm install -g @mixpanel/mcp-server",
+    setup: "Configure MIXPANEL_TOKEN and project token",
+    envKeys: ["MIXPANEL_TOKEN", "MIXPANEL_PROJECT_TOKEN"],
+    installs: 1123,
+    remixes: 334,
+  },
 
   // LaunchDarkly - Feature Management
-  { id: "mcp-launchdarkly", kind: "mcp", name: "LaunchDarkly MCP", slug: "launchdarkly", description: "LaunchDarkly feature management: flags, targeting rules, metrics, experiments. 97% feature control.", category: "DevOps MCPs", tags: ["MCP", "LaunchDarkly", "Feature Flags", "Experiments"], dependencies: [], files: [".claude/mcp/launchdarkly.json"], install: "npm install -g @launchdarkly/mcp-server", setup: "Configure LAUNCHDARKLY_API_KEY and SDK key", envKeys: ["LAUNCHDARKLY_API_KEY", "LAUNCHDARKLY_SDK_KEY"], installs: 1089, remixes: 312 },
+  {
+    id: "mcp-launchdarkly",
+    kind: "mcp",
+    name: "LaunchDarkly MCP",
+    slug: "launchdarkly",
+    description:
+      "LaunchDarkly feature management: flags, targeting rules, metrics, experiments. 97% feature control.",
+    category: "DevOps MCPs",
+    tags: ["MCP", "LaunchDarkly", "Feature Flags", "Experiments"],
+    dependencies: [],
+    files: [".claude/mcp/launchdarkly.json"],
+    install: "npm install -g @launchdarkly/mcp-server",
+    setup: "Configure LAUNCHDARKLY_API_KEY and SDK key",
+    envKeys: ["LAUNCHDARKLY_API_KEY", "LAUNCHDARKLY_SDK_KEY"],
+    installs: 1089,
+    remixes: 312,
+  },
 
   // N8N - No-Code Automation
-  { id: "mcp-n8n", kind: "mcp", name: "N8N MCP", slug: "n8n", description: "N8N workflow automation: workflows, credentials, executions, webhooks. 92% automation coverage.", category: "Integration MCPs", tags: ["MCP", "N8N", "Automation", "Workflows"], dependencies: [], files: [".claude/mcp/n8n.json"], install: "npm install -g @n8n/mcp-server", setup: "Configure N8N_HOST and API key", envKeys: ["N8N_HOST", "N8N_API_KEY"], installs: 1367, remixes: 401 },
+  {
+    id: "mcp-n8n",
+    kind: "mcp",
+    name: "N8N MCP",
+    slug: "n8n",
+    description:
+      "N8N workflow automation: workflows, credentials, executions, webhooks. 92% automation coverage.",
+    category: "Integration MCPs",
+    tags: ["MCP", "N8N", "Automation", "Workflows"],
+    dependencies: [],
+    files: [".claude/mcp/n8n.json"],
+    install: "npm install -g @n8n/mcp-server",
+    setup: "Configure N8N_HOST and API key",
+    envKeys: ["N8N_HOST", "N8N_API_KEY"],
+    installs: 1367,
+    remixes: 401,
+  },
 
   // Retool - Low-Code Platform
-  { id: "mcp/mcp-retool", kind: "mcp", name: "Retool MCP", slug: "retool", description: "Retool low-code platform: apps, database connections, REST APIs, components. 95% app delivery speed.", category: "Integration MCPs", tags: ["MCP", "Retool", "Low-Code", "AppBuilder"], dependencies: [], files: [".claude/mcp/retool.json"], install: "npm install -g @retool/mcp-server", setup: "Configure RETOOL_HOST and API key", envKeys: ["RETOOL_HOST", "RETOOL_API_KEY"], installs: 1198, remixes: 345 },
+  {
+    id: "mcp/mcp-retool",
+    kind: "mcp",
+    name: "Retool MCP",
+    slug: "retool",
+    description:
+      "Retool low-code platform: apps, database connections, REST APIs, components. 95% app delivery speed.",
+    category: "Integration MCPs",
+    tags: ["MCP", "Retool", "Low-Code", "AppBuilder"],
+    dependencies: [],
+    files: [".claude/mcp/retool.json"],
+    install: "npm install -g @retool/mcp-server",
+    setup: "Configure RETOOL_HOST and API key",
+    envKeys: ["RETOOL_HOST", "RETOOL_API_KEY"],
+    installs: 1198,
+    remixes: 345,
+  },
 
   // Supabase Storage & Auth Extensions
-  { id: "mcp-supabase-ext", kind: "mcp", name: "Supabase Extensions MCP", slug: "supabase-ext", description: "Supabase extensions: storage management, auth customization, vector search, realtime. 94% integration success.", category: "Backend MCPs", tags: ["MCP", "Supabase", "Extensions", "Storage", "Auth"], dependencies: [], files: [".claude/mcp/supabase-ext.json"], install: "npm install -g @supabase/mcp-server-ext", setup: "Configure SUPABASE_URL and service key", envKeys: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"], installs: 1456, remixes: 434 },
+  {
+    id: "mcp-supabase-ext",
+    kind: "mcp",
+    name: "Supabase Extensions MCP",
+    slug: "supabase-ext",
+    description:
+      "Supabase extensions: storage management, auth customization, vector search, realtime. 94% integration success.",
+    category: "Backend MCPs",
+    tags: ["MCP", "Supabase", "Extensions", "Storage", "Auth"],
+    dependencies: [],
+    files: [".claude/mcp/supabase-ext.json"],
+    install: "npm install -g @supabase/mcp-server-ext",
+    setup: "Configure SUPABASE_URL and service key",
+    envKeys: ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"],
+    installs: 1456,
+    remixes: 434,
+  },
 
   // PlanetScale Advanced
-  { id: "mcp-planetscale-advanced", kind: "mcp", name: "PlanetScale Advanced MCP", slug: "planetscale-advanced", description: "PlanetScale advanced: branching strategy, promotion workflows, analytics, backup management. 96% zero-downtime.", category: "Database MCPs", tags: ["MCP", "PlanetScale", "MySQL", "DevOps"], dependencies: [], files: [".claude/mcp/planetscale-advanced.json"], install: "npm install -g @planetscale/mcp-server-advanced", setup: "Configure PLANETSCALE_ORG and access token", envKeys: ["PLANETSCALE_ORG", "PLANETSCALE_TOKEN"], installs: 987, remixes: 289 },
+  {
+    id: "mcp-planetscale-advanced",
+    kind: "mcp",
+    name: "PlanetScale Advanced MCP",
+    slug: "planetscale-advanced",
+    description:
+      "PlanetScale advanced: branching strategy, promotion workflows, analytics, backup management. 96% zero-downtime.",
+    category: "Database MCPs",
+    tags: ["MCP", "PlanetScale", "MySQL", "DevOps"],
+    dependencies: [],
+    files: [".claude/mcp/planetscale-advanced.json"],
+    install: "npm install -g @planetscale/mcp-server-advanced",
+    setup: "Configure PLANETSCALE_ORG and access token",
+    envKeys: ["PLANETSCALE_ORG", "PLANETSCALE_TOKEN"],
+    installs: 987,
+    remixes: 289,
+  },
 
   // Neon Serverless Postgres
-  { id: "mcp-neon", kind: "mcp", name: "Neon MCP", slug: "neon", description: "Neon serverless Postgres: branching, instant clone, auto-scaling, compute separation. 98% availability.", category: "Database MCPs", tags: ["MCP", "Neon", "PostgreSQL", "Serverless"], dependencies: [], files: [".claude/mcp/neon.json"], install: "npm install -g @neon/mcp-server", setup: "Configure NEON_API_KEY and project ID", envKeys: ["NEON_API_KEY", "NEON_PROJECT_ID"], installs: 1678, remixes: 501 },
+  {
+    id: "mcp-neon",
+    kind: "mcp",
+    name: "Neon MCP",
+    slug: "neon",
+    description:
+      "Neon serverless Postgres: branching, instant clone, auto-scaling, compute separation. 98% availability.",
+    category: "Database MCPs",
+    tags: ["MCP", "Neon", "PostgreSQL", "Serverless"],
+    dependencies: [],
+    files: [".claude/mcp/neon.json"],
+    install: "npm install -g @neon/mcp-server",
+    setup: "Configure NEON_API_KEY and project ID",
+    envKeys: ["NEON_API_KEY", "NEON_PROJECT_ID"],
+    installs: 1678,
+    remixes: 501,
+  },
 
   // Upstash Redis & Kafka
-  { id: "mcp/mcp-upstash", kind: "mcp", name: "Upstash MCP", slug: "upstash", description: "Upstash serverless: Redis, Kafka, QStash messaging. 99% uptime, auto-scaling. Edge-ready.", category: "Messaging MCPs", tags: ["MCP", "Upstash", "Redis", "Kafka", "Serverless"], dependencies: [], files: [".claude/mcp/upstash.json"], install: "npm install -g @upstash/mcp-server", setup: "Configure UPSTASH_REDIS_URL and Kafka credentials", envKeys: ["UPSTASH_REDIS_URL", "UPSTASH_KAFKA_URL", "UPSTASH_QSTASH_TOKEN"], installs: 1345, remixes: 412 },
+  {
+    id: "mcp/mcp-upstash",
+    kind: "mcp",
+    name: "Upstash MCP",
+    slug: "upstash",
+    description:
+      "Upstash serverless: Redis, Kafka, QStash messaging. 99% uptime, auto-scaling. Edge-ready.",
+    category: "Messaging MCPs",
+    tags: ["MCP", "Upstash", "Redis", "Kafka", "Serverless"],
+    dependencies: [],
+    files: [".claude/mcp/upstash.json"],
+    install: "npm install -g @upstash/mcp-server",
+    setup: "Configure UPSTASH_REDIS_URL and Kafka credentials",
+    envKeys: ["UPSTASH_REDIS_URL", "UPSTASH_KAFKA_URL", "UPSTASH_QSTASH_TOKEN"],
+    installs: 1345,
+    remixes: 412,
+  },
 
   // Warp - Distributed SQL
-  { id: "mcp-warp", kind: "mcp", name: "Warp MCP", slug: "warp", description: "Warp distributed SQL: edge caching, global replication, multi-region writes. 97% query performance.", category: "Database MCPs", tags: ["MCP", "Warp", "DistributedSQL", "Edge"], dependencies: [], files: [".claude/mcp/warp.json"], install: "npm install -g @warp/mcp-server", setup: "Configure WARP_API_KEY and endpoint", envKeys: ["WARP_API_KEY", "WARP_ENDPOINT"], installs: 832, remixes: 245 },
+  {
+    id: "mcp-warp",
+    kind: "mcp",
+    name: "Warp MCP",
+    slug: "warp",
+    description:
+      "Warp distributed SQL: edge caching, global replication, multi-region writes. 97% query performance.",
+    category: "Database MCPs",
+    tags: ["MCP", "Warp", "DistributedSQL", "Edge"],
+    dependencies: [],
+    files: [".claude/mcp/warp.json"],
+    install: "npm install -g @warp/mcp-server",
+    setup: "Configure WARP_API_KEY and endpoint",
+    envKeys: ["WARP_API_KEY", "WARP_ENDPOINT"],
+    installs: 832,
+    remixes: 245,
+  },
 
   // Replicate - ML Model API
-  { id: "mcp/mcp-replicate", kind: "mcp", name: "Replicate MCP", slug: "replicate", description: "Replicate ML models: image, text, audio generation. Run 50k+ open-source models. 93% generation quality.", category: "AI MCPs", tags: ["MCP", "Replicate", "ML", "Models", "API"], dependencies: [], files: [".claude/mcp/replicate.json"], install: "npm install -g @replicate/mcp-server", setup: "Configure REPLICATE_API_TOKEN", envKeys: ["REPLICATE_API_TOKEN"], installs: 1567, remixes: 467 },
+  {
+    id: "mcp/mcp-replicate",
+    kind: "mcp",
+    name: "Replicate MCP",
+    slug: "replicate",
+    description:
+      "Replicate ML models: image, text, audio generation. Run 50k+ open-source models. 93% generation quality.",
+    category: "AI MCPs",
+    tags: ["MCP", "Replicate", "ML", "Models", "API"],
+    dependencies: [],
+    files: [".claude/mcp/replicate.json"],
+    install: "npm install -g @replicate/mcp-server",
+    setup: "Configure REPLICATE_API_TOKEN",
+    envKeys: ["REPLICATE_API_TOKEN"],
+    installs: 1567,
+    remixes: 467,
+  },
 
   // Hugging Face - Model Hub
-  { id: "mcp/mcp-huggingface", kind: "mcp", name: "Hugging Face MCP", slug: "huggingface", description: "Hugging Face Model Hub: inference API, model management, datasets, spaces. 95% model accuracy.", category: "AI MCPs", tags: ["MCP", "HuggingFace", "ML", "Models", "NLP"], dependencies: [], files: [".claude/mcp/huggingface.json"], install: "npm install -g @huggingface/mcp-server", setup: "Configure HUGGINGFACE_API_KEY", envKeys: ["HUGGINGFACE_API_KEY"], installs: 1789, remixes: 534 },
+  {
+    id: "mcp/mcp-huggingface",
+    kind: "mcp",
+    name: "Hugging Face MCP",
+    slug: "huggingface",
+    description:
+      "Hugging Face Model Hub: inference API, model management, datasets, spaces. 95% model accuracy.",
+    category: "AI MCPs",
+    tags: ["MCP", "HuggingFace", "ML", "Models", "NLP"],
+    dependencies: [],
+    files: [".claude/mcp/huggingface.json"],
+    install: "npm install -g @huggingface/mcp-server",
+    setup: "Configure HUGGINGFACE_API_KEY",
+    envKeys: ["HUGGINGFACE_API_KEY"],
+    installs: 1789,
+    remixes: 534,
+  },
 
   // Anthropic Extended - Claude Vision & Batches
-  { id: "mcp-anthropic-extended", kind: "mcp", name: "Anthropic Extended MCP", slug: "anthropic-extended", description: "Anthropic extended: Claude Vision, batch processing, token counting, fine-tuning. 96% vision accuracy.", category: "AI MCPs", tags: ["MCP", "Anthropic", "Claude", "Vision", "Batches"], dependencies: [], files: [".claude/mcp/anthropic-extended.json"], install: "npm install -g @anthropic/mcp-server-extended", setup: "Configure ANTHROPIC_API_KEY", envKeys: ["ANTHROPIC_API_KEY"], installs: 1456, remixes: 423 },
+  {
+    id: "mcp-anthropic-extended",
+    kind: "mcp",
+    name: "Anthropic Extended MCP",
+    slug: "anthropic-extended",
+    description:
+      "Anthropic extended: Claude Vision, batch processing, token counting, fine-tuning. 96% vision accuracy.",
+    category: "AI MCPs",
+    tags: ["MCP", "Anthropic", "Claude", "Vision", "Batches"],
+    dependencies: [],
+    files: [".claude/mcp/anthropic-extended.json"],
+    install: "npm install -g @anthropic/mcp-server-extended",
+    setup: "Configure ANTHROPIC_API_KEY",
+    envKeys: ["ANTHROPIC_API_KEY"],
+    installs: 1456,
+    remixes: 423,
+  },
 
   // Groq - Fast LLM Inference
-  { id: "mcp-groq", kind: "mcp", name: "Groq MCP", slug: "groq", description: "Groq fast LLM inference: 10x faster generation, streaming, token optimization. 98% uptime.", category: "AI MCPs", tags: ["MCP", "Groq", "LLM", "Fast Inference"], dependencies: [], files: [".claude/mcp/groq.json"], install: "npm install -g @groq/mcp-server", setup: "Configure GROQ_API_KEY", envKeys: ["GROQ_API_KEY"], installs: 1234, remixes: 367 },
+  {
+    id: "mcp-groq",
+    kind: "mcp",
+    name: "Groq MCP",
+    slug: "groq",
+    description:
+      "Groq fast LLM inference: 10x faster generation, streaming, token optimization. 98% uptime.",
+    category: "AI MCPs",
+    tags: ["MCP", "Groq", "LLM", "Fast Inference"],
+    dependencies: [],
+    files: [".claude/mcp/groq.json"],
+    install: "npm install -g @groq/mcp-server",
+    setup: "Configure GROQ_API_KEY",
+    envKeys: ["GROQ_API_KEY"],
+    installs: 1234,
+    remixes: 367,
+  },
 
   // Together AI - LLM Services
-  { id: "mcp/mcp-together-ai", kind: "mcp", name: "Together AI MCP", slug: "together-ai", description: "Together AI LLM services: fast inference, fine-tuning, open-source models, custom endpoints. 94% throughput.", category: "AI MCPs", tags: ["MCP", "TogetherAI", "LLM", "Inference"], dependencies: [], files: [".claude/mcp/together-ai.json"], install: "npm install -g @together-ai/mcp-server", setup: "Configure TOGETHER_API_KEY", envKeys: ["TOGETHER_API_KEY"], installs: 1089, remixes: 312 },
+  {
+    id: "mcp/mcp-together-ai",
+    kind: "mcp",
+    name: "Together AI MCP",
+    slug: "together-ai",
+    description:
+      "Together AI LLM services: fast inference, fine-tuning, open-source models, custom endpoints. 94% throughput.",
+    category: "AI MCPs",
+    tags: ["MCP", "TogetherAI", "LLM", "Inference"],
+    dependencies: [],
+    files: [".claude/mcp/together-ai.json"],
+    install: "npm install -g @together-ai/mcp-server",
+    setup: "Configure TOGETHER_API_KEY",
+    envKeys: ["TOGETHER_API_KEY"],
+    installs: 1089,
+    remixes: 312,
+  },
 
   // Vectara - Retrieval-Augmented Generation
-  { id: "mcp-vectara", kind: "mcp", name: "Vectara MCP", slug: "vectara", description: "Vectara RAG platform: semantic search, query understanding, corpus management, chat. 97% relevance.", category: "AI MCPs", tags: ["MCP", "Vectara", "RAG", "SemanticSearch"], dependencies: [], files: [".claude/mcp/vectara.json"], install: "npm install -g @vectara/mcp-server", setup: "Configure VECTARA_API_KEY and corpus ID", envKeys: ["VECTARA_API_KEY", "VECTARA_CUSTOMER_ID", "VECTARA_CORPUS_ID"], installs: 1123, remixes: 334 },
+  {
+    id: "mcp-vectara",
+    kind: "mcp",
+    name: "Vectara MCP",
+    slug: "vectara",
+    description:
+      "Vectara RAG platform: semantic search, query understanding, corpus management, chat. 97% relevance.",
+    category: "AI MCPs",
+    tags: ["MCP", "Vectara", "RAG", "SemanticSearch"],
+    dependencies: [],
+    files: [".claude/mcp/vectara.json"],
+    install: "npm install -g @vectara/mcp-server",
+    setup: "Configure VECTARA_API_KEY and corpus ID",
+    envKeys: ["VECTARA_API_KEY", "VECTARA_CUSTOMER_ID", "VECTARA_CORPUS_ID"],
+    installs: 1123,
+    remixes: 334,
+  },
 
   // Langsmith - LLM Observability
-  { id: "mcp-langsmith", kind: "mcp", name: "LangSmith MCP", slug: "langsmith", description: "LangSmith observability: trace runs, evaluate agents, debug chains. 95% debugging efficiency.", category: "DevTools MCPs", tags: ["MCP", "LangSmith", "Observability", "Debugging"], dependencies: [], files: [".claude/mcp/langsmith.json"], install: "npm install -g @langsmith/mcp-server", setup: "Configure LANGSMITH_API_KEY", envKeys: ["LANGSMITH_API_KEY"], installs: 987, remixes: 289 },
+  {
+    id: "mcp-langsmith",
+    kind: "mcp",
+    name: "LangSmith MCP",
+    slug: "langsmith",
+    description:
+      "LangSmith observability: trace runs, evaluate agents, debug chains. 95% debugging efficiency.",
+    category: "DevTools MCPs",
+    tags: ["MCP", "LangSmith", "Observability", "Debugging"],
+    dependencies: [],
+    files: [".claude/mcp/langsmith.json"],
+    install: "npm install -g @langsmith/mcp-server",
+    setup: "Configure LANGSMITH_API_KEY",
+    envKeys: ["LANGSMITH_API_KEY"],
+    installs: 987,
+    remixes: 289,
+  },
 
   // Logto - Auth & Identity
-  { id: "mcp/mcp-logto", kind: "mcp", name: "Logto MCP", slug: "logto", description: "Logto identity platform: OAuth, SAML, MFA, user management, SSO. 96% auth security.", category: "Security MCPs", tags: ["MCP", "Logto", "Auth", "Identity", "SSO"], dependencies: [], files: [".claude/mcp/logto.json"], install: "npm install -g @logto/mcp-server", setup: "Configure LOGTO_ENDPOINT and credentials", envKeys: ["LOGTO_ENDPOINT", "LOGTO_ADMIN_KEY"], installs: 1345, remixes: 401 },
+  {
+    id: "mcp/mcp-logto",
+    kind: "mcp",
+    name: "Logto MCP",
+    slug: "logto",
+    description:
+      "Logto identity platform: OAuth, SAML, MFA, user management, SSO. 96% auth security.",
+    category: "Security MCPs",
+    tags: ["MCP", "Logto", "Auth", "Identity", "SSO"],
+    dependencies: [],
+    files: [".claude/mcp/logto.json"],
+    install: "npm install -g @logto/mcp-server",
+    setup: "Configure LOGTO_ENDPOINT and credentials",
+    envKeys: ["LOGTO_ENDPOINT", "LOGTO_ADMIN_KEY"],
+    installs: 1345,
+    remixes: 401,
+  },
 
   // Infisical - Secrets Management
-  { id: "mcp/mcp-infisical", kind: "mcp", name: "Infisical MCP", slug: "infisical", description: "Infisical secrets: encryption, rotation, environment sync, audit logs. 99% secrets security.", category: "Security MCPs", tags: ["MCP", "Infisical", "Secrets", "Encryption", "Compliance"], dependencies: [], files: [".claude/mcp/infisical.json"], install: "npm install -g @infisical/mcp-server", setup: "Configure INFISICAL_TOKEN and workspace ID", envKeys: ["INFISICAL_TOKEN", "INFISICAL_WORKSPACE_ID"], installs: 876, remixes: 256 },
+  {
+    id: "mcp/mcp-infisical",
+    kind: "mcp",
+    name: "Infisical MCP",
+    slug: "infisical",
+    description:
+      "Infisical secrets: encryption, rotation, environment sync, audit logs. 99% secrets security.",
+    category: "Security MCPs",
+    tags: ["MCP", "Infisical", "Secrets", "Encryption", "Compliance"],
+    dependencies: [],
+    files: [".claude/mcp/infisical.json"],
+    install: "npm install -g @infisical/mcp-server",
+    setup: "Configure INFISICAL_TOKEN and workspace ID",
+    envKeys: ["INFISICAL_TOKEN", "INFISICAL_WORKSPACE_ID"],
+    installs: 876,
+    remixes: 256,
+  },
 
   // Snyk - Dependency Security
-  { id: "mcp-snyk", kind: "mcp", name: "Snyk MCP", slug: "snyk", description: "Snyk security scanning: vulnerabilities, dependencies, container scanning, SBOM. 97% detection accuracy.", category: "Security MCPs", tags: ["MCP", "Snyk", "Security", "Scanning", "Dependencies"], dependencies: [], files: [".claude/mcp/snyk.json"], install: "npm install -g @snyk/mcp-server", setup: "Configure SNYK_TOKEN", envKeys: ["SNYK_TOKEN"], installs: 1234, remixes: 356 },
+  {
+    id: "mcp-snyk",
+    kind: "mcp",
+    name: "Snyk MCP",
+    slug: "snyk",
+    description:
+      "Snyk security scanning: vulnerabilities, dependencies, container scanning, SBOM. 97% detection accuracy.",
+    category: "Security MCPs",
+    tags: ["MCP", "Snyk", "Security", "Scanning", "Dependencies"],
+    dependencies: [],
+    files: [".claude/mcp/snyk.json"],
+    install: "npm install -g @snyk/mcp-server",
+    setup: "Configure SNYK_TOKEN",
+    envKeys: ["SNYK_TOKEN"],
+    installs: 1234,
+    remixes: 356,
+  },
 
   // Prompt Engineering - Langfuse
-  { id: "mcp/mcp-langfuse", kind: "mcp", name: "Langfuse MCP", slug: "langfuse", description: "Langfuse prompt management: versioning, evaluation, cost tracking, feedback loops. 94% accuracy improvement.", category: "AI MCPs", tags: ["MCP", "Langfuse", "Prompts", "Evaluation"], dependencies: [], files: [".claude/mcp/langfuse.json"], install: "npm install -g @langfuse/mcp-server", setup: "Configure LANGFUSE_SECRET_KEY", envKeys: ["LANGFUSE_SECRET_KEY", "LANGFUSE_PUBLIC_KEY"], installs: 1089, remixes: 312 },
+  {
+    id: "mcp/mcp-langfuse",
+    kind: "mcp",
+    name: "Langfuse MCP",
+    slug: "langfuse",
+    description:
+      "Langfuse prompt management: versioning, evaluation, cost tracking, feedback loops. 94% accuracy improvement.",
+    category: "AI MCPs",
+    tags: ["MCP", "Langfuse", "Prompts", "Evaluation"],
+    dependencies: [],
+    files: [".claude/mcp/langfuse.json"],
+    install: "npm install -g @langfuse/mcp-server",
+    setup: "Configure LANGFUSE_SECRET_KEY",
+    envKeys: ["LANGFUSE_SECRET_KEY", "LANGFUSE_PUBLIC_KEY"],
+    installs: 1089,
+    remixes: 312,
+  },
 
   // Bytebase - Database CI/CD
-  { id: "mcp-bytebase", kind: "mcp", name: "Bytebase MCP", slug: "bytebase", description: "Bytebase database CI/CD: schema migration, version control, approval workflows. 98% deployment safety.", category: "DevOps MCPs", tags: ["MCP", "Bytebase", "Database", "CI/CD", "Schema"], dependencies: [], files: [".claude/mcp/bytebase.json"], install: "npm install -g @bytebase/mcp-server", setup: "Configure BYTEBASE_URL and API token", envKeys: ["BYTEBASE_URL", "BYTEBASE_API_TOKEN"], installs: 1178, remixes: 345 },
+  {
+    id: "mcp-bytebase",
+    kind: "mcp",
+    name: "Bytebase MCP",
+    slug: "bytebase",
+    description:
+      "Bytebase database CI/CD: schema migration, version control, approval workflows. 98% deployment safety.",
+    category: "DevOps MCPs",
+    tags: ["MCP", "Bytebase", "Database", "CI/CD", "Schema"],
+    dependencies: [],
+    files: [".claude/mcp/bytebase.json"],
+    install: "npm install -g @bytebase/mcp-server",
+    setup: "Configure BYTEBASE_URL and API token",
+    envKeys: ["BYTEBASE_URL", "BYTEBASE_API_TOKEN"],
+    installs: 1178,
+    remixes: 345,
+  },
 
   // Metabase - Business Intelligence
-  { id: "mcp-metabase", kind: "mcp", name: "Metabase MCP", slug: "metabase", description: "Metabase BI: dashboards, SQL queries, data exploration, sharing. 93% analytics adoption.", category: "Analytics MCPs", tags: ["MCP", "Metabase", "BI", "Dashboards", "Analytics"], dependencies: [], files: [".claude/mcp/metabase.json"], install: "npm install -g @metabase/mcp-server", setup: "Configure METABASE_URL and API key", envKeys: ["METABASE_URL", "METABASE_API_KEY"], installs: 1456, remixes: 423 },
+  {
+    id: "mcp-metabase",
+    kind: "mcp",
+    name: "Metabase MCP",
+    slug: "metabase",
+    description:
+      "Metabase BI: dashboards, SQL queries, data exploration, sharing. 93% analytics adoption.",
+    category: "Analytics MCPs",
+    tags: ["MCP", "Metabase", "BI", "Dashboards", "Analytics"],
+    dependencies: [],
+    files: [".claude/mcp/metabase.json"],
+    install: "npm install -g @metabase/mcp-server",
+    setup: "Configure METABASE_URL and API key",
+    envKeys: ["METABASE_URL", "METABASE_API_KEY"],
+    installs: 1456,
+    remixes: 423,
+  },
 
   // Grafana - Observability Platform
-  { id: "mcp-grafana", kind: "mcp", name: "Grafana MCP", slug: "grafana", description: "Grafana observability: dashboards, alerts, data sources, incident management. 96% monitoring accuracy.", category: "Monitoring MCPs", tags: ["MCP", "Grafana", "Monitoring", "Dashboards", "Alerts"], dependencies: [], files: [".claude/mcp/grafana.json"], install: "npm install -g @grafana/mcp-server", setup: "Configure GRAFANA_URL and API token", envKeys: ["GRAFANA_URL", "GRAFANA_API_TOKEN"], installs: 1634, remixes: 489 },
+  {
+    id: "mcp-grafana",
+    kind: "mcp",
+    name: "Grafana MCP",
+    slug: "grafana",
+    description:
+      "Grafana observability: dashboards, alerts, data sources, incident management. 96% monitoring accuracy.",
+    category: "Monitoring MCPs",
+    tags: ["MCP", "Grafana", "Monitoring", "Dashboards", "Alerts"],
+    dependencies: [],
+    files: [".claude/mcp/grafana.json"],
+    install: "npm install -g @grafana/mcp-server",
+    setup: "Configure GRAFANA_URL and API token",
+    envKeys: ["GRAFANA_URL", "GRAFANA_API_TOKEN"],
+    installs: 1634,
+    remixes: 489,
+  },
 
   // === ICM & CRYPTO MCPs (8 MCPs) - Phase 4 ===
 
   // Helius - Premium Solana RPC
-  { id: "mcp-helius-rpc", kind: "mcp", name: "Helius RPC", slug: "helius-rpc", description: "Premium Solana RPC with enhanced APIs for token data, NFTs, transactions, and webhooks. Essential for ICM trading on Solana.", category: "ICM & Crypto", tags: ["MCP", "Solana", "RPC", "Blockchain", "ICM", "Trading"], dependencies: [], files: [".claude/mcps/helius-rpc.json"], install: "npx @gicm/cli add mcp/helius-rpc", setup: "Sign up at https://helius.dev and add HELIUS_API_KEY to .env", envKeys: ["HELIUS_API_KEY"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-helius-rpc",
+    kind: "mcp",
+    name: "Helius RPC",
+    slug: "helius-rpc",
+    description:
+      "Premium Solana RPC with enhanced APIs for token data, NFTs, transactions, and webhooks. Essential for ICM trading on Solana.",
+    category: "ICM & Crypto",
+    tags: ["MCP", "Solana", "RPC", "Blockchain", "ICM", "Trading"],
+    dependencies: [],
+    files: [".claude/mcps/helius-rpc.json"],
+    install: "npx @gicm/cli add mcp/helius-rpc",
+    setup: "Sign up at https://helius.dev and add HELIUS_API_KEY to .env",
+    envKeys: ["HELIUS_API_KEY"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // QuickNode - Multi-chain RPC
-  { id: "mcp-quicknode-rpc", kind: "mcp", name: "QuickNode RPC", slug: "quicknode-rpc", description: "Multi-chain RPC provider supporting Ethereum, Solana, Polygon, BSC, and 15+ chains. High-performance infrastructure for cross-chain ICM trading.", category: "ICM & Crypto", tags: ["MCP", "Multi-Chain", "RPC", "Ethereum", "Solana", "Blockchain", "ICM"], dependencies: [], files: [".claude/mcps/quicknode-rpc.json"], install: "npx @gicm/cli add mcp/quicknode-rpc", setup: "Create endpoint at https://www.quicknode.com and add QUICKNODE_ENDPOINT and QUICKNODE_API_KEY to .env", envKeys: ["QUICKNODE_ENDPOINT", "QUICKNODE_API_KEY"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-quicknode-rpc",
+    kind: "mcp",
+    name: "QuickNode RPC",
+    slug: "quicknode-rpc",
+    description:
+      "Multi-chain RPC provider supporting Ethereum, Solana, Polygon, BSC, and 15+ chains. High-performance infrastructure for cross-chain ICM trading.",
+    category: "ICM & Crypto",
+    tags: [
+      "MCP",
+      "Multi-Chain",
+      "RPC",
+      "Ethereum",
+      "Solana",
+      "Blockchain",
+      "ICM",
+    ],
+    dependencies: [],
+    files: [".claude/mcps/quicknode-rpc.json"],
+    install: "npx @gicm/cli add mcp/quicknode-rpc",
+    setup:
+      "Create endpoint at https://www.quicknode.com and add QUICKNODE_ENDPOINT and QUICKNODE_API_KEY to .env",
+    envKeys: ["QUICKNODE_ENDPOINT", "QUICKNODE_API_KEY"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // DexScreener - DEX Analytics
-  { id: "mcp-dexscreener", kind: "mcp", name: "DexScreener", slug: "dexscreener", description: "Real-time DEX analytics across 90+ chains and 500+ DEXs. Track token prices, liquidity, volume, and new pair listings. Essential for ICM launch monitoring.", category: "ICM & Crypto", tags: ["MCP", "DEX", "Analytics", "Price", "Liquidity", "ICM", "Trading"], dependencies: [], files: [".claude/mcps/dexscreener.json"], install: "npx @gicm/cli add mcp/dexscreener", setup: "Free tier available (300 req/min). For Pro tier, sign up at https://dexscreener.com and add DEXSCREENER_API_KEY to .env", envKeys: ["DEXSCREENER_API_KEY"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-dexscreener",
+    kind: "mcp",
+    name: "DexScreener",
+    slug: "dexscreener",
+    description:
+      "Real-time DEX analytics across 90+ chains and 500+ DEXs. Track token prices, liquidity, volume, and new pair listings. Essential for ICM launch monitoring.",
+    category: "ICM & Crypto",
+    tags: ["MCP", "DEX", "Analytics", "Price", "Liquidity", "ICM", "Trading"],
+    dependencies: [],
+    files: [".claude/mcps/dexscreener.json"],
+    install: "npx @gicm/cli add mcp/dexscreener",
+    setup:
+      "Free tier available (300 req/min). For Pro tier, sign up at https://dexscreener.com and add DEXSCREENER_API_KEY to .env",
+    envKeys: ["DEXSCREENER_API_KEY"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // Birdeye - Solana Token Analytics
-  { id: "mcp-birdeye", kind: "mcp", name: "Birdeye", slug: "birdeye", description: "Comprehensive Solana token analytics with price data, OHLCV charts, wallet tracking, and trader profiles. Premium data source for Solana ICM analysis.", category: "ICM & Crypto", tags: ["MCP", "Solana", "Analytics", "Price", "Trading", "ICM", "OHLCV"], dependencies: [], files: [".claude/mcps/birdeye.json"], install: "npx @gicm/cli add mcp/birdeye", setup: "Sign up at https://birdeye.so and add BIRDEYE_API_KEY to .env", envKeys: ["BIRDEYE_API_KEY"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-birdeye",
+    kind: "mcp",
+    name: "Birdeye",
+    slug: "birdeye",
+    description:
+      "Comprehensive Solana token analytics with price data, OHLCV charts, wallet tracking, and trader profiles. Premium data source for Solana ICM analysis.",
+    category: "ICM & Crypto",
+    tags: ["MCP", "Solana", "Analytics", "Price", "Trading", "ICM", "OHLCV"],
+    dependencies: [],
+    files: [".claude/mcps/birdeye.json"],
+    install: "npx @gicm/cli add mcp/birdeye",
+    setup: "Sign up at https://birdeye.so and add BIRDEYE_API_KEY to .env",
+    envKeys: ["BIRDEYE_API_KEY"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // RugCheck - Security Scanner
-  { id: "mcp-rugcheck", kind: "mcp", name: "RugCheck", slug: "rugcheck", description: "Automated smart contract security scanner for Solana tokens. Detects rug pull risks, mint authority, freeze authority, and liquidity locks. Critical for ICM safety.", category: "ICM & Crypto", tags: ["MCP", "Security", "Rug Detection", "Solana", "ICM", "Contract Audit"], dependencies: [], files: [".claude/mcps/rugcheck.json"], install: "npx @gicm/cli add mcp/rugcheck", setup: "Create account at https://rugcheck.xyz and add RUGCHECK_API_KEY to .env", envKeys: ["RUGCHECK_API_KEY"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-rugcheck",
+    kind: "mcp",
+    name: "RugCheck",
+    slug: "rugcheck",
+    description:
+      "Automated smart contract security scanner for Solana tokens. Detects rug pull risks, mint authority, freeze authority, and liquidity locks. Critical for ICM safety.",
+    category: "ICM & Crypto",
+    tags: [
+      "MCP",
+      "Security",
+      "Rug Detection",
+      "Solana",
+      "ICM",
+      "Contract Audit",
+    ],
+    dependencies: [],
+    files: [".claude/mcps/rugcheck.json"],
+    install: "npx @gicm/cli add mcp/rugcheck",
+    setup:
+      "Create account at https://rugcheck.xyz and add RUGCHECK_API_KEY to .env",
+    envKeys: ["RUGCHECK_API_KEY"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // Twitter (X) - Social Sentiment
-  { id: "mcp-twitter", kind: "mcp", name: "Twitter (X) API", slug: "twitter", description: "Social sentiment monitoring for crypto tokens. Track mentions, influencer activity, trending hashtags, and bot detection. Essential for ICM sentiment analysis.", category: "ICM & Crypto", tags: ["MCP", "Social", "Sentiment", "Twitter", "ICM", "Monitoring"], dependencies: [], files: [".claude/mcps/twitter.json"], install: "npx @gicm/cli add mcp/twitter", setup: "Create Twitter Developer account at https://developer.twitter.com and add TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_BEARER_TOKEN to .env", envKeys: ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_BEARER_TOKEN"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-twitter",
+    kind: "mcp",
+    name: "Twitter (X) API",
+    slug: "twitter",
+    description:
+      "Social sentiment monitoring for crypto tokens. Track mentions, influencer activity, trending hashtags, and bot detection. Essential for ICM sentiment analysis.",
+    category: "ICM & Crypto",
+    tags: ["MCP", "Social", "Sentiment", "Twitter", "ICM", "Monitoring"],
+    dependencies: [],
+    files: [".claude/mcps/twitter.json"],
+    install: "npx @gicm/cli add mcp/twitter",
+    setup:
+      "Create Twitter Developer account at https://developer.twitter.com and add TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_BEARER_TOKEN to .env",
+    envKeys: ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_BEARER_TOKEN"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // Telegram - Community Monitoring
-  { id: "mcp-telegram", kind: "mcp", name: "Telegram API", slug: "telegram", description: "Monitor crypto Telegram groups and channels for ICM alpha, community sentiment, and early launch signals. Track group activity, member count, and message sentiment.", category: "ICM & Crypto", tags: ["MCP", "Social", "Sentiment", "Telegram", "ICM", "Community"], dependencies: [], files: [".claude/mcps/telegram.json"], install: "npx @gicm/cli add mcp/telegram", setup: "Create bot with @BotFather, get API credentials from https://my.telegram.org/apps, and add TELEGRAM_BOT_TOKEN, TELEGRAM_API_ID, TELEGRAM_API_HASH to .env", envKeys: ["TELEGRAM_BOT_TOKEN", "TELEGRAM_API_ID", "TELEGRAM_API_HASH"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-telegram",
+    kind: "mcp",
+    name: "Telegram API",
+    slug: "telegram",
+    description:
+      "Monitor crypto Telegram groups and channels for ICM alpha, community sentiment, and early launch signals. Track group activity, member count, and message sentiment.",
+    category: "ICM & Crypto",
+    tags: ["MCP", "Social", "Sentiment", "Telegram", "ICM", "Community"],
+    dependencies: [],
+    files: [".claude/mcps/telegram.json"],
+    install: "npx @gicm/cli add mcp/telegram",
+    setup:
+      "Create bot with @BotFather, get API credentials from https://my.telegram.org/apps, and add TELEGRAM_BOT_TOKEN, TELEGRAM_API_ID, TELEGRAM_API_HASH to .env",
+    envKeys: ["TELEGRAM_BOT_TOKEN", "TELEGRAM_API_ID", "TELEGRAM_API_HASH"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // LunarCrush - Multi-Platform Social Analytics
-  { id: "mcp-lunarcrush", kind: "mcp", name: "LunarCrush", slug: "lunarcrush", description: "Comprehensive social analytics for crypto. Aggregates data from Twitter, Reddit, YouTube, Medium, and more. Provides social volume, sentiment, and influencer impact scores.", category: "ICM & Crypto", tags: ["MCP", "Social", "Analytics", "Sentiment", "ICM", "Multi-Platform"], dependencies: [], files: [".claude/mcps/lunarcrush.json"], install: "npx @gicm/cli add mcp/lunarcrush", setup: "Sign up at https://lunarcrush.com and add LUNARCRUSH_API_KEY to .env", envKeys: ["LUNARCRUSH_API_KEY"], installs: 0, remixes: 0 },
+  {
+    id: "mcp-lunarcrush",
+    kind: "mcp",
+    name: "LunarCrush",
+    slug: "lunarcrush",
+    description:
+      "Comprehensive social analytics for crypto. Aggregates data from Twitter, Reddit, YouTube, Medium, and more. Provides social volume, sentiment, and influencer impact scores.",
+    category: "ICM & Crypto",
+    tags: ["MCP", "Social", "Analytics", "Sentiment", "ICM", "Multi-Platform"],
+    dependencies: [],
+    files: [".claude/mcps/lunarcrush.json"],
+    install: "npx @gicm/cli add mcp/lunarcrush",
+    setup:
+      "Sign up at https://lunarcrush.com and add LUNARCRUSH_API_KEY to .env",
+    envKeys: ["LUNARCRUSH_API_KEY"],
+    installs: 0,
+    remixes: 0,
+  },
 
   // === PTC + TOOL SEARCH TOOL STACK (5 MCPs) ===
 
@@ -8014,21 +12796,42 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "PTC Coordinator",
     slug: "ptc-coordinator",
-    description: "Programmatic Tool Calling coordinator. Orchestrate multi-step pipelines via code instead of individual API calls. 37% token reduction, dependency resolution, conditional execution.",
-    longDescription: "Enterprise-grade pipeline orchestration for AI agents. Features include topological sort for dependency resolution, input reference resolution (${results.step1.data}), conditional execution, parallel step support, and integration with gICM's autonomy engine for risk-aware execution. Pre-built templates for research, trading, content, security audits, and portfolio analysis.",
+    description:
+      "Programmatic Tool Calling coordinator. Orchestrate multi-step pipelines via code instead of individual API calls. 37% token reduction, dependency resolution, conditional execution.",
+    longDescription:
+      "Enterprise-grade pipeline orchestration for AI agents. Features include topological sort for dependency resolution, input reference resolution (${results.step1.data}), conditional execution, parallel step support, and integration with gICM's autonomy engine for risk-aware execution. Pre-built templates for research, trading, content, security audits, and portfolio analysis.",
     category: "PTC & Orchestration",
-    tags: ["PTC", "Pipeline", "Orchestration", "Automation", "AI Agents", "Tool Calling"],
+    tags: [
+      "PTC",
+      "Pipeline",
+      "Orchestration",
+      "Automation",
+      "AI Agents",
+      "Tool Calling",
+    ],
     dependencies: ["autonomy-engine"],
-    files: ["packages/ptc-coordinator/src/coordinator.ts", "packages/ptc-coordinator/src/types.ts", "packages/ptc-coordinator/src/templates/index.ts"],
+    files: [
+      "packages/ptc-coordinator/src/coordinator.ts",
+      "packages/ptc-coordinator/src/types.ts",
+      "packages/ptc-coordinator/src/templates/index.ts",
+    ],
     install: "npx @gicm/cli add mcp/ptc-coordinator",
-    setup: "Import PTCCoordinator from @gicm/ptc-coordinator and register your tools",
+    setup:
+      "Import PTCCoordinator from @gicm/ptc-coordinator and register your tools",
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-30",
@@ -8043,10 +12846,18 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Tool Search API",
     slug: "tool-search-api",
-    description: "Dynamic tool discovery from 513+ agents. 85% context reduction via semantic search. Returns Claude-compatible tool definitions on-demand.",
-    longDescription: "Implements Anthropic's Tool Search Tool pattern for gICM's marketplace. Searches 513+ registry items using Gemini embeddings and returns Claude-compatible tool definitions. Supports filtering by kind (agent, tool, block, template), platform (claude, gemini, openai), and quality score. Integrates with Context Engine for semantic search.",
+    description:
+      "Dynamic tool discovery from 513+ agents. 85% context reduction via semantic search. Returns Claude-compatible tool definitions on-demand.",
+    longDescription:
+      "Implements Anthropic's Tool Search Tool pattern for gICM's marketplace. Searches 513+ registry items using Gemini embeddings and returns Claude-compatible tool definitions. Supports filtering by kind (agent, tool, block, template), platform (claude, gemini, openai), and quality score. Integrates with Context Engine for semantic search.",
     category: "PTC & Orchestration",
-    tags: ["Tool Search", "Context Reduction", "Discovery", "Semantic Search", "AI Agents"],
+    tags: [
+      "Tool Search",
+      "Context Reduction",
+      "Discovery",
+      "Semantic Search",
+      "AI Agents",
+    ],
     dependencies: ["context-engine-mcp"],
     files: ["src/app/api/tools/search/route.ts"],
     install: "npx @gicm/cli add mcp/tool-search-api",
@@ -8054,10 +12865,17 @@ export const MCPS: RegistryItem[] = [
     envKeys: ["CONTEXT_ENGINE_URL"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-30",
@@ -8072,10 +12890,19 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Pipeline Risk Classifier",
     slug: "pipeline-risk-classifier",
-    description: "Risk classification for entire pipelines. Analyzes tool combinations, data flow, and cumulative risk. Integrates with Autonomy Engine.",
-    longDescription: "Extends gICM's risk classification to multi-step pipelines. Calculates weighted risk factors: cumulative tool risk (35%), dangerous combinations (25%), complexity (15%), data flow (15%), and metadata (10%). Detects dangerous tool combinations (wallet+trading, deployer+wallet). Returns recommendation: auto_execute, queue_approval, escalate, or reject.",
+    description:
+      "Risk classification for entire pipelines. Analyzes tool combinations, data flow, and cumulative risk. Integrates with Autonomy Engine.",
+    longDescription:
+      "Extends gICM's risk classification to multi-step pipelines. Calculates weighted risk factors: cumulative tool risk (35%), dangerous combinations (25%), complexity (15%), data flow (15%), and metadata (10%). Detects dangerous tool combinations (wallet+trading, deployer+wallet). Returns recommendation: auto_execute, queue_approval, escalate, or reject.",
     category: "PTC & Orchestration",
-    tags: ["Risk", "Classification", "Pipeline", "Autonomy", "Security", "Compliance"],
+    tags: [
+      "Risk",
+      "Classification",
+      "Pipeline",
+      "Autonomy",
+      "Security",
+      "Compliance",
+    ],
     dependencies: ["autonomy-engine"],
     files: ["packages/autonomy/src/decision/pipeline-classifier.ts"],
     install: "npx @gicm/cli add mcp/pipeline-risk-classifier",
@@ -8083,10 +12910,17 @@ export const MCPS: RegistryItem[] = [
     envKeys: [],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-30",
@@ -8101,21 +12935,33 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Context Engine MCP",
     slug: "context-engine-mcp",
-    description: "MCP server for codebase understanding. Gemini embeddings, Qdrant vector DB, semantic code search. Powers Tool Search Tool.",
-    longDescription: "Python FastAPI server providing Model Context Protocol (MCP) tools for codebase understanding. Features include search_tools (dynamic tool discovery), search_code (semantic code search), and index_codebase (file indexing). Uses Gemini embeddings (free tier) and Qdrant for vector storage. Essential backend for Tool Search Tool integration.",
+    description:
+      "MCP server for codebase understanding. Gemini embeddings, Qdrant vector DB, semantic code search. Powers Tool Search Tool.",
+    longDescription:
+      "Python FastAPI server providing Model Context Protocol (MCP) tools for codebase understanding. Features include search_tools (dynamic tool discovery), search_code (semantic code search), and index_codebase (file indexing). Uses Gemini embeddings (free tier) and Qdrant for vector storage. Essential backend for Tool Search Tool integration.",
     category: "PTC & Orchestration",
-    tags: ["MCP", "Context", "Embeddings", "Vector Search", "Code Understanding"],
+    tags: [
+      "MCP",
+      "Context",
+      "Embeddings",
+      "Vector Search",
+      "Code Understanding",
+    ],
     dependencies: [],
-    files: ["services/context-engine/src/mcp_server.py", "services/context-engine/src/main.py"],
+    files: [
+      "services/context-engine/src/mcp_server.py",
+      "services/context-engine/src/main.py",
+    ],
     install: "npx @gicm/cli add mcp/context-engine-mcp",
-    setup: "Run: cd services/context-engine && python -m uvicorn src.main:app --port 8000. Configure GEMINI_API_KEY and QDRANT_URL.",
+    setup:
+      "Run: cd services/context-engine && python -m uvicorn src.main:app --port 8000. Configure GEMINI_API_KEY and QDRANT_URL.",
     envKeys: ["GEMINI_API_KEY", "QDRANT_URL", "QDRANT_API_KEY"],
     installs: 0,
     remixes: 0,
-    platforms: ['claude'],
+    platforms: ["claude"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: ["opus-4.5", "sonnet-4.5", "sonnet"],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-30",
@@ -8130,21 +12976,39 @@ export const MCPS: RegistryItem[] = [
     kind: "mcp",
     name: "Autonomy Engine",
     slug: "autonomy-engine",
-    description: "Level 2+ bounded autonomous execution. Risk classification (0-100), approval queues, audit trails. Human oversight for AI agents.",
-    longDescription: "Complete autonomy framework for AI agents with human oversight. Features include: RiskClassifier (weighted factors: financial 35%, reversibility 20%, category 15%, urgency 15%, visibility 15%), BoundaryChecker (daily limits, value thresholds), ApprovalQueue (priority ordering, auto-expiration), AuditLogger (hash-chain integrity), and NotificationManager (Discord, Telegram, Slack). Supports 4 autonomy levels: manual, bounded, supervised, autonomous.",
+    description:
+      "Level 2+ bounded autonomous execution. Risk classification (0-100), approval queues, audit trails. Human oversight for AI agents.",
+    longDescription:
+      "Complete autonomy framework for AI agents with human oversight. Features include: RiskClassifier (weighted factors: financial 35%, reversibility 20%, category 15%, urgency 15%, visibility 15%), BoundaryChecker (daily limits, value thresholds), ApprovalQueue (priority ordering, auto-expiration), AuditLogger (hash-chain integrity), and NotificationManager (Discord, Telegram, Slack). Supports 4 autonomy levels: manual, bounded, supervised, autonomous.",
     category: "PTC & Orchestration",
     tags: ["Autonomy", "Risk", "Approval", "Audit", "Compliance", "Security"],
     dependencies: [],
-    files: ["packages/autonomy/src/index.ts", "packages/autonomy/src/decision/risk-classifier.ts", "packages/autonomy/src/approval/approval-queue.ts"],
+    files: [
+      "packages/autonomy/src/index.ts",
+      "packages/autonomy/src/decision/risk-classifier.ts",
+      "packages/autonomy/src/approval/approval-queue.ts",
+    ],
     install: "npx @gicm/cli add mcp/autonomy-engine",
-    setup: "Import AutonomyEngine from @gicm/autonomy. Configure boundaries in autonomy.config.json.",
-    envKeys: ["GICM_AUTONOMY_LEVEL", "TELEGRAM_BOT_TOKEN", "DISCORD_WEBHOOK_URL"],
+    setup:
+      "Import AutonomyEngine from @gicm/autonomy. Configure boundaries in autonomy.config.json.",
+    envKeys: [
+      "GICM_AUTONOMY_LEVEL",
+      "TELEGRAM_BOT_TOKEN",
+      "DISCORD_WEBHOOK_URL",
+    ],
     installs: 0,
     remixes: 0,
-    platforms: ['claude', 'gemini', 'openai'],
+    platforms: ["claude", "gemini", "openai"],
     compatibility: {
-      models: ['opus-4.5', 'sonnet-4.5', 'sonnet', 'gemini-2.0-flash', 'gemini-3.0-pro', 'gpt-4o'],
-      software: ['vscode', 'cursor', 'terminal', 'windsurf']
+      models: [
+        "opus-4.5",
+        "sonnet-4.5",
+        "sonnet",
+        "gemini-2.0-flash",
+        "gemini-3.0-pro",
+        "gpt-4o",
+      ],
+      software: ["vscode", "cursor", "terminal", "windsurf"],
     },
     audit: {
       lastAudited: "2025-11-30",
@@ -8152,7 +13016,6 @@ export const MCPS: RegistryItem[] = [
       status: "VERIFIED",
     },
   },
-
 ];
 
 // ============================================================================
@@ -8164,7 +13027,8 @@ export const BUNDLES: Bundle[] = [
     id: "solana-launch-platform",
     name: "Solana Launch Platform Stack",
     slug: "solana-launch",
-    description: "Complete stack for building pump.fun-style launch platforms. 9 agents, 12 skills, 8 commands, 3 MCPs.",
+    description:
+      "Complete stack for building pump.fun-style launch platforms. 9 agents, 12 skills, 8 commands, 3 MCPs.",
     includes: [
       "icm-anchor-architect",
       "frontend-fusion-engine",
@@ -8186,7 +13050,8 @@ export const BUNDLES: Bundle[] = [
     id: "nextjs-saas-starter",
     name: "Next.js SaaS Starter",
     slug: "nextjs-saas",
-    description: "Production-ready SaaS stack. 7 agents, 10 skills, 6 commands, 4 MCPs.",
+    description:
+      "Production-ready SaaS stack. 7 agents, 10 skills, 6 commands, 4 MCPs.",
     includes: [
       "frontend-fusion-engine",
       "typescript-precision-engineer",
@@ -8205,7 +13070,8 @@ export const BUNDLES: Bundle[] = [
     id: "minimal-mvp",
     name: "Minimal MVP Stack",
     slug: "minimal-mvp",
-    description: "Bare essentials for rapid prototyping. 3 agents, 5 skills, 3 commands, 2 MCPs.",
+    description:
+      "Bare essentials for rapid prototyping. 3 agents, 5 skills, 3 commands, 2 MCPs.",
     includes: [
       "fullstack-orchestrator",
       "code-reviewer",
@@ -8243,25 +13109,25 @@ export function getItemsByKind(
 }
 
 export function getItemBySlug(slug: string): RegistryItem | undefined {
-  return REGISTRY.find(item => item.slug === slug);
+  return REGISTRY.find((item) => item.slug === slug);
 }
 
 export function getItemById(id: string): RegistryItem | undefined {
-  return REGISTRY.find(item => item.id === id);
+  return REGISTRY.find((item) => item.id === id);
 }
 
 export function searchItems(query: string): RegistryItem[] {
   const lowerQuery = query.toLowerCase();
   return REGISTRY.filter(
-    item =>
+    (item) =>
       item.name.toLowerCase().includes(lowerQuery) ||
       item.description.toLowerCase().includes(lowerQuery) ||
-      item.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+      item.tags.some((tag) => tag.toLowerCase().includes(lowerQuery))
   );
 }
 
 export function getItemsByCategory(category: string): RegistryItem[] {
-  return REGISTRY.filter(item => item.category === category);
+  return REGISTRY.filter((item) => item.category === category);
 }
 
 export function resolveDependencies(itemIds: string[]): RegistryItem[] {
@@ -8273,7 +13139,7 @@ export function resolveDependencies(itemIds: string[]): RegistryItem[] {
     const item = getItemById(currentId);
 
     if (item && (item.dependencies || []).length > 0) {
-      for (const depId of (item.dependencies || [])) {
+      for (const depId of item.dependencies || []) {
         if (!resolved.has(depId)) {
           resolved.add(depId);
           queue.push(depId);
@@ -8282,7 +13148,9 @@ export function resolveDependencies(itemIds: string[]): RegistryItem[] {
     }
   }
 
-  return Array.from(resolved).map(id => getItemById(id)!).filter(Boolean);
+  return Array.from(resolved)
+    .map((id) => getItemById(id)!)
+    .filter(Boolean);
 }
 
 /**

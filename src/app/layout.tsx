@@ -11,6 +11,7 @@ import { ErrorBoundary } from "@/components/error-boundary";
 import {
   generateOrganizationSchema,
   generateWebsiteSchema,
+  generateFAQSchema,
   safeJsonLd,
 } from "@/lib/seo/json-ld";
 
@@ -104,6 +105,50 @@ export const metadata: Metadata = {
   },
 };
 
+const HOMEPAGE_FAQS = [
+  {
+    question:
+      "What is gICM and how is it different from other AI marketplaces?",
+    answer:
+      "gICM is the world's first universal cross-platform AI marketplace. Unlike competitors locked to a single ecosystem, gICM lets you install any AI agent, skill, or tool for Claude, Gemini, or OpenAI with a single click. We offer 593+ production-ready items including agents, skills, commands, and MCP integrations.",
+  },
+  {
+    question: "Can I use gICM tools on Claude, Gemini, and OpenAI?",
+    answer:
+      "Yes! gICM is the only marketplace with true cross-platform compatibility. All agents and skills work universally across Claude, Gemini, and OpenAI through our Universal Bridge technology.",
+  },
+  {
+    question: "What is OPUS 67 and how does it enhance Claude?",
+    answer:
+      "OPUS 67 is our self-evolving AI runtime with 141 specialist skills, 83 MCP integrations, 30 optimized modes, and 107 agents. It achieves 88-92% token savings. Install with: npx create-opus67@latest",
+  },
+  {
+    question: "How do I install items from gICM?",
+    answer:
+      "Three ways: (1) CLI: npx @gicm/cli add agent/name, (2) Web UI: browse gicm.app and download ZIP, (3) Direct clone from our gICM-library repository.",
+  },
+  {
+    question: "What are Progressive Skills and how do they save tokens?",
+    answer:
+      "Progressive Skills load in 30-50 tokens initially, then expand on-demand to 3000-5000 tokens. This achieves 88-92% token savings compared to loading everything upfront.",
+  },
+  {
+    question: "Which gICM agents are best for Solana development?",
+    answer:
+      "Top picks: ICM Anchor Architect (4.2x faster), Solana Guardian Auditor (security), Frontend Fusion Engine (Next.js + Web3), Gas Optimization Specialist, and DeFi Integration Architect.",
+  },
+  {
+    question: "What payment is required to use gICM?",
+    answer:
+      "All gICM tools are completely free. Our entire marketplace—593+ items—is open-source with no subscription fees, hidden charges, or licensing restrictions.",
+  },
+  {
+    question: "Can I use gICM items in production applications?",
+    answer:
+      "Absolutely. All items are production-ready and MIT-licensed. Each has been validated across Claude, Gemini, and OpenAI platforms with full source code transparency.",
+  },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -121,6 +166,32 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
+        {/* External API preconnects for faster loading */}
+        <link rel="preconnect" href="https://api.github.com" />
+        <link rel="preconnect" href="https://registry.npmjs.org" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="dns-prefetch" href="https://api.github.com" />
+        <link rel="dns-prefetch" href="https://registry.npmjs.org" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+        {/* PWA Meta Tags */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#6366f1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="gICM" />
+
+        {/* RSS Feed */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="gICM Feed"
+          href="/api/feed"
+        />
+
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
@@ -132,6 +203,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: safeJsonLd(generateWebsiteSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: safeJsonLd(generateFAQSchema(HOMEPAGE_FAQS)),
           }}
         />
       </head>

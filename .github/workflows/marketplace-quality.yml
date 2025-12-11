@@ -1,0 +1,340 @@
+name: Marketplace Quality Pipeline
+
+on:
+  # Run daily at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+  # Run on PRs that modify marketplace files
+  pull_request:
+    paths:
+      - 'public/marketplace/**'
+      - 'scripts/**'
+      - '.github/workflows/marketplace-quality.yml'
+
+jobs:
+  sync-repos:
+    name: Sync Community Repositories
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync community repos
+        run: npm run marketplace:sync
+
+      - name: Upload sync report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sync-report
+          path: |
+            .cache/sync-log.json
+            .cache/sync-report-*.json
+          retention-days: 30
+
+  validate-schemas:
+    name: Validate Skills Schemas
+    runs-on: ubuntu-latest
+    needs: sync-repos
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download sync artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: sync-report
+          path: .cache
+
+      - name: Validate skill schemas
+        run: npm run marketplace:validate
+
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report
+          path: .cache/validation-report.json
+          retention-days: 30
+
+      - name: Comment PR with validation results
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('.cache/validation-report.json', 'utf8'));
+
+            const invalidFiles = report.files.filter(f => !f.valid);
+            const body = `## ❌ Skill Validation Failed
+
+            **Summary:**
+            - Total Files: ${report.totalFiles}
+            - Valid: ${report.validFiles}
+            - Invalid: ${report.invalidFiles}
+            - Errors: ${report.errors}
+
+            **Files requiring fixes:**
+            ${invalidFiles.map(f => `- \`${f.file}\` (${f.issues.length} issues)`).join('\n')}
+
+            See [validation report](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  audit-quality:
+    name: Quality Audit
+    runs-on: ubuntu-latest
+    needs: validate-schemas
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run quality audit
+        run: npm run marketplace:audit
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report
+          path: .cache/audit-report.json
+          retention-days: 30
+
+      - name: Generate audit summary
+        run: |
+          node -e "
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('.cache/audit-report.json', 'utf8'));
+          const summary = \`## Marketplace Quality Audit
+
+          **Overall Score:** ${report.averageScore.toFixed(1)}/100
+
+          **Status Breakdown:**
+          - ✅ Verified: ${report.verified} (\${((report.verified / report.totalItems) * 100).toFixed(1)}%)
+          - ⚠️  Needs Fix: ${report.needsFix} (\${((report.needsFix / report.totalItems) * 100).toFixed(1)}%)
+          - ❌ Flagged: ${report.flagged} (\${((report.flagged / report.totalItems) * 100).toFixed(1)}%)
+
+          **Items needing attention:** ${report.needsFix + report.flagged}
+          \`;
+          fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
+          "
+
+      - name: Check quality threshold
+        run: |
+          node -e "
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('.cache/audit-report.json', 'utf8'));
+          const flaggedPercent = (report.flagged / report.totalItems) * 100;
+
+          if (flaggedPercent > 20) {
+            console.error('⚠️  Warning: More than 20% of items flagged for quality issues');
+            process.exit(1);
+          }
+
+          if (report.averageScore < 70) {
+            console.error('⚠️  Warning: Average quality score below 70');
+            process.exit(1);
+          }
+
+          console.log('✅ Quality thresholds met');
+          "
+
+  analyze-tokens:
+    name: Token Usage Analysis
+    runs-on: ubuntu-latest
+    needs: validate-schemas
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Analyze token usage
+        run: npm run marketplace:tokens
+
+      - name: Upload token reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: token-reports
+          path: |
+            .cache/token-analysis.json
+            .cache/token-optimization-guide.md
+          retention-days: 30
+
+      - name: Generate token summary
+        run: |
+          node -e "
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('.cache/token-analysis.json', 'utf8'));
+          const summary = \`## Token Usage Analysis
+
+          **Average Tokens/Skill:** ${report.averageTokensPerSkill}
+          **Total Token Budget:** \${report.totalTokensBudget.toLocaleString()}
+          **Potential Savings:** ${report.potentialSavings}%
+
+          **Optimization Status:**
+          - ✅ Optimal: \${report.skills.filter(s => s.status === 'optimal').length}
+          - 👍 Good: \${report.skills.filter(s => s.status === 'good').length}
+          - ⚠️  Needs Optimization: \${report.skills.filter(s => s.status === 'needs-optimization').length}
+          - ❌ Critical: \${report.skills.filter(s => s.status === 'critical').length}
+          \`;
+          fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary, { flag: 'a' });
+          "
+
+  update-registry:
+    name: Update Registry with Audit Data
+    runs-on: ubuntu-latest
+    needs: [audit-quality, analyze-tokens]
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download audit report
+        uses: actions/download-artifact@v4
+        with:
+          name: audit-report
+          path: .cache
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Update registry.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const registryPath = 'public/marketplace/registry.json';
+          const auditPath = '.cache/audit-report.json';
+
+          const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+          const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+
+          // Update each item with audit data
+          for (const auditResult of audit.audits) {
+            const item = registry.find(i => i.id === auditResult.itemId);
+            if (item) {
+              item.audit = {
+                lastAudited: auditResult.lastAudited,
+                qualityScore: Math.round(auditResult.scores.overall),
+                status: auditResult.status,
+                issues: auditResult.issues.map(i => i.message)
+              };
+            }
+          }
+
+          fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2));
+          console.log('✅ Updated registry with audit data');
+          "
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/marketplace/registry.json
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update marketplace registry with quality audit data
+
+            - Updated quality scores
+            - Refreshed audit status
+            - Logged compliance issues
+
+            [skip ci]"
+            git push
+          fi
+
+  notify-results:
+    name: Notify Results
+    runs-on: ubuntu-latest
+    needs: [sync-repos, validate-schemas, audit-quality, analyze-tokens]
+    if: always()
+
+    steps:
+      - name: Check workflow status
+        run: |
+          if [ "${{ needs.sync-repos.result }}" == "failure" ] || \
+             [ "${{ needs.validate-schemas.result }}" == "failure" ] || \
+             [ "${{ needs.audit-quality.result }}" == "failure" ]; then
+            echo "❌ Marketplace quality checks failed"
+            exit 1
+          else
+            echo "✅ All quality checks passed"
+          fi
+
+      # Optional: Add Slack/Discord notification
+      # - name: Notify Slack
+      #   if: failure()
+      #   uses: slackapi/slack-github-action@v1
+      #   with:
+      #     webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     payload: |
+      #       {
+      #         "text": "❌ Marketplace quality checks failed",
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "text": {
+      #               "type": "mrkdwn",
+      #               "text": "Marketplace quality pipeline failed. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>"
+      #             }
+      #           }
+      #         ]
+      #       }

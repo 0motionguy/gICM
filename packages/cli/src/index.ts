@@ -5,24 +5,31 @@
  * (Formerly gICM)
  */
 
-import { Command } from 'commander';
-import chalk from 'chalk';
-import { addCommand } from './commands/add';
-import { searchCommand } from './commands/search';
-import { listCommand } from './commands/list';
-import { healthCommand } from './commands/health';
-import { validateCommand } from './commands/validate';
-import { updateCommand } from './commands/update';
-import { createMCPCommand } from './commands/create-mcp';
-import { installStackCommand } from './commands/install-stack';
-import { searchToolsCommand } from './commands/search-tools';
-import { initCommand } from './commands/init';
-import { indexCommand } from './commands/index-codebase';
-import { setupClaudeCommand } from './commands/setup-claude';
-import { devCommand } from './commands/dev';
-import { statusCommand } from './commands/status';
-import { contextSaveCommand, contextLoadCommand, contextListCommand } from './commands/context';
-import { suggestCommand } from './commands/suggest';
+import { Command } from "commander";
+import chalk from "chalk";
+import { addCommand } from "./commands/add";
+import { searchCommand } from "./commands/search";
+import { listCommand } from "./commands/list";
+import { healthCommand } from "./commands/health";
+import { validateCommand } from "./commands/validate";
+import { syncCommand } from "./commands/sync";
+import { auditCommand } from "./commands/audit";
+import { publishCommand } from "./commands/publish";
+import { updateCommand } from "./commands/update";
+import { createMCPCommand } from "./commands/create-mcp";
+import { installStackCommand } from "./commands/install-stack";
+import { searchToolsCommand } from "./commands/search-tools";
+import { initCommand } from "./commands/init";
+import { indexCommand } from "./commands/index-codebase";
+import { setupClaudeCommand } from "./commands/setup-claude";
+import { devCommand } from "./commands/dev";
+import { statusCommand } from "./commands/status";
+import {
+  contextSaveCommand,
+  contextLoadCommand,
+  contextListCommand,
+} from "./commands/context";
+import { suggestCommand } from "./commands/suggest";
 import {
   workflowCreateCommand,
   workflowListCommand,
@@ -31,31 +38,37 @@ import {
   workflowHistoryCommand,
   workflowDeleteCommand,
   workflowTemplatesCommand,
-} from './commands/workflow';
-import { registerWatchCommands } from './commands/watch';
-import { registerMemoryCommands } from './commands/memory';
-import { registerTeamCommands } from './commands/team';
-import { registerCommitCommands } from './commands/commit';
-import { registerOpus67Commands } from './commands/opus67';
+} from "./commands/workflow";
+import { registerWatchCommands } from "./commands/watch";
+import { registerMemoryCommands } from "./commands/memory";
+import { registerTeamCommands } from "./commands/team";
+import { registerCommitCommands } from "./commands/commit";
+import { registerOpus67Commands } from "./commands/opus67";
 
 const program = new Command();
 
-const DEFAULT_API_URL = 'https://gicm-marketplace.vercel.app/api';
+const DEFAULT_API_URL = "https://gicm-marketplace.vercel.app/api";
 
 program
-  .name('aether')
-  .description('Official CLI for Aether marketplace - The Universal AI Workflow Marketplace')
-  .version('1.1.0');
+  .name("aether")
+  .description(
+    "Official CLI for Aether marketplace - The Universal AI Workflow Marketplace"
+  )
+  .version("1.1.0");
 
 // Add command - Install items from marketplace
 program
-  .command('add <items...>')
-  .alias('install')
-  .description('Install one or more items from the marketplace')
-  .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('-p, --platform <platform>', 'Target platform (claude, gemini, openai)', 'claude')
-  .option('-y, --yes', 'Skip confirmation prompt', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("add <items...>")
+  .alias("install")
+  .description("Install one or more items from the marketplace")
+  .option("--api-url <url>", "Custom API URL (for testing)", DEFAULT_API_URL)
+  .option(
+    "-p, --platform <platform>",
+    "Target platform (claude, gemini, openai)",
+    "claude"
+  )
+  .option("-y, --yes", "Skip confirmation prompt", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (items: string[], options) => {
     try {
       await addCommand(items, {
@@ -72,13 +85,16 @@ program
 
 // Search command - Search marketplace catalog
 program
-  .command('search <query>')
-  .description('Search for agents, skills, commands, MCPs, and settings')
-  .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('--kind <kind>', 'Filter by kind (agent, skill, command, mcp, setting)')
-  .option('--category <category>', 'Filter by category')
-  .option('--tags <tags...>', 'Filter by tags')
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("search <query>")
+  .description("Search for agents, skills, commands, MCPs, and settings")
+  .option("--api-url <url>", "Custom API URL (for testing)", DEFAULT_API_URL)
+  .option(
+    "--kind <kind>",
+    "Filter by kind (agent, skill, command, mcp, setting)"
+  )
+  .option("--category <category>", "Filter by category")
+  .option("--tags <tags...>", "Filter by tags")
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (query: string, options) => {
     try {
       await searchCommand(query, {
@@ -96,12 +112,15 @@ program
 
 // List command - List all available items
 program
-  .command('list')
-  .description('List all available items in the marketplace')
-  .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('--kind <kind>', 'Filter by kind (agent, skill, command, mcp, setting)')
-  .option('--category <category>', 'Filter by category')
-  .option('-v, --verbose', 'Show detailed output', false)
+  .command("list")
+  .description("List all available items in the marketplace")
+  .option("--api-url <url>", "Custom API URL (for testing)", DEFAULT_API_URL)
+  .option(
+    "--kind <kind>",
+    "Filter by kind (agent, skill, command, mcp, setting)"
+  )
+  .option("--category <category>", "Filter by category")
+  .option("-v, --verbose", "Show detailed output", false)
   .action(async (options) => {
     try {
       await listCommand({
@@ -118,10 +137,10 @@ program
 
 // Health command - Check CLI and API health
 program
-  .command('health')
-  .description('Check health status of CLI and API connectivity')
-  .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('-v, --verbose', 'Show detailed health information', false)
+  .command("health")
+  .description("Check health status of CLI and API connectivity")
+  .option("--api-url <url>", "Custom API URL (for testing)", DEFAULT_API_URL)
+  .option("-v, --verbose", "Show detailed health information", false)
   .action(async (options) => {
     try {
       await healthCommand({
@@ -134,16 +153,88 @@ program
     }
   });
 
-// Validate command - Validate project setup
+// Validate command - Validate skills against Agent Skills v2 schema
 program
-  .command('validate')
-  .description('Validate project setup and installed items')
-  .option('--fix', 'Automatically fix issues where possible', false)
-  .option('-v, --verbose', 'Show detailed validation output', false)
+  .command("validate")
+  .description("Validate skills against Agent Skills v2 schema")
+  .option("--path <path>", "Path to validate (default: current directory)")
+  .option("--fix", "Automatically fix issues where possible", false)
+  .option("--report <file>", "Generate validation report file")
+  .option("-v, --verbose", "Show detailed validation output", false)
   .action(async (options) => {
     try {
       await validateCommand({
+        path: options.path,
         fix: options.fix,
+        report: options.report,
+        verbose: options.verbose,
+      });
+    } catch (error) {
+      console.error(chalk.red(`\n✗ ${(error as Error).message}\n`));
+      process.exit(1);
+    }
+  });
+
+// Sync command - Sync marketplace items from community repos
+program
+  .command("sync")
+  .description("Sync marketplace items from community repos")
+  .option("--repo <repo>", "Specific repo to sync")
+  .option("--all", "Sync all configured repos (including disabled)", false)
+  .option("--dry-run", "Preview changes without syncing", false)
+  .option("-v, --verbose", "Show verbose output", false)
+  .action(async (options) => {
+    try {
+      await syncCommand({
+        repo: options.repo,
+        all: options.all,
+        dryRun: options.dryRun,
+        verbose: options.verbose,
+      });
+    } catch (error) {
+      console.error(chalk.red(`\n✗ ${(error as Error).message}\n`));
+      process.exit(1);
+    }
+  });
+
+// Audit command - Run quality audit on marketplace items
+program
+  .command("audit")
+  .description("Run quality audit on marketplace items")
+  .option("-o, --output <file>", "Output audit report to file")
+  .option("-t, --threshold <number>", "Quality score threshold (0-100)", "70")
+  .option("--json", "Output results as JSON", false)
+  .option("-v, --verbose", "Show detailed audit output", false)
+  .action(async (options) => {
+    try {
+      await auditCommand({
+        output: options.output,
+        threshold: options.threshold
+          ? parseInt(options.threshold, 10)
+          : undefined,
+        json: options.json,
+        verbose: options.verbose,
+      });
+    } catch (error) {
+      console.error(chalk.red(`\n✗ ${(error as Error).message}\n`));
+      process.exit(1);
+    }
+  });
+
+// Publish command - Publish skills to marketplace
+program
+  .command("publish")
+  .description("Publish skill to marketplace")
+  .option("--skill <skill>", "Specific skill to publish")
+  .option("--api-url <url>", "Custom API URL", DEFAULT_API_URL)
+  .option("--dry-run", "Validate without publishing", false)
+  .option("-v, --verbose", "Show verbose output", false)
+  .action(async (options) => {
+    try {
+      await publishCommand({
+        skill: options.skill,
+        apiUrl: options.apiUrl,
+        dryRun: options.dryRun,
         verbose: options.verbose,
       });
     } catch (error) {
@@ -154,11 +245,11 @@ program
 
 // Update command - Update CLI and registry cache
 program
-  .command('update')
-  .description('Update CLI to latest version and refresh registry cache')
-  .option('--registry', 'Update only registry cache', false)
-  .option('--cli', 'Update only CLI package', false)
-  .option('-v, --verbose', 'Show detailed update information', false)
+  .command("update")
+  .description("Update CLI to latest version and refresh registry cache")
+  .option("--registry", "Update only registry cache", false)
+  .option("--cli", "Update only CLI package", false)
+  .option("-v, --verbose", "Show detailed update information", false)
   .action(async (options) => {
     try {
       await updateCommand({
@@ -174,11 +265,13 @@ program
 
 // Create MCP command - Interactive MCP creation wizard
 program
-  .command('create-mcp')
-  .description('Create a new MCP (Model Context Protocol) plugin with interactive wizard')
-  .option('--name <name>', 'MCP name (lowercase, no spaces)')
-  .option('-y, --yes', 'Skip confirmation prompts', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("create-mcp")
+  .description(
+    "Create a new MCP (Model Context Protocol) plugin with interactive wizard"
+  )
+  .option("--name <name>", "MCP name (lowercase, no spaces)")
+  .option("-y, --yes", "Skip confirmation prompts", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (options) => {
     try {
       await createMCPCommand({
@@ -194,13 +287,17 @@ program
 
 // Install Stack command - Install a complete pre-configured stack
 program
-  .command('install-stack [stackId]')
-  .description('Install a complete stack of tools from the marketplace')
-  .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('-p, --platform <platform>', 'Target platform (claude, gemini, openai)', 'claude')
-  .option('-y, --yes', 'Skip confirmation prompt', false)
-  .option('-l, --list', 'List all available stacks', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("install-stack [stackId]")
+  .description("Install a complete stack of tools from the marketplace")
+  .option("--api-url <url>", "Custom API URL (for testing)", DEFAULT_API_URL)
+  .option(
+    "-p, --platform <platform>",
+    "Target platform (claude, gemini, openai)",
+    "claude"
+  )
+  .option("-y, --yes", "Skip confirmation prompt", false)
+  .option("-l, --list", "List all available stacks", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (stackId: string | undefined, options) => {
     try {
       await installStackCommand(stackId, {
@@ -218,15 +315,19 @@ program
 
 // Search Tools command - Search for PTC-compatible tools
 program
-  .command('search-tools <query>')
-  .description('Search for PTC-compatible tools in the marketplace')
-  .option('--api-url <url>', 'Custom API URL (for testing)', DEFAULT_API_URL)
-  .option('-p, --platform <platform>', 'Target platform (claude, gemini, openai)', 'claude')
-  .option('-l, --limit <number>', 'Maximum results to return', '10')
-  .option('-k, --kind <kind>', 'Filter by kind (agent, skill, command, mcp)')
-  .option('-q, --min-quality <number>', 'Minimum quality score (0-100)')
-  .option('--json', 'Output results as JSON', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("search-tools <query>")
+  .description("Search for PTC-compatible tools in the marketplace")
+  .option("--api-url <url>", "Custom API URL (for testing)", DEFAULT_API_URL)
+  .option(
+    "-p, --platform <platform>",
+    "Target platform (claude, gemini, openai)",
+    "claude"
+  )
+  .option("-l, --limit <number>", "Maximum results to return", "10")
+  .option("-k, --kind <kind>", "Filter by kind (agent, skill, command, mcp)")
+  .option("-q, --min-quality <number>", "Minimum quality score (0-100)")
+  .option("--json", "Output results as JSON", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (query: string, options) => {
     try {
       await searchToolsCommand(query, {
@@ -234,7 +335,9 @@ program
         platform: options.platform,
         limit: parseInt(options.limit, 10),
         kind: options.kind,
-        minQuality: options.minQuality ? parseInt(options.minQuality, 10) : undefined,
+        minQuality: options.minQuality
+          ? parseInt(options.minQuality, 10)
+          : undefined,
         json: options.json,
         verbose: options.verbose,
       });
@@ -246,10 +349,10 @@ program
 
 // Init command - Initialize project for gICM
 program
-  .command('init')
-  .description('Initialize a project for gICM (creates .gicm/ directory)')
-  .option('-f, --force', 'Force reinitialization', false)
-  .option('-v, --verbose', 'Show detailed output', false)
+  .command("init")
+  .description("Initialize a project for gICM (creates .gicm/ directory)")
+  .option("-f, --force", "Force reinitialization", false)
+  .option("-v, --verbose", "Show detailed output", false)
   .action(async (options) => {
     try {
       await initCommand({
@@ -264,11 +367,11 @@ program
 
 // Index command - Index codebase for semantic search
 program
-  .command('index')
-  .description('Index codebase for semantic search via context-engine')
-  .option('--context-engine-url <url>', 'Context engine URL')
-  .option('--full', 'Force full reindex', false)
-  .option('-v, --verbose', 'Show detailed output', false)
+  .command("index")
+  .description("Index codebase for semantic search via context-engine")
+  .option("--context-engine-url <url>", "Context engine URL")
+  .option("--full", "Force full reindex", false)
+  .option("-v, --verbose", "Show detailed output", false)
   .action(async (options) => {
     try {
       await indexCommand({
@@ -284,10 +387,10 @@ program
 
 // Setup Claude command - Configure Claude Code integration
 program
-  .command('setup-claude')
-  .description('Configure Claude Code integration with gICM MCP server')
-  .option('--mcp-port <port>', 'MCP server port', '3100')
-  .option('-v, --verbose', 'Show detailed output', false)
+  .command("setup-claude")
+  .description("Configure Claude Code integration with gICM MCP server")
+  .option("--mcp-port <port>", "MCP server port", "3100")
+  .option("-v, --verbose", "Show detailed output", false)
   .action(async (options) => {
     try {
       await setupClaudeCommand({
@@ -302,15 +405,19 @@ program
 
 // Dev command - Start all gICM services for local development
 program
-  .command('dev')
-  .description('Start all gICM services for local development')
-  .option('--all', 'Start everything (dashboard + autonomous engines)', false)
-  .option('--autonomous', 'Start autonomous engines (Money, Growth, Product, Hub)', false)
-  .option('--dashboard', 'Also start the dashboard UI', false)
-  .option('--context-engine-only', 'Start only context engine', false)
-  .option('--mcp-only', 'Start only MCP server', false)
-  .option('--live', 'Enable LIVE mode (real money/actions)', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("dev")
+  .description("Start all gICM services for local development")
+  .option("--all", "Start everything (dashboard + autonomous engines)", false)
+  .option(
+    "--autonomous",
+    "Start autonomous engines (Money, Growth, Product, Hub)",
+    false
+  )
+  .option("--dashboard", "Also start the dashboard UI", false)
+  .option("--context-engine-only", "Start only context engine", false)
+  .option("--mcp-only", "Start only MCP server", false)
+  .option("--live", "Enable LIVE mode (real money/actions)", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (options) => {
     try {
       await devCommand({
@@ -330,10 +437,10 @@ program
 
 // Status command - Show project and service status
 program
-  .command('status')
-  .description('Show gICM project and service status')
-  .option('-v, --verbose', 'Show detailed status', false)
-  .option('--json', 'Output as JSON', false)
+  .command("status")
+  .description("Show gICM project and service status")
+  .option("-v, --verbose", "Show detailed status", false)
+  .option("--json", "Output as JSON", false)
   .action(async (options) => {
     try {
       await statusCommand({
@@ -348,17 +455,17 @@ program
 
 // Context command group - Save/load/list dev contexts
 const contextCmd = program
-  .command('context')
-  .description('Manage dev contexts (save/load/list)');
+  .command("context")
+  .description("Manage dev contexts (save/load/list)");
 
 contextCmd
-  .command('save')
-  .description('Save current project context to cloud')
-  .option('--api-url <url>', 'Custom API URL', DEFAULT_API_URL)
-  .option('-n, --name <name>', 'Context name')
-  .option('-d, --description <desc>', 'Context description')
-  .option('--public', 'Make context public', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("save")
+  .description("Save current project context to cloud")
+  .option("--api-url <url>", "Custom API URL", DEFAULT_API_URL)
+  .option("-n, --name <name>", "Context name")
+  .option("-d, --description <desc>", "Context description")
+  .option("--public", "Make context public", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (options) => {
     try {
       await contextSaveCommand({
@@ -375,11 +482,11 @@ contextCmd
   });
 
 contextCmd
-  .command('load <contextId>')
-  .description('Load a context from cloud or local storage')
-  .option('--api-url <url>', 'Custom API URL', DEFAULT_API_URL)
-  .option('-f, --force', 'Overwrite existing configuration', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("load <contextId>")
+  .description("Load a context from cloud or local storage")
+  .option("--api-url <url>", "Custom API URL", DEFAULT_API_URL)
+  .option("-f, --force", "Overwrite existing configuration", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (contextId: string, options) => {
     try {
       await contextLoadCommand(contextId, {
@@ -394,11 +501,11 @@ contextCmd
   });
 
 contextCmd
-  .command('list')
-  .description('List available contexts')
-  .option('--api-url <url>', 'Custom API URL', DEFAULT_API_URL)
-  .option('--mine', 'Show only my contexts', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("list")
+  .description("List available contexts")
+  .option("--api-url <url>", "Custom API URL", DEFAULT_API_URL)
+  .option("--mine", "Show only my contexts", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (options) => {
     try {
       await contextListCommand({
@@ -414,12 +521,16 @@ contextCmd
 
 // Suggest command - Capability router
 program
-  .command('suggest <task>')
-  .description('Analyze task and suggest relevant capabilities to install')
-  .option('--api-url <url>', 'Custom API URL', DEFAULT_API_URL)
-  .option('-a, --auto', 'Auto-install high-relevance capabilities (>=80%)', false)
-  .option('-l, --limit <number>', 'Maximum suggestions', '5')
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("suggest <task>")
+  .description("Analyze task and suggest relevant capabilities to install")
+  .option("--api-url <url>", "Custom API URL", DEFAULT_API_URL)
+  .option(
+    "-a, --auto",
+    "Auto-install high-relevance capabilities (>=80%)",
+    false
+  )
+  .option("-l, --limit <number>", "Maximum suggestions", "5")
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (task: string, options) => {
     try {
       await suggestCommand(task, {
@@ -436,14 +547,17 @@ program
 
 // Workflow command group - Multi-agent workflow orchestration
 const workflowCmd = program
-  .command('workflow')
-  .description('Manage multi-agent workflows (create/run/list/status)');
+  .command("workflow")
+  .description("Manage multi-agent workflows (create/run/list/status)");
 
 workflowCmd
-  .command('create <name>')
-  .description('Create a new workflow')
-  .option('-t, --template <template>', 'Create from template (audit-deploy, research-decide-trade, scan-all-chains)')
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("create <name>")
+  .description("Create a new workflow")
+  .option(
+    "-t, --template <template>",
+    "Create from template (audit-deploy, research-decide-trade, scan-all-chains)"
+  )
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (name: string, options) => {
     try {
       await workflowCreateCommand(name, {
@@ -457,9 +571,9 @@ workflowCmd
   });
 
 workflowCmd
-  .command('list')
-  .description('List available workflows')
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("list")
+  .description("List available workflows")
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (options) => {
     try {
       await workflowListCommand({
@@ -472,11 +586,11 @@ workflowCmd
   });
 
 workflowCmd
-  .command('run <name>')
-  .description('Execute a workflow')
-  .option('-i, --input <json>', 'Input variables as JSON')
-  .option('--dry-run', 'Preview execution without running', false)
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("run <name>")
+  .description("Execute a workflow")
+  .option("-i, --input <json>", "Input variables as JSON")
+  .option("--dry-run", "Preview execution without running", false)
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (name: string, options) => {
     try {
       await workflowRunCommand(name, {
@@ -491,9 +605,9 @@ workflowCmd
   });
 
 workflowCmd
-  .command('status [id]')
-  .description('Check workflow execution status')
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("status [id]")
+  .description("Check workflow execution status")
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (id: string | undefined, options) => {
     try {
       await workflowStatusCommand(id, {
@@ -506,9 +620,9 @@ workflowCmd
   });
 
 workflowCmd
-  .command('history')
-  .description('View past workflow executions')
-  .option('-v, --verbose', 'Show verbose output', false)
+  .command("history")
+  .description("View past workflow executions")
+  .option("-v, --verbose", "Show verbose output", false)
   .action(async (options) => {
     try {
       await workflowHistoryCommand({
@@ -521,8 +635,8 @@ workflowCmd
   });
 
 workflowCmd
-  .command('delete <id>')
-  .description('Delete a workflow')
+  .command("delete <id>")
+  .description("Delete a workflow")
   .action(async (id: string) => {
     try {
       await workflowDeleteCommand(id);
@@ -533,8 +647,8 @@ workflowCmd
   });
 
 workflowCmd
-  .command('templates')
-  .description('List available workflow templates')
+  .command("templates")
+  .description("List available workflow templates")
   .action(async () => {
     try {
       await workflowTemplatesCommand();

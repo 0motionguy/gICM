@@ -10,6 +10,10 @@ Disallow: /.analytics/
 Disallow: /.waitlist/
 Disallow: /_next/
 Disallow: /settings
+Disallow: /dashboard-v2
+Disallow: /design
+Disallow: /content
+Disallow: /workflow/analytics
 
 # Sitemaps
 Sitemap: https://gicm.app/sitemap.xml

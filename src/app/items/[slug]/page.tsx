@@ -41,7 +41,8 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamic = "force-dynamic";
+// ISR: Revalidate every hour for fresh content while enabling static generation
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   return REGISTRY.map((item) => ({ slug: item.slug }));
@@ -146,6 +147,28 @@ export default async function ItemDetailsPage({ params }: PageProps) {
     .map((depId) => getItemById(depId))
     .filter(Boolean);
 
+  // Calculate used-by items (items that depend on this one)
+  const usedByItems = REGISTRY.filter(
+    (i) => i.dependencies?.includes(item.id) && i.id !== item.id
+  ).slice(0, 6);
+
+  // Generate breadcrumbs based on item category
+  const categoryLabels: Record<string, string> = {
+    agent: "Agents",
+    skill: "Skills",
+    mcp: "MCPs",
+    command: "Commands",
+  };
+
+  const breadcrumbs = [
+    { name: "gICM", url: "https://gicm.app" },
+    {
+      name: categoryLabels[item.kind] || item.kind,
+      url: `https://gicm.app/?kind=${item.kind}`,
+    },
+    { name: item.name, url: `https://gicm.app/items/${item.slug}` },
+  ];
+
   return (
     <>
       {/* JSON-LD Structured Data for SEO */}
@@ -158,13 +181,7 @@ export default async function ItemDetailsPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: safeJsonLd(
-            generateBreadcrumbSchema([
-              { name: "Home", url: "https://gicm.app" },
-              { name: item.kind, url: `https://gicm.app?filter=${item.kind}` },
-              { name: item.name, url: `https://gicm.app/items/${item.slug}` },
-            ])
-          ),
+          __html: safeJsonLd(generateBreadcrumbSchema(breadcrumbs)),
         }}
       />
       <AuroraBackground className="min-h-screen bg-[#0A0A0B] font-sans text-white">
@@ -315,6 +332,64 @@ export default async function ItemDetailsPage({ params }: PageProps) {
               content={promptContent}
               fileName={item.files?.[0]}
             />
+          )}
+
+          {/* Dependencies Section */}
+          {dependencies.length > 0 && (
+            <GlassCard className="space-y-6">
+              <h3 className="text-lg font-bold text-white">
+                Required Dependencies
+              </h3>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {dependencies.map((dep) => (
+                  <Link
+                    href={`/items/${dep.slug}`}
+                    key={dep.id}
+                    className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 p-4 transition-all hover:border-[#00F0FF]/30 hover:bg-white/10 hover:shadow-[0_0_20px_-5px_rgba(0,240,255,0.3)]"
+                  >
+                    <div className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-white">
+                      {dep.name.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="truncate font-medium text-white">
+                        {formatProductName(dep.name)}
+                      </div>
+                      <div className="truncate text-xs text-zinc-400">
+                        {dep.kind}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </GlassCard>
+          )}
+
+          {/* Used By Section */}
+          {usedByItems.length > 0 && (
+            <GlassCard className="space-y-6">
+              <h3 className="text-lg font-bold text-white">Used By</h3>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {usedByItems.map((relItem) => (
+                  <Link
+                    href={`/items/${relItem.slug}`}
+                    key={relItem.id}
+                    className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 p-4 transition-all hover:border-[#00F0FF]/30 hover:bg-white/10 hover:shadow-[0_0_20px_-5px_rgba(0,240,255,0.3)]"
+                  >
+                    <div className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-white">
+                      {relItem.name.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="truncate font-medium text-white">
+                        {formatProductName(relItem.name)}
+                      </div>
+                      <div className="truncate text-xs text-zinc-400">
+                        {relItem.kind}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </GlassCard>
           )}
 
           {/* Related & Dependencies */}

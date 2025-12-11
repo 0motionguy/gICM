@@ -59,3 +59,44 @@ export {
   type QueuedJob,
   type QueueStats,
 } from "./job-queue.js";
+
+// =============================================================================
+// OPUS 67 v6.2 - Orchestration Patterns
+// =============================================================================
+
+export {
+  // Pipeline Pattern
+  PipelineOrchestrator,
+  createPipeline,
+  type StageConfig,
+  type StageResult,
+  type PipelineResult,
+  type StageHandler,
+  // Parallel Pattern
+  ParallelOrchestrator,
+  createParallel,
+  type WorkerConfig,
+  type WorkerResult,
+  type ParallelResult,
+  // Single-Job Subagent
+  SingleJobSubagent,
+  createSubagent,
+  type SubagentConfig,
+  type SubagentDefinition,
+  // Context Isolation
+  IsolatedContext,
+  createIsolatedContext,
+  type IsolatedContextConfig,
+  type ContextWindow,
+  type ContextSummary,
+  // Templates
+  SubagentTemplates,
+  PipelineTemplates,
+  // Schemas
+  InputSchemaBase,
+  OutputSchemaBase,
+  type InputSchema,
+  type OutputSchema,
+  // Executor Interface
+  type AgentExecutor,
+} from "./orchestration-patterns.js";

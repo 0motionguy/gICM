@@ -66,6 +66,7 @@ import { PREVIEW_COMPONENTS } from "@/components/registry";
 import { DesignDetailModal } from "@/components/molecules/design-detail-modal";
 import { UIComponentModal } from "@/components/molecules/ui-component-modal";
 import type { UIComponent } from "@/types/registry";
+import { generateCollectionSchema, safeJsonLd } from "@/lib/seo/json-ld";
 
 // --- Helpers -----------------------------------------------------------------
 const formatNumber = (n: number) => new Intl.NumberFormat("en-US").format(n);
@@ -144,27 +145,27 @@ const Card = memo(function Card({
       exit={{ opacity: 0, scale: 0.98 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`item-card relative flex flex-col h-full transition-all duration-300 ${
+      className={`item-card relative flex h-full flex-col transition-all duration-300 ${
         active
-          ? "border-[#00F0FF]/50 ring-1 ring-[#00F0FF]/20 bg-[#00F0FF]/5"
+          ? "border-[#00F0FF]/50 bg-[#00F0FF]/5 ring-1 ring-[#00F0FF]/20"
           : isHovered
-            ? "border-blue-500/50 ring-1 ring-blue-500/20 bg-blue-500/5"
+            ? "border-blue-500/50 bg-blue-500/5 ring-1 ring-blue-500/20"
             : ""
       }`}
       hoverEffect={true}
       showPlatformFooter={false} // Custom footer logic
     >
-      <div className="relative z-10 p-5 flex flex-col h-full">
+      <div className="relative z-10 flex h-full flex-col p-5">
         {/* Header: Icon + Name + Badge */}
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="h-12 w-12 rounded-xl bg-white/[0.03] border border-white/[0.08] grid place-items-center text-white flex-shrink-0 shadow-sm">
+        <div className="mb-3 flex items-start justify-between gap-4">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="grid h-12 w-12 flex-shrink-0 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-white shadow-sm">
               {IconComponent && (
                 <IconComponent size={24} className="opacity-90" />
               )}
             </div>
             <div className="min-w-0">
-              <div className="font-bold text-base text-white font-display truncate leading-tight mb-1">
+              <div className="mb-1 truncate font-display text-base font-bold leading-tight text-white">
                 {isHovered ? (
                   <ScrambleText
                     text={formatProductName(item.name)}
@@ -176,10 +177,10 @@ const Card = memo(function Card({
                 )}
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 bg-white/5 px-1.5 py-0.5 rounded border border-white/5">
+                <span className="rounded border border-white/5 bg-white/5 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
                   {item.kind}
                 </span>
-                <span className="text-[10px] text-zinc-500 truncate max-w-[100px] hidden sm:inline-block">
+                <span className="hidden max-w-[100px] truncate text-[10px] text-zinc-500 sm:inline-block">
                   {item.category}
                 </span>
               </div>
@@ -188,40 +189,40 @@ const Card = memo(function Card({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-zinc-400 leading-relaxed line-clamp-2 flex-grow mb-4">
+        <p className="mb-4 line-clamp-2 flex-grow text-sm leading-relaxed text-zinc-400">
           {item.description}
         </p>
 
         {/* Compatibility / Stats Row */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           {/* Platform Icons (The "Big 3" Visual) */}
-          <div className="flex items-center gap-1.5 bg-white/[0.03] px-2 py-1.5 rounded-lg border border-white/5">
+          <div className="flex items-center gap-1.5 rounded-lg border border-white/5 bg-white/[0.03] px-2 py-1.5">
             {showUniversalIcons ? (
               <>
-                <ClaudeIcon className="w-3.5 h-3.5 text-[#D97757]" />
-                <div className="w-px h-3 bg-white/10" />
-                <GeminiIcon className="w-3.5 h-3.5 text-[#4E82EE]" />
-                <div className="w-px h-3 bg-white/10" />
-                <OpenAIIcon className="w-3.5 h-3.5 text-[#10A37F]" />
+                <ClaudeIcon className="h-3.5 w-3.5 text-[#D97757]" />
+                <div className="h-3 w-px bg-white/10" />
+                <GeminiIcon className="h-3.5 w-3.5 text-[#4E82EE]" />
+                <div className="h-3 w-px bg-white/10" />
+                <OpenAIIcon className="h-3.5 w-3.5 text-[#10A37F]" />
               </>
             ) : (
               // Fallback for specific tools
-              <ClaudeIcon className="w-3.5 h-3.5 text-zinc-500" />
+              <ClaudeIcon className="h-3.5 w-3.5 text-zinc-500" />
             )}
           </div>
 
-          <div className="flex items-center gap-1 text-xs text-zinc-500 font-medium">
+          <div className="flex items-center gap-1 text-xs font-medium text-zinc-500">
             <Download size={12} />
             {formatNumber(item.installs || 0)}
           </div>
         </div>
 
         {/* Action Bar */}
-        <div className="grid grid-cols-[1fr_auto_auto] gap-2 mt-auto pt-4 border-t border-white/[0.08]">
+        <div className="mt-auto grid grid-cols-[1fr_auto_auto] gap-2 border-t border-white/[0.08] pt-4">
           {/* Primary: Add/Remove */}
           <button
             onClick={() => onPick(item.id)}
-            className={`h-9 px-4 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+            className={`flex h-9 items-center justify-center gap-2 rounded-lg px-4 text-xs font-bold transition-all ${
               active
                 ? "bg-[#00F0FF] text-black shadow-[0_0_15px_-5px_rgba(0,240,255,0.5)] hover:bg-[#00F0FF]/90"
                 : "bg-white text-black hover:bg-zinc-200"
@@ -241,7 +242,7 @@ const Card = memo(function Card({
           {/* Secondary: Copy Command */}
           <button
             onClick={copyInstallCmd}
-            className="h-9 w-9 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
             title="Copy Install Command"
           >
             {copied ? (
@@ -254,7 +255,7 @@ const Card = memo(function Card({
           {/* Tertiary: Details Link */}
           <Link
             href={`/items/${item.slug}`}
-            className="h-9 w-9 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white"
             title="View Details"
           >
             <ArrowRight size={14} />
@@ -300,14 +301,14 @@ const UIComponentCard = memo(function UIComponentCard({
     const PreviewComponent = PREVIEW_COMPONENTS[item.id];
     if (PreviewComponent) {
       return (
-        <div className="w-full h-full flex items-center justify-center bg-zinc-950 overflow-hidden transform scale-[0.6] origin-center">
+        <div className="flex h-full w-full origin-center scale-[0.6] transform items-center justify-center overflow-hidden bg-zinc-950">
           <PreviewComponent />
         </div>
       );
     }
     return (
-      <div className="w-full h-full flex items-center justify-center bg-zinc-950">
-        <div className="text-zinc-600 text-xs">Preview</div>
+      <div className="flex h-full w-full items-center justify-center bg-zinc-950">
+        <div className="text-xs text-zinc-600">Preview</div>
       </div>
     );
   };
@@ -315,22 +316,22 @@ const UIComponentCard = memo(function UIComponentCard({
   return (
     <div
       data-testid="ui-component-card"
-      className="group relative rounded-xl border border-[#00F0FF]/30 bg-[#0A0A0B] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[#00F0FF]/60 hover:shadow-[0_0_40px_-10px_rgba(0,240,255,0.4)] h-[320px] flex flex-col"
+      className="group relative flex h-[320px] cursor-pointer flex-col overflow-hidden rounded-xl border border-[#00F0FF]/30 bg-[#0A0A0B] transition-all duration-300 hover:border-[#00F0FF]/60 hover:shadow-[0_0_40px_-10px_rgba(0,240,255,0.4)]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
       {/* HAS CODE Badge - Top Left */}
-      <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
-        <span className="text-[10px] px-2 py-1 rounded-full bg-[#00F0FF]/20 backdrop-blur-sm border border-[#00F0FF]/30 text-[#00F0FF] font-bold flex items-center gap-1">
+      <div className="absolute left-3 top-3 z-10 flex items-center gap-2">
+        <span className="flex items-center gap-1 rounded-full border border-[#00F0FF]/30 bg-[#00F0FF]/20 px-2 py-1 text-[10px] font-bold text-[#00F0FF] backdrop-blur-sm">
           <Code2 size={10} /> HAS CODE
         </span>
       </div>
 
       {/* Credit Badge - Top Right */}
-      <div className="absolute top-3 right-3 z-10">
+      <div className="absolute right-3 top-3 z-10">
         <span
-          className="text-[10px] px-2 py-1 rounded-full backdrop-blur-sm border"
+          className="rounded-full border px-2 py-1 text-[10px] backdrop-blur-sm"
           style={{
             borderColor: `${libraryColor}40`,
             color: libraryColor,
@@ -344,18 +345,18 @@ const UIComponentCard = memo(function UIComponentCard({
       {/* Preview Area */}
       <div
         data-testid="preview-area"
-        className="h-[45%] w-full relative overflow-hidden bg-black/20"
+        className="relative h-[45%] w-full overflow-hidden bg-black/20"
       >
         {getPreview()}
 
         {/* Hover Overlay */}
         <div
-          className={`absolute inset-0 bg-black/70 backdrop-blur-[2px] flex items-center justify-center gap-3 transition-opacity duration-300 ${
+          className={`absolute inset-0 flex items-center justify-center gap-3 bg-black/70 backdrop-blur-[2px] transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
           <button
-            className="px-3 py-2 rounded-lg bg-[#00F0FF] text-black font-bold text-xs flex items-center gap-1.5 hover:scale-105 transition-transform"
+            className="flex items-center gap-1.5 rounded-lg bg-[#00F0FF] px-3 py-2 text-xs font-bold text-black transition-transform hover:scale-105"
             onClick={handleCopyCode}
           >
             {copied ? <Check size={12} /> : <Copy size={12} />}
@@ -365,19 +366,19 @@ const UIComponentCard = memo(function UIComponentCard({
       </div>
 
       {/* Details Area */}
-      <div className="flex-1 p-4 flex flex-col border-t border-[#00F0FF]/10 bg-white/[0.02]">
-        <h3 className="text-base font-bold text-white font-display leading-tight">
+      <div className="flex flex-1 flex-col border-t border-[#00F0FF]/10 bg-white/[0.02] p-4">
+        <h3 className="font-display text-base font-bold leading-tight text-white">
           {item.name}
         </h3>
-        <p className="text-xs text-zinc-400 mt-1.5 line-clamp-2 flex-1">
+        <p className="mt-1.5 line-clamp-2 flex-1 text-xs text-zinc-400">
           {item.description}
         </p>
 
         {/* Filename */}
-        <div className="mt-3 p-2 rounded-lg bg-black/40 border border-[#00F0FF]/10">
+        <div className="mt-3 rounded-lg border border-[#00F0FF]/10 bg-black/40 p-2">
           <div className="flex items-center gap-2">
-            <FileCode size={12} className="text-[#00F0FF] flex-shrink-0" />
-            <code className="text-[10px] text-[#00F0FF] font-mono truncate flex-1">
+            <FileCode size={12} className="flex-shrink-0 text-[#00F0FF]" />
+            <code className="flex-1 truncate font-mono text-[10px] text-[#00F0FF]">
               {item.code.filename}
             </code>
             <span className="text-[9px] text-zinc-500">
@@ -387,11 +388,11 @@ const UIComponentCard = memo(function UIComponentCard({
         </div>
 
         {/* Tags */}
-        <div className="flex items-center gap-1.5 mt-3 flex-wrap">
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
           {item.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="text-[9px] px-1.5 py-0.5 rounded bg-[#00F0FF]/5 border border-[#00F0FF]/10 text-[#00F0FF]/70"
+              className="rounded border border-[#00F0FF]/10 bg-[#00F0FF]/5 px-1.5 py-0.5 text-[9px] text-[#00F0FF]/70"
             >
               {tag}
             </span>
@@ -423,7 +424,7 @@ function CatalogPageContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState<RegistryItem | null>(
-    null,
+    null
   );
   const [selectedUIComponent, setSelectedUIComponent] =
     useState<UIComponent | null>(null);
@@ -443,7 +444,7 @@ function CatalogPageContent() {
         threshold: 0.3,
         distance: 100,
       }),
-    [],
+    []
   );
 
   const filtered = useMemo(() => {
@@ -474,8 +475,8 @@ function CatalogPageContent() {
     if (contentFilter === "react") {
       data = data.filter((item) =>
         item.tags.some((tag) =>
-          ["React", "UI", "Component", "Tailwind", "Frontend"].includes(tag),
-        ),
+          ["React", "UI", "Component", "Tailwind", "Frontend"].includes(tag)
+        )
       );
     }
 
@@ -503,7 +504,7 @@ function CatalogPageContent() {
 
   const paginatedItems = useMemo(
     () => filtered.slice(0, itemsToShow),
-    [filtered, itemsToShow],
+    [filtered, itemsToShow]
   );
 
   useEffect(() => {
@@ -523,17 +524,35 @@ function CatalogPageContent() {
     setIsLoadingMore(false);
   };
 
+  // Generate CollectionPage schema for homepage
+  const collectionSchema = generateCollectionSchema(
+    "gICM AI Marketplace",
+    "Browse 593+ AI agents, skills, commands, and MCP integrations for Claude, Gemini, and OpenAI",
+    [
+      { name: "AI Agents", url: "https://gicm.app/?kind=agent" },
+      { name: "Skills", url: "https://gicm.app/?kind=skill" },
+      { name: "Commands", url: "https://gicm.app/?kind=command" },
+      { name: "MCP Integrations", url: "https://gicm.app/?kind=mcp" },
+    ]
+  );
+
   return (
     <AuroraBackground className="min-h-screen">
+      {/* CollectionPage JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionSchema) }}
+      />
+
       <HeroBanner />
 
       <Web3HeroSection />
       <MenuBuilder selected={menuCategory} onSelect={setMenuCategory} />
 
       {/* Platform Filter - next to category filter */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pb-4 -mt-2">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 p-1 bg-white/5 rounded-xl border border-white/5 backdrop-blur-sm">
+      <div className="mx-auto -mt-2 max-w-7xl px-6 pb-4 md:px-10">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex items-center gap-2 rounded-xl border border-white/5 bg-white/5 p-1 backdrop-blur-sm">
             {[
               { id: "all", label: "All", icon: null },
               {
@@ -558,7 +577,7 @@ function CatalogPageContent() {
               <button
                 key={p.id}
                 onClick={() => setPlatform(p.id as any)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
                   platform === p.id
                     ? "bg-white/10 text-white shadow-sm"
                     : "text-zinc-500 hover:text-zinc-300"
@@ -566,7 +585,7 @@ function CatalogPageContent() {
               >
                 {p.icon && (
                   <p.icon
-                    className={`w-3.5 h-3.5 ${platform === p.id ? "text-white" : p.color}`}
+                    className={`h-3.5 w-3.5 ${platform === p.id ? "text-white" : p.color}`}
                   />
                 )}
                 {p.label}
@@ -574,44 +593,44 @@ function CatalogPageContent() {
             ))}
 
             {/* Separator */}
-            <div className="w-px h-6 bg-white/10 mx-1" />
+            <div className="mx-1 h-6 w-px bg-white/10" />
 
             {/* React UI Filter - Opens Design Grid */}
             <button
               onClick={() =>
                 setMenuCategory(menuCategory === "design" ? "all" : "design")
               }
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
                 menuCategory === "design"
                   ? "bg-[#61DAFB]/20 text-[#61DAFB] shadow-sm"
                   : "text-zinc-500 hover:text-zinc-300"
               }`}
             >
-              <ReactIcon className="w-3.5 h-3.5" />
+              <ReactIcon className="h-3.5 w-3.5" />
               React UI
             </button>
 
             {/* Comfy UI - Image/Video - Coming Soon */}
             <button
               disabled
-              className="px-4 py-2 rounded-lg text-sm font-medium text-zinc-600 cursor-not-allowed flex items-center gap-2 opacity-50"
+              className="flex cursor-not-allowed items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-zinc-600 opacity-50"
               title="ComfyUI workflows for image/video generation coming soon"
             >
-              <ComfyUIIcon className="w-3.5 h-3.5" />
+              <ComfyUIIcon className="h-3.5 w-3.5" />
               Comfy UI - Image/Video
-              <span className="text-[10px] bg-white/5 px-1.5 py-0.5 rounded">
+              <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px]">
                 Soon
               </span>
             </button>
           </div>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
             <input
               type="text"
               placeholder="Search by name..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-48 pl-9 pr-3 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10"
+              className="w-48 rounded-lg border border-white/10 bg-white/5 py-2 pl-9 pr-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/20 focus:outline-none focus:ring-1 focus:ring-white/10"
             />
           </div>
         </div>
@@ -619,21 +638,21 @@ function CatalogPageContent() {
 
       <div
         id="marketplace-section"
-        className="max-w-7xl mx-auto px-6 md:px-10 py-4 pb-8"
+        className="mx-auto max-w-7xl px-6 py-4 pb-8 md:px-10"
       >
         {menuCategory === "design" ? (
           <div className="space-y-8">
             {/* UI Components with Actual Code - Premium Section */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="mb-4 flex items-center gap-3">
                 <span className="text-lg font-bold text-white">
                   Components with Full Code
                 </span>
-                <span className="text-[10px] px-2 py-1 rounded bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/20 font-bold">
+                <span className="rounded border border-[#00F0FF]/20 bg-[#00F0FF]/10 px-2 py-1 text-[10px] font-bold text-[#00F0FF]">
                   COPY & PASTE READY
                 </span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {UI_COMPONENTS.map((item) => (
                   <UIComponentCard
                     key={item.id}
@@ -646,15 +665,15 @@ function CatalogPageContent() {
 
             {/* Regular Design Assets */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="mb-4 flex items-center gap-3">
                 <span className="text-lg font-bold text-white">
                   External Libraries
                 </span>
-                <span className="text-[10px] px-2 py-1 rounded bg-white/5 text-zinc-400 border border-white/10">
+                <span className="rounded border border-white/10 bg-white/5 px-2 py-1 text-[10px] text-zinc-400">
                   Links to docs
                 </span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {DESIGN_ASSETS.map((item) => (
                   <DesignCard
                     key={item.id}
@@ -666,17 +685,17 @@ function CatalogPageContent() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
             {/* Main Grid */}
             <div className="lg:col-span-9">
               {isLoading ? (
-                <div className="grid sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
                   {Array.from({ length: 6 }).map((_, i) => (
                     <CardSkeleton key={i} />
                   ))}
                 </div>
               ) : (
-                <div className="grid sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
                   <AnimatePresence mode="popLayout">
                     {paginatedItems.map((item) => (
                       <Card
@@ -695,7 +714,7 @@ function CatalogPageContent() {
                   <button
                     onClick={handleLoadMore}
                     disabled={isLoadingMore}
-                    className="px-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 font-medium transition-colors"
+                    className="rounded-xl border border-white/10 bg-white/5 px-8 py-3 font-medium text-white transition-colors hover:bg-white/10"
                   >
                     {isLoadingMore ? "Loading..." : "Load More"}
                   </button>
@@ -704,12 +723,12 @@ function CatalogPageContent() {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-3 space-y-6">
+            <div className="space-y-6 lg:col-span-3">
               <StackPreview allItems={REGISTRY} />
 
               {/* Simplified Trending */}
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
-                <div className="flex items-center gap-2 mb-4">
+                <div className="mb-4 flex items-center gap-2">
                   <TrendingUp size={16} className="text-[#00F0FF]" />
                   <h3 className="text-sm font-bold text-white">Trending Now</h3>
                 </div>
@@ -718,12 +737,12 @@ function CatalogPageContent() {
                     <Link
                       key={item.id}
                       href={`/items/${item.slug}`}
-                      className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                      className="block rounded-lg bg-white/5 p-3 transition-colors hover:bg-white/10"
                     >
-                      <div className="text-sm font-medium text-white truncate">
+                      <div className="truncate text-sm font-medium text-white">
                         {item.name}
                       </div>
-                      <div className="text-xs text-zinc-500 mt-1">
+                      <div className="mt-1 text-xs text-zinc-500">
                         {formatNumber(item.installs || 0)} installs
                       </div>
                     </Link>
@@ -739,9 +758,9 @@ function CatalogPageContent() {
 
       <button
         onClick={() => setIsStackManagerOpen(true)}
-        className="fixed bottom-8 right-8 h-14 w-14 rounded-full bg-[#00F0FF] text-black shadow-[0_0_30px_-10px_rgba(0,240,255,0.6)] hover:scale-110 transition-transform z-40 grid place-items-center"
+        className="fixed bottom-8 right-8 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#00F0FF] text-black shadow-[0_0_30px_-10px_rgba(0,240,255,0.6)] transition-transform hover:scale-110"
       >
-        <Layers className="w-6 h-6" />
+        <Layers className="h-6 w-6" />
       </button>
 
       <StackManager

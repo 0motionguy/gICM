@@ -2,6 +2,9 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
+// Cache OG images for 24 hours at the CDN level
+export const revalidate = 86400;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get("title") || "gICM";

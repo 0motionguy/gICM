@@ -122,7 +122,7 @@ export function Web3HeroSection() {
             {/* AWS Startup Partner - Featured Badge */}
             <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-[#FF9900]/30 bg-gradient-to-r from-[#FF9900]/10 to-[#FFB84D]/5 px-5 py-3">
               <svg
-                className="h-8 w-8 text-[#FF9900]"
+                className="h-10 w-10 text-[#FF9900]"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -133,7 +133,7 @@ export function Web3HeroSection() {
                   AWS Startup Partner
                 </span>
                 <span className="text-lg font-bold text-[#FFB84D]">
-                  Up to $400k in Credits
+                  Up to $400k
                 </span>
               </div>
             </div>

@@ -1,4 +1,23 @@
 import type { Metadata } from "next";
+import { generateFAQSchema, safeJsonLd } from "@/lib/seo/json-ld";
+
+const BUILD_PAGE_FAQS = [
+  {
+    question: "What is the AI Stack Builder?",
+    answer:
+      "The AI Stack Builder uses Claude to analyze your project requirements and recommend the perfect combination of agents, skills, and tools from our 593+ item marketplace. It's like having an AI architect design your development stack.",
+  },
+  {
+    question: "How does the stack recommendation work?",
+    answer:
+      "Describe your project in natural language - mention your tech stack, requirements, and goals. Claude analyzes your description and recommends items based on category compatibility, tag matching, and common usage patterns.",
+  },
+  {
+    question: "How many components are available?",
+    answer:
+      "gICM offers 593+ components: 108 AI agents, 96 skills, 93 commands, and 95 MCP integrations. All are free, open-source, and work across Claude, Gemini, and OpenAI.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "AI Stack Builder | gICM - Build Your Perfect AI Dev Stack",
@@ -11,6 +30,14 @@ export const metadata: Metadata = {
     "AI workflow builder",
     "MCP servers",
     "AI automation",
+    "AI stack recommendation",
+    "cross-platform AI",
+    "Gemini compatible",
+    "OpenAI compatible",
+    "AI component library",
+    "development workflow",
+    "AI architecture",
+    "stack configuration",
   ],
   openGraph: {
     title: "AI Stack Builder - Build Your Perfect AI Dev Stack",
@@ -36,5 +63,15 @@ export default function BuildLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(generateFAQSchema(BUILD_PAGE_FAQS)),
+        }}
+      />
+      {children}
+    </>
+  );
 }

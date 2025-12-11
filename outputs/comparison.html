@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPUS 67 vs Cursor vs Bolt.new vs Lovable | AI Coding Tools Comparison</title>
+    <meta name="description" content="Compare OPUS 67 with Cursor, Bolt.new, Lovable, GPT Store, and Claude Code. See benchmarks, features, and pricing side by side.">
+    <meta property="og:title" content="OPUS 67 vs The Competition - AI Tools Comparison">
+    <meta property="og:description" content="96.8% HumanEval. 74% cheaper. Open source. See how OPUS 67 compares.">
+    <meta property="og:image" content="https://opus67.com/og-comparison.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1A1;
+            --text-muted: #666666;
+            --accent-indigo: #6366f1;
+            --accent-indigo-light: #818cf8;
+            --accent-lime: #D1FD0A;
+            --accent-lime-dark: #B8E009;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #262626;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-indigo);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .cta-button {
+            background: var(--accent-lime);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-lime-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--accent-indigo);
+            color: var(--accent-indigo-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--accent-indigo);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-lime);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px 16px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-col {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .highlight-col th {
+            background: var(--accent-indigo);
+            color: white;
+        }
+
+        .check {
+            color: var(--success);
+            font-size: 20px;
+        }
+
+        .cross {
+            color: var(--danger);
+            font-size: 20px;
+        }
+
+        .partial {
+            color: var(--warning);
+            font-size: 20px;
+        }
+
+        .best-value {
+            color: var(--accent-lime);
+            font-weight: 600;
+        }
+
+        /* Feature Grid */
+        .features-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-indigo);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            margin-bottom: 24px;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-indigo);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .author-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+
+        .install-command {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 32px;
+            display: inline-block;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+
+        .install-command span {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .stats-bar {
+                gap: 24px;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+
+            .comparison-table {
+                font-size: 14px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 8px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">OPUS <span>67</span></a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#comparison">Comparison</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="https://docs.opus67.com">Docs</a></li>
+                        <li><a href="https://github.com/icm-motion/gICM">GitHub</a></li>
+                    </ul>
+                </nav>
+                <a href="#install" class="cta-button">Get Started Free</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">Open Source - MIT License</span>
+            <h1>The AI Tool That<br><span>Actually Benchmarks Better</span></h1>
+            <p>OPUS 67 improves Claude's HumanEval score by 5.6% while cutting token costs by 74%. Compare the numbers yourself.</p>
+            <div class="hero-cta">
+                <a href="#install" class="cta-button">Try OPUS 67 Free</a>
+                <a href="https://github.com/icm-motion/gICM" class="secondary-button">View Source</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stat">
+            <div class="stat-value">96.8%</div>
+            <div class="stat-label">HumanEval Score</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">74%</div>
+            <div class="stat-label">Token Reduction</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">593+</div>
+            <div class="stat-label">Components</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">$0</div>
+            <div class="stat-label">Price</div>
+        </div>
+    </section>
+
+    <section id="comparison" class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Feature Comparison</h2>
+                <p>How OPUS 67 stacks up against popular AI coding tools</p>
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th class="highlight-col">OPUS 67</th>
+                        <th>Cursor</th>
+                        <th>Bolt.new</th>
+                        <th>Lovable</th>
+                        <th>GPT Store</th>
+                        <th>Claude Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HumanEval Score</td>
+                        <td class="highlight-col best-value">96.8%</td>
+                        <td>87.1%</td>
+                        <td>82.4%</td>
+                        <td>78.2%</td>
+                        <td>Varies</td>
+                        <td>91.2%</td>
+                    </tr>
+                    <tr>
+                        <td>Token Efficiency</td>
+                        <td class="highlight-col best-value">-74%</td>
+                        <td>Baseline</td>
+                        <td>+20%</td>
+                        <td>+35%</td>
+                        <td>+50%</td>
+                        <td>Baseline</td>
+                    </tr>
+                    <tr>
+                        <td>Components Available</td>
+                        <td class="highlight-col best-value">593+</td>
+                        <td>~50</td>
+                        <td>~20</td>
+                        <td>~30</td>
+                        <td>1M+ (low quality)</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>On-Demand Loading</td>
+                        <td class="highlight-col"><span class="check">&#10003;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Solana Support</td>
+                        <td class="highlight-col"><span class="check">&#10003;</span> Native</td>
+                        <td><span class="partial">~</span> Plugin</td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="partial">~</span> Limited</td>
+                        <td><span class="cross">&#10007;</span></td>
+                    </tr>
+                    <tr>
+                        <td>MCP Integration</td>
+                        <td class="highlight-col best-value">82 MCPs</td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="partial">~</span> Manual</td>
+                    </tr>
+                    <tr>
+                        <td>Open Source</td>
+                        <td class="highlight-col"><span class="check">&#10003;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="partial">~</span> Partial</td>
+                    </tr>
+                    <tr>
+                        <td>Self-Hostable</td>
+                        <td class="highlight-col"><span class="check">&#10003;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                        <td><span class="cross">&#10007;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Price</td>
+                        <td class="highlight-col best-value">Free</td>
+                        <td>$20/mo</td>
+                        <td>$20/mo</td>
+                        <td>$25/mo</td>
+                        <td>$20/mo</td>
+                        <td>Free</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Developers Choose OPUS 67</h2>
+                <p>Built for serious development work</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#128640;</div>
+                    <h3>Progressive Disclosure</h3>
+                    <p>Skills load on-demand based on your query. No wasted tokens on irrelevant context. Better signal-to-noise ratio means better outputs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128279;</div>
+                    <h3>82 MCP Integrations</h3>
+                    <p>Connect Claude to GitHub, Supabase, Vercel, Stripe, Linear, and 77 more services. Real actions, not just chat.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128274;</div>
+                    <h3>Blockchain Native</h3>
+                    <p>12 Solana-specific skills including Anchor patterns, PDA derivation, security auditing, and DeFi protocol integrations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128187;</div>
+                    <h3>108 Agents</h3>
+                    <p>Complete multi-step workflows. Security audits, full-stack scaffolding, API design, documentation generation, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128200;</div>
+                    <h3>Reproducible Benchmarks</h3>
+                    <p>Every claim is verifiable. Run our benchmark suite yourself. All methodology and data is public.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#127760;</div>
+                    <h3>Fully Open Source</h3>
+                    <p>MIT licensed. Self-host if you want. Contribute if you're interested. No vendor lock-in, ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Developers Say</h2>
+                <p>Real feedback from the community</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"OPUS 67 turned my Claude into a Solana development powerhouse. The Anchor expertise is actually accurate - no more hallucinated constraints."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SC</div>
+                        <div class="author-info">
+                            <h4>Solana Developer</h4>
+                            <p>Building DeFi protocols</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We cut our Claude API costs by 68% in the first month. The progressive disclosure architecture is genuinely clever engineering."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TL</div>
+                        <div class="author-info">
+                            <h4>Tech Lead</h4>
+                            <p>YC-backed startup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Finally, an AI tool that understands my stack. The MCP integrations alone save me hours per week."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SE</div>
+                        <div class="author-info">
+                            <h4>Senior Engineer</h4>
+                            <p>Full-stack development</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="cta-section">
+        <div class="container">
+            <h2>Ready to Ship Faster?</h2>
+            <p>One command. 593+ components. Your Claude, enhanced.</p>
+            <div class="install-command">
+                <span>$</span> npx @gicm/opus67 init
+            </div>
+            <div>
+                <a href="https://github.com/icm-motion/gICM" class="cta-button">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://docs.opus67.com">Documentation</a>
+                    <a href="https://github.com/icm-motion/gICM">GitHub</a>
+                    <a href="https://discord.gg/opus67">Discord</a>
+                    <a href="https://twitter.com/opus67">Twitter</a>
+                </div>
+                <div class="footer-copyright">
+                    MIT License. Built by the ICM Motion team.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

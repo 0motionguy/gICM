@@ -1,5 +1,16 @@
 import { z } from "zod";
 
+import type {
+  ProgressiveDisclosure,
+  CodeExecution,
+  SkillResources,
+} from "./skill-v2";
+import {
+  ProgressiveDisclosureSchema,
+  CodeExecutionSchema,
+  SkillResourcesSchema,
+} from "./skill-v2";
+
 export const ItemKindSchema = z.enum([
   "agent",
   "skill",
@@ -30,42 +41,90 @@ export const RegistryItemSchema = z.object({
   remixes: z.number().optional().default(0),
   tokenSavings: z.number().optional(), // for skills (percentage)
   layer: z.enum([".agent", ".claude", ".gemini", ".openai", "docs"]).optional(), // for agents
-  modelRecommendation: z.enum(["sonnet", "opus", "opus-4.5", "haiku"]).optional(), // for agents
+  modelRecommendation: z
+    .enum(["sonnet", "opus", "opus-4.5", "haiku"])
+    .optional(), // for agents
+  version: z.string().optional(),
+  changelog: z.string().optional(),
+  screenshot: z.string().optional(),
+
+  // Agent Skills v2 Fields
+  skillId: z
+    .string()
+    .max(64)
+    .regex(/^[a-z0-9][a-z0-9-]*[a-z0-9]$/)
+    .optional(), // For API skill registration
+  progressiveDisclosure: ProgressiveDisclosureSchema.optional(),
+  codeExecution: CodeExecutionSchema.optional(),
+  resources: SkillResourcesSchema.optional(),
 
   // Universal Agent Protocol (UAP) Fields
   platforms: z.array(z.enum(["claude", "gemini", "openai"])).optional(),
-  compatibility: z.object({
-    models: z.array(z.enum(["opus-4.5", "sonnet-4.5", "sonnet", "opus", "haiku", "gemini-2.0-flash", "gemini-3.0-pro", "gemini-3-pro", "gemini-1.5-pro", "gpt-4o", "gpt-4o-mini"])),
-    software: z.array(z.enum(["vscode", "cursor", "terminal", "windsurf"])),
-  }).optional(),
-  implementations: z.object({
-    claude: z.object({
-      install: z.string(),
-      configFile: z.string().optional(),
-    }).optional(),
-    gemini: z.object({
-      install: z.string(),
-      configFile: z.string().optional(),
-    }).optional(),
-    openai: z.object({
-      install: z.string(),
-      configFile: z.string().optional(),
-    }).optional(),
-  }).optional(),
+  compatibility: z
+    .object({
+      models: z.array(
+        z.enum([
+          "opus-4.5",
+          "sonnet-4.5",
+          "sonnet",
+          "opus",
+          "haiku",
+          "gemini-2.0-flash",
+          "gemini-3.0-pro",
+          "gemini-3-pro",
+          "gemini-1.5-pro",
+          "gpt-4o",
+          "gpt-4o-mini",
+        ])
+      ),
+      software: z.array(z.enum(["vscode", "cursor", "terminal", "windsurf"])),
+    })
+    .optional(),
+  implementations: z
+    .object({
+      claude: z
+        .object({
+          install: z.string(),
+          configFile: z.string().optional(),
+        })
+        .optional(),
+      gemini: z
+        .object({
+          install: z.string(),
+          configFile: z.string().optional(),
+        })
+        .optional(),
+      openai: z
+        .object({
+          install: z.string(),
+          configFile: z.string().optional(),
+        })
+        .optional(),
+    })
+    .optional(),
 
   // Audit metadata
-  audit: z.object({
-    lastAudited: z.string(),
-    qualityScore: z.number().min(0).max(100),
-    status: z.enum(["VERIFIED", "NEEDS_FIX", "FLAGGED", "DEPRECATED"]),
-    issues: z.array(z.string()).optional(),
-  }).optional(),
+  audit: z
+    .object({
+      lastAudited: z.string(),
+      qualityScore: z.number().min(0).max(100),
+      status: z.enum(["VERIFIED", "NEEDS_FIX", "FLAGGED", "DEPRECATED"]),
+      issues: z.array(z.string()).optional(),
+    })
+    .optional(),
 });
 
 // Manual type with proper optionals
 export type RegistryItem = {
   id: string;
-  kind: "agent" | "skill" | "command" | "mcp" | "setting" | "workflow" | "component";
+  kind:
+    | "agent"
+    | "skill"
+    | "command"
+    | "mcp"
+    | "setting"
+    | "workflow"
+    | "component";
   name: string;
   slug: string;
   description: string;
@@ -84,11 +143,32 @@ export type RegistryItem = {
   tokenSavings?: number;
   layer?: ".agent" | ".claude" | ".gemini" | ".openai" | "docs";
   modelRecommendation?: "sonnet" | "opus" | "opus-4.5" | "haiku";
+  version?: string;
+  changelog?: string;
+  screenshot?: string;
+
+  // Agent Skills v2 Fields
+  skillId?: string; // For API skill registration
+  progressiveDisclosure?: ProgressiveDisclosure;
+  codeExecution?: CodeExecution;
+  resources?: SkillResources;
 
   // Universal Agent Protocol (UAP) Fields
   platforms?: ("claude" | "gemini" | "openai")[];
   compatibility?: {
-    models: ("opus-4.5" | "sonnet-4.5" | "sonnet" | "opus" | "haiku" | "gemini-2.0-flash" | "gemini-3.0-pro" | "gemini-3-pro" | "gemini-1.5-pro" | "gpt-4o" | "gpt-4o-mini")[];
+    models: (
+      | "opus-4.5"
+      | "sonnet-4.5"
+      | "sonnet"
+      | "opus"
+      | "haiku"
+      | "gemini-2.0-flash"
+      | "gemini-3.0-pro"
+      | "gemini-3-pro"
+      | "gemini-1.5-pro"
+      | "gpt-4o"
+      | "gpt-4o-mini"
+    )[];
     software: ("vscode" | "cursor" | "terminal" | "windsurf")[];
   };
   implementations?: {
@@ -241,27 +321,27 @@ export interface StackExport {
 // === UI COMPONENT TYPES (React UI with actual code) ===
 
 export interface UIComponentCode {
-  filename: string;           // "aurora-background.tsx"
-  component: string;          // FULL SOURCE CODE as string
-  css?: string;               // Optional CSS/Tailwind config
-  dependencies: string[];     // ["framer-motion", "clsx"]
-  usage: string;              // Example usage code
+  filename: string; // "aurora-background.tsx"
+  component: string; // FULL SOURCE CODE as string
+  css?: string; // Optional CSS/Tailwind config
+  dependencies: string[]; // ["framer-motion", "clsx"]
+  usage: string; // Example usage code
 }
 
 export interface UIComponentCredit {
-  library: string;            // "Aceternity UI" | "Magic UI" | "gICM"
-  url: string;                // Original source URL
+  library: string; // "Aceternity UI" | "Magic UI" | "gICM"
+  url: string; // Original source URL
   license: "MIT";
 }
 
 export interface UIComponentPreview {
-  height: string;             // "400px"
+  height: string; // "400px"
   darkMode: boolean;
 }
 
 export interface UIComponent {
-  id: string;                 // "design-react-backgrounds-aurora"
-  name: string;               // "Aurora Background"
+  id: string; // "design-react-backgrounds-aurora"
+  name: string; // "Aurora Background"
   description: string;
   category: "Design";
   subcategory: "React UI";
