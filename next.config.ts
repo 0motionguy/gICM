@@ -6,24 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig: NextConfig = {
-  // Domain-based rewrites for custom domains
-  async rewrites() {
-    return {
-      beforeFiles: [
-        // opus67.com shows /opus67 content
-        {
-          source: "/",
-          has: [{ type: "host", value: "opus67.com" }],
-          destination: "/opus67",
-        },
-        {
-          source: "/",
-          has: [{ type: "host", value: "www.opus67.com" }],
-          destination: "/opus67",
-        },
-      ],
-    };
-  },
+  // Note: Domain rewrites are in vercel.json for opus67.com -> /opus67
   // Security headers
   async headers() {
     return [
