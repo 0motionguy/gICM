@@ -1,6 +1,24 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Copy, Check, Terminal, Calendar, Download, Shield, Zap, Layout, Box, GitFork, ExternalLink, Github, Cpu, Monitor, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
+import {
+  ArrowLeft,
+  Copy,
+  Check,
+  Terminal,
+  Calendar,
+  Download,
+  Shield,
+  Zap,
+  Layout,
+  Box,
+  GitFork,
+  ExternalLink,
+  Github,
+  Cpu,
+  Monitor,
+  Sparkles,
+} from "lucide-react";
 import { ClaudeIcon, GeminiIcon, OpenAIIcon } from "@/components/ui/icons";
 import { REGISTRY, resolveDependencies, getItemById } from "@/lib/registry";
 import type { RegistryItem } from "@/types/registry";
@@ -13,12 +31,17 @@ import { formatProductName } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { MODEL_VERSIONS } from "@/lib/model-versions";
+import {
+  generateProductSchema,
+  generateBreadcrumbSchema,
+  safeJsonLd,
+} from "@/lib/seo/json-ld";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return REGISTRY.map((item) => ({ slug: item.slug }));
@@ -26,6 +49,74 @@ export async function generateStaticParams() {
 
 function getItemBySlug(slug: string) {
   return REGISTRY.find((item) => item.slug === slug);
+}
+
+// SEO: Generate dynamic metadata for each item page
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const item = getItemBySlug(slug);
+
+  if (!item) {
+    return { title: "Item Not Found | gICM" };
+  }
+
+  const kindLabels: Record<string, string> = {
+    agent: "AI Agent",
+    skill: "Skill",
+    mcp: "MCP Server",
+    command: "Command",
+  };
+
+  const kindLabel = kindLabels[item.kind] || item.kind;
+  const title = `${formatProductName(item.name)} - ${kindLabel} | gICM Marketplace`;
+  const description =
+    item.description ||
+    `${formatProductName(item.name)} is a ${kindLabel} available on gICM, the universal AI workflow marketplace.`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      item.name,
+      item.kind,
+      "AI",
+      "Claude",
+      "Gemini",
+      "OpenAI",
+      "workflow",
+      "automation",
+      ...(item.tags || []),
+    ],
+    openGraph: {
+      title: `${formatProductName(item.name)} - ${kindLabel}`,
+      description,
+      type: "website",
+      url: `https://gicm.app/items/${item.slug}`,
+      siteName: "gICM",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(item.name)}&kind=${item.kind}`,
+          width: 1200,
+          height: 630,
+          alt: `${item.name} - ${kindLabel}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${formatProductName(item.name)} - ${kindLabel}`,
+      description,
+      creator: "@icm_motion",
+      images: [
+        `/api/og?title=${encodeURIComponent(item.name)}&kind=${item.kind}`,
+      ],
+    },
+    alternates: {
+      canonical: `https://gicm.app/items/${item.slug}`,
+    },
+  };
 }
 
 function readPromptFile(filePath: string): string | null {
@@ -48,171 +139,239 @@ export default async function ItemDetailsPage({ params }: PageProps) {
   }
 
   const promptContent = item.files?.[0] ? readPromptFile(item.files[0]) : null;
-  const relatedItems = REGISTRY.filter((i) => i.category === item.category && i.id !== item.id).slice(0, 3);
-  const dependencies = (item.dependencies || []).map((depId) => getItemById(depId)).filter(Boolean);
+  const relatedItems = REGISTRY.filter(
+    (i) => i.category === item.category && i.id !== item.id
+  ).slice(0, 3);
+  const dependencies = (item.dependencies || [])
+    .map((depId) => getItemById(depId))
+    .filter(Boolean);
 
   return (
-    <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white font-sans">
-      {/* Header */}
-      <div className="border-b border-white/10 bg-black/40 backdrop-blur sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-6 md:px-8 py-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
-          >
-            <ArrowLeft size={16} />
-            Back to Aether Catalog
-          </Link>
+    <>
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(generateProductSchema(item)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd(
+            generateBreadcrumbSchema([
+              { name: "Home", url: "https://gicm.app" },
+              { name: item.kind, url: `https://gicm.app?filter=${item.kind}` },
+              { name: item.name, url: `https://gicm.app/items/${item.slug}` },
+            ])
+          ),
+        }}
+      />
+      <AuroraBackground className="min-h-screen bg-[#0A0A0B] font-sans text-white">
+        {/* Header */}
+        <div className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
+          <div className="mx-auto max-w-6xl px-6 py-4 md:px-8">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+            >
+              <ArrowLeft size={16} />
+              Back to Aether Catalog
+            </Link>
+          </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-12 space-y-8">
-        {/* Hero Section */}
-        <GlassCard className="p-8 md:p-10">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
-            <div className="flex gap-6 flex-1">
-              <div className="h-24 w-24 rounded-3xl bg-gradient-to-br from-[#00F0FF]/20 to-[#7000FF]/20 border border-white/10 grid place-items-center flex-shrink-0 shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)]">
-                <span className="font-display font-bold text-5xl text-white">
-                  {item.name.charAt(0)}
-                </span>
-              </div>
-              <div className="space-y-3 flex-1">
-                <div className="flex items-center gap-3 flex-wrap">
-                  <h1 className="text-3xl md:text-4xl font-display font-bold text-white tracking-tight">
-                    {formatProductName(item.name)}
-                  </h1>
-                  <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-xs font-medium uppercase tracking-wider">
-                    {item.kind}
+        {/* Main Content */}
+        <div className="relative z-10 mx-auto max-w-6xl space-y-8 px-6 py-12 md:px-8">
+          {/* Hero Section */}
+          <GlassCard className="p-8 md:p-10">
+            <div className="flex flex-col items-start justify-between gap-8 md:flex-row">
+              <div className="flex flex-1 gap-6">
+                <div className="grid h-24 w-24 flex-shrink-0 place-items-center rounded-3xl border border-white/10 bg-gradient-to-br from-[#00F0FF]/20 to-[#7000FF]/20 shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)]">
+                  <span className="font-display text-5xl font-bold text-white">
+                    {item.name.charAt(0)}
                   </span>
                 </div>
-                <p className="text-base text-zinc-400 font-medium">{item.category}</p>
-                <p className="text-lg text-zinc-300 leading-relaxed max-w-3xl">
-                  {item.longDescription || item.description}
-                </p>
+                <div className="flex-1 space-y-3">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h1 className="font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
+                      {formatProductName(item.name)}
+                    </h1>
+                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-wider text-zinc-300">
+                      {item.kind}
+                    </span>
+                  </div>
+                  <p className="text-base font-medium text-zinc-400">
+                    {item.category}
+                  </p>
+                  <p className="max-w-3xl text-lg leading-relaxed text-zinc-300">
+                    {item.longDescription || item.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex-shrink-0">
+                <QualityScore item={item} size="lg" />
               </div>
             </div>
-            <div className="flex-shrink-0">
-              <QualityScore item={item} size="lg" />
-            </div>
-          </div>
 
-          {/* Universal Compatibility Section (BIG VISUALS) */}
-          <div className="mt-8 pt-8 border-t border-white/10">
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Zap size={16} className="text-[#00F0FF]" /> Universal Compatibility
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Universal Compatibility Section (BIG VISUALS) */}
+            <div className="mt-8 border-t border-white/10 pt-8">
+              <h3 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white">
+                <Zap size={16} className="text-[#00F0FF]" /> Universal
+                Compatibility
+              </h3>
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {/* Claude Card */}
-                <div className="p-4 rounded-xl bg-[#D97757]/10 border border-[#D97757]/20 flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-[#D97757]/20 flex items-center justify-center">
-                        <ClaudeIcon className="w-6 h-6 text-[#D97757]" />
+                <div className="flex items-center gap-4 rounded-xl border border-[#D97757]/20 bg-[#D97757]/10 p-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D97757]/20">
+                    <ClaudeIcon className="h-6 w-6 text-[#D97757]" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-[#D97757]">
+                      {MODEL_VERSIONS.claude.name}
                     </div>
-                    <div>
-                        <div className="font-bold text-[#D97757]">{MODEL_VERSIONS.claude.name}</div>
-                        <div className="text-xs text-zinc-400">{MODEL_VERSIONS.claude.models}</div>
+                    <div className="text-xs text-zinc-400">
+                      {MODEL_VERSIONS.claude.models}
                     </div>
+                  </div>
                 </div>
 
                 {/* Gemini Card */}
-                <div className="p-4 rounded-xl bg-[#4E82EE]/10 border border-[#4E82EE]/20 flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-[#4E82EE]/20 flex items-center justify-center">
-                        <GeminiIcon className="w-6 h-6 text-[#4E82EE]" />
+                <div className="flex items-center gap-4 rounded-xl border border-[#4E82EE]/20 bg-[#4E82EE]/10 p-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4E82EE]/20">
+                    <GeminiIcon className="h-6 w-6 text-[#4E82EE]" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-[#4E82EE]">
+                      {MODEL_VERSIONS.gemini.name}
                     </div>
-                    <div>
-                        <div className="font-bold text-[#4E82EE]">{MODEL_VERSIONS.gemini.name}</div>
-                        <div className="text-xs text-zinc-400">{MODEL_VERSIONS.gemini.models}</div>
+                    <div className="text-xs text-zinc-400">
+                      {MODEL_VERSIONS.gemini.models}
                     </div>
+                  </div>
                 </div>
 
                 {/* OpenAI Card */}
-                <div className="p-4 rounded-xl bg-[#10A37F]/10 border border-[#10A37F]/20 flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-[#10A37F]/20 flex items-center justify-center">
-                        <OpenAIIcon className="w-6 h-6 text-[#10A37F]" />
+                <div className="flex items-center gap-4 rounded-xl border border-[#10A37F]/20 bg-[#10A37F]/10 p-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#10A37F]/20">
+                    <OpenAIIcon className="h-6 w-6 text-[#10A37F]" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-[#10A37F]">
+                      {MODEL_VERSIONS.openai.name}
                     </div>
-                    <div>
-                        <div className="font-bold text-[#10A37F]">{MODEL_VERSIONS.openai.name}</div>
-                        <div className="text-xs text-zinc-400">{MODEL_VERSIONS.openai.models}</div>
+                    <div className="text-xs text-zinc-400">
+                      {MODEL_VERSIONS.openai.models}
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-          </div>
 
-          {/* Stats Row */}
-          <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div>
-              <div className="text-3xl font-display font-bold text-white">{formatNumber(item.installs || 0)}</div>
-              <div className="text-xs text-zinc-500 flex items-center gap-1 mt-1">
-                <Download size={12} /> Installs
-              </div>
-            </div>
-            <div>
-              <div className="text-3xl font-display font-bold text-white">{formatNumber(item.remixes || 0)}</div>
-              <div className="text-xs text-zinc-500 flex items-center gap-1 mt-1">
-                <GitFork size={12} /> Remixes
-              </div>
-            </div>
-            {item.tokenSavings && (
+            {/* Stats Row */}
+            <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/5 pt-8 md:grid-cols-4">
               <div>
-                <div className="text-3xl font-display font-bold text-[#00F0FF]">{item.tokenSavings}%</div>
-                <div className="text-xs text-zinc-500 mt-1">Token Savings</div>
+                <div className="font-display text-3xl font-bold text-white">
+                  {formatNumber(item.installs || 0)}
+                </div>
+                <div className="mt-1 flex items-center gap-1 text-xs text-zinc-500">
+                  <Download size={12} /> Installs
+                </div>
               </div>
-            )}
-            <div>
-              <div className="text-3xl font-display font-bold text-white">{(item.dependencies || []).length}</div>
-              <div className="text-xs text-zinc-500 mt-1">Dependencies</div>
+              <div>
+                <div className="font-display text-3xl font-bold text-white">
+                  {formatNumber(item.remixes || 0)}
+                </div>
+                <div className="mt-1 flex items-center gap-1 text-xs text-zinc-500">
+                  <GitFork size={12} /> Remixes
+                </div>
+              </div>
+              {item.tokenSavings && (
+                <div>
+                  <div className="font-display text-3xl font-bold text-[#00F0FF]">
+                    {item.tokenSavings}%
+                  </div>
+                  <div className="mt-1 text-xs text-zinc-500">
+                    Token Savings
+                  </div>
+                </div>
+              )}
+              <div>
+                <div className="font-display text-3xl font-bold text-white">
+                  {(item.dependencies || []).length}
+                </div>
+                <div className="mt-1 text-xs text-zinc-500">Dependencies</div>
+              </div>
+            </div>
+          </GlassCard>
+
+          {/* Installation Card */}
+          <InstallCard item={item} />
+
+          {/* Full Agent Prompt */}
+          {promptContent && (
+            <AgentPromptViewer
+              content={promptContent}
+              fileName={item.files?.[0]}
+            />
+          )}
+
+          {/* Related & Dependencies */}
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* Metadata */}
+            <GlassCard className="h-fit space-y-4" compact>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
+                Tags
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </GlassCard>
+
+            {/* Related */}
+            <div className="space-y-4">
+              {relatedItems.length > 0 && (
+                <>
+                  <h3 className="font-display text-lg font-bold text-white">
+                    Related Items
+                  </h3>
+                  <div className="grid gap-4">
+                    {relatedItems.map((related) => (
+                      <Link key={related.id} href={`/items/${related.slug}`}>
+                        <GlassCard
+                          compact
+                          hoverEffect
+                          className="flex items-center gap-4 p-4"
+                        >
+                          <div className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-white">
+                            {related.name.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="truncate text-sm font-bold text-white">
+                              {formatProductName(related.name)}
+                            </div>
+                            <div className="truncate text-xs text-zinc-500">
+                              {related.description}
+                            </div>
+                          </div>
+                        </GlassCard>
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
-        </GlassCard>
-
-        {/* Installation Card */}
-        <InstallCard item={item} />
-
-        {/* Full Agent Prompt */}
-        {promptContent && (
-          <AgentPromptViewer content={promptContent} fileName={item.files?.[0]} />
-        )}
-
-        {/* Related & Dependencies */}
-        <div className="grid md:grid-cols-2 gap-8">
-            {/* Metadata */}
-            <GlassCard className="space-y-4 h-fit" compact>
-                <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                {item.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-xs font-medium">
-                    {tag}
-                    </span>
-                ))}
-                </div>
-            </GlassCard>
-            
-             {/* Related */}
-             <div className="space-y-4">
-                 {relatedItems.length > 0 && (
-                     <>
-                        <h3 className="text-lg font-display font-bold text-white">Related Items</h3>
-                        <div className="grid gap-4">
-                        {relatedItems.map((related) => (
-                            <Link key={related.id} href={`/items/${related.slug}`}>
-                            <GlassCard compact hoverEffect className="flex items-center gap-4 p-4">
-                                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 grid place-items-center text-white">
-                                {related.name.charAt(0)}
-                                </div>
-                                <div className="min-w-0">
-                                <div className="text-sm font-bold text-white truncate">{formatProductName(related.name)}</div>
-                                <div className="text-xs text-zinc-500 truncate">{related.description}</div>
-                                </div>
-                            </GlassCard>
-                            </Link>
-                        ))}
-                        </div>
-                     </>
-                 )}
-             </div>
         </div>
-      </div>
-    </AuroraBackground>
+      </AuroraBackground>
+    </>
   );
 }
