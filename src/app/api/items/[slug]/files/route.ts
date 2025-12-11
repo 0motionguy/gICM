@@ -31,7 +31,7 @@ function isValidFilePath(filePath: string): boolean {
 
   // Check extension
   const hasValidExtension = ALLOWED_EXTENSIONS.some((ext) =>
-    filePath.endsWith(ext),
+    filePath.endsWith(ext)
   );
   if (!hasValidExtension) return false;
 
@@ -40,7 +40,7 @@ function isValidFilePath(filePath: string): boolean {
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ slug: string }> },
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
 
@@ -69,6 +69,8 @@ export async function GET(
       "http://localhost:3001",
       "https://gicm.dev",
       "https://www.gicm.dev",
+      "https://gicm-marketplace.vercel.app",
+      "https://gicm.app",
       process.env.NEXT_PUBLIC_BASE_URL,
     ].filter(Boolean);
 
@@ -78,7 +80,7 @@ export async function GET(
       console.warn(`Blocked request from unexpected origin: ${baseUrl}`);
       return NextResponse.json(
         { error: "Invalid request origin" },
-        { status: 403 },
+        { status: 403 }
       );
     }
 
@@ -168,7 +170,7 @@ export async function GET(
     if (files.length === 0) {
       return NextResponse.json(
         { error: "No files found for this item" },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -177,7 +179,7 @@ export async function GET(
     console.error("Error reading files:", error);
     return NextResponse.json(
       { error: "Failed to read files" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
