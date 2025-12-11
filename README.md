@@ -283,42 +283,6 @@ gICM/
 
 ---
 
-## Development
-
-### Available Scripts
-
-```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint
-```
-
-### Adding Components
-
-```bash
-# Install additional shadcn/ui components
-npx shadcn@latest add [component-name]
-```
-
-### Environment Variables
-
-Create `.env.local` for local development. See `.env.example` for all available options.
-
-```env
-# Required
-ANTHROPIC_API_KEY=your-key
-
-# Optional - Analytics
-NEXT_PUBLIC_ANALYTICS_ID=
-
-# Optional - Blockchain
-SOLANA_RPC_URL=
-ETHEREUM_RPC_URL=
-```
-
----
-
 ## Launch Roadmap
 
 See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap.
@@ -379,30 +343,6 @@ Each of the 108 agents has a specific domain. Route tasks appropriately:
 ### Dependency Resolution
 
 The stack builder automatically resolves dependencies. If you select an item that depends on others, they're auto-included in the export.
-
----
-
-## Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Production
-vercel --prod
-```
-
-### Build Locally
-
-```bash
-npm run build
-npm run start
-```
 
 ---
 
