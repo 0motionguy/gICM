@@ -5,10 +5,10 @@
 The world's first truly cross-platform AI marketplace. Write once, run on any supported runtime (Claude, Gemini, OpenAI).
 
 | Platform | Agents | Skills | Commands | MCPs | Total |
-|----------|--------|--------|----------|------|-------|
-| Claude | 104 | 95 | 94 | 124 | 417 |
-| Gemini | 107 | 95 | 94 | - | 296 |
-| OpenAI | 104 | 95 | 94 | - | 293 |
+| -------- | ------ | ------ | -------- | ---- | ----- |
+| Claude   | 104    | 95     | 94       | 124  | 417   |
+| Gemini   | 107    | 95     | 94       | -    | 296   |
+| OpenAI   | 104    | 95     | 94       | -    | 293   |
 
 [![GitHub](https://img.shields.io/badge/GitHub-Kermit457%2FAether-black?style=for-the-badge&logo=github)](https://github.com/Kermit457/gICM)
 [![NPM](https://img.shields.io/badge/NPM-aether-00F0FF?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@gicm/cli)
@@ -42,15 +42,18 @@ https://gicm-marketplace.vercel.app
 ## 💎 New Features: The "Aether" Update
 
 ### 🌐 Universal Bridge
+
 - **Cross-Chain Compatibility**: Install Claude agents for Gemini (and vice versa).
 - **Platform Toggle**: UI automatically adjusts install commands based on your preferred runtime.
 - **SOTA Verified**: Validated on **Gemini 3.0 Pro**, **Claude 3.5 Sonnet**, and **GPT-5.1 Codex**.
 
 ### 🎨 Design Foundry
+
 - **Live Previews**: See `GlassCard`, `AuroraBackground`, and `NeonButton` components before installing.
 - **One-Click Copy**: Copy component code directly to your clipboard.
 
 ### ⚡ Content Pipelines
+
 - **Visual Builders**: Construct complex content workflows using the node-based editor.
 - **Specialized Agents**: SEO Master, Ghostwriter, and Video Script Pro.
 
@@ -77,6 +80,7 @@ All agents, skills, commands, MCP servers, and settings are stored in a separate
 **[gICM-library](https://github.com/Kermit457/gICM)** - 388 curated items (included in main repo)
 
 Users can:
+
 - Clone the library directly
 - Install via CLI: `npx @gicm/cli add agent/icm-anchor-architect`
 - Browse content on GitHub
@@ -87,12 +91,14 @@ Users can:
 ## 📦 What's Included
 
 ### ✅ Complete Foundation
+
 - **Next.js 15.5** with App Router, TypeScript, and Tailwind CSS
 - **shadcn/ui** with 20+ components (button, card, badge, dialog, tabs, etc.)
 - **ICM Brand Design System** (acid lime #D1FD0A, dark mode, custom utilities)
 - **Zustand, Framer Motion, Zod, jszip** installed and ready
 
 ### ✅ Registry System (388 Items - All Unique)
+
 - **74 Specialized Agents** across Web3/Solana, Development, Security, DevOps, ML/Data, Testing, and Documentation
 - **92 Progressive Skills** with 88-92% token savings
 - **93 Commands** for development, testing, deployment, security, and blockchain workflows
@@ -102,12 +108,14 @@ Users can:
 - ✅ All duplicate IDs resolved (17 duplicates fixed)
 
 ### ✅ Stack Builder Utilities
+
 - ZIP generation with complete folder structure
 - README, install script, and .env.example generation
 - Dependency resolution
 - Install command generation
 
 ### ✅ Components
+
 - **shadcn/ui**: All core components installed
 - **AgentCard**: Reusable card for agents/skills/commands/MCPs
 - **Landing Page**: Hero, stats, featured agents/skills, CTA
@@ -119,6 +127,7 @@ Users can:
 ### 68 Specialized Agents
 
 **🔗 Web3 & Solana Specialists (15+):**
+
 - **ICM Anchor Architect** - Solana program specialist with bonding curves, PDAs, and CPI orchestration (4.2x faster)
 - **Solana Guardian Auditor** - Security audits with PDA validation, signer checks, and economic attack prevention
 - **Frontend Fusion Engine** - Next.js 14 + Web3 wallet integration (89% faster delivery)
@@ -128,35 +137,42 @@ Users can:
 - Ethers.js Integration Architect, Upgradeable Contracts Architect
 
 **💻 Development & Engineering (15+):**
+
 - Fullstack Orchestrator, Rust Systems Architect, TypeScript Precision Engineer
 - Database Schema Oracle, API Design Architect, Backend API Specialist
 - Mobile App Developer (React Native/Expo), Game Developer (Unity/Unreal/Web3)
 - Build System Engineer (Webpack/Vite), Bundler Optimizer, Package Manager Expert
 
 **🔒 Security & Auditing (10+):**
+
 - Smart Contract Auditor, Penetration Testing Specialist, Security Engineer
 - Web3 Security Specialist, Blockchain Indexer Specialist
 - Code Security Analyzer, Vulnerability Scanner, Compliance Guardian
 
 **☁️ DevOps & Infrastructure (10+):**
+
 - Cloud Architect (AWS/GCP/Azure), CI/CD Architect, DevOps Platform Engineer
 - Kubernetes Orchestrator, Docker Containerization, Deployment Strategist
 - Site Reliability Engineer, Platform Engineer, Infrastructure as Code Specialist
 
 **🧪 Testing & QA (8+):**
+
 - Test Automation Engineer, E2E Testing Specialist, Unit Test Generator
 - Integration Test Architect, QA Specialist, Performance Profiler
 - Load Testing Expert, Accessibility Advocate
 
 **🤖 ML & Data (5+):**
+
 - ML Engineer, Data Scientist, Data Engineering Specialist
 - MLOps Specialist, AI Model Optimizer
 
 **📚 Documentation & Content (5+):**
+
 - Technical Writer Pro, Tutorial Creator, API Documentation Specialist
 - Code Example Generator, README Architect
 
 **Featured Unique Agents:**
+
 - **ICM Anchor Architect** - The only Solana program specialist built for ICM Motion bonding curves
 - **Solana Guardian Auditor** - Real-time security scanning with PDA validation
 - **Progressive Skills System** - 88-92% token savings across all workflows
@@ -206,6 +222,7 @@ Vercel Deployment Optimization, GitHub Actions Workflows, Docker Containerizatio
 ## 🎨 Design System
 
 ### Brand Colors
+
 ```typescript
 icm: {
   primary: "#D1FD0A",    // Acid lime
@@ -217,11 +234,13 @@ icm: {
 ```
 
 ### Utilities
+
 - `.text-gradient` - Lime to mint gradient
 - `.glow-lime` - Subtle lime glow (for CTAs)
 - `.grid-bg` - Grid background pattern
 
 ### Typography
+
 - **Font:** Inter (next/font/google)
 - **Headings:** Bold, tracking-tight
 - **Body:** Regular, zinc-400 for secondary text
@@ -263,6 +282,7 @@ gICM/
 ## 🔧 Development
 
 ### Available Scripts
+
 ```bash
 npm run dev      # Start development server
 npm run build    # Build for production
@@ -271,13 +291,15 @@ npm run lint     # Run ESLint
 ```
 
 ### Adding Components
+
 ```bash
 # Install additional shadcn/ui components
 npx shadcn@latest add [component-name]
 ```
 
 ### Environment Variables
-Create `.env.local` for local development. See **[ENV_SETUP.md](./ENV_SETUP.md)** for comprehensive guide (coming soon).
+
+Create `.env.local` for local development. See **[ENV_SETUP.md](./ENV_SETUP.md)** for comprehensive guide.
 
 ```env
 # Analytics (optional)
@@ -301,6 +323,7 @@ ETHEREUM_RPC_URL=
 See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap.
 
 ### Phase 1: Foundation ✅ COMPLETE
+
 - ✅ 74 specialized agents across Web3, development, security, DevOps, ML/Data
 - ✅ 92 progressive skills with token optimization
 - ✅ 93 commands for all workflows
@@ -314,6 +337,7 @@ See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap
 - ✅ All duplicate IDs resolved (388 unique items)
 
 ### Phase 2: Premium Features (In Progress - 3-4 Weeks)
+
 - 🚧 Remix system (fork, share, Git integration)
 - 🚧 Points & gamification (leaderboards, achievements)
 - 🚧 Progressive Disclosure calculator & demos
@@ -322,6 +346,7 @@ See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap
 - 🚧 Marketing content & demo videos
 
 ### Phase 3: Community & Growth
+
 - Community features (reviews, ratings, testimonials)
 - User accounts with stack history
 - Advanced analytics for creators
@@ -342,15 +367,19 @@ See **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** for detailed status and roadmap
 ## 🎓 Key Concepts
 
 ### Progressive Disclosure Skills
+
 Skills load in **30-50 tokens** initially, then expand on-demand to full documentation (3000-5000 tokens). Achieves **88-92% token savings**.
 
 ### Agent Specialization
+
 Each of the 27 agents has a specific domain. Route tasks appropriately:
+
 - UI work → `Frontend Fusion Engine` or `UI/UX Designer`
 - Security → `Solana Guardian Auditor` or `Smart Contract Forensics`
 - DevOps → `CI/CD Pipeline Engineer`
 
 ### Dependency Resolution
+
 The stack builder automatically resolves dependencies. If you select an item that depends on others, they're auto-included in the export.
 
 ---
@@ -372,6 +401,7 @@ With 90 agents, 96 skills, 93 commands, and 82 MCPs:
 ## 🚢 Deployment
 
 ### Vercel (Recommended)
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -384,6 +414,7 @@ vercel --prod
 ```
 
 ### Build Locally
+
 ```bash
 npm run build
 npm run start

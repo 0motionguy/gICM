@@ -77,4 +77,19 @@ lpt2
 apps/**/.next
 apps/**/node_modules
 .gemini/
+.openai/
 packages/*/node_modules
+
+# OPUS 67 runtime caches
+.claude/.opus67-cache/
+.claude/settings.local.json
+.gicm/memory-events.jsonl
+.gicm/opus67-perf.log
+.gicm/logs/
+
+# Build artifacts
+*.vsix
+packages/*/dist/
+
+# Encryption keys (NEVER commit)
+encryption_key.json
