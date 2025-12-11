@@ -1,45 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "opus67.com"
-        }
-      ],
-      "destination": "/opus67"
+      "has": [{ "type": "host", "value": "opus67.com" }],
+      "destination": "/opus67",
+      "permanent": false
     },
     {
       "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.opus67.com"
-        }
-      ],
-      "destination": "/opus67"
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "opus67.com"
-        }
-      ],
-      "destination": "/opus67/:path*"
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.opus67.com"
-        }
-      ],
-      "destination": "/opus67/:path*"
+      "has": [{ "type": "host", "value": "www.opus67.com" }],
+      "destination": "/opus67",
+      "permanent": false
     }
   ]
 }
