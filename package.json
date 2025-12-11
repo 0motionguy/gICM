@@ -1,6 +1,17 @@
 {
-  "name": "gicm-send",
+  "name": "gicm",
   "version": "0.1.0",
+  "description": "The world's first universal AI workflow marketplace",
+  "author": "Mirko Basil Doelger (@0motionguy)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0motionguy/gICM.git"
+  },
+  "homepage": "https://gicm-marketplace.vercel.app",
+  "bugs": {
+    "url": "https://github.com/0motionguy/gICM/issues"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

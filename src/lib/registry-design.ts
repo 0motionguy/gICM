@@ -5759,7 +5759,7 @@ export function GlitchButton({ children = "GLITCH", onClick }: { children?: Reac
 export default GlitchButton;`,
       dependencies: ["framer-motion"],
       usage: `import { GlitchButton } from "@/components/ui/glitch-button";
-<GlitchButton onClick={() => console.log("clicked")}>HACK</GlitchButton>`,
+<GlitchButton onClick={() => {}}>HACK</GlitchButton>`,
     },
     preview: { height: "200px", darkMode: true },
     tech_stack: ["React", "Tailwind CSS", "Framer Motion"],
