@@ -34,6 +34,7 @@ export interface HandlerContext {
 }
 
 export interface HandlerResult {
+  [x: string]: unknown;
   content: Array<{ type: string; text: string }>;
   isError?: boolean;
 }

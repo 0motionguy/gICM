@@ -6,7 +6,11 @@
 import { readFileSync } from "fs";
 import { parse as parseYaml } from "yaml";
 import { EventEmitter } from "eventemitter3";
-import { DynamicToolDiscovery, createDiscovery, type DiscoveryResult } from './discovery.js';
+import {
+  DynamicToolDiscovery,
+  createDiscovery,
+  type DiscoveryResult,
+} from "./discovery.js";
 
 // =============================================================================
 // TYPES
@@ -140,7 +144,7 @@ export class MCPHub extends EventEmitter<MCPHubEvents> {
       // Create appropriate client based on transport
       const client = await this.createClient(mcp);
       this.clients.set(mcpId, client);
-      
+
       // Test connection
       await client.ping();
 
@@ -149,7 +153,6 @@ export class MCPHub extends EventEmitter<MCPHubEvents> {
       this.emit("mcp:connected", mcpId);
       console.log(`[MCPHub] Connected: ${mcp.name}`);
       return true;
-
     } catch (error) {
       mcp.status = "error";
       this.emit("mcp:error", mcpId, error as Error);
@@ -163,10 +166,10 @@ export class MCPHub extends EventEmitter<MCPHubEvents> {
    */
   async connectForSkills(skillIds: string[]): Promise<MCPConnection[]> {
     const connectedMCPs: MCPConnection[] = [];
-    
+
     for (const skillId of skillIds) {
       const requiredMCPs = this.config?.auto_connect.on_skill[skillId] || [];
-      
+
       for (const mcpId of requiredMCPs) {
         if (!this.connected.has(mcpId)) {
           const success = await this.connect(mcpId);
@@ -246,7 +249,11 @@ export class MCPHub extends EventEmitter<MCPHubEvents> {
   /**
    * Call a tool on a connected MCP
    */
-  async callTool(mcpId: string, toolName: string, params: Record<string, unknown>): Promise<unknown> {
+  async callTool(
+    mcpId: string,
+    toolName: string,
+    params: Record<string, unknown>
+  ): Promise<unknown> {
     const client = this.clients.get(mcpId);
     if (!client) {
       throw new Error(`MCP not connected: ${mcpId}`);
@@ -273,8 +280,18 @@ export class MCPHub extends EventEmitter<MCPHubEvents> {
   /**
    * Get all available tools from connected MCPs
    */
-  getAvailableTools(): Array<{ id: string; name: string; description: string; mcp: string }> {
-    const tools: Array<{ id: string; name: string; description: string; mcp: string }> = [];
+  getAvailableTools(): Array<{
+    id: string;
+    name: string;
+    description: string;
+    mcp: string;
+  }> {
+    const tools: Array<{
+      id: string;
+      name: string;
+      description: string;
+      mcp: string;
+    }> = [];
 
     for (const [mcpId, mcp] of this.connected) {
       for (const tool of mcp.tools) {
@@ -382,7 +399,10 @@ abstract class MCPClient {
   }
 
   abstract ping(): Promise<boolean>;
-  abstract call(tool: MCPTool, params: Record<string, unknown>): Promise<unknown>;
+  abstract call(
+    tool: MCPTool,
+    params: Record<string, unknown>
+  ): Promise<unknown>;
   abstract disconnect(): Promise<void>;
 
   protected getAuthHeader(): Record<string, string> {
@@ -417,7 +437,7 @@ class HTTPMCPClient extends MCPClient {
 
   async call(tool: MCPTool, params: Record<string, unknown>): Promise<unknown> {
     let url = `${this.mcp.base_url}${tool.endpoint || ""}`;
-    
+
     // Replace path params
     for (const [key, value] of Object.entries(params)) {
       url = url.replace(`{${key}}`, String(value));
@@ -469,7 +489,10 @@ class GraphQLMCPClient extends MCPClient {
       throw new Error(`GraphQL ${response.status}: ${response.statusText}`);
     }
 
-    const result = await response.json();
+    const result = (await response.json()) as {
+      errors?: Array<{ message: string }>;
+      data?: unknown;
+    };
     if (result.errors) {
       throw new Error(result.errors[0].message);
     }
@@ -506,7 +529,9 @@ class SDKMCPClient extends MCPClient {
   }
 
   async call(tool: MCPTool, params: Record<string, unknown>): Promise<unknown> {
-    return { message: `SDK client for ${this.mcp.name} - implement with package` };
+    return {
+      message: `SDK client for ${this.mcp.name} - implement with package`,
+    };
   }
 
   async disconnect(): Promise<void> {

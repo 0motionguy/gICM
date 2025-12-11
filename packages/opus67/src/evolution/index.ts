@@ -15,8 +15,8 @@ export {
   type ImprovementOpportunity,
   type EvolutionCycle,
   type EvolutionMetrics,
-  type DetectorContext
-} from './evolution-loop.js';
+  type DetectorContext,
+} from "./evolution-loop.js";
 
 export {
   PatternDetector,
@@ -24,8 +24,8 @@ export {
   createPatternDetector,
   type PatternType,
   type DetectedPattern,
-  type PatternDetectorConfig
-} from './pattern-detector.js';
+  type PatternDetectorConfig,
+} from "./pattern-detector.js";
 
 export {
   CodeImprover,
@@ -33,8 +33,8 @@ export {
   createCodeImprover,
   type CodeChange,
   type ImprovementResult,
-  type CodeImproverConfig
-} from './code-improver.js';
+  type CodeImproverConfig,
+} from "./code-improver.js";
 
 // =============================================================================
 // LEARNING SYSTEM - Types
@@ -59,7 +59,7 @@ export {
   type UsageTrackerConfig,
   type LearningGeneratorConfig,
   type AdaptiveMatcherConfig,
-  type EvolutionSystemConfig,
+  type EvolutionEnhancementConfig,
   // Constants
   DEFAULT_EVOLUTION_CONFIG,
   POSITIVE_SIGNALS,
@@ -68,7 +68,7 @@ export {
   generateId,
   hashTask,
   truncate,
-} from './types.js';
+} from "./types.js";
 
 // =============================================================================
 // LEARNING SYSTEM - Usage Tracking
@@ -78,16 +78,13 @@ export {
   UsageTracker,
   usageTracker,
   createUsageTracker,
-} from './usage-tracker.js';
+} from "./usage-tracker.js";
 
 // =============================================================================
 // LEARNING SYSTEM - Signal Collection
 // =============================================================================
 
-export {
-  SignalCollector,
-  createSignalCollector,
-} from './signal-collector.js';
+export { SignalCollector, createSignalCollector } from "./signal-collector.js";
 
 // =============================================================================
 // LEARNING SYSTEM - Learning Store
@@ -97,7 +94,7 @@ export {
   LearningStore,
   learningStore,
   createLearningStore,
-} from './learning-store.js';
+} from "./learning-store.js";
 
 // =============================================================================
 // LEARNING SYSTEM - Learning Generator
@@ -106,13 +103,10 @@ export {
 export {
   LearningGenerator,
   createLearningGenerator,
-} from './learning-generator.js';
+} from "./learning-generator.js";
 
 // =============================================================================
 // LEARNING SYSTEM - Adaptive Matcher
 // =============================================================================
 
-export {
-  AdaptiveMatcher,
-  createAdaptiveMatcher,
-} from './adaptive-matcher.js';
+export { AdaptiveMatcher, createAdaptiveMatcher } from "./adaptive-matcher.js";

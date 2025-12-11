@@ -221,11 +221,14 @@ function LivePrice({ symbol }: { symbol: string }) {
 
   useEffect(() => {
     const ws = new WebSocket(\`wss://api.example.com/\${symbol}\`);
-    ws.onmessage = (e) => setPrice(JSON.parse(e.data).price);
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data) as { price: number };
+      setPrice(data.price);
+    };
     // BUG: Missing cleanup
   }, [symbol]);
 
-  return <div>${price}</div>;
+  return <div>\${price}</div>;
 }
 \`\`\`
 
@@ -547,7 +550,7 @@ export function realworldToTasks(): BenchmarkTask[] {
  * Get tasks by category
  */
 export function getByCategory(
-  category: RealWorldTask["category"],
+  category: RealWorldTask["category"]
 ): RealWorldTask[] {
   return REALWORLD_TASKS.filter((t) => t.category === category);
 }

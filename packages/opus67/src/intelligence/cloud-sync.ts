@@ -5,9 +5,13 @@
  * Supports offline-first with automatic conflict resolution.
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
-import { getLearningLoop, type Interaction, type LearnedPattern } from './learning-loop.js';
+import * as fs from "fs";
+import * as path from "path";
+import {
+  getLearningLoop,
+  type Interaction,
+  type LearnedPattern,
+} from "./learning-loop.js";
 
 // =============================================================================
 // TYPES
@@ -18,7 +22,7 @@ export interface SyncConfig {
   apiKey?: string;
   userId: string;
   deviceId: string;
-  syncInterval: number;  // ms
+  syncInterval: number; // ms
   offlineQueuePath: string;
 }
 
@@ -68,12 +72,12 @@ export class CloudSync {
 
   constructor(config?: Partial<SyncConfig>) {
     this.config = {
-      endpoint: config?.endpoint || process.env.OPUS67_SYNC_ENDPOINT || '',
+      endpoint: config?.endpoint || process.env.OPUS67_SYNC_ENDPOINT || "",
       apiKey: config?.apiKey || process.env.OPUS67_SYNC_API_KEY,
       userId: config?.userId || this.getOrCreateUserId(),
       deviceId: config?.deviceId || this.getOrCreateDeviceId(),
-      syncInterval: config?.syncInterval || 5 * 60 * 1000,  // 5 minutes
-      offlineQueuePath: config?.offlineQueuePath || this.getDefaultQueuePath()
+      syncInterval: config?.syncInterval || 5 * 60 * 1000, // 5 minutes
+      offlineQueuePath: config?.offlineQueuePath || this.getDefaultQueuePath(),
     };
   }
 
@@ -90,7 +94,9 @@ export class CloudSync {
     this.lastSync = this.loadLastSyncTime();
 
     this.initialized = true;
-    console.log(`[CloudSync] Initialized. Last sync: ${this.lastSync ? new Date(this.lastSync).toISOString() : 'never'}`);
+    console.log(
+      `[CloudSync] Initialized. Last sync: ${this.lastSync ? new Date(this.lastSync).toISOString() : "never"}`
+    );
   }
 
   /**
@@ -99,7 +105,7 @@ export class CloudSync {
   startAutoSync(): void {
     if (this.syncTimer) return;
     if (!this.config.endpoint) {
-      console.log('[CloudSync] No endpoint configured, auto-sync disabled');
+      console.log("[CloudSync] No endpoint configured, auto-sync disabled");
       return;
     }
 
@@ -107,7 +113,9 @@ export class CloudSync {
       await this.sync();
     }, this.config.syncInterval);
 
-    console.log(`[CloudSync] Auto-sync started (interval: ${this.config.syncInterval / 1000}s)`);
+    console.log(
+      `[CloudSync] Auto-sync started (interval: ${this.config.syncInterval / 1000}s)`
+    );
   }
 
   /**
@@ -132,8 +140,8 @@ export class CloudSync {
         uploaded: 0,
         downloaded: 0,
         conflicts: 0,
-        error: 'Sync already in progress',
-        timestamp: Date.now()
+        error: "Sync already in progress",
+        timestamp: Date.now(),
       };
     }
 
@@ -143,8 +151,8 @@ export class CloudSync {
         uploaded: 0,
         downloaded: 0,
         conflicts: 0,
-        error: 'No sync endpoint configured',
-        timestamp: Date.now()
+        error: "No sync endpoint configured",
+        timestamp: Date.now(),
       };
     }
 
@@ -165,7 +173,7 @@ export class CloudSync {
         timestamp: Date.now(),
         interactions: localData.interactions,
         patterns: localData.patterns,
-        version: '1.0.0'
+        version: "1.0.0",
       };
 
       // 4. Upload to server
@@ -180,7 +188,7 @@ export class CloudSync {
           downloaded: 0,
           conflicts: 0,
           error: response.error,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         };
       }
 
@@ -199,18 +207,18 @@ export class CloudSync {
         uploaded: payload.interactions.length,
         downloaded: remoteData?.interactions.length || 0,
         conflicts: 0,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
-
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       return {
         success: false,
         uploaded: 0,
         downloaded: 0,
         conflicts: 0,
         error: errorMessage,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
     } finally {
       this.syncInProgress = false;
@@ -220,15 +228,19 @@ export class CloudSync {
   /**
    * Upload sync payload to server
    */
-  private async uploadSync(payload: SyncPayload): Promise<{ success: boolean; error?: string }> {
+  private async uploadSync(
+    payload: SyncPayload
+  ): Promise<{ success: boolean; error?: string }> {
     try {
       const response = await fetch(`${this.config.endpoint}/sync/upload`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          ...(this.config.apiKey && { 'Authorization': `Bearer ${this.config.apiKey}` })
+          "Content-Type": "application/json",
+          ...(this.config.apiKey && {
+            Authorization: `Bearer ${this.config.apiKey}`,
+          }),
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -239,7 +251,7 @@ export class CloudSync {
     } catch (error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Network error'
+        error: error instanceof Error ? error.message : "Network error",
       };
     }
   }
@@ -247,24 +259,35 @@ export class CloudSync {
   /**
    * Download sync data from server
    */
-  private async downloadSync(): Promise<{ interactions: Interaction[]; patterns: LearnedPattern[] } | null> {
+  private async downloadSync(): Promise<{
+    interactions: Interaction[];
+    patterns: LearnedPattern[];
+  } | null> {
     try {
       const params = new URLSearchParams({
         userId: this.config.userId,
-        since: String(this.lastSync || 0)
+        since: String(this.lastSync || 0),
       });
 
-      const response = await fetch(`${this.config.endpoint}/sync/download?${params}`, {
-        headers: {
-          ...(this.config.apiKey && { 'Authorization': `Bearer ${this.config.apiKey}` })
+      const response = await fetch(
+        `${this.config.endpoint}/sync/download?${params}`,
+        {
+          headers: {
+            ...(this.config.apiKey && {
+              Authorization: `Bearer ${this.config.apiKey}`,
+            }),
+          },
         }
-      });
+      );
 
       if (!response.ok) {
         return null;
       }
 
-      return await response.json();
+      return (await response.json()) as {
+        interactions: Interaction[];
+        patterns: LearnedPattern[];
+      };
     } catch {
       return null;
     }
@@ -278,7 +301,7 @@ export class CloudSync {
       id: `queue_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
       payload,
       createdAt: Date.now(),
-      attempts: 0
+      attempts: 0,
     });
 
     await this.saveOfflineQueue();
@@ -295,7 +318,9 @@ export class CloudSync {
 
     for (const item of this.offlineQueue) {
       if (item.attempts >= maxAttempts) {
-        console.log(`[CloudSync] Dropping queued sync after ${maxAttempts} attempts`);
+        console.log(
+          `[CloudSync] Dropping queued sync after ${maxAttempts} attempts`
+        );
         continue;
       }
 
@@ -318,7 +343,7 @@ export class CloudSync {
       lastSync: this.lastSync,
       pendingUploads: this.offlineQueue.length,
       isOnline: !!this.config.endpoint,
-      syncInProgress: this.syncInProgress
+      syncInProgress: this.syncInProgress,
     };
   }
 
@@ -336,7 +361,7 @@ export class CloudSync {
     const configPath = this.getConfigPath();
     try {
       if (fs.existsSync(configPath)) {
-        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
         if (config.userId) return config.userId;
       }
     } catch {}
@@ -353,7 +378,7 @@ export class CloudSync {
     const configPath = this.getConfigPath();
     try {
       if (fs.existsSync(configPath)) {
-        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
         if (config.deviceId) return config.deviceId;
       }
     } catch {}
@@ -376,12 +401,15 @@ export class CloudSync {
 
       let config = {};
       if (fs.existsSync(configPath)) {
-        config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
       }
 
-      fs.writeFileSync(configPath, JSON.stringify({ ...config, ...updates }, null, 2));
+      fs.writeFileSync(
+        configPath,
+        JSON.stringify({ ...config, ...updates }, null, 2)
+      );
     } catch (error) {
-      console.error('[CloudSync] Failed to save config:', error);
+      console.error("[CloudSync] Failed to save config:", error);
     }
   }
 
@@ -391,7 +419,9 @@ export class CloudSync {
   private async loadOfflineQueue(): Promise<void> {
     try {
       if (fs.existsSync(this.config.offlineQueuePath)) {
-        const data = JSON.parse(fs.readFileSync(this.config.offlineQueuePath, 'utf-8'));
+        const data = JSON.parse(
+          fs.readFileSync(this.config.offlineQueuePath, "utf-8")
+        );
         this.offlineQueue = data.queue || [];
       }
     } catch {
@@ -409,11 +439,18 @@ export class CloudSync {
         fs.mkdirSync(dir, { recursive: true });
       }
 
-      fs.writeFileSync(this.config.offlineQueuePath, JSON.stringify({
-        queue: this.offlineQueue
-      }, null, 2));
+      fs.writeFileSync(
+        this.config.offlineQueuePath,
+        JSON.stringify(
+          {
+            queue: this.offlineQueue,
+          },
+          null,
+          2
+        )
+      );
     } catch (error) {
-      console.error('[CloudSync] Failed to save offline queue:', error);
+      console.error("[CloudSync] Failed to save offline queue:", error);
     }
   }
 
@@ -424,7 +461,7 @@ export class CloudSync {
     const configPath = this.getConfigPath();
     try {
       if (fs.existsSync(configPath)) {
-        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
         return config.lastSync || null;
       }
     } catch {}
@@ -443,8 +480,10 @@ export class CloudSync {
    */
   private getConfigPath(): string {
     return path.join(
-      path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')),
-      '../../data/sync-config.json'
+      path.dirname(
+        new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, "$1")
+      ),
+      "../../data/sync-config.json"
     );
   }
 
@@ -453,8 +492,10 @@ export class CloudSync {
    */
   private getDefaultQueuePath(): string {
     return path.join(
-      path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')),
-      '../../data/offline-queue.json'
+      path.dirname(
+        new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, "$1")
+      ),
+      "../../data/offline-queue.json"
     );
   }
 }

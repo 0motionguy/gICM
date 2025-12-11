@@ -25,7 +25,7 @@ export interface TaskContext {
   toolChain: ToolCall[];
   skillsUsed: string[];
   success: boolean;
-  userFeedback?: 'positive' | 'negative' | 'neutral';
+  userFeedback?: "positive" | "negative" | "neutral";
 }
 
 export interface SOP {
@@ -54,7 +54,7 @@ export interface SuccessMetric {
 export interface LearningObserverConfig {
   acontextUrl: string;
   acontextApiKey?: string;
-  minComplexity: 'low' | 'medium' | 'high';
+  minComplexity: "low" | "medium" | "high";
   minToolChainLength: number;
   autoSopThreshold: number;
   batchSize: number;
@@ -66,13 +66,13 @@ export interface LearningObserverConfig {
 // =============================================================================
 
 const DEFAULT_CONFIG: LearningObserverConfig = {
-  acontextUrl: process.env.ACONTEXT_API_URL || 'http://localhost:8029/api/v1',
+  acontextUrl: process.env.ACONTEXT_API_URL || "http://localhost:8029/api/v1",
   acontextApiKey: process.env.ACONTEXT_API_KEY,
-  minComplexity: 'medium',
+  minComplexity: "medium",
   minToolChainLength: 3,
   autoSopThreshold: 0.8,
   batchSize: 10,
-  syncIntervalMs: 5 * 60 * 1000  // 5 minutes
+  syncIntervalMs: 5 * 60 * 1000, // 5 minutes
 };
 
 // =============================================================================
@@ -84,7 +84,7 @@ export class LearningObserverAgent {
   private pendingTasks: TaskContext[] = [];
   private successMetrics: Map<string, SuccessMetric> = new Map();
   private generatedSOPs: Map<string, SOP> = new Map();
-  private syncTimer: NodeJS.Timer | null = null;
+  private syncTimer: NodeJS.Timeout | null = null;
 
   constructor(config: Partial<LearningObserverConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
@@ -101,7 +101,10 @@ export class LearningObserverAgent {
       this.config.syncIntervalMs
     );
 
-    console.log('[LearningObserver] Started with sync interval:', this.config.syncIntervalMs);
+    console.log(
+      "[LearningObserver] Started with sync interval:",
+      this.config.syncIntervalMs
+    );
   }
 
   /**
@@ -125,11 +128,18 @@ export class LearningObserverAgent {
 
     // Update success metrics for used skills
     for (const skillId of context.skillsUsed) {
-      this.updateSuccessMetric(skillId, context.success, context.endTime! - context.startTime);
+      this.updateSuccessMetric(
+        skillId,
+        context.success,
+        context.endTime! - context.startTime
+      );
     }
 
     // Queue for SOP extraction if successful
-    if (context.success && context.toolChain.length >= this.config.minToolChainLength) {
+    if (
+      context.success &&
+      context.toolChain.length >= this.config.minToolChainLength
+    ) {
       this.pendingTasks.push(context);
 
       // Process batch if full
@@ -146,11 +156,11 @@ export class LearningObserverAgent {
     const complexity = this.calculateComplexity(context);
 
     switch (this.config.minComplexity) {
-      case 'low':
+      case "low":
         return complexity >= 1;
-      case 'medium':
+      case "medium":
         return complexity >= 3;
-      case 'high':
+      case "high":
         return complexity >= 5;
       default:
         return complexity >= 3;
@@ -183,14 +193,18 @@ export class LearningObserverAgent {
   /**
    * Update success metrics for a skill
    */
-  private updateSuccessMetric(skillId: string, success: boolean, duration: number): void {
+  private updateSuccessMetric(
+    skillId: string,
+    success: boolean,
+    duration: number
+  ): void {
     const existing = this.successMetrics.get(skillId) || {
       skillId,
       totalUses: 0,
       successes: 0,
       failures: 0,
       avgDuration: 0,
-      lastUsed: Date.now()
+      lastUsed: Date.now(),
     };
 
     existing.totalUses++;
@@ -201,7 +215,9 @@ export class LearningObserverAgent {
     }
 
     // Update running average duration
-    existing.avgDuration = (existing.avgDuration * (existing.totalUses - 1) + duration) / existing.totalUses;
+    existing.avgDuration =
+      (existing.avgDuration * (existing.totalUses - 1) + duration) /
+      existing.totalUses;
     existing.lastUsed = Date.now();
 
     this.successMetrics.set(skillId, existing);
@@ -217,11 +233,11 @@ export class LearningObserverAgent {
 
     // Build SOP from tool chain
     const toolSops = context.toolChain
-      .filter(tc => tc.success)
+      .filter((tc) => tc.success)
       .map((tc, idx) => ({
         tool_name: tc.name,
         action: this.describeToolAction(tc),
-        order: idx + 1
+        order: idx + 1,
       }));
 
     if (toolSops.length < 2) {
@@ -234,8 +250,8 @@ export class LearningObserverAgent {
       preferences: this.extractPreferences(context),
       tool_sops: toolSops,
       created_at: new Date().toISOString(),
-      success_rate: 1.0,  // First success
-      usage_count: 1
+      success_rate: 1.0, // First success
+      usage_count: 1,
     };
 
     this.generatedSOPs.set(sop.id, sop);
@@ -253,7 +269,7 @@ export class LearningObserverAgent {
       return `Execute ${name}`;
     }
 
-    return `Execute ${name} with ${args.join(', ')}`;
+    return `Execute ${name} with ${args.join(", ")}`;
   }
 
   /**
@@ -263,14 +279,14 @@ export class LearningObserverAgent {
     const prefs: string[] = [];
 
     // Check for common patterns
-    if (context.skillsUsed.includes('solana-anchor-expert')) {
-      prefs.push('Use Anchor framework for Solana');
+    if (context.skillsUsed.includes("solana-anchor-expert")) {
+      prefs.push("Use Anchor framework for Solana");
     }
-    if (context.skillsUsed.includes('nextjs-14-expert')) {
-      prefs.push('Use Next.js App Router');
+    if (context.skillsUsed.includes("nextjs-14-expert")) {
+      prefs.push("Use Next.js App Router");
     }
 
-    return prefs.join(', ') || 'default settings';
+    return prefs.join(", ") || "default settings";
   }
 
   /**
@@ -283,7 +299,7 @@ export class LearningObserverAgent {
       try {
         await this.extractSOP(task);
       } catch (error) {
-        console.error('[LearningObserver] Failed to extract SOP:', error);
+        console.error("[LearningObserver] Failed to extract SOP:", error);
       }
     }
   }
@@ -308,7 +324,7 @@ export class LearningObserverAgent {
       successes: 1,
       failures: 0,
       avgDuration: 0,
-      lastUsed: Date.now()
+      lastUsed: Date.now(),
     };
 
     this.successMetrics.set(skillId, newMetric);
@@ -318,7 +334,11 @@ export class LearningObserverAgent {
   /**
    * Get success rate for a skill
    */
-  getSuccessRate(skillId: string): { rate: number; totalUses: number; successes: number } {
+  getSuccessRate(skillId: string): {
+    rate: number;
+    totalUses: number;
+    successes: number;
+  } {
     const metric = this.successMetrics.get(skillId);
 
     if (!metric || metric.totalUses === 0) {
@@ -328,7 +348,7 @@ export class LearningObserverAgent {
     return {
       rate: metric.successes / metric.totalUses,
       totalUses: metric.totalUses,
-      successes: metric.successes
+      successes: metric.successes,
     };
   }
 
@@ -342,38 +362,40 @@ export class LearningObserverAgent {
 
     try {
       const headers: Record<string, string> = {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       };
 
       if (this.config.acontextApiKey) {
-        headers['Authorization'] = `Bearer ${this.config.acontextApiKey}`;
+        headers["Authorization"] = `Bearer ${this.config.acontextApiKey}`;
       }
 
       // Sync SOPs
       for (const [id, sop] of this.generatedSOPs) {
         await fetch(`${this.config.acontextUrl}/sops`, {
-          method: 'POST',
+          method: "POST",
           headers,
-          body: JSON.stringify(sop)
+          body: JSON.stringify(sop),
         });
       }
 
       // Sync metrics
       await fetch(`${this.config.acontextUrl}/metrics`, {
-        method: 'POST',
+        method: "POST",
         headers,
         body: JSON.stringify({
           metrics: Array.from(this.successMetrics.values()),
-          timestamp: new Date().toISOString()
-        })
+          timestamp: new Date().toISOString(),
+        }),
       });
 
-      console.log(`[LearningObserver] Synced ${this.generatedSOPs.size} SOPs and ${this.successMetrics.size} metrics to AContext`);
+      console.log(
+        `[LearningObserver] Synced ${this.generatedSOPs.size} SOPs and ${this.successMetrics.size} metrics to AContext`
+      );
 
       // Clear synced SOPs (keep metrics for rolling window)
       this.generatedSOPs.clear();
     } catch (error) {
-      console.error('[LearningObserver] Failed to sync to AContext:', error);
+      console.error("[LearningObserver] Failed to sync to AContext:", error);
     }
   }
 
@@ -404,7 +426,7 @@ export class LearningObserverAgent {
       pendingTasks: this.pendingTasks.length,
       generatedSOPs: this.generatedSOPs.size,
       trackedSkills: this.successMetrics.size,
-      isRunning: this.syncTimer !== null
+      isRunning: this.syncTimer !== null,
     };
   }
 }

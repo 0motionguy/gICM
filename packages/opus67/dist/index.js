@@ -1,19 +1,19 @@
-export { BrainAPI, BrainRuntime, CodeImprover, ComparisonRunner, ContextEnhancer, CostTracker, DEFAULT_LEVELS, EvolutionLoop, LLMCouncil, MODELS, MultiModelRouter, PatternDetector, SYNTHESIS_PROMPTS, StressTest, aggregateRankings, brainAPI, brainRuntime, codeImprover, comparisonRunner, contextEnhancer, costTracker, council, createBrainAPI, createBrainRuntime, createBrainServer, createCodeImprover, createComparisonRunner, createContextEnhancer, createCouncil, createEvolutionLoop, createPatternDetector, createStressTest, enhancePrompt, evolutionLoop, formatModelList, formatSynthesis, generateRankingReport, generateSynthesisPrompt, getAvailableModels, getContextFor, getModelConfig, getModelsForProvider, getModelsForTier, hasApiKey, parseRankingText, parseSynthesisResponse, patternDetector, routeToModel, router, runComparisonCLI, runStressTestCLI, startBrainServer, stressTest, validateEnv } from './chunk-7DWUTE7T.js';
-import { getSkillSearch } from './chunk-JSMRUXZR.js';
-export { CapabilityMatrix, ConfidenceScorer, KnowledgeStore, MCPValidator, SQLiteStore, SimilaritySearch, SkillMetadataLoader, SkillSearch, SynergyGraph, TFIDFVectorizer, canDo, findBestSkills, findSimilarSkills, getCapabilityMatrix, getConfidenceScorer, getIntelligenceStats, getKnowledgeStore, getMCPValidator, getSQLiteStore, getSimilaritySearch, getSkillMetadataLoader, getSkillSearch, getSynergy, getSynergyGraph, initIntelligence, lookupSkill, preFlightCheck, resetCapabilityMatrix, resetConfidenceScorer, resetKnowledgeStore, resetMCPValidator, resetSQLiteStore, resetSimilaritySearch, resetSkillMetadataLoader, resetSkillSearch, resetSynergyGraph, scoreConfidence, validateMCP } from './chunk-JSMRUXZR.js';
-export { CloudSync, getCloudSync, resetCloudSync } from './chunk-2C2XO4QK.js';
-import { getLearningObserver } from './chunk-KUOFDOUY.js';
-export { LearningLoop, LearningObserverAgent, getLearningLoop, getLearningObserver, resetLearningLoop, resetLearningObserver } from './chunk-KUOFDOUY.js';
-export { AgentSpawner, LatencyProfiler, MODEL_COSTS, MetricsCollector, TokenTracker, agentSpawner, createSpawner, latencyProfiler, metricsCollector, timed, tokenTracker } from './chunk-GNLGUR5P.js';
+export { BrainAPI, BrainRuntime, CodeImprover, ComparisonRunner, ContextEnhancer, CostTracker, DEFAULT_LEVELS, EvolutionLoop, LLMCouncil, MODELS, MultiModelRouter, PatternDetector, SYNTHESIS_PROMPTS, StressTest, aggregateRankings, brainAPI, brainRuntime, codeImprover, comparisonRunner, contextEnhancer, costTracker, council, createBrainAPI, createBrainRuntime, createBrainServer, createCodeImprover, createComparisonRunner, createContextEnhancer, createCouncil, createEvolutionLoop, createPatternDetector, createStressTest, enhancePrompt, evolutionLoop, formatModelList, formatSynthesis, generateRankingReport, generateSynthesisPrompt, getAvailableModels, getContextFor, getModelConfig, getModelsForProvider, getModelsForTier, hasApiKey, parseRankingText, parseSynthesisResponse, patternDetector, routeToModel, router, runComparisonCLI, runStressTestCLI, startBrainServer, stressTest, validateEnv } from './chunk-355FS3CV.js';
+import { getSkillSearch } from './chunk-WHFLYKPP.js';
+export { CapabilityMatrix, ConfidenceScorer, KnowledgeStore, MCPValidator, MultiStageRetrieval, SQLiteStore, SimilaritySearch, SkillMetadataLoader, SkillSearch, SynergyGraph, TFIDFVectorizer, augmentQuery, canDo, classifyIntent as classify, classifyIntent, expandTerms as expand, expandTerms, extractEntities as extract, extractEntities, findBestSkills, findSimilarSkills, getCapabilityMatrix, getConfidenceScorer, getIntelligenceStats, getKnowledgeStore, getMCPValidator, getMultiStageRetrieval, getSQLiteStore, getSimilaritySearch, getSkillMetadataLoader, getSkillSearch, getSynergy, getSynergyGraph, initIntelligence, lookupSkill, preFlightCheck, resetCapabilityMatrix, resetConfidenceScorer, resetKnowledgeStore, resetMCPValidator, resetMultiStageRetrieval, resetSQLiteStore, resetSimilaritySearch, resetSkillMetadataLoader, resetSkillSearch, resetSynergyGraph, scoreConfidence, searchSkillsMultiStage, validateMCP } from './chunk-WHFLYKPP.js';
+export { CloudSync, getCloudSync, resetCloudSync } from './chunk-VNVFIAN4.js';
+import { getLearningObserver } from './chunk-4S4YRI47.js';
+export { LearningLoop, LearningObserverAgent, getLearningLoop, getLearningObserver, resetLearningLoop, resetLearningObserver } from './chunk-4S4YRI47.js';
+export { AgentSpawner, LatencyProfiler, MODEL_COSTS, MetricsCollector, TokenTracker, agentSpawner, createSpawner, latencyProfiler, metricsCollector, timed, tokenTracker } from './chunk-R6DQRC3Z.js';
 export { AutonomyLogger, autonomyLogger } from './chunk-JJWKCL7R.js';
-export { AutonomyEngine, DynamicToolDiscovery, MCPHub, SkillLoader, loader_default as SkillLoaderDefault, createDiscovery, getDiscovery } from './chunk-64IVSL5H.js';
+export { AutonomyEngine, DynamicToolDiscovery, MCPHub, SkillLoader, loader_default as SkillLoaderDefault, createDiscovery, getDiscovery } from './chunk-4AMA33EP.js';
 export { ContextIndexer } from './chunk-XVOLIGJS.js';
-import { generateBootScreen, generateInlineStatus } from './chunk-KRJAO3QU.js';
-export { generateAgentSpawnNotification, generateBootScreen, generateHelpScreen, generateInlineStatus, generateModeSwitchNotification, generateStatusLine } from './chunk-KRJAO3QU.js';
+import { generateBootScreen, generateInlineStatus } from './chunk-YEUABUQB.js';
+export { generateAgentSpawnNotification, generateBootScreen, generateHelpScreen, generateInlineStatus, generateModeSwitchNotification, generateStatusLine } from './chunk-YEUABUQB.js';
 import { getConnectionsForSkills, formatConnectionsForPrompt } from './chunk-WHBX6V2T.js';
 export { formatConnectionsForPrompt, generateConnectionCode, getAllConnections, getConnectionsForKeywords, getConnectionsForSkills } from './chunk-WHBX6V2T.js';
-import { getUnifiedMemory } from './chunk-GCLGOCG5.js';
-export { GraphitiMemory, createMemory, memory } from './chunk-2BMLDUKW.js';
+import { getUnifiedMemory } from './chunk-X27EIMGO.js';
+export { GraphitiMemory, createMemory, memory } from './chunk-F6HCT36D.js';
 import { modeSelector } from './chunk-Z7YWWTEP.js';
 export { ModeSelector, formatModeDisplay, modeSelector } from './chunk-Z7YWWTEP.js';
 import { detectMode } from './chunk-JD6NEK3D.js';
@@ -24,10 +24,13 @@ import { loadSkills } from './chunk-L3KXA3WY.js';
 export { extractKeywords, loadCombination, loadRegistry, loadSkillMetadata, loadSkills, skillMatchesContext } from './chunk-L3KXA3WY.js';
 import { formatSkillsForPrompt } from './chunk-YINZDDDM.js';
 export { clearFragmentCache, formatSkillsForPrompt, loadFragment, resolveInheritance } from './chunk-YINZDDDM.js';
+import * as fs from 'fs';
 import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import * as path from 'path';
 import { join } from 'path';
 import '@anthropic-ai/sdk';
 import { EventEmitter } from 'eventemitter3';
+import { EventEmitter as EventEmitter$1 } from 'events';
 
 // src/mcp/memory-tools.ts
 async function handleQueryMemory(params) {
@@ -107,14 +110,15 @@ async function handleWriteMemory(params) {
     if (!memory2) {
       return { success: false, error: "UnifiedMemory not initialized" };
     }
-    const result = await memory2.write(
-      params.content,
-      params.type,
-      params.metadata
-    );
+    const result = await memory2.write({
+      content: params.content,
+      type: params.type,
+      metadata: params.metadata
+    });
+    const idList = Object.values(result.ids).join(", ");
     return {
       success: true,
-      data: { id: result.id }
+      data: { id: idList }
     };
   } catch (error) {
     return {
@@ -440,7 +444,7 @@ var AsyncAgentRunner = class extends EventEmitter {
    * Sleep utility
    */
   sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((resolve2) => setTimeout(resolve2, ms));
   }
   /**
    * Format runner status
@@ -1123,9 +1127,450 @@ var OPUS67AgentSDK = class extends EventEmitter {
   messageQueues = /* @__PURE__ */ new Map();
   activeSession = null;
   sessionCounter = 0;
+  // SDK V2 Features - internal storage
+  toolRegistry = /* @__PURE__ */ new Map();
+  toolExamplesMap = /* @__PURE__ */ new Map();
+  capabilityIndex = /* @__PURE__ */ new Map();
+  tagIndex = /* @__PURE__ */ new Map();
+  sandboxStartTime = Date.now();
+  activeSandboxExecutions = 0;
+  maxConcurrentSandbox = 10;
   constructor() {
     super();
+    this.initializeDefaultTools();
   }
+  /**
+   * Initialize default tool registry with common OPUS 67 tools
+   */
+  initializeDefaultTools() {
+    const defaultTools = [
+      {
+        id: "opus67.detect_skills",
+        name: "Detect Skills",
+        description: "Detect relevant OPUS 67 skills for a given query",
+        capability: "skill-management",
+        relevance: 1,
+        parameters: {
+          type: "object",
+          properties: {
+            query: {
+              type: "string",
+              description: "The query to analyze for skill detection"
+            }
+          },
+          required: ["query"]
+        },
+        returnType: {
+          type: "array",
+          description: "Array of matched skill IDs with relevance scores"
+        },
+        source: "opus67-core",
+        tags: ["skill", "detection", "core"]
+      },
+      {
+        id: "opus67.get_skill",
+        name: "Get Skill",
+        description: "Load a specific OPUS 67 skill by ID",
+        capability: "skill-management",
+        relevance: 1,
+        parameters: {
+          type: "object",
+          properties: {
+            id: {
+              type: "string",
+              description: "The skill ID to load"
+            }
+          },
+          required: ["id"]
+        },
+        returnType: {
+          type: "object",
+          description: "Full skill definition with capabilities and prompts"
+        },
+        source: "opus67-core",
+        tags: ["skill", "loading", "core"]
+      },
+      {
+        id: "opus67.spawn_agent",
+        name: "Spawn Agent",
+        description: "Spawn a background agent for parallel task execution",
+        capability: "agent-orchestration",
+        relevance: 1,
+        parameters: {
+          type: "object",
+          properties: {
+            agentId: {
+              type: "string",
+              description: "Agent identifier"
+            },
+            task: {
+              type: "string",
+              description: "Task description for the agent"
+            },
+            model: {
+              type: "string",
+              description: "Model to use (sonnet, opus, haiku)",
+              enum: ["sonnet", "opus", "haiku"],
+              default: "sonnet"
+            }
+          },
+          required: ["agentId", "task"]
+        },
+        returnType: {
+          type: "object",
+          description: "Agent session with ID and status"
+        },
+        source: "opus67-sdk",
+        tags: ["agent", "orchestration", "async"]
+      }
+    ];
+    for (const tool of defaultTools) {
+      this.registerTool(tool);
+    }
+  }
+  /**
+   * Register a tool in the registry
+   */
+  registerTool(tool) {
+    this.toolRegistry.set(tool.id, tool);
+    if (!this.capabilityIndex.has(tool.capability)) {
+      this.capabilityIndex.set(tool.capability, /* @__PURE__ */ new Set());
+    }
+    this.capabilityIndex.get(tool.capability).add(tool.id);
+    for (const tag of tool.tags) {
+      if (!this.tagIndex.has(tag)) {
+        this.tagIndex.set(tag, /* @__PURE__ */ new Set());
+      }
+      this.tagIndex.get(tag).add(tool.id);
+    }
+  }
+  // ===========================================================================
+  // SDK V2 FEATURE: Tool Search
+  // ===========================================================================
+  /**
+   * Tool Search interface implementation
+   */
+  toolSearch = {
+    searchTools: async (query, options) => {
+      const limit = options?.limit ?? 10;
+      const minRelevance = options?.minRelevance ?? 0.1;
+      const queryLower = query.toLowerCase();
+      const queryWords = queryLower.split(/\s+/).filter((w) => w.length > 2);
+      const results = [];
+      for (const tool of this.toolRegistry.values()) {
+        if (options?.capabilities?.length && !options.capabilities.includes(tool.capability)) {
+          continue;
+        }
+        if (options?.tags?.length && !options.tags.some((t) => tool.tags.includes(t))) {
+          continue;
+        }
+        if (options?.sources?.length && !options.sources.includes(tool.source)) {
+          continue;
+        }
+        let score = 0;
+        if (tool.name.toLowerCase().includes(queryLower)) {
+          score += 0.4;
+        } else {
+          const nameWords = tool.name.toLowerCase().split(/\s+/);
+          const nameOverlap = queryWords.filter(
+            (w) => nameWords.some((nw) => nw.includes(w) || w.includes(nw))
+          );
+          score += nameOverlap.length / queryWords.length * 0.3;
+        }
+        const descLower = tool.description.toLowerCase();
+        const descOverlap = queryWords.filter((w) => descLower.includes(w));
+        score += descOverlap.length / queryWords.length * 0.3;
+        if (tool.id.toLowerCase().includes(queryLower.replace(/\s+/g, ""))) {
+          score += 0.2;
+        }
+        const tagOverlap = tool.tags.filter(
+          (t) => queryWords.some((w) => t.toLowerCase().includes(w))
+        );
+        score += Math.min(tagOverlap.length * 0.05, 0.1);
+        if (score >= minRelevance) {
+          results.push({ tool: { ...tool, relevance: score }, score });
+        }
+      }
+      return results.sort((a, b) => b.score - a.score).slice(0, limit).map((r) => r.tool);
+    },
+    filterByCapability: async (capability, options) => {
+      const toolIds = this.capabilityIndex.get(capability);
+      if (!toolIds) return [];
+      const limit = options?.limit ?? 50;
+      const results = [];
+      for (const toolId of toolIds) {
+        const tool = this.toolRegistry.get(toolId);
+        if (tool) {
+          if (options?.tags?.length && !options.tags.some((t) => tool.tags.includes(t))) {
+            continue;
+          }
+          if (options?.sources?.length && !options.sources.includes(tool.source)) {
+            continue;
+          }
+          results.push({ ...tool, relevance: 1 });
+        }
+        if (results.length >= limit) break;
+      }
+      return results;
+    },
+    getToolById: async (toolId) => {
+      return this.toolRegistry.get(toolId) ?? null;
+    },
+    listCapabilities: async () => {
+      return Array.from(this.capabilityIndex.keys()).sort();
+    },
+    getToolCount: async () => {
+      return this.toolRegistry.size;
+    }
+  };
+  // ===========================================================================
+  // SDK V2 FEATURE: Programmatic Tool Calling
+  // ===========================================================================
+  /**
+   * Programmatic Calling interface implementation
+   */
+  programmaticCalling = {
+    invokeInSandbox: async (toolName, params, config) => {
+      const startTime = Date.now();
+      const callId = `call_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      const tool = this.toolRegistry.get(toolName);
+      if (!tool) {
+        return {
+          success: false,
+          error: `Tool not found: ${toolName}`,
+          errorCode: "TOOL_NOT_FOUND",
+          duration: Date.now() - startTime,
+          callId
+        };
+      }
+      const validationErrors = this.validateParams(tool.parameters, params);
+      if (validationErrors.length > 0) {
+        return {
+          success: false,
+          error: `Invalid parameters: ${validationErrors.join(", ")}`,
+          errorCode: "INVALID_PARAMS",
+          duration: Date.now() - startTime,
+          callId
+        };
+      }
+      if (this.activeSandboxExecutions >= this.maxConcurrentSandbox) {
+        return {
+          success: false,
+          error: "Too many concurrent sandbox executions",
+          errorCode: "RATE_LIMITED",
+          duration: Date.now() - startTime,
+          callId
+        };
+      }
+      this.activeSandboxExecutions++;
+      try {
+        const timeout = config?.timeout ?? 3e4;
+        const result = await Promise.race([
+          this.executeToolInSandbox(tool, params, config),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Execution timeout")), timeout)
+          )
+        ]);
+        return {
+          success: true,
+          data: result,
+          duration: Date.now() - startTime,
+          callId
+        };
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        const errorCode = errorMessage === "Execution timeout" ? "TIMEOUT" : "EXECUTION_ERROR";
+        return {
+          success: false,
+          error: errorMessage,
+          errorCode,
+          duration: Date.now() - startTime,
+          callId
+        };
+      } finally {
+        this.activeSandboxExecutions--;
+      }
+    },
+    batchInvoke: async (calls, config) => {
+      const results = await Promise.all(
+        calls.map(
+          (call) => this.programmaticCalling.invokeInSandbox(call.toolId, call.params, {
+            ...config,
+            timeout: call.timeout ?? config?.timeout
+          }).then((result) => ({
+            ...result,
+            callId: call.callId ?? result.callId
+          }))
+        )
+      );
+      return results;
+    },
+    canInvoke: async (toolName) => {
+      const tool = this.toolRegistry.get(toolName);
+      if (!tool) return false;
+      if (this.activeSandboxExecutions >= this.maxConcurrentSandbox) {
+        return false;
+      }
+      return true;
+    },
+    getSandboxStatus: () => {
+      return {
+        available: this.activeSandboxExecutions < this.maxConcurrentSandbox,
+        activeExecutions: this.activeSandboxExecutions,
+        maxConcurrent: this.maxConcurrentSandbox,
+        memoryUsage: (process.memoryUsage?.()?.heapUsed ?? 0) / (1024 * 1024),
+        uptime: Date.now() - this.sandboxStartTime
+      };
+    }
+  };
+  /**
+   * Validate parameters against schema
+   */
+  validateParams(schema, params) {
+    const errors = [];
+    for (const required of schema.required ?? []) {
+      if (!(required in params) || params[required] === void 0) {
+        errors.push(`Missing required parameter: ${required}`);
+      }
+    }
+    for (const [key, value] of Object.entries(params)) {
+      const propSchema = schema.properties[key];
+      if (!propSchema) {
+        if (schema.additionalProperties === false) {
+          errors.push(`Unknown parameter: ${key}`);
+        }
+        continue;
+      }
+      const actualType = Array.isArray(value) ? "array" : typeof value;
+      if (propSchema.type !== actualType && value !== null) {
+        errors.push(
+          `Parameter ${key}: expected ${propSchema.type}, got ${actualType}`
+        );
+      }
+      if (propSchema.enum && !propSchema.enum.includes(value)) {
+        errors.push(
+          `Parameter ${key}: must be one of [${propSchema.enum.join(", ")}]`
+        );
+      }
+      if (propSchema.type === "number" && typeof value === "number") {
+        if (propSchema.minimum !== void 0 && value < propSchema.minimum) {
+          errors.push(`Parameter ${key}: must be >= ${propSchema.minimum}`);
+        }
+        if (propSchema.maximum !== void 0 && value > propSchema.maximum) {
+          errors.push(`Parameter ${key}: must be <= ${propSchema.maximum}`);
+        }
+      }
+      if (propSchema.type === "string" && typeof value === "string" && propSchema.pattern) {
+        if (!new RegExp(propSchema.pattern).test(value)) {
+          errors.push(
+            `Parameter ${key}: does not match pattern ${propSchema.pattern}`
+          );
+        }
+      }
+    }
+    return errors;
+  }
+  /**
+   * Execute tool in sandboxed environment
+   */
+  async executeToolInSandbox(tool, params, _config) {
+    await this.sleep(50);
+    const result = {
+      toolId: tool.id,
+      params,
+      executedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      message: `Executed ${tool.name} successfully`
+    };
+    return result;
+  }
+  // ===========================================================================
+  // SDK V2 FEATURE: Tool Examples
+  // ===========================================================================
+  /**
+   * Tool Examples interface implementation
+   */
+  toolExamples = {
+    getExamples: (toolName) => {
+      return this.toolExamplesMap.get(toolName) ?? [];
+    },
+    addExample: (toolName, example) => {
+      if (!this.toolExamplesMap.has(toolName)) {
+        this.toolExamplesMap.set(toolName, []);
+      }
+      const examples = this.toolExamplesMap.get(toolName);
+      const existingIndex = examples.findIndex((e) => e.name === example.name);
+      if (existingIndex >= 0) {
+        examples[existingIndex] = example;
+      } else {
+        examples.push(example);
+      }
+    },
+    removeExample: (toolName, exampleName) => {
+      const examples = this.toolExamplesMap.get(toolName);
+      if (!examples) return false;
+      const index = examples.findIndex((e) => e.name === exampleName);
+      if (index < 0) return false;
+      examples.splice(index, 1);
+      return true;
+    },
+    getExamplesByTag: (tag) => {
+      const result = /* @__PURE__ */ new Map();
+      for (const [toolName, examples] of this.toolExamplesMap) {
+        const matchingExamples = examples.filter((e) => e.tags?.includes(tag));
+        if (matchingExamples.length > 0) {
+          result.set(toolName, matchingExamples);
+        }
+      }
+      return result;
+    },
+    validateExample: (toolName, example) => {
+      const errors = [];
+      const warnings = [];
+      const tool = this.toolRegistry.get(toolName);
+      if (!tool) {
+        errors.push({
+          path: "toolName",
+          message: `Tool not found: ${toolName}`,
+          code: "TOOL_NOT_FOUND"
+        });
+        return { valid: false, errors, warnings };
+      }
+      const paramErrors = this.validateParams(tool.parameters, example.input);
+      for (const paramError of paramErrors) {
+        errors.push({
+          path: "input",
+          message: paramError,
+          code: "INVALID_INPUT"
+        });
+      }
+      if (!example.description) {
+        warnings.push({
+          path: "description",
+          message: "Example has no description",
+          suggestion: "Add a description explaining what this example demonstrates"
+        });
+      }
+      if (!example.tags || example.tags.length === 0) {
+        warnings.push({
+          path: "tags",
+          message: "Example has no tags",
+          suggestion: "Add tags to help with discovery and categorization"
+        });
+      }
+      if (example.isHappyPath === void 0) {
+        warnings.push({
+          path: "isHappyPath",
+          message: "Example does not specify if it is a happy path",
+          suggestion: "Set isHappyPath to true for success cases, false for error cases"
+        });
+      }
+      return {
+        valid: errors.length === 0,
+        errors,
+        warnings
+      };
+    }
+  };
   /**
    * Convert OPUS 67 agent config to SDK format
    */
@@ -1388,7 +1833,7 @@ Guidelines:
    * Sleep utility
    */
   sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((resolve2) => setTimeout(resolve2, ms));
   }
   /**
    * Format SDK status
@@ -1396,12 +1841,64 @@ Guidelines:
   formatStatus() {
     const active = this.getActiveSessions().length;
     const total = this.sessions.size;
+    const sandboxStatus = this.programmaticCalling.getSandboxStatus();
+    const toolCount = this.toolRegistry.size;
+    const capabilityCount = this.capabilityIndex.size;
     return `
-\u250C\u2500 OPUS 67 SDK V2 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
+\u250C\u2500 OPUS 67 SDK V2.1 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
 \u2502                                                                  \u2502
-\u2502  Sessions: ${String(active).padEnd(3)} active / ${String(total).padEnd(3)} total                          \u2502
+\u2502  SESSIONS                                                        \u2502
+\u2502  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2502
+\u2502  Active: ${String(active).padEnd(3)} / Total: ${String(total).padEnd(3)}                                   \u2502
 \u2502  Interface: send() / receive() / done()                          \u2502
+\u2502                                                                  \u2502
+\u2502  SDK V2 FEATURES                                                 \u2502
+\u2502  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2502
+\u2502  Tool Search:       ${String(toolCount).padEnd(4)} tools / ${String(capabilityCount).padEnd(2)} capabilities          \u2502
+\u2502  Programmatic Call: ${sandboxStatus.available ? "Available" : "At Capacity"}                                \u2502
+\u2502  Sandbox Active:    ${String(sandboxStatus.activeExecutions).padEnd(2)} / ${String(sandboxStatus.maxConcurrent).padEnd(2)} max                        \u2502
+\u2502  Tool Examples:     ${String(this.toolExamplesMap.size).padEnd(4)} tools with examples                \u2502
+\u2502                                                                  \u2502
 \u2502  Compatibility: Claude Agent SDK V2                              \u2502
+\u2502                                                                  \u2502
+\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518`;
+  }
+  /**
+   * Format SDK V2 features summary
+   */
+  formatV2Features() {
+    const capabilities = Array.from(this.capabilityIndex.keys());
+    const sandboxStatus = this.programmaticCalling.getSandboxStatus();
+    return `
+\u250C\u2500 SDK V2 FEATURES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
+\u2502                                                                  \u2502
+\u2502  TOOL SEARCH                                                     \u2502
+\u2502  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2502
+\u2502  - searchTools(query, options)                                   \u2502
+\u2502  - filterByCapability(capability)                                \u2502
+\u2502  - getToolById(id)                                               \u2502
+\u2502  - listCapabilities()                                            \u2502
+\u2502  - getToolCount()                                                \u2502
+\u2502                                                                  \u2502
+\u2502  Registered Tools: ${String(this.toolRegistry.size).padEnd(4)}                                     \u2502
+\u2502  Capabilities: ${capabilities.slice(0, 3).join(", ").padEnd(40)}\u2502
+\u2502                                                                  \u2502
+\u2502  PROGRAMMATIC CALLING                                            \u2502
+\u2502  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2502
+\u2502  - invokeInSandbox(tool, params, config)                         \u2502
+\u2502  - batchInvoke(calls, config)                                    \u2502
+\u2502  - canInvoke(tool)                                               \u2502
+\u2502  - getSandboxStatus()                                            \u2502
+\u2502                                                                  \u2502
+\u2502  Status: ${sandboxStatus.available ? "Ready" : "Busy"} | Memory: ${sandboxStatus.memoryUsage.toFixed(1)}MB                       \u2502
+\u2502                                                                  \u2502
+\u2502  TOOL EXAMPLES                                                   \u2502
+\u2502  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2502
+\u2502  - getExamples(tool)                                             \u2502
+\u2502  - addExample(tool, example)                                     \u2502
+\u2502  - removeExample(tool, name)                                     \u2502
+\u2502  - getExamplesByTag(tag)                                         \u2502
+\u2502  - validateExample(tool, example)                                \u2502
 \u2502                                                                  \u2502
 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518`;
   }
@@ -1815,6 +2312,603 @@ var spawnTools = {
   handleListAgents,
   registerSpawnTools
 };
+var DEFAULT_SESSION_CONFIG = {
+  sessionsDir: ".gicm/sessions",
+  checkpointInterval: 5,
+  // Every 5 turns
+  maxHistoryLength: 100,
+  autoSave: true,
+  sessionTimeout: 24 * 60 * 60 * 1e3
+  // 24 hours
+};
+var SessionManager = class extends EventEmitter$1 {
+  config;
+  currentSession = null;
+  turnsSinceCheckpoint = 0;
+  constructor(config) {
+    super();
+    this.config = { ...DEFAULT_SESSION_CONFIG, ...config };
+    this.ensureSessionsDir();
+  }
+  /**
+   * Initialize a new session or restore existing
+   */
+  async initSession(sessionId) {
+    if (sessionId) {
+      const restored = await this.restore(sessionId);
+      if (restored) {
+        this.currentSession = restored;
+        this.emit("session:restored", restored);
+        return restored;
+      }
+    }
+    const newSession = {
+      id: this.generateSessionId(),
+      version: "1.0.0",
+      startedAt: /* @__PURE__ */ new Date(),
+      lastActivityAt: /* @__PURE__ */ new Date(),
+      conversationHistory: [],
+      activeSkills: [],
+      loadedMemories: [],
+      goals: [],
+      decisions: [],
+      metadata: {}
+    };
+    this.currentSession = newSession;
+    this.turnsSinceCheckpoint = 0;
+    this.emit("session:created", newSession);
+    if (this.config.autoSave) {
+      await this.checkpoint();
+    }
+    return newSession;
+  }
+  /**
+   * Add a conversation turn
+   */
+  async addTurn(role, content, skillsUsed = [], toolsCalled = []) {
+    if (!this.currentSession) {
+      await this.initSession();
+    }
+    const turn = {
+      id: this.generateId(),
+      role,
+      content,
+      timestamp: /* @__PURE__ */ new Date(),
+      skillsUsed,
+      toolsCalled,
+      tokenCount: this.estimateTokens(content)
+    };
+    this.currentSession.conversationHistory.push(turn);
+    this.currentSession.lastActivityAt = /* @__PURE__ */ new Date();
+    for (const skill of skillsUsed) {
+      if (!this.currentSession.activeSkills.includes(skill)) {
+        this.currentSession.activeSkills.push(skill);
+      }
+    }
+    if (this.currentSession.conversationHistory.length > this.config.maxHistoryLength) {
+      this.currentSession.conversationHistory = this.currentSession.conversationHistory.slice(
+        -this.config.maxHistoryLength
+      );
+    }
+    this.turnsSinceCheckpoint++;
+    this.emit("turn:added", turn);
+    if (this.config.autoSave && this.turnsSinceCheckpoint >= this.config.checkpointInterval) {
+      await this.checkpoint();
+    }
+  }
+  /**
+   * Record a decision
+   */
+  async addDecision(description, reason, alternatives) {
+    if (!this.currentSession) {
+      await this.initSession();
+    }
+    const decision = {
+      id: this.generateId(),
+      description,
+      reason,
+      timestamp: /* @__PURE__ */ new Date(),
+      alternatives
+    };
+    this.currentSession.decisions.push(decision);
+    this.currentSession.lastActivityAt = /* @__PURE__ */ new Date();
+    this.emit("decision:made", decision);
+    if (this.config.autoSave) {
+      await this.checkpoint();
+    }
+  }
+  /**
+   * Add a goal
+   */
+  async addGoal(description) {
+    if (!this.currentSession) {
+      await this.initSession();
+    }
+    const goal = {
+      id: this.generateId(),
+      description,
+      status: "pending",
+      createdAt: /* @__PURE__ */ new Date()
+    };
+    this.currentSession.goals.push(goal);
+    this.currentSession.lastActivityAt = /* @__PURE__ */ new Date();
+    this.emit("goal:added", goal);
+    if (this.config.autoSave) {
+      await this.checkpoint();
+    }
+    return goal;
+  }
+  /**
+   * Complete a goal
+   */
+  async completeGoal(goalId) {
+    if (!this.currentSession) return;
+    const goal = this.currentSession.goals.find((g) => g.id === goalId);
+    if (goal) {
+      goal.status = "completed";
+      goal.completedAt = /* @__PURE__ */ new Date();
+      this.emit("goal:completed", goal);
+      if (this.config.autoSave) {
+        await this.checkpoint();
+      }
+    }
+  }
+  /**
+   * Save current session to disk
+   */
+  async checkpoint() {
+    if (!this.currentSession) return;
+    const filePath = this.getSessionFilePath(this.currentSession.id);
+    const data = JSON.stringify(this.currentSession, null, 2);
+    fs.writeFileSync(filePath, data, "utf-8");
+    this.turnsSinceCheckpoint = 0;
+    this.emit("session:checkpointed", this.currentSession);
+  }
+  /**
+   * Restore a session from disk
+   */
+  async restore(sessionId) {
+    const filePath = this.getSessionFilePath(sessionId);
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
+    try {
+      const data = fs.readFileSync(filePath, "utf-8");
+      const session = JSON.parse(data);
+      session.startedAt = new Date(session.startedAt);
+      session.lastActivityAt = new Date(session.lastActivityAt);
+      session.conversationHistory = session.conversationHistory.map((t) => ({
+        ...t,
+        timestamp: new Date(t.timestamp)
+      }));
+      session.decisions = session.decisions.map((d) => ({
+        ...d,
+        timestamp: new Date(d.timestamp)
+      }));
+      session.goals = session.goals.map((g) => ({
+        ...g,
+        createdAt: new Date(g.createdAt),
+        completedAt: g.completedAt ? new Date(g.completedAt) : void 0
+      }));
+      const age = Date.now() - session.lastActivityAt.getTime();
+      if (age > this.config.sessionTimeout) {
+        this.emit("session:timeout", sessionId);
+        session.metadata.stale = true;
+      }
+      return session;
+    } catch {
+      return null;
+    }
+  }
+  /**
+   * Get a summary of the current session for context injection
+   */
+  getSummary() {
+    if (!this.currentSession) return null;
+    const now = Date.now();
+    const durationMs = now - this.currentSession.startedAt.getTime();
+    const durationMins = Math.floor(durationMs / 6e4);
+    const topics = this.extractTopics();
+    return {
+      duration: durationMins < 60 ? `${durationMins} minutes` : `${Math.floor(durationMins / 60)} hours ${durationMins % 60} minutes`,
+      turns: this.currentSession.conversationHistory.length,
+      activeSkills: this.currentSession.activeSkills.slice(0, 5),
+      recentDecisions: this.currentSession.decisions.slice(-5).length,
+      completedGoals: this.currentSession.goals.filter(
+        (g) => g.status === "completed"
+      ).length,
+      pendingGoals: this.currentSession.goals.filter(
+        (g) => g.status === "pending" || g.status === "in_progress"
+      ).length,
+      topTopics: topics.slice(0, 5)
+    };
+  }
+  /**
+   * Generate context injection markdown
+   */
+  getContextMarkdown() {
+    const summary = this.getSummary();
+    if (!summary) return "";
+    return `<!-- SESSION CONTEXT -->
+Duration: ${summary.duration}
+Turns: ${summary.turns}
+Active Skills: ${summary.activeSkills.join(", ") || "None"}
+Recent Decisions: ${summary.recentDecisions}
+Goals: ${summary.completedGoals} completed, ${summary.pendingGoals} pending
+Topics: ${summary.topTopics.join(", ") || "General"}
+<!-- /SESSION CONTEXT -->`;
+  }
+  /**
+   * List all saved sessions
+   */
+  listSessions() {
+    const sessionsDir = path.resolve(this.config.sessionsDir);
+    if (!fs.existsSync(sessionsDir)) return [];
+    const files = fs.readdirSync(sessionsDir).filter((f) => f.endsWith(".json"));
+    const sessions = [];
+    for (const file of files) {
+      try {
+        const data = fs.readFileSync(path.join(sessionsDir, file), "utf-8");
+        const session = JSON.parse(data);
+        sessions.push({
+          id: session.id,
+          startedAt: new Date(session.startedAt),
+          lastActivityAt: new Date(session.lastActivityAt),
+          turns: session.conversationHistory.length
+        });
+      } catch {
+      }
+    }
+    sessions.sort(
+      (a, b) => b.lastActivityAt.getTime() - a.lastActivityAt.getTime()
+    );
+    return sessions;
+  }
+  /**
+   * Get current session
+   */
+  getCurrentSession() {
+    return this.currentSession;
+  }
+  /**
+   * Clear current session (does not delete file)
+   */
+  clearSession() {
+    this.currentSession = null;
+    this.turnsSinceCheckpoint = 0;
+  }
+  // ==========================================================================
+  // PRIVATE HELPERS
+  // ==========================================================================
+  ensureSessionsDir() {
+    const dir = path.resolve(this.config.sessionsDir);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  }
+  getSessionFilePath(sessionId) {
+    return path.join(
+      path.resolve(this.config.sessionsDir),
+      `${sessionId}.json`
+    );
+  }
+  generateSessionId() {
+    const date = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+    const random = Math.random().toString(36).substring(2, 8);
+    return `session-${date}-${random}`;
+  }
+  generateId() {
+    return Math.random().toString(36).substring(2, 10);
+  }
+  estimateTokens(text) {
+    return Math.ceil(text.length / 4);
+  }
+  extractTopics() {
+    if (!this.currentSession) return [];
+    const recentContent = this.currentSession.conversationHistory.slice(-10).map((t) => t.content).join(" ");
+    const words = recentContent.match(/\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b/g) || [];
+    const techTerms = recentContent.match(
+      /\b(?:API|MCP|SDK|CLI|UI|UX|SQL|HTML|CSS|JS|TS|React|Node|Solana|Rust|Python)\b/gi
+    ) || [];
+    const counts = /* @__PURE__ */ new Map();
+    for (const word of [...words, ...techTerms]) {
+      const lower = word.toLowerCase();
+      counts.set(lower, (counts.get(lower) || 0) + 1);
+    }
+    return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([word]) => word);
+  }
+};
+function createSessionManager(config) {
+  return new SessionManager(config);
+}
+var DEFAULT_ANALYTICS_CONFIG = {
+  metricsWindow: 60 * 60 * 1e3,
+  // 1 hour
+  minCallsForHealth: 5,
+  healthySuccessRate: 0.95,
+  degradedSuccessRate: 0.8,
+  degradedLatencyThreshold: 5e3,
+  // 5 seconds
+  autoCleanup: true,
+  cleanupInterval: 15 * 60 * 1e3
+  // 15 minutes
+};
+var ToolAnalytics = class extends EventEmitter$1 {
+  config;
+  records = /* @__PURE__ */ new Map();
+  previousHealth = /* @__PURE__ */ new Map();
+  cleanupTimer = null;
+  constructor(config) {
+    super();
+    this.config = { ...DEFAULT_ANALYTICS_CONFIG, ...config };
+    if (this.config.autoCleanup) {
+      this.startCleanup();
+    }
+  }
+  /**
+   * Track a tool call
+   */
+  async track(toolId, result) {
+    const record = {
+      toolId,
+      timestamp: /* @__PURE__ */ new Date(),
+      ...result
+    };
+    if (!this.records.has(toolId)) {
+      this.records.set(toolId, []);
+    }
+    this.records.get(toolId).push(record);
+    this.emit("tool:call", record);
+    await this.checkHealthChange(toolId);
+  }
+  /**
+   * Get metrics for a specific tool
+   */
+  getMetrics(toolId) {
+    const records = this.getRecentRecords(toolId);
+    if (records.length === 0) {
+      return {
+        toolId,
+        totalCalls: 0,
+        successCount: 0,
+        failureCount: 0,
+        successRate: 0,
+        avgLatency: 0,
+        p50Latency: 0,
+        p95Latency: 0,
+        p99Latency: 0,
+        errorRate: 0,
+        trend: "unknown",
+        health: "unknown"
+      };
+    }
+    const successCount = records.filter((r) => r.success).length;
+    const failureCount = records.length - successCount;
+    const successRate = successCount / records.length;
+    const latencies = records.map((r) => r.latency).sort((a, b) => a - b);
+    const avgLatency = latencies.reduce((a, b) => a + b, 0) / latencies.length;
+    const p50Latency = this.percentile(latencies, 50);
+    const p95Latency = this.percentile(latencies, 95);
+    const p99Latency = this.percentile(latencies, 99);
+    const lastSuccess = records.filter((r) => r.success).sort(
+      (a, b) => b.timestamp.getTime() - a.timestamp.getTime()
+    )[0]?.timestamp;
+    const lastFailureRecord = records.filter((r) => !r.success).sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())[0];
+    const trend = this.calculateTrend(records);
+    const health = this.calculateHealth(
+      successRate,
+      avgLatency,
+      records.length
+    );
+    return {
+      toolId,
+      totalCalls: records.length,
+      successCount,
+      failureCount,
+      successRate,
+      avgLatency,
+      p50Latency,
+      p95Latency,
+      p99Latency,
+      errorRate: failureCount / records.length,
+      lastSuccess,
+      lastFailure: lastFailureRecord?.timestamp,
+      lastError: lastFailureRecord?.error,
+      trend,
+      health
+    };
+  }
+  /**
+   * Get metrics for all tracked tools
+   */
+  getAllMetrics() {
+    const toolIds = Array.from(this.records.keys());
+    return toolIds.map((id) => this.getMetrics(id));
+  }
+  /**
+   * Get unhealthy tools
+   */
+  getUnhealthyTools(threshold = "unhealthy") {
+    const all = this.getAllMetrics();
+    const levels = threshold === "unhealthy" ? ["unhealthy"] : ["degraded", "unhealthy"];
+    return all.filter((m) => levels.includes(m.health));
+  }
+  /**
+   * Get tool recommendations based on metrics
+   */
+  getRecommendations(toolId) {
+    const metrics = this.getMetrics(toolId);
+    const recommendations = [];
+    if (metrics.health === "unknown") {
+      recommendations.push("Insufficient data to assess tool health");
+      return recommendations;
+    }
+    if (metrics.successRate < this.config.degradedSuccessRate) {
+      recommendations.push(
+        `Low success rate (${(metrics.successRate * 100).toFixed(1)}%). Consider adding retry logic or fallback tools.`
+      );
+    }
+    if (metrics.avgLatency > this.config.degradedLatencyThreshold) {
+      recommendations.push(
+        `High average latency (${metrics.avgLatency.toFixed(0)}ms). Consider caching or timeout optimization.`
+      );
+    }
+    if (metrics.p95Latency > metrics.avgLatency * 3) {
+      recommendations.push(
+        `Large latency variance (p95: ${metrics.p95Latency.toFixed(0)}ms). Consider investigating outliers.`
+      );
+    }
+    if (metrics.trend === "degrading") {
+      recommendations.push(
+        "Tool performance is degrading. Monitor closely and prepare fallback."
+      );
+    }
+    if (metrics.lastError) {
+      recommendations.push(`Last error: ${metrics.lastError}`);
+    }
+    if (recommendations.length === 0) {
+      recommendations.push("Tool is performing well. No action needed.");
+    }
+    return recommendations;
+  }
+  /**
+   * Clear metrics for a tool
+   */
+  clearMetrics(toolId) {
+    this.records.delete(toolId);
+    this.previousHealth.delete(toolId);
+  }
+  /**
+   * Clear all metrics
+   */
+  clearAllMetrics() {
+    this.records.clear();
+    this.previousHealth.clear();
+  }
+  /**
+   * Export metrics for persistence
+   */
+  exportMetrics() {
+    return Array.from(this.records.entries()).map(([toolId, records]) => ({
+      toolId,
+      records
+    }));
+  }
+  /**
+   * Import metrics from persistence
+   */
+  importMetrics(data) {
+    for (const { toolId, records } of data) {
+      const existing = this.records.get(toolId) || [];
+      const restored = records.map((r) => ({
+        ...r,
+        timestamp: new Date(r.timestamp)
+      }));
+      this.records.set(toolId, [...existing, ...restored]);
+    }
+  }
+  /**
+   * Stop cleanup timer
+   */
+  destroy() {
+    if (this.cleanupTimer) {
+      clearInterval(this.cleanupTimer);
+      this.cleanupTimer = null;
+    }
+  }
+  // ==========================================================================
+  // PRIVATE HELPERS
+  // ==========================================================================
+  getRecentRecords(toolId) {
+    const records = this.records.get(toolId) || [];
+    const cutoff = Date.now() - this.config.metricsWindow;
+    return records.filter((r) => r.timestamp.getTime() >= cutoff);
+  }
+  percentile(sorted, p) {
+    if (sorted.length === 0) return 0;
+    const index = Math.ceil(p / 100 * sorted.length) - 1;
+    return sorted[Math.max(0, index)];
+  }
+  calculateTrend(records) {
+    if (records.length < 10) return "unknown";
+    const midpoint = Math.floor(records.length / 2);
+    const firstHalf = records.slice(0, midpoint);
+    const secondHalf = records.slice(midpoint);
+    const firstSuccessRate = firstHalf.filter((r) => r.success).length / firstHalf.length;
+    const secondSuccessRate = secondHalf.filter((r) => r.success).length / secondHalf.length;
+    const diff = secondSuccessRate - firstSuccessRate;
+    if (diff > 0.1) return "improving";
+    if (diff < -0.1) return "degrading";
+    return "stable";
+  }
+  calculateHealth(successRate, avgLatency, callCount) {
+    if (callCount < this.config.minCallsForHealth) {
+      return "unknown";
+    }
+    if (successRate < this.config.degradedSuccessRate) {
+      return "unhealthy";
+    }
+    if (successRate < this.config.healthySuccessRate || avgLatency > this.config.degradedLatencyThreshold) {
+      return "degraded";
+    }
+    return "healthy";
+  }
+  async checkHealthChange(toolId) {
+    const metrics = this.getMetrics(toolId);
+    const previousHealth = this.previousHealth.get(toolId);
+    if (previousHealth !== metrics.health) {
+      if (metrics.health === "degraded") {
+        this.emit("tool:degraded", toolId, metrics);
+      } else if (metrics.health === "unhealthy") {
+        this.emit("tool:unhealthy", toolId, metrics);
+      } else if (metrics.health === "healthy" && (previousHealth === "degraded" || previousHealth === "unhealthy")) {
+        this.emit("tool:recovered", toolId, metrics);
+      }
+      this.previousHealth.set(toolId, metrics.health);
+    }
+  }
+  startCleanup() {
+    this.cleanupTimer = setInterval(() => {
+      let cleaned = 0;
+      const cutoff = Date.now() - this.config.metricsWindow;
+      for (const [toolId, records] of this.records.entries()) {
+        const filtered = records.filter((r) => r.timestamp.getTime() >= cutoff);
+        const removed = records.length - filtered.length;
+        cleaned += removed;
+        if (filtered.length === 0) {
+          this.records.delete(toolId);
+          this.previousHealth.delete(toolId);
+        } else {
+          this.records.set(toolId, filtered);
+        }
+      }
+      if (cleaned > 0) {
+        this.emit("cleanup:complete", cleaned);
+      }
+    }, this.config.cleanupInterval);
+  }
+};
+function createToolAnalytics(config) {
+  return new ToolAnalytics(config);
+}
+function wrapToolCall(analytics, toolId, fn) {
+  const start = Date.now();
+  return fn().then((result) => {
+    analytics.track(toolId, {
+      success: true,
+      latency: Date.now() - start
+    });
+    return result;
+  }).catch((error) => {
+    analytics.track(toolId, {
+      success: false,
+      latency: Date.now() - start,
+      error: error instanceof Error ? error.message : String(error),
+      errorCode: error?.code
+    });
+    throw error;
+  });
+}
 
 // src/agents/skills-navigator.ts
 var DEFAULT_CONFIG = {
@@ -2730,4 +3824,4 @@ if (process.argv[1]?.endsWith("index.ts") || process.argv[1]?.endsWith("index.js
   console.log(`Skills: ${session.skills.skills.map((s) => s.id).join(", ")}`);
 }
 
-export { AGENT_STATUS_TOOL, AgentJobQueue, AsyncAgentRunner, LIST_AGENTS_TOOL, MODE_AGENT_MAP, OPUS67AgentSDK, Opus67, SPAWN_AGENTS_TOOL, SkillsNavigatorAgent, SubagentOrchestrator, TRIGGER_THRESHOLDS, agentJobQueue, asyncAgentRunner, createAsyncRunner, createJobQueue, createOrchestrator, createSDK, evaluateTrigger, executeTrigger, getAllMappedAgents, getAutoSpawnModes, getModeConfig, getModesByPriority, getSkillsNavigator, handleAgentStatus, handleListAgents, handleMultiHopQuery, handleQueryMemory, handleSpawnAgents, handleWriteMemory, isAsyncMode, memoryToolDefinitions, memoryTools, onHighScoreSkillMatch, onModeSwitch, onTaskDetected, opus67, opus67SDK, perfLog, registerSpawnTools, resetSkillsNavigator, spawnTools, subagentOrchestrator, withTiming };
+export { AGENT_STATUS_TOOL, AgentJobQueue, AsyncAgentRunner, DEFAULT_ANALYTICS_CONFIG, DEFAULT_SESSION_CONFIG, LIST_AGENTS_TOOL, MODE_AGENT_MAP, OPUS67AgentSDK, Opus67, SPAWN_AGENTS_TOOL, SessionManager, SkillsNavigatorAgent, SubagentOrchestrator, TRIGGER_THRESHOLDS, ToolAnalytics, agentJobQueue, asyncAgentRunner, createAsyncRunner, createJobQueue, createOrchestrator, createSDK, createSessionManager, createToolAnalytics, evaluateTrigger, executeTrigger, getAllMappedAgents, getAutoSpawnModes, getModeConfig, getModesByPriority, getSkillsNavigator, handleAgentStatus, handleListAgents, handleMultiHopQuery, handleQueryMemory, handleSpawnAgents, handleWriteMemory, isAsyncMode, memoryToolDefinitions, memoryTools, onHighScoreSkillMatch, onModeSwitch, onTaskDetected, opus67, opus67SDK, perfLog, registerSpawnTools, resetSkillsNavigator, spawnTools, subagentOrchestrator, withTiming, wrapToolCall };

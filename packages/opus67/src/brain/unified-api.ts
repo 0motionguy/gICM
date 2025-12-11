@@ -5,14 +5,33 @@
  * and seamless integration across all features.
  */
 
-import { EventEmitter } from 'eventemitter3';
-import { HybridReasoningEngine, type ReasoningRequest, type ReasoningResponse } from './reasoning.js';
-import { PromptCacheManager } from '../cache/prompt-cache.js';
-import { FileContextManager, type ConsistencyCheck } from './file-context.js';
-import { SWEBenchPatterns, type MultiFileEdit, type EditResult } from './swe-bench-patterns.js';
-import { LongHorizonPlanner, type Plan, type TaskNode, type TaskExecutor } from './long-horizon-planning.js';
-import { VerificationLoop, type VerificationResult } from './verification-loops.js';
-import { DynamicToolDiscovery, type DiscoveryResult } from '../mcp/discovery.js';
+import { EventEmitter } from "eventemitter3";
+import {
+  HybridReasoningEngine,
+  type ReasoningRequest,
+  type ReasoningResponse,
+} from "./reasoning.js";
+import { PromptCacheManager } from "../cache/prompt-cache.js";
+import { FileContextManager, type ConsistencyCheck } from "./file-context.js";
+import {
+  SWEBenchPatterns,
+  type MultiFileEdit,
+  type EditResult,
+} from "./swe-bench-patterns.js";
+import {
+  LongHorizonPlanner,
+  type Plan,
+  type TaskNode,
+  type TaskExecutor,
+} from "./long-horizon-planning.js";
+import {
+  VerificationLoop,
+  type VerificationResult,
+} from "./verification-loops.js";
+import {
+  DynamicToolDiscovery,
+  type DiscoveryResult,
+} from "../mcp/discovery.js";
 
 // ============================================================================
 // Types
@@ -42,7 +61,7 @@ export interface UnifiedBrainConfig {
 
 export interface ThinkRequest {
   query: string;
-  complexity?: 'instant' | 'standard' | 'deep' | 'maximum';
+  complexity?: "instant" | "standard" | "deep" | "maximum";
   context?: Record<string, unknown>;
   useCache?: boolean;
 }
@@ -69,7 +88,7 @@ export interface EditCodeResponse {
 
 export interface PlanTaskRequest {
   goal: string;
-  tasks: Array<Omit<TaskNode, 'id' | 'status' | 'retries' | 'createdAt'>>;
+  tasks: Array<Omit<TaskNode, "id" | "status" | "retries" | "createdAt">>;
   executor?: TaskExecutor;
   autoExecute?: boolean;
 }
@@ -108,16 +127,16 @@ export interface BrainStats {
 }
 
 interface UnifiedBrainEvents {
-  'brain:ready': () => void;
-  'brain:think:start': (query: string) => void;
-  'brain:think:complete': (response: ThinkResponse) => void;
-  'brain:edit:start': (editId: string) => void;
-  'brain:edit:complete': (response: EditCodeResponse) => void;
-  'brain:plan:created': (planId: string) => void;
-  'brain:plan:executed': (planId: string, success: boolean) => void;
-  'brain:verify:complete': (result: VerificationResult) => void;
-  'brain:tools:discovered': (result: DiscoveryResult) => void;
-  'error': (error: Error) => void;
+  "brain:ready": () => void;
+  "brain:think:start": (query: string) => void;
+  "brain:think:complete": (response: ThinkResponse) => void;
+  "brain:edit:start": (editId: string) => void;
+  "brain:edit:complete": (response: EditCodeResponse) => void;
+  "brain:plan:created": (planId: string) => void;
+  "brain:plan:executed": (planId: string, success: boolean) => void;
+  "brain:verify:complete": (result: VerificationResult) => void;
+  "brain:tools:discovered": (result: DiscoveryResult) => void;
+  error: (error: Error) => void;
 }
 
 // ============================================================================
@@ -144,7 +163,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
     plansCreated: 0,
     verificationsRun: 0,
     cacheHits: 0,
-    cacheMisses: 0
+    cacheMisses: 0,
   };
 
   constructor(config?: Partial<UnifiedBrainConfig>) {
@@ -162,7 +181,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
       autoVerifyEdits: true,
       autoTrackFiles: true,
       autoPlanTasks: false,
-      ...config
+      ...config,
     };
 
     this.initialize();
@@ -176,7 +195,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
     // Initialize reasoning
     if (this.config.enableReasoning) {
       this.reasoning = new HybridReasoningEngine({
-        anthropicApiKey: this.config.anthropicApiKey
+        anthropicApiKey: this.config.anthropicApiKey,
       });
     }
 
@@ -184,7 +203,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
     if (this.config.enableCaching) {
       this.cache = new PromptCacheManager({
         enableCaching: true,
-        anthropicApiKey: this.config.anthropicApiKey
+        anthropicApiKey: this.config.anthropicApiKey,
       });
     }
 
@@ -193,19 +212,22 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
       this.fileContext = new FileContextManager({
         enableRelationshipTracking: true,
         enableAutoSummary: true,
-        maxSessionFiles: 100
+        maxSessionFiles: 100,
       });
     }
 
     // Initialize code editor
     if (this.config.enableCodeEditing) {
-      this.codeEditor = new SWEBenchPatterns({
-        enableVerification: false, // We'll use the verification loop instead
-        enableRollback: true,
-        maxEditSize: 100,
-        requireContext: false, // Don't require context matching in tests
-        dryRun: true  // Enable dry-run for safety in tests
-      }, this.fileContext);
+      this.codeEditor = new SWEBenchPatterns(
+        {
+          enableVerification: false, // We'll use the verification loop instead
+          enableRollback: true,
+          maxEditSize: 100,
+          requireContext: false, // Don't require context matching in tests
+          dryRun: true, // Enable dry-run for safety in tests
+        },
+        this.fileContext
+      );
     }
 
     // Initialize planner
@@ -215,31 +237,34 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
         maxDependencyDepth: 10,
         enableAdaptivePlanning: true,
         enableParallelExecution: true,
-        defaultMaxRetries: 3
+        defaultMaxRetries: 3,
       });
     }
 
     // Initialize verification
     if (this.config.enableVerification) {
-      this.verification = new VerificationLoop({
-        strategy: 'critical-first',
-        enableCaching: true,
-        defaultTimeout: 30000,
-        defaultRetries: 2,
-        stopOnCriticalFailure: true,
-        workingDirectory: this.config.workingDirectory
-      }, this.fileContext);
+      this.verification = new VerificationLoop(
+        {
+          strategy: "critical-first",
+          enableCaching: true,
+          defaultTimeout: 30000,
+          defaultRetries: 2,
+          stopOnCriticalFailure: true,
+          workingDirectory: this.config.workingDirectory,
+        },
+        this.fileContext
+      );
     }
 
     // Initialize tool discovery
     if (this.config.enableToolDiscovery) {
       this.toolDiscovery = new DynamicToolDiscovery({
-        useAI: true,
-        anthropicApiKey: this.config.anthropicApiKey
+        enableAISearch: true,
+        anthropicApiKey: this.config.anthropicApiKey,
       });
     }
 
-    this.emit('brain:ready');
+    this.emit("brain:ready");
   }
 
   // ==========================================================================
@@ -251,10 +276,10 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
    */
   async think(request: ThinkRequest): Promise<ThinkResponse> {
     if (!this.reasoning) {
-      throw new Error('Reasoning is not enabled');
+      throw new Error("Reasoning is not enabled");
     }
 
-    this.emit('brain:think:start', request.query);
+    this.emit("brain:think:start", request.query);
 
     const startTime = performance.now();
     let cached = false;
@@ -262,7 +287,10 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
 
     // Try cache first if enabled
     if (request.useCache !== false && this.cache) {
-      const cacheKey = JSON.stringify({ query: request.query, complexity: request.complexity });
+      const cacheKey = JSON.stringify({
+        query: request.query,
+        complexity: request.complexity,
+      });
       // Note: Actual caching implementation would go here
       // For now, we'll always miss the cache
       this.stats.cacheMisses++;
@@ -270,9 +298,12 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
 
     // Perform reasoning
     const reasoningRequest: ReasoningRequest = {
-      prompt: request.query,
-      mode: request.complexity,
-      context: request.context
+      task: request.query,
+      forceMode: request.complexity,
+      context:
+        typeof request.context === "object"
+          ? JSON.stringify(request.context)
+          : request.context,
     };
 
     reasoningResponse = await this.reasoning.reason(reasoningRequest);
@@ -280,14 +311,17 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
     const duration = performance.now() - startTime;
 
     const response: ThinkResponse = {
-      response: reasoningResponse.response,
+      response: reasoningResponse.content,
       reasoning: reasoningResponse,
       cached,
-      tokensUsed: reasoningResponse.tokensUsed || 0,
-      duration
+      tokensUsed:
+        reasoningResponse.tokensUsed.input +
+        reasoningResponse.tokensUsed.output +
+        (reasoningResponse.tokensUsed.thinking || 0),
+      duration,
     };
 
-    this.emit('brain:think:complete', response);
+    this.emit("brain:think:complete", response);
 
     return response;
   }
@@ -297,10 +331,10 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
    */
   async editCode(request: EditCodeRequest): Promise<EditCodeResponse> {
     if (!this.codeEditor) {
-      throw new Error('Code editing is not enabled');
+      throw new Error("Code editing is not enabled");
     }
 
-    this.emit('brain:edit:start', request.edit.id);
+    this.emit("brain:edit:start", request.edit.id);
 
     // Track files if enabled
     if (this.config.autoTrackFiles && this.fileContext) {
@@ -316,19 +350,29 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
     let verificationResult: VerificationResult | undefined;
 
     // Verify if enabled and requested
-    if ((request.verify !== false && this.config.autoVerifyEdits) && this.verification) {
-      const files = [...new Set(request.edit.operations.map(op => op.location.file))];
-      verificationResult = await this.verification.verifyEdit(editResult, files, request.edit.id);
+    if (
+      request.verify !== false &&
+      this.config.autoVerifyEdits &&
+      this.verification
+    ) {
+      const files = [
+        ...new Set(request.edit.operations.map((op) => op.location.file)),
+      ];
+      verificationResult = await this.verification.verifyEdit(
+        editResult,
+        files,
+        request.edit.id
+      );
       this.stats.verificationsRun++;
     }
 
     const response: EditCodeResponse = {
       editResult,
       verificationResult,
-      success: editResult.success && (verificationResult?.passed !== false)
+      success: editResult.success && verificationResult?.passed !== false,
     };
 
-    this.emit('brain:edit:complete', response);
+    this.emit("brain:edit:complete", response);
 
     return response;
   }
@@ -338,14 +382,14 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
    */
   async planTask(request: PlanTaskRequest): Promise<PlanTaskResponse> {
     if (!this.planner) {
-      throw new Error('Planning is not enabled');
+      throw new Error("Planning is not enabled");
     }
 
     // Create plan
     const plan = this.planner.createPlan(request.goal, request.tasks);
     this.stats.plansCreated++;
 
-    this.emit('brain:plan:created', plan.id);
+    this.emit("brain:plan:created", plan.id);
 
     let executed = false;
     let success: boolean | undefined;
@@ -356,28 +400,31 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
       success = await this.planner.executePlan(plan.id);
       executed = true;
 
-      this.emit('brain:plan:executed', plan.id, success);
+      this.emit("brain:plan:executed", plan.id, success);
     }
 
     return {
       plan,
       executed,
-      success
+      success,
     };
   }
 
   /**
    * Verify Code - Run verification checks
    */
-  async verifyCode(files: string[], editId?: string): Promise<VerificationResult> {
+  async verifyCode(
+    files: string[],
+    editId?: string
+  ): Promise<VerificationResult> {
     if (!this.verification) {
-      throw new Error('Verification is not enabled');
+      throw new Error("Verification is not enabled");
     }
 
     const result = await this.verification.verify(files, editId);
     this.stats.verificationsRun++;
 
-    this.emit('brain:verify:complete', result);
+    this.emit("brain:verify:complete", result);
 
     return result;
   }
@@ -387,16 +434,12 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
    */
   async discoverTools(request: DiscoverToolsRequest): Promise<DiscoveryResult> {
     if (!this.toolDiscovery) {
-      throw new Error('Tool discovery is not enabled');
+      throw new Error("Tool discovery is not enabled");
     }
 
-    const result = await this.toolDiscovery.discover(
-      request.task,
-      request.maxResults,
-      request.threshold
-    );
+    const result = await this.toolDiscovery.discoverTools(request.task);
 
-    this.emit('brain:tools:discovered', result);
+    this.emit("brain:tools:discovered", result);
 
     return result;
   }
@@ -406,7 +449,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
    */
   async checkFileConsistency(filePath: string): Promise<ConsistencyCheck> {
     if (!this.fileContext) {
-      throw new Error('File context is not enabled');
+      throw new Error("File context is not enabled");
     }
 
     return this.fileContext.checkConsistency(filePath);
@@ -417,7 +460,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
    */
   async trackFile(filePath: string, content?: string): Promise<void> {
     if (!this.fileContext) {
-      throw new Error('File context is not enabled');
+      throw new Error("File context is not enabled");
     }
 
     await this.fileContext.accessFile(filePath, content);
@@ -443,9 +486,9 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
         codeEditing: this.config.enableCodeEditing,
         planning: this.config.enablePlanning,
         verification: this.config.enableVerification,
-        toolDiscovery: this.config.enableToolDiscovery
+        toolDiscovery: this.config.enableToolDiscovery,
       },
-      stats: { ...this.stats }
+      stats: { ...this.stats },
     };
   }
 
@@ -460,7 +503,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
       codeEditor: this.codeEditor,
       planner: this.planner,
       verification: this.verification,
-      toolDiscovery: this.toolDiscovery
+      toolDiscovery: this.toolDiscovery,
     };
   }
 
@@ -474,7 +517,7 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
       plansCreated: 0,
       verificationsRun: 0,
       cacheHits: 0,
-      cacheMisses: 0
+      cacheMisses: 0,
     };
   }
 }
@@ -483,6 +526,8 @@ export class UnifiedBrain extends EventEmitter<UnifiedBrainEvents> {
 // Factory
 // ============================================================================
 
-export function createUnifiedBrain(config?: Partial<UnifiedBrainConfig>): UnifiedBrain {
+export function createUnifiedBrain(
+  config?: Partial<UnifiedBrainConfig>
+): UnifiedBrain {
   return new UnifiedBrain(config);
 }

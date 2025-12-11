@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import { SkillLoader, MCPHub, AutonomyEngine } from './chunk-64IVSL5H.js';
+import { SkillLoader, MCPHub, AutonomyEngine } from './chunk-4AMA33EP.js';
 import { ContextIndexer } from './chunk-XVOLIGJS.js';
-import { generateBootScreen } from './chunk-KRJAO3QU.js';
+import { generateBootScreen } from './chunk-YEUABUQB.js';
 import './chunk-WHBX6V2T.js';
 import { VERSION } from './chunk-IEE3QXBQ.js';
-import { createUnifiedMemory, createEventConsumer } from './chunk-GCLGOCG5.js';
-import './chunk-2BMLDUKW.js';
+import { createUnifiedMemory, createEventConsumer } from './chunk-X27EIMGO.js';
+import './chunk-F6HCT36D.js';
 import './chunk-Z7YWWTEP.js';
 import './chunk-JD6NEK3D.js';
 import './chunk-J7GF6OJU.js';
@@ -648,7 +648,7 @@ async function main() {
       if (!subCommand) {
         console.log("\n\u{1F9E0} Intelligence Layer Status\n");
         try {
-          const { getIntelligenceStats } = await import('./intelligence-KDEGEAJX.js');
+          const { getIntelligenceStats } = await import('./intelligence-ARVIFPO5.js');
           const stats = await getIntelligenceStats();
           console.log("   Skills:");
           console.log(`     Total: ${stats.skills.total}`);
@@ -683,7 +683,7 @@ async function main() {
 \u{1F50D} Searching skills for: "${query}"
 `);
         try {
-          const { findSimilarSkills } = await import('./intelligence-KDEGEAJX.js');
+          const { findSimilarSkills } = await import('./intelligence-ARVIFPO5.js');
           const results = await findSimilarSkills(query, 10);
           if (results.length === 0) {
             console.log("   No matching skills found.\n");
@@ -709,7 +709,7 @@ async function main() {
 \u2708\uFE0F Pre-flight check for: "${task}"
 `);
         try {
-          const { findBestSkills, preFlightCheck } = await import('./intelligence-KDEGEAJX.js');
+          const { findBestSkills, preFlightCheck } = await import('./intelligence-ARVIFPO5.js');
           const skillMatches = await findBestSkills(task, 5);
           const skillIds = skillMatches.map((m) => m.skillId);
           console.log("   Recommended skills:");
@@ -756,7 +756,7 @@ async function main() {
       if (subCommand === "clear") {
         console.log("\n\u{1F9F9} Clearing all learnings...\n");
         try {
-          const { getLearningLoop } = await import('./learning-loop-CU3BPJ2J.js');
+          const { getLearningLoop } = await import('./learning-loop-I3SHYRDM.js');
           const loop = getLearningLoop();
           await loop.clear();
           console.log("   \u2705 All learnings cleared.\n");
@@ -767,7 +767,7 @@ async function main() {
       }
       console.log("\n\u{1F4DA} Learning Statistics\n");
       try {
-        const { getLearningLoop } = await import('./learning-loop-CU3BPJ2J.js');
+        const { getLearningLoop } = await import('./learning-loop-I3SHYRDM.js');
         const loop = getLearningLoop();
         const stats = await loop.getStats();
         console.log(`   Total interactions: ${stats.totalInteractions}`);
@@ -792,7 +792,7 @@ async function main() {
       if (subCommand === "status") {
         console.log("\n\u2601\uFE0F Sync Status\n");
         try {
-          const { getCloudSync } = await import('./cloud-sync-RS32KGFB.js');
+          const { getCloudSync } = await import('./cloud-sync-QC6ADJOC.js');
           const sync = getCloudSync();
           const status = sync.getStatus();
           console.log(`   Last sync: ${status.lastSync ? new Date(status.lastSync).toLocaleString() : "Never"}`);
@@ -807,7 +807,7 @@ async function main() {
       }
       console.log("\n\u2601\uFE0F Syncing learnings to cloud...\n");
       try {
-        const { getCloudSync } = await import('./cloud-sync-RS32KGFB.js');
+        const { getCloudSync } = await import('./cloud-sync-QC6ADJOC.js');
         const sync = getCloudSync();
         const result = await sync.forceSync();
         if (result.success) {

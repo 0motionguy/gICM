@@ -733,7 +733,7 @@ export class OPUS67AgentSDK
         available: this.activeSandboxExecutions < this.maxConcurrentSandbox,
         activeExecutions: this.activeSandboxExecutions,
         maxConcurrent: this.maxConcurrentSandbox,
-        memoryUsage: process.memoryUsage?.()?.heapUsed / (1024 * 1024) ?? 0,
+        memoryUsage: (process.memoryUsage?.()?.heapUsed ?? 0) / (1024 * 1024),
         uptime: Date.now() - this.sandboxStartTime,
       };
     },

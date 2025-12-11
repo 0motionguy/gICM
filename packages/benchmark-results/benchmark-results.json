@@ -1,113 +1,31 @@
 {
-  "version": "6.2.0",
-  "timestamp": "2025-12-11T16:28:00.000Z",
+  "version": "5.1.14",
+  "timestamp": "2025-12-11T17:30:10.550Z",
   "environment": {
     "platform": "win32",
     "nodeVersion": "v22.19.0",
     "arch": "x64"
   },
-  "agentSpawning": {
-    "singleAgentSpawn": {
-      "value": 0.09,
-      "unit": "ms",
-      "target": 100,
-      "passed": true
-    },
-    "parallelAgentsSpawn": {
-      "value": 0.12,
-      "unit": "ms",
-      "target": 500,
-      "passed": true
-    },
-    "taskAnalysis": {
-      "value": 0.53,
-      "unit": "ms",
-      "target": 50,
-      "passed": true
-    },
-    "jobQueueThroughput": {
-      "value": 52438,
-      "unit": "agents/sec",
-      "target": 10,
-      "passed": true
-    },
-    "sdkV2SessionCreation": {
-      "value": 0.23,
-      "unit": "ms",
-      "target": 50,
-      "passed": true
-    },
-    "mcpToolResponse": {
-      "value": 0.31,
-      "unit": "ms",
-      "target": 100,
-      "passed": true
-    },
-    "availableAgents": {
-      "value": 21,
-      "unit": "agents",
-      "target": 15,
-      "passed": true
-    }
-  },
-  "modelComparison": {
-    "opus67": {
-      "humanEval": 96.8,
-      "costPer1k": 0.045,
-      "latency": 850,
-      "overall": 93.8
-    },
-    "claude-opus-4.5": {
-      "humanEval": 91.2,
-      "costPer1k": 0.045,
-      "latency": 1200,
-      "overall": 85.2
-    },
-    "gpt-codex-5.1": {
-      "humanEval": 89.5,
-      "costPer1k": 0.02,
-      "latency": 950,
-      "overall": 84.5
-    },
-    "deepseek-v3": {
-      "humanEval": 92.4,
-      "costPer1k": 0.0002,
-      "latency": 600,
-      "overall": 93.5
-    },
-    "gemini-3-pro": {
-      "humanEval": 87.3,
-      "costPer1k": 0.003,
-      "latency": 550,
-      "overall": 88.5
-    },
-    "grok-3": {
-      "humanEval": 88.7,
-      "costPer1k": 0.01,
-      "latency": 750,
-      "overall": 86.0
-    }
-  },
   "results": [
     {
       "name": "Boot Screen Generation (avg)",
       "category": "performance",
-      "value": 96.36021999999998,
+      "value": 60.22189999999991,
       "unit": "ms",
       "target": 100,
       "targetOp": "lt",
       "details": {
         "iterations": 10,
-        "p95": 188.9939000000004,
-        "min": 76.4992000000002,
-        "max": 188.9939000000004
+        "p95": 112.52839999999969,
+        "min": 49.734899999999925,
+        "max": 112.52839999999969
       },
       "passed": true
     },
     {
       "name": "Full Boot Time (avg)",
       "category": "performance",
-      "value": 84.92912999999999,
+      "value": 54.52972000000004,
       "unit": "ms",
       "target": 100,
       "targetOp": "lt",
@@ -119,7 +37,7 @@
     {
       "name": "Registry Load Time (avg)",
       "category": "performance",
-      "value": 42.75656999999992,
+      "value": 28.900669999999856,
       "unit": "ms",
       "target": 50,
       "targetOp": "lt",
@@ -131,7 +49,7 @@
     {
       "name": "Skill Match Time (avg)",
       "category": "performance",
-      "value": 44.85186000000012,
+      "value": 29.155089999999838,
       "unit": "ms",
       "target": 100,
       "targetOp": "lt",
@@ -144,7 +62,7 @@
     {
       "name": "Time Per Skill",
       "category": "performance",
-      "value": 0.3180982978723413,
+      "value": 0.20677368794326126,
       "unit": "ms",
       "target": 20,
       "targetOp": "lt",
@@ -153,17 +71,17 @@
     {
       "name": "All Skills Load (141 skills)",
       "category": "performance",
-      "value": 0.05910000000039872,
+      "value": 0.02289999999993597,
       "unit": "ms",
       "details": {
         "skillCount": 141,
-        "avgPerSkill": 0.0004191489361730406
+        "avgPerSkill": 0.0001624113475172764
       }
     },
     {
       "name": "Mode Detection Time (avg)",
       "category": "performance",
-      "value": 0.3077800000000025,
+      "value": 0.2291599999999562,
       "unit": "ms",
       "target": 10,
       "targetOp": "lt",
@@ -172,7 +90,7 @@
     {
       "name": "MCP Lookup Time (avg)",
       "category": "performance",
-      "value": 48.947779999999966,
+      "value": 24.834560000000057,
       "unit": "ms",
       "target": 50,
       "targetOp": "lt",
@@ -184,7 +102,7 @@
     {
       "name": "Skill-MCP Resolution (avg)",
       "category": "performance",
-      "value": 46.70390999999972,
+      "value": 26.49223000000011,
       "unit": "ms",
       "target": 20,
       "targetOp": "lt",
@@ -193,12 +111,12 @@
     {
       "name": "E2E Query Processing (avg)",
       "category": "performance",
-      "value": 93.79578999999985,
+      "value": 50.166489999999975,
       "unit": "ms",
       "target": 200,
       "targetOp": "lt",
       "details": {
-        "p95": 107.9389000000001
+        "p95": 57.306399999999485
       },
       "passed": true
     },
@@ -254,22 +172,22 @@
     {
       "name": "Cold Registry Load",
       "category": "caching",
-      "value": 46.73149999999987,
+      "value": 33.273699999999735,
       "unit": "ms"
     },
     {
       "name": "Warm Registry Load",
       "category": "caching",
-      "value": 50.04769999999917,
+      "value": 34.62089999999989,
       "unit": "ms",
-      "target": 23.365749999999935,
+      "target": 16.636849999999868,
       "targetOp": "lt",
       "passed": false
     },
     {
       "name": "Cache Speedup",
       "category": "caching",
-      "value": 0.9337392127910104,
+      "value": 0.9610870890127016,
       "unit": "x",
       "target": 2,
       "targetOp": "gt",
@@ -278,7 +196,7 @@
     {
       "name": "Cache Efficiency",
       "category": "caching",
-      "value": -7.096284091029194,
+      "value": -4.048843380808771,
       "unit": "%",
       "target": 50,
       "targetOp": "gt",
@@ -301,81 +219,81 @@
     {
       "name": "Cold Mode Switch (avg)",
       "category": "caching",
-      "value": 94.24682500000017,
+      "value": 51.24369999999999,
       "unit": "ms"
     },
     {
       "name": "Warm Mode Switch (avg)",
       "category": "caching",
-      "value": 94.2519000000002,
+      "value": 50.402424999999994,
       "unit": "ms",
-      "target": 94.24682500000017,
+      "target": 51.24369999999999,
       "targetOp": "lt",
-      "passed": false
+      "passed": true
     },
     {
       "name": "Baseline Heap Used",
       "category": "memory",
-      "value": 156.4030990600586,
+      "value": 144.7693099975586,
       "unit": "MB",
       "target": 50,
       "targetOp": "lt",
       "details": {
-        "heapTotal": "189.46 MB",
-        "rss": "812.80 MB"
+        "heapTotal": "168.33 MB",
+        "rss": "991.85 MB"
       },
       "passed": false
     },
     {
       "name": "Boot Memory Delta",
       "category": "memory",
-      "value": 10.58990478515625,
+      "value": 10.160484313964844,
       "unit": "MB",
       "target": 10,
       "targetOp": "lt",
       "details": {
-        "before": "156.44 MB",
-        "after": "167.03 MB"
+        "before": "144.80 MB",
+        "after": "154.96 MB"
       },
       "passed": false
     },
     {
       "name": "Memory Per Skill",
       "category": "memory",
-      "value": 1164.109375,
+      "value": -1557.121875,
       "unit": "KB",
       "target": 50,
       "targetOp": "lt",
       "details": {
         "skillsLoaded": 5,
-        "totalDelta": "5.68 MB"
+        "totalDelta": "-7972464 B"
       },
-      "passed": false
+      "passed": true
     },
     {
       "name": "Memory Per MCP",
       "category": "memory",
-      "value": 214.00060096153845,
+      "value": 193.04657451923077,
       "unit": "KB",
       "target": 20,
       "targetOp": "lt",
       "details": {
         "connectionCount": 26,
-        "totalDelta": "5.43 MB"
+        "totalDelta": "4.90 MB"
       },
       "passed": false
     },
     {
       "name": "Peak Memory",
       "category": "memory",
-      "value": 178.255615234375,
+      "value": 173.54486846923828,
       "unit": "MB",
       "target": 100,
       "targetOp": "lt",
       "details": {
-        "before": "178.26 MB",
-        "peak": "178.26 MB",
-        "after": "93.88 MB",
+        "before": "152.37 MB",
+        "peak": "173.54 MB",
+        "after": "63.53 MB",
         "operations": 25
       },
       "passed": false
@@ -383,27 +301,27 @@
     {
       "name": "Memory Leak Check",
       "category": "memory",
-      "value": -44.666131366391866,
+      "value": 119.31279771599932,
       "unit": "%",
       "target": 50,
       "targetOp": "lt",
       "details": {
-        "initialCycle1": "93.91 MB",
-        "finalCycle3": "51.97 MB",
-        "isLeaking": false
+        "initialCycle1": "63.56 MB",
+        "finalCycle3": "139.40 MB",
+        "isLeaking": true
       },
-      "passed": true
+      "passed": false
     }
   ],
   "summary": {
     "totalTests": 27,
-    "passed": 9,
-    "failed": 13,
-    "successRate": 40.909090909090914
+    "passed": 10,
+    "failed": 12,
+    "successRate": 45.45454545454545
   },
   "marketingMetrics": {
-    "Boot Time": "96ms",
-    "Skill Loading": "141 skills in 45ms",
+    "Boot Time": "60ms",
+    "Skill Loading": "141 skills in 29ms",
     "Token Savings": "0% reduction",
     "Cache Hit Rate": "85%+",
     "Memory Usage": "< 180MB RAM"

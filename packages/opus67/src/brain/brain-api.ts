@@ -3,14 +3,27 @@
  * REST/WebSocket API for dashboard integration
  */
 
-import { EventEmitter } from 'eventemitter3';
-import { BrainRuntime, createBrainRuntime, type BrainRequest, type BrainResponse, type BrainStatus } from './brain-runtime.js';
-import type { ModeName } from '../mode-selector.js';
-import type { ImprovementOpportunity } from '../evolution/index.js';
+import { EventEmitter } from "eventemitter3";
+import {
+  BrainRuntime,
+  createBrainRuntime,
+  type BrainRequest,
+  type BrainResponse,
+  type BrainStatus,
+} from "./brain-runtime.js";
+import type { ModeName } from "../mode-selector.js";
+import type { ImprovementOpportunity } from "../evolution/index.js";
 
 // API Types
 export interface ApiRequest {
-  method: 'query' | 'status' | 'metrics' | 'history' | 'mode' | 'evolution' | 'deliberate';
+  method:
+    | "query"
+    | "status"
+    | "metrics"
+    | "history"
+    | "mode"
+    | "evolution"
+    | "deliberate";
   payload?: Record<string, unknown>;
 }
 
@@ -23,16 +36,16 @@ export interface ApiResponse<T = unknown> {
 }
 
 export interface WebSocketMessage {
-  type: 'status' | 'response' | 'mode_change' | 'evolution_cycle' | 'error';
+  type: "status" | "response" | "mode_change" | "evolution_cycle" | "error";
   payload: unknown;
   timestamp: Date;
 }
 
 interface ApiEvents {
-  'request': (req: ApiRequest) => void;
-  'response': (res: ApiResponse) => void;
-  'ws:message': (msg: WebSocketMessage) => void;
-  'error': (error: Error) => void;
+  request: (req: ApiRequest) => void;
+  response: (res: ApiResponse) => void;
+  "ws:message": (msg: WebSocketMessage) => void;
+  error: (error: Error) => void;
 }
 
 /**
@@ -54,35 +67,35 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    * Setup event forwarding to WebSocket
    */
   private setupEventForwarding(): void {
-    this.brain.on('request:complete', (response) => {
+    this.brain.on("request:complete", (response) => {
       this.broadcast({
-        type: 'response',
+        type: "response",
         payload: response,
-        timestamp: new Date()
+        timestamp: new Date(),
       });
     });
 
-    this.brain.on('mode:switched', (from, to) => {
+    this.brain.on("mode:switched", (from, to) => {
       this.broadcast({
-        type: 'mode_change',
+        type: "mode_change",
         payload: { from, to },
-        timestamp: new Date()
+        timestamp: new Date(),
       });
     });
 
-    this.brain.on('evolution:cycle', (cycleId) => {
+    this.brain.on("evolution:cycle", (cycleId) => {
       this.broadcast({
-        type: 'evolution_cycle',
+        type: "evolution_cycle",
         payload: { cycleId },
-        timestamp: new Date()
+        timestamp: new Date(),
       });
     });
 
-    this.brain.on('error', (error) => {
+    this.brain.on("error", (error) => {
       this.broadcast({
-        type: 'error',
+        type: "error",
         payload: { message: error.message },
-        timestamp: new Date()
+        timestamp: new Date(),
       });
     });
   }
@@ -106,7 +119,7 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    * Broadcast message to all subscribers
    */
   private broadcast(msg: WebSocketMessage): void {
-    this.emit('ws:message', msg);
+    this.emit("ws:message", msg);
     for (const callback of this.subscribers) {
       callback(msg);
     }
@@ -117,38 +130,46 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    */
   async handleRequest(request: ApiRequest): Promise<ApiResponse> {
     const requestId = this.generateRequestId();
-    this.emit('request', request);
+    this.emit("request", request);
 
     try {
       let data: unknown;
 
       switch (request.method) {
-        case 'query':
-          data = await this.handleQuery(request.payload as BrainRequest);
+        case "query":
+          data = await this.handleQuery(
+            request.payload as unknown as BrainRequest
+          );
           break;
 
-        case 'status':
+        case "status":
           data = await this.handleStatus();
           break;
 
-        case 'metrics':
+        case "metrics":
           data = await this.handleMetrics();
           break;
 
-        case 'history':
+        case "history":
           data = this.handleHistory(request.payload as { limit?: number });
           break;
 
-        case 'mode':
-          data = await this.handleMode(request.payload as { mode?: ModeName; action?: 'get' | 'set' });
+        case "mode":
+          data = await this.handleMode(
+            request.payload as { mode?: ModeName; action?: "get" | "set" }
+          );
           break;
 
-        case 'evolution':
-          data = await this.handleEvolution(request.payload as { action: string });
+        case "evolution":
+          data = await this.handleEvolution(
+            request.payload as { action: string }
+          );
           break;
 
-        case 'deliberate':
-          data = await this.handleDeliberate(request.payload as { question: string });
+        case "deliberate":
+          data = await this.handleDeliberate(
+            request.payload as { question: string }
+          );
           break;
 
         default:
@@ -159,21 +180,20 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
         success: true,
         data,
         timestamp: new Date(),
-        requestId
+        requestId,
       };
 
-      this.emit('response', response);
+      this.emit("response", response);
       return response;
-
     } catch (error) {
       const response: ApiResponse = {
         success: false,
         error: String(error),
         timestamp: new Date(),
-        requestId
+        requestId,
       };
 
-      this.emit('response', response);
+      this.emit("response", response);
       return response;
     }
   }
@@ -183,7 +203,7 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    */
   private async handleQuery(payload: BrainRequest): Promise<BrainResponse> {
     if (!payload?.query) {
-      throw new Error('Query is required');
+      throw new Error("Query is required");
     }
     return this.brain.process(payload);
   }
@@ -212,8 +232,11 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
   /**
    * Handle mode request
    */
-  private async handleMode(payload?: { mode?: ModeName; action?: 'get' | 'set' }): Promise<{ mode: ModeName }> {
-    if (payload?.action === 'set' && payload?.mode) {
+  private async handleMode(payload?: {
+    mode?: ModeName;
+    action?: "get" | "set";
+  }): Promise<{ mode: ModeName }> {
+    if (payload?.action === "set" && payload?.mode) {
       this.brain.setMode(payload.mode);
     }
     return { mode: this.brain.getMode() };
@@ -224,19 +247,19 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    */
   private async handleEvolution(payload: { action: string }): Promise<unknown> {
     switch (payload.action) {
-      case 'start':
+      case "start":
         this.brain.startEvolution();
-        return { status: 'started' };
+        return { status: "started" };
 
-      case 'stop':
+      case "stop":
         this.brain.stopEvolution();
-        return { status: 'stopped' };
+        return { status: "stopped" };
 
-      case 'cycle':
+      case "cycle":
         await this.brain.runEvolutionCycle();
-        return { status: 'cycle_complete' };
+        return { status: "cycle_complete" };
 
-      case 'pending':
+      case "pending":
         return { opportunities: this.brain.getPendingOpportunities() };
 
       default:
@@ -249,7 +272,7 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    */
   private async handleDeliberate(payload: { question: string }) {
     if (!payload?.question) {
-      throw new Error('Question is required');
+      throw new Error("Question is required");
     }
     return this.brain.deliberate(payload.question);
   }
@@ -257,7 +280,7 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
   /**
    * Boot the BRAIN and return boot screen
    */
-  boot(): string {
+  async boot(): Promise<string> {
     return this.brain.boot();
   }
 
@@ -275,19 +298,40 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
     query: (body: BrainRequest) => Promise<ApiResponse<BrainResponse>>;
     status: () => Promise<ApiResponse<BrainStatus>>;
     metrics: () => Promise<ApiResponse>;
-    history: (query: { limit?: string }) => Promise<ApiResponse<BrainResponse[]>>;
-    mode: (body: { mode?: ModeName }) => Promise<ApiResponse<{ mode: ModeName }>>;
+    history: (query: {
+      limit?: string;
+    }) => Promise<ApiResponse<BrainResponse[]>>;
+    mode: (body: {
+      mode?: ModeName;
+    }) => Promise<ApiResponse<{ mode: ModeName }>>;
     evolution: (body: { action: string }) => Promise<ApiResponse>;
     deliberate: (body: { question: string }) => Promise<ApiResponse>;
   } {
     return {
-      query: async (body) => this.handleRequest({ method: 'query', payload: body }) as Promise<ApiResponse<BrainResponse>>,
-      status: async () => this.handleRequest({ method: 'status' }) as Promise<ApiResponse<BrainStatus>>,
-      metrics: async () => this.handleRequest({ method: 'metrics' }),
-      history: async (query) => this.handleRequest({ method: 'history', payload: { limit: parseInt(query.limit ?? '10') } }) as Promise<ApiResponse<BrainResponse[]>>,
-      mode: async (body) => this.handleRequest({ method: 'mode', payload: { ...body, action: body.mode ? 'set' : 'get' } }) as Promise<ApiResponse<{ mode: ModeName }>>,
-      evolution: async (body) => this.handleRequest({ method: 'evolution', payload: body }),
-      deliberate: async (body) => this.handleRequest({ method: 'deliberate', payload: body })
+      query: async (body) =>
+        this.handleRequest({
+          method: "query",
+          payload: body as unknown as Record<string, unknown>,
+        }) as Promise<ApiResponse<BrainResponse>>,
+      status: async () =>
+        this.handleRequest({ method: "status" }) as Promise<
+          ApiResponse<BrainStatus>
+        >,
+      metrics: async () => this.handleRequest({ method: "metrics" }),
+      history: async (query) =>
+        this.handleRequest({
+          method: "history",
+          payload: { limit: parseInt(query.limit ?? "10") },
+        }) as Promise<ApiResponse<BrainResponse[]>>,
+      mode: async (body) =>
+        this.handleRequest({
+          method: "mode",
+          payload: { ...body, action: body.mode ? "set" : "get" },
+        }) as Promise<ApiResponse<{ mode: ModeName }>>,
+      evolution: async (body) =>
+        this.handleRequest({ method: "evolution", payload: body }),
+      deliberate: async (body) =>
+        this.handleRequest({ method: "deliberate", payload: body }),
     };
   }
 
@@ -296,152 +340,180 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
    */
   getOpenAPISpec(): object {
     return {
-      openapi: '3.0.0',
+      openapi: "3.0.0",
       info: {
-        title: 'OPUS 67 BRAIN API',
-        version: '3.0.0',
-        description: 'Self-evolving AI runtime with multi-model routing and council deliberation'
+        title: "OPUS 67 BRAIN API",
+        version: "3.0.0",
+        description:
+          "Self-evolving AI runtime with multi-model routing and council deliberation",
       },
       servers: [
-        { url: 'http://localhost:3100', description: 'Local development' }
+        { url: "http://localhost:3100", description: "Local development" },
       ],
       paths: {
-        '/api/brain/query': {
+        "/api/brain/query": {
           post: {
-            summary: 'Process a query through BRAIN',
+            summary: "Process a query through BRAIN",
             requestBody: {
               content: {
-                'application/json': {
+                "application/json": {
                   schema: {
-                    type: 'object',
-                    required: ['query'],
+                    type: "object",
+                    required: ["query"],
                     properties: {
-                      query: { type: 'string' },
-                      forceMode: { type: 'string', enum: ['auto', 'scan', 'build', 'review', 'architect', 'debug'] },
-                      forceCouncil: { type: 'boolean' },
-                      skipMemory: { type: 'boolean' }
-                    }
-                  }
-                }
-              }
+                      query: { type: "string" },
+                      forceMode: {
+                        type: "string",
+                        enum: [
+                          "auto",
+                          "scan",
+                          "build",
+                          "review",
+                          "architect",
+                          "debug",
+                        ],
+                      },
+                      forceCouncil: { type: "boolean" },
+                      skipMemory: { type: "boolean" },
+                    },
+                  },
+                },
+              },
             },
             responses: {
-              '200': { description: 'Query processed successfully' }
-            }
-          }
+              "200": { description: "Query processed successfully" },
+            },
+          },
         },
-        '/api/brain/status': {
+        "/api/brain/status": {
           get: {
-            summary: 'Get BRAIN runtime status',
+            summary: "Get BRAIN runtime status",
             responses: {
-              '200': { description: 'Status returned successfully' }
-            }
-          }
+              "200": { description: "Status returned successfully" },
+            },
+          },
         },
-        '/api/brain/metrics': {
+        "/api/brain/metrics": {
           get: {
-            summary: 'Get comprehensive metrics',
+            summary: "Get comprehensive metrics",
             responses: {
-              '200': { description: 'Metrics returned successfully' }
-            }
-          }
+              "200": { description: "Metrics returned successfully" },
+            },
+          },
         },
-        '/api/brain/history': {
+        "/api/brain/history": {
           get: {
-            summary: 'Get query history',
+            summary: "Get query history",
             parameters: [
-              { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 } }
+              {
+                name: "limit",
+                in: "query",
+                schema: { type: "integer", default: 10 },
+              },
             ],
             responses: {
-              '200': { description: 'History returned successfully' }
-            }
-          }
+              "200": { description: "History returned successfully" },
+            },
+          },
         },
-        '/api/brain/mode': {
+        "/api/brain/mode": {
           get: {
-            summary: 'Get current mode',
+            summary: "Get current mode",
             responses: {
-              '200': { description: 'Mode returned' }
-            }
+              "200": { description: "Mode returned" },
+            },
           },
           post: {
-            summary: 'Set mode',
+            summary: "Set mode",
             requestBody: {
               content: {
-                'application/json': {
+                "application/json": {
                   schema: {
-                    type: 'object',
+                    type: "object",
                     properties: {
-                      mode: { type: 'string', enum: ['auto', 'scan', 'build', 'review', 'architect', 'debug'] }
-                    }
-                  }
-                }
-              }
+                      mode: {
+                        type: "string",
+                        enum: [
+                          "auto",
+                          "scan",
+                          "build",
+                          "review",
+                          "architect",
+                          "debug",
+                        ],
+                      },
+                    },
+                  },
+                },
+              },
             },
             responses: {
-              '200': { description: 'Mode set successfully' }
-            }
-          }
+              "200": { description: "Mode set successfully" },
+            },
+          },
         },
-        '/api/brain/evolution': {
+        "/api/brain/evolution": {
           post: {
-            summary: 'Control evolution engine',
+            summary: "Control evolution engine",
             requestBody: {
               content: {
-                'application/json': {
+                "application/json": {
                   schema: {
-                    type: 'object',
-                    required: ['action'],
+                    type: "object",
+                    required: ["action"],
                     properties: {
-                      action: { type: 'string', enum: ['start', 'stop', 'cycle', 'pending'] }
-                    }
-                  }
-                }
-              }
+                      action: {
+                        type: "string",
+                        enum: ["start", "stop", "cycle", "pending"],
+                      },
+                    },
+                  },
+                },
+              },
             },
             responses: {
-              '200': { description: 'Evolution action executed' }
-            }
-          }
+              "200": { description: "Evolution action executed" },
+            },
+          },
         },
-        '/api/brain/deliberate': {
+        "/api/brain/deliberate": {
           post: {
-            summary: 'Invoke council deliberation',
+            summary: "Invoke council deliberation",
             requestBody: {
               content: {
-                'application/json': {
+                "application/json": {
                   schema: {
-                    type: 'object',
-                    required: ['question'],
+                    type: "object",
+                    required: ["question"],
                     properties: {
-                      question: { type: 'string' }
-                    }
-                  }
-                }
-              }
+                      question: { type: "string" },
+                    },
+                  },
+                },
+              },
             },
             responses: {
-              '200': { description: 'Deliberation result' }
-            }
-          }
-        }
+              "200": { description: "Deliberation result" },
+            },
+          },
+        },
       },
       components: {
         schemas: {
           BrainResponse: {
-            type: 'object',
+            type: "object",
             properties: {
-              id: { type: 'string' },
-              query: { type: 'string' },
-              mode: { type: 'string' },
-              response: { type: 'string' },
-              model: { type: 'string' },
-              cost: { type: 'number' },
-              latencyMs: { type: 'number' }
-            }
-          }
-        }
-      }
+              id: { type: "string" },
+              query: { type: "string" },
+              mode: { type: "string" },
+              response: { type: "string" },
+              model: { type: "string" },
+              cost: { type: "number" },
+              latencyMs: { type: "number" },
+            },
+          },
+        },
+      },
     };
   }
 }

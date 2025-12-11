@@ -16,6 +16,7 @@
  * Result: Claude has access to EVERYTHING, consistently, every session.
  */
 
+import { join } from "path";
 import { loadMasterRegistry } from "./registry/loader.js";
 import { injectTheDoor } from "./door/injector.js";
 import { registerAllMCPs } from "./mcp/registrar.js";
@@ -128,10 +129,16 @@ async function boot(): Promise<void> {
     let indexedFiles = 0;
     let indexedTokens = 0;
     try {
-      const indexer = new ContextIndexer();
-      const indexResult = await indexer.index(projectRoot);
-      indexedFiles = indexResult.totalFiles;
-      indexedTokens = indexResult.totalTokens;
+      const indexer = new ContextIndexer({
+        indexPaths: [projectRoot],
+        excludePatterns: ["node_modules", ".git", "dist", "build"],
+        maxTokens: 100000,
+        vectorDbPath: join(projectRoot, ".opus67", "vector-db"),
+      });
+      await indexer.index(projectRoot);
+      const stats = indexer.getStats();
+      indexedFiles = stats.totalFiles;
+      indexedTokens = stats.totalTokens;
       console.log(`   ✓ ${indexedFiles} files indexed`);
       console.log(`   ✓ ${indexedTokens.toLocaleString()} tokens\n`);
     } catch (indexError) {

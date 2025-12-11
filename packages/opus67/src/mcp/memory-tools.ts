@@ -42,7 +42,7 @@ export interface MemoryToolResult {
 }
 
 export type MemoryToolHandler = (
-  params: MemoryToolParams,
+  params: MemoryToolParams
 ) => Promise<MemoryToolResult>;
 
 // =============================================================================
@@ -53,7 +53,7 @@ export type MemoryToolHandler = (
  * Query unified memory (semantic + keyword search)
  */
 export async function handleQueryMemory(
-  params: MemoryToolParams,
+  params: MemoryToolParams
 ): Promise<MemoryToolResult> {
   const startTime = Date.now();
 
@@ -98,7 +98,7 @@ export async function handleQueryMemory(
  * Multi-hop reasoning query (follows relationships 1-5 hops)
  */
 export async function handleMultiHopQuery(
-  params: MemoryToolParams,
+  params: MemoryToolParams
 ): Promise<MemoryToolResult> {
   const startTime = Date.now();
 
@@ -114,7 +114,7 @@ export async function handleMultiHopQuery(
 
     const results = await memory.multiHopQuery(
       params.query,
-      params.maxHops || 3,
+      params.maxHops || 3
     );
 
     const uniqueSources = [...new Set(results.map((r) => r.source))];
@@ -140,7 +140,7 @@ export async function handleMultiHopQuery(
  * Write fact/episode/learning to memory
  */
 export async function handleWriteMemory(
-  params: MemoryToolParams,
+  params: MemoryToolParams
 ): Promise<MemoryToolResult> {
   if (!params.content) {
     return { success: false, error: "Content parameter is required" };
@@ -156,15 +156,16 @@ export async function handleWriteMemory(
       return { success: false, error: "UnifiedMemory not initialized" };
     }
 
-    const result = await memory.write(
-      params.content,
-      params.type as "fact" | "episode" | "learning" | "win",
-      params.metadata,
-    );
+    const result = await memory.write({
+      content: params.content,
+      type: params.type as "fact" | "episode" | "learning" | "win",
+      metadata: params.metadata,
+    });
 
+    const idList = Object.values(result.ids).join(", ");
     return {
       success: true,
-      data: { id: result.id },
+      data: { id: idList },
     };
   } catch (error) {
     return {

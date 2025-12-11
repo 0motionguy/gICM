@@ -6,23 +6,68 @@
  * Pre-indexed knowledge for skills, capabilities, synergies, and MCPs.
  */
 
-import { EventEmitter } from 'eventemitter3';
-import { router, MultiModelRouter, routeToModel, costTracker, modelClient, ModelClient, type RouteResult, type ModelResponse, type ModelCallResult } from '../models/index.js';
-import { council, LLMCouncil, type DeliberationResult } from '../council/index.js';
-import { memory, GraphitiMemory, createMemory, contextEnhancer, ContextEnhancer, type ContextEnhancement } from '../memory/index.js';
-import { evolutionLoop, EvolutionLoop, createEvolutionLoop, patternDetector, type EvolutionMetrics } from '../evolution/index.js';
-import { metricsCollector, tokenTracker, latencyProfiler, type MetricsSnapshot } from '../benchmark/index.js';
-import { detectMode, getMode, type ModeName, type DetectionResult } from '../mode-selector.js';
-import { generateBootScreen, generateStatusLine } from '../boot-sequence.js';
-import { PromptCacheManager, createPromptCache, type CacheStatistics } from '../cache/prompt-cache.js';
-import { FileContextManager, createFileContext, type ConsistencyCheck } from './file-context.js';
+import { EventEmitter } from "eventemitter3";
+import {
+  router,
+  MultiModelRouter,
+  routeToModel,
+  costTracker,
+  modelClient,
+  ModelClient,
+  type RouteResult,
+  type ModelResponse,
+  type ModelCallResult,
+} from "../models/index.js";
+import {
+  council,
+  LLMCouncil,
+  type DeliberationResult,
+} from "../council/index.js";
+import {
+  memory,
+  GraphitiMemory,
+  createMemory,
+  contextEnhancer,
+  ContextEnhancer,
+  type ContextEnhancement,
+} from "../memory/index.js";
+import {
+  evolutionLoop,
+  EvolutionLoop,
+  createEvolutionLoop,
+  patternDetector,
+  type EvolutionMetrics,
+} from "../evolution/index.js";
+import {
+  metricsCollector,
+  tokenTracker,
+  latencyProfiler,
+  type MetricsSnapshot,
+} from "../benchmark/index.js";
+import {
+  detectMode,
+  getMode,
+  type ModeName,
+  type DetectionResult,
+} from "../mode-selector.js";
+import { generateBootScreen, generateStatusLine } from "../boot-sequence.js";
+import {
+  PromptCacheManager,
+  createPromptCache,
+  type CacheStatistics,
+} from "../cache/prompt-cache.js";
+import {
+  FileContextManager,
+  createFileContext,
+  type ConsistencyCheck,
+} from "./file-context.js";
 
 // v4.0 Intelligence Layer
 import {
   getKnowledgeStore,
   type KnowledgeStore,
-  type KnowledgeStats
-} from '../intelligence/index.js';
+  type KnowledgeStats,
+} from "../intelligence/index.js";
 
 // Types
 export interface BrainConfig {
@@ -30,9 +75,9 @@ export interface BrainConfig {
   enableCouncil: boolean;
   enableMemory: boolean;
   enableEvolution: boolean;
-  enableIntelligence: boolean;  // v4.0: Pre-indexed knowledge layer
-  enableCaching: boolean;  // v5.0: Ephemeral prompt caching
-  enableFileContext: boolean;  // v5.0: File-aware memory system
+  enableIntelligence: boolean; // v4.0: Pre-indexed knowledge layer
+  enableCaching: boolean; // v5.0: Ephemeral prompt caching
+  enableFileContext: boolean; // v5.0: File-aware memory system
   defaultMode: ModeName;
   autoStartEvolution: boolean;
   councilThreshold: number; // Complexity score threshold for council
@@ -46,8 +91,8 @@ export interface BrainRequest {
   forceMode?: ModeName;
   forceCouncil?: boolean;
   skipMemory?: boolean;
-  skills?: string[];  // v4.0: Explicit skills to use
-  skipPreFlight?: boolean;  // v4.0: Skip pre-flight validation
+  skills?: string[]; // v4.0: Explicit skills to use
+  skipPreFlight?: boolean; // v4.0: Skip pre-flight validation
 }
 
 export interface BrainResponse {
@@ -91,14 +136,14 @@ export interface BrainStatus {
 }
 
 interface BrainEvents {
-  'request:start': (requestId: string, query: string) => void;
-  'request:complete': (response: BrainResponse) => void;
-  'mode:switched': (from: ModeName, to: ModeName) => void;
-  'council:invoked': (question: string) => void;
-  'council:complete': (result: DeliberationResult) => void;
-  'memory:enhanced': (enhancement: ContextEnhancement) => void;
-  'evolution:cycle': (cycleId: string) => void;
-  'error': (error: Error) => void;
+  "request:start": (requestId: string, query: string) => void;
+  "request:complete": (response: BrainResponse) => void;
+  "mode:switched": (from: ModeName, to: ModeName) => void;
+  "council:invoked": (question: string) => void;
+  "council:complete": (result: DeliberationResult) => void;
+  "memory:enhanced": (enhancement: ContextEnhancement) => void;
+  "evolution:cycle": (cycleId: string) => void;
+  error: (error: Error) => void;
 }
 
 const DEFAULT_CONFIG: BrainConfig = {
@@ -106,14 +151,14 @@ const DEFAULT_CONFIG: BrainConfig = {
   enableCouncil: true,
   enableMemory: true,
   enableEvolution: true,
-  enableIntelligence: true,  // v4.0: Pre-indexed knowledge enabled by default
-  enableCaching: true,  // v5.0: Prompt caching enabled by default
-  enableFileContext: true,  // v5.0: File-aware memory enabled by default
-  defaultMode: 'auto',
+  enableIntelligence: true, // v4.0: Pre-indexed knowledge enabled by default
+  enableCaching: true, // v5.0: Prompt caching enabled by default
+  enableFileContext: true, // v5.0: File-aware memory enabled by default
+  defaultMode: "auto",
   autoStartEvolution: false,
   councilThreshold: 7, // Use council for complexity >= 7
   costBudget: 10, // $10 default budget
-  dryRun: false
+  dryRun: false,
 };
 
 /**
@@ -127,16 +172,16 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
   private contextEnhancer: ContextEnhancer;
   private evolution: EvolutionLoop;
   private modelClient: ModelClient;
-  private intelligence: KnowledgeStore;  // v4.0
-  private promptCache: PromptCacheManager;  // v5.0
-  private fileContext: FileContextManager;  // v5.0: File-aware memory
+  private intelligence: KnowledgeStore; // v4.0
+  private promptCache: PromptCacheManager; // v5.0
+  private fileContext: FileContextManager; // v5.0: File-aware memory
 
   private running = false;
   private currentMode: ModeName;
   private startTime: Date | null = null;
   private requestCount = 0;
   private responses: BrainResponse[] = [];
-  private intelligenceReady = false;  // v4.0
+  private intelligenceReady = false; // v4.0
 
   constructor(config?: Partial<BrainConfig>) {
     super();
@@ -148,7 +193,10 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
     this.council = council;
     this.memory = createMemory({ fallbackToLocal: true });
     this.contextEnhancer = new ContextEnhancer(this.memory);
-    this.evolution = createEvolutionLoop({ dryRun: this.config.dryRun }, this.memory);
+    this.evolution = createEvolutionLoop(
+      { dryRun: this.config.dryRun },
+      this.memory
+    );
 
     // Initialize the actual model client for AI API calls
     this.modelClient = modelClient;
@@ -159,14 +207,14 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
     // v5.0: Initialize prompt cache
     this.promptCache = createPromptCache({
       enableCaching: this.config.enableCaching,
-      anthropicApiKey: process.env.ANTHROPIC_API_KEY
+      anthropicApiKey: process.env.ANTHROPIC_API_KEY,
     });
 
     // v5.0: Initialize file-aware memory
     this.fileContext = createFileContext({
       enableRelationshipTracking: this.config.enableFileContext,
       enableAutoSummary: true,
-      maxSessionFiles: 100
+      maxFiles: 100,
     });
 
     // Register pattern detector with evolution
@@ -176,8 +224,8 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
     if (this.config.costBudget) {
       costTracker.setBudget({
         daily: this.config.costBudget,
-        monthly: this.config.costBudget * 30,
-        perRequest: this.config.costBudget / 100
+        session: this.config.costBudget,
+        perOperation: this.config.costBudget / 100,
       });
     }
   }
@@ -202,7 +250,7 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
         await this.intelligence.initialize();
         this.intelligenceReady = true;
       } catch (error) {
-        console.error('[BrainRuntime] Intelligence init failed:', error);
+        console.error("[BrainRuntime] Intelligence init failed:", error);
         this.intelligenceReady = false;
       }
     }
@@ -215,7 +263,7 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
     return generateBootScreen({
       defaultMode: this.currentMode,
       showEvolution: this.config.enableEvolution,
-      showCouncil: this.config.enableCouncil
+      showCouncil: this.config.enableCouncil,
     });
   }
 
@@ -234,38 +282,57 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
     const requestId = this.generateId();
     const startTime = performance.now();
 
-    this.emit('request:start', requestId, request.query);
+    this.emit("request:start", requestId, request.query);
     this.requestCount++;
 
     try {
       // 1. Detect mode
       const detection = request.forceMode
-        ? { mode: request.forceMode, confidence: 1, complexity_score: 5, reasons: ['Forced mode'] }
+        ? {
+            mode: request.forceMode,
+            confidence: 1,
+            complexity_score: 5,
+            reasons: ["Forced mode"],
+          }
         : detectMode({ query: request.query, ...request.context });
 
       // Switch mode if needed
       if (detection.mode !== this.currentMode) {
         const oldMode = this.currentMode;
         this.currentMode = detection.mode;
-        this.emit('mode:switched', oldMode, this.currentMode);
+        this.emit("mode:switched", oldMode, this.currentMode);
       }
 
       // v4.0: Pre-flight check with intelligence layer
-      let preFlightCheck: BrainResponse['preFlightCheck'];
+      let preFlightCheck: BrainResponse["preFlightCheck"];
       let detectedSkills: string[] | undefined;
 
-      if (this.config.enableIntelligence && this.intelligenceReady && !request.skipPreFlight) {
+      if (
+        this.config.enableIntelligence &&
+        this.intelligenceReady &&
+        !request.skipPreFlight
+      ) {
         // Detect best skills for this task
-        const skillMatches = await this.intelligence.findSkillsForTask(request.query, 5);
-        detectedSkills = request.skills || skillMatches.data?.map(m => m.skillId) || [];
+        const skillMatches = await this.intelligence.findSkillsForTask(
+          request.query,
+          5
+        );
+        detectedSkills =
+          request.skills || skillMatches.data?.map((m) => m.skillId) || [];
 
         // Run pre-flight validation
         if (detectedSkills.length > 0) {
-          preFlightCheck = await this.intelligence.preFlightCheck(request.query, detectedSkills);
+          preFlightCheck = await this.intelligence.preFlightCheck(
+            request.query,
+            detectedSkills
+          );
 
           // Log blockers and warnings
           if (preFlightCheck.blockers.length > 0) {
-            console.warn(`[BrainRuntime] Pre-flight blockers:`, preFlightCheck.blockers);
+            console.warn(
+              `[BrainRuntime] Pre-flight blockers:`,
+              preFlightCheck.blockers
+            );
           }
         }
       }
@@ -274,12 +341,14 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
       let memoryContext: ContextEnhancement | undefined;
       if (this.config.enableMemory && !request.skipMemory) {
         memoryContext = await this.contextEnhancer.enhance(request.query);
-        this.emit('memory:enhanced', memoryContext);
+        this.emit("memory:enhanced", memoryContext);
       }
 
       // 3. Determine if council is needed
-      const useCouncil = request.forceCouncil ||
-        (this.config.enableCouncil && detection.complexity_score >= this.config.councilThreshold);
+      const useCouncil =
+        request.forceCouncil ||
+        (this.config.enableCouncil &&
+          detection.complexity_score >= this.config.councilThreshold);
 
       let response: string;
       let model: string;
@@ -288,28 +357,29 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
 
       if (useCouncil) {
         // Use council for high-complexity decisions
-        this.emit('council:invoked', request.query);
+        this.emit("council:invoked", request.query);
 
         const enhancedQuery = memoryContext
           ? `${memoryContext.enhancedPrompt}\n\n${request.query}`
           : request.query;
 
         councilResult = await this.council.deliberate(enhancedQuery);
-        this.emit('council:complete', councilResult);
+        this.emit("council:complete", councilResult);
 
-        response = councilResult.finalAnswer;
-        model = 'council';
+        response = councilResult.stage3Synthesis.finalAnswer;
+        model = "council";
       } else {
         // Use router for standard requests
         const enhancedQuery = memoryContext?.enhancedPrompt ?? request.query;
 
         routingDecision = this.router.route({
           prompt: enhancedQuery,
-          taskType: this.modeToTaskType(detection.mode)
+          taskType: this.modeToTaskType(detection.mode),
         });
 
         // v5.0: Use prompt caching for complex queries (complexity >= 6)
-        const useCache = this.config.enableCaching && detection.complexity_score >= 6;
+        const useCache =
+          this.config.enableCaching && detection.complexity_score >= 6;
 
         if (useCache) {
           // Use cached prompts for complex queries
@@ -317,7 +387,7 @@ export class BrainRuntime extends EventEmitter<BrainEvents> {
             query: enhancedQuery,
             loadedSkills: detectedSkills,
             userContext: memoryContext?.enhancedPrompt,
-            systemPrompt: `Current mode: ${detection.mode.toUpperCase()}\nTask type: ${this.modeToTaskType(detection.mode)}`
+            systemPrompt: `Current mode: ${detection.mode.toUpperCase()}\nTask type: ${this.modeToTaskType(detection.mode)}`,
           });
 
           response = cacheResult.content;
@@ -330,7 +400,11 @@ Task type: ${this.modeToTaskType(detection.mode)}
 
 Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
 
-          const modelResult = await this.modelClient.call(routingDecision, enhancedQuery, systemPrompt);
+          const modelResult = await this.modelClient.call(
+            routingDecision,
+            enhancedQuery,
+            systemPrompt
+          );
           response = modelResult.content;
           model = modelResult.model;
         }
@@ -339,7 +413,9 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
       const latencyMs = performance.now() - startTime;
 
       // Get actual token counts and cost from model result if available
-      const actualCost = councilResult?.totalCost ?? (model !== 'council' ? 0 : routingDecision?.estimatedCost ?? 0);
+      const actualCost =
+        councilResult?.metrics.totalCost ??
+        (model !== "council" ? 0 : (routingDecision?.estimatedCost ?? 0));
 
       // 4. Build response
       const brainResponse: BrainResponse = {
@@ -354,7 +430,7 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
         latencyMs,
         tokensUsed: {
           input: Math.floor(request.query.length / 4), // Approximation
-          output: Math.floor(response.length / 4) // Approximation
+          output: Math.floor(response.length / 4), // Approximation
         },
         // v4.0: Intelligence layer results
         preFlightCheck,
@@ -362,7 +438,7 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
         memoryContext,
         councilResult,
         routingDecision,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
 
       // 5. Store episode in memory
@@ -370,32 +446,32 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
         await this.memory.addEpisode({
           name: `request:${requestId}`,
           content: `Query: ${request.query.slice(0, 100)}... Response: ${response.slice(0, 100)}...`,
-          type: 'success',
+          type: "success",
           context: {
             mode: detection.mode,
             model,
             cost: brainResponse.cost,
-            latencyMs
-          }
+            latencyMs,
+          },
         });
       }
 
       // 6. Record metrics
-      tokenTracker.record(
-        'brain',
-        'brain',
-        model as any,
-        { input: brainResponse.tokensUsed.input, output: brainResponse.tokensUsed.output }
-      );
+      tokenTracker.record("brain", "brain", model as any, {
+        input: brainResponse.tokensUsed.input,
+        output: brainResponse.tokensUsed.output,
+      });
       metricsCollector.recordLatency(latencyMs);
 
       this.responses.push(brainResponse);
-      this.emit('request:complete', brainResponse);
+      this.emit("request:complete", brainResponse);
 
       return brainResponse;
-
     } catch (error) {
-      this.emit('error', error instanceof Error ? error : new Error(String(error)));
+      this.emit(
+        "error",
+        error instanceof Error ? error : new Error(String(error))
+      );
       throw error;
     }
   }
@@ -403,16 +479,22 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
   /**
    * Convert mode to task type for routing
    */
-  private modeToTaskType(mode: ModeName): 'scan' | 'build' | 'review' | 'complex' {
-    switch (mode) {
-      case 'scan': return 'scan';
-      case 'build': return 'build';
-      case 'review': return 'review';
-      case 'architect':
-      case 'debug':
-        return 'complex';
+  private modeToTaskType(
+    mode: ModeName
+  ): "scan" | "build" | "review" | "complex-reasoning" {
+    const modeStr = mode as string;
+    switch (modeStr) {
+      case "scan":
+        return "scan";
+      case "build":
+        return "build";
+      case "review":
+        return "review";
+      case "architect":
+      case "debug":
+        return "complex-reasoning";
       default:
-        return 'build';
+        return "build";
     }
   }
 
@@ -426,7 +508,9 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
   /**
    * Health check for model providers
    */
-  async checkModelHealth(): Promise<{ provider: string; status: 'ok' | 'error'; message?: string }[]> {
+  async checkModelHealth(): Promise<
+    { provider: string; status: "ok" | "error"; message?: string }[]
+  > {
     return this.modelClient.healthCheck();
   }
 
@@ -434,9 +518,9 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
    * Invoke council deliberation directly
    */
   async deliberate(question: string): Promise<DeliberationResult> {
-    this.emit('council:invoked', question);
+    this.emit("council:invoked", question);
     const result = await this.council.deliberate(question);
-    this.emit('council:complete', result);
+    this.emit("council:complete", result);
     return result;
   }
 
@@ -447,20 +531,23 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
     const memStats = await this.memory.getStats();
     const evoMetrics = await this.evolution.getMetrics();
     const totalCost = this.responses.reduce((sum, r) => sum + r.cost, 0);
-    const avgLatency = this.responses.length > 0
-      ? this.responses.reduce((sum, r) => sum + r.latencyMs, 0) / this.responses.length
-      : 0;
+    const avgLatency =
+      this.responses.length > 0
+        ? this.responses.reduce((sum, r) => sum + r.latencyMs, 0) /
+          this.responses.length
+        : 0;
 
     return {
       running: this.running,
       mode: this.currentMode,
-      evolutionActive: this.config.enableEvolution && this.config.autoStartEvolution,
+      evolutionActive:
+        this.config.enableEvolution && this.config.autoStartEvolution,
       totalRequests: this.requestCount,
       totalCost,
       avgLatencyMs: Math.round(avgLatency * 100) / 100,
       uptime: this.startTime ? Date.now() - this.startTime.getTime() : 0,
       memoryNodes: memStats.totalNodes,
-      evolutionCycles: evoMetrics.totalCycles
+      evolutionCycles: evoMetrics.totalCycles,
     };
   }
 
@@ -480,8 +567,8 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
       costs: {
         total: costTracker.getSummary().allTime,
         today: costTracker.getSummary().today,
-        budget: this.config.costBudget
-      }
+        budget: this.config.costBudget,
+      },
     };
   }
 
@@ -514,7 +601,7 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
   setMode(mode: ModeName): void {
     const oldMode = this.currentMode;
     this.currentMode = mode;
-    this.emit('mode:switched', oldMode, mode);
+    this.emit("mode:switched", oldMode, mode);
   }
 
   /**
@@ -551,7 +638,7 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
    */
   async runEvolutionCycle(): Promise<void> {
     const cycle = await this.evolution.runCycle();
-    this.emit('evolution:cycle', cycle.id);
+    this.emit("evolution:cycle", cycle.id);
   }
 
   /**
@@ -578,7 +665,10 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
   /**
    * Check if a skill can perform an action
    */
-  async canSkillDo(skillId: string, action: string): Promise<{
+  async canSkillDo(
+    skillId: string,
+    action: string
+  ): Promise<{
     can: boolean;
     confidence: number;
     reasoning: string;
@@ -592,11 +682,16 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
   /**
    * Find best skills for a task
    */
-  async findSkillsForTask(task: string, maxResults = 5): Promise<Array<{
-    skillId: string;
-    score: number;
-    matchedCapabilities: string[];
-  }>> {
+  async findSkillsForTask(
+    task: string,
+    maxResults = 5
+  ): Promise<
+    Array<{
+      skillId: string;
+      score: number;
+      matchedCapabilities: string[];
+    }>
+  > {
     if (!this.intelligenceReady) return [];
     const result = await this.intelligence.findSkillsForTask(task, maxResults);
     return result.data || [];
@@ -611,7 +706,11 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
     params: Record<string, unknown>
   ): Promise<{ valid: boolean; errors: string[]; warnings: string[] } | null> {
     if (!this.intelligenceReady) return null;
-    const result = await this.intelligence.validateMCPCall(serverId, toolName, params);
+    const result = await this.intelligence.validateMCPCall(
+      serverId,
+      toolName,
+      params
+    );
     return result.data;
   }
 
@@ -667,17 +766,17 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
 ║                    OPUS 67 BRAIN RUNTIME                         ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
-║  STATUS: ${status.running ? '🧠 RUNNING' : '⏹ STOPPED'.padEnd(52)} ║
+║  STATUS: ${status.running ? "🧠 RUNNING" : "⏹ STOPPED".padEnd(52)} ║
 ║  MODE: ${status.mode.toUpperCase().padEnd(55)} ║
 ║                                                                  ║
 ║  COMPONENTS                                                      ║
 ║  ────────────────────────────────────────────────────────────    ║
-║  Router:       ${this.config.enableRouter ? '✅ ENABLED' : '❌ DISABLED'.padEnd(47)} ║
-║  Council:      ${this.config.enableCouncil ? '✅ ENABLED' : '❌ DISABLED'.padEnd(47)} ║
-║  Memory:       ${this.config.enableMemory ? '✅ ENABLED' : '❌ DISABLED'.padEnd(47)} ║
-║  Evolution:    ${status.evolutionActive ? '🔄 ACTIVE' : '⏸ PAUSED'.padEnd(47)} ║
-║  Intelligence: ${this.intelligenceReady ? '🧠 READY' : '⏳ LOADING'.padEnd(47)} ║
-║  Caching:      ${this.config.enableCaching ? '💾 ENABLED' : '❌ DISABLED'.padEnd(47)} ║
+║  Router:       ${this.config.enableRouter ? "✅ ENABLED" : "❌ DISABLED".padEnd(47)} ║
+║  Council:      ${this.config.enableCouncil ? "✅ ENABLED" : "❌ DISABLED".padEnd(47)} ║
+║  Memory:       ${this.config.enableMemory ? "✅ ENABLED" : "❌ DISABLED".padEnd(47)} ║
+║  Evolution:    ${status.evolutionActive ? "🔄 ACTIVE" : "⏸ PAUSED".padEnd(47)} ║
+║  Intelligence: ${this.intelligenceReady ? "🧠 READY" : "⏳ LOADING".padEnd(47)} ║
+║  Caching:      ${this.config.enableCaching ? "💾 ENABLED" : "❌ DISABLED".padEnd(47)} ║
 ║                                                                  ║
 ║  METRICS                                                         ║
 ║  ────────────────────────────────────────────────────────────    ║
@@ -686,11 +785,11 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
 ║  Avg Latency: ${String(status.avgLatencyMs).padEnd(47)} ms ║
 ║  Memory Nodes: ${String(status.memoryNodes).padEnd(46)} ║
 ║  Evolution Cycles: ${String(status.evolutionCycles).padEnd(42)} ║
-║  Uptime: ${uptimeHours}h${' '.repeat(51)} ║
+║  Uptime: ${uptimeHours}h${" ".repeat(51)} ║
 ║                                                                  ║
 ║  PROMPT CACHING (v5.0)                                           ║
 ║  ────────────────────────────────────────────────────────────    ║
-║  Cache Hit Rate: ${(cacheStats.hitRate * 100).toFixed(1)}%${' '.repeat(41)} ║
+║  Cache Hit Rate: ${(cacheStats.hitRate * 100).toFixed(1)}%${" ".repeat(41)} ║
 ║  Total Saved: $${cacheStats.totalSaved.toFixed(2).padEnd(45)} ║
 ║  Cached Size: ${String(cacheStats.cachedContentSize).padEnd(44)} tokens ║
 ║                                                                  ║
@@ -699,7 +798,9 @@ Be helpful, accurate, and concise. Respond appropriately for the current mode.`;
 }
 
 // Factory
-export function createBrainRuntime(config?: Partial<BrainConfig>): BrainRuntime {
+export function createBrainRuntime(
+  config?: Partial<BrainConfig>
+): BrainRuntime {
   return new BrainRuntime(config);
 }
 

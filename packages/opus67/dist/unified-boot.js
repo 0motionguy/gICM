@@ -7,8 +7,8 @@ import { loadMasterRegistry } from './chunk-WYL3BHNW.js';
 import { ContextIndexer } from './chunk-XVOLIGJS.js';
 import { loadRegistry } from './chunk-L3KXA3WY.js';
 import './chunk-YINZDDDM.js';
+import { join } from 'path';
 
-// src/unified-boot.ts
 var VERSION = "6.2.0";
 var CODENAME = "Claude Harmony";
 function displayBanner() {
@@ -92,10 +92,16 @@ async function boot() {
     let indexedFiles = 0;
     let indexedTokens = 0;
     try {
-      const indexer = new ContextIndexer();
-      const indexResult = await indexer.index(projectRoot);
-      indexedFiles = indexResult.totalFiles;
-      indexedTokens = indexResult.totalTokens;
+      const indexer = new ContextIndexer({
+        indexPaths: [projectRoot],
+        excludePatterns: ["node_modules", ".git", "dist", "build"],
+        maxTokens: 1e5,
+        vectorDbPath: join(projectRoot, ".opus67", "vector-db")
+      });
+      await indexer.index(projectRoot);
+      const stats = indexer.getStats();
+      indexedFiles = stats.totalFiles;
+      indexedTokens = stats.totalTokens;
       console.log(`   \u2713 ${indexedFiles} files indexed`);
       console.log(`   \u2713 ${indexedTokens.toLocaleString()} tokens
 `);

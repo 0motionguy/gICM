@@ -5,10 +5,10 @@
  * Stores learnings locally with AContext cloud sync for auto-SOP generation.
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
-import { getSkillMetadataLoader } from './skill-metadata.js';
-import { getLearningObserver, type SOP } from '../agents/learning-observer.js';
+import * as fs from "fs";
+import * as path from "path";
+import { getSkillMetadataLoader } from "./skill-metadata.js";
+import { getLearningObserver, type SOP } from "../agents/learning-observer.js";
 
 // =============================================================================
 // TYPES
@@ -20,7 +20,7 @@ export interface Interaction {
   task: string;
   skills: string[];
   mode: string;
-  outcome: 'success' | 'partial' | 'failed';
+  outcome: "success" | "partial" | "failed";
   confidence: number;
   latencyMs: number;
   tokensUsed: number;
@@ -37,7 +37,7 @@ export interface UserFeedback {
 
 export interface LearnedPattern {
   id: string;
-  type: 'skill_combo' | 'task_pattern' | 'anti_pattern' | 'optimization';
+  type: "skill_combo" | "task_pattern" | "anti_pattern" | "optimization";
   pattern: string;
   confidence: number;
   occurrences: number;
@@ -57,7 +57,7 @@ export interface LearningStats {
 
 export interface LearningConfig {
   dataDir: string;
-  maxInteractions: number;  // Max stored interactions
+  maxInteractions: number; // Max stored interactions
   syncEnabled: boolean;
   syncEndpoint?: string;
   syncApiKey?: string;
@@ -67,7 +67,7 @@ export interface LearningConfig {
   acontextEnabled: boolean;
   acontextApiUrl?: string;
   acontextApiKey?: string;
-  autoSyncInterval?: number;  // ms between auto-syncs (0 = disabled)
+  autoSyncInterval?: number; // ms between auto-syncs (0 = disabled)
 }
 
 export interface AContextSyncResult {
@@ -101,9 +101,12 @@ export class LearningLoop {
       minPatternOccurrences: config?.minPatternOccurrences || 3,
       // v4.1 AContext defaults
       acontextEnabled: config?.acontextEnabled ?? false,
-      acontextApiUrl: config?.acontextApiUrl || process.env.ACONTEXT_API_URL || 'http://localhost:8029/api/v1',
+      acontextApiUrl:
+        config?.acontextApiUrl ||
+        process.env.ACONTEXT_API_URL ||
+        "http://localhost:8029/api/v1",
       acontextApiKey: config?.acontextApiKey || process.env.ACONTEXT_API_KEY,
-      autoSyncInterval: config?.autoSyncInterval || 0  // Disabled by default
+      autoSyncInterval: config?.autoSyncInterval || 0, // Disabled by default
     };
   }
 
@@ -123,26 +126,36 @@ export class LearningLoop {
     await this.loadPatterns();
 
     // Start auto-sync timer if enabled
-    if (this.config.acontextEnabled && this.config.autoSyncInterval && this.config.autoSyncInterval > 0) {
+    if (
+      this.config.acontextEnabled &&
+      this.config.autoSyncInterval &&
+      this.config.autoSyncInterval > 0
+    ) {
       this.startAutoSync();
     }
 
     this.initialized = true;
-    const acontextStatus = this.config.acontextEnabled ? ' | AContext: enabled' : '';
-    console.log(`[LearningLoop] Initialized with ${this.interactions.length} interactions, ${this.patterns.size} patterns${acontextStatus}`);
+    const acontextStatus = this.config.acontextEnabled
+      ? " | AContext: enabled"
+      : "";
+    console.log(
+      `[LearningLoop] Initialized with ${this.interactions.length} interactions, ${this.patterns.size} patterns${acontextStatus}`
+    );
   }
 
   /**
    * Record an interaction
    */
-  async record(interaction: Omit<Interaction, 'id' | 'timestamp'>): Promise<string> {
+  async record(
+    interaction: Omit<Interaction, "id" | "timestamp">
+  ): Promise<string> {
     await this.initialize();
 
     const id = this.generateId();
     const fullInteraction: Interaction = {
       ...interaction,
       id,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
 
     this.interactions.push(fullInteraction);
@@ -166,13 +179,16 @@ export class LearningLoop {
   /**
    * Add feedback to an interaction
    */
-  async addFeedback(interactionId: string, feedback: Omit<UserFeedback, 'timestamp'>): Promise<boolean> {
-    const interaction = this.interactions.find(i => i.id === interactionId);
+  async addFeedback(
+    interactionId: string,
+    feedback: Omit<UserFeedback, "timestamp">
+  ): Promise<boolean> {
+    const interaction = this.interactions.find((i) => i.id === interactionId);
     if (!interaction) return false;
 
     interaction.feedback = {
       ...feedback,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
 
     // Update pattern confidence based on feedback
@@ -191,41 +207,41 @@ export class LearningLoop {
    */
   private async extractPatterns(interaction: Interaction): Promise<void> {
     // Skill combination pattern
-    if (interaction.skills.length >= 2 && interaction.outcome === 'success') {
-      const comboKey = interaction.skills.sort().join('+');
+    if (interaction.skills.length >= 2 && interaction.outcome === "success") {
+      const comboKey = interaction.skills.sort().join("+");
       await this.updatePattern({
-        type: 'skill_combo',
+        type: "skill_combo",
         pattern: comboKey,
         metadata: {
           skills: interaction.skills,
-          avgConfidence: interaction.confidence
-        }
+          avgConfidence: interaction.confidence,
+        },
       });
     }
 
     // Task pattern (extract keywords)
     const taskKeywords = this.extractKeywords(interaction.task);
-    if (taskKeywords.length > 0 && interaction.outcome === 'success') {
-      const taskPattern = taskKeywords.slice(0, 3).join(' ');
+    if (taskKeywords.length > 0 && interaction.outcome === "success") {
+      const taskPattern = taskKeywords.slice(0, 3).join(" ");
       await this.updatePattern({
-        type: 'task_pattern',
+        type: "task_pattern",
         pattern: taskPattern,
         metadata: {
           skills: interaction.skills,
-          mode: interaction.mode
-        }
+          mode: interaction.mode,
+        },
       });
     }
 
     // Optimization pattern (fast + high confidence)
     if (interaction.latencyMs < 1000 && interaction.confidence > 0.8) {
       await this.updatePattern({
-        type: 'optimization',
+        type: "optimization",
         pattern: `fast_${interaction.mode}`,
         metadata: {
           avgLatency: interaction.latencyMs,
-          skills: interaction.skills
-        }
+          skills: interaction.skills,
+        },
       });
     }
   }
@@ -234,7 +250,7 @@ export class LearningLoop {
    * Update or create a pattern
    */
   private async updatePattern(input: {
-    type: LearnedPattern['type'];
+    type: LearnedPattern["type"];
     pattern: string;
     metadata: Record<string, unknown>;
   }): Promise<void> {
@@ -255,7 +271,7 @@ export class LearningLoop {
         confidence: 0.5,
         occurrences: 1,
         lastSeen: Date.now(),
-        metadata: input.metadata
+        metadata: input.metadata,
       });
     }
 
@@ -266,15 +282,15 @@ export class LearningLoop {
    * Record an anti-pattern (something that didn't work)
    */
   private async recordAntiPattern(interaction: Interaction): Promise<void> {
-    const key = `anti:${interaction.skills.sort().join('+')}`;
+    const key = `anti:${interaction.skills.sort().join("+")}`;
 
     await this.updatePattern({
-      type: 'anti_pattern',
+      type: "anti_pattern",
       pattern: key,
       metadata: {
         task: interaction.task.slice(0, 100),
-        reason: interaction.feedback?.comment || 'Low rating'
-      }
+        reason: interaction.feedback?.comment || "Low rating",
+      },
     });
   }
 
@@ -282,7 +298,7 @@ export class LearningLoop {
    * Reinforce a successful pattern
    */
   private async reinforcePattern(interaction: Interaction): Promise<void> {
-    const comboKey = interaction.skills.sort().join('+');
+    const comboKey = interaction.skills.sort().join("+");
     const key = `skill_combo:${comboKey}`;
 
     const pattern = this.patterns.get(key);
@@ -295,11 +311,13 @@ export class LearningLoop {
   /**
    * Get recommended skills for a task
    */
-  async getRecommendations(task: string): Promise<Array<{
-    skills: string[];
-    confidence: number;
-    reason: string;
-  }>> {
+  async getRecommendations(task: string): Promise<
+    Array<{
+      skills: string[];
+      confidence: number;
+      reason: string;
+    }>
+  > {
     await this.initialize();
 
     const recommendations: Array<{
@@ -312,16 +330,21 @@ export class LearningLoop {
 
     // Find matching task patterns
     for (const [key, pattern] of this.patterns) {
-      if (pattern.type === 'task_pattern') {
-        const patternWords = pattern.pattern.split(' ');
-        const matchCount = patternWords.filter(w => taskKeywords.includes(w)).length;
+      if (pattern.type === "task_pattern") {
+        const patternWords = pattern.pattern.split(" ");
+        const matchCount = patternWords.filter((w) =>
+          taskKeywords.includes(w)
+        ).length;
 
-        if (matchCount >= 2 && pattern.occurrences >= this.config.minPatternOccurrences) {
-          const skills = pattern.metadata.skills as string[] || [];
+        if (
+          matchCount >= 2 &&
+          pattern.occurrences >= this.config.minPatternOccurrences
+        ) {
+          const skills = (pattern.metadata.skills as string[]) || [];
           recommendations.push({
             skills,
             confidence: pattern.confidence * (matchCount / patternWords.length),
-            reason: `Matched pattern: "${pattern.pattern}" (${pattern.occurrences} uses)`
+            reason: `Matched pattern: "${pattern.pattern}" (${pattern.occurrences} uses)`,
           });
         }
       }
@@ -336,24 +359,27 @@ export class LearningLoop {
   /**
    * Get anti-patterns to avoid
    */
-  async getAntiPatterns(skills: string[]): Promise<Array<{
-    pattern: string;
-    reason: string;
-  }>> {
+  async getAntiPatterns(skills: string[]): Promise<
+    Array<{
+      pattern: string;
+      reason: string;
+    }>
+  > {
     await this.initialize();
 
     const antiPatterns: Array<{ pattern: string; reason: string }> = [];
     const skillSet = new Set(skills);
 
     for (const [key, pattern] of this.patterns) {
-      if (pattern.type === 'anti_pattern') {
-        const patternSkills = key.replace('anti:', '').split('+');
-        const overlap = patternSkills.filter(s => skillSet.has(s)).length;
+      if (pattern.type === "anti_pattern") {
+        const patternSkills = key.replace("anti:", "").split("+");
+        const overlap = patternSkills.filter((s) => skillSet.has(s)).length;
 
         if (overlap >= 2) {
           antiPatterns.push({
-            pattern: patternSkills.join(' + '),
-            reason: pattern.metadata.reason as string || 'Previously unsuccessful'
+            pattern: patternSkills.join(" + "),
+            reason:
+              (pattern.metadata.reason as string) || "Previously unsuccessful",
           });
         }
       }
@@ -368,13 +394,19 @@ export class LearningLoop {
   async getStats(): Promise<LearningStats> {
     await this.initialize();
 
-    const successCount = this.interactions.filter(i => i.outcome === 'success').length;
-    const avgConfidence = this.interactions.length > 0
-      ? this.interactions.reduce((sum, i) => sum + i.confidence, 0) / this.interactions.length
-      : 0;
-    const avgLatency = this.interactions.length > 0
-      ? this.interactions.reduce((sum, i) => sum + i.latencyMs, 0) / this.interactions.length
-      : 0;
+    const successCount = this.interactions.filter(
+      (i) => i.outcome === "success"
+    ).length;
+    const avgConfidence =
+      this.interactions.length > 0
+        ? this.interactions.reduce((sum, i) => sum + i.confidence, 0) /
+          this.interactions.length
+        : 0;
+    const avgLatency =
+      this.interactions.length > 0
+        ? this.interactions.reduce((sum, i) => sum + i.latencyMs, 0) /
+          this.interactions.length
+        : 0;
 
     // Count skill usage
     const skillCounts: Map<string, number> = new Map();
@@ -391,11 +423,14 @@ export class LearningLoop {
 
     return {
       totalInteractions: this.interactions.length,
-      successRate: this.interactions.length > 0 ? successCount / this.interactions.length : 0,
+      successRate:
+        this.interactions.length > 0
+          ? successCount / this.interactions.length
+          : 0,
       avgConfidence,
       avgLatencyMs: Math.round(avgLatency),
       topSkills,
-      patterns: this.patterns.size
+      patterns: this.patterns.size,
     };
   }
 
@@ -404,19 +439,71 @@ export class LearningLoop {
    */
   private extractKeywords(task: string): string[] {
     const stopWords = new Set([
-      'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-      'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
-      'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
-      'could', 'should', 'may', 'might', 'must', 'can', 'this', 'that',
-      'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me',
-      'him', 'her', 'us', 'them', 'my', 'your', 'his', 'its', 'our', 'their'
+      "the",
+      "a",
+      "an",
+      "and",
+      "or",
+      "but",
+      "in",
+      "on",
+      "at",
+      "to",
+      "for",
+      "of",
+      "with",
+      "by",
+      "from",
+      "as",
+      "is",
+      "was",
+      "are",
+      "were",
+      "been",
+      "be",
+      "have",
+      "has",
+      "had",
+      "do",
+      "does",
+      "did",
+      "will",
+      "would",
+      "could",
+      "should",
+      "may",
+      "might",
+      "must",
+      "can",
+      "this",
+      "that",
+      "these",
+      "those",
+      "i",
+      "you",
+      "he",
+      "she",
+      "it",
+      "we",
+      "they",
+      "me",
+      "him",
+      "her",
+      "us",
+      "them",
+      "my",
+      "your",
+      "his",
+      "its",
+      "our",
+      "their",
     ]);
 
     return task
       .toLowerCase()
-      .replace(/[^\w\s-]/g, ' ')
+      .replace(/[^\w\s-]/g, " ")
       .split(/\s+/)
-      .filter(w => w.length > 2 && !stopWords.has(w));
+      .filter((w) => w.length > 2 && !stopWords.has(w));
   }
 
   /**
@@ -430,14 +517,14 @@ export class LearningLoop {
    * Load interactions from disk
    */
   private async loadInteractions(): Promise<void> {
-    const filePath = path.join(this.config.dataDir, 'interactions.json');
+    const filePath = path.join(this.config.dataDir, "interactions.json");
     try {
       if (fs.existsSync(filePath)) {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
         this.interactions = data.interactions || [];
       }
     } catch (error) {
-      console.error('[LearningLoop] Failed to load interactions:', error);
+      console.error("[LearningLoop] Failed to load interactions:", error);
     }
   }
 
@@ -445,14 +532,21 @@ export class LearningLoop {
    * Save interactions to disk
    */
   private async saveInteractions(): Promise<void> {
-    const filePath = path.join(this.config.dataDir, 'interactions.json');
+    const filePath = path.join(this.config.dataDir, "interactions.json");
     try {
-      fs.writeFileSync(filePath, JSON.stringify({
-        version: '1.0.0',
-        interactions: this.interactions
-      }, null, 2));
+      fs.writeFileSync(
+        filePath,
+        JSON.stringify(
+          {
+            version: "1.0.0",
+            interactions: this.interactions,
+          },
+          null,
+          2
+        )
+      );
     } catch (error) {
-      console.error('[LearningLoop] Failed to save interactions:', error);
+      console.error("[LearningLoop] Failed to save interactions:", error);
     }
   }
 
@@ -460,14 +554,14 @@ export class LearningLoop {
    * Load patterns from disk
    */
   private async loadPatterns(): Promise<void> {
-    const filePath = path.join(this.config.dataDir, 'patterns.json');
+    const filePath = path.join(this.config.dataDir, "patterns.json");
     try {
       if (fs.existsSync(filePath)) {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
         this.patterns = new Map(Object.entries(data.patterns || {}));
       }
     } catch (error) {
-      console.error('[LearningLoop] Failed to load patterns:', error);
+      console.error("[LearningLoop] Failed to load patterns:", error);
     }
   }
 
@@ -475,14 +569,21 @@ export class LearningLoop {
    * Save patterns to disk
    */
   private async savePatterns(): Promise<void> {
-    const filePath = path.join(this.config.dataDir, 'patterns.json');
+    const filePath = path.join(this.config.dataDir, "patterns.json");
     try {
-      fs.writeFileSync(filePath, JSON.stringify({
-        version: '1.0.0',
-        patterns: Object.fromEntries(this.patterns)
-      }, null, 2));
+      fs.writeFileSync(
+        filePath,
+        JSON.stringify(
+          {
+            version: "1.0.0",
+            patterns: Object.fromEntries(this.patterns),
+          },
+          null,
+          2
+        )
+      );
     } catch (error) {
-      console.error('[LearningLoop] Failed to save patterns:', error);
+      console.error("[LearningLoop] Failed to save patterns:", error);
     }
   }
 
@@ -499,7 +600,7 @@ export class LearningLoop {
     return {
       interactions: this.interactions,
       patterns: Array.from(this.patterns.values()),
-      exportedAt: new Date().toISOString()
+      exportedAt: new Date().toISOString(),
     };
   }
 
@@ -513,7 +614,7 @@ export class LearningLoop {
     await this.initialize();
 
     // Merge interactions (dedupe by ID)
-    const existingIds = new Set(this.interactions.map(i => i.id));
+    const existingIds = new Set(this.interactions.map((i) => i.id));
     for (const interaction of data.interactions) {
       if (!existingIds.has(interaction.id)) {
         this.interactions.push(interaction);
@@ -555,11 +656,13 @@ export class LearningLoop {
       try {
         await this.syncToAContext();
       } catch (error) {
-        console.error('[LearningLoop] Auto-sync failed:', error);
+        console.error("[LearningLoop] Auto-sync failed:", error);
       }
     }, this.config.autoSyncInterval!);
 
-    console.log(`[LearningLoop] Auto-sync started (every ${this.config.autoSyncInterval! / 1000}s)`);
+    console.log(
+      `[LearningLoop] Auto-sync started (every ${this.config.autoSyncInterval! / 1000}s)`
+    );
   }
 
   /**
@@ -569,7 +672,7 @@ export class LearningLoop {
     if (this.autoSyncTimer) {
       clearInterval(this.autoSyncTimer);
       this.autoSyncTimer = null;
-      console.log('[LearningLoop] Auto-sync stopped');
+      console.log("[LearningLoop] Auto-sync stopped");
     }
   }
 
@@ -583,8 +686,8 @@ export class LearningLoop {
         success: false,
         tasksRecorded: 0,
         sopsGenerated: 0,
-        error: 'AContext sync is disabled',
-        timestamp: Date.now()
+        error: "AContext sync is disabled",
+        timestamp: Date.now(),
       };
     }
 
@@ -593,8 +696,8 @@ export class LearningLoop {
         success: false,
         tasksRecorded: 0,
         sopsGenerated: 0,
-        error: 'AContext API key not configured',
-        timestamp: Date.now()
+        error: "AContext API key not configured",
+        timestamp: Date.now(),
       };
     }
 
@@ -602,7 +705,7 @@ export class LearningLoop {
 
     // Get interactions since last sync
     const unsyncedInteractions = this.interactions.filter(
-      i => i.timestamp > this.lastAContextSync
+      (i) => i.timestamp > this.lastAContextSync
     );
 
     if (unsyncedInteractions.length === 0) {
@@ -610,7 +713,7 @@ export class LearningLoop {
         success: true,
         tasksRecorded: 0,
         sopsGenerated: 0,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
     }
 
@@ -631,46 +734,57 @@ export class LearningLoop {
           latencyMs: interaction.latencyMs,
           tokensUsed: interaction.tokensUsed,
           timestamp: interaction.timestamp,
-          metadata: interaction.context || {}
+          metadata: interaction.context || {},
         };
 
         const response = await fetch(`${this.config.acontextApiUrl}/tasks`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.config.acontextApiKey}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${this.config.acontextApiKey}`,
           },
-          body: JSON.stringify(taskPayload)
+          body: JSON.stringify(taskPayload),
         });
 
         if (response.ok) {
           tasksRecorded++;
 
           // For successful interactions, also extract and submit SOP
-          if (interaction.outcome === 'success' && interaction.skills.length >= 2) {
+          if (
+            interaction.outcome === "success" &&
+            interaction.skills.length >= 2
+          ) {
             const sop = await observer.extractSOP({
-              task: interaction.task,
-              toolCalls: [], // Would need actual tool calls
-              mode: interaction.mode,
-              confidence: interaction.confidence
+              id: interaction.id,
+              query: interaction.task,
+              startTime: interaction.timestamp,
+              endTime: interaction.timestamp + interaction.latencyMs,
+              toolChain: [],
+              skillsUsed: interaction.skills,
+              success: true,
             });
 
             if (sop) {
-              const sopResponse = await fetch(`${this.config.acontextApiUrl}/sops`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${this.config.acontextApiKey}`
-                },
-                body: JSON.stringify({
-                  name: sop.name,
-                  description: sop.description,
-                  steps: sop.steps,
-                  skills: sop.skills,
-                  confidence: sop.confidence,
-                  sourceTask: interaction.task
-                })
-              });
+              const sopResponse = await fetch(
+                `${this.config.acontextApiUrl}/sops`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${this.config.acontextApiKey}`,
+                  },
+                  body: JSON.stringify({
+                    id: sop.id,
+                    use_when: sop.use_when,
+                    preferences: sop.preferences,
+                    tool_sops: sop.tool_sops,
+                    created_at: sop.created_at,
+                    success_rate: sop.success_rate,
+                    usage_count: sop.usage_count,
+                    sourceTask: interaction.task,
+                  }),
+                }
+              );
 
               if (sopResponse.ok) {
                 sopsGenerated++;
@@ -682,24 +796,26 @@ export class LearningLoop {
 
       this.lastAContextSync = Date.now();
 
-      console.log(`[LearningLoop] AContext sync complete: ${tasksRecorded} tasks, ${sopsGenerated} SOPs`);
+      console.log(
+        `[LearningLoop] AContext sync complete: ${tasksRecorded} tasks, ${sopsGenerated} SOPs`
+      );
 
       return {
         success: true,
         tasksRecorded,
         sopsGenerated,
-        timestamp: this.lastAContextSync
+        timestamp: this.lastAContextSync,
       };
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error('[LearningLoop] AContext sync failed:', errorMsg);
+      console.error("[LearningLoop] AContext sync failed:", errorMsg);
 
       return {
         success: false,
         tasksRecorded,
         sopsGenerated,
         error: errorMsg,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
     }
   }
@@ -719,51 +835,56 @@ export class LearningLoop {
         success: false,
         sopsImported: 0,
         patternsImported: 0,
-        error: 'AContext not configured'
+        error: "AContext not configured",
       };
     }
 
     try {
       // Fetch learned SOPs from AContext
-      const response = await fetch(`${this.config.acontextApiUrl}/sops?limit=100`, {
-        headers: {
-          'Authorization': `Bearer ${this.config.acontextApiKey}`
+      const response = await fetch(
+        `${this.config.acontextApiUrl}/sops?limit=100`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.config.acontextApiKey}`,
+          },
         }
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`AContext API error: ${response.status}`);
       }
 
-      const data = await response.json();
-      const sops: Array<{
-        name: string;
-        skills: string[];
-        confidence: number;
-      }> = data.sops || [];
+      const data = (await response.json()) as {
+        sops?: Array<{
+          name: string;
+          skills: string[];
+          confidence: number;
+        }>;
+      };
+      const sops = data.sops || [];
 
       let patternsImported = 0;
 
       // Convert SOPs to local patterns
       for (const sop of sops) {
         if (sop.skills.length >= 2) {
-          const comboKey = sop.skills.sort().join('+');
+          const comboKey = sop.skills.sort().join("+");
           const key = `skill_combo:${comboKey}`;
 
           const existing = this.patterns.get(key);
           if (!existing || sop.confidence > existing.confidence) {
             this.patterns.set(key, {
               id: this.generateId(),
-              type: 'skill_combo',
+              type: "skill_combo",
               pattern: comboKey,
               confidence: sop.confidence,
               occurrences: 1,
               lastSeen: Date.now(),
               metadata: {
                 skills: sop.skills,
-                source: 'acontext',
-                sopName: sop.name
-              }
+                source: "acontext",
+                sopName: sop.name,
+              },
             });
             patternsImported++;
           }
@@ -774,22 +895,24 @@ export class LearningLoop {
         await this.savePatterns();
       }
 
-      console.log(`[LearningLoop] AContext import: ${sops.length} SOPs, ${patternsImported} new patterns`);
+      console.log(
+        `[LearningLoop] AContext import: ${sops.length} SOPs, ${patternsImported} new patterns`
+      );
 
       return {
         success: true,
         sopsImported: sops.length,
-        patternsImported
+        patternsImported,
       };
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error('[LearningLoop] AContext import failed:', errorMsg);
+      console.error("[LearningLoop] AContext import failed:", errorMsg);
 
       return {
         success: false,
         sopsImported: 0,
         patternsImported: 0,
-        error: errorMsg
+        error: errorMsg,
       };
     }
   }
@@ -807,11 +930,11 @@ export class LearningLoop {
   } {
     return {
       enabled: this.config.acontextEnabled,
-      apiUrl: this.config.acontextApiUrl || '',
+      apiUrl: this.config.acontextApiUrl || "",
       hasApiKey: !!this.config.acontextApiKey,
       lastSync: this.lastAContextSync > 0 ? this.lastAContextSync : null,
       autoSyncEnabled: !!this.autoSyncTimer,
-      autoSyncInterval: this.config.autoSyncInterval || 0
+      autoSyncInterval: this.config.autoSyncInterval || 0,
     };
   }
 
@@ -831,8 +954,10 @@ export class LearningLoop {
    */
   private getDefaultDataDir(): string {
     return path.join(
-      path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')),
-      '../../data/learning'
+      path.dirname(
+        new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, "$1")
+      ),
+      "../../data/learning"
     );
   }
 }

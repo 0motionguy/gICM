@@ -1,5 +1,5 @@
-import { createSpawner, tokenTracker, metricsCollector } from '../chunk-GNLGUR5P.js';
-import { createMemory } from '../chunk-2BMLDUKW.js';
+import { createSpawner, tokenTracker, metricsCollector } from '../chunk-R6DQRC3Z.js';
+import { createMemory } from '../chunk-F6HCT36D.js';
 import { ModeSelector } from '../chunk-Z7YWWTEP.js';
 import '../chunk-JD6NEK3D.js';
 import { getAllModes } from '../chunk-J7GF6OJU.js';
@@ -70,7 +70,9 @@ function extractFunctions(content) {
           name = match[3] || "method";
           params = (match[4] || "").split(",").filter((p) => p.trim()).length;
         }
-        if (["if", "for", "while", "switch", "catch", "constructor"].includes(name)) {
+        if (["if", "for", "while", "switch", "catch", "constructor"].includes(
+          name
+        )) {
           continue;
         }
         currentFunction = {
@@ -121,8 +123,12 @@ function extractClasses(content) {
       endIndex = i;
     }
     const classBody = content.substring(startIndex, endIndex);
-    const methods = (classBody.match(/(?:async\s+)?(?:public|private|protected)?\s*\w+\s*\([^)]*\)\s*(?::\s*[^{]+)?\s*\{/g) || []).length;
-    const properties = (classBody.match(/(?:public|private|protected|readonly)?\s+\w+\s*(?::\s*[^;=]+)?(?:\s*=|;)/g) || []).length;
+    const methods = (classBody.match(
+      /(?:async\s+)?(?:public|private|protected)?\s*\w+\s*\([^)]*\)\s*(?::\s*[^{]+)?\s*\{/g
+    ) || []).length;
+    const properties = (classBody.match(
+      /(?:public|private|protected|readonly)?\s+\w+\s*(?::\s*[^;=]+)?(?:\s*=|;)/g
+    ) || []).length;
     classes.push({
       name,
       methods,
@@ -210,8 +216,12 @@ function analyzeFile(filePath, rootDir) {
   const classes = extractClasses(content);
   const imports = extractImports(content);
   const exports$1 = extractExports(content);
-  const interfaces = [...content.matchAll(/(?:export\s+)?interface\s+(\w+)/g)].map((m) => m[1]);
-  const types = [...content.matchAll(/(?:export\s+)?type\s+(\w+)\s*=/g)].map((m) => m[1]);
+  const interfaces = [
+    ...content.matchAll(/(?:export\s+)?interface\s+(\w+)/g)
+  ].map((m) => m[1]);
+  const types = [...content.matchAll(/(?:export\s+)?type\s+(\w+)\s*=/g)].map(
+    (m) => m[1]
+  );
   return {
     path: filePath,
     relativePath: relative(rootDir, filePath).replace(/\\/g, "/"),
@@ -252,7 +262,14 @@ function buildDependencyGraph(files) {
       if (imp.from.startsWith(".")) {
         const fromDir = dirname(file.relativePath);
         let targetPath = join(fromDir, imp.from).replace(/\\/g, "/");
-        const possibleExtensions = ["", ".ts", ".tsx", ".js", "/index.ts", "/index.js"];
+        const possibleExtensions = [
+          "",
+          ".ts",
+          ".tsx",
+          ".js",
+          "/index.ts",
+          "/index.js"
+        ];
         let found = false;
         for (const ext of possibleExtensions) {
           const tryPath = targetPath + ext;
@@ -314,7 +331,9 @@ function buildDependencyGraph(files) {
     path.length = 0;
     dfs(file.relativePath);
   }
-  const importedFiles = new Set(graph.edges.filter((e) => e.type === "internal").map((e) => e.to));
+  const importedFiles = new Set(
+    graph.edges.filter((e) => e.type === "internal").map((e) => e.to)
+  );
   for (const file of files) {
     if (!importedFiles.has(file.relativePath) && !file.relativePath.includes("index.") && !file.relativePath.includes("cli.") && !file.relativePath.includes("server.")) {
       graph.orphanFiles.push(file.relativePath);
@@ -322,8 +341,12 @@ function buildDependencyGraph(files) {
   }
   const connectionCounts = /* @__PURE__ */ new Map();
   for (const file of files) {
-    const imports = graph.edges.filter((e) => e.from === file.relativePath && e.type === "internal").length;
-    const exports$1 = graph.edges.filter((e) => e.to === file.relativePath && e.type === "internal").length;
+    const imports = graph.edges.filter(
+      (e) => e.from === file.relativePath && e.type === "internal"
+    ).length;
+    const exports$1 = graph.edges.filter(
+      (e) => e.to === file.relativePath && e.type === "internal"
+    ).length;
     connectionCounts.set(file.relativePath, imports + exports$1);
   }
   graph.hubFiles = [...connectionCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([file]) => file);
@@ -374,32 +397,52 @@ function generateRecommendations(files, graph) {
   const recommendations = [];
   const highComplexity = files.filter((f) => f.complexity > 50).sort((a, b) => b.complexity - a.complexity);
   if (highComplexity.length > 0) {
-    recommendations.push(`Consider refactoring ${highComplexity[0].relativePath} (complexity: ${highComplexity[0].complexity}) - split into smaller modules`);
+    recommendations.push(
+      `Consider refactoring ${highComplexity[0].relativePath} (complexity: ${highComplexity[0].complexity}) - split into smaller modules`
+    );
   }
   const largeFiles = files.filter((f) => f.lines > 500).sort((a, b) => b.lines - a.lines);
   if (largeFiles.length > 0) {
-    recommendations.push(`${largeFiles[0].relativePath} has ${largeFiles[0].lines} lines - consider splitting for maintainability`);
+    recommendations.push(
+      `${largeFiles[0].relativePath} has ${largeFiles[0].lines} lines - consider splitting for maintainability`
+    );
   }
   if (graph.circularDeps.length > 0) {
-    recommendations.push(`Found ${graph.circularDeps.length} circular dependencies - refactor to eliminate cycles`);
+    recommendations.push(
+      `Found ${graph.circularDeps.length} circular dependencies - refactor to eliminate cycles`
+    );
   }
-  const lowComment = files.filter((f) => f.codeLines > 100 && f.commentLines / f.lines < 0.05);
+  const lowComment = files.filter(
+    (f) => f.codeLines > 100 && f.commentLines / f.lines < 0.05
+  );
   if (lowComment.length > 3) {
-    recommendations.push(`${lowComment.length} files have <5% comments - consider adding JSDoc documentation`);
+    recommendations.push(
+      `${lowComment.length} files have <5% comments - consider adding JSDoc documentation`
+    );
   }
   if (graph.orphanFiles.length > 2) {
-    recommendations.push(`${graph.orphanFiles.length} orphan files detected - consider removing or integrating them`);
+    recommendations.push(
+      `${graph.orphanFiles.length} orphan files detected - consider removing or integrating them`
+    );
   }
-  const complexFunctions = files.flatMap((f) => f.functions.filter((fn) => fn.params > 4));
+  const complexFunctions = files.flatMap(
+    (f) => f.functions.filter((fn) => fn.params > 4)
+  );
   if (complexFunctions.length > 0) {
-    recommendations.push(`${complexFunctions.length} functions have >4 parameters - consider using options objects`);
+    recommendations.push(
+      `${complexFunctions.length} functions have >4 parameters - consider using options objects`
+    );
   }
   if (graph.circularDeps.length === 0) {
-    recommendations.push("No circular dependencies detected - good module architecture");
+    recommendations.push(
+      "No circular dependencies detected - good module architecture"
+    );
   }
   const avgComplexity = files.reduce((sum, f) => sum + f.complexity, 0) / files.length;
   if (avgComplexity < 20) {
-    recommendations.push(`Average complexity is ${avgComplexity.toFixed(1)} - code is maintainable`);
+    recommendations.push(
+      `Average complexity is ${avgComplexity.toFixed(1)} - code is maintainable`
+    );
   }
   return recommendations;
 }
@@ -465,7 +508,11 @@ var OPUS67SelfTest = class extends EventEmitter {
               processedCount++;
               this.emit("file:analyzed", fullPath, analysis);
               if (processedCount % 10 === 0) {
-                this.emit("progress", processedCount / 100 * 30, `Analyzed ${processedCount} files`);
+                this.emit(
+                  "progress",
+                  processedCount / 100 * 30,
+                  `Analyzed ${processedCount} files`
+                );
               }
             } catch (e) {
               this.log(`  Warning: Could not analyze ${fullPath}: ${e}`);
@@ -476,7 +523,10 @@ var OPUS67SelfTest = class extends EventEmitter {
     };
     scanDir(join(OPUS67_ROOT, "src"));
     this.fileAnalyses = files;
-    const totalFunctions = files.reduce((sum, f) => sum + f.functions.length, 0);
+    const totalFunctions = files.reduce(
+      (sum, f) => sum + f.functions.length,
+      0
+    );
     const totalClasses = files.reduce((sum, f) => sum + f.classes.length, 0);
     const totalLines = files.reduce((sum, f) => sum + f.lines, 0);
     this.log(`  Files analyzed: ${files.length}`);
@@ -506,7 +556,10 @@ var OPUS67SelfTest = class extends EventEmitter {
       };
     }
     const avgComplexity = files.reduce((sum, f) => sum + f.complexity, 0) / files.length;
-    const maxFile = files.reduce((max, f) => f.complexity > max.complexity ? f : max, files[0]);
+    const maxFile = files.reduce(
+      (max, f) => f.complexity > max.complexity ? f : max,
+      files[0]
+    );
     const distribution = {
       "low (1-10)": 0,
       "medium (11-20)": 0,
@@ -526,13 +579,23 @@ var OPUS67SelfTest = class extends EventEmitter {
     const sizeScore = files.length > 10 ? 20 : files.length * 2;
     const commentScore = commentLines / totalLines > 0.1 ? 20 : commentLines / totalLines * 200;
     const structureScore = files.reduce((sum, f) => sum + (f.classes.length > 0 ? 1 : 0), 0) * 2;
-    const codeQualityScore = Math.min(100, Math.round(complexityScore + sizeScore + commentScore + structureScore + 20));
+    const codeQualityScore = Math.min(
+      100,
+      Math.round(
+        complexityScore + sizeScore + commentScore + structureScore + 20
+      )
+    );
     this.log(`  Avg Complexity: ${avgComplexity.toFixed(2)}`);
-    this.log(`  Max Complexity: ${maxFile.relativePath} (${maxFile.complexity})`);
+    this.log(
+      `  Max Complexity: ${maxFile.relativePath} (${maxFile.complexity})`
+    );
     this.log(`  Code Quality Score: ${codeQualityScore}/100`);
     return {
       avgComplexity,
-      maxComplexity: { file: maxFile.relativePath, complexity: maxFile.complexity },
+      maxComplexity: {
+        file: maxFile.relativePath,
+        complexity: maxFile.complexity
+      },
       complexityDistribution: distribution,
       codeQualityScore
     };
@@ -544,8 +607,12 @@ var OPUS67SelfTest = class extends EventEmitter {
     this.log("PHASE 3: DEPENDENCY GRAPH ANALYSIS");
     const graph = buildDependencyGraph(this.fileAnalyses);
     this.dependencyGraph = graph;
-    const internalEdges = graph.edges.filter((e) => e.type === "internal").length;
-    graph.edges.filter((e) => e.type === "external").length;
+    const internalEdges = graph.edges.filter(
+      (e) => e.type === "internal"
+    ).length;
+    graph.edges.filter(
+      (e) => e.type === "external"
+    ).length;
     this.log(`  Internal dependencies: ${internalEdges}`);
     this.log(`  External packages: ${graph.externalDeps.size}`);
     this.log(`  Circular dependencies: ${graph.circularDeps.length}`);
@@ -587,7 +654,9 @@ var OPUS67SelfTest = class extends EventEmitter {
         this.connectedMcps.add(mcp);
       }
     }
-    this.log(`    Skills loaded: ${this.testedSkills.size}/${registry.skills.length}`);
+    this.log(
+      `    Skills loaded: ${this.testedSkills.size}/${registry.skills.length}`
+    );
     this.log("  Testing mode selector...");
     const allModes = getAllModes();
     for (const { id } of allModes) {
@@ -599,7 +668,10 @@ var OPUS67SelfTest = class extends EventEmitter {
     this.log("  Testing memory services...");
     let memorySuccess = true;
     try {
-      await this.memory.addFact("self_test_v2", "OPUS 67 Enhanced Self-Test v2 completed");
+      await this.memory.addFact(
+        "self_test_v2",
+        "OPUS 67 Enhanced Self-Test v2 completed"
+      );
       await this.memory.addEpisode({
         name: "self_test_v2_run",
         content: `Analyzed ${this.fileAnalyses.length} files`,
@@ -626,7 +698,9 @@ var OPUS67SelfTest = class extends EventEmitter {
     this.log("PHASE 5: AGENT SIMULATION - Parallel Analysis");
     const tasks = [];
     const highComplexity = this.fileAnalyses.filter((f) => f.complexity > 30);
-    const largeFunctions = this.fileAnalyses.flatMap((f) => f.functions.filter((fn) => fn.lines > 50));
+    const largeFunctions = this.fileAnalyses.flatMap(
+      (f) => f.functions.filter((fn) => fn.lines > 50)
+    );
     for (const file of highComplexity.slice(0, 5)) {
       tasks.push({
         id: `complexity-${file.relativePath}`,
@@ -644,11 +718,36 @@ var OPUS67SelfTest = class extends EventEmitter {
       });
     }
     const standardTasks = [
-      { id: "arch-1", type: "architect", prompt: "Analyze module architecture", priority: 10 },
-      { id: "sec-1", type: "security", prompt: "Security audit for API endpoints", priority: 10 },
-      { id: "test-1", type: "tester", prompt: "Review test coverage", priority: 8 },
-      { id: "doc-1", type: "documenter", prompt: "Audit documentation", priority: 6 },
-      { id: "perf-1", type: "optimizer", prompt: "Find optimization opportunities", priority: 8 }
+      {
+        id: "arch-1",
+        type: "architect",
+        prompt: "Analyze module architecture",
+        priority: 10
+      },
+      {
+        id: "sec-1",
+        type: "security",
+        prompt: "Security audit for API endpoints",
+        priority: 10
+      },
+      {
+        id: "test-1",
+        type: "tester",
+        prompt: "Review test coverage",
+        priority: 8
+      },
+      {
+        id: "doc-1",
+        type: "documenter",
+        prompt: "Audit documentation",
+        priority: 6
+      },
+      {
+        id: "perf-1",
+        type: "optimizer",
+        prompt: "Find optimization opportunities",
+        priority: 8
+      }
     ];
     tasks.push(...standardTasks);
     while (tasks.length < 20) {
@@ -660,13 +759,13 @@ var OPUS67SelfTest = class extends EventEmitter {
       });
     }
     const executor = async (task) => {
-      await new Promise((resolve) => setTimeout(resolve, 50 + Math.random() * 100));
-      tokenTracker.record(
-        task.id,
-        task.type,
-        "gemini-2.0-flash",
-        { input: 500 + Math.floor(Math.random() * 500), output: 200 + Math.floor(Math.random() * 300) }
+      await new Promise(
+        (resolve) => setTimeout(resolve, 50 + Math.random() * 100)
       );
+      tokenTracker.record(task.id, task.type, "gemini-2.0-flash", {
+        input: 500 + Math.floor(Math.random() * 500),
+        output: 200 + Math.floor(Math.random() * 300)
+      });
       this.emit("agent:spawned", task.id, task.prompt);
       const insights2 = {
         analyzer: `Complexity analysis suggests refactoring opportunities`,
@@ -699,8 +798,14 @@ var OPUS67SelfTest = class extends EventEmitter {
   // ═══════════════════════════════════════════════════════════════════════════════
   async generateMarkdownReport(report) {
     this.log("PHASE 6: GENERATING MARKDOWN REPORT");
-    const recommendations = generateRecommendations(this.fileAnalyses, this.dependencyGraph);
-    const diagram = generateArchitectureDiagram(this.fileAnalyses, this.dependencyGraph);
+    const recommendations = generateRecommendations(
+      this.fileAnalyses,
+      this.dependencyGraph
+    );
+    const diagram = generateArchitectureDiagram(
+      this.fileAnalyses,
+      this.dependencyGraph
+    );
     const markdown = `# OPUS 67 v4.1 Self-Test Report
 
 > Generated: ${report.endTime.toISOString()}
@@ -777,7 +882,9 @@ ${Object.entries(report.successCriteria).map(
 
 | File | LOC | Functions | Classes | Complexity |
 |------|-----|-----------|---------|------------|
-${this.fileAnalyses.sort((a, b) => b.complexity - a.complexity).slice(0, 20).map((f) => `| ${f.relativePath} | ${f.lines} | ${f.functions.length} | ${f.classes.length} | ${f.complexity} |`).join("\n")}
+${this.fileAnalyses.sort((a, b) => b.complexity - a.complexity).slice(0, 20).map(
+      (f) => `| ${f.relativePath} | ${f.lines} | ${f.functions.length} | ${f.classes.length} | ${f.complexity} |`
+    ).join("\n")}
 
 ---
 
@@ -824,14 +931,35 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
     const registry = loadRegistry();
     const allModes = getAllModes();
     const totalLines = this.fileAnalyses.reduce((sum, f) => sum + f.lines, 0);
-    const codeLines = this.fileAnalyses.reduce((sum, f) => sum + f.codeLines, 0);
-    const commentLines = this.fileAnalyses.reduce((sum, f) => sum + f.commentLines, 0);
-    const blankLines = this.fileAnalyses.reduce((sum, f) => sum + f.blankLines, 0);
-    const totalFunctions = this.fileAnalyses.reduce((sum, f) => sum + f.functions.length, 0);
-    const totalClasses = this.fileAnalyses.reduce((sum, f) => sum + f.classes.length, 0);
-    const totalInterfaces = this.fileAnalyses.reduce((sum, f) => sum + f.interfaces.length, 0);
+    const codeLines = this.fileAnalyses.reduce(
+      (sum, f) => sum + f.codeLines,
+      0
+    );
+    const commentLines = this.fileAnalyses.reduce(
+      (sum, f) => sum + f.commentLines,
+      0
+    );
+    const blankLines = this.fileAnalyses.reduce(
+      (sum, f) => sum + f.blankLines,
+      0
+    );
+    const totalFunctions = this.fileAnalyses.reduce(
+      (sum, f) => sum + f.functions.length,
+      0
+    );
+    const totalClasses = this.fileAnalyses.reduce(
+      (sum, f) => sum + f.classes.length,
+      0
+    );
+    const totalInterfaces = this.fileAnalyses.reduce(
+      (sum, f) => sum + f.interfaces.length,
+      0
+    );
     const avgComplexity = this.fileAnalyses.length > 0 ? this.fileAnalyses.reduce((sum, f) => sum + f.complexity, 0) / this.fileAnalyses.length : 0;
-    const maxComplexityFile = this.fileAnalyses.length > 0 ? this.fileAnalyses.reduce((max, f) => f.complexity > max.complexity ? f : max, this.fileAnalyses[0]) : { relativePath: "N/A", complexity: 0 };
+    const maxComplexityFile = this.fileAnalyses.length > 0 ? this.fileAnalyses.reduce(
+      (max, f) => f.complexity > max.complexity ? f : max,
+      this.fileAnalyses[0]
+    ) : { relativePath: "N/A", complexity: 0 };
     const filesByType = {};
     for (const file of this.fileAnalyses) {
       const ext = extname(file.path);
@@ -841,7 +969,12 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
     const sizeScore = this.fileAnalyses.length > 10 ? 20 : this.fileAnalyses.length * 2;
     const commentScore = totalLines > 0 ? commentLines / totalLines > 0.1 ? 20 : commentLines / totalLines * 200 : 0;
     const structureScore = this.fileAnalyses.filter((f) => f.classes.length > 0).length * 2;
-    const codeQualityScore = Math.min(100, Math.round(complexityScore + sizeScore + commentScore + structureScore + 20));
+    const codeQualityScore = Math.min(
+      100,
+      Math.round(
+        complexityScore + sizeScore + commentScore + structureScore + 20
+      )
+    );
     const successCriteria = {
       "Files parsed": {
         target: ">50",
@@ -933,7 +1066,10 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
         totalClasses,
         totalInterfaces,
         avgComplexity,
-        maxComplexity: { file: maxComplexityFile.relativePath, complexity: maxComplexityFile.complexity },
+        maxComplexity: {
+          file: maxComplexityFile.relativePath,
+          complexity: maxComplexityFile.complexity
+        },
         filesByType,
         moduleGraph: this.dependencyGraph?.hubFiles || [],
         codeQualityScore
@@ -962,15 +1098,29 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
   async run() {
     this.startTime = /* @__PURE__ */ new Date();
     console.log("");
-    console.log("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
-    console.log("\u2551       OPUS 67 v4.1 ENHANCED SELF-TEST v2                         \u2551");
-    console.log('\u2551                  "Learning Layer"                                \u2551');
-    console.log("\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563");
+    console.log(
+      "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+    );
+    console.log(
+      "\u2551       OPUS 67 v4.1 ENHANCED SELF-TEST v2                         \u2551"
+    );
+    console.log(
+      '\u2551                  "Learning Layer"                                \u2551'
+    );
+    console.log(
+      "\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563"
+    );
     console.log(`\u2551  Start Time: ${this.startTime.toISOString().padEnd(50)} \u2551`);
     console.log(`\u2551  Output: OPUS67_SELF_TEST_REPORT.md`.padEnd(67) + "\u2551");
-    console.log("\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D");
+    console.log(
+      "\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D"
+    );
     console.log("");
-    const phase1 = { name: "Deep File Scan", description: "Parse TypeScript files", status: "pending" };
+    const phase1 = {
+      name: "Deep File Scan",
+      description: "Parse TypeScript files",
+      status: "pending"
+    };
     this.phases.push(phase1);
     this.emit("phase:start", phase1);
     phase1.status = "running";
@@ -985,7 +1135,11 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
       phase1.error = String(error);
       this.emit("phase:error", phase1, error);
     }
-    const phase2 = { name: "Metrics Calculation", description: "Cyclomatic complexity", status: "pending" };
+    const phase2 = {
+      name: "Metrics Calculation",
+      description: "Cyclomatic complexity",
+      status: "pending"
+    };
     this.phases.push(phase2);
     this.emit("phase:start", phase2);
     phase2.status = "running";
@@ -1000,7 +1154,11 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
       phase2.error = String(error);
       this.emit("phase:error", phase2, error);
     }
-    const phase3 = { name: "Dependency Analysis", description: "Build import graph", status: "pending" };
+    const phase3 = {
+      name: "Dependency Analysis",
+      description: "Build import graph",
+      status: "pending"
+    };
     this.phases.push(phase3);
     this.emit("phase:start", phase3);
     phase3.status = "running";
@@ -1015,7 +1173,11 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
       phase3.error = String(error);
       this.emit("phase:error", phase3, error);
     }
-    const phase4 = { name: "Component Verification", description: "Skills, Modes, Memory", status: "pending" };
+    const phase4 = {
+      name: "Component Verification",
+      description: "Skills, Modes, Memory",
+      status: "pending"
+    };
     this.phases.push(phase4);
     this.emit("phase:start", phase4);
     phase4.status = "running";
@@ -1030,7 +1192,11 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
       phase4.error = String(error);
       this.emit("phase:error", phase4, error);
     }
-    const phase5 = { name: "Agent Simulation", description: "20 parallel agents", status: "pending" };
+    const phase5 = {
+      name: "Agent Simulation",
+      description: "20 parallel agents",
+      status: "pending"
+    };
     this.phases.push(phase5);
     this.emit("phase:start", phase5);
     phase5.status = "running";
@@ -1046,7 +1212,11 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
       this.emit("phase:error", phase5, error);
     }
     const report = this.generateReport();
-    const phase6 = { name: "Report Generation", description: "Write Markdown file", status: "pending" };
+    const phase6 = {
+      name: "Report Generation",
+      description: "Write Markdown file",
+      status: "pending"
+    };
     this.phases.push(phase6);
     this.emit("phase:start", phase6);
     phase6.status = "running";
@@ -1067,30 +1237,80 @@ ${Object.entries(report.architectureAnalysis.filesByType).sort((a, b) => b[1] - 
   }
   printReport(report) {
     console.log("");
-    console.log("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
-    console.log("\u2551              OPUS 67 SELF-TEST REPORT v2                         \u2551");
-    console.log("\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563");
-    console.log(`\u2551  Duration:           ${(report.duration / 1e3).toFixed(2).padEnd(10)}seconds                        \u2551`);
-    console.log(`\u2551  Files Analyzed:     ${String(report.architectureAnalysis.totalFiles).padEnd(44)} \u2551`);
-    console.log(`\u2551  Total Lines:        ${String(report.architectureAnalysis.totalLines).padEnd(44)} \u2551`);
-    console.log(`\u2551  Functions:          ${String(report.architectureAnalysis.totalFunctions).padEnd(44)} \u2551`);
-    console.log(`\u2551  Classes:            ${String(report.architectureAnalysis.totalClasses).padEnd(44)} \u2551`);
-    console.log(`\u2551  Avg Complexity:     ${report.architectureAnalysis.avgComplexity.toFixed(1).padEnd(44)} \u2551`);
-    console.log(`\u2551  Code Quality:       ${report.architectureAnalysis.codeQualityScore}/100`.padEnd(65) + "\u2551");
-    console.log(`\u2551  Circular Deps:      ${String(report.dependencyAnalysis.circularDeps).padEnd(44)} \u2551`);
-    console.log(`\u2551  Skills Loaded:      ${report.skillsCoverage.tested}/${report.skillsCoverage.total}`.padEnd(65) + "\u2551");
-    console.log(`\u2551  Modes Tested:       ${report.modesCoverage.tested}/${report.modesCoverage.total}`.padEnd(65) + "\u2551");
-    console.log(`\u2551  Agent Success:      ${(report.agentPerformance.successRate * 100).toFixed(1)}%`.padEnd(65) + "\u2551");
-    console.log("\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563");
-    console.log("\u2551  SUCCESS CRITERIA                                                \u2551");
-    console.log("\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563");
+    console.log(
+      "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+    );
+    console.log(
+      "\u2551              OPUS 67 SELF-TEST REPORT v2                         \u2551"
+    );
+    console.log(
+      "\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563"
+    );
+    console.log(
+      `\u2551  Duration:           ${(report.duration / 1e3).toFixed(2).padEnd(10)}seconds                        \u2551`
+    );
+    console.log(
+      `\u2551  Files Analyzed:     ${String(report.architectureAnalysis.totalFiles).padEnd(44)} \u2551`
+    );
+    console.log(
+      `\u2551  Total Lines:        ${String(report.architectureAnalysis.totalLines).padEnd(44)} \u2551`
+    );
+    console.log(
+      `\u2551  Functions:          ${String(report.architectureAnalysis.totalFunctions).padEnd(44)} \u2551`
+    );
+    console.log(
+      `\u2551  Classes:            ${String(report.architectureAnalysis.totalClasses).padEnd(44)} \u2551`
+    );
+    console.log(
+      `\u2551  Avg Complexity:     ${report.architectureAnalysis.avgComplexity.toFixed(1).padEnd(44)} \u2551`
+    );
+    console.log(
+      `\u2551  Code Quality:       ${report.architectureAnalysis.codeQualityScore}/100`.padEnd(
+        65
+      ) + "\u2551"
+    );
+    console.log(
+      `\u2551  Circular Deps:      ${String(report.dependencyAnalysis.circularDeps).padEnd(44)} \u2551`
+    );
+    console.log(
+      `\u2551  Skills Loaded:      ${report.skillsCoverage.tested}/${report.skillsCoverage.total}`.padEnd(
+        65
+      ) + "\u2551"
+    );
+    console.log(
+      `\u2551  Modes Tested:       ${report.modesCoverage.tested}/${report.modesCoverage.total}`.padEnd(
+        65
+      ) + "\u2551"
+    );
+    console.log(
+      `\u2551  Agent Success:      ${(report.agentPerformance.successRate * 100).toFixed(1)}%`.padEnd(
+        65
+      ) + "\u2551"
+    );
+    console.log(
+      "\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563"
+    );
+    console.log(
+      "\u2551  SUCCESS CRITERIA                                                \u2551"
+    );
+    console.log(
+      "\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563"
+    );
     for (const [criterion, result] of Object.entries(report.successCriteria)) {
       const status = result.passed ? "\u2705" : "\u274C";
-      console.log(`\u2551  ${status} ${criterion.padEnd(26)} ${result.actual.padEnd(31)} \u2551`);
+      console.log(
+        `\u2551  ${status} ${criterion.padEnd(26)} ${result.actual.padEnd(31)} \u2551`
+      );
     }
-    console.log("\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563");
-    console.log(`\u2551  Report: ${this.config.outputReportPath.slice(-50).padEnd(55)} \u2551`);
-    console.log("\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D");
+    console.log(
+      "\u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563"
+    );
+    console.log(
+      `\u2551  Report: ${this.config.outputReportPath.slice(-50).padEnd(55)} \u2551`
+    );
+    console.log(
+      "\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D"
+    );
   }
 };
 if (process.argv[1]?.includes("opus67-self-test")) {
@@ -1110,10 +1330,14 @@ if (process.argv[1]?.includes("opus67-self-test")) {
     console.log(`\u274C Failed: ${phase.name} - ${error.message}`);
   });
   test.run().then((report) => {
-    const passed = Object.values(report.successCriteria).filter((c) => c.passed).length;
+    const passed = Object.values(report.successCriteria).filter(
+      (c) => c.passed
+    ).length;
     const total = Object.values(report.successCriteria).length;
-    console.log(`
-\u{1F3C1} Self-test complete: ${passed}/${total} criteria passed`);
+    console.log(
+      `
+\u{1F3C1} Self-test complete: ${passed}/${total} criteria passed`
+    );
     console.log(`\u{1F4C4} Full report: OPUS67_SELF_TEST_REPORT.md`);
     process.exit(passed >= total - 1 ? 0 : 1);
   }).catch((error) => {

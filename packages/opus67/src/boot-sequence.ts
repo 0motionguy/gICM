@@ -3,9 +3,13 @@
  * Terminal UI and initialization display
  */
 
-import { loadModeRegistry, getAllModes, type ModeName } from './mode-selector.js';
-import { loadRegistry } from './skill-loader.js';
-import { getAllConnections } from './mcp-hub.js';
+import {
+  loadModeRegistry,
+  getAllModes,
+  type ModeName,
+} from "./mode-selector.js";
+import { loadRegistry } from "./skill-loader.js";
+import { getAllConnections } from "./mcp-hub.js";
 
 export interface BootConfig {
   showAnimation?: boolean;
@@ -13,17 +17,23 @@ export interface BootConfig {
   userName?: string;
   projectName?: string;
   version?: string;
+  showEvolution?: boolean;
+  showCouncil?: boolean;
 }
 
 export interface SystemStatus {
   skills: { loaded: number; available: number };
   mcps: { connected: number; available: number };
   modes: { current: ModeName; available: number };
-  memory: { status: 'ready' | 'loading' | 'error' };
+  memory: { status: "ready" | "loading" | "error" };
   context: { indexed: boolean; files: number };
   subAgents: { available: number };
   combinations: { available: number };
-  learning?: { enabled: boolean; acontext: 'online' | 'offline' | 'unknown'; sopsGenerated: number };
+  learning?: {
+    enabled: boolean;
+    acontext: "online" | "offline" | "unknown";
+    sopsGenerated: number;
+  };
 }
 
 /**
@@ -35,10 +45,10 @@ export function generateBootScreen(config: BootConfig = {}): string {
   const modeRegistry = loadModeRegistry();
   const skillRegistry = loadRegistry();
 
-  const currentMode = config.defaultMode || 'auto';
+  const currentMode = config.defaultMode || "auto";
   const modeConfig = modeRegistry.modes[currentMode];
-  const version = config.version || '4.1.0';
-  const projectName = config.projectName || 'gICM';
+  const version = config.version || "4.1.0";
+  const projectName = config.projectName || "gICM";
 
   // Dynamic counts
   const skillCount = skillRegistry.skills.length;
@@ -119,24 +129,38 @@ export function generateBootScreen(config: BootConfig = {}): string {
  */
 export function generateStatusLine(status: SystemStatus): string {
   const modeEmoji: Record<string, string> = {
-    ultra: '🧠', think: '💭', build: '🔨', vibe: '⚡', light: '💡',
-    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖', background: '🌙', review: '👀'
+    ultra: "🧠",
+    think: "💭",
+    build: "🔨",
+    vibe: "⚡",
+    light: "💡",
+    creative: "🎨",
+    data: "📊",
+    audit: "🛡️",
+    swarm: "🐝",
+    auto: "🤖",
+    background: "🌙",
+    review: "👀",
   };
 
-  return `${modeEmoji[status.modes.current]} OPUS 67 │ ${status.modes.current.toUpperCase()} │ Skills: ${status.skills.loaded}/${status.skills.available} │ MCPs: ${status.mcps.connected}/${status.mcps.available} │ Context: ${status.context.indexed ? '●' : '○'}`;
+  return `${modeEmoji[status.modes.current]} OPUS 67 │ ${status.modes.current.toUpperCase()} │ Skills: ${status.skills.loaded}/${status.skills.available} │ MCPs: ${status.mcps.connected}/${status.mcps.available} │ Context: ${status.context.indexed ? "●" : "○"}`;
 }
 
 /**
  * Generate mode switch notification
  */
-export function generateModeSwitchNotification(from: ModeName, to: ModeName, reason: string): string {
+export function generateModeSwitchNotification(
+  from: ModeName,
+  to: ModeName,
+  reason: string
+): string {
   const registry = loadModeRegistry();
   const toMode = registry.modes[to];
-  
+
   return `
 ┌─ MODE SWITCH ───────────────────────────────────────────┐
 │                                                         │
-│  ${registry.modes[from]?.icon || '?'} ${from.toUpperCase()} → ${toMode.icon} ${to.toUpperCase().padEnd(40)}│
+│  ${registry.modes[from]?.icon || "?"} ${from.toUpperCase()} → ${toMode.icon} ${to.toUpperCase().padEnd(40)}│
 │                                                         │
 │  Reason: ${reason.slice(0, 47).padEnd(47)} │
 │  ${toMode.description.slice(0, 53).padEnd(53)} │
@@ -147,7 +171,9 @@ export function generateModeSwitchNotification(from: ModeName, to: ModeName, rea
 /**
  * Generate sub-agent spawn notification
  */
-export function generateAgentSpawnNotification(agents: Array<{ type: string; task: string; model: string }>): string {
+export function generateAgentSpawnNotification(
+  agents: Array<{ type: string; task: string; model: string }>
+): string {
   let output = `
 ┌─ 🐝 SWARM ACTIVATED ────────────────────────────────────┐
 │                                                         │
@@ -205,13 +231,26 @@ export function generateHelpScreen(): string {
 /**
  * Generate minimal inline status
  */
-export function generateInlineStatus(mode: ModeName, confidence?: number): string {
+export function generateInlineStatus(
+  mode: ModeName,
+  confidence?: number
+): string {
   const modeEmoji: Record<string, string> = {
-    ultra: '🧠', think: '💭', build: '🔨', vibe: '⚡', light: '💡',
-    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖', background: '🌙', review: '👀'
+    ultra: "🧠",
+    think: "💭",
+    build: "🔨",
+    vibe: "⚡",
+    light: "💡",
+    creative: "🎨",
+    data: "📊",
+    audit: "🛡️",
+    swarm: "🐝",
+    auto: "🤖",
+    background: "🌙",
+    review: "👀",
   };
 
-  const confStr = confidence ? ` ${(confidence * 100).toFixed(0)}%` : '';
+  const confStr = confidence ? ` ${(confidence * 100).toFixed(0)}%` : "";
   return `${modeEmoji[mode]} ${mode.toUpperCase()}${confStr}`;
 }
 
@@ -220,8 +259,18 @@ export function generateInlineStatus(mode: ModeName, confidence?: number): strin
  */
 export function generateStatusPanel(status: SystemStatus): string {
   const modeEmoji: Record<string, string> = {
-    ultra: '🧠', think: '💭', build: '🔨', vibe: '⚡', light: '💡',
-    creative: '🎨', data: '📊', audit: '🛡️', swarm: '🐝', auto: '🤖', background: '🌙', review: '👀'
+    ultra: "🧠",
+    think: "💭",
+    build: "🔨",
+    vibe: "⚡",
+    light: "💡",
+    creative: "🎨",
+    data: "📊",
+    audit: "🛡️",
+    swarm: "🐝",
+    auto: "🤖",
+    background: "🌙",
+    review: "👀",
   };
 
   return `
@@ -234,17 +283,19 @@ export function generateStatusPanel(status: SystemStatus): string {
 │  Sub-Agents  ${String(status.subAgents.available).padEnd(3)} types available                        │
 │  Presets     ${String(status.combinations.available).padEnd(3)} skill combinations                      │
 │                                                         │
-│  Memory      ${status.memory.status === 'ready' ? '● Ready' : '○ ' + status.memory.status}                                      │
-│  Context     ${status.context.indexed ? '● Indexed' : '○ Not indexed'} (${String(status.context.files).padEnd(4)} files)                  │
+│  Memory      ${status.memory.status === "ready" ? "● Ready" : "○ " + status.memory.status}                                      │
+│  Context     ${status.context.indexed ? "● Indexed" : "○ Not indexed"} (${String(status.context.files).padEnd(4)} files)                  │
 │                                                         │
 └─────────────────────────────────────────────────────────┘`;
 }
 
 // CLI Test
-if (process.argv[1]?.includes('boot-sequence')) {
-  console.log(generateBootScreen({ 
-    defaultMode: 'auto',
-    version: '2.0.0',
-    projectName: 'gICM'
-  }));
+if (process.argv[1]?.includes("boot-sequence")) {
+  console.log(
+    generateBootScreen({
+      defaultMode: "auto",
+      version: "2.0.0",
+      projectName: "gICM",
+    })
+  );
 }

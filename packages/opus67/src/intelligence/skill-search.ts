@@ -5,9 +5,12 @@
  * Provides faster, more accurate skill discovery than TF-IDF.
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
-import { getSkillMetadataLoader, type DeepSkillMetadata } from './skill-metadata.js';
+import * as fs from "fs";
+import * as path from "path";
+import {
+  getSkillMetadataLoader,
+  type DeepSkillMetadata,
+} from "./skill-metadata.js";
 
 // =============================================================================
 // TYPES
@@ -44,7 +47,7 @@ export interface QdrantConfig {
 
 export interface SkillSearchConfig {
   qdrant?: QdrantConfig;
-  embeddingModel: 'local' | 'openai' | 'transformers';
+  embeddingModel: "local" | "openai" | "transformers";
   topK: number;
   minScore: number;
 }
@@ -55,13 +58,13 @@ export interface SkillSearchConfig {
 
 const DEFAULT_CONFIG: SkillSearchConfig = {
   qdrant: {
-    url: process.env.QDRANT_URL || 'http://localhost:6333',
-    collectionName: 'opus67_skills',
-    vectorSize: 384  // all-MiniLM-L6-v2 dimension
+    url: process.env.QDRANT_URL || "http://localhost:6333",
+    collectionName: "opus67_skills",
+    vectorSize: 384, // all-MiniLM-L6-v2 dimension
   },
-  embeddingModel: 'local',
+  embeddingModel: "local",
   topK: 5,
-  minScore: 0.3
+  minScore: 0.3,
 };
 
 // =============================================================================
@@ -80,9 +83,9 @@ class LocalEmbeddings {
   private tokenize(text: string): string[] {
     const words = text
       .toLowerCase()
-      .replace(/[^\w\s-]/g, ' ')
+      .replace(/[^\w\s-]/g, " ")
       .split(/\s+/)
-      .filter(t => t.length > 2);
+      .filter((t) => t.length > 2);
 
     // Add bigrams for better semantic capture
     const bigrams: string[] = [];
@@ -167,73 +170,90 @@ class QdrantClient {
   async createCollection(vectorSize: number): Promise<void> {
     try {
       await fetch(`${this.url}/collections/${this.collectionName}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           vectors: {
             size: vectorSize,
-            distance: 'Cosine'
-          }
-        })
+            distance: "Cosine",
+          },
+        }),
       });
     } catch (error) {
       // Collection might already exist
-      console.log('[SkillSearch] Collection exists or created');
+      console.log("[SkillSearch] Collection exists or created");
     }
   }
 
-  async upsertPoints(points: Array<{
-    id: string;
-    vector: number[];
-    payload: Record<string, unknown>;
-  }>): Promise<void> {
-    const response = await fetch(`${this.url}/collections/${this.collectionName}/points`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        points: points.map((p, idx) => ({
-          id: idx,
-          vector: p.vector,
-          payload: { ...p.payload, _id: p.id }
-        }))
-      })
-    });
+  async upsertPoints(
+    points: Array<{
+      id: string;
+      vector: number[];
+      payload: Record<string, unknown>;
+    }>
+  ): Promise<void> {
+    const response = await fetch(
+      `${this.url}/collections/${this.collectionName}/points`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          points: points.map((p, idx) => ({
+            id: idx,
+            vector: p.vector,
+            payload: { ...p.payload, _id: p.id },
+          })),
+        }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Qdrant upsert failed: ${response.statusText}`);
     }
   }
 
-  async search(vector: number[], topK: number): Promise<Array<{
-    id: number;
-    score: number;
-    payload: Record<string, unknown>;
-  }>> {
-    const response = await fetch(`${this.url}/collections/${this.collectionName}/points/search`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        vector,
-        limit: topK,
-        with_payload: true
-      })
-    });
+  async search(
+    vector: number[],
+    topK: number
+  ): Promise<
+    Array<{
+      id: number;
+      score: number;
+      payload: Record<string, unknown>;
+    }>
+  > {
+    const response = await fetch(
+      `${this.url}/collections/${this.collectionName}/points/search`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          vector,
+          limit: topK,
+          with_payload: true,
+        }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Qdrant search failed: ${response.statusText}`);
     }
 
-    const data = await response.json() as { result: Array<{
-      id: number;
-      score: number;
-      payload: Record<string, unknown>;
-    }> };
+    const data = (await response.json()) as {
+      result: Array<{
+        id: number;
+        score: number;
+        payload: Record<string, unknown>;
+      }>;
+    };
     return data.result;
   }
 
   async collectionExists(): Promise<boolean> {
     try {
-      const response = await fetch(`${this.url}/collections/${this.collectionName}`);
+      const response = await fetch(
+        `${this.url}/collections/${this.collectionName}`
+      );
       return response.ok;
     } catch {
       return false;
@@ -242,9 +262,13 @@ class QdrantClient {
 
   async getPointCount(): Promise<number> {
     try {
-      const response = await fetch(`${this.url}/collections/${this.collectionName}`);
+      const response = await fetch(
+        `${this.url}/collections/${this.collectionName}`
+      );
       if (!response.ok) return 0;
-      const data = await response.json() as { result: { points_count: number } };
+      const data = (await response.json()) as {
+        result: { points_count: number };
+      };
       return data.result.points_count || 0;
     } catch {
       return 0;
@@ -292,7 +316,9 @@ export class SkillSearch {
           return;
         }
       } catch (error) {
-        console.log('[SkillSearch] Qdrant not available, using local embeddings');
+        console.log(
+          "[SkillSearch] Qdrant not available, using local embeddings"
+        );
       }
     }
 
@@ -335,12 +361,13 @@ export class SkillSearch {
         payload: {
           skillId: skill.id,
           name: skill.name || skill.id,
-          description: skill.semantic?.purpose || '',
-          triggers: skill.triggers || [],
-          capabilities: skill.capabilities?.map(c => c.action) || [],
-          category: skill.semantic?.category || 'general',
-          tier: skill.tier || 2
-        }
+          description: skill.semantic?.purpose || "",
+          triggers: (skill as { triggers?: string[] }).triggers ?? [],
+          capabilities: skill.capabilities?.map((c) => c.action) || [],
+          category:
+            (skill.semantic as { category?: string })?.category ?? "general",
+          tier: skill.tier || 2,
+        },
       });
     }
 
@@ -349,20 +376,26 @@ export class SkillSearch {
       try {
         await this.qdrant.createCollection(this.config.qdrant!.vectorSize);
         await this.qdrant.upsertPoints(
-          Array.from(this.skillVectors.values()).map(sv => ({
+          Array.from(this.skillVectors.values()).map((sv) => ({
             id: sv.id,
             vector: sv.vector,
-            payload: sv.payload
+            payload: sv.payload,
           }))
         );
         this.useQdrant = true;
-        console.log(`[SkillSearch] Indexed ${this.skillVectors.size} skills in Qdrant`);
+        console.log(
+          `[SkillSearch] Indexed ${this.skillVectors.size} skills in Qdrant`
+        );
       } catch (error) {
-        console.log('[SkillSearch] Could not index in Qdrant, using local search');
+        console.log(
+          "[SkillSearch] Could not index in Qdrant, using local search"
+        );
       }
     }
 
-    console.log(`[SkillSearch] Built local index with ${this.skillVectors.size} skills`);
+    console.log(
+      `[SkillSearch] Built local index with ${this.skillVectors.size} skills`
+    );
   }
 
   /**
@@ -371,21 +404,32 @@ export class SkillSearch {
   private buildSearchText(metadata: DeepSkillMetadata): string {
     const parts: string[] = [
       metadata.id,
-      metadata.name || '',
-      metadata.semantic?.purpose || '',
-      ...(metadata.semantic?.what_it_does || []),
-      ...(metadata.triggers || []),
-      ...(metadata.capabilities?.map(c => c.action) || []),
-      ...(metadata.capabilities?.map(c => c.description) || [])
+      metadata.name || "",
+      metadata.semantic?.purpose || "",
+      ...(metadata.semantic?.what_it_does?.filter((x): x is string =>
+        Boolean(x)
+      ) ?? []),
+      ...((metadata as { triggers?: string[] }).triggers?.filter(
+        (x): x is string => Boolean(x)
+      ) ?? []),
+      ...(metadata.capabilities
+        ?.map((c) => c.action)
+        .filter((x): x is string => Boolean(x)) ?? []),
+      ...(metadata.capabilities
+        ?.map((c) => (c as { description?: string }).description)
+        .filter((x): x is string => Boolean(x)) ?? []),
     ];
 
-    return parts.filter(Boolean).join(' ').toLowerCase();
+    return parts.filter(Boolean).join(" ").toLowerCase();
   }
 
   /**
    * Search for skills matching a query
    */
-  async searchSkills(query: string, topK?: number): Promise<SkillSearchResult[]> {
+  async searchSkills(
+    query: string,
+    topK?: number
+  ): Promise<SkillSearchResult[]> {
     await this.initialize();
 
     const k = topK || this.config.topK;
@@ -401,25 +445,31 @@ export class SkillSearch {
   /**
    * Search using Qdrant
    */
-  private async searchQdrant(vector: number[], topK: number): Promise<SkillSearchResult[]> {
+  private async searchQdrant(
+    vector: number[],
+    topK: number
+  ): Promise<SkillSearchResult[]> {
     const results = await this.qdrant!.search(vector, topK);
 
     return results
-      .filter(r => r.score >= this.config.minScore)
-      .map(r => ({
-        skillId: r.payload._id as string || r.payload.skillId as string,
-        name: r.payload.name as string || '',
+      .filter((r) => r.score >= this.config.minScore)
+      .map((r) => ({
+        skillId: (r.payload._id as string) || (r.payload.skillId as string),
+        name: (r.payload.name as string) || "",
         score: r.score,
-        description: r.payload.description as string || '',
-        triggers: r.payload.triggers as string[] || [],
-        capabilities: r.payload.capabilities as string[] || []
+        description: (r.payload.description as string) || "",
+        triggers: (r.payload.triggers as string[]) || [],
+        capabilities: (r.payload.capabilities as string[]) || [],
       }));
   }
 
   /**
    * Search using local vectors
    */
-  private searchLocal(queryVector: number[], topK: number): SkillSearchResult[] {
+  private searchLocal(
+    queryVector: number[],
+    topK: number
+  ): SkillSearchResult[] {
     const results: Array<{ skill: SkillVector; score: number }> = [];
 
     for (const skill of this.skillVectors.values()) {
@@ -431,13 +481,13 @@ export class SkillSearch {
 
     results.sort((a, b) => b.score - a.score);
 
-    return results.slice(0, topK).map(r => ({
+    return results.slice(0, topK).map((r) => ({
       skillId: r.skill.payload.skillId,
       name: r.skill.payload.name,
       score: r.score,
       description: r.skill.payload.description,
       triggers: r.skill.payload.triggers,
-      capabilities: r.skill.payload.capabilities
+      capabilities: r.skill.payload.capabilities,
     }));
   }
 
@@ -475,7 +525,7 @@ export class SkillSearch {
       score: 1.0,
       description: skill.payload.description,
       triggers: skill.payload.triggers,
-      capabilities: skill.payload.capabilities
+      capabilities: skill.payload.capabilities,
     };
   }
 
@@ -491,7 +541,7 @@ export class SkillSearch {
 
     return {
       indexed: this.skillVectors.size,
-      errors: 0
+      errors: 0,
     };
   }
 
@@ -508,7 +558,7 @@ export class SkillSearch {
       skillCount: this.skillVectors.size,
       useQdrant: this.useQdrant,
       qdrantUrl: this.config.qdrant?.url || null,
-      initialized: this.initialized
+      initialized: this.initialized,
     };
   }
 }
@@ -537,7 +587,10 @@ export function resetSkillSearch(): void {
 /**
  * Search for skills matching a query
  */
-export async function searchSkills(query: string, topK: number = 5): Promise<SkillSearchResult[]> {
+export async function searchSkills(
+  query: string,
+  topK: number = 5
+): Promise<SkillSearchResult[]> {
   const search = getSkillSearch();
   return search.searchSkills(query, topK);
 }
@@ -545,7 +598,10 @@ export async function searchSkills(query: string, topK: number = 5): Promise<Ski
 /**
  * Index all skills in the vector database
  */
-export async function indexAllSkills(): Promise<{ indexed: number; errors: number }> {
+export async function indexAllSkills(): Promise<{
+  indexed: number;
+  errors: number;
+}> {
   const search = getSkillSearch();
   return search.indexAllSkills();
 }
@@ -553,7 +609,9 @@ export async function indexAllSkills(): Promise<{ indexed: number; errors: numbe
 /**
  * Get a skill by ID
  */
-export async function getSkillById(id: string): Promise<SkillSearchResult | null> {
+export async function getSkillById(
+  id: string
+): Promise<SkillSearchResult | null> {
   const search = getSkillSearch();
   return search.getSkillById(id);
 }

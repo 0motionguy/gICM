@@ -5,15 +5,19 @@
  * Uses better-sqlite3 for synchronous, fast operations.
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
-import type { DeepSkillMetadata } from './skill-metadata.js';
+// Type declaration for optional dependency
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type BetterSqlite3 = any;
+
+import * as fs from "fs";
+import * as path from "path";
+import type { DeepSkillMetadata } from "./skill-metadata.js";
 
 // Types for SQLite storage
 export interface SQLiteConfig {
   dbPath: string;
   enableFTS: boolean;
-  cacheSize: number;  // KB
+  cacheSize: number; // KB
   walMode: boolean;
 }
 
@@ -179,8 +183,8 @@ export class SQLiteStore {
     this.config = {
       dbPath: config?.dbPath || this.getDefaultDbPath(),
       enableFTS: config?.enableFTS ?? true,
-      cacheSize: config?.cacheSize || 8192,  // 8MB cache
-      walMode: config?.walMode ?? true
+      cacheSize: config?.cacheSize || 8192, // 8MB cache
+      walMode: config?.walMode ?? true,
     };
   }
 
@@ -192,7 +196,8 @@ export class SQLiteStore {
 
     try {
       // Dynamic import of better-sqlite3
-      const BetterSqlite3 = await import('better-sqlite3');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const BetterSqlite3 = (await import("better-sqlite3")) as any;
       const Database = BetterSqlite3.default || BetterSqlite3;
 
       // Ensure directory exists
@@ -207,11 +212,11 @@ export class SQLiteStore {
       // Configure for performance
       const db = this.db as any;
       if (this.config.walMode) {
-        db.pragma('journal_mode = WAL');
+        db.pragma("journal_mode = WAL");
       }
       db.pragma(`cache_size = -${this.config.cacheSize}`);
-      db.pragma('synchronous = NORMAL');
-      db.pragma('temp_store = MEMORY');
+      db.pragma("synchronous = NORMAL");
+      db.pragma("temp_store = MEMORY");
 
       // Create schema
       db.exec(SCHEMA);
@@ -219,8 +224,10 @@ export class SQLiteStore {
       this.initialized = true;
       console.log(`[SQLiteStore] Initialized at ${this.config.dbPath}`);
     } catch (error) {
-      console.error('[SQLiteStore] Failed to initialize:', error);
-      console.error('[SQLiteStore] Install better-sqlite3: pnpm add better-sqlite3');
+      console.error("[SQLiteStore] Failed to initialize:", error);
+      console.error(
+        "[SQLiteStore] Install better-sqlite3: pnpm add better-sqlite3"
+      );
       throw error;
     }
   }
@@ -229,7 +236,7 @@ export class SQLiteStore {
    * Insert or update a skill
    */
   upsertSkill(skill: DeepSkillMetadata): void {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
     const stmt = db.prepare(`
@@ -263,10 +270,12 @@ export class SQLiteStore {
    * Get skill by ID
    */
   getSkill(skillId: string): DeepSkillMetadata | null {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    const row = db.prepare('SELECT * FROM skills WHERE id = ?').get(skillId) as SkillRow | undefined;
+    const row = db.prepare("SELECT * FROM skills WHERE id = ?").get(skillId) as
+      | SkillRow
+      | undefined;
 
     if (!row) return null;
 
@@ -277,12 +286,14 @@ export class SQLiteStore {
    * Full-text search skills
    */
   searchSkills(query: string, limit: number = 10): SearchResult[] {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
 
     // Use FTS5 match with BM25 ranking
-    const results = db.prepare(`
+    const results = db
+      .prepare(
+        `
       SELECT
         skills.id as skillId,
         skills.name,
@@ -293,7 +304,9 @@ export class SQLiteStore {
       WHERE skills_fts MATCH ?
       ORDER BY rank
       LIMIT ?
-    `).all(query, limit);
+    `
+      )
+      .all(query, limit);
 
     return results as SearchResult[];
   }
@@ -302,24 +315,26 @@ export class SQLiteStore {
    * Get all skills
    */
   getAllSkills(): DeepSkillMetadata[] {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    const rows = db.prepare('SELECT * FROM skills').all() as SkillRow[];
+    const rows = db.prepare("SELECT * FROM skills").all() as SkillRow[];
 
-    return rows.map(row => this.rowToMetadata(row));
+    return rows.map((row) => this.rowToMetadata(row));
   }
 
   /**
    * Get skills by category
    */
   getSkillsByCategory(category: string): DeepSkillMetadata[] {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    const rows = db.prepare('SELECT * FROM skills WHERE category = ?').all(category) as SkillRow[];
+    const rows = db
+      .prepare("SELECT * FROM skills WHERE category = ?")
+      .all(category) as SkillRow[];
 
-    return rows.map(row => this.rowToMetadata(row));
+    return rows.map((row) => this.rowToMetadata(row));
   }
 
   /**
@@ -328,17 +343,19 @@ export class SQLiteStore {
   insertSynergy(
     fromSkill: string,
     toSkill: string,
-    type: 'amplifying' | 'conflicting' | 'redundant',
+    type: "amplifying" | "conflicting" | "redundant",
     weight: number = 0.8,
     reason?: string
   ): void {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    db.prepare(`
+    db.prepare(
+      `
       INSERT OR REPLACE INTO synergies (from_skill, to_skill, type, weight, reason)
       VALUES (?, ?, ?, ?, ?)
-    `).run(fromSkill, toSkill, type, weight, reason || null);
+    `
+    ).run(fromSkill, toSkill, type, weight, reason || null);
   }
 
   /**
@@ -350,14 +367,18 @@ export class SQLiteStore {
     weight: number;
     reason: string | null;
   }> {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    return db.prepare(`
+    return db
+      .prepare(
+        `
       SELECT to_skill as toSkill, type, weight, reason
       FROM synergies
       WHERE from_skill = ?
-    `).all(skillId);
+    `
+      )
+      .all(skillId);
   }
 
   /**
@@ -371,13 +392,15 @@ export class SQLiteStore {
     category: string;
     antiHallucination?: string[];
   }): void {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    db.prepare(`
+    db.prepare(
+      `
       INSERT OR REPLACE INTO mcp_servers (id, name, version, description, category, anti_hallucination_json)
       VALUES (?, ?, ?, ?, ?, ?)
-    `).run(
+    `
+    ).run(
       server.id,
       server.name,
       server.version || null,
@@ -390,22 +413,27 @@ export class SQLiteStore {
   /**
    * Insert MCP endpoint
    */
-  insertMCPEndpoint(serverId: string, endpoint: {
-    name: string;
-    description: string;
-    parameters: unknown[];
-    returns: string;
-    rateLimit?: string;
-    requiresAuth?: boolean;
-  }): void {
-    if (!this.db) throw new Error('Database not initialized');
+  insertMCPEndpoint(
+    serverId: string,
+    endpoint: {
+      name: string;
+      description: string;
+      parameters: unknown[];
+      returns: string;
+      rateLimit?: string;
+      requiresAuth?: boolean;
+    }
+  ): void {
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    db.prepare(`
+    db.prepare(
+      `
       INSERT OR REPLACE INTO mcp_endpoints (
         server_id, tool_name, description, parameters_json, returns, rate_limit, requires_auth
       ) VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(
+    `
+    ).run(
       serverId,
       endpoint.name,
       endpoint.description,
@@ -424,15 +452,19 @@ export class SQLiteStore {
     toolName: string;
     description: string;
   }> {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
-    return db.prepare(`
+    return db
+      .prepare(
+        `
       SELECT server_id as serverId, tool_name as toolName, description
       FROM mcp_endpoints
       WHERE tool_name LIKE ? OR description LIKE ?
       LIMIT 20
-    `).all(`%${query}%`, `%${query}%`);
+    `
+      )
+      .all(`%${query}%`, `%${query}%`);
   }
 
   /**
@@ -445,14 +477,22 @@ export class SQLiteStore {
     mcpEndpointCount: number;
     dbSizeKB: number;
   } {
-    if (!this.db) throw new Error('Database not initialized');
+    if (!this.db) throw new Error("Database not initialized");
 
     const db = this.db as any;
 
-    const skillCount = db.prepare('SELECT COUNT(*) as count FROM skills').get().count;
-    const synergyCount = db.prepare('SELECT COUNT(*) as count FROM synergies').get().count;
-    const mcpServerCount = db.prepare('SELECT COUNT(*) as count FROM mcp_servers').get().count;
-    const mcpEndpointCount = db.prepare('SELECT COUNT(*) as count FROM mcp_endpoints').get().count;
+    const skillCount = db
+      .prepare("SELECT COUNT(*) as count FROM skills")
+      .get().count;
+    const synergyCount = db
+      .prepare("SELECT COUNT(*) as count FROM synergies")
+      .get().count;
+    const mcpServerCount = db
+      .prepare("SELECT COUNT(*) as count FROM mcp_servers")
+      .get().count;
+    const mcpEndpointCount = db
+      .prepare("SELECT COUNT(*) as count FROM mcp_endpoints")
+      .get().count;
 
     // Get file size
     let dbSizeKB = 0;
@@ -468,7 +508,7 @@ export class SQLiteStore {
       synergyCount,
       mcpServerCount,
       mcpEndpointCount,
-      dbSizeKB
+      dbSizeKB,
     };
   }
 
@@ -494,13 +534,13 @@ export class SQLiteStore {
       token_cost: row.token_cost,
       semantic: {
         purpose: row.purpose,
-        what_it_does: JSON.parse(row.what_it_does_json || '[]'),
-        what_it_cannot: JSON.parse(row.what_it_cannot_json || '[]')
+        what_it_does: JSON.parse(row.what_it_does_json || "[]"),
+        what_it_cannot: JSON.parse(row.what_it_cannot_json || "[]"),
       },
-      capabilities: JSON.parse(row.capabilities_json || '[]'),
-      anti_hallucination: JSON.parse(row.anti_hallucination_json || '[]'),
-      synergies: JSON.parse(row.synergies_json || '{}'),
-      examples: JSON.parse(row.examples_json || '[]')
+      capabilities: JSON.parse(row.capabilities_json || "[]"),
+      anti_hallucination: JSON.parse(row.anti_hallucination_json || "[]"),
+      synergies: JSON.parse(row.synergies_json || "{}"),
+      examples: JSON.parse(row.examples_json || "[]"),
     };
   }
 
@@ -509,23 +549,43 @@ export class SQLiteStore {
    */
   private extractCategory(skillId: string): string {
     const categoryMap: Record<string, string> = {
-      'solana': 'blockchain', 'anchor': 'blockchain', 'bonding': 'blockchain',
-      'jupiter': 'blockchain', 'evm': 'blockchain', 'smart': 'blockchain',
-      'token': 'blockchain', 'defi': 'blockchain', 'wallet': 'blockchain',
-      'helius': 'blockchain',
-      'nextjs': 'frontend', 'react': 'frontend', 'tailwind': 'frontend',
-      'shadcn': 'frontend', 'framer': 'frontend', 'vibe': 'frontend',
-      'zustand': 'frontend', 'tanstack': 'frontend', 'responsive': 'frontend',
-      'nodejs': 'backend', 'api': 'backend', 'database': 'backend',
-      'redis': 'backend', 'graphql': 'backend', 'websocket': 'backend',
-      'fastify': 'backend',
-      'docker': 'devops', 'kubernetes': 'devops', 'ci': 'devops',
-      'aws': 'devops', 'test': 'devops',
-      'typescript': 'core', 'javascript': 'core'
+      solana: "blockchain",
+      anchor: "blockchain",
+      bonding: "blockchain",
+      jupiter: "blockchain",
+      evm: "blockchain",
+      smart: "blockchain",
+      token: "blockchain",
+      defi: "blockchain",
+      wallet: "blockchain",
+      helius: "blockchain",
+      nextjs: "frontend",
+      react: "frontend",
+      tailwind: "frontend",
+      shadcn: "frontend",
+      framer: "frontend",
+      vibe: "frontend",
+      zustand: "frontend",
+      tanstack: "frontend",
+      responsive: "frontend",
+      nodejs: "backend",
+      api: "backend",
+      database: "backend",
+      redis: "backend",
+      graphql: "backend",
+      websocket: "backend",
+      fastify: "backend",
+      docker: "devops",
+      kubernetes: "devops",
+      ci: "devops",
+      aws: "devops",
+      test: "devops",
+      typescript: "core",
+      javascript: "core",
     };
 
-    const firstWord = skillId.split('-')[0].toLowerCase();
-    return categoryMap[firstWord] || 'other';
+    const firstWord = skillId.split("-")[0].toLowerCase();
+    return categoryMap[firstWord] || "other";
   }
 
   /**
@@ -533,8 +593,10 @@ export class SQLiteStore {
    */
   private getDefaultDbPath(): string {
     return path.join(
-      path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')),
-      '../../data/opus67.db'
+      path.dirname(
+        new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, "$1")
+      ),
+      "../../data/opus67.db"
     );
   }
 }

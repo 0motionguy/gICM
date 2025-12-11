@@ -5,9 +5,9 @@
  * and provides consistency checking for intelligent code editing.
  */
 
-import { EventEmitter } from 'eventemitter3';
-import crypto from 'crypto';
-import path from 'path';
+import { EventEmitter } from "eventemitter3";
+import crypto from "crypto";
+import path from "path";
 
 /**
  * Metadata about a single file
@@ -47,11 +47,11 @@ export interface FileMetadata {
  * File relationship types
  */
 export type RelationType =
-  | 'imports'
-  | 'exports_to'
-  | 'similar_to'
-  | 'modified_together'
-  | 'related_feature';
+  | "imports"
+  | "exports_to"
+  | "similar_to"
+  | "modified_together"
+  | "related_feature";
 
 /**
  * Relationship between two files
@@ -79,12 +79,12 @@ export interface ConsistencyCheck {
  * File context events
  */
 export interface FileContextEvents {
-  'file:accessed': (path: string) => void;
-  'file:modified': (path: string, metadata: FileMetadata) => void;
-  'file:deleted': (path: string) => void;
-  'relationship:discovered': (rel: FileRelationship) => void;
-  'consistency:warning': (check: ConsistencyCheck) => void;
-  'consistency:error': (check: ConsistencyCheck) => void;
+  "file:accessed": (path: string) => void;
+  "file:modified": (path: string, metadata: FileMetadata) => void;
+  "file:deleted": (path: string) => void;
+  "relationship:discovered": (rel: FileRelationship) => void;
+  "consistency:warning": (check: ConsistencyCheck) => void;
+  "consistency:error": (check: ConsistencyCheck) => void;
 }
 
 /**
@@ -92,6 +92,7 @@ export interface FileContextEvents {
  */
 export interface FileContextConfig {
   maxFiles: number;
+  maxSessionFiles?: number;
   enableAutoSummary: boolean;
   enableRelationshipTracking: boolean;
   enableConsistencyChecks: boolean;
@@ -162,7 +163,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       }
     }
 
-    this.emit('file:accessed', normalized);
+    this.emit("file:accessed", normalized);
 
     return metadata;
   }
@@ -191,14 +192,14 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       const check = await this.checkConsistency(filePath);
       if (!check.passed) {
         if (check.errors.length > 0) {
-          this.emit('consistency:error', check);
+          this.emit("consistency:error", check);
         } else if (check.warnings.length > 0) {
-          this.emit('consistency:warning', check);
+          this.emit("consistency:warning", check);
         }
       }
     }
 
-    this.emit('file:modified', filePath, metadata);
+    this.emit("file:modified", filePath, metadata);
 
     return metadata;
   }
@@ -220,7 +221,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       metadata.dependents.delete(normalized);
     }
 
-    this.emit('file:deleted', normalized);
+    this.emit("file:deleted", normalized);
   }
 
   // =========================================================================
@@ -240,7 +241,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
     const metadata: FileMetadata = {
       path: normalized,
       absolutePath,
-      hash: content ? this.hashContent(content) : '',
+      hash: content ? this.hashContent(content) : "",
       language: this.detectLanguage(filePath),
       size: content?.length || 0,
       lastModified: new Date(),
@@ -348,7 +349,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
         const relationship: FileRelationship = {
           from: filePath,
           to: resolved,
-          type: 'imports',
+          type: "imports",
           strength: 1.0,
         };
 
@@ -378,7 +379,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
     }
 
     this.relationships.get(rel.from)!.add(rel);
-    this.emit('relationship:discovered', rel);
+    this.emit("relationship:discovered", rel);
   }
 
   /**
@@ -396,7 +397,9 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
   getRelatedFiles(filePath: string, maxDepth = 2): Set<string> {
     const related = new Set<string>();
     const visited = new Set<string>();
-    const queue: Array<{ path: string; depth: number }> = [{ path: filePath, depth: 0 }];
+    const queue: Array<{ path: string; depth: number }> = [
+      { path: filePath, depth: 0 },
+    ];
 
     while (queue.length > 0) {
       const { path: current, depth } = queue.shift()!;
@@ -452,7 +455,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
 
     if (!metadata) {
       check.passed = false;
-      check.errors.push('File not found in context');
+      check.errors.push("File not found in context");
       return check;
     }
 
@@ -467,18 +470,23 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
 
     // Check 2: Unused exports
     if (metadata.exports.length > 0 && metadata.dependents.size === 0) {
-      check.suggestions.push('This file exports code but has no dependents');
+      check.suggestions.push("This file exports code but has no dependents");
     }
 
     // Check 3: Circular dependencies
     const circular = this.detectCircularDependency(filePath);
     if (circular.length > 0) {
-      check.warnings.push(`Circular dependency detected: ${circular.join(' -> ')}`);
+      check.warnings.push(
+        `Circular dependency detected: ${circular.join(" -> ")}`
+      );
       check.passed = false;
     }
 
     // Check 4: Type consistency (TypeScript/JavaScript)
-    if (metadata.language === 'typescript' || metadata.language === 'javascript') {
+    if (
+      metadata.language === "typescript" ||
+      metadata.language === "javascript"
+    ) {
       // Check if imported types exist
       for (const dep of metadata.dependencies) {
         const depMetadata = this.files.get(dep);
@@ -494,7 +502,10 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
   /**
    * Detect circular dependencies
    */
-  private detectCircularDependency(filePath: string, visited = new Set<string>()): string[] {
+  private detectCircularDependency(
+    filePath: string,
+    visited = new Set<string>()
+  ): string[] {
     if (visited.has(filePath)) {
       return [filePath];
     }
@@ -525,7 +536,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
   private extractImports(content: string, language: string): string[] {
     const imports: string[] = [];
 
-    if (language === 'typescript' || language === 'javascript') {
+    if (language === "typescript" || language === "javascript") {
       // Match: import { x } from 'path'
       const importRegex = /import\s+.*?from\s+['"]([^'"]+)['"]/g;
       let match;
@@ -544,7 +555,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       while ((match = requireRegex.exec(content)) !== null) {
         imports.push(match[1]);
       }
-    } else if (language === 'python') {
+    } else if (language === "python") {
       // Match: from x import y
       const fromImportRegex = /^\s*from\s+(\S+)\s+import\s+/gm;
       let match;
@@ -556,7 +567,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       const importRegex = /^\s*import\s+(\S+)/gm;
       while ((match = importRegex.exec(content)) !== null) {
         // Handle comma-separated imports
-        const modules = match[1].split(',').map(m => m.trim());
+        const modules = match[1].split(",").map((m) => m.trim());
         imports.push(...modules);
       }
     }
@@ -570,9 +581,10 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
   private extractExports(content: string, language: string): string[] {
     const exports: string[] = [];
 
-    if (language === 'typescript' || language === 'javascript') {
+    if (language === "typescript" || language === "javascript") {
       // Match: export function name
-      const exportRegex = /export\s+(?:const|let|var|function|class|interface|type|enum)\s+(\w+)/g;
+      const exportRegex =
+        /export\s+(?:const|let|var|function|class|interface|type|enum)\s+(\w+)/g;
       let match;
       while ((match = exportRegex.exec(content)) !== null) {
         exports.push(match[1]);
@@ -581,10 +593,12 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       // Match: export { x, y }
       const namedExportRegex = /export\s+\{([^}]+)\}/g;
       while ((match = namedExportRegex.exec(content)) !== null) {
-        const names = match[1].split(',').map(n => n.trim().split(/\s+as\s+/)[0]);
+        const names = match[1]
+          .split(",")
+          .map((n) => n.trim().split(/\s+as\s+/)[0]);
         exports.push(...names);
       }
-    } else if (language === 'python') {
+    } else if (language === "python") {
       // Match: def name, class name (top-level only)
       const defRegex = /^(?:def|class)\s+(\w+)/gm;
       let match;
@@ -602,13 +616,14 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
   private extractFunctions(content: string, language: string): string[] {
     const functions: string[] = [];
 
-    if (language === 'typescript' || language === 'javascript') {
-      const funcRegex = /(?:function\s+(\w+)|const\s+(\w+)\s*=\s*(?:async\s*)?\([^)]*\)\s*=>)/g;
+    if (language === "typescript" || language === "javascript") {
+      const funcRegex =
+        /(?:function\s+(\w+)|const\s+(\w+)\s*=\s*(?:async\s*)?\([^)]*\)\s*=>)/g;
       let match;
       while ((match = funcRegex.exec(content)) !== null) {
         functions.push(match[1] || match[2]);
       }
-    } else if (language === 'python') {
+    } else if (language === "python") {
       // Allow optional indentation before def
       const funcRegex = /^\s*def\s+(\w+)/gm;
       let match;
@@ -641,7 +656,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
   private extractTypes(content: string, language: string): string[] {
     const types: string[] = [];
 
-    if (language === 'typescript') {
+    if (language === "typescript") {
       const typeRegex = /(?:type|interface)\s+(\w+)/g;
       let match;
       while ((match = typeRegex.exec(content)) !== null) {
@@ -659,7 +674,9 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
     const parts: string[] = [];
 
     if (metadata.classes.length > 0) {
-      parts.push(`Defines ${metadata.classes.length} class(es): ${metadata.classes.slice(0, 3).join(', ')}`);
+      parts.push(
+        `Defines ${metadata.classes.length} class(es): ${metadata.classes.slice(0, 3).join(", ")}`
+      );
     }
 
     if (metadata.functions.length > 0) {
@@ -671,10 +688,10 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
     }
 
     if (metadata.exports.length > 0) {
-      parts.push(`Exports: ${metadata.exports.slice(0, 5).join(', ')}`);
+      parts.push(`Exports: ${metadata.exports.slice(0, 5).join(", ")}`);
     }
 
-    return parts.length > 0 ? parts.join('. ') : 'Code file';
+    return parts.length > 0 ? parts.join(". ") : "Code file";
   }
 
   // =========================================================================
@@ -685,7 +702,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
    * Normalize file path
    */
   private normalizePath(filePath: string): string {
-    return path.normalize(filePath).replace(/\\/g, '/');
+    return path.normalize(filePath).replace(/\\/g, "/");
   }
 
   /**
@@ -695,24 +712,24 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
     const ext = path.extname(filePath).toLowerCase();
 
     const langMap: Record<string, string> = {
-      '.ts': 'typescript',
-      '.tsx': 'typescript',
-      '.js': 'javascript',
-      '.jsx': 'javascript',
-      '.py': 'python',
-      '.rs': 'rust',
-      '.go': 'go',
-      '.java': 'java',
-      '.cpp': 'cpp',
-      '.c': 'c',
-      '.rb': 'ruby',
-      '.php': 'php',
-      '.swift': 'swift',
-      '.kt': 'kotlin',
-      '.sol': 'solidity',
+      ".ts": "typescript",
+      ".tsx": "typescript",
+      ".js": "javascript",
+      ".jsx": "javascript",
+      ".py": "python",
+      ".rs": "rust",
+      ".go": "go",
+      ".java": "java",
+      ".cpp": "cpp",
+      ".c": "c",
+      ".rb": "ruby",
+      ".php": "php",
+      ".swift": "swift",
+      ".kt": "kotlin",
+      ".sol": "solidity",
     };
 
-    return langMap[ext] || 'unknown';
+    return langMap[ext] || "unknown";
   }
 
   /**
@@ -720,7 +737,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
    */
   private resolveImport(fromFile: string, importPath: string): string | null {
     // Skip node_modules and external packages
-    if (!importPath.startsWith('.')) {
+    if (!importPath.startsWith(".")) {
       return null;
     }
 
@@ -730,7 +747,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
     resolved = this.normalizePath(resolved);
 
     // Try adding common extensions
-    const extensions = ['.ts', '.tsx', '.js', '.jsx', '/index.ts', '/index.js'];
+    const extensions = [".ts", ".tsx", ".js", ".jsx", "/index.ts", "/index.js"];
 
     for (const ext of extensions) {
       const withExt = resolved + ext;
@@ -747,7 +764,11 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
    * Hash content for change detection
    */
   private hashContent(content: string): string {
-    return crypto.createHash('sha256').update(content).digest('hex').slice(0, 16);
+    return crypto
+      .createHash("sha256")
+      .update(content)
+      .digest("hex")
+      .slice(0, 16);
   }
 
   // =========================================================================
@@ -773,7 +794,7 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
    */
   getSessionFiles(): FileMetadata[] {
     return Array.from(this.sessionFiles)
-      .map(path => this.files.get(path))
+      .map((path) => this.files.get(path))
       .filter((f): f is FileMetadata => f !== undefined);
   }
 
@@ -781,8 +802,8 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
    * Get files modified in current session
    */
   getModifiedFiles(): FileMetadata[] {
-    return this.getSessionFiles().filter(f =>
-      f.lastEdit && f.lastEdit.timestamp >= this.sessionStart
+    return this.getSessionFiles().filter(
+      (f) => f.lastEdit && f.lastEdit.timestamp >= this.sessionStart
     );
   }
 
@@ -790,8 +811,9 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
    * Search files by name pattern
    */
   searchFiles(pattern: string | RegExp): FileMetadata[] {
-    const regex = typeof pattern === 'string' ? new RegExp(pattern, 'i') : pattern;
-    return this.getAllFiles().filter(f => regex.test(f.path));
+    const regex =
+      typeof pattern === "string" ? new RegExp(pattern, "i") : pattern;
+    return this.getAllFiles().filter((f) => regex.test(f.path));
   }
 
   /**
@@ -802,8 +824,10 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
       totalFiles: this.files.size,
       sessionFiles: this.sessionFiles.size,
       modifiedFiles: this.getModifiedFiles().length,
-      totalRelationships: Array.from(this.relationships.values())
-        .reduce((sum, set) => sum + set.size, 0),
+      totalRelationships: Array.from(this.relationships.values()).reduce(
+        (sum, set) => sum + set.size,
+        0
+      ),
       languages: this.getLanguageBreakdown(),
     };
   }
@@ -838,7 +862,9 @@ export class FileContextManager extends EventEmitter<FileContextEvents> {
 
 let instance: FileContextManager | null = null;
 
-export function createFileContext(config?: Partial<FileContextConfig>): FileContextManager {
+export function createFileContext(
+  config?: Partial<FileContextConfig>
+): FileContextManager {
   instance = new FileContextManager(config);
   return instance;
 }

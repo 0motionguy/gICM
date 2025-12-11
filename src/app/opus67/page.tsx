@@ -65,7 +65,7 @@ export default function Opus67BenchmarkPage() {
             </div>
             <div className="flex items-center gap-2 text-sm text-zinc-400">
               <Sparkles className="h-4 w-4 text-[#00F0FF]" />
-              <span>v6.2.0</span>
+              <span>v6.3.0</span>
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function Opus67BenchmarkPage() {
             title="Memory"
             icon={<Brain className="h-6 w-6" />}
             iconColor="text-purple-400"
-            description="5 Adapters • Cross-session • Multi-hop reasoning"
+            description="6 Adapters • 4-Layer Hierarchical • Multi-hop reasoning"
             asciiContent={MEMORY_ARCHITECTURE_ASCII}
           />
           <ArchitectureCard
@@ -141,7 +141,7 @@ export default function Opus67BenchmarkPage() {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-zinc-500">
-          <p>141 Skills | 108 Agents | 83 MCPs | 30 Modes | 5 Memory Sources</p>
+          <p>141 Skills | 108 Agents | 83 MCPs | 30 Modes | 6 Memory Sources</p>
           <p className="mt-1">
             Built with Claude Opus 4.5 + Unified Memory + Multi-Model Routing
           </p>

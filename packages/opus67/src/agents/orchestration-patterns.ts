@@ -1339,9 +1339,4 @@ export const PipelineTemplates = {
 // EXPORTS
 // =============================================================================
 
-export {
-  PipelineOrchestrator,
-  ParallelOrchestrator,
-  SingleJobSubagent,
-  IsolatedContext,
-};
+// All classes are already exported with 'export class' declarations above

@@ -560,7 +560,7 @@ export {
   type AgentMode,
   type AgentSelector,
   type AgentTriggerConfig,
-} from "./modes/agent-mapping.js";
+} from "./modes/index.js";
 
 // Auto-Trigger Hook
 export {

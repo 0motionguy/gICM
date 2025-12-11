@@ -31,7 +31,15 @@
       "Bash(test:*)",
       "Bash(node analyze-registry.js:*)",
       "Bash(node scripts/show-auto-add.js:*)",
-      "Bash(node scripts/show-review-add.js:*)"
+      "Bash(node scripts/show-review-add.js:*)",
+      "Bash(GIT_TERMINAL_PROMPT=0 git -c core.hooksPath=/dev/null push --force origin main)",
+      "Bash(npx vercel --prod)",
+      "Bash(unset:*)",
+      "Bash(git commit:*)",
+      "Bash(GIT_TERMINAL_PROMPT=0 git -c core.hooksPath=/dev/null push origin main)",
+      "Bash(npm test:*)",
+      "Bash(npx vitest run --reporter=basic)",
+      "Bash(npx vitest:*)"
     ],
     "deny": [],
     "ask": []

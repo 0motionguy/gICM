@@ -3,10 +3,10 @@
  * Semaphore-based parallel agent orchestration with resource management
  */
 
-import { EventEmitter } from 'eventemitter3';
-import { metricsCollector } from './metrics-collector.js';
-import { latencyProfiler } from './latency-profiler.js';
-import { tokenTracker, type ModelName } from './token-tracker.js';
+import { EventEmitter } from "eventemitter3";
+import { metricsCollector } from "./metrics-collector.js";
+import { latencyProfiler } from "./latency-profiler.js";
+import { tokenTracker, type ModelName } from "./token-tracker.js";
 
 // Types
 export interface AgentTask {
@@ -38,14 +38,14 @@ export interface SpawnOptions {
 }
 
 interface SpawnerEvents {
-  'agent:spawned': (agentId: string, task: AgentTask) => void;
-  'agent:completed': (result: AgentResult) => void;
-  'agent:failed': (agentId: string, error: Error) => void;
-  'agent:timeout': (agentId: string) => void;
-  'batch:started': (taskCount: number) => void;
-  'batch:completed': (results: AgentResult[]) => void;
-  'semaphore:acquired': (agentId: string, available: number) => void;
-  'semaphore:released': (agentId: string, available: number) => void;
+  "agent:spawned": (agentId: string, task: AgentTask) => void;
+  "agent:completed": (result: AgentResult) => void;
+  "agent:failed": (agentId: string, error: Error) => void;
+  "agent:timeout": (agentId: string) => void;
+  "batch:started": (taskCount: number) => void;
+  "batch:completed": (results: AgentResult[]) => void;
+  "semaphore:acquired": (agentId: string, available: number) => void;
+  "semaphore:released": (agentId: string, available: number) => void;
 }
 
 /**
@@ -93,13 +93,17 @@ class Semaphore {
  */
 export class AgentSpawner extends EventEmitter<SpawnerEvents> {
   private semaphore: Semaphore;
-  private activeAgents: Map<string, { task: AgentTask; startTime: number }> = new Map();
+  private activeAgents: Map<string, { task: AgentTask; startTime: number }> =
+    new Map();
   private completedResults: AgentResult[] = [];
   private agentCounter = 0;
   private defaultTimeout: number;
   private maxRetries: number;
 
-  constructor(maxConcurrent = 10, options?: { timeout?: number; maxRetries?: number }) {
+  constructor(
+    maxConcurrent = 10,
+    options?: { timeout?: number; maxRetries?: number }
+  ) {
     super();
     this.semaphore = new Semaphore(maxConcurrent);
     this.defaultTimeout = options?.timeout ?? 60000; // 60s default
@@ -111,24 +115,27 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
    */
   private generateAgentId(): string {
     this.agentCounter++;
-    return `agent_${Date.now()}_${this.agentCounter.toString().padStart(4, '0')}`;
+    return `agent_${Date.now()}_${this.agentCounter.toString().padStart(4, "0")}`;
   }
 
   /**
    * Spawn a single agent
    */
-  async spawn(task: AgentTask, executor: (task: AgentTask) => Promise<string>): Promise<AgentResult> {
+  async spawn(
+    task: AgentTask,
+    executor: (task: AgentTask) => Promise<string>
+  ): Promise<AgentResult> {
     const agentId = this.generateAgentId();
     const spanId = latencyProfiler.startSpan(`agent:${task.type}`);
 
     // Acquire semaphore
     await this.semaphore.acquire();
-    this.emit('semaphore:acquired', agentId, this.semaphore.available);
+    this.emit("semaphore:acquired", agentId, this.semaphore.available);
 
     // Track agent
     this.activeAgents.set(agentId, { task, startTime: Date.now() });
     metricsCollector.recordAgentSpawn();
-    this.emit('agent:spawned', agentId, task);
+    this.emit("agent:spawned", agentId, task);
 
     const timeout = task.timeout ?? this.defaultTimeout;
     let result: AgentResult;
@@ -138,8 +145,8 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
       const output = await Promise.race([
         executor(task),
         new Promise<never>((_, reject) => {
-          setTimeout(() => reject(new Error('Agent timeout')), timeout);
-        })
+          setTimeout(() => reject(new Error("Agent timeout")), timeout);
+        }),
       ]);
 
       const duration = latencyProfiler.endSpan(spanId);
@@ -149,20 +156,24 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
         agentId,
         success: true,
         output,
-        duration
+        duration,
       };
 
       metricsCollector.recordAgentComplete(true);
       metricsCollector.recordLatency(duration);
-
     } catch (error) {
       const duration = latencyProfiler.endSpan(spanId);
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
 
-      if (errorMessage === 'Agent timeout') {
-        this.emit('agent:timeout', agentId);
+      if (errorMessage === "Agent timeout") {
+        this.emit("agent:timeout", agentId);
       } else {
-        this.emit('agent:failed', agentId, error instanceof Error ? error : new Error(errorMessage));
+        this.emit(
+          "agent:failed",
+          agentId,
+          error instanceof Error ? error : new Error(errorMessage)
+        );
       }
 
       result = {
@@ -170,19 +181,18 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
         agentId,
         success: false,
         error: errorMessage,
-        duration
+        duration,
       };
 
       metricsCollector.recordAgentComplete(false);
-
     } finally {
       // Release semaphore
       this.activeAgents.delete(agentId);
       this.semaphore.release();
-      this.emit('semaphore:released', agentId, this.semaphore.available);
+      this.emit("semaphore:released", agentId, this.semaphore.available);
     }
 
-    this.emit('agent:completed', result);
+    this.emit("agent:completed", result);
     this.completedResults.push(result);
     return result;
   }
@@ -200,7 +210,7 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
       timeout: this.defaultTimeout,
       retryOnFail: false,
       maxRetries: this.maxRetries,
-      ...options
+      ...options,
     };
 
     // Temporarily adjust semaphore if needed
@@ -209,11 +219,13 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
       this.semaphore = new Semaphore(opts.maxConcurrent);
     }
 
-    this.emit('batch:started', tasks.length);
+    this.emit("batch:started", tasks.length);
     const batchStart = Date.now();
 
     // Sort by priority if specified
-    const sortedTasks = [...tasks].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+    const sortedTasks = [...tasks].sort(
+      (a, b) => (b.priority ?? 0) - (a.priority ?? 0)
+    );
 
     let completed = 0;
     const results: AgentResult[] = [];
@@ -223,11 +235,11 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
       let attempts = 0;
       let result: AgentResult | null = null;
 
-      while (attempts <= (opts.retryOnFail ? opts.maxRetries : 0)) {
+      while (attempts <= (opts.retryOnFail ? (opts.maxRetries ?? 3) : 0)) {
         attempts++;
         result = await this.spawn(task, executor);
 
-        if (result.success || !opts.retryOnFail) {
+        if (result?.success || !opts.retryOnFail) {
           break;
         }
 
@@ -236,7 +248,15 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
 
       completed++;
       opts.onProgress?.(completed, tasks.length);
-      return result!;
+      return (
+        result || {
+          taskId: task.id,
+          agentId: "unknown",
+          success: false,
+          error: "No result",
+          duration: 0,
+        }
+      );
     });
 
     const batchResults = await Promise.all(promises);
@@ -246,10 +266,10 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
     this.semaphore = originalSemaphore;
 
     const batchDuration = Date.now() - batchStart;
-    latencyProfiler.startSpan('batch:complete');
-    latencyProfiler.endSpan(latencyProfiler.startSpan('batch:complete'));
+    latencyProfiler.startSpan("batch:complete");
+    latencyProfiler.endSpan(latencyProfiler.startSpan("batch:complete"));
 
-    this.emit('batch:completed', results);
+    this.emit("batch:completed", results);
 
     return results;
   }
@@ -263,9 +283,7 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
     targetConcurrency?: number
   ): Promise<AgentResult[]> {
     // Start with low concurrency and scale up
-    const levels = targetConcurrency
-      ? [targetConcurrency]
-      : [5, 10, 15, 20];
+    const levels = targetConcurrency ? [targetConcurrency] : [5, 10, 15, 20];
 
     let bestConcurrency = levels[0];
     let bestThroughput = 0;
@@ -276,7 +294,9 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
 
       for (const level of levels.slice(0, 2)) {
         const start = Date.now();
-        await this.spawnBatch(calibrationTasks, executor, { maxConcurrent: level });
+        await this.spawnBatch(calibrationTasks, executor, {
+          maxConcurrent: level,
+        });
         const duration = Date.now() - start;
         const throughput = calibrationTasks.length / (duration / 1000);
 
@@ -305,7 +325,7 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
     return {
       available: this.semaphore.available,
       waiting: this.semaphore.waitingCount,
-      active: this.activeAgents.size
+      active: this.activeAgents.size,
     };
   }
 
@@ -321,7 +341,7 @@ export class AgentSpawner extends EventEmitter<SpawnerEvents> {
    */
   getSuccessRate(): number {
     if (this.completedResults.length === 0) return 0;
-    const successful = this.completedResults.filter(r => r.success).length;
+    const successful = this.completedResults.filter((r) => r.success).length;
     return successful / this.completedResults.length;
   }
 

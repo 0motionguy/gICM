@@ -14,11 +14,11 @@
  * - Cache hit = $0.025 per query, Cache miss = $0.25 per query
  */
 
-import Anthropic from '@anthropic-ai/sdk';
-import { EventEmitter } from 'eventemitter3';
-import { readFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import Anthropic from "@anthropic-ai/sdk";
+import { EventEmitter } from "eventemitter3";
+import { readFileSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -61,10 +61,10 @@ export interface CachedPromptResponse {
 }
 
 interface CacheEvents {
-  'cache:hit': (tokens: number, saved: number) => void;
-  'cache:miss': () => void;
-  'cache:refresh': (size: number) => void;
-  'cost:saved': (amount: number) => void;
+  "cache:hit": (tokens: number, saved: number) => void;
+  "cache:miss": () => void;
+  "cache:refresh": (size: number) => void;
+  "cost:saved": (amount: number) => void;
 }
 
 /**
@@ -74,7 +74,7 @@ interface CacheEvents {
 const OPUS_45_CACHE_PRICING = {
   input: 3.0, // $3/M input tokens
   output: 15.0, // $15/M output tokens
-  cachedInput: 0.3 // $0.30/M cached tokens (90% savings)
+  cachedInput: 0.3, // $0.30/M cached tokens (90% savings)
 };
 
 /**
@@ -94,7 +94,8 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
       enableCaching: config?.enableCaching ?? true,
       cacheTTLMinutes: config?.cacheTTLMinutes ?? 5,
       theDoorPath: config?.theDoorPath ?? this.getDefaultDoorPath(),
-      anthropicApiKey: config?.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY ?? ''
+      anthropicApiKey:
+        config?.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY ?? "",
     };
 
     // Initialize stats
@@ -105,13 +106,13 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
       hitRate: 0,
       totalSaved: 0,
       cachedContentSize: 0,
-      lastCacheRefresh: null
+      lastCacheRefresh: null,
     };
 
     // Initialize Anthropic client
     if (this.config.anthropicApiKey) {
       this.anthropic = new Anthropic({
-        apiKey: this.config.anthropicApiKey
+        apiKey: this.config.anthropicApiKey,
       });
     }
 
@@ -123,7 +124,7 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
    * Get default THE DOOR prompt path
    */
   private getDefaultDoorPath(): string {
-    return join(__dirname, '..', '..', 'THE_DOOR.md');
+    return join(__dirname, "..", "..", "THE_DOOR.md");
   }
 
   /**
@@ -132,19 +133,22 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
   private loadTheDoorPrompt(): void {
     try {
       if (existsSync(this.config.theDoorPath)) {
-        this.theDoorPrompt = readFileSync(this.config.theDoorPath, 'utf-8');
+        this.theDoorPrompt = readFileSync(this.config.theDoorPath, "utf-8");
 
         // Calculate size
         const tokens = Math.ceil(this.theDoorPrompt.length / 4);
         this.stats.cachedContentSize = tokens;
         this.stats.lastCacheRefresh = new Date();
 
-        this.emit('cache:refresh', tokens);
+        this.emit("cache:refresh", tokens);
       } else {
-        console.warn('[PromptCache] THE DOOR prompt not found at:', this.config.theDoorPath);
+        console.warn(
+          "[PromptCache] THE DOOR prompt not found at:",
+          this.config.theDoorPath
+        );
       }
     } catch (error) {
-      console.error('[PromptCache] Failed to load THE DOOR prompt:', error);
+      console.error("[PromptCache] Failed to load THE DOOR prompt:", error);
     }
   }
 
@@ -156,7 +160,7 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
       throw new Error(`Skill file not found: ${skillPath}`);
     }
 
-    const skillContent = readFileSync(skillPath, 'utf-8');
+    const skillContent = readFileSync(skillPath, "utf-8");
     this.skillsCache.set(skillId, skillContent);
 
     // Update cached size
@@ -167,7 +171,9 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
   /**
    * Build cached prompt messages for Anthropic API
    */
-  private buildCachedMessages(request: CachedPromptRequest): Anthropic.MessageParam[] {
+  private buildCachedMessages(
+    request: CachedPromptRequest
+  ): Anthropic.MessageParam[] {
     const messages: Anthropic.MessageParam[] = [];
 
     // Build system message with cache control
@@ -176,72 +182,73 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
     // Add THE DOOR prompt (always cached)
     if (this.theDoorPrompt) {
       systemBlocks.push({
-        type: 'text',
+        type: "text",
         text: this.theDoorPrompt,
-        cache_control: { type: 'ephemeral' }
-      });
+        cache_control: { type: "ephemeral" },
+      } as any);
     }
 
     // Add loaded skills (cached if provided)
     if (request.loadedSkills && request.loadedSkills.length > 0) {
       const skillsText = request.loadedSkills
-        .map(id => this.skillsCache.get(id))
+        .map((id) => this.skillsCache.get(id))
         .filter(Boolean)
-        .join('\n\n---\n\n');
+        .join("\n\n---\n\n");
 
       if (skillsText) {
         systemBlocks.push({
-          type: 'text',
+          type: "text",
           text: `## LOADED SKILLS\n\n${skillsText}`,
-          cache_control: { type: 'ephemeral' }
-        });
+          cache_control: { type: "ephemeral" },
+        } as any);
       }
     }
 
     // Add MCP tool definitions (cached if provided)
     if (request.mcpTools && request.mcpTools.length > 0) {
       systemBlocks.push({
-        type: 'text',
-        text: `## AVAILABLE MCP TOOLS\n\n${request.mcpTools.join('\n\n')}`,
-        cache_control: { type: 'ephemeral' }
-      });
+        type: "text",
+        text: `## AVAILABLE MCP TOOLS\n\n${request.mcpTools.join("\n\n")}`,
+        cache_control: { type: "ephemeral" },
+      } as any);
     }
 
     // Add user context (cached if provided)
     if (request.userContext) {
       systemBlocks.push({
-        type: 'text',
+        type: "text",
         text: `## USER CONTEXT\n\n${request.userContext}`,
-        cache_control: { type: 'ephemeral' }
-      });
+        cache_control: { type: "ephemeral" },
+      } as any);
     }
 
     // Add additional system prompt (not cached - frequently changes)
     if (request.systemPrompt) {
       systemBlocks.push({
-        type: 'text',
-        text: request.systemPrompt
+        type: "text",
+        text: request.systemPrompt,
       });
     }
 
     // Build system message
     if (systemBlocks.length > 0) {
       messages.push({
-        role: 'user',
-        content: systemBlocks
+        role: "user",
+        content: systemBlocks,
       });
 
       // Add acknowledgment (required for system-like messages)
       messages.push({
-        role: 'assistant',
-        content: 'Understood. I have loaded the OPUS 67 configuration, skills, tools, and user context. Ready to assist.'
+        role: "assistant",
+        content:
+          "Understood. I have loaded the OPUS 67 configuration, skills, tools, and user context. Ready to assist.",
       });
     }
 
     // Add user query
     messages.push({
-      role: 'user',
-      content: request.query
+      role: "user",
+      content: request.query,
     });
 
     return messages;
@@ -252,7 +259,7 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
    */
   async query(request: CachedPromptRequest): Promise<CachedPromptResponse> {
     if (!this.anthropic) {
-      throw new Error('[PromptCache] Anthropic API key not configured');
+      throw new Error("[PromptCache] Anthropic API key not configured");
     }
 
     if (!this.config.enableCaching) {
@@ -268,15 +275,15 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
 
     // Make API call
     const response = await this.anthropic.messages.create({
-      model: 'claude-opus-4-5-20250929',
+      model: "claude-opus-4-5-20250929",
       max_tokens: 4096,
-      messages
+      messages,
     });
 
     // Extract response content
-    let content = '';
+    let content = "";
     for (const block of response.content) {
-      if (block.type === 'text') {
+      if (block.type === "text") {
         content += block.text;
       }
     }
@@ -284,18 +291,19 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
     // Calculate metrics
     const inputTokens = response.usage.input_tokens;
     const outputTokens = response.usage.output_tokens;
-    const cachedTokens = 'cache_read_input_tokens' in response.usage
-      ? (response.usage as any).cache_read_input_tokens ?? 0
-      : 0;
+    const cachedTokens =
+      "cache_read_input_tokens" in response.usage
+        ? ((response.usage as any).cache_read_input_tokens ?? 0)
+        : 0;
     const cacheHit = cachedTokens > 0;
 
     // Update stats
     if (cacheHit) {
       this.stats.cacheHits++;
-      this.emit('cache:hit', cachedTokens, this.calculateSavings(cachedTokens));
+      this.emit("cache:hit", cachedTokens, this.calculateSavings(cachedTokens));
     } else {
       this.stats.cacheMisses++;
-      this.emit('cache:miss');
+      this.emit("cache:miss");
     }
 
     this.stats.hitRate = this.stats.cacheHits / this.stats.totalQueries;
@@ -307,7 +315,7 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
     if (cacheHit) {
       const savings = this.calculateSavings(cachedTokens);
       this.stats.totalSaved += savings;
-      this.emit('cost:saved', savings);
+      this.emit("cost:saved", savings);
     }
 
     const latencyMs = performance.now() - startTime;
@@ -318,37 +326,39 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
       tokensUsed: {
         input: inputTokens,
         output: outputTokens,
-        cached: cachedTokens
+        cached: cachedTokens,
       },
       cost,
-      latencyMs
+      latencyMs,
     };
   }
 
   /**
    * Query without caching (fallback)
    */
-  private async queryWithoutCache(request: CachedPromptRequest): Promise<CachedPromptResponse> {
+  private async queryWithoutCache(
+    request: CachedPromptRequest
+  ): Promise<CachedPromptResponse> {
     if (!this.anthropic) {
-      throw new Error('[PromptCache] Anthropic API key not configured');
+      throw new Error("[PromptCache] Anthropic API key not configured");
     }
 
     const startTime = performance.now();
 
     const response = await this.anthropic.messages.create({
-      model: 'claude-opus-4-5-20250929',
+      model: "claude-opus-4-5-20250929",
       max_tokens: 4096,
       messages: [
         {
-          role: 'user',
-          content: request.query
-        }
-      ]
+          role: "user",
+          content: request.query,
+        },
+      ],
     });
 
-    let content = '';
+    let content = "";
     for (const block of response.content) {
-      if (block.type === 'text') {
+      if (block.type === "text") {
         content += block.text;
       }
     }
@@ -364,22 +374,28 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
       tokensUsed: {
         input: inputTokens,
         output: outputTokens,
-        cached: 0
+        cached: 0,
       },
       cost,
-      latencyMs
+      latencyMs,
     };
   }
 
   /**
    * Calculate cost with caching
    */
-  private calculateCost(inputTokens: number, outputTokens: number, cachedTokens: number): number {
+  private calculateCost(
+    inputTokens: number,
+    outputTokens: number,
+    cachedTokens: number
+  ): number {
     const uncachedInput = inputTokens - cachedTokens;
 
     const inputCost = (uncachedInput / 1_000_000) * OPUS_45_CACHE_PRICING.input;
-    const cachedCost = (cachedTokens / 1_000_000) * OPUS_45_CACHE_PRICING.cachedInput;
-    const outputCost = (outputTokens / 1_000_000) * OPUS_45_CACHE_PRICING.output;
+    const cachedCost =
+      (cachedTokens / 1_000_000) * OPUS_45_CACHE_PRICING.cachedInput;
+    const outputCost =
+      (outputTokens / 1_000_000) * OPUS_45_CACHE_PRICING.output;
 
     return inputCost + cachedCost + outputCost;
   }
@@ -389,7 +405,8 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
    */
   private calculateSavings(cachedTokens: number): number {
     const fullCost = (cachedTokens / 1_000_000) * OPUS_45_CACHE_PRICING.input;
-    const cachedCost = (cachedTokens / 1_000_000) * OPUS_45_CACHE_PRICING.cachedInput;
+    const cachedCost =
+      (cachedTokens / 1_000_000) * OPUS_45_CACHE_PRICING.cachedInput;
     return fullCost - cachedCost;
   }
 
@@ -411,7 +428,7 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
       hitRate: 0,
       totalSaved: 0,
       cachedContentSize: this.stats.cachedContentSize,
-      lastCacheRefresh: this.stats.lastCacheRefresh
+      lastCacheRefresh: this.stats.lastCacheRefresh,
     };
   }
 
@@ -431,7 +448,7 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
     // Reinitialize Anthropic client if API key changed
     if (config.anthropicApiKey) {
       this.anthropic = new Anthropic({
-        apiKey: config.anthropicApiKey
+        apiKey: config.anthropicApiKey,
       });
     }
 
@@ -463,11 +480,11 @@ export class PromptCacheManager extends EventEmitter<CacheEvents> {
 ║  ────────────────────────────────────────────────────────────    ║
 ║  Total Saved:      $${stats.totalSaved.toFixed(2).padEnd(44)} ║
 ║  Cached Size:      ${String(stats.cachedContentSize).padEnd(43)} tokens ║
-║  Last Refresh:     ${(stats.lastCacheRefresh?.toLocaleString() ?? 'Never').padEnd(44)} ║
+║  Last Refresh:     ${(stats.lastCacheRefresh?.toLocaleString() ?? "Never").padEnd(44)} ║
 ║                                                                  ║
 ║  STATUS                                                          ║
 ║  ────────────────────────────────────────────────────────────    ║
-║  Caching:          ${(this.config.enableCaching ? '✅ ENABLED' : '❌ DISABLED').padEnd(47)} ║
+║  Caching:          ${(this.config.enableCaching ? "✅ ENABLED" : "❌ DISABLED").padEnd(47)} ║
 ║  TTL:              ${String(this.config.cacheTTLMinutes).padEnd(51)} min ║
 ║                                                                  ║
 ╚══════════════════════════════════════════════════════════════════╝`;

@@ -177,7 +177,7 @@ export const LIST_AGENTS_TOOL = {
  * Handle opus67_spawn_agents tool call
  */
 export async function handleSpawnAgents(
-  input: SpawnAgentsInput,
+  input: SpawnAgentsInput
 ): Promise<SpawnAgentsOutput> {
   const startTime = Date.now();
   const {
@@ -276,7 +276,7 @@ export async function handleSpawnAgents(
  * Handle opus67_agent_status tool call
  */
 export async function handleAgentStatus(
-  input: AgentStatusInput,
+  input: AgentStatusInput
 ): Promise<AgentStatusOutput> {
   const { jobId } = input;
 
@@ -467,7 +467,7 @@ export function handleListAgents(input: { category?: string; mode?: string }): {
 export function registerSpawnTools(server: {
   setRequestHandler: (
     schema: string,
-    handler: (request: unknown) => Promise<unknown>,
+    handler: (request: unknown) => Promise<unknown>
   ) => void;
 }): void {
   // Tools list handler
@@ -478,10 +478,12 @@ export function registerSpawnTools(server: {
   // Tools call handler
   server.setRequestHandler(
     "tools/call",
-    async (request: {
-      params: { name: string; arguments: Record<string, unknown> };
-    }) => {
-      const { name, arguments: args } = request.params;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async (request: any) => {
+      const { name, arguments: args } = request.params as {
+        name: string;
+        arguments: Record<string, unknown>;
+      };
 
       switch (name) {
         case "opus67_spawn_agents":
@@ -490,13 +492,13 @@ export function registerSpawnTools(server: {
               {
                 type: "text",
                 text: JSON.stringify(
-                  await handleSpawnAgents(args as SpawnAgentsInput),
+                  await handleSpawnAgents(args as unknown as SpawnAgentsInput),
                   null,
-                  2,
+                  2
                 ),
               },
             ],
-          };
+          } as const;
 
         case "opus67_agent_status":
           return {
@@ -504,13 +506,13 @@ export function registerSpawnTools(server: {
               {
                 type: "text",
                 text: JSON.stringify(
-                  await handleAgentStatus(args as AgentStatusInput),
+                  await handleAgentStatus(args as unknown as AgentStatusInput),
                   null,
-                  2,
+                  2
                 ),
               },
             ],
-          };
+          } as const;
 
         case "opus67_list_agents":
           return {
@@ -519,19 +521,19 @@ export function registerSpawnTools(server: {
                 type: "text",
                 text: JSON.stringify(
                   handleListAgents(
-                    args as { category?: string; mode?: string },
+                    args as { category?: string; mode?: string }
                   ),
                   null,
-                  2,
+                  2
                 ),
               },
             ],
-          };
+          } as const;
 
         default:
           throw new Error(`Unknown tool: ${name}`);
       }
-    },
+    }
   );
 }
 

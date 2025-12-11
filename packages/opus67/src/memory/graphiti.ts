@@ -9,7 +9,11 @@
  * - search.ts: Search operations
  */
 
-import { EventEmitter } from 'eventemitter3';
+// Type declaration for optional dependency
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Neo4jDriver = any;
+
+import { EventEmitter } from "eventemitter3";
 import type {
   MemoryNode,
   MemoryEdge,
@@ -19,11 +23,16 @@ import type {
   SearchResult,
   GraphitiConfig,
   GraphitiEvents,
-  MemoryStats
-} from './types.js';
-import { generateEmbedding } from './embeddings.js';
-import { LocalMemoryCache } from './cache.js';
-import { searchLocalCache, searchNeo4j, formatContext, type SearchOptions } from './search.js';
+  MemoryStats,
+} from "./types.js";
+import { generateEmbedding } from "./embeddings.js";
+import { LocalMemoryCache } from "./cache.js";
+import {
+  searchLocalCache,
+  searchNeo4j,
+  formatContext,
+  type SearchOptions,
+} from "./search.js";
 
 // Re-export types for backwards compatibility
 export type {
@@ -33,7 +42,7 @@ export type {
   Improvement,
   Goal,
   SearchResult,
-  GraphitiConfig
+  GraphitiConfig,
 };
 
 /**
@@ -49,17 +58,21 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
   constructor(config?: Partial<GraphitiConfig>) {
     super();
     this.config = {
-      uri: config?.uri ?? process.env.NEO4J_URI ?? '',
-      username: config?.username ?? process.env.NEO4J_USERNAME ?? 'neo4j',
-      password: config?.password ?? process.env.NEO4J_PASSWORD ?? '',
-      database: config?.database ?? 'neo4j',
-      namespace: config?.namespace ?? 'opus67',
-      embeddingModel: config?.embeddingModel ?? 'local',
+      uri: config?.uri ?? process.env.NEO4J_URI ?? "",
+      username: config?.username ?? process.env.NEO4J_USERNAME ?? "neo4j",
+      password: config?.password ?? process.env.NEO4J_PASSWORD ?? "",
+      database: config?.database ?? "neo4j",
+      namespace: config?.namespace ?? "opus67",
+      embeddingModel: config?.embeddingModel ?? "local",
       maxResults: config?.maxResults ?? 10,
       fallbackToLocal: config?.fallbackToLocal ?? true,
     };
 
-    if (this.config.fallbackToLocal || !this.config.uri || !this.config.password) {
+    if (
+      this.config.fallbackToLocal ||
+      !this.config.uri ||
+      !this.config.password
+    ) {
       this.useLocalFallback = true;
     }
   }
@@ -70,15 +83,18 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
 
   async connect(): Promise<boolean> {
     if (!this.config.uri || !this.config.password) {
-      console.warn('[Graphiti] No Neo4j credentials, using local fallback');
+      console.warn("[Graphiti] No Neo4j credentials, using local fallback");
       this.useLocalFallback = true;
       return false;
     }
 
     try {
-      const neo4j = await import('neo4j-driver').catch(() => null);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const neo4j = (await import("neo4j-driver").catch(() => null)) as any;
       if (!neo4j) {
-        console.warn('[Graphiti] neo4j-driver not installed, using local fallback');
+        console.warn(
+          "[Graphiti] neo4j-driver not installed, using local fallback"
+        );
         this.useLocalFallback = true;
         return false;
       }
@@ -89,18 +105,24 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
       );
 
       const session = this.driver.session({ database: this.config.database });
-      await session.run('RETURN 1');
+      await session.run("RETURN 1");
       await session.close();
 
       this.connected = true;
       this.useLocalFallback = false;
-      this.emit('connected');
+      this.emit("connected");
       await this.initializeSchema();
       return true;
     } catch (error) {
-      console.warn('[Graphiti] Connection failed, using local fallback:', error);
+      console.warn(
+        "[Graphiti] Connection failed, using local fallback:",
+        error
+      );
       this.useLocalFallback = true;
-      this.emit('error', error instanceof Error ? error : new Error(String(error)));
+      this.emit(
+        "error",
+        error instanceof Error ? error : new Error(String(error))
+      );
       return false;
     }
   }
@@ -109,9 +131,15 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
     if (!this.driver) return;
     const session = this.driver.session({ database: this.config.database });
     try {
-      await session.run(`CREATE INDEX memory_key IF NOT EXISTS FOR (m:Memory) ON (m.key)`);
-      await session.run(`CREATE INDEX memory_namespace IF NOT EXISTS FOR (m:Memory) ON (m.namespace)`);
-      await session.run(`CREATE INDEX memory_type IF NOT EXISTS FOR (m:Memory) ON (m.type)`);
+      await session.run(
+        `CREATE INDEX memory_key IF NOT EXISTS FOR (m:Memory) ON (m.key)`
+      );
+      await session.run(
+        `CREATE INDEX memory_namespace IF NOT EXISTS FOR (m:Memory) ON (m.namespace)`
+      );
+      await session.run(
+        `CREATE INDEX memory_type IF NOT EXISTS FOR (m:Memory) ON (m.type)`
+      );
     } finally {
       await session.close();
     }
@@ -122,14 +150,14 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
       await this.driver.close();
       this.driver = null;
       this.connected = false;
-      this.emit('disconnected');
+      this.emit("disconnected");
     }
   }
 
   private async createNode(
     key: string,
     value: string,
-    type: MemoryNode['type'],
+    type: MemoryNode["type"],
     metadata: Record<string, unknown> = {}
   ): Promise<MemoryNode> {
     const embedding = await generateEmbedding(`${key} ${value}`);
@@ -142,7 +170,7 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
       embedding,
       metadata,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
 
     if (this.useLocalFallback) {
@@ -151,35 +179,40 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
       await this.writeNode(node);
     }
 
-    this.emit('memory:added', node);
+    this.emit("memory:added", node);
     return node;
   }
 
   async addEpisode(episode: Episode): Promise<MemoryNode> {
-    const key = episode.name ?? `episode:${episode.type ?? 'general'}:${Date.now()}`;
-    return this.createNode(key, episode.content, 'episode', {
+    const key =
+      episode.name ?? `episode:${episode.type ?? "general"}:${Date.now()}`;
+    return this.createNode(key, episode.content, "episode", {
       episodeType: episode.type,
       source: episode.source,
       actors: episode.actors,
       context: episode.context,
-      originalTimestamp: episode.timestamp
+      originalTimestamp: episode.timestamp,
     });
   }
 
-  async addFact(key: string, value: string, metadata?: Record<string, unknown>): Promise<MemoryNode> {
-    return this.createNode(key, value, 'fact', metadata ?? {});
+  async addFact(
+    key: string,
+    value: string,
+    metadata?: Record<string, unknown>
+  ): Promise<MemoryNode> {
+    return this.createNode(key, value, "fact", metadata ?? {});
   }
 
   async storeImprovement(improvement: Improvement): Promise<MemoryNode> {
     return this.createNode(
       `improvement:${improvement.component}`,
       JSON.stringify(improvement),
-      'improvement',
+      "improvement",
       {
         component: improvement.component,
         changeType: improvement.changeType,
         impact: improvement.impact,
-        automated: improvement.automated
+        automated: improvement.automated,
       }
     );
   }
@@ -188,11 +221,11 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
     return this.createNode(
       `goal:${goal.description.slice(0, 50)}`,
       JSON.stringify(goal),
-      'goal',
+      "goal",
       {
         progress: goal.progress,
         status: goal.status,
-        milestones: goal.milestones
+        milestones: goal.milestones,
       }
     );
   }
@@ -201,55 +234,76 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
     if (!this.driver) return;
     const session = this.driver.session({ database: this.config.database });
     try {
-      await session.run(`
+      await session.run(
+        `
         MERGE (m:Memory {id: $id})
         SET m.key = $key, m.value = $value, m.namespace = $namespace,
             m.type = $type, m.metadata = $metadata,
             m.createdAt = $createdAt, m.updatedAt = $updatedAt
-      `, {
-        id: node.id, key: node.key, value: node.value,
-        namespace: node.namespace, type: node.type,
-        metadata: JSON.stringify(node.metadata),
-        createdAt: node.createdAt.toISOString(),
-        updatedAt: node.updatedAt.toISOString()
-      });
+      `,
+        {
+          id: node.id,
+          key: node.key,
+          value: node.value,
+          namespace: node.namespace,
+          type: node.type,
+          metadata: JSON.stringify(node.metadata),
+          createdAt: node.createdAt.toISOString(),
+          updatedAt: node.updatedAt.toISOString(),
+        }
+      );
     } finally {
       await session.close();
     }
   }
 
-  async search(query: string, options?: SearchOptions): Promise<SearchResult[]> {
+  async search(
+    query: string,
+    options?: SearchOptions
+  ): Promise<SearchResult[]> {
     const limit = options?.limit ?? this.config.maxResults!;
     const searchOpts = { ...options, limit };
 
     const results = this.useLocalFallback
       ? await searchLocalCache(this.localCache, query, searchOpts)
-      : await searchNeo4j(this.driver, this.config.database!, this.config.namespace!, query, searchOpts);
+      : await searchNeo4j(
+          this.driver,
+          this.config.database!,
+          this.config.namespace!,
+          query,
+          searchOpts
+        );
 
-    this.emit('search:complete', query, results);
+    this.emit("search:complete", query, results);
     return results;
   }
 
-  async getContext(topic: string): Promise<{ memories: MemoryNode[]; summary: string }> {
+  async getContext(
+    topic: string
+  ): Promise<{ memories: MemoryNode[]; summary: string }> {
     const results = await this.search(topic, { limit: 5 });
-    const memories = results.map(r => r.node);
+    const memories = results.map((r) => r.node);
     return { memories, summary: formatContext(memories, topic) };
   }
 
   async getImprovements(): Promise<Improvement[]> {
-    const results = await this.search('', { type: 'improvement', limit: 100 });
-    return results.map(r => JSON.parse(r.node.value) as Improvement);
+    const results = await this.search("", { type: "improvement", limit: 100 });
+    return results.map((r) => JSON.parse(r.node.value) as Improvement);
   }
 
   async getGoals(): Promise<Goal[]> {
-    const results = await this.search('', { type: 'goal', limit: 100 });
-    return results.map(r => JSON.parse(r.node.value) as Goal);
+    const results = await this.search("", { type: "goal", limit: 100 });
+    return results.map((r) => JSON.parse(r.node.value) as Goal);
   }
 
-  async updateGoal(goalId: string, progress: number, status?: Goal['status']): Promise<MemoryNode | null> {
+  async updateGoal(
+    goalId: string,
+    progress: number,
+    status?: Goal["status"]
+  ): Promise<MemoryNode | null> {
     if (this.useLocalFallback) {
       const node = this.localCache.get(goalId);
-      if (node && node.type === 'goal') {
+      if (node && node.type === "goal") {
         const goal = JSON.parse(node.value) as Goal;
         goal.progress = progress;
         if (status) goal.status = status;
@@ -257,7 +311,7 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
         node.metadata.progress = progress;
         node.metadata.status = status ?? goal.status;
         node.updatedAt = new Date();
-        this.emit('memory:updated', node);
+        this.emit("memory:updated", node);
         return node;
       }
     }
@@ -267,14 +321,14 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
   async delete(id: string): Promise<boolean> {
     if (this.useLocalFallback) {
       const deleted = this.localCache.delete(id);
-      if (deleted) this.emit('memory:deleted', id);
+      if (deleted) this.emit("memory:deleted", id);
       return deleted;
     }
 
     const session = this.driver.session({ database: this.config.database });
     try {
       await session.run(`MATCH (m:Memory {id: $id}) DELETE m`, { id });
-      this.emit('memory:deleted', id);
+      this.emit("memory:deleted", id);
       return true;
     } finally {
       await session.close();
@@ -284,15 +338,17 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
   async createRelationship(
     fromId: string,
     toId: string,
-    type: MemoryEdge['type'],
+    type: MemoryEdge["type"],
     metadata?: Record<string, unknown>
   ): Promise<MemoryEdge | null> {
     const edge: MemoryEdge = {
       id: `edge_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-      fromId, toId, type,
+      fromId,
+      toId,
+      type,
       weight: 1.0,
       metadata: metadata ?? {},
-      createdAt: new Date()
+      createdAt: new Date(),
     };
 
     if (this.useLocalFallback) {
@@ -301,23 +357,32 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
 
     const session = this.driver.session({ database: this.config.database });
     try {
-      await session.run(`
+      await session.run(
+        `
         MATCH (from:Memory {id: $fromId}), (to:Memory {id: $toId})
         CREATE (from)-[r:${type.toUpperCase()} {
           id: $edgeId, weight: $weight, metadata: $metadata, createdAt: $createdAt
         }]->(to) RETURN r
-      `, {
-        fromId, toId, edgeId: edge.id, weight: edge.weight,
-        metadata: JSON.stringify(edge.metadata),
-        createdAt: edge.createdAt.toISOString()
-      });
+      `,
+        {
+          fromId,
+          toId,
+          edgeId: edge.id,
+          weight: edge.weight,
+          metadata: JSON.stringify(edge.metadata),
+          createdAt: edge.createdAt.toISOString(),
+        }
+      );
       return edge;
     } finally {
       await session.close();
     }
   }
 
-  async getRelated(id: string, options?: { type?: MemoryEdge['type']; depth?: number }): Promise<MemoryNode[]> {
+  async getRelated(
+    id: string,
+    options?: { type?: MemoryEdge["type"]; depth?: number }
+  ): Promise<MemoryNode[]> {
     if (this.useLocalFallback) {
       return this.localCache.getRelated(id, options);
     }
@@ -325,20 +390,26 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
     const depth = options?.depth ?? 1;
     const session = this.driver.session({ database: this.config.database });
     try {
-      const typeClause = options?.type ? `:${options.type.toUpperCase()}` : '';
-      const result = await session.run(`
+      const typeClause = options?.type ? `:${options.type.toUpperCase()}` : "";
+      const result = await session.run(
+        `
         MATCH (m:Memory {id: $id})-[${typeClause}*1..${depth}]->(related:Memory)
         RETURN DISTINCT related
-      `, { id });
+      `,
+        { id }
+      );
 
       return result.records.map((record: any) => {
-        const m = record.get('related').properties;
+        const m = record.get("related").properties;
         return {
-          id: m.id, key: m.key, value: m.value,
-          namespace: m.namespace, type: m.type,
-          metadata: JSON.parse(m.metadata || '{}'),
+          id: m.id,
+          key: m.key,
+          value: m.value,
+          namespace: m.namespace,
+          type: m.type,
+          metadata: JSON.parse(m.metadata || "{}"),
           createdAt: new Date(m.createdAt),
-          updatedAt: new Date(m.updatedAt)
+          updatedAt: new Date(m.updatedAt),
         };
       });
     } finally {
@@ -346,36 +417,46 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
     }
   }
 
-  async searchByTimeRange(startDate: Date, endDate: Date, options?: { type?: string; limit?: number }): Promise<MemoryNode[]> {
+  async searchByTimeRange(
+    startDate: Date,
+    endDate: Date,
+    options?: { type?: string; limit?: number }
+  ): Promise<MemoryNode[]> {
     if (this.useLocalFallback) {
       return this.localCache.searchByTimeRange(startDate, endDate, options);
     }
 
     const session = this.driver.session({ database: this.config.database });
     try {
-      const result = await session.run(`
+      const result = await session.run(
+        `
         MATCH (m:Memory)
         WHERE m.namespace = $namespace
           AND datetime(m.createdAt) >= datetime($startDate)
           AND datetime(m.createdAt) <= datetime($endDate)
-          ${options?.type ? 'AND m.type = $type' : ''}
+          ${options?.type ? "AND m.type = $type" : ""}
         RETURN m ORDER BY m.createdAt DESC LIMIT $limit
-      `, {
-        namespace: this.config.namespace,
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-        type: options?.type,
-        limit: options?.limit ?? this.config.maxResults
-      });
+      `,
+        {
+          namespace: this.config.namespace,
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
+          type: options?.type,
+          limit: options?.limit ?? this.config.maxResults,
+        }
+      );
 
       return result.records.map((record: any) => {
-        const m = record.get('m').properties;
+        const m = record.get("m").properties;
         return {
-          id: m.id, key: m.key, value: m.value,
-          namespace: m.namespace, type: m.type,
-          metadata: JSON.parse(m.metadata || '{}'),
+          id: m.id,
+          key: m.key,
+          value: m.value,
+          namespace: m.namespace,
+          type: m.type,
+          metadata: JSON.parse(m.metadata || "{}"),
           createdAt: new Date(m.createdAt),
-          updatedAt: new Date(m.updatedAt)
+          updatedAt: new Date(m.updatedAt),
         };
       });
     } finally {
@@ -396,11 +477,14 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
 
     const session = this.driver.session({ database: this.config.database });
     try {
-      const result = await session.run(`
+      const result = await session.run(
+        `
         MATCH (m:Memory {namespace: $namespace})
         RETURN m.type as type, count(*) as count,
                min(m.createdAt) as oldest, max(m.createdAt) as newest
-      `, { namespace: this.config.namespace });
+      `,
+        { namespace: this.config.namespace }
+      );
 
       const byType: Record<string, number> = {};
       let oldest: Date | null = null;
@@ -408,21 +492,26 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
       let total = 0;
 
       for (const record of result.records) {
-        const type = record.get('type');
-        const count = record.get('count').toNumber();
+        const type = record.get("type");
+        const count = record.get("count").toNumber();
         byType[type] = count;
         total += count;
-        const o = record.get('oldest');
-        const n = record.get('newest');
+        const o = record.get("oldest");
+        const n = record.get("newest");
         if (o && (!oldest || new Date(o) < oldest)) oldest = new Date(o);
         if (n && (!newest || new Date(n) > newest)) newest = new Date(n);
       }
 
       return {
-        totalNodes: total, totalMemories: total,
-        facts: byType['fact'] ?? 0, episodes: byType['episode'] ?? 0,
-        goals: byType['goal'] ?? 0, improvements: byType['improvement'] ?? 0,
-        byType, oldestMemory: oldest, newestMemory: newest
+        totalNodes: total,
+        totalMemories: total,
+        facts: byType["fact"] ?? 0,
+        episodes: byType["episode"] ?? 0,
+        goals: byType["goal"] ?? 0,
+        improvements: byType["improvement"] ?? 0,
+        byType,
+        oldestMemory: oldest,
+        newestMemory: newest,
       };
     } finally {
       await session.close();
@@ -435,7 +524,7 @@ export class GraphitiMemory extends EventEmitter<GraphitiEvents> {
 
   async formatStatus(): Promise<string> {
     const stats = await this.getStats();
-    const mode = this.useLocalFallback ? 'LOCAL FALLBACK' : 'NEO4J CONNECTED';
+    const mode = this.useLocalFallback ? "LOCAL FALLBACK" : "NEO4J CONNECTED";
     return `
 ┌─ GRAPHITI MEMORY STATUS ────────────────────────────────────────┐
 │  MODE: ${mode.padEnd(54)} │

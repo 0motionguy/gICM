@@ -3,7 +3,7 @@
  * Unified interface for Gemini and DeepSeek APIs
  */
 
-import { MODELS, type ModelName, type LLMModel } from './types.js';
+import { MODELS, type ModelName, type LLMModel } from "./types.js";
 
 export interface GenerationResponse {
   code: string;
@@ -27,25 +27,25 @@ export async function generateCode(
 
   if (!model.apiKey) {
     return {
-      code: '',
+      code: "",
       tokens_used: 0,
       latency_ms: 0,
-      error: `No API key for ${modelName}. Set ${modelName === 'gemini' ? 'GOOGLE_API_KEY' : 'DEEPSEEK_API_KEY'}`
+      error: `No API key for ${modelName}. Set ${modelName === "gemini" ? "GOOGLE_API_KEY" : "DEEPSEEK_API_KEY"}`,
     };
   }
 
   try {
-    if (modelName === 'gemini') {
+    if (modelName === "gemini") {
       return await callGemini(model, prompt, startTime);
     } else {
       return await callDeepSeek(model, prompt, startTime);
     }
   } catch (error) {
     return {
-      code: '',
+      code: "",
       tokens_used: 0,
       latency_ms: Date.now() - startTime,
-      error: error instanceof Error ? error.message : String(error)
+      error: error instanceof Error ? error.message : String(error),
     };
   }
 }
@@ -58,22 +58,26 @@ async function callGemini(
   const url = `${model.endpoint}?key=${model.apiKey}`;
 
   const response = await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      contents: [{
-        parts: [{
-          text: CODE_GENERATION_PROMPT + prompt
-        }]
-      }],
+      contents: [
+        {
+          parts: [
+            {
+              text: CODE_GENERATION_PROMPT + prompt,
+            },
+          ],
+        },
+      ],
       generationConfig: {
         temperature: 0.1,
         maxOutputTokens: 1024,
-        topP: 0.95
-      }
-    })
+        topP: 0.95,
+      },
+    }),
   });
 
   if (!response.ok) {
@@ -81,21 +85,31 @@ async function callGemini(
     throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
   }
 
-  const data = await response.json();
+  const data = (await response.json()) as {
+    candidates?: Array<{
+      content?: {
+        parts?: Array<{ text?: string }>;
+      };
+    }>;
+    usageMetadata?: {
+      totalTokenCount?: number;
+    };
+  };
   const latency = Date.now() - startTime;
 
   // Extract code from response
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
   const code = extractCode(text);
 
   // Estimate tokens (Gemini doesn't always return token counts)
-  const tokensUsed = data.usageMetadata?.totalTokenCount ||
+  const tokensUsed =
+    data.usageMetadata?.totalTokenCount ||
     Math.ceil((prompt.length + code.length) / 4);
 
   return {
     code,
     tokens_used: tokensUsed,
-    latency_ms: latency
+    latency_ms: latency,
   };
 }
 
@@ -105,27 +119,28 @@ async function callDeepSeek(
   startTime: number
 ): Promise<GenerationResponse> {
   const response = await fetch(model.endpoint, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${model.apiKey}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${model.apiKey}`,
     },
     body: JSON.stringify({
-      model: 'deepseek-chat',
+      model: "deepseek-chat",
       messages: [
         {
-          role: 'system',
-          content: 'You are a Python expert. Return only code, no explanations.'
+          role: "system",
+          content:
+            "You are a Python expert. Return only code, no explanations.",
         },
         {
-          role: 'user',
-          content: CODE_GENERATION_PROMPT + prompt
-        }
+          role: "user",
+          content: CODE_GENERATION_PROMPT + prompt,
+        },
       ],
       temperature: 0.1,
       max_tokens: 1024,
-      top_p: 0.95
-    })
+      top_p: 0.95,
+    }),
   });
 
   if (!response.ok) {
@@ -133,18 +148,22 @@ async function callDeepSeek(
     throw new Error(`DeepSeek API error: ${response.status} - ${errorText}`);
   }
 
-  const data = await response.json();
+  const data = (await response.json()) as {
+    choices?: Array<{ message?: { content?: string } }>;
+    usage?: { prompt_tokens?: number; completion_tokens?: number };
+  };
   const latency = Date.now() - startTime;
 
-  const text = data.choices?.[0]?.message?.content || '';
+  const text = data.choices?.[0]?.message?.content || "";
   const code = extractCode(text);
 
-  const tokensUsed = (data.usage?.prompt_tokens || 0) + (data.usage?.completion_tokens || 0);
+  const tokensUsed =
+    (data.usage?.prompt_tokens || 0) + (data.usage?.completion_tokens || 0);
 
   return {
     code,
     tokens_used: tokensUsed || Math.ceil((prompt.length + code.length) / 4),
-    latency_ms: latency
+    latency_ms: latency,
   };
 }
 
@@ -159,7 +178,7 @@ function extractCode(text: string): string {
   }
 
   // Remove leading/trailing quotes if present
-  code = code.replace(/^["']|["']$/g, '');
+  code = code.replace(/^["']|["']$/g, "");
 
   return code;
 }

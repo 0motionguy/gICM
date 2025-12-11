@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { VERSION } from './chunk-IEE3QXBQ.js';
-import { getUnifiedMemory, initializeUnifiedMemory } from './chunk-GCLGOCG5.js';
-import './chunk-2BMLDUKW.js';
+import { getUnifiedMemory, initializeUnifiedMemory } from './chunk-X27EIMGO.js';
+import './chunk-F6HCT36D.js';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema, ListPromptsRequestSchema, GetPromptRequestSchema, ListResourcesRequestSchema, ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js';
@@ -135,7 +135,7 @@ var TOOL_DEFINITIONS = [
   },
   {
     name: "opus67_detect_skills",
-    description: "Auto-detect relevant skills based on a query or file extensions",
+    description: "Auto-detect relevant skills using 4-stage multi-stage retrieval (v6.3.0: keyword filter \u2192 vector search \u2192 cross-encoder reranking \u2192 MMR diversity)",
     inputSchema: {
       type: "object",
       properties: {
@@ -290,6 +290,30 @@ var TOOL_DEFINITIONS = [
       properties: {},
       required: []
     }
+  },
+  // Tool Analytics (v6.3.0)
+  {
+    name: "opus67_toolMetrics",
+    description: "Get performance metrics for MCP tools (success rate, latency p50/p95/p99, health status)",
+    inputSchema: {
+      type: "object",
+      properties: {
+        tool_id: {
+          type: "string",
+          description: "Specific tool ID to get metrics for (omit for all tools)"
+        }
+      },
+      required: []
+    }
+  },
+  {
+    name: "opus67_unhealthyTools",
+    description: "List all degraded or unhealthy tools with their error patterns and recommendations",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: []
+    }
   }
 ];
 
@@ -373,12 +397,13 @@ ${fullPrompt}` : ""}
 function handleListSkills(ctx, args) {
   const category = args.category;
   const filtered = category ? ctx.skills.filter(
-    (s) => s.category.toLowerCase() === category.toLowerCase()
+    (s) => (s.category ?? "").toLowerCase() === category.toLowerCase()
   ) : ctx.skills;
   const grouped = {};
   for (const skill of filtered) {
-    if (!grouped[skill.category]) grouped[skill.category] = [];
-    grouped[skill.category].push(skill);
+    const cat = skill.category ?? "uncategorized";
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(skill);
   }
   let output = `# OPUS 67 Skills (${filtered.length} total)
 
@@ -387,8 +412,8 @@ function handleListSkills(ctx, args) {
     output += `## ${cat}
 `;
     for (const skill of catSkills) {
-      const priority = skill.priority <= 2 ? "\u2B50" : "  ";
-      output += `${priority} **${skill.id}** - ${skill.name} (${skill.tokens} tokens)
+      const priority = (skill.priority ?? 5) <= 2 ? "\u2B50" : "  ";
+      output += `${priority} **${skill.id}** - ${skill.name} (${skill.tokens ?? 0} tokens)
 `;
     }
     output += "\n";
@@ -418,7 +443,7 @@ function handleDetectSkills(ctx, args) {
     }
     if (score > 0) detected.push({ ...skill, priority: score });
   }
-  detected.sort((a, b) => b.priority - a.priority);
+  detected.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
   const top = detected.slice(0, 5);
   let output = `# Detected Skills for: "${query}"
 
@@ -514,7 +539,7 @@ function handleGetContext(ctx, args) {
     }
     if (score > 0) detectedSkills.push({ ...skill, priority: score });
   }
-  detectedSkills.sort((a, b) => b.priority - a.priority);
+  detectedSkills.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
   const topSkills = detectedSkills.slice(0, 3);
   let suggestedMode = "build";
   if (queryLower.includes("review") || queryLower.includes("audit"))
@@ -562,7 +587,7 @@ function handleStatus(ctx) {
 - Frontend: ${ctx.skills.filter((s) => s.category === "frontend").length} skills
 - Backend: ${ctx.skills.filter((s) => s.category === "backend").length} skills
 - DevOps: ${ctx.skills.filter((s) => s.category === "devops").length} skills
-- Other: ${ctx.skills.filter((s) => !["blockchain", "frontend", "backend", "devops"].includes(s.category)).length} skills
+- Other: ${ctx.skills.filter((s) => !["blockchain", "frontend", "backend", "devops"].includes(s.category ?? "")).length} skills
 `;
   return { content: [{ type: "text", text: output }] };
 }
@@ -644,17 +669,19 @@ async function handleMultiHopQuery(args) {
 async function handleWriteMemory(args) {
   try {
     const memory = await getMemory();
+    const writeType = args.type;
     const result = await memory.write({
       content: args.content,
-      type: args.type,
+      type: writeType,
       key: args.key
     });
+    const idList = Object.values(result.ids).join(", ");
     const output = `# Memory Written
 
 **Type:** ${args.type}
 **Key:** ${args.key || "(auto-generated)"}
 **Status:** ${result.success ? "Success" : "Failed"}
-**IDs:** ${result.ids.join(", ") || "None"}`;
+**IDs:** ${idList || "None"}`;
     return { content: [{ type: "text", text: output }] };
   } catch (error) {
     return {
@@ -752,23 +779,63 @@ var server = new Server(
   { capabilities: { tools: {}, resources: {}, prompts: {} } }
 );
 var SKILL_CATEGORIES = [
-  { name: "solana", description: "Solana/Anchor blockchain development expertise", category: "blockchain" },
-  { name: "react", description: "React 19 + Next.js 15 frontend patterns", category: "frontend" },
-  { name: "typescript", description: "Advanced TypeScript patterns and type safety", category: "language" },
-  { name: "security", description: "Security auditing and vulnerability detection", category: "security" },
-  { name: "backend", description: "Node.js/API backend development patterns", category: "backend" },
-  { name: "devops", description: "Docker, CI/CD, deployment automation", category: "devops" },
-  { name: "testing", description: "Unit, integration, and E2E testing patterns", category: "testing" },
-  { name: "database", description: "Database design, SQL, and query optimization", category: "data" },
-  { name: "web3", description: "DeFi, tokens, and blockchain integration", category: "blockchain" },
-  { name: "grab", description: "Visual-to-code: screenshot to React components", category: "grab" }
+  {
+    name: "solana",
+    description: "Solana/Anchor blockchain development expertise",
+    category: "blockchain"
+  },
+  {
+    name: "react",
+    description: "React 19 + Next.js 15 frontend patterns",
+    category: "frontend"
+  },
+  {
+    name: "typescript",
+    description: "Advanced TypeScript patterns and type safety",
+    category: "language"
+  },
+  {
+    name: "security",
+    description: "Security auditing and vulnerability detection",
+    category: "security"
+  },
+  {
+    name: "backend",
+    description: "Node.js/API backend development patterns",
+    category: "backend"
+  },
+  {
+    name: "devops",
+    description: "Docker, CI/CD, deployment automation",
+    category: "devops"
+  },
+  {
+    name: "testing",
+    description: "Unit, integration, and E2E testing patterns",
+    category: "testing"
+  },
+  {
+    name: "database",
+    description: "Database design, SQL, and query optimization",
+    category: "data"
+  },
+  {
+    name: "web3",
+    description: "DeFi, tokens, and blockchain integration",
+    category: "blockchain"
+  },
+  {
+    name: "grab",
+    description: "Visual-to-code: screenshot to React components",
+    category: "grab"
+  }
 ];
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: TOOL_DEFINITIONS
 }));
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
-  return handleToolCall(name, args, handlerContext);
+  return await handleToolCall(name, args, handlerContext);
 });
 server.setRequestHandler(ListPromptsRequestSchema, async () => ({
   prompts: SKILL_CATEGORIES.map((cat) => ({
@@ -789,7 +856,9 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
   if (!category) {
     return {
       description: "Unknown skill category",
-      messages: [{ role: "user", content: { type: "text", text: "Skill not found" } }]
+      messages: [
+        { role: "user", content: { type: "text", text: "Skill not found" } }
+      ]
     };
   }
   const categorySkills = skills.filter(
@@ -805,7 +874,12 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
 
 `;
   for (const skill of categorySkills) {
-    const defPath = join(PACKAGE_ROOT, "skills", "definitions", `${skill.id}.md`);
+    const defPath = join(
+      PACKAGE_ROOT,
+      "skills",
+      "definitions",
+      `${skill.id}.md`
+    );
     if (existsSync(defPath)) {
       const content = readFileSync(defPath, "utf-8");
       skillContent += `### ${skill.name}
@@ -911,7 +985,12 @@ opus67_get_context({ task: "description", skills: true, mcps: true })
     const skillId = uri.replace("opus67://skill/", "");
     const skill = skills.find((s) => s.id === skillId);
     if (skill) {
-      const defPath = join(PACKAGE_ROOT, "skills", "definitions", `${skillId}.md`);
+      const defPath = join(
+        PACKAGE_ROOT,
+        "skills",
+        "definitions",
+        `${skillId}.md`
+      );
       let content = `# ${skill.name}
 
 `;
@@ -938,7 +1017,9 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error("[OPUS67] MCP Server started");
-  console.error(`[OPUS67] Skills: ${skills.length}, MCPs: ${mcpConnections.length}, Modes: ${modes.length}`);
+  console.error(
+    `[OPUS67] Skills: ${skills.length}, MCPs: ${mcpConnections.length}, Modes: ${modes.length}`
+  );
 }
 main().catch((error) => {
   console.error("[OPUS67] Fatal error:", error);

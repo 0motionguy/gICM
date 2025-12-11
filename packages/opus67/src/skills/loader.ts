@@ -7,7 +7,13 @@ import { readFileSync, existsSync } from "fs";
 import { parse as parseYaml } from "yaml";
 import { join } from "path";
 import { EventEmitter } from "eventemitter3";
-import type { UsageTracker, SignalCollector, AdaptiveMatcher, LearningStore, InvocationTrigger } from "../evolution/index.js";
+import type {
+  UsageTracker,
+  SignalCollector,
+  AdaptiveMatcher,
+  LearningStore,
+  InvocationTrigger,
+} from "../evolution/index.js";
 
 // =============================================================================
 // TYPES
@@ -61,10 +67,10 @@ export interface EvolutionIntegration {
 }
 
 interface SkillLoaderEvents {
-  'skill:loaded': (skill: LoadedSkill, trigger: InvocationTrigger) => void;
-  'skill:detected': (skillIds: string[], context: string) => void;
-  'bundle:loaded': (bundleName: string, skills: LoadedSkill[]) => void;
-  'evolution:enhanced': (original: string[], enhanced: string[]) => void;
+  "skill:loaded": (skill: LoadedSkill, trigger: InvocationTrigger) => void;
+  "skill:detected": (skillIds: string[], context: string) => void;
+  "bundle:loaded": (bundleName: string, skills: LoadedSkill[]) => void;
+  "evolution:enhanced": (original: string[], enhanced: string[]) => void;
 }
 
 // =============================================================================
@@ -88,7 +94,7 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
   /**
    * Enable evolution-based learning integration
    */
-  enableEvolution(integration: Omit<EvolutionIntegration, 'enabled'>): void {
+  enableEvolution(integration: Omit<EvolutionIntegration, "enabled">): void {
     this.evolution = { ...integration, enabled: true };
     console.log("[SkillLoader] Evolution integration enabled");
   }
@@ -117,8 +123,12 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
    */
   endTask(success?: boolean): void {
     if (this.evolution.enabled && this.evolution.usageTracker) {
-      const outcome = success === undefined ? undefined :
-        (success ? 'success' as const : 'failure' as const);
+      const outcome =
+        success === undefined
+          ? undefined
+          : success
+            ? ("success" as const)
+            : ("failure" as const);
       this.evolution.usageTracker.endSession(outcome);
     }
     this.currentTaskContext = "";
@@ -130,7 +140,7 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
   async loadRegistry(): Promise<SkillRegistry> {
     const content = readFileSync(this.registryPath, "utf-8");
     this.registry = parseYaml(content) as SkillRegistry;
-    
+
     // Auto-load always_load skills
     if (this.registry.loading?.always_load) {
       for (const skillId of this.registry.loading.always_load) {
@@ -154,7 +164,10 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
   /**
    * Load skills for a detected task
    */
-  async loadForTask(skillIds: string[], trigger: InvocationTrigger = 'auto'): Promise<LoadedSkill[]> {
+  async loadForTask(
+    skillIds: string[],
+    trigger: InvocationTrigger = "auto"
+  ): Promise<LoadedSkill[]> {
     const loaded: LoadedSkill[] = [];
     let totalTokens = 0;
     const budget = this.registry?.loading?.token_budget || 50000;
@@ -165,7 +178,9 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
 
       // Check token budget
       if (totalTokens + skill.tokens > budget) {
-        console.warn(`[SkillLoader] Token budget exceeded, skipping ${skillId}`);
+        console.warn(
+          `[SkillLoader] Token budget exceeded, skipping ${skillId}`
+        );
         break;
       }
 
@@ -182,11 +197,18 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
   /**
    * Load a single skill by ID
    */
-  async loadSkill(skillId: string, trigger: InvocationTrigger = 'auto'): Promise<LoadedSkill | null> {
+  async loadSkill(
+    skillId: string,
+    trigger: InvocationTrigger = "auto"
+  ): Promise<LoadedSkill | null> {
     // Already loaded?
     if (this.loadedSkills.has(skillId)) {
       // Still track usage even if already loaded
-      this.trackSkillUsage(skillId, this.loadedSkills.get(skillId)!.name, trigger);
+      this.trackSkillUsage(
+        skillId,
+        this.loadedSkills.get(skillId)!.name,
+        trigger
+      );
       return this.loadedSkills.get(skillId)!;
     }
 
@@ -224,7 +246,7 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
 
     // Track skill usage for evolution learning
     this.trackSkillUsage(skillId, skill.name, trigger);
-    this.emit('skill:loaded', loaded, trigger);
+    this.emit("skill:loaded", loaded, trigger);
 
     return loaded;
   }
@@ -232,7 +254,11 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
   /**
    * Track skill usage for evolution learning
    */
-  private trackSkillUsage(skillId: string, skillName: string, trigger: InvocationTrigger): void {
+  private trackSkillUsage(
+    skillId: string,
+    skillName: string,
+    trigger: InvocationTrigger
+  ): void {
     if (!this.evolution.enabled || !this.evolution.usageTracker) return;
 
     this.evolution.usageTracker.trackSkill(skillId, skillName, {
@@ -253,9 +279,9 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
     }
 
     const skillIds = this.registry.bundles[bundleName];
-    const loaded = await this.loadForTask(skillIds, 'bundle');
+    const loaded = await this.loadForTask(skillIds, "bundle");
 
-    this.emit('bundle:loaded', bundleName, loaded);
+    this.emit("bundle:loaded", bundleName, loaded);
     return loaded;
   }
 
@@ -334,7 +360,7 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
     const maxSkills = this.registry.loading?.max_concurrent_skills || 5;
     const result = sorted.slice(0, maxSkills);
 
-    this.emit('skill:detected', result, input);
+    this.emit("skill:detected", result, input);
     return result;
   }
 
@@ -349,11 +375,11 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
     if (!this.evolution.adaptiveMatcher) return skillIds;
 
     // Build entities for scoring
-    const entities = skillIds.map(id => {
+    const entities = skillIds.map((id) => {
       const skill = this.findSkill(id);
       return {
         id,
-        type: 'skill' as const,
+        type: "skill" as const,
         name: skill?.name ?? id,
         baseScore: 1 / (skill?.priority ?? 1), // Higher priority = higher score
       };
@@ -363,22 +389,22 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
     const scores = this.evolution.adaptiveMatcher.enhanceScores(entities, {
       taskContext,
       filePaths,
-      currentEntities: entities.map(e => ({ type: e.type, id: e.id })),
+      currentEntities: entities.map((e) => ({ type: e.type, id: e.id })),
     });
 
     // Get suggestions for additional skills we might have missed
     const suggestions = this.evolution.adaptiveMatcher.getSuggestions(
-      entities.map(e => ({ type: e.type, id: e.id })),
+      entities.map((e) => ({ type: e.type, id: e.id })),
       { taskContext, filePaths }
     );
 
     // Add high-confidence suggestions
     for (const suggestion of suggestions) {
-      if (suggestion.confidence > 0.6 && suggestion.entityType === 'skill') {
-        if (!scores.find(s => s.entityId === suggestion.entityId)) {
+      if (suggestion.confidence > 0.6 && suggestion.entityType === "skill") {
+        if (!scores.find((s) => s.entityId === suggestion.entityId)) {
           scores.push({
             entityId: suggestion.entityId,
-            entityType: 'skill',
+            entityType: "skill",
             baseScore: 0.5,
             learningBoost: suggestion.confidence,
             appliedLearnings: [],
@@ -391,11 +417,11 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
     // Sort by final score and extract IDs
     const enhanced = scores
       .sort((a, b) => b.finalScore - a.finalScore)
-      .map(s => s.entityId);
+      .map((s) => s.entityId);
 
     // Emit evolution event if results changed
     if (JSON.stringify(skillIds) !== JSON.stringify(enhanced)) {
-      this.emit('evolution:enhanced', skillIds, enhanced);
+      this.emit("evolution:enhanced", skillIds, enhanced);
     }
 
     return enhanced;
@@ -404,37 +430,53 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
   /**
    * Get warnings from evolution learnings
    */
-  getEvolutionWarnings(): Array<{ skillId: string; warning: string; confidence: number }> {
+  getEvolutionWarnings(): Array<{
+    skillId: string;
+    warning: string;
+    confidence: number;
+  }> {
     if (!this.evolution.enabled || !this.evolution.adaptiveMatcher) return [];
 
-    const currentEntities = Array.from(this.loadedSkills.keys()).map(id => ({
-      type: 'skill' as const,
+    const currentEntities = Array.from(this.loadedSkills.keys()).map((id) => ({
+      type: "skill" as const,
       id,
     }));
 
-    return this.evolution.adaptiveMatcher.getWarnings(currentEntities, {
-      taskContext: this.currentTaskContext,
-    });
+    return this.evolution.adaptiveMatcher
+      .getWarnings(currentEntities, {
+        taskContext: this.currentTaskContext,
+      })
+      .map((w) => ({
+        skillId: w.entityId,
+        warning: w.warning,
+        confidence: w.confidence,
+      }));
   }
 
   /**
    * Get skill suggestions from evolution learnings
    */
-  getEvolutionSuggestions(): Array<{ skillId: string; reason: string; confidence: number }> {
+  getEvolutionSuggestions(): Array<{
+    skillId: string;
+    reason: string;
+    confidence: number;
+  }> {
     if (!this.evolution.enabled || !this.evolution.adaptiveMatcher) return [];
 
-    const currentEntities = Array.from(this.loadedSkills.keys()).map(id => ({
-      type: 'skill' as const,
+    const currentEntities = Array.from(this.loadedSkills.keys()).map((id) => ({
+      type: "skill" as const,
       id,
     }));
 
-    return this.evolution.adaptiveMatcher.getSuggestions(currentEntities, {
-      taskContext: this.currentTaskContext,
-    }).map(s => ({
-      skillId: s.entityId,
-      reason: s.reason,
-      confidence: s.confidence,
-    }));
+    return this.evolution.adaptiveMatcher
+      .getSuggestions(currentEntities, {
+        taskContext: this.currentTaskContext,
+      })
+      .map((s) => ({
+        skillId: s.entityId,
+        reason: s.reason,
+        confidence: s.confidence,
+      }));
   }
 
   /**
@@ -442,7 +484,7 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
    */
   getRequiredMCPs(): string[] {
     const mcps: Set<string> = new Set();
-    
+
     for (const [_, skill] of this.loadedSkills) {
       const def = this.findSkill(skill.id);
       if (def?.mcp_connections) {
@@ -472,7 +514,7 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
    */
   cleanup(): void {
     const alwaysLoad = this.registry?.loading?.always_load || [];
-    
+
     for (const [skillId] of this.loadedSkills) {
       if (!alwaysLoad.includes(skillId)) {
         this.loadedSkills.delete(skillId);
@@ -505,9 +547,9 @@ export class SkillLoader extends EventEmitter<SkillLoaderEvents> {
     }
 
     const sections: string[] = [];
-    
+
     sections.push("## Active Skills\n");
-    
+
     for (const skill of this.loadedSkills.values()) {
       sections.push(`### ${skill.name}`);
       sections.push(`**Capabilities:** ${skill.capabilities.join(", ")}`);
