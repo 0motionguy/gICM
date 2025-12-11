@@ -59,14 +59,12 @@ export {
 // Hierarchical Memory (v6.3.0)
 export {
   HierarchicalMemory,
-  createHierarchicalMemory,
-  DEFAULT_HIERARCHICAL_CONFIG,
+  getHierarchicalMemory,
+  resetHierarchicalMemory,
   type MemoryEntry as HierarchicalMemoryEntry,
   type MemoryLayer,
-  type HierarchicalConfig,
+  type HierarchicalMemoryConfig,
   type ConsolidationResult as HierarchicalConsolidationResult,
-  type HierarchicalMemoryStats,
-  type HierarchicalMemoryEvents,
 } from "./hierarchical.js";
 
 // Memory Consolidation Loop (v6.3.0)

@@ -112,7 +112,6 @@ export {
   SkillSearch,
   getSkillSearch,
   resetSkillSearch,
-  LocalEmbeddings,
   type SkillSearchResult,
   type SkillSearchConfig,
 } from "./skill-search.js";
@@ -120,11 +119,11 @@ export {
 // Multi-Stage Retrieval (v6.3.0: 4-stage pipeline for +17% precision)
 export {
   MultiStageRetrieval,
-  createMultiStageRetrieval,
-  DEFAULT_RETRIEVAL_CONFIG,
+  getMultiStageRetrieval,
+  resetMultiStageRetrieval,
+  searchSkillsMultiStage,
   type RetrievalConfig,
   type RetrievalStats,
-  type SkillCandidate,
 } from "./multi-stage-retrieval.js";
 
 // Query Augmentation (v6.3.0: Intent classification, term expansion)

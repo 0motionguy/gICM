@@ -10,6 +10,7 @@ import {
   getUnifiedMemory,
   initializeUnifiedMemory,
   type UnifiedMemory,
+  type WriteType,
 } from "../memory/unified/index.js";
 
 // Memory singleton (lazily initialized)
@@ -77,7 +78,7 @@ Use opus67_get_context for full task context enhancement.
  */
 export function handleGetSkill(
   ctx: HandlerContext,
-  args: ToolArgs,
+  args: ToolArgs
 ): HandlerResult {
   const skillId = args.skill_id!;
   const skill = ctx.skills.find((s) => s.id === skillId);
@@ -120,19 +121,20 @@ ${fullPrompt ? `## Full Skill Prompt\n\n${fullPrompt}` : ""}
  */
 export function handleListSkills(
   ctx: HandlerContext,
-  args: ToolArgs,
+  args: ToolArgs
 ): HandlerResult {
   const category = args.category;
   const filtered = category
     ? ctx.skills.filter(
-        (s) => s.category.toLowerCase() === category.toLowerCase(),
+        (s) => (s.category ?? "").toLowerCase() === category.toLowerCase()
       )
     : ctx.skills;
 
   const grouped: Record<string, Skill[]> = {};
   for (const skill of filtered) {
-    if (!grouped[skill.category]) grouped[skill.category] = [];
-    grouped[skill.category].push(skill);
+    const cat = skill.category ?? "uncategorized";
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(skill);
   }
 
   let output = `# OPUS 67 Skills (${filtered.length} total)\n\n`;
@@ -140,8 +142,8 @@ export function handleListSkills(
   for (const [cat, catSkills] of Object.entries(grouped)) {
     output += `## ${cat}\n`;
     for (const skill of catSkills) {
-      const priority = skill.priority <= 2 ? "⭐" : "  ";
-      output += `${priority} **${skill.id}** - ${skill.name} (${skill.tokens} tokens)\n`;
+      const priority = (skill.priority ?? 5) <= 2 ? "⭐" : "  ";
+      output += `${priority} **${skill.id}** - ${skill.name} (${skill.tokens ?? 0} tokens)\n`;
     }
     output += "\n";
   }
@@ -154,7 +156,7 @@ export function handleListSkills(
  */
 export function handleDetectSkills(
   ctx: HandlerContext,
-  args: ToolArgs,
+  args: ToolArgs
 ): HandlerResult {
   const { query = "", extensions = [] } = args;
   const detected: Skill[] = [];
@@ -180,7 +182,7 @@ export function handleDetectSkills(
     if (score > 0) detected.push({ ...skill, priority: score });
   }
 
-  detected.sort((a, b) => b.priority - a.priority);
+  detected.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
   const top = detected.slice(0, 5);
 
   let output = `# Detected Skills for: "${query}"\n\n`;
@@ -202,7 +204,7 @@ export function handleDetectSkills(
  */
 export function handleGetMode(
   ctx: HandlerContext,
-  args: ToolArgs,
+  args: ToolArgs
 ): HandlerResult {
   const modeId = args.mode_id!;
   const mode = ctx.modes.find((m) => m.id === modeId);
@@ -245,12 +247,12 @@ export function handleListModes(ctx: HandlerContext): HandlerResult {
  */
 export function handleListMcps(
   ctx: HandlerContext,
-  args: ToolArgs,
+  args: ToolArgs
 ): HandlerResult {
   const category = args.category;
   const filtered = category
     ? ctx.mcpConnections.filter(
-        (m) => m.category?.toLowerCase() === category.toLowerCase(),
+        (m) => m.category?.toLowerCase() === category.toLowerCase()
       )
     : ctx.mcpConnections;
 
@@ -279,7 +281,7 @@ export function handleListMcps(
  */
 export function handleGetContext(
   ctx: HandlerContext,
-  args: ToolArgs,
+  args: ToolArgs
 ): HandlerResult {
   const { task = "", files = [] } = args;
   const extensions = [...new Set(files.map((f) => "." + f.split(".").pop()))];
@@ -301,7 +303,7 @@ export function handleGetContext(
     }
     if (score > 0) detectedSkills.push({ ...skill, priority: score });
   }
-  detectedSkills.sort((a, b) => b.priority - a.priority);
+  detectedSkills.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
   const topSkills = detectedSkills.slice(0, 3);
 
   // Detect mode
@@ -361,7 +363,7 @@ export function handleStatus(ctx: HandlerContext): HandlerResult {
 - Frontend: ${ctx.skills.filter((s) => s.category === "frontend").length} skills
 - Backend: ${ctx.skills.filter((s) => s.category === "backend").length} skills
 - DevOps: ${ctx.skills.filter((s) => s.category === "devops").length} skills
-- Other: ${ctx.skills.filter((s) => !["blockchain", "frontend", "backend", "devops"].includes(s.category)).length} skills
+- Other: ${ctx.skills.filter((s) => !["blockchain", "frontend", "backend", "devops"].includes(s.category ?? "")).length} skills
 `;
   return { content: [{ type: "text", text: output }] };
 }
@@ -374,7 +376,7 @@ export function handleStatus(ctx: HandlerContext): HandlerResult {
  * Query unified memory
  */
 export async function handleQueryMemory(
-  args: ToolArgs,
+  args: ToolArgs
 ): Promise<HandlerResult> {
   try {
     const memory = await getMemory();
@@ -411,7 +413,7 @@ export async function handleQueryMemory(
  * Multi-hop reasoning query
  */
 export async function handleMultiHopQuery(
-  args: ToolArgs,
+  args: ToolArgs
 ): Promise<HandlerResult> {
   try {
     const memory = await getMemory();
@@ -446,17 +448,19 @@ export async function handleMultiHopQuery(
  * Write to unified memory
  */
 export async function handleWriteMemory(
-  args: ToolArgs,
+  args: ToolArgs
 ): Promise<HandlerResult> {
   try {
     const memory = await getMemory();
+    const writeType = args.type as WriteType;
     const result = await memory.write({
       content: args.content!,
-      type: args.type!,
+      type: writeType,
       key: args.key,
     });
 
-    const output = `# Memory Written\n\n**Type:** ${args.type}\n**Key:** ${args.key || "(auto-generated)"}\n**Status:** ${result.success ? "Success" : "Failed"}\n**IDs:** ${result.ids.join(", ") || "None"}`;
+    const idList = Object.values(result.ids).join(", ");
+    const output = `# Memory Written\n\n**Type:** ${args.type}\n**Key:** ${args.key || "(auto-generated)"}\n**Status:** ${result.success ? "Success" : "Failed"}\n**IDs:** ${idList || "None"}`;
 
     return { content: [{ type: "text", text: output }] };
   } catch (error) {
@@ -512,7 +516,7 @@ export async function handleMemoryStats(): Promise<HandlerResult> {
 export async function handleToolCall(
   name: string,
   args: ToolArgs,
-  ctx: HandlerContext,
+  ctx: HandlerContext
 ): Promise<HandlerResult> {
   switch (name) {
     case "opus67_boot":

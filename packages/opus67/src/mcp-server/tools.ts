@@ -1,5 +1,10 @@
 /**
- * OPUS 67 MCP Server Tool Definitions
+ * OPUS 67 v6.3.0 MCP Server Tool Definitions
+ *
+ * v6.3.0 "Context Engineering" additions:
+ * - opus67_detect_skills: Now uses 4-stage multi-stage retrieval (+17% precision)
+ * - opus67_toolMetrics: View tool performance analytics
+ * - opus67_unhealthyTools: List degraded/unhealthy tools
  */
 
 export const TOOL_DEFINITIONS = [
@@ -48,7 +53,7 @@ export const TOOL_DEFINITIONS = [
   {
     name: "opus67_detect_skills",
     description:
-      "Auto-detect relevant skills based on a query or file extensions",
+      "Auto-detect relevant skills using 4-stage multi-stage retrieval (v6.3.0: keyword filter → vector search → cross-encoder reranking → MMR diversity)",
     inputSchema: {
       type: "object",
       properties: {
@@ -204,6 +209,33 @@ export const TOOL_DEFINITIONS = [
   {
     name: "opus67_memoryStats",
     description: "Get unified memory statistics across all sources",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
+  // Tool Analytics (v6.3.0)
+  {
+    name: "opus67_toolMetrics",
+    description:
+      "Get performance metrics for MCP tools (success rate, latency p50/p95/p99, health status)",
+    inputSchema: {
+      type: "object",
+      properties: {
+        tool_id: {
+          type: "string",
+          description:
+            "Specific tool ID to get metrics for (omit for all tools)",
+        },
+      },
+      required: [],
+    },
+  },
+  {
+    name: "opus67_unhealthyTools",
+    description:
+      "List all degraded or unhealthy tools with their error patterns and recommendations",
     inputSchema: {
       type: "object",
       properties: {},

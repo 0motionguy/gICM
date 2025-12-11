@@ -1,5 +1,5 @@
 /**
- * OPUS 67 MCP Server Types
+ * OPUS 67 v6.3.0 MCP Server Types
  */
 
 export interface Skill {
@@ -51,4 +51,13 @@ export interface ToolArgs {
   extensions?: string[];
   task?: string;
   files?: string[];
+  // Memory tool fields
+  type?: string;
+  limit?: number;
+  maxHops?: number;
+  content?: string;
+  key?: string;
+  // Analytics tool fields (v6.3.0)
+  tool_id?: string;
+  toolId?: string;
 }

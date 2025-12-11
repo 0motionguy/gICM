@@ -1,6 +1,14 @@
 /**
- * OPUS 67 Unified Memory
+ * OPUS 67 v6.3.0 Unified Memory
  * Barrel exports for the unified memory system
+ *
+ * 6 Memory Sources:
+ * 1. GraphitiMemory - Neo4j/local temporal graph
+ * 2. LearningStore - Evolution patterns
+ * 3. MarkdownLoader - .claude/memory files
+ * 4. HMLRAdapter - Multi-hop reasoning
+ * 5. SessionStore - Session facts from logs
+ * 6. HierarchicalAdapter - 4-layer tiered memory (NEW)
  */
 
 // Types
@@ -38,6 +46,13 @@ export {
   type SessionState,
   type SessionStoreConfig,
 } from "./adapters/session-store.js";
+export {
+  HierarchicalAdapter,
+  createHierarchicalAdapter,
+  getHierarchicalAdapter,
+  resetHierarchicalAdapter,
+  type HierarchicalAdapterConfig,
+} from "./adapters/hierarchical-adapter.js";
 
 // Event Consumer
 export {
