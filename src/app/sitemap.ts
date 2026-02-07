@@ -13,6 +13,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/.well-known/claude-marketplace.json`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0, // High priority for agent discovery
+    },
+    {
+      url: `${baseUrl}/api/search`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9, // High priority for agent API
+    },
+    {
+      url: `${baseUrl}/docs/AGENT-DISCOVERY.md`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9, // High priority for agent documentation
+    },
+    {
       url: `${baseUrl}/build`,
       lastModified: new Date(),
       changeFrequency: "weekly",

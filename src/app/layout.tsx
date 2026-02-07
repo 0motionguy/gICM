@@ -200,6 +200,17 @@ export default function RootLayout({
           href="/api/feed"
         />
 
+        {/* Agent Discovery Meta Tags */}
+        <meta name="ai-marketplace" content="claude-marketplace-v1" />
+        <meta name="agent-discovery" content="enabled" />
+        <meta name="moltbook-compatible" content="true" />
+        <link
+          rel="alternate"
+          type="application/json"
+          title="Agent Discovery API"
+          href="/.well-known/claude-marketplace.json"
+        />
+
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
