@@ -20,7 +20,7 @@ interface StackPreviewProps {
 
 export function StackPreview({ allItems }: StackPreviewProps) {
   const { getActiveStack, clearBundle, itemCount } = useBundleStore();
-  const [stackName, setStackName] = useState("My gICM Stack");
+  const [stackName, setStackName] = useState("My ClawdBot Stack");
   const [tagsExpanded, setTagsExpanded] = useState(false);
   const [hoverHeader, setHoverHeader] = useState(false);
   const [hoverSelectedItems, setHoverSelectedItems] = useState(false);
@@ -163,7 +163,7 @@ export function StackPreview({ allItems }: StackPreviewProps) {
             type="text"
             value={stackName}
             onChange={(e) => setStackName(e.target.value)}
-            placeholder="My gICM Stack"
+            placeholder="My ClawdBot Stack"
             className="w-full rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm text-white outline-none transition-colors placeholder:text-zinc-600 focus:border-[#00F0FF]/50"
           />
         </div>
@@ -234,7 +234,7 @@ export function StackPreview({ allItems }: StackPreviewProps) {
         stackConfig={{
           id: `stack_${Date.now()}`,
           name: stackName,
-          description: "Custom gICM stack",
+          description: "Custom ClawdBot stack",
           items: selectedItems.map((i) => i.id),
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),

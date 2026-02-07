@@ -5,40 +5,51 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-black/90 backdrop-blur mt-auto">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="mt-auto border-t border-white/10 bg-black/90 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-6 py-8 md:px-10">
+        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-3">
-            <div className="text-2xl font-black text-white">
-              gICM
-            </div>
+            <div className="text-2xl font-black text-white">ClawdBot</div>
             <p className="text-sm text-white/60">
-              Prompt to product for Web3. Build your AI dev stack. Ship faster.
+              Professional AI Agent Marketplace. Secure and audited for Claude
+              Code.
             </p>
           </div>
 
           {/* Product */}
           <div>
-            <h3 className="font-bold text-sm text-white mb-3">Product</h3>
+            <h3 className="mb-3 text-sm font-bold text-white">Product</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Marketplace
                 </Link>
               </li>
               <li>
-                <Link href="/workflow" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/workflow"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   AI Stack Builder
                 </Link>
               </li>
               <li>
-                <Link href="/savings" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/savings"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Token Savings
                 </Link>
               </li>
               <li>
-                <Link href="/analytics" className="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1">
+                <Link
+                  href="/analytics"
+                  className="inline-flex items-center gap-1 text-white/60 transition-colors hover:text-white"
+                >
                   <Lock size={12} />
                   Analytics
                 </Link>
@@ -48,25 +59,39 @@ export function Footer() {
 
           {/* Learn */}
           <div>
-            <h3 className="font-bold text-sm text-white mb-3">Learn</h3>
+            <h3 className="mb-3 text-sm font-bold text-white">Learn</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/guides" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/guides"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Setup Guides
                 </Link>
               </li>
               <li>
-                <Link href="/guides/vibe-coding" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/guides/vibe-coding"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Vibe Coding
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/projects"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Project Showcase
                 </Link>
               </li>
               <li>
-                <a href="https://github.com/Kermit457/gICM" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+                <a
+                  href="https://github.com/Kermit457/ClawdBot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   GitHub
                 </a>
               </li>
@@ -75,15 +100,21 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-bold text-sm text-white mb-3">Legal</h3>
+            <h3 className="mb-3 text-sm font-bold text-white">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/privacy" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/privacy"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-white/60 hover:text-white transition-colors">
+                <Link
+                  href="/terms"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
                   Terms of Service
                 </Link>
               </li>
@@ -92,27 +123,27 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-sm text-white/60">
-            © {currentYear} gICM. All rights reserved.
+            © {currentYear} ClawdBot. All rights reserved.
           </p>
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/Kermit457/gICM"
+              href="https://github.com/Kermit457/ClawdBot"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-white transition-colors"
+              className="text-white/60 transition-colors hover:text-white"
               aria-label="GitHub"
             >
               <Github size={20} />
             </a>
             <a
-              href="https://twitter.com/gicm"
+              href="https://twitter.com/ClawdBot"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-white transition-colors"
+              className="text-white/60 transition-colors hover:text-white"
               aria-label="Twitter"
             >
               <Twitter size={20} />

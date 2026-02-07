@@ -1,16 +1,16 @@
 {
-  "name": "gicm",
+  "name": "clawdbot",
   "version": "0.1.0",
-  "description": "The world's first universal AI workflow marketplace",
+  "description": "Professional AI Agent Marketplace - OpenClaw compatible. Security-verified agents, skills, and MCP servers.",
   "author": "Mirko Basil Doelger (@0motionguy)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/0motionguy/gICM.git"
+    "url": "https://github.com/0motionguy/ClawdBot.git"
   },
-  "homepage": "https://gicm-marketplace.vercel.app",
+  "homepage": "https://clawdbot.com",
   "bugs": {
-    "url": "https://github.com/0motionguy/gICM/issues"
+    "url": "https://github.com/0motionguy/ClawdBot/issues"
   },
   "private": true,
   "scripts": {

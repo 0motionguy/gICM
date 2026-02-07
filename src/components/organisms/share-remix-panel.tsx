@@ -54,7 +54,7 @@ export function ShareRemixPanel({
   const currentConfig: StackConfig = stackConfig || {
     id: `stack_${Date.now()}`,
     name: activeStack?.name || "My Stack",
-    description: "A custom gICM stack",
+    description: "A custom ClawdBot stack",
     items: bundleItems.map((bundleItem) => bundleItem.item.id),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -270,7 +270,7 @@ export function ShareRemixPanel({
                   <p className="text-xs text-zinc-500">
                     Need a token?{" "}
                     <a
-                      href="https://github.com/settings/tokens/new?description=gICM%20Stack%20Export&scopes=gist"
+                      href="https://github.com/settings/tokens/new?description=ClawdBot%20Stack%20Export&scopes=gist"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-lime-400 hover:underline"

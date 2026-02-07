@@ -46,14 +46,14 @@ export function ShareStackModal({ itemIds, isOpen, onClose }: ShareStackModalPro
 
   const handleDownloadQR = () => {
     const link = document.createElement('a');
-    link.download = 'gicm-stack-qr.png';
+    link.download = 'clawdbot-stack-qr.png';
     link.href = qrCodeUrl;
     link.click();
     toast.success("QR code downloaded!");
   };
 
   const handleShareTwitter = () => {
-    const text = `Check out my custom gICM stack with ${itemIds.length} items!`;
+    const text = `Check out my custom ClawdBot stack with ${itemIds.length} items!`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, '_blank');
   };

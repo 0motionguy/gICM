@@ -280,7 +280,7 @@ const UIComponentCard = memo(function UIComponentCard({
   const libraryColors: Record<string, string> = {
     "Aceternity UI": "#00F0FF",
     "Magic UI": "#7C3AED",
-    gICM: "#00F0FF",
+    ClawdBot: "#00F0FF",
   };
   const libraryColor = libraryColors[item.credit.library] || "#71717A";
 
@@ -526,13 +526,13 @@ function CatalogPageContent() {
 
   // Generate CollectionPage schema for homepage
   const collectionSchema = generateCollectionSchema(
-    "gICM AI Marketplace",
-    "Browse 593+ AI agents, skills, commands, and MCP integrations for Claude, Gemini, and OpenAI",
+    "ClawdBot AI Marketplace",
+    "Secure alternative to OpenClaw (ClawdBot). Browse 617+ audited AI agents, skills, and MCP integrations optimized for Claude Code.",
     [
-      { name: "AI Agents", url: "https://gicm.app/?kind=agent" },
-      { name: "Skills", url: "https://gicm.app/?kind=skill" },
-      { name: "Commands", url: "https://gicm.app/?kind=command" },
-      { name: "MCP Integrations", url: "https://gicm.app/?kind=mcp" },
+      { name: "AI Agents", url: "https://clawdbot.com/?kind=agent" },
+      { name: "Skills", url: "https://clawdbot.com/?kind=skill" },
+      { name: "Commands", url: "https://clawdbot.com/?kind=command" },
+      { name: "MCP Integrations", url: "https://clawdbot.com/?kind=mcp" },
     ]
   );
 

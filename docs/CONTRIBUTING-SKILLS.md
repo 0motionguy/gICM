@@ -1,10 +1,10 @@
-# Contributing Skills to gICM Marketplace
+# Contributing Skills to ClawdBot Marketplace
 
-> Complete guide for creating, testing, and submitting skills to the gICM Marketplace.
+> Complete guide for creating, testing, and submitting skills to the ClawdBot Marketplace.
 
 ## Overview
 
-Skills are the foundational building blocks of the gICM ecosystem. They provide domain expertise that Claude, Gemini, and OpenAI models can use to deliver better responses. This guide covers everything you need to create production-quality skills.
+Skills are the foundational building blocks of the ClawdBot ecosystem. They provide domain expertise that Claude, Gemini, and OpenAI models can use to deliver better responses. This guide covers everything you need to create production-quality skills.
 
 ```
 Skill Creation Pipeline
@@ -29,14 +29,14 @@ Before creating a skill, ensure you have:
 
 1. **Node.js 18+** installed
 2. **pnpm** package manager
-3. **gICM repository** cloned
+3. **ClawdBot repository** cloned
 4. **TypeScript** familiarity
 5. **Domain expertise** in your skill area
 
 ```bash
 # Clone the repository
-git clone https://github.com/icm-motion/gICM.git
-cd gICM
+git clone https://github.com/icm-motion/ClawdBot.git
+cd ClawdBot
 
 # Install dependencies
 pnpm install
@@ -398,7 +398,7 @@ npx @gicm/cli analyze skill/my-awesome-skill
 # Fork the repository on GitHub
 
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/gICM.git
+git clone https://github.com/YOUR_USERNAME/ClawdBot.git
 
 # Create a feature branch
 git checkout -b feat/add-my-awesome-skill
@@ -600,7 +600,7 @@ git commit -m "fix(my-skill): update patterns for better matching"
 ## Need Help?
 
 - **Discord:** [discord.gg/opus67](https://discord.gg/opus67)
-- **GitHub Issues:** [github.com/icm-motion/gICM/issues](https://github.com/icm-motion/gICM/issues)
+- **GitHub Issues:** [github.com/icm-motion/ClawdBot/issues](https://github.com/icm-motion/ClawdBot/issues)
 - **Documentation:** [docs.opus67.com](https://docs.opus67.com)
 
 ---

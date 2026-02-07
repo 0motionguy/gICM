@@ -34,7 +34,7 @@ interface WorkflowTemplate {
   borderColor: string;
   useCase: string;
   timeTraditional: string;
-  timeWithGICM: string;
+  timeWithClawdBot: string;
   tokenSavings: string;
   costSavings: string;
   phases: {
@@ -60,7 +60,7 @@ const TEMPLATES: WorkflowTemplate[] = [
     borderColor: "border-lime-200 dark:border-lime-800",
     useCase: "AMM, Lending Protocol, Yield Aggregator, Liquidity Pools",
     timeTraditional: "8-12 weeks",
-    timeWithGICM: "2-4 weeks",
+    timeWithClawdBot: "2-4 weeks",
     tokenSavings: "91.2%",
     costSavings: "$35k-55k",
     phases: [
@@ -99,7 +99,7 @@ const TEMPLATES: WorkflowTemplate[] = [
       "github",
       "postgres",
     ],
-    videoUrl: "https://gicm.io/templates/solana-defi",
+    videoUrl: "https://clawdbot.com/templates/solana-defi",
     difficulty: "advanced",
     tags: ["Solana", "DeFi", "Smart Contracts", "Anchor"],
   },
@@ -113,7 +113,7 @@ const TEMPLATES: WorkflowTemplate[] = [
     borderColor: "border-purple-200 dark:border-purple-800",
     useCase: "NFT Marketplace, Minting Platform, Creator Tools, Collection Launchpad",
     timeTraditional: "10-16 weeks",
-    timeWithGICM: "3-5 weeks",
+    timeWithClawdBot: "3-5 weeks",
     tokenSavings: "90.9%",
     costSavings: "$60k-85k",
     phases: [
@@ -151,7 +151,7 @@ const TEMPLATES: WorkflowTemplate[] = [
       "helius-rpc",
       "postgres",
     ],
-    videoUrl: "https://gicm.io/templates/nft-marketplace",
+    videoUrl: "https://clawdbot.com/templates/nft-marketplace",
     difficulty: "intermediate",
     tags: ["NFT", "Marketplace", "Metaplex", "Frontend"],
   },
@@ -165,7 +165,7 @@ const TEMPLATES: WorkflowTemplate[] = [
     borderColor: "border-blue-200 dark:border-blue-800",
     useCase: "Analytics Platform, API Service, Web3 Tools, Developer Platform",
     timeTraditional: "12-20 weeks",
-    timeWithGICM: "4-6 weeks",
+    timeWithClawdBot: "4-6 weeks",
     tokenSavings: "91.0%",
     costSavings: "$90k-140k",
     phases: [
@@ -204,7 +204,7 @@ const TEMPLATES: WorkflowTemplate[] = [
       "postgres",
       "aws",
     ],
-    videoUrl: "https://gicm.io/templates/web3-saas",
+    videoUrl: "https://clawdbot.com/templates/web3-saas",
     difficulty: "advanced",
     tags: ["SaaS", "API", "Authentication", "Payments"],
   },
@@ -256,7 +256,7 @@ export function WorkflowTemplatesShowcase() {
                     Time Saved
                   </span>
                   <span className="font-bold text-lime-600">
-                    {template.timeTraditional} → {template.timeWithGICM}
+                    {template.timeTraditional} → {template.timeWithClawdBot}
                   </span>
                 </div>
 
@@ -331,7 +331,7 @@ export function WorkflowTemplatesShowcase() {
                 <Clock className="w-8 h-8 text-lime-600 mx-auto mb-2" />
                 <p className="text-xs text-zinc-500 mb-1">Time to Deploy</p>
                 <p className="font-bold text-black dark:text-white">
-                  {selectedTemplate.timeWithGICM}
+                  {selectedTemplate.timeWithClawdBot}
                 </p>
               </div>
 
@@ -372,7 +372,7 @@ export function WorkflowTemplatesShowcase() {
               </Button>
               <Button variant="outline" asChild>
                 <a
-                  href="https://github.com/gicm-io/gicm/blob/main/WORKFLOW_TEMPLATES.md"
+                  href="https://github.com/0motionguy/ClawdBot/blob/main/WORKFLOW_TEMPLATES.md"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -492,12 +492,12 @@ export function WorkflowTemplatesShowcase() {
 
               <Card className="p-6 bg-gradient-to-br from-lime-50 to-emerald-50 dark:from-lime-900/20 dark:to-emerald-900/20 border-lime-200 dark:border-lime-800">
                 <h3 className="font-bold text-black dark:text-white mb-4">
-                  With gICM
+                  With ClawdBot
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-zinc-700 dark:text-zinc-300">Time</span>
-                    <span className="font-bold text-lime-600">{selectedTemplate.timeWithGICM}</span>
+                    <span className="font-bold text-lime-600">{selectedTemplate.timeWithClawdBot}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-zinc-700 dark:text-zinc-300">Team Size</span>

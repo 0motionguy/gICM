@@ -77,7 +77,7 @@ export function ModelShowcase() {
           <span className="text-[#00F0FF]">Any Model</span>
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-zinc-400">
-          gICM creates a unified interface for the world's most powerful AI
+          ClawdBot creates a unified interface for the world's most powerful AI
           models. Switch runtimes instantly without rewriting your agents.
         </p>
       </div>

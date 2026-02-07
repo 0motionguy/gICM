@@ -232,7 +232,7 @@ export function MCPConfigShowcase() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "gicm-mcp-configs.json";
+    a.download = "clawdbot-mcp-configs.json";
     a.click();
     toast.success("Configs downloaded!");
   };

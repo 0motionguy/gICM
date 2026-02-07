@@ -59,8 +59,8 @@ export function AchievementsDisplay({
   const handleNativeShare = async (achievement: Achievement) => {
     const success = await nativeShare({
       title: `Achievement Unlocked: ${achievement.name}!`,
-      text: `🎉 I just earned the "${achievement.name}" achievement on gICM!\n\n${achievement.description}`,
-      url: "https://gicm.io/profile",
+      text: `🎉 I just earned the "${achievement.name}" achievement on ClawdBot!\n\n${achievement.description}`,
+      url: "https://clawdbot.com/profile",
     });
 
     if (success) {

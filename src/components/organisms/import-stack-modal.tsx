@@ -144,7 +144,7 @@ export function ImportStackModal({
                   setInput(e.target.value);
                   setError(null);
                 }}
-                placeholder="https://gicm.io/stack?import=... or encoded string"
+                placeholder="https://clawdbot.com/stack?import=... or encoded string"
                 className="font-mono text-sm"
               />
               <Button
@@ -308,7 +308,7 @@ export function ImportStackModal({
             <div className="bg-zinc-50 border border-zinc-200 rounded-lg p-4 text-sm text-zinc-600">
               <p className="font-medium text-black mb-2">How to import:</p>
               <ol className="list-decimal list-inside space-y-1.5 ml-2">
-                <li>Paste a share URL (e.g., https://gicm.io/stack?import=...)</li>
+                <li>Paste a share URL (e.g., https://clawdbot.com/stack?import=...)</li>
                 <li>Or paste the encoded stack data directly</li>
                 <li>Click "Decode" to preview the stack</li>
                 <li>Click "Import Stack" to add it to your presets</li>

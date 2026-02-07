@@ -13,7 +13,7 @@ interface ScrambleTextProps {
 
 /**
  * ScrambleText Component
- * Wrapper around scrambled-text with gICM defaults
+ * Wrapper around scrambled-text with ClawdBot defaults
  *
  * @param text - The text to scramble
  * @param duration - Animation duration in ms (default: 400)

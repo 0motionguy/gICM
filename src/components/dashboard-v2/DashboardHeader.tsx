@@ -29,7 +29,7 @@ export function DashboardHeader({ theme, onToggleTheme }: DashboardHeaderProps) 
               </div>
               <div>
                 <h1 className={`text-2xl font-black tracking-tight ${theme === "dark" ? "text-white" : "text-black"}`}>
-                  gICM<span className={theme === "dark" ? "text-lime-400" : "text-[#D1FD0A]"}>://LIVE</span>
+                  ClawdBot<span className={theme === "dark" ? "text-lime-400" : "text-[#D1FD0A]"}>://LIVE</span>
                 </h1>
                 <p className={`text-xs ${theme === "dark" ? "text-zinc-400" : "text-black/60"}`}>
                   Real-time Activity Dashboard

@@ -24,8 +24,8 @@ export function PreSignupCTA() {
 
   const handleShare = async () => {
     const shareData = {
-      title: 'gICM - AI Dev Stack for Web3',
-      text: 'Join the gICM waitlist and get early access to the AI-powered dev stack for Web3',
+      title: 'ClawdBot - AI Dev Stack for Web3',
+      text: 'Join the ClawdBot waitlist and get early access to the AI-powered dev stack for Web3',
       url: window.location.href
     };
 
@@ -64,7 +64,7 @@ export function PreSignupCTA() {
 
           {/* Subline */}
           <p className="text-white text-base md:text-lg font-medium mb-2 leading-relaxed">
-            Describe it. <span className="text-lime-300">gICM builds</span> the stack. You ship.
+            Describe it. <span className="text-lime-300">ClawdBot builds</span> the stack. You ship.
           </p>
 
           {/* CTA Section */}

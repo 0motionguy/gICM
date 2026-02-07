@@ -512,7 +512,7 @@ function getSourceLibrary(item: RegistryItem): string {
   if (docsUrl.includes("uiverse")) return "UIverse";
   if (docsUrl.includes("reactbits")) return "React Bits";
   if (docsUrl.includes("motion-primitives")) return "Motion Primitives";
-  if (install.includes("@gicm/cli")) return "gICM";
+  if (install.includes("@clawdbot/cli")) return "ClawdBot";
   return "Component";
 }
 

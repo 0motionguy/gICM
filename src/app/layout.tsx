@@ -35,48 +35,49 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "gICM | The Universal AI Workflow Marketplace",
+  title: "ClawdBot | Professional AI Agent Marketplace",
   description:
-    "The cross-chain marketplace for AI agents, skills, and workflows. Compatible with Claude, Gemini, and OpenAI.",
+    "The premier marketplace for professional AI agents, skills, and tools. Secure, audited, and optimized for Claude Code.",
   keywords: [
     "AI agents",
     "AI workflows",
     "Claude",
+    "Claude Code",
     "Gemini",
     "OpenAI",
     "MCP",
     "AI marketplace",
-    "OPUS 67",
+    "Enterprise AI",
     "AI automation",
   ],
-  authors: [{ name: "gICM", url: "https://gicm.app" }],
-  creator: "gICM",
-  publisher: "gICM",
+  authors: [{ name: "ClawdBot", url: "https://clawdbot.com" }],
+  creator: "ClawdBot",
+  publisher: "ClawdBot",
   openGraph: {
-    title: "gICM - The Universal AI Workflow Marketplace",
+    title: "ClawdBot - Professional AI Agent Marketplace",
     description:
-      "Build your custom AI dev stack with 91 agents, 96 skills, 93 commands, and 82 MCP integrations. Compatible with Claude, Gemini, and OpenAI.",
+      "Enterprise-ready AI agents and skills for your development workflow. 600+ audited items optimized for Claude Code.",
     type: "website",
-    url: "https://gicm.app",
-    siteName: "gICM",
+    url: "https://clawdbot.com",
+    siteName: "ClawdBot",
     locale: "en_US",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "gICM Marketplace - Universal AI Workflow Marketplace",
+        alt: "ClawdBot Marketplace - Professional AI Agent Marketplace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "gICM - The Universal AI Workflow Marketplace",
+    title: "ClawdBot - Professional AI Agent Marketplace",
     description:
-      "91 agents • 96 skills • 93 commands • 82 MCPs - Build your AI dev stack",
+      "Professional AI agents, skills, and MCPs - Secure and audited for enterprise use.",
     images: ["/og-image.png"],
-    creator: "@icm_motion",
-    site: "@icm_motion",
+    creator: "@ClawdBot",
+    site: "@ClawdBot",
   },
   icons: {
     icon: [
@@ -85,9 +86,9 @@ export const metadata: Metadata = {
     ],
     apple: "/favicon.png",
   },
-  metadataBase: new URL("https://gicm.app"),
+  metadataBase: new URL("https://clawdbot.com"),
   alternates: {
-    canonical: "https://gicm.app",
+    canonical: "https://clawdbot.com",
   },
   robots: {
     index: true,
@@ -108,44 +109,45 @@ export const metadata: Metadata = {
 const HOMEPAGE_FAQS = [
   {
     question:
-      "What is gICM and how is it different from other AI marketplaces?",
+      "What is ClawdBot and how is it different from OpenClaw (formerly ClawdBot)?",
     answer:
-      "gICM is the world's first universal cross-platform AI marketplace. Unlike competitors locked to a single ecosystem, gICM lets you install any AI agent, skill, or tool for Claude, Gemini, or OpenAI with a single click. We offer 593+ production-ready items including agents, skills, commands, and MCP integrations.",
+      "ClawdBot is a professional, security-first AI marketplace. Unlike OpenClaw's ClawHub, which has been compromised by the 'ClawHavoc' malware campaign (341+ malicious skills found in Feb 2026), ClawdBot audits every single item to ensure enterprise-grade safety and reliability.",
   },
   {
-    question: "Can I use gICM tools on Claude, Gemini, and OpenAI?",
+    question: "Is ClawdBot compatible with Claude Code?",
     answer:
-      "Yes! gICM is the only marketplace with true cross-platform compatibility. All agents and skills work universally across Claude, Gemini, and OpenAI through our Universal Bridge technology.",
+      "Yes! ClawdBot is specifically optimized for Claude Code. All items are tested for compatibility and include one-click installation commands for the Claude CLI environment, providing a secure alternative to unvetted scripts.",
   },
   {
-    question: "What is OPUS 67 and how does it enhance Claude?",
+    question:
+      "How does ClawdBot protect against 'ClawHavoc' and similar threats?",
     answer:
-      "OPUS 67 is our self-evolving AI runtime with 141 specialist skills, 83 MCP integrations, 30 optimized modes, and 107 agents. It achieves 88-92% token savings. Install with: npx create-opus67@latest",
+      "We implement a rigorous multi-stage security audit that scans for the Atomic macOS Stealer (AMOS), keyloggers, and backdoors associated with campaigns like ClawHavoc. Each item receives a security score and a verification badge before appearing in our registry.",
   },
   {
-    question: "How do I install items from gICM?",
+    question: "How do I install items from ClawdBot?",
     answer:
-      "Three ways: (1) CLI: npx @gicm/cli add agent/name, (2) Web UI: browse gicm.app and download ZIP, (3) Direct clone from our gICM-library repository.",
+      "Simply copy the install command (e.g., npx @clawdbot/cli add agent/name) and run it in your terminal. You can also download items as ZIP files or export custom stacks for maximum environment isolation.",
   },
   {
-    question: "What are Progressive Skills and how do they save tokens?",
+    question: "Does ClawdBot support the OpenClaw skill format?",
     answer:
-      "Progressive Skills load in 30-50 tokens initially, then expand on-demand to 3000-5000 tokens. This achieves 88-92% token savings compared to loading everything upfront.",
+      "Yes, we provide safe compatibility with the OpenClaw format (SKILL.md). You can import existing skills into our secure environment, where they will undergo a full security audit before execution.",
   },
   {
-    question: "Which gICM agents are best for Solana development?",
+    question: "Is ClawdBot free for professional use?",
     answer:
-      "Top picks: ICM Anchor Architect (4.2x faster), Solana Guardian Auditor (security), Frontend Fusion Engine (Next.js + Web3), Gas Optimization Specialist, and DeFi Integration Architect.",
+      "ClawdBot offers a vast library of open-source professional tools for free. We also provide enterprise features for organizations that need to move away from high-risk platforms like ClawHub to a managed, secure environment.",
   },
   {
-    question: "What payment is required to use gICM?",
+    question: "Which agents are best for secure blockchain development?",
     answer:
-      "All gICM tools are completely free. Our entire marketplace—593+ items—is open-source with no subscription fees, hidden charges, or licensing restrictions.",
+      "Top picks include the ICM Anchor Architect and Solana Guardian Auditor, both of which have been specifically vetted to prevent the credential exfiltration seen in recent AI supply chain attacks.",
   },
   {
-    question: "Can I use gICM items in production applications?",
+    question: "Can I use ClawdBot items in production applications?",
     answer:
-      "Absolutely. All items are production-ready and MIT-licensed. Each has been validated across Claude, Gemini, and OpenAI platforms with full source code transparency.",
+      "Absolutely. All items are production-ready, security-vetted, and MIT-licensed. Each has been validated across multiple platforms with full source code transparency and no hidden telemetry.",
   },
 ];
 
@@ -182,13 +184,13 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-        <meta name="apple-mobile-web-app-title" content="gICM" />
+        <meta name="apple-mobile-web-app-title" content="ClawdBot" />
 
         {/* RSS Feed */}
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="gICM Feed"
+          title="ClawdBot Feed"
           href="/api/feed"
         />
 

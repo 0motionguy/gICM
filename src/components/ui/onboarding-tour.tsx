@@ -7,7 +7,7 @@ import "driver.js/dist/driver.css";
 export function OnboardingTour() {
   useEffect(() => {
     // Check if user has seen the tour
-    const hasSeenTour = localStorage.getItem("gicm-tour-completed");
+    const hasSeenTour = localStorage.getItem("clawdbot-tour-completed");
 
     if (!hasSeenTour) {
       // Wait for DOM to be ready
@@ -18,7 +18,7 @@ export function OnboardingTour() {
             {
               element: ".search-input",
               popover: {
-                title: "Welcome to gICM!",
+                title: "Welcome to ClawdBot!",
                 description: "Start by searching for agents, skills, commands, or MCPs. Try searching for 'solana' or 'defi'!",
                 side: "bottom",
                 align: "start",
@@ -54,7 +54,7 @@ export function OnboardingTour() {
           ],
           onDestroyStarted: () => {
             // Mark tour as completed when user closes or finishes
-            localStorage.setItem("gicm-tour-completed", "true");
+            localStorage.setItem("clawdbot-tour-completed", "true");
             driverObj.destroy();
           },
         });
@@ -80,7 +80,7 @@ export function useOnboardingTour() {
         {
           element: ".search-input",
           popover: {
-            title: "Welcome to gICM!",
+            title: "Welcome to ClawdBot!",
             description: "Start by searching for agents, skills, commands, or MCPs.",
             side: "bottom",
             align: "start",
@@ -120,7 +120,7 @@ export function useOnboardingTour() {
   };
 
   const resetTour = () => {
-    localStorage.removeItem("gicm-tour-completed");
+    localStorage.removeItem("clawdbot-tour-completed");
     startTour();
   };
 

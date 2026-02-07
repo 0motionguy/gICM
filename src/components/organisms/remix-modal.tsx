@@ -95,7 +95,7 @@ export function RemixModal({ open, onOpenChange, stack, items }: RemixModalProps
 
   // Social share handlers
   const handleTwitterShare = async () => {
-    const text = `Check out my AI dev stack: ${stack.name}\n\n${stack.description || "Built with gICM"}\n\n${shareUrl}`;
+    const text = `Check out my AI dev stack: ${stack.name}\n\n${stack.description || "Built with ClawdBot"}\n\n${shareUrl}`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(twitterUrl, "_blank");
     await trackShare(stack.id, "social");
@@ -410,7 +410,7 @@ export function RemixModal({ open, onOpenChange, stack, items }: RemixModalProps
                     <p className="text-zinc-600 mb-2">{stack.description}</p>
                   )}
                   <p className="text-lime-600 font-medium">
-                    {items.length} items • Built with gICM
+                    {items.length} items • Built with ClawdBot
                   </p>
                 </div>
               </div>

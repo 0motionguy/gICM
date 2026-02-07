@@ -22,7 +22,7 @@ const libraryColors: Record<string, string> = {
   "Aceternity UI": "#00F0FF",
   "Magic UI": "#7C3AED",
   "shadcn/ui": "#FFFFFF",
-  "gICM": "#00F0FF",
+  "ClawdBot": "#00F0FF",
   "UIverse": "#FF6B6B",
 };
 

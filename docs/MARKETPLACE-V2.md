@@ -1,14 +1,14 @@
-# gICM Marketplace V2 - Agent Skills Protocol
+# ClawdBot Marketplace V2 - Agent Skills Protocol
 
 > Comprehensive documentation for the Agent Skills v2 integration, progressive disclosure architecture, and API reference.
 
 ## Overview
 
-gICM Marketplace v2 introduces the **Agent Skills Protocol** - a standardized way to create, distribute, and consume AI skills across Claude, Gemini, and OpenAI platforms. The v2 schema enables progressive disclosure, token optimization, and cross-platform compatibility.
+ClawdBot Marketplace v2 introduces the **Agent Skills Protocol** - a standardized way to create, distribute, and consume AI skills across Claude, Gemini, and OpenAI platforms. The v2 schema enables progressive disclosure, token optimization, and cross-platform compatibility.
 
 ```
 +------------------------------------------------------------------+
-|                    gICM MARKETPLACE v2                            |
+|                    ClawdBot MARKETPLACE v2                            |
 +------------------------------------------------------------------+
 |                                                                   |
 |  +-------------------+  +-------------------+  +----------------+ |
@@ -572,7 +572,7 @@ const mySkill: AgentSkillV2 = {
       description:
         "Comprehensive expertise for launching tokens on Solana with bonding curves, liquidity pools, and fee routing.",
       version: "1.0.0",
-      author: "gICM",
+      author: "ClawdBot",
       category: "Blockchain",
       tags: ["Solana", "DeFi", "Token Launch", "Anchor"],
       license: "MIT",

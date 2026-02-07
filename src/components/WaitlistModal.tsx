@@ -67,7 +67,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
             Join the Waitlist
           </DialogTitle>
           <DialogDescription className="text-zinc-400">
-            Get early access to gICM. We'll notify you when alpha keys are
+            Get early access to ClawdBot. We'll notify you when alpha keys are
             available.
           </DialogDescription>
         </DialogHeader>

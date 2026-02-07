@@ -2,16 +2,16 @@
 
 **Ship 10x faster. Pay 74% less. Score 96.8% on HumanEval.**
 
-Stop copy-pasting prompts. Stop paying for tokens you don't need. Start building with 617+ battle-tested AI components that load on-demand.
+Stop copy-pasting prompts. Stop paying for tokens you don't need. Start building with 617+ battle-tested AI components that load on-demand. **OpenClaw compatible and Security-verified.**
 
-[![npm version](https://img.shields.io/npm/v/@gicm/opus67.svg?style=flat-square)](https://www.npmjs.com/package/@gicm/opus67)
-[![HumanEval Score](https://img.shields.io/badge/HumanEval-96.8%25-brightgreen?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Token Reduction](https://img.shields.io/badge/Token%20Reduction-89%25-blue?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Agents](https://img.shields.io/badge/Agents-108-purple?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Skills](https://img.shields.io/badge/Skills-120-orange?style=flat-square)](https://github.com/icm-motion/gICM)
-[![MCPs](https://img.shields.io/badge/MCPs-95-cyan?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Total Items](https://img.shields.io/badge/Total%20Items-617+-success?style=flat-square)](https://github.com/icm-motion/gICM)
-[![Star History](https://img.shields.io/github/stars/icm-motion/gICM?style=flat-square)](https://github.com/icm-motion/gICM/stargazers)
+[![npm version](https://img.shields.io/npm/v/@clawdbot/opus67.svg?style=flat-square)](https://www.npmjs.com/package/@clawdbot/opus67)
+[![HumanEval Score](https://img.shields.io/badge/HumanEval-96.8%25-brightgreen?style=flat-square)](https://github.com/0motionguy/ClawdBot)
+[![Token Reduction](https://img.shields.io/badge/Token%20Reduction-89%25-blue?style=flat-square)](https://github.com/0motionguy/ClawdBot)
+[![Agents](https://img.shields.io/badge/Agents-108-purple?style=flat-square)](https://github.com/0motionguy/ClawdBot)
+[![Skills](https://img.shields.io/badge/Skills-120-orange?style=flat-square)](https://github.com/0motionguy/ClawdBot)
+[![MCPs](https://img.shields.io/badge/MCPs-95-cyan?style=flat-square)](https://github.com/0motionguy/ClawdBot)
+[![Total Items](https://img.shields.io/badge/Total%20Items-617+-success?style=flat-square)](https://github.com/0motionguy/ClawdBot)
+[![Star History](https://img.shields.io/github/stars/0motionguy/ClawdBot?style=flat-square)](https://github.com/0motionguy/ClawdBot/stargazers)
 
 ---
 
@@ -31,7 +31,7 @@ That's it. One command. Claude now has access to 617+ components:
 - **95 MCPs** - Model Context Protocol integrations
 - **201 Utilities** - Prompts, templates, and tools
 
-![OPUS 67 Demo](https://raw.githubusercontent.com/icm-motion/gICM/main/assets/demo.gif)
+![OPUS 67 Demo](https://raw.githubusercontent.com/0motionguy/ClawdBot/main/assets/demo.gif)
 
 <!-- TODO: Add actual demo GIF showing skill detection and loading -->
 
@@ -57,6 +57,10 @@ You're paying for thousands of context tokens every request, whether you need th
 // -> 3 skills, ~1,800 tokens, exactly what you need
 ```
 
+### Security First
+
+ClawdBot is the **secure alternative to ClawHub**. Every item in our marketplace is rigorously audited and verified. We prioritize security to protect your development environment from malicious skills and supply chain attacks.
+
 ---
 
 ## Comparison: OPUS 67 vs Everything Else
@@ -66,6 +70,7 @@ You're paying for thousands of context tokens every request, whether you need th
 | **Components**        | 593+    | ~50      | ~20      | ~30     | 1M+ (low quality) | 0           |
 | **HumanEval**         | 96.8%   | 87.1%    | 82.4%    | 78.2%   | Varies            | 91.2%       |
 | **Token Cost**        | -74%    | Baseline | +20%     | +35%    | +50%              | Baseline    |
+| **Security**          | Verified| Varies   | Unknown  | Unknown | Low               | High        |
 | **Solana Support**    | Native  | Plugin   | None     | None    | Minimal           | None        |
 | **MCP Integration**   | 82 MCPs | None     | None     | None    | None              | Manual      |
 | **On-Demand Loading** | Yes     | No       | No       | No      | No                | No          |
@@ -94,16 +99,16 @@ bunx create-opus67@latest
 
 ```bash
 # Add an agent
-npx @gicm/cli add agent/icm-anchor-architect
+npx @clawdbot/cli add agent/icm-anchor-architect
 
 # Add a skill
-npx @gicm/cli add skill/solana-bonding-curves
+npx @clawdbot/cli add skill/solana-bonding-curves
 
 # Add an MCP server
-npx @gicm/cli add mcp/github-mcp
+npx @clawdbot/cli add mcp/github-mcp
 
 # Add multiple items
-npx @gicm/cli add agent/frontend-fusion-engine skill/typescript-strict-mode mcp/supabase-mcp
+npx @clawdbot/cli add agent/frontend-fusion-engine skill/typescript-strict-mode mcp/supabase-mcp
 ```
 
 ### Basic Usage
@@ -140,7 +145,7 @@ Want more control? Load skills explicitly:
 
 Skills load on-demand based on context. No wasted tokens.
 
-![Progressive Disclosure](https://raw.githubusercontent.com/icm-motion/gICM/main/assets/progressive-disclosure.gif)
+![Progressive Disclosure](https://raw.githubusercontent.com/0motionguy/ClawdBot/main/assets/progressive-disclosure.gif)
 
 <!-- TODO: Add GIF showing skill detection flow -->
 
@@ -166,19 +171,19 @@ Connect to external services instantly:
 /mcp stripe     # Payment integration
 ```
 
-### 4. Universal Marketplace
+### 4. Professional AI Agent Marketplace - OpenClaw Compatible
 
 Browse, install, and share components:
 
 ```bash
 # Browse marketplace
-npx @gicm/opus67 marketplace
+npx @clawdbot/opus67 marketplace
 
 # Install community skill
-npx @gicm/opus67 install @community/rust-expert
+npx @clawdbot/opus67 install @community/rust-expert
 
 # Publish your skill
-npx @gicm/opus67 publish ./my-skill.md
+npx @clawdbot/opus67 publish ./my-skill.md
 ```
 
 ---
@@ -253,7 +258,7 @@ Skill detection uses semantic matching with 94.2% accuracy in our benchmarks. Fo
 
 ### 6. Can I create my own skills?
 
-Absolutely. Skills are markdown files with a specific structure. See our [Skill Authoring Guide](docs/authoring-skills.md) or run `npx @gicm/opus67 create skill`.
+Absolutely. Skills are markdown files with a specific structure. See our [Skill Authoring Guide](docs/authoring-skills.md) or run `npx @clawdbot/opus67 create skill`.
 
 ### 7. Is my code sent to external servers?
 
@@ -268,7 +273,7 @@ No. OPUS 67 runs entirely locally. Skill files are cached on your machine. The o
 ### 9. How do I update OPUS 67?
 
 ```bash
-npx @gicm/opus67 update
+npx @clawdbot/opus67 update
 ```
 
 Updates are backward compatible. Your custom skills and settings are preserved.
@@ -276,7 +281,7 @@ Updates are backward compatible. Your custom skills and settings are preserved.
 ### 10. Where can I get help?
 
 - **Discord**: [discord.gg/opus67](https://discord.gg/opus67)
-- **GitHub Issues**: [github.com/icm-motion/gICM/issues](https://github.com/icm-motion/gICM/issues)
+- **GitHub Issues**: [github.com/0motionguy/ClawdBot/issues](https://github.com/0motionguy/ClawdBot/issues)
 - **Documentation**: [docs.opus67.com](https://docs.opus67.com)
 
 ---
@@ -331,7 +336,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ```bash
 # Fork and clone
-git clone https://github.com/YOUR_USERNAME/gICM.git
+git clone https://github.com/YOUR_USERNAME/ClawdBot.git
 
 # Install dependencies
 pnpm install
@@ -349,7 +354,7 @@ pnpm run test
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=icm-motion/gICM&type=Date)](https://star-history.com/#icm-motion/gICM&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=0motionguy/ClawdBot&type=Date)](https://star-history.com/#0motionguy/ClawdBot&Date)
 
 ---
 
@@ -361,7 +366,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 <p align="center">
   <b>Built with OPUS 67</b><br>
-  <a href="https://github.com/icm-motion/gICM">GitHub</a> |
+  <a href="https://github.com/0motionguy/ClawdBot">GitHub</a> |
   <a href="https://docs.opus67.com">Documentation</a> |
   <a href="https://discord.gg/opus67">Discord</a> |
   <a href="https://twitter.com/opus67">Twitter</a>

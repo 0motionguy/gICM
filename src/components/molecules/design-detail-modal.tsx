@@ -38,8 +38,8 @@ function getSourceInfo(item: RegistryItem): { name: string; color: string; url: 
   if (docsUrl.includes("motion-primitives")) {
     return { name: "Motion Primitives", color: "#F97316", url: "https://motion-primitives.com" };
   }
-  if (install.includes("@gicm/cli")) {
-    return { name: "gICM Original", color: "#00F0FF", url: "https://gicm.dev" };
+  if (install.includes("@clawdbot/cli")) {
+    return { name: "ClawdBot Original", color: "#00F0FF", url: "https://clawdbot.com" };
   }
   return { name: "Component Library", color: "#71717A", url: "" };
 }

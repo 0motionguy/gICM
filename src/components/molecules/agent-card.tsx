@@ -40,7 +40,7 @@ export function AgentCard({ item, onSelect, selected = false }: AgentCardProps) 
   };
 
   const handleCopyInstall = async () => {
-    const installCmd = `npx @gicm/cli add ${item.kind}/${item.slug}`;
+    const installCmd = `npx @clawdbot/cli add ${item.kind}/${item.slug}`;
     await navigator.clipboard.writeText(installCmd);
     setCopied(true);
     toast.success("Install command copied!", {

@@ -62,7 +62,7 @@ export function Web3HeroSection() {
           {/* Top Badges */}
           <div className="mb-8 flex flex-wrap items-center gap-2">
             <a
-              href="https://github.com/Kermit457/gICM"
+              href="https://github.com/Kermit457/ClawdBot"
               target="_blank"
               rel="noopener noreferrer"
               className="group"
@@ -102,14 +102,14 @@ export function Web3HeroSection() {
           {/* Headline Area */}
           <div className="max-w-4xl space-y-4">
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white md:text-6xl lg:text-7xl">
-              The Universal <br />
+              Professional <br />
               <span className="bg-gradient-to-r from-white via-zinc-400 to-zinc-600 bg-clip-text text-transparent">
-                AI Dev Marketplace.
+                AI Agent Marketplace.
               </span>
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
-              gICM connects every runtime. Build with
+              ClawdBot connects every runtime. Build with
               <span className="font-medium text-white">
                 {" "}
                 {stats.agents +
@@ -119,8 +119,8 @@ export function Web3HeroSection() {
                   stats.workflows}
                 + verified items
               </span>{" "}
-              across agents, skills, MCPs, and workflows. Cross-platform
-              compatible with Claude, Gemini, and OpenAI.
+              vetted against 'ClawHavoc' and supply chain threats. Optimized for
+              Claude Code and enterprise safety.
             </p>
 
             {/* AWS Startup Partner - Featured Badge */}
@@ -177,7 +177,7 @@ export function Web3HeroSection() {
           <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-[#05050A] px-4 py-3">
             <span className="text-zinc-500">$</span>
             <code className="font-mono text-sm text-[#00F0FF]">
-              npx @gicm/cli list agents
+              npx @clawdbot/cli list agents
             </code>
             <span className="ml-2 hidden border-l border-white/10 pl-3 text-sm text-zinc-600 sm:inline-block">
               Browse Catalog

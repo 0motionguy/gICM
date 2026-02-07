@@ -52,7 +52,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
                       <span className="text-[#00F0FF]">Run Anywhere.</span>
                     </h2>
                     <p className="mx-auto max-w-md text-white/60">
-                      gICM is the first marketplace that bridges the gap between
+                      ClawdBot is the first marketplace that bridges the gap between
                       different AI runtimes.
                     </p>
                   </div>
@@ -74,7 +74,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
                         </div>
                         <div>
                           <div className="text-sm font-bold text-white">
-                            gICM Registry
+                            ClawdBot Registry
                           </div>
                           <div className="mt-1 font-mono text-[10px] uppercase tracking-wider text-white/40">
                             Source of Truth

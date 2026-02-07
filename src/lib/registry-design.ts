@@ -6969,7 +6969,7 @@ export const DESIGN_ASSETS: RegistryItem[] = [
       "Premium frosted glass effect card with inner glow and hover state.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Card", "Glassmorphism"],
-    install: "npx @gicm/cli add component/glass-card",
+    install: "npx @clawdbot/cli add component/glass-card",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
       models: [
@@ -6996,7 +6996,7 @@ export const DESIGN_ASSETS: RegistryItem[] = [
     description: "Animated ambient background with flowing gradient mesh.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Background", "Animation"],
-    install: "npx @gicm/cli add component/aurora-background",
+    install: "npx @clawdbot/cli add component/aurora-background",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
       models: [
@@ -7024,7 +7024,7 @@ export const DESIGN_ASSETS: RegistryItem[] = [
       "High-visibility action button with neon glow and pulse effect.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Button", "Neon"],
-    install: "npx @gicm/cli add component/neon-button",
+    install: "npx @clawdbot/cli add component/neon-button",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
       models: [
@@ -7052,7 +7052,7 @@ export const DESIGN_ASSETS: RegistryItem[] = [
       "Cyberpunk-style perspective grid background with infinite scrolling animation.",
     category: "Design Assets",
     tags: ["React", "Tailwind", "UI", "Background", "Animation", "3D"],
-    install: "npx @gicm/cli add component/animated-grid",
+    install: "npx @clawdbot/cli add component/animated-grid",
     platforms: ["claude", "gemini", "openai"],
     compatibility: {
       models: [

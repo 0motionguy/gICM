@@ -145,7 +145,7 @@ export function StackBuilderWidget() {
               <Button
                 className="w-full h-12 bg-[#00F0FF] hover:bg-[#00F0FF]/90 text-black font-bold shadow-[0_0_20px_-5px_rgba(0,240,255,0.3)]"
                 onClick={() => {
-                  const cmd = `npx @gicm/cli add ${items.map(({ item }) => `${item.kind}/${item.slug}`).join(' ')}`;
+                  const cmd = `npx @clawdbot/cli add ${items.map(({ item }) => `${item.kind}/${item.slug}`).join(' ')}`;
                   navigator.clipboard.writeText(cmd);
                   closeCart();
                 }}
