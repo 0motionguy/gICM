@@ -4,7 +4,6 @@ User-agent: *
 Allow: /
 
 # Disallow private pages and admin areas
-Disallow: /api/
 Disallow: /analytics
 Disallow: /.analytics/
 Disallow: /.waitlist/
@@ -14,6 +13,11 @@ Disallow: /dashboard-v2
 Disallow: /design
 Disallow: /content
 Disallow: /workflow/analytics
+
+# Allow API endpoints for agent discovery
+Allow: /.well-known/
+Allow: /api/search
+Allow: /api/install
 
 # Sitemaps
 Sitemap: https://gicm.app/sitemap.xml
@@ -33,3 +37,20 @@ Allow: /
 
 User-agent: Google-Extended
 Allow: /
+
+# AI Agent Discovery (Moltbook, autonomous agents)
+User-agent: MoltbookBot
+Allow: /.well-known/
+Allow: /api/search
+Allow: /api/install
+
+User-agent: anthropic-ai
+Allow: /.well-known/
+Allow: /api/search
+Allow: /api/install
+
+# Agent Discovery Protocol
+# Primary endpoint: https://clawdbot.com/.well-known/claude-marketplace.json
+# Protocol: claude-marketplace-v1
+# Status: Enabled for autonomous agent browsing
+# Moltbook compatible: Yes (submolt: r/ai-development-tools)

@@ -29,10 +29,33 @@ export function middleware(request: NextRequest) {
     ].join("; ")
   );
 
-  // CORS Headers
-  response.headers.set("Access-Control-Allow-Origin", request.headers.get("origin") || "*");
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  // CORS Headers - Enhanced for Agent Discovery
+  const origin = request.headers.get("origin");
+
+  // Allow all origins for .well-known and public API endpoints (agent discovery)
+  if (
+    request.nextUrl.pathname.startsWith("/.well-known/") ||
+    request.nextUrl.pathname.startsWith("/api/search") ||
+    request.nextUrl.pathname.startsWith("/api/install")
+  ) {
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.headers.set(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization, User-Agent"
+    );
+    response.headers.set("Access-Control-Max-Age", "86400"); // 24 hours
+  } else {
+    response.headers.set("Access-Control-Allow-Origin", origin || "*");
+    response.headers.set(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    response.headers.set(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
+  }
 
   // HSTS (HTTP Strict Transport Security)
   response.headers.set(
