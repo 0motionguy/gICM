@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, ExternalLink, Terminal } from "lucide-react";
+import {
+  Copy,
+  Check,
+  ExternalLink,
+  Terminal,
+  ShieldCheck,
+  ShieldAlert,
+  ShieldX,
+} from "lucide-react";
 import type { RegistryItem } from "@/types/registry";
 import { toast } from "sonner";
 
@@ -29,20 +37,23 @@ const BackgroundPreview = ({ name }: { name: string }) => {
 
   if (isAurora) {
     return (
-      <div className="w-full h-full relative overflow-hidden bg-zinc-950">
-        <div className="absolute top-[-50%] left-[-20%] w-[150%] h-[150%] rounded-full bg-[#00F0FF]/20 blur-[40px] animate-pulse" />
-        <div className="absolute bottom-[-50%] right-[-20%] w-[150%] h-[150%] rounded-full bg-[#7000FF]/20 blur-[40px] animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="relative h-full w-full overflow-hidden bg-zinc-950">
+        <div className="absolute left-[-20%] top-[-50%] h-[150%] w-[150%] animate-pulse rounded-full bg-[#00F0FF]/20 blur-[40px]" />
+        <div
+          className="absolute bottom-[-50%] right-[-20%] h-[150%] w-[150%] animate-pulse rounded-full bg-[#7000FF]/20 blur-[40px]"
+          style={{ animationDelay: "1s" }}
+        />
       </div>
     );
   }
   if (isBeams) {
     return (
-      <div className="w-full h-full relative overflow-hidden bg-zinc-950">
+      <div className="relative h-full w-full overflow-hidden bg-zinc-950">
         <div className="absolute inset-0">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#00F0FF]/50 to-transparent animate-beam"
+              className="absolute h-[1px] animate-beam bg-gradient-to-r from-transparent via-[#00F0FF]/50 to-transparent"
               style={{
                 top: `${20 + i * 15}%`,
                 left: "-100%",
@@ -58,19 +69,19 @@ const BackgroundPreview = ({ name }: { name: string }) => {
   }
   if (isSpotlight) {
     return (
-      <div className="w-full h-full relative overflow-hidden bg-zinc-950 flex items-center justify-center">
-        <div className="absolute w-32 h-32 rounded-full bg-white/10 blur-2xl animate-pulse" />
+      <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-zinc-950">
+        <div className="absolute h-32 w-32 animate-pulse rounded-full bg-white/10 blur-2xl" />
         <span className="relative text-xs text-white/50">Hover Effect</span>
       </div>
     );
   }
   if (isMeteors) {
     return (
-      <div className="w-full h-full relative overflow-hidden bg-zinc-950">
+      <div className="relative h-full w-full overflow-hidden bg-zinc-950">
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-[2px] h-8 bg-gradient-to-b from-[#00F0FF] to-transparent rotate-[215deg] animate-meteor"
+            className="absolute h-8 w-[2px] rotate-[215deg] animate-meteor bg-gradient-to-b from-[#00F0FF] to-transparent"
             style={{
               top: `${seededRandom(i + 1) * 50}%`,
               left: `${20 + i * 15}%`,
@@ -83,11 +94,11 @@ const BackgroundPreview = ({ name }: { name: string }) => {
   }
   if (isSparkles) {
     return (
-      <div className="w-full h-full relative overflow-hidden bg-zinc-950">
+      <div className="relative h-full w-full overflow-hidden bg-zinc-950">
         {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-sparkle"
+            className="absolute h-1 w-1 animate-sparkle rounded-full bg-white"
             style={{
               top: `${seededRandom(i * 3 + 10) * 100}%`,
               left: `${seededRandom(i * 3 + 11) * 100}%`,
@@ -100,7 +111,7 @@ const BackgroundPreview = ({ name }: { name: string }) => {
   }
   if (isGrid) {
     return (
-      <div className="w-full h-full bg-[#050505] relative overflow-hidden">
+      <div className="relative h-full w-full overflow-hidden bg-[#050505]">
         <div
           className="absolute inset-0 opacity-30"
           style={{
@@ -114,11 +125,11 @@ const BackgroundPreview = ({ name }: { name: string }) => {
   }
   if (isParticles) {
     return (
-      <div className="w-full h-full relative overflow-hidden bg-zinc-950">
+      <div className="relative h-full w-full overflow-hidden bg-zinc-950">
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-0.5 h-0.5 bg-[#00F0FF]/50 rounded-full animate-float"
+            className="absolute h-0.5 w-0.5 animate-float rounded-full bg-[#00F0FF]/50"
             style={{
               top: `${seededRandom(i * 4 + 50) * 100}%`,
               left: `${seededRandom(i * 4 + 51) * 100}%`,
@@ -132,16 +143,20 @@ const BackgroundPreview = ({ name }: { name: string }) => {
   }
   if (isGradient) {
     return (
-      <div className="w-full h-full bg-gradient-to-br from-[#7000FF]/30 via-[#00F0FF]/20 to-[#FF0080]/30 animate-gradient-shift" />
+      <div className="h-full w-full animate-gradient-shift bg-gradient-to-br from-[#7000FF]/30 via-[#00F0FF]/20 to-[#FF0080]/30" />
     );
   }
   // Default background
   return (
-    <div className="w-full h-full bg-gradient-to-br from-zinc-900 to-zinc-950">
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: "radial-gradient(circle at 50% 50%, #00F0FF 1px, transparent 1px)",
-        backgroundSize: "20px 20px",
-      }} />
+    <div className="h-full w-full bg-gradient-to-br from-zinc-900 to-zinc-950">
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 50% 50%, #00F0FF 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      />
     </div>
   );
 };
@@ -155,44 +170,49 @@ const ButtonPreview = ({ name }: { name: string }) => {
   const isLoading = name.toLowerCase().includes("loading");
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950 gap-3">
+    <div className="flex h-full w-full items-center justify-center gap-3 bg-zinc-950">
       {isNeon && (
-        <button className="px-4 py-2 rounded-lg bg-[#00F0FF] text-black font-bold text-xs shadow-[0_0_20px_-5px_#00F0FF]">
+        <button className="rounded-lg bg-[#00F0FF] px-4 py-2 text-xs font-bold text-black shadow-[0_0_20px_-5px_#00F0FF]">
           Neon
         </button>
       )}
       {isGlass && (
-        <button className="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs">
+        <button className="rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-xs text-white backdrop-blur-md">
           Glass
         </button>
       )}
       {isShimmer && (
-        <button className="px-4 py-2 rounded-lg bg-zinc-800 text-white text-xs relative overflow-hidden">
+        <button className="relative overflow-hidden rounded-lg bg-zinc-800 px-4 py-2 text-xs text-white">
           <span className="relative z-10">Shimmer</span>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+          <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </button>
       )}
       {isGradient && (
-        <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#7000FF] to-[#00F0FF] text-white font-bold text-xs">
+        <button className="rounded-lg bg-gradient-to-r from-[#7000FF] to-[#00F0FF] px-4 py-2 text-xs font-bold text-white">
           Gradient
         </button>
       )}
       {isBorder && (
-        <button className="px-4 py-2 rounded-lg border-2 border-[#00F0FF] text-[#00F0FF] text-xs relative overflow-hidden">
+        <button className="relative overflow-hidden rounded-lg border-2 border-[#00F0FF] px-4 py-2 text-xs text-[#00F0FF]">
           Border
         </button>
       )}
       {isLoading && (
-        <button className="px-4 py-2 rounded-lg bg-zinc-700 text-white text-xs flex items-center gap-2">
-          <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        <button className="flex items-center gap-2 rounded-lg bg-zinc-700 px-4 py-2 text-xs text-white">
+          <div className="h-3 w-3 animate-spin rounded-full border-2 border-white/30 border-t-white" />
           Loading
         </button>
       )}
-      {!isNeon && !isGlass && !isShimmer && !isGradient && !isBorder && !isLoading && (
-        <button className="px-4 py-2 rounded-lg bg-white text-black font-bold text-xs">
-          Button
-        </button>
-      )}
+      {!isNeon &&
+        !isGlass &&
+        !isShimmer &&
+        !isGradient &&
+        !isBorder &&
+        !isLoading && (
+          <button className="rounded-lg bg-white px-4 py-2 text-xs font-bold text-black">
+            Button
+          </button>
+        )}
     </div>
   );
 };
@@ -205,17 +225,17 @@ const CardPreview = ({ name }: { name: string }) => {
   const isLens = name.toLowerCase().includes("lens");
 
   return (
-    <div className="w-full h-full flex items-center justify-center p-4 bg-zinc-950">
+    <div className="flex h-full w-full items-center justify-center bg-zinc-950 p-4">
       <div
-        className={`w-32 h-20 rounded-xl flex flex-col p-3 transition-transform ${
+        className={`flex h-20 w-32 flex-col rounded-xl p-3 transition-transform ${
           is3D ? "transform hover:rotate-3 hover:scale-105" : ""
-        } ${isGlass ? "bg-white/5 backdrop-blur-md border border-white/10" : "bg-zinc-800 border border-zinc-700"} ${
+        } ${isGlass ? "border border-white/10 bg-white/5 backdrop-blur-md" : "border border-zinc-700 bg-zinc-800"} ${
           isShine ? "shadow-[0_0_15px_-5px_#00F0FF]" : ""
         }`}
       >
-        <div className="w-6 h-6 rounded-full bg-white/20 mb-2" />
-        <div className="w-16 h-1.5 bg-white/20 rounded mb-1" />
-        <div className="w-10 h-1.5 bg-white/20 rounded" />
+        <div className="mb-2 h-6 w-6 rounded-full bg-white/20" />
+        <div className="mb-1 h-1.5 w-16 rounded bg-white/20" />
+        <div className="h-1.5 w-10 rounded bg-white/20" />
       </div>
     </div>
   );
@@ -228,18 +248,18 @@ const HeroPreview = ({ name }: { name: string }) => {
   const isVideo = name.toLowerCase().includes("video");
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950 relative overflow-hidden">
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-zinc-950">
       {isLamp && (
         <>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-8 bg-gradient-to-b from-[#00F0FF] to-transparent" />
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 w-24 h-12 bg-[#00F0FF]/20 blur-2xl rounded-full" />
-          <span className="text-white/50 text-xs mt-8">Lamp Hero</span>
+          <div className="absolute left-1/2 top-0 h-8 w-1 -translate-x-1/2 bg-gradient-to-b from-[#00F0FF] to-transparent" />
+          <div className="absolute left-1/2 top-8 h-12 w-24 -translate-x-1/2 rounded-full bg-[#00F0FF]/20 blur-2xl" />
+          <span className="mt-8 text-xs text-white/50">Lamp Hero</span>
         </>
       )}
       {isGlobe && (
-        <div className="w-16 h-16 rounded-full border border-[#00F0FF]/30 relative">
+        <div className="relative h-16 w-16 rounded-full border border-[#00F0FF]/30">
           <div className="absolute inset-2 rounded-full border border-[#00F0FF]/20" />
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-[#00F0FF]/20" />
+          <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-[#00F0FF]/20" />
         </div>
       )}
       {isMap && (
@@ -247,7 +267,7 @@ const HeroPreview = ({ name }: { name: string }) => {
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1.5 h-1.5 bg-[#00F0FF] rounded-full animate-pulse"
+              className="absolute h-1.5 w-1.5 animate-pulse rounded-full bg-[#00F0FF]"
               style={{
                 top: `${seededRandom(i * 2 + 100) * 40 - 20}px`,
                 left: `${seededRandom(i * 2 + 101) * 60 - 30}px`,
@@ -255,12 +275,12 @@ const HeroPreview = ({ name }: { name: string }) => {
               }}
             />
           ))}
-          <span className="text-white/30 text-xs">World Map</span>
+          <span className="text-xs text-white/30">World Map</span>
         </div>
       )}
       {isVideo && (
-        <div className="w-20 h-12 bg-zinc-800 rounded flex items-center justify-center">
-          <div className="w-0 h-0 border-l-8 border-l-white border-y-4 border-y-transparent ml-1" />
+        <div className="flex h-12 w-20 items-center justify-center rounded bg-zinc-800">
+          <div className="ml-1 h-0 w-0 border-y-4 border-l-8 border-y-transparent border-l-white" />
         </div>
       )}
       {!isLamp && !isGlobe && !isMap && !isVideo && (
@@ -281,30 +301,32 @@ const TextPreview = ({ name }: { name: string }) => {
   const isBlur = name.toLowerCase().includes("blur");
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950">
+    <div className="flex h-full w-full items-center justify-center bg-zinc-950">
       {isTypewriter && (
-        <div className="text-white text-sm font-mono">
+        <div className="font-mono text-sm text-white">
           Hello<span className="animate-blink">|</span>
         </div>
       )}
       {isFlip && (
-        <div className="text-white text-sm">
+        <div className="text-sm text-white">
           Build <span className="text-[#00F0FF]">faster</span>
         </div>
       )}
       {isNumber && (
-        <div className="text-3xl font-bold text-[#00F0FF] font-mono">1,234</div>
+        <div className="font-mono text-3xl font-bold text-[#00F0FF]">1,234</div>
       )}
       {isGradient && (
-        <div className="text-xl font-bold bg-gradient-to-r from-[#7000FF] via-[#00F0FF] to-[#FF0080] bg-clip-text text-transparent">
+        <div className="bg-gradient-to-r from-[#7000FF] via-[#00F0FF] to-[#FF0080] bg-clip-text text-xl font-bold text-transparent">
           Gradient
         </div>
       )}
       {isBlur && (
-        <div className="text-white/50 text-sm blur-[2px] animate-pulse">Revealing...</div>
+        <div className="animate-pulse text-sm text-white/50 blur-[2px]">
+          Revealing...
+        </div>
       )}
       {!isTypewriter && !isFlip && !isNumber && !isGradient && !isBlur && (
-        <div className="text-white text-sm">Text Effect</div>
+        <div className="text-sm text-white">Text Effect</div>
       )}
     </div>
   );
@@ -317,16 +339,16 @@ const LoaderPreview = ({ name }: { name: string }) => {
   const isProgress = name.toLowerCase().includes("progress");
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950">
+    <div className="flex h-full w-full items-center justify-center bg-zinc-950">
       {isSpinner && (
-        <div className="w-6 h-6 border-2 border-[#00F0FF]/30 border-t-[#00F0FF] rounded-full animate-spin" />
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#00F0FF]/30 border-t-[#00F0FF]" />
       )}
       {isDots && (
         <div className="flex gap-1">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="w-2 h-2 bg-[#00F0FF] rounded-full animate-bounce"
+              className="h-2 w-2 animate-bounce rounded-full bg-[#00F0FF]"
               style={{ animationDelay: `${i * 0.1}s` }}
             />
           ))}
@@ -334,37 +356,40 @@ const LoaderPreview = ({ name }: { name: string }) => {
       )}
       {isSkeleton && (
         <div className="space-y-2">
-          <div className="w-20 h-2 bg-zinc-700 rounded animate-pulse" />
-          <div className="w-16 h-2 bg-zinc-700 rounded animate-pulse" />
-          <div className="w-12 h-2 bg-zinc-700 rounded animate-pulse" />
+          <div className="h-2 w-20 animate-pulse rounded bg-zinc-700" />
+          <div className="h-2 w-16 animate-pulse rounded bg-zinc-700" />
+          <div className="h-2 w-12 animate-pulse rounded bg-zinc-700" />
         </div>
       )}
       {isProgress && (
-        <div className="w-24 h-1.5 bg-zinc-700 rounded-full overflow-hidden">
-          <div className="h-full w-3/4 bg-[#00F0FF] rounded-full" />
+        <div className="h-1.5 w-24 overflow-hidden rounded-full bg-zinc-700">
+          <div className="h-full w-3/4 rounded-full bg-[#00F0FF]" />
         </div>
       )}
       {!isSpinner && !isDots && !isSkeleton && !isProgress && (
-        <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-white/30 border-t-white" />
       )}
     </div>
   );
 };
 
 const NavigationPreview = () => (
-  <div className="w-full h-full flex items-center justify-center bg-zinc-950">
-    <div className="flex gap-2 bg-zinc-800/80 backdrop-blur p-2 rounded-full border border-white/10">
+  <div className="flex h-full w-full items-center justify-center bg-zinc-950">
+    <div className="flex gap-2 rounded-full border border-white/10 bg-zinc-800/80 p-2 backdrop-blur">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors" />
+        <div
+          key={i}
+          className="h-8 w-8 rounded-full bg-white/10 transition-colors hover:bg-white/20"
+        />
       ))}
     </div>
   </div>
 );
 
 const FormPreview = () => (
-  <div className="w-full h-full flex items-center justify-center bg-zinc-950 p-4">
+  <div className="flex h-full w-full items-center justify-center bg-zinc-950 p-4">
     <div className="w-full max-w-[120px]">
-      <div className="h-7 w-full bg-zinc-800 rounded border border-zinc-700 px-2 flex items-center">
+      <div className="flex h-7 w-full items-center rounded border border-zinc-700 bg-zinc-800 px-2">
         <span className="text-[10px] text-zinc-500">Input...</span>
       </div>
     </div>
@@ -372,11 +397,13 @@ const FormPreview = () => (
 );
 
 const ModalPreview = () => (
-  <div className="w-full h-full flex items-center justify-center bg-zinc-950">
-    <div className="w-24 h-16 bg-zinc-800 rounded-lg border border-zinc-700 shadow-2xl flex flex-col p-2">
-      <div className="w-full h-1 bg-zinc-600 rounded mb-1" />
-      <div className="flex-1 flex items-center justify-center">
-        <div className="w-8 h-4 bg-[#00F0FF]/50 rounded text-[6px] text-center text-white">OK</div>
+  <div className="flex h-full w-full items-center justify-center bg-zinc-950">
+    <div className="flex h-16 w-24 flex-col rounded-lg border border-zinc-700 bg-zinc-800 p-2 shadow-2xl">
+      <div className="mb-1 h-1 w-full rounded bg-zinc-600" />
+      <div className="flex flex-1 items-center justify-center">
+        <div className="h-4 w-8 rounded bg-[#00F0FF]/50 text-center text-[6px] text-white">
+          OK
+        </div>
       </div>
     </div>
   </div>
@@ -386,15 +413,20 @@ const AnimationPreview = ({ name }: { name: string }) => {
   const isMarquee = name.toLowerCase().includes("marquee");
   const isConfetti = name.toLowerCase().includes("confetti");
   const isCool = name.toLowerCase().includes("cool");
-  const isScroll = name.toLowerCase().includes("scroll") || name.toLowerCase().includes("view");
+  const isScroll =
+    name.toLowerCase().includes("scroll") ||
+    name.toLowerCase().includes("view");
   const isStack = name.toLowerCase().includes("stack");
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950 overflow-hidden">
+    <div className="flex h-full w-full items-center justify-center overflow-hidden bg-zinc-950">
       {isMarquee && (
-        <div className="flex gap-4 animate-marquee">
+        <div className="flex animate-marquee gap-4">
           {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="w-10 h-6 bg-zinc-700 rounded flex-shrink-0" />
+            <div
+              key={i}
+              className="h-6 w-10 flex-shrink-0 rounded bg-zinc-700"
+            />
           ))}
         </div>
       )}
@@ -403,9 +435,11 @@ const AnimationPreview = ({ name }: { name: string }) => {
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1.5 h-1.5 animate-confetti"
+              className="absolute h-1.5 w-1.5 animate-confetti"
               style={{
-                backgroundColor: ["#00F0FF", "#7000FF", "#FF0080", "#FFFF00"][i % 4],
+                backgroundColor: ["#00F0FF", "#7000FF", "#FF0080", "#FFFF00"][
+                  i % 4
+                ],
                 top: `${seededRandom(i * 2 + 150) * 20 - 10}px`,
                 left: `${seededRandom(i * 2 + 151) * 40 - 20}px`,
                 animationDelay: `${i * 0.1}s`,
@@ -415,15 +449,13 @@ const AnimationPreview = ({ name }: { name: string }) => {
           <span className="text-xs text-white/50">🎉</span>
         </div>
       )}
-      {isCool && (
-        <div className="text-xs text-white/50">Click Effect ✨</div>
-      )}
+      {isCool && <div className="text-xs text-white/50">Click Effect ✨</div>}
       {isScroll && (
         <div className="flex flex-col gap-1">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="w-16 h-3 bg-zinc-700 rounded animate-fade-in"
+              className="h-3 w-16 animate-fade-in rounded bg-zinc-700"
               style={{ animationDelay: `${i * 0.2}s` }}
             />
           ))}
@@ -434,7 +466,7 @@ const AnimationPreview = ({ name }: { name: string }) => {
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="absolute w-12 h-8 bg-zinc-700 rounded border border-zinc-600"
+              className="absolute h-8 w-12 rounded border border-zinc-600 bg-zinc-700"
               style={{
                 top: `${i * 4}px`,
                 left: `${i * 4}px`,
@@ -445,7 +477,7 @@ const AnimationPreview = ({ name }: { name: string }) => {
         </div>
       )}
       {!isMarquee && !isConfetti && !isCool && !isScroll && !isStack && (
-        <div className="w-8 h-8 bg-[#00F0FF]/20 rounded animate-pulse" />
+        <div className="h-8 w-8 animate-pulse rounded bg-[#00F0FF]/20" />
       )}
     </div>
   );
@@ -471,19 +503,44 @@ function getPreview(item: RegistryItem) {
   if (slug.includes("text") || slug.startsWith("text-")) {
     return <TextPreview name={name} />;
   }
-  if (slug.includes("loader") || slug.startsWith("loaders-") || slug.includes("skeleton") || slug.includes("progress")) {
+  if (
+    slug.includes("loader") ||
+    slug.startsWith("loaders-") ||
+    slug.includes("skeleton") ||
+    slug.includes("progress")
+  ) {
     return <LoaderPreview name={name} />;
   }
-  if (slug.includes("navigation") || slug.startsWith("navigation-") || slug.includes("dock") || slug.includes("navbar") || slug.includes("tabs")) {
+  if (
+    slug.includes("navigation") ||
+    slug.startsWith("navigation-") ||
+    slug.includes("dock") ||
+    slug.includes("navbar") ||
+    slug.includes("tabs")
+  ) {
     return <NavigationPreview />;
   }
-  if (slug.includes("form") || slug.startsWith("forms-") || slug.includes("input") || slug.includes("select")) {
+  if (
+    slug.includes("form") ||
+    slug.startsWith("forms-") ||
+    slug.includes("input") ||
+    slug.includes("select")
+  ) {
     return <FormPreview />;
   }
-  if (slug.includes("modal") || slug.startsWith("modals-") || slug.includes("dialog")) {
+  if (
+    slug.includes("modal") ||
+    slug.startsWith("modals-") ||
+    slug.includes("dialog")
+  ) {
     return <ModalPreview />;
   }
-  if (slug.includes("animation") || slug.startsWith("animations-") || slug.includes("marquee") || slug.includes("confetti")) {
+  if (
+    slug.includes("animation") ||
+    slug.startsWith("animations-") ||
+    slug.includes("marquee") ||
+    slug.includes("confetti")
+  ) {
     return <AnimationPreview name={name} />;
   }
 
@@ -495,8 +552,8 @@ function getPreview(item: RegistryItem) {
 
   // Default
   return (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950">
-      <div className="text-zinc-600 text-xs">Preview</div>
+    <div className="flex h-full w-full items-center justify-center bg-zinc-950">
+      <div className="text-xs text-zinc-600">Preview</div>
     </div>
   );
 }
@@ -506,14 +563,63 @@ function getSourceLibrary(item: RegistryItem): string {
   const docsUrl = item.docsUrl || "";
   const install = item.install || "";
 
-  if (docsUrl.includes("aceternity") || install.includes("aceternity")) return "Aceternity UI";
-  if (docsUrl.includes("magicui") || install.includes("magicui")) return "Magic UI";
-  if (docsUrl.includes("shadcn") || install.includes("shadcn@latest add") && !install.includes("http")) return "shadcn/ui";
+  if (docsUrl.includes("aceternity") || install.includes("aceternity"))
+    return "Aceternity UI";
+  if (docsUrl.includes("magicui") || install.includes("magicui"))
+    return "Magic UI";
+  if (
+    docsUrl.includes("shadcn") ||
+    (install.includes("shadcn@latest add") && !install.includes("http"))
+  )
+    return "shadcn/ui";
   if (docsUrl.includes("uiverse")) return "UIverse";
   if (docsUrl.includes("reactbits")) return "React Bits";
   if (docsUrl.includes("motion-primitives")) return "Motion Primitives";
   if (install.includes("@clawdbot/cli")) return "ClawdBot";
   return "Component";
+}
+
+/**
+ * Get security badge based on audit status and security scan results
+ */
+function getSecurityBadge(
+  audit?: RegistryItem["audit"],
+  security?: RegistryItem["security"]
+) {
+  // Show VERIFIED badge if item passed audit and has no security threats
+  if (!security && audit?.status === "VERIFIED") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/50 bg-emerald-500/20 px-2 py-1 text-[10px] text-emerald-400">
+        <ShieldCheck className="h-2.5 w-2.5" />
+        VERIFIED
+      </span>
+    );
+  }
+
+  // Show FLAGGED badge for critical/high threats
+  if (
+    security?.threatLevel === "critical" ||
+    security?.threatLevel === "high"
+  ) {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-red-500/50 bg-red-500/20 px-2 py-1 text-[10px] text-red-400">
+        <ShieldX className="h-2.5 w-2.5" />
+        FLAGGED
+      </span>
+    );
+  }
+
+  // Show WARNING badge for medium threats
+  if (security?.threatLevel === "medium") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/50 bg-amber-500/20 px-2 py-1 text-[10px] text-amber-400">
+        <ShieldAlert className="h-2.5 w-2.5" />
+        WARNING
+      </span>
+    );
+  }
+
+  return null;
 }
 
 export function DesignCard({ item, onClick }: DesignCardProps) {
@@ -544,38 +650,39 @@ export function DesignCard({ item, onClick }: DesignCardProps) {
 
   return (
     <div
-      className="group relative rounded-xl border border-white/10 bg-[#0A0A0B] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[#00F0FF]/50 hover:shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)] h-[320px] flex flex-col"
+      className="group relative flex h-[320px] cursor-pointer flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0A0A0B] transition-all duration-300 hover:border-[#00F0FF]/50 hover:shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      {/* Source Library Badge */}
-      <div className="absolute top-3 left-3 z-10">
-        <span className="text-[10px] px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-zinc-400">
+      {/* Source Library & Security Badges */}
+      <div className="absolute left-3 top-3 z-10 flex items-center gap-2">
+        <span className="rounded-full border border-white/10 bg-black/60 px-2 py-1 text-[10px] text-zinc-400 backdrop-blur-sm">
           {sourceLibrary}
         </span>
+        {getSecurityBadge(item.audit, item.security)}
       </div>
 
       {/* Preview Area */}
-      <div className="h-[45%] w-full relative overflow-hidden bg-black/20">
+      <div className="relative h-[45%] w-full overflow-hidden bg-black/20">
         {getPreview(item)}
 
         {/* Hover Overlay */}
         <div
-          className={`absolute inset-0 bg-black/70 backdrop-blur-[2px] flex items-center justify-center gap-3 transition-opacity duration-300 ${
+          className={`absolute inset-0 flex items-center justify-center gap-3 bg-black/70 backdrop-blur-[2px] transition-opacity duration-300 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         >
           {item.docsUrl && (
             <button
-              className="px-3 py-2 rounded-lg bg-white text-black font-bold text-xs flex items-center gap-1.5 hover:scale-105 transition-transform"
+              className="flex items-center gap-1.5 rounded-lg bg-white px-3 py-2 text-xs font-bold text-black transition-transform hover:scale-105"
               onClick={handleViewDocs}
             >
               <ExternalLink size={12} /> View Docs
             </button>
           )}
           <button
-            className="px-3 py-2 rounded-lg bg-[#00F0FF] text-black font-bold text-xs flex items-center gap-1.5 hover:scale-105 transition-transform"
+            className="flex items-center gap-1.5 rounded-lg bg-[#00F0FF] px-3 py-2 text-xs font-bold text-black transition-transform hover:scale-105"
             onClick={handleCopyInstall}
           >
             {copied ? <Check size={12} /> : <Copy size={12} />}
@@ -585,27 +692,35 @@ export function DesignCard({ item, onClick }: DesignCardProps) {
       </div>
 
       {/* Details Area */}
-      <div className="flex-1 p-4 flex flex-col border-t border-white/5 bg-white/[0.02]">
-        <h3 className="text-base font-bold text-white font-display leading-tight">{item.name}</h3>
-        <p className="text-xs text-zinc-400 mt-1.5 line-clamp-2 flex-1">{item.description}</p>
+      <div className="flex flex-1 flex-col border-t border-white/5 bg-white/[0.02] p-4">
+        <h3 className="font-display text-base font-bold leading-tight text-white">
+          {item.name}
+        </h3>
+        <p className="mt-1.5 line-clamp-2 flex-1 text-xs text-zinc-400">
+          {item.description}
+        </p>
 
         {/* Install Command */}
-        <div className="mt-3 p-2 rounded-lg bg-black/40 border border-white/5">
+        <div className="mt-3 rounded-lg border border-white/5 bg-black/40 p-2">
           <div className="flex items-center gap-2">
-            <Terminal size={12} className="text-[#00F0FF] flex-shrink-0" />
-            <code className="text-[10px] text-zinc-300 font-mono truncate flex-1">
+            <Terminal size={12} className="flex-shrink-0 text-[#00F0FF]" />
+            <code className="flex-1 truncate font-mono text-[10px] text-zinc-300">
               {hasNpxInstall ? (
                 <>
-                  <span className="text-[#00F0FF]">npx</span> {item.install.replace("npx ", "").slice(0, 40)}
+                  <span className="text-[#00F0FF]">npx</span>{" "}
+                  {item.install.replace("npx ", "").slice(0, 40)}
                   {item.install.length > 44 ? "..." : ""}
                 </>
               ) : (
-                <span className="text-zinc-400">{item.install.slice(0, 35)}{item.install.length > 35 ? "..." : ""}</span>
+                <span className="text-zinc-400">
+                  {item.install.slice(0, 35)}
+                  {item.install.length > 35 ? "..." : ""}
+                </span>
               )}
             </code>
             <button
               onClick={handleCopyInstall}
-              className="p-1 hover:bg-white/10 rounded transition-colors"
+              className="rounded p-1 transition-colors hover:bg-white/10"
             >
               {copied ? (
                 <Check size={12} className="text-[#00F0FF]" />
@@ -617,17 +732,19 @@ export function DesignCard({ item, onClick }: DesignCardProps) {
         </div>
 
         {/* Tags */}
-        <div className="flex items-center gap-1.5 mt-3 flex-wrap">
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
           {item.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="text-[9px] px-1.5 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-500"
+              className="rounded border border-white/5 bg-white/5 px-1.5 py-0.5 text-[9px] text-zinc-500"
             >
               {tag}
             </span>
           ))}
           {item.tags.length > 4 && (
-            <span className="text-[9px] text-zinc-600">+{item.tags.length - 4}</span>
+            <span className="text-[9px] text-zinc-600">
+              +{item.tags.length - 4}
+            </span>
           )}
         </div>
       </div>

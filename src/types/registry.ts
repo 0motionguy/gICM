@@ -112,6 +112,31 @@ export const RegistryItemSchema = z.object({
       issues: z.array(z.string()).optional(),
     })
     .optional(),
+
+  // Security metadata
+  security: z
+    .object({
+      threatLevel: z
+        .enum(["none", "low", "medium", "high", "critical"])
+        .optional(),
+      vulnerabilities: z
+        .array(
+          z.object({
+            id: z.string(),
+            severity: z.enum(["critical", "high", "medium", "low"]),
+            description: z.string(),
+            pattern: z.string().optional(), // Regex pattern that triggered detection
+            line: z.number().optional(), // Line number where found
+          })
+        )
+        .optional(),
+      malwarePatterns: z.array(z.string()).optional(), // Detected malicious patterns
+      requiredPermissions: z.array(z.string()).optional(), // file-access, network, etc.
+      sandboxViolations: z.array(z.string()).optional(),
+      securityScore: z.number().min(0).max(100).optional(),
+      lastScanned: z.string().optional(), // ISO timestamp
+    })
+    .optional(),
 });
 
 // Manual type with proper optionals
@@ -192,6 +217,23 @@ export type RegistryItem = {
     qualityScore: number;
     status: "VERIFIED" | "NEEDS_FIX" | "FLAGGED" | "DEPRECATED";
     issues?: string[];
+  };
+
+  // Security metadata
+  security?: {
+    threatLevel?: "none" | "low" | "medium" | "high" | "critical";
+    vulnerabilities?: {
+      id: string;
+      severity: "critical" | "high" | "medium" | "low";
+      description: string;
+      pattern?: string; // Regex pattern that triggered detection
+      line?: number; // Line number where found
+    }[];
+    malwarePatterns?: string[]; // Detected malicious patterns
+    requiredPermissions?: string[]; // file-access, network, etc.
+    sandboxViolations?: string[];
+    securityScore?: number; // 0-100
+    lastScanned?: string; // ISO timestamp
   };
 
   // Workflow-specific fields
