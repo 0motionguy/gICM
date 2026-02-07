@@ -19,28 +19,28 @@ const GEMINI_SETUP_STEPS = [
     text: "Create your project configuration and import the GoogleGenerativeAI class. Initialize with your API key.",
   },
   {
-    name: "Install gICM Tools",
-    text: "Add gICM skills compatible with Gemini: npx @gicm/cli add skill/typescript-precision-engineer. All 120 skills work cross-platform.",
+    name: "Install ClawdBot Tools",
+    text: "Add ClawdBot skills compatible with Gemini: npx @clawdbot/cli add skill/typescript-precision-engineer. All 120 skills work cross-platform.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "How to Setup Gemini AI | Complete Guide | gICM",
+  title: "How to Setup Gemini AI | Complete Guide | ClawdBot",
   description:
-    "Step-by-step guide to install and configure Google Gemini with gICM tools. Start building with Gemini AI in 5 minutes.",
+    "Step-by-step guide to install and configure Google Gemini with ClawdBot tools. Start building with Gemini AI in 5 minutes.",
   keywords: [
     "Gemini setup",
     "Google AI",
     "Gemini API",
     "AI development",
-    "gICM tools",
+    "ClawdBot tools",
     "Gemini installation",
   ],
   openGraph: {
     title: "How to Setup Gemini AI - Complete Installation Guide",
     description:
-      "Step-by-step guide to install Gemini AI SDK and configure gICM tools for AI-powered development.",
-    url: "https://gicm.app/guides/gemini-setup",
+      "Step-by-step guide to install Gemini AI SDK and configure ClawdBot tools for AI-powered development.",
+    url: "https://clawdbot.com/guides/gemini-setup",
     images: [
       {
         url: "/api/og?title=Gemini%20Setup%20Guide&kind=skill",
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gemini AI Setup Guide | gICM",
-    description: "Complete guide to installing Gemini AI with gICM tools",
+    title: "Gemini AI Setup Guide | ClawdBot",
+    description: "Complete guide to installing Gemini AI with ClawdBot tools",
     images: ["/api/og?title=Gemini%20Setup%20Guide&kind=skill"],
   },
   alternates: {
-    canonical: "https://gicm.app/guides/gemini-setup",
+    canonical: "https://clawdbot.com/guides/gemini-setup",
   },
 };
 
@@ -72,8 +72,8 @@ export default function GeminiSetupLayout({
         dangerouslySetInnerHTML={{
           __html: safeJsonLd(
             generateHowToSchema(
-              "How to Setup Gemini AI with gICM",
-              "Complete step-by-step guide to installing Google Gemini AI SDK, configuring your API key, and adding powerful gICM tools for cross-platform AI development.",
+              "How to Setup Gemini AI with ClawdBot",
+              "Complete step-by-step guide to installing Google Gemini AI SDK, configuring your API key, and adding powerful ClawdBot tools for cross-platform AI development.",
               GEMINI_SETUP_STEPS
             )
           ),

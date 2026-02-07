@@ -378,10 +378,10 @@ export const OpenSkillsFrontmatterSchema = z.object({
     .string()
     .regex(/^\d+\.\d+\.\d+$/)
     .default("1.0.0"),
-  author: z.string().default("gICM Community"),
+  author: z.string().default("ClawdBot Community"),
   license: z.string().default("Apache-2.0"),
 
-  // gICM-specific extensions (optional, stripped for pure OpenSkills)
+  // ClawdBot-specific extensions (optional, stripped for pure OpenSkills)
   gicm: z
     .object({
       progressiveDisclosure: z.boolean().default(false),
@@ -439,14 +439,14 @@ export interface OpenSkillsCatalogEntry {
 }
 
 /**
- * Check if a skill has gICM extensions.
+ * Check if a skill has ClawdBot extensions.
  */
 export function hasGicmExtensions(skill: OpenSkillsSkill): boolean {
   return skill.frontmatter.gicm !== undefined;
 }
 
 /**
- * Strip gICM extensions for pure OpenSkills export.
+ * Strip ClawdBot extensions for pure OpenSkills export.
  */
 export function stripGicmExtensions(
   frontmatter: OpenSkillsFrontmatter

@@ -60,7 +60,7 @@ export async function generateMetadata({
   const item = getItemBySlug(slug);
 
   if (!item) {
-    return { title: "Item Not Found | gICM" };
+    return { title: "Item Not Found | ClawdBot" };
   }
 
   const kindLabels: Record<string, string> = {
@@ -71,10 +71,10 @@ export async function generateMetadata({
   };
 
   const kindLabel = kindLabels[item.kind] || item.kind;
-  const title = `${formatProductName(item.name)} - ${kindLabel} | gICM Marketplace`;
+  const title = `${formatProductName(item.name)} - ${kindLabel} | ClawdBot Marketplace`;
   const description =
     item.description ||
-    `${formatProductName(item.name)} is a ${kindLabel} available on gICM, the universal AI workflow marketplace.`;
+    `${formatProductName(item.name)} is a ${kindLabel} available on ClawdBot, the universal AI workflow marketplace.`;
 
   return {
     title,
@@ -94,8 +94,8 @@ export async function generateMetadata({
       title: `${formatProductName(item.name)} - ${kindLabel}`,
       description,
       type: "website",
-      url: `https://gicm.app/items/${item.slug}`,
-      siteName: "gICM",
+      url: `https://clawdbot.com/items/${item.slug}`,
+      siteName: "ClawdBot",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(item.name)}&kind=${item.kind}`,
@@ -115,7 +115,7 @@ export async function generateMetadata({
       ],
     },
     alternates: {
-      canonical: `https://gicm.app/items/${item.slug}`,
+      canonical: `https://clawdbot.com/items/${item.slug}`,
     },
   };
 }
@@ -161,12 +161,12 @@ export default async function ItemDetailsPage({ params }: PageProps) {
   };
 
   const breadcrumbs = [
-    { name: "gICM", url: "https://gicm.app" },
+    { name: "ClawdBot", url: "https://clawdbot.com" },
     {
       name: categoryLabels[item.kind] || item.kind,
-      url: `https://gicm.app/?kind=${item.kind}`,
+      url: `https://clawdbot.com/?kind=${item.kind}`,
     },
-    { name: item.name, url: `https://gicm.app/items/${item.slug}` },
+    { name: item.name, url: `https://clawdbot.com/items/${item.slug}` },
   ];
 
   return (
@@ -193,7 +193,7 @@ export default async function ItemDetailsPage({ params }: PageProps) {
               className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
             >
               <ArrowLeft size={16} />
-              Back to gICM Catalog
+              Back to ClawdBot Catalog
             </Link>
           </div>
         </div>

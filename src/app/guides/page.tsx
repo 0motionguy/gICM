@@ -16,7 +16,7 @@ import Link from "next/link";
 import { ComponentType, SVGProps } from "react";
 
 export const metadata = {
-  title: "Setup Guides | gICM - Universal AI Coding Hub",
+  title: "Setup Guides | ClawdBot - Universal AI Coding Hub",
   description:
     "Step-by-step guides to set up Claude Code, Gemini AI, and OpenAI GPT for AI-powered development. Start vibe coding in minutes.",
   keywords: [
@@ -28,13 +28,13 @@ export const metadata = {
     "AI development guide",
   ],
   openGraph: {
-    title: "AI Setup Guides - Claude, Gemini, OpenAI | gICM",
+    title: "AI Setup Guides - Claude, Gemini, OpenAI | ClawdBot",
     description:
       "Step-by-step guides to set up Claude Code, Gemini AI, and OpenAI GPT for AI-powered development.",
-    url: "https://gicm.app/guides",
+    url: "https://clawdbot.com/guides",
   },
   alternates: {
-    canonical: "https://gicm.app/guides",
+    canonical: "https://clawdbot.com/guides",
   },
 };
 

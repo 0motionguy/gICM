@@ -8,7 +8,7 @@ const VIBE_CODING_STEPS = [
   },
   {
     name: "Choose Your Development Stack",
-    text: "Describe your project to the AI Stack Builder at gicm.app/build. Get personalized recommendations for agents, skills, and tools based on your tech stack.",
+    text: "Describe your project to the AI Stack Builder at clawdbot.com/build. Get personalized recommendations for agents, skills, and tools based on your tech stack.",
   },
   {
     name: "Start Vibe Coding Session",
@@ -20,12 +20,12 @@ const VIBE_CODING_STEPS = [
   },
   {
     name: "Deploy and Ship",
-    text: "Use gICM deployment agents for automated CI/CD setup, security scanning, and production deployment. Ship faster with AI-powered DevOps assistance.",
+    text: "Use ClawdBot deployment agents for automated CI/CD setup, security scanning, and production deployment. Ship faster with AI-powered DevOps assistance.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Vibe Coding Guide | Build with AI Flow State | gICM",
+  title: "Vibe Coding Guide | Build with AI Flow State | ClawdBot",
   description:
     "Master vibe coding - the art of building software through natural language conversation with AI. Ship 10x faster while staying in flow state.",
   keywords: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Vibe Coding - The Future of AI-Powered Development",
     description:
       "Learn vibe coding: build software through natural conversation with AI. Ship 10x faster while staying in creative flow.",
-    url: "https://gicm.app/guides/vibe-coding",
+    url: "https://clawdbot.com/guides/vibe-coding",
     images: [
       {
         url: "/api/og?title=Vibe%20Coding%20Guide&kind=skill",
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vibe Coding Guide | gICM",
+    title: "Vibe Coding Guide | ClawdBot",
     description: "Master AI-powered development and ship 10x faster",
     images: ["/api/og?title=Vibe%20Coding%20Guide&kind=skill"],
   },
   alternates: {
-    canonical: "https://gicm.app/guides/vibe-coding",
+    canonical: "https://clawdbot.com/guides/vibe-coding",
   },
 };
 

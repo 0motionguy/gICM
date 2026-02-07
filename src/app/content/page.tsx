@@ -205,7 +205,7 @@ function PipelineBuilder() {
 
     toast.success("Pipeline configuration copied!", {
       description:
-        "Run 'npx @gicm/cli add workflow/deploy-pipeline' to implement this workflow.",
+        "Run 'npx @clawdbot/cli add workflow/deploy-pipeline' to implement this workflow.",
     });
   };
 

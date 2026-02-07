@@ -16,7 +16,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Performance Calculator | gICM",
+  title: "Performance Calculator | ClawdBot",
   description:
     "Calculate your context reduction, token savings, and speed improvements with Progressive Disclosure technology.",
 };

@@ -19,7 +19,7 @@ const DeployRequestSchema = z.object({
 });
 
 /**
- * Deploy gICM item to Bolt.new or Lovable.dev
+ * Deploy ClawdBot item to Bolt.new or Lovable.dev
  * POST /api/deploy
  */
 export async function POST(request: Request) {
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
           error: "Invalid request",
           details: parseResult.error.flatten(),
         },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     if (!item) {
       return NextResponse.json(
         { success: false, error: "Item not found" },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
           success: false,
           error: `${item.name} cannot be deployed. Only agents and skills with code files can be deployed.`,
         },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     } else {
       return NextResponse.json(
         { success: false, error: `Unsupported platform: ${platform}` },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
         success: false,
         error: error instanceof Error ? error.message : "Deployment failed",
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -118,7 +118,7 @@ function isDeployable(item: RegistryItem): boolean {
 
 async function deployToBolt(
   item: RegistryItem,
-  projectName: string,
+  projectName: string
 ): Promise<{
   url: string;
   editorUrl: string;
@@ -143,7 +143,7 @@ async function deployToBolt(
 
 async function deployToLovable(
   item: RegistryItem,
-  projectName: string,
+  projectName: string
 ): Promise<{
   url: string;
   editorUrl: string;
@@ -161,7 +161,7 @@ async function deployToLovable(
 }
 
 async function generateProjectFiles(
-  item: RegistryItem,
+  item: RegistryItem
 ): Promise<Record<string, string>> {
   const files: Record<string, string> = {};
 
@@ -183,7 +183,7 @@ async function generateProjectFiles(
       description: item.description,
       type: "module",
       scripts: {
-        dev: 'echo "gICM item deployed to Bolt.new"',
+        dev: 'echo "ClawdBot item deployed to Bolt.new"',
       },
       dependencies:
         item.dependencies?.reduce(
@@ -191,11 +191,11 @@ async function generateProjectFiles(
             acc[dep] = "latest";
             return acc;
           },
-          {} as Record<string, string>,
+          {} as Record<string, string>
         ) || {},
     },
     null,
-    2,
+    2
   );
 
   // Add README
@@ -228,7 +228,7 @@ ${item.longDescription || ""}
 ## Installation
 
 \`\`\`bash
-npx @gicm/cli add ${item.kind}/${item.slug}
+npx @clawdbot/cli add ${item.kind}/${item.slug}
 \`\`\`
 
 ## Category
@@ -245,7 +245,7 @@ ${item.dependencies?.map((d) => `- ${d}`).join("\n") || "None"}
 
 ---
 
-Deployed from [gICM Marketplace](https://gicm.dev)
+Deployed from [ClawdBot Marketplace](https://clawdbot.com)
 `;
 }
 
@@ -254,7 +254,7 @@ function generateIndexFile(item: RegistryItem): string {
  * ${item.name}
  * ${item.description}
  *
- * Deployed from gICM Marketplace
+ * Deployed from ClawdBot Marketplace
  * Item: ${item.slug}
  * Category: ${item.category}
  */
@@ -285,7 +285,7 @@ function generateBoltEmbedUrl(config: {
   };
 
   const encoded = Buffer.from(JSON.stringify(projectPayload)).toString(
-    "base64url",
+    "base64url"
   );
 
   return `https://bolt.new/~/${encoded}`;

@@ -19,8 +19,8 @@ import { ClaudeIcon, GeminiIcon, OpenAIIcon } from "@/components/ui/icons";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Project Showcase | gICM - Built with AI Agents",
-  description: "Discover amazing projects built with gICM AI agents. Get inspired, learn from real implementations, and share your own creations.",
+  title: "Project Showcase | ClawdBot - Built with AI Agents",
+  description: "Discover amazing projects built with ClawdBot AI agents. Get inspired, learn from real implementations, and share your own creations.",
 };
 
 interface Project {
@@ -319,7 +319,7 @@ export default function ProjectsPage() {
           <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
             Built with{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F]">
-              gICM Agents
+              ClawdBot Agents
             </span>
           </h1>
 

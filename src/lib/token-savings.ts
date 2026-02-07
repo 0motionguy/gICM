@@ -3,7 +3,7 @@ import { REGISTRY } from "./registry";
 
 /**
  * Baseline token costs for traditional implementation approaches
- * These represent the average tokens needed without using gICM components
+ * These represent the average tokens needed without using ClawdBot components
  */
 export const BASELINE_TOKENS = {
   agent: 5000, // Traditional agent setup/configuration prompts

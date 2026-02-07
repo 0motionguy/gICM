@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard v2 | gICM",
-  description: "Internal dashboard for gICM marketplace",
+  title: "Dashboard v2 | ClawdBot",
+  description: "Internal dashboard for ClawdBot marketplace",
   robots: {
     index: false,
     follow: false,

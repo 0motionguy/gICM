@@ -146,7 +146,7 @@ export const ACTIVITY_TEMPLATES: Record<
     color: "green",
   },
   install_command: {
-    messageTemplate: "{user} installed gICM CLI",
+    messageTemplate: "{user} installed ClawdBot CLI",
     icon: "terminal",
     color: "lime",
   },

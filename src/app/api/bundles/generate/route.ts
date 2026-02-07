@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     if (!parseResult.success) {
       return NextResponse.json(
         { error: "Invalid request", details: parseResult.error.flatten() },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -29,13 +29,13 @@ export async function POST(request: Request) {
     if (items.length === 0) {
       return NextResponse.json(
         { error: "No valid items found" },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
     // Resolve all dependencies
     const allItemIds = items.flatMap((item) =>
-      item ? resolveDependencies([item.id]).map((i) => i.id) : [],
+      item ? resolveDependencies([item.id]).map((i) => i.id) : []
     );
     const uniqueIds = Array.from(new Set(allItemIds));
     const allItems = uniqueIds
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       .filter(Boolean);
 
     // Generate install command
-    const command = `npx @gicm/cli add ${allItems.map((item) => `${item!.kind}/${item!.slug}`).join(" ")}`;
+    const command = `npx @clawdbot/cli add ${allItems.map((item) => `${item!.kind}/${item!.slug}`).join(" ")}`;
 
     // Calculate stats
     const stats = {
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
       dependencyCount: allItems.length - items.length,
       tokenSavings: allItems.reduce(
         (sum, item) => sum + (item!.tokenSavings || 0),
-        0,
+        0
       ),
       byKind: {
         agent: allItems.filter((i) => i!.kind === "agent").length,
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     console.error("Bundle generation error:", error);
     return NextResponse.json(
       { error: "Failed to generate bundle" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

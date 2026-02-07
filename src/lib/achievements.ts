@@ -142,7 +142,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "streak_7",
     name: "Week Warrior",
-    description: "Used gICM 7 days in a row",
+    description: "Used ClawdBot 7 days in a row",
     icon: "🔥",
     tier: "bronze",
     pointsValue: 20,
@@ -151,7 +151,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "streak_30",
     name: "Dedication",
-    description: "Used gICM 30 days in a row",
+    description: "Used ClawdBot 30 days in a row",
     icon: "💪",
     tier: "gold",
     pointsValue: 75,
@@ -160,7 +160,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "streak_100",
     name: "Legendary Dedication",
-    description: "Used gICM 100 days in a row",
+    description: "Used ClawdBot 100 days in a row",
     icon: "⭐",
     tier: "platinum",
     pointsValue: 200,

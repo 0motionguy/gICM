@@ -726,7 +726,7 @@ export const BENCHMARK_ASCII = `╔═══════════════
 ║                                                                                                               ║
 ║   Sources:                                                                                                    ║
 ║   • HumanEval:            OpenAI methodology (164 problems, pass@k scoring)                                   ║
-║   • Real-World:           Original gICM benchmark suite (16 production scenarios)                             ║
+║   • Real-World:           Original ClawdBot benchmark suite (16 production scenarios)                             ║
 ║   • Token Counting:       tiktoken library with cl100k_base encoding                                          ║
 ║   • Pricing:              Official API documentation as of December 2025                                      ║
 ║   • Latency:              Live measurements from respective APIs (10-run average)                             ║

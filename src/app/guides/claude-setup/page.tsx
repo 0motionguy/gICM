@@ -5,7 +5,7 @@ import { ClaudeIcon } from "@/components/ui/icons";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Claude Code Setup Guide | gICM",
+  title: "Claude Code Setup Guide | ClawdBot",
   description: "Step-by-step guide to set up Claude Code with Opus 4.5 for AI-powered development.",
 };
 
@@ -94,12 +94,12 @@ const steps = [
   },
   {
     number: 5,
-    title: "Install gICM Agents",
-    description: "Add powerful agents from the gICM marketplace.",
+    title: "Install ClawdBot Agents",
+    description: "Add powerful agents from the ClawdBot marketplace.",
     content: (
       <div className="space-y-4">
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
-          <code className="text-sm text-[#00F0FF]">npx @gicm/cli add agent/icm-anchor-architect{"\n"}npx @gicm/cli add agent/frontend-fusion-engine{"\n"}npx @gicm/cli add skill/solana-anchor-mastery</code>
+          <code className="text-sm text-[#00F0FF]">npx @clawdbot/cli add agent/icm-anchor-architect{"\n"}npx @clawdbot/cli add agent/frontend-fusion-engine{"\n"}npx @clawdbot/cli add skill/solana-anchor-mastery</code>
         </pre>
         <Link
           href="/"
@@ -124,7 +124,7 @@ const tips = [
   },
   {
     title: "Organize with Workflows",
-    description: "Use gICM workflows to orchestrate multiple agents for complex tasks.",
+    description: "Use ClawdBot workflows to orchestrate multiple agents for complex tasks.",
   },
 ];
 

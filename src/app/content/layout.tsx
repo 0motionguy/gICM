@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Content Creator | gICM",
-  description: "Internal content creation tool for gICM",
+  title: "Content Creator | ClawdBot",
+  description: "Internal content creation tool for ClawdBot",
   robots: {
     index: false,
     follow: false,

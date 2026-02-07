@@ -1,7 +1,7 @@
 /**
  * Tool Search API - Anthropic Tool Search Tool Implementation
  *
- * Converts gICM registry items to Claude-compatible tool definitions.
+ * Converts ClawdBot registry items to Claude-compatible tool definitions.
  * Enables dynamic tool discovery with 85% context reduction.
  */
 
@@ -64,7 +64,7 @@ interface ToolSearchResult {
 
 // Generate input schema based on agent type
 function generateInputSchema(
-  item: (typeof REGISTRY)[0],
+  item: (typeof REGISTRY)[0]
 ): ToolDefinition["input_schema"] {
   const baseSchema: ToolDefinition["input_schema"] = {
     type: "object",
@@ -171,7 +171,7 @@ export async function POST(request: NextRequest) {
     if (!parseResult.success) {
       return NextResponse.json(
         { error: "Invalid request", details: parseResult.error.flatten() },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -228,7 +228,7 @@ export async function POST(request: NextRequest) {
     console.error("Tool search error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -251,7 +251,7 @@ export async function GET(request: NextRequest) {
         error: "Invalid query parameters",
         details: parseResult.error.flatten(),
       },
-      { status: 400 },
+      { status: 400 }
     );
   }
 

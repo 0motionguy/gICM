@@ -329,7 +329,7 @@ export interface UIComponentCode {
 }
 
 export interface UIComponentCredit {
-  library: string; // "Aceternity UI" | "Magic UI" | "gICM"
+  library: string; // "Aceternity UI" | "Magic UI" | "ClawdBot"
   url: string; // Original source URL
   license: "MIT";
 }

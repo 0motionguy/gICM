@@ -19,28 +19,28 @@ const OPENAI_SETUP_STEPS = [
     text: "Import OpenAI and create a client instance with your API key. Configure model preferences (gpt-4, gpt-3.5-turbo, etc.).",
   },
   {
-    name: "Install gICM Tools",
-    text: "Add gICM agents compatible with OpenAI: npx @gicm/cli add agent/fullstack-orchestrator. All 108 agents work across platforms.",
+    name: "Install ClawdBot Tools",
+    text: "Add ClawdBot agents compatible with OpenAI: npx @clawdbot/cli add agent/fullstack-orchestrator. All 108 agents work across platforms.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "How to Setup OpenAI GPT | Complete Guide | gICM",
+  title: "How to Setup OpenAI GPT | Complete Guide | ClawdBot",
   description:
-    "Step-by-step guide to install and configure OpenAI GPT with gICM tools. Start building with GPT-4 in 5 minutes.",
+    "Step-by-step guide to install and configure OpenAI GPT with ClawdBot tools. Start building with GPT-4 in 5 minutes.",
   keywords: [
     "OpenAI setup",
     "GPT-4",
     "ChatGPT API",
     "AI development",
-    "gICM tools",
+    "ClawdBot tools",
     "OpenAI installation",
   ],
   openGraph: {
     title: "How to Setup OpenAI GPT - Complete Installation Guide",
     description:
-      "Step-by-step guide to install OpenAI SDK and configure gICM tools for AI-powered development.",
-    url: "https://gicm.app/guides/openai-setup",
+      "Step-by-step guide to install OpenAI SDK and configure ClawdBot tools for AI-powered development.",
+    url: "https://clawdbot.com/guides/openai-setup",
     images: [
       {
         url: "/api/og?title=OpenAI%20Setup%20Guide&kind=skill",
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OpenAI GPT Setup Guide | gICM",
-    description: "Complete guide to installing OpenAI GPT with gICM tools",
+    title: "OpenAI GPT Setup Guide | ClawdBot",
+    description: "Complete guide to installing OpenAI GPT with ClawdBot tools",
     images: ["/api/og?title=OpenAI%20Setup%20Guide&kind=skill"],
   },
   alternates: {
-    canonical: "https://gicm.app/guides/openai-setup",
+    canonical: "https://clawdbot.com/guides/openai-setup",
   },
 };
 
@@ -72,8 +72,8 @@ export default function OpenAISetupLayout({
         dangerouslySetInnerHTML={{
           __html: safeJsonLd(
             generateHowToSchema(
-              "How to Setup OpenAI GPT with gICM",
-              "Complete step-by-step guide to installing OpenAI SDK, configuring your API key, and adding powerful gICM agents for cross-platform AI development.",
+              "How to Setup OpenAI GPT with ClawdBot",
+              "Complete step-by-step guide to installing OpenAI SDK, configuring your API key, and adding powerful ClawdBot agents for cross-platform AI development.",
               OPENAI_SETUP_STEPS
             )
           ),

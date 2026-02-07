@@ -1,7 +1,7 @@
 /**
  * Superpower Transformer
  *
- * Transforms obra/superpowers workflow skills to gICM RegistryItem format.
+ * Transforms obra/superpowers workflow skills to ClawdBot RegistryItem format.
  * Each superpower is a high-level workflow skill that encapsulates
  * best practices for AI-assisted development patterns.
  *
@@ -556,7 +556,7 @@ function generateSuperpowerContent(
 }
 
 /**
- * Transforms a superpower definition into a gICM RegistryItem.
+ * Transforms a superpower definition into a ClawdBot RegistryItem.
  *
  * @param slug - The superpower slug (e.g., "test-driven-development")
  * @returns RegistryItem configured for the superpower workflow
@@ -601,7 +601,7 @@ export function transformSuperpower(slug: string): RegistryItem | null {
       `.gemini/skills/superpowers/${slug}.md`,
       `.openai/skills/superpowers/${slug}.md`,
     ],
-    install: `npx @gicm/cli add skill/superpower-${slug}`,
+    install: `npx @clawdbot/cli add skill/superpower-${slug}`,
     envKeys: [],
     installs: 0,
     remixes: 0,
@@ -627,15 +627,15 @@ export function transformSuperpower(slug: string): RegistryItem | null {
     },
     implementations: {
       claude: {
-        install: `npx @gicm/cli add skill/superpower-${slug}`,
+        install: `npx @clawdbot/cli add skill/superpower-${slug}`,
         configFile: `.claude/skills/superpowers/${slug}.md`,
       },
       gemini: {
-        install: `npx @gicm/cli add skill/superpower-${slug}`,
+        install: `npx @clawdbot/cli add skill/superpower-${slug}`,
         configFile: `.gemini/skills/superpowers/${slug}.md`,
       },
       openai: {
-        install: `npx @gicm/cli add skill/superpower-${slug}`,
+        install: `npx @clawdbot/cli add skill/superpower-${slug}`,
         configFile: `.openai/skills/superpowers/${slug}.md`,
       },
     },
@@ -777,7 +777,7 @@ export function transformSuperpowerInput(input: SuperpowerInput): RegistryItem {
       `.gemini/skills/superpowers/${input.slug}.md`,
       `.openai/skills/superpowers/${input.slug}.md`,
     ],
-    install: `npx @gicm/cli add skill/superpower-${input.slug}`,
+    install: `npx @clawdbot/cli add skill/superpower-${input.slug}`,
     envKeys: [],
     installs: 0,
     remixes: 0,
@@ -799,15 +799,15 @@ export function transformSuperpowerInput(input: SuperpowerInput): RegistryItem {
     },
     implementations: {
       claude: {
-        install: `npx @gicm/cli add skill/superpower-${input.slug}`,
+        install: `npx @clawdbot/cli add skill/superpower-${input.slug}`,
         configFile: `.claude/skills/superpowers/${input.slug}.md`,
       },
       gemini: {
-        install: `npx @gicm/cli add skill/superpower-${input.slug}`,
+        install: `npx @clawdbot/cli add skill/superpower-${input.slug}`,
         configFile: `.gemini/skills/superpowers/${input.slug}.md`,
       },
       openai: {
-        install: `npx @gicm/cli add skill/superpower-${input.slug}`,
+        install: `npx @clawdbot/cli add skill/superpower-${input.slug}`,
         configFile: `.openai/skills/superpowers/${input.slug}.md`,
       },
     },

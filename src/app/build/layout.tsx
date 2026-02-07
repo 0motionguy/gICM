@@ -15,12 +15,12 @@ const BUILD_PAGE_FAQS = [
   {
     question: "How many components are available?",
     answer:
-      "gICM offers 617+ components: 108 AI agents, 120 skills, 93 commands, and 95 MCP integrations. All are free, open-source, and work across Claude, Gemini, and OpenAI.",
+      "ClawdBot offers 617+ components: 108 AI agents, 120 skills, 93 commands, and 95 MCP integrations. All are free, open-source, and work across Claude, Gemini, and OpenAI.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "AI Stack Builder | gICM - Build Your Perfect AI Dev Stack",
+  title: "AI Stack Builder | ClawdBot - Build Your Perfect AI Dev Stack",
   description:
     "Describe your project and let Claude recommend the perfect combination of AI agents, skills, and tools. Build with 617+ components across Claude, Gemini, and OpenAI.",
   keywords: [
@@ -43,18 +43,18 @@ export const metadata: Metadata = {
     title: "AI Stack Builder - Build Your Perfect AI Dev Stack",
     description:
       "Describe your project and get AI-powered recommendations for agents, skills, and tools. 400+ components available.",
-    url: "https://gicm.app/build",
+    url: "https://clawdbot.com/build",
     images: ["/api/og?title=AI%20Stack%20Builder&kind=tool"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Stack Builder | gICM",
+    title: "AI Stack Builder | ClawdBot",
     description:
       "Build your perfect AI dev stack with Claude-powered recommendations",
     images: ["/api/og?title=AI%20Stack%20Builder&kind=tool"],
   },
   alternates: {
-    canonical: "https://gicm.app/build",
+    canonical: "https://clawdbot.com/build",
   },
 };
 

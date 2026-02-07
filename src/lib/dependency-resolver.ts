@@ -1,5 +1,5 @@
 /**
- * Dependency Resolver for gICM Registry
+ * Dependency Resolver for ClawdBot Registry
  *
  * Resolves dependency trees, finds dependents, and validates dependency integrity
  * for all registry items (agents, skills, commands, MCPs, workflows).

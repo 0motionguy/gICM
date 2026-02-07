@@ -25,7 +25,7 @@ export async function GET() {
   // Build RSS 2.0 feed with Atom namespace
   const rssItems = recentItems
     .map((item) => {
-      const link = `https://gicm.app/items/${item.slug}`;
+      const link = `https://clawdbot.com/items/${item.slug}`;
       const pubDate = item.audit?.lastAudited
         ? new Date(item.audit.lastAudited).toUTCString()
         : new Date().toUTCString();
@@ -44,10 +44,10 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>gICM - Universal AI Workflow Marketplace</title>
-    <link>https://gicm.app</link>
+    <title>ClawdBot - Universal AI Workflow Marketplace</title>
+    <link>https://clawdbot.com</link>
     <description>Latest AI agents, skills, and workflows for Claude, Gemini, and OpenAI</description>
-    <atom:link href="https://gicm.app/api/feed" rel="self" type="application/rss+xml" />
+    <atom:link href="https://clawdbot.com/api/feed" rel="self" type="application/rss+xml" />
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${rssItems}

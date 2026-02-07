@@ -75,7 +75,7 @@ export function generateShareURL(
     baseURL ||
     (typeof window !== "undefined"
       ? window.location.origin
-      : "https://gicm.io");
+      : "https://clawdbot.com");
   return `${base}/stack?import=${encoded}`;
 }
 
@@ -209,7 +209,7 @@ export async function exportToGist(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        description: `gICM Stack: ${config.name}`,
+        description: `ClawdBot Stack: ${config.name}`,
         public: true,
         files,
       }),
@@ -246,7 +246,7 @@ function generateStackREADME(
   }
 
   if (config.remixedFrom) {
-    readme += `> 🍴 **Forked from:** [Original Stack](https://gicm.io/stack/${config.remixedFrom})\n\n`;
+    readme += `> 🍴 **Forked from:** [Original Stack](https://clawdbot.com/stack/${config.remixedFrom})\n\n`;
   }
 
   readme += `## Stack Contents\n\n`;
@@ -279,11 +279,11 @@ function generateStackREADME(
   readme += `## Configuration\n\n`;
   readme += `Copy \`.env.example\` to \`.env.local\` and configure your environment variables.\n\n`;
 
-  readme += `## Import to gICM\n\n`;
-  readme += `[Import this stack to gICM](${generateShareURL(config)})\n\n`;
+  readme += `## Import to ClawdBot\n\n`;
+  readme += `[Import this stack to ClawdBot](${generateShareURL(config)})\n\n`;
 
   readme += `---\n\n`;
-  readme += `*Generated with [gICM](https://gicm.io) - The AI Marketplace for Web3 Builders*\n`;
+  readme += `*Generated with [ClawdBot](https://clawdbot.com) - The AI Marketplace for Web3 Builders*\n`;
 
   return readme;
 }
@@ -293,10 +293,10 @@ function generateStackREADME(
  */
 function generateInstallScript(items: RegistryItem[]): string {
   let script = `#!/bin/bash\n\n`;
-  script += `# gICM Stack Installation Script\n`;
+  script += `# ClawdBot Stack Installation Script\n`;
   script += `# Generated: ${new Date().toISOString()}\n\n`;
 
-  script += `echo "🚀 Installing gICM stack..."\n\n`;
+  script += `echo "🚀 Installing ClawdBot stack..."\n\n`;
 
   // Group by kind
   const byKind: Record<string, RegistryItem[]> = {};
@@ -328,7 +328,7 @@ function generateInstallScript(items: RegistryItem[]): string {
  * Generate .env.example
  */
 function generateEnvExample(items: RegistryItem[]): string {
-  let env = `# gICM Stack Environment Variables\n`;
+  let env = `# ClawdBot Stack Environment Variables\n`;
   env += `# Generated: ${new Date().toISOString()}\n\n`;
 
   const envKeys = new Set<string>();

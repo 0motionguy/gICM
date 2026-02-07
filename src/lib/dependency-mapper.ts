@@ -1,5 +1,5 @@
 /**
- * Dependency Mapper for gICM Registry
+ * Dependency Mapper for ClawdBot Registry
  *
  * Multi-strategy dependency detection for registry items.
  * Detects potential dependencies using content analysis, tag matching,

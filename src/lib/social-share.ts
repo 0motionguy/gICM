@@ -13,10 +13,10 @@ export function shareAchievementToTwitter(
   achievement: Achievement,
   userPoints: UserPoints
 ): string {
-  const text = `🎉 I just earned the "${achievement.name}" achievement on @gicm_io!\n\n${achievement.description}\n\n+${achievement.points} points • ${achievement.rarity} rarity\n\nJoin me in building faster with AI! 🚀`;
+  const text = `🎉 I just earned the "${achievement.name}" achievement on @clawdbot_io!\n\n${achievement.description}\n\n+${achievement.points} points • ${achievement.rarity} rarity\n\nJoin me in building faster with AI! 🚀`;
 
-  const url = "https://gicm.io/profile";
-  const hashtags = "gICM,Web3,AI,BuildInPublic";
+  const url = "https://clawdbot.com/profile";
+  const hashtags = "ClawdBot,Web3,AI,BuildInPublic";
 
   const params = new URLSearchParams({
     text,
@@ -34,9 +34,9 @@ export function shareAchievementToLinkedIn(
   achievement: Achievement,
   userPoints: UserPoints
 ): string {
-  const summary = `I just earned the "${achievement.name}" achievement on gICM - The AI Marketplace for Web3 Builders! ${achievement.description}`;
+  const summary = `I just earned the "${achievement.name}" achievement on ClawdBot - The AI Marketplace for Web3 Builders! ${achievement.description}`;
 
-  const url = "https://gicm.io/profile";
+  const url = "https://clawdbot.com/profile";
 
   const params = new URLSearchParams({
     url,
@@ -84,7 +84,7 @@ export function generateAchievementImage(
       </text>
 
       <text x="600" y="560" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.7)" text-anchor="middle">
-        gICM - The AI Marketplace for Web3 Builders
+        ClawdBot - The AI Marketplace for Web3 Builders
       </text>
     </svg>
   `;
@@ -96,10 +96,10 @@ export function generateAchievementImage(
  * Generate Twitter share URL for a stack
  */
 export function shareStackToTwitter(stack: StackConfig): string {
-  const text = `🚀 Check out my "${stack.name}" stack on @gicm_io!\n\n${stack.description || "Custom AI development stack"}\n\n${stack.items.length} items • Built for Web3\n\nBuild your own: `;
+  const text = `🚀 Check out my "${stack.name}" stack on @clawdbot_io!\n\n${stack.description || "Custom AI development stack"}\n\n${stack.items.length} items • Built for Web3\n\nBuild your own: `;
 
-  const url = `https://gicm.io/stacks?import=${encodeURIComponent(stack.id)}`;
-  const hashtags = "gICM,Web3,AI,DevTools";
+  const url = `https://clawdbot.com/stacks?import=${encodeURIComponent(stack.id)}`;
+  const hashtags = "ClawdBot,Web3,AI,DevTools";
 
   const params = new URLSearchParams({
     text,
@@ -114,9 +114,9 @@ export function shareStackToTwitter(stack: StackConfig): string {
  * Generate LinkedIn share URL for a stack
  */
 export function shareStackToLinkedIn(stack: StackConfig): string {
-  const summary = `I built a custom AI development stack "${stack.name}" on gICM. ${stack.description || ""} Check it out and build your own!`;
+  const summary = `I built a custom AI development stack "${stack.name}" on ClawdBot. ${stack.description || ""} Check it out and build your own!`;
 
-  const url = `https://gicm.io/stacks?import=${encodeURIComponent(stack.id)}`;
+  const url = `https://clawdbot.com/stacks?import=${encodeURIComponent(stack.id)}`;
 
   const params = new URLSearchParams({
     url,
@@ -134,10 +134,10 @@ export function sharePointsMilestoneToTwitter(
   milestone: number
 ): string {
   const level = userPoints.currentLevel;
-  const text = `🎯 Just hit ${milestone} points on @gicm_io!\n\nLevel ${level.level}: ${level.name} ${level.badge}\n\nBuilding faster with AI-powered Web3 tools 🚀\n\nJoin me: `;
+  const text = `🎯 Just hit ${milestone} points on @clawdbot_io!\n\nLevel ${level.level}: ${level.name} ${level.badge}\n\nBuilding faster with AI-powered Web3 tools 🚀\n\nJoin me: `;
 
-  const url = "https://gicm.io";
-  const hashtags = "gICM,Web3,AI,Milestone";
+  const url = "https://clawdbot.com";
+  const hashtags = "ClawdBot,Web3,AI,Milestone";
 
   const params = new URLSearchParams({
     text,
@@ -162,8 +162,8 @@ ${achievement.description}
 +${achievement.points} points • ${achievement.rarity} rarity
 Level ${userPoints.currentLevel.level}: ${userPoints.currentLevel.name} ${userPoints.currentLevel.badge}
 
-Built with gICM - The AI Marketplace for Web3 Builders
-https://gicm.io/profile`;
+Built with ClawdBot - The AI Marketplace for Web3 Builders
+https://clawdbot.com/profile`;
 
   await navigator.clipboard.writeText(text);
 }

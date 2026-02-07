@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Workflow Analytics | gICM",
-  description: "Internal workflow analytics for gICM",
+  title: "Workflow Analytics | ClawdBot",
+  description: "Internal workflow analytics for ClawdBot",
   robots: {
     index: false,
     follow: false,

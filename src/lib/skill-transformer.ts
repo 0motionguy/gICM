@@ -2,7 +2,7 @@
  * Skill Transformer - Converts SKILL.md format to RegistryItem
  *
  * Handles parsing of Anthropic's official skill format (SKILL.md with YAML frontmatter)
- * into gICM RegistryItem format for marketplace integration.
+ * into ClawdBot RegistryItem format for marketplace integration.
  */
 
 import type { RegistryItem } from "@/types/registry";

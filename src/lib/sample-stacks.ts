@@ -30,7 +30,7 @@ export const SAMPLE_STACKS: StackConfig[] = [
     tags: ["ptc", "tool-search", "orchestration", "ai-agents", "context-reduction", "advanced"],
     createdAt: new Date("2025-01-30").toISOString(),
     updatedAt: new Date("2025-01-30").toISOString(),
-    author: "gICM Team",
+    author: "ClawdBot Team",
     version: "1.0.0",
     featured: true,
   },
@@ -50,7 +50,7 @@ export const SAMPLE_STACKS: StackConfig[] = [
     tags: ["solana", "web3", "beginner", "starter"],
     createdAt: new Date("2025-01-01").toISOString(),
     updatedAt: new Date("2025-01-01").toISOString(),
-    author: "gICM Team",
+    author: "ClawdBot Team",
     version: "1.0.0",
   },
   {
@@ -73,7 +73,7 @@ export const SAMPLE_STACKS: StackConfig[] = [
     tags: ["defi", "security", "advanced", "solana"],
     createdAt: new Date("2025-01-01").toISOString(),
     updatedAt: new Date("2025-01-01").toISOString(),
-    author: "gICM Team",
+    author: "ClawdBot Team",
     version: "1.0.0",
   },
   {
@@ -95,7 +95,7 @@ export const SAMPLE_STACKS: StackConfig[] = [
     tags: ["fullstack", "web3", "intermediate", "react"],
     createdAt: new Date("2025-01-01").toISOString(),
     updatedAt: new Date("2025-01-01").toISOString(),
-    author: "gICM Team",
+    author: "ClawdBot Team",
     version: "1.0.0",
   },
   {
@@ -116,7 +116,7 @@ export const SAMPLE_STACKS: StackConfig[] = [
     tags: ["nft", "marketplace", "solana", "intermediate"],
     createdAt: new Date("2025-01-01").toISOString(),
     updatedAt: new Date("2025-01-01").toISOString(),
-    author: "gICM Team",
+    author: "ClawdBot Team",
     version: "1.0.0",
   },
   {
@@ -137,7 +137,7 @@ export const SAMPLE_STACKS: StackConfig[] = [
     tags: ["testing", "qa", "security", "beginner"],
     createdAt: new Date("2025-01-01").toISOString(),
     updatedAt: new Date("2025-01-01").toISOString(),
-    author: "gICM Team",
+    author: "ClawdBot Team",
     version: "1.0.0",
   },
 ];

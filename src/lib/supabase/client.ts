@@ -13,7 +13,7 @@ export function isSupabaseConfigured(): boolean {
   return Boolean(supabaseUrl && supabaseAnonKey);
 }
 
-// Database types for gICM events
+// Database types for ClawdBot events
 export interface LiveEvent {
   id: string;
   user: string;

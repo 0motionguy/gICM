@@ -81,7 +81,7 @@ export default function Error({
             <p className="text-sm text-zinc-500 mb-4">Still having issues?</p>
             <div className="flex items-center justify-center gap-4 text-sm">
               <a
-                href="https://github.com/Kermit457/gICM/issues"
+                href="https://github.com/Kermit457/ClawdBot/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-white font-medium transition-colors"

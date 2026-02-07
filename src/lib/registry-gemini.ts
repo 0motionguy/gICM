@@ -137,7 +137,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
   },
 
   // ========================================================================
-  // PROJECT SPECIFIC AGENTS (gICM Optimization)
+  // PROJECT SPECIFIC AGENTS (ClawdBot Optimization)
   // ========================================================================
   {
     id: "gemini-registry-architect",
@@ -145,11 +145,11 @@ export const GEMINI_TOOLS: RegistryItem[] = [
     name: "Gemini Registry Architect",
     slug: "gemini-registry-architect",
     description:
-      "Specialist for gICM's registry system. Adds agents/skills to src/lib/registry.ts efficiently.",
+      "Specialist for ClawdBot's registry system. Adds agents/skills to src/lib/registry.ts efficiently.",
     longDescription:
       "Context-aware agent that understands the `RegistryItem` schema and the structure of `src/lib/registry.ts`. It can generate valid registry entries without hallucinating fields, ensuring strict adherence to Zod schemas.",
     category: "Project Specific",
-    tags: ["Gemini", "gICM", "Registry", "System"],
+    tags: ["Gemini", "ClawdBot", "Registry", "System"],
     files: [".gemini/agents/gemini-registry-architect.md"],
     layer: ".gemini",
     install: "npx @clawdbot/cli add agent/gemini-registry-architect",
@@ -175,7 +175,7 @@ export const GEMINI_TOOLS: RegistryItem[] = [
     name: "Gemini Shadcn Designer",
     slug: "gemini-shadcn-designer",
     description:
-      "UI specialist for gICM. Generates Tailwind components using the project's acid-lime design system.",
+      "UI specialist for ClawdBot. Generates Tailwind components using the project's acid-lime design system.",
     longDescription:
       "Expert in `shadcn/ui` and the project's `tailwind.config.ts`. Generates components that use the custom `icm` color palette (primary: #D1FD0A, bg: #0A0A0A) and correctly imports from `@/components/ui`. Prevents style clashes and ensures visual consistency.",
     category: "Project Specific",

@@ -195,8 +195,8 @@ export default function Hero() {
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Button", "Neon", "Glow", "Animation"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/neon-button",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/neon-button",
       license: "MIT",
     },
     code: {
@@ -273,8 +273,8 @@ export default function Example() {
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Button", "Glass", "Blur", "Glassmorphism"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/glass-button",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/glass-button",
       license: "MIT",
     },
     code: {
@@ -489,8 +489,8 @@ export default function Hero() {
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Loader", "Spinner", "Animation"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/spinner",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/spinner",
       license: "MIT",
     },
     code: {
@@ -1145,8 +1145,8 @@ export default MovingBorder;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Button", "Magnetic", "Interactive"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/magnetic-button",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/magnetic-button",
       license: "MIT",
     },
     code: {
@@ -1206,8 +1206,8 @@ export default MagneticButton;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Button", "Ripple", "Material"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/ripple-button",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/ripple-button",
       license: "MIT",
     },
     code: {
@@ -1270,8 +1270,8 @@ export default RippleButton;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Button", "Gradient", "Border"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/gradient-border-button",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/gradient-border-button",
       license: "MIT",
     },
     code: {
@@ -1375,8 +1375,8 @@ export default Card3D;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Card", "Hover", "Reveal"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/hover-card",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/hover-card",
       license: "MIT",
     },
     code: {
@@ -1501,8 +1501,8 @@ export default BentoGrid;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Card", "Feature", "Icon"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/feature-card",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/feature-card",
       license: "MIT",
     },
     code: {
@@ -1550,8 +1550,8 @@ export default FeatureCard;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Card", "Pricing", "SaaS"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/pricing-card",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/pricing-card",
       license: "MIT",
     },
     code: {
@@ -1799,8 +1799,8 @@ export default NumberTicker;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Text", "Gradient", "Animation"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/gradient-text",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/gradient-text",
       license: "MIT",
     },
     code: {
@@ -1850,8 +1850,8 @@ export default GradientText;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Text", "Animation", "Wave"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/wavy-text",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/wavy-text",
       license: "MIT",
     },
     code: {
@@ -1905,8 +1905,8 @@ export default WavyText;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Loader", "Dots", "Animation"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/dots-loader",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/dots-loader",
       license: "MIT",
     },
     code: {
@@ -2006,8 +2006,8 @@ export default Skeleton;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Loader", "Progress", "Bar"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/progress",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/progress",
       license: "MIT",
     },
     code: {
@@ -2062,8 +2062,8 @@ export default Progress;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Input", "Search", "Form"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/search-input",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/search-input",
       license: "MIT",
     },
     code: {
@@ -2106,8 +2106,8 @@ export default SearchInput;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Input", "Animated", "Label"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/animated-input",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/animated-input",
       license: "MIT",
     },
     code: {
@@ -2159,8 +2159,8 @@ export default AnimatedInput;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Input", "Toggle", "Switch"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/toggle",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/toggle",
       license: "MIT",
     },
     code: {
@@ -2213,8 +2213,8 @@ const [on, setOn] = useState(false);
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Input", "Slider", "Range"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/slider",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/slider",
       license: "MIT",
     },
     code: {
@@ -2272,8 +2272,8 @@ const [val, setVal] = useState(50);
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Input", "Select", "Dropdown"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/select",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/select",
       license: "MIT",
     },
     code: {
@@ -2350,8 +2350,8 @@ const [val, setVal] = useState("");
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Modal", "Dialog", "Overlay"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/dialog",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/dialog",
       license: "MIT",
     },
     code: {
@@ -2422,8 +2422,8 @@ const [open, setOpen] = useState(false);
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Modal", "Drawer", "Slide"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/drawer",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/drawer",
       license: "MIT",
     },
     code: {
@@ -2501,8 +2501,8 @@ const [open, setOpen] = useState(false);
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Tooltip", "Hover", "Overlay"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/tooltip",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/tooltip",
       license: "MIT",
     },
     code: {
@@ -2566,8 +2566,8 @@ export default Tooltip;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Avatar", "Profile", "User"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/avatar",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/avatar",
       license: "MIT",
     },
     code: {
@@ -2626,8 +2626,8 @@ export default Avatar;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Badge", "Status", "Tag"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/badge",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/badge",
       license: "MIT",
     },
     code: {
@@ -2675,8 +2675,8 @@ export default Badge;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Accordion", "Expandable", "FAQ"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/accordion",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/accordion",
       license: "MIT",
     },
     code: {
@@ -2741,8 +2741,8 @@ export default Accordion;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Tabs", "Navigation", "Panel"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/tabs",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/tabs",
       license: "MIT",
     },
     code: {
@@ -2806,8 +2806,8 @@ export default Tabs;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Toast", "Notification", "Alert"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/notification",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/notification",
       license: "MIT",
     },
     code: {
@@ -2876,8 +2876,8 @@ export default Notification;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Timeline", "Events", "History"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/timeline",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/timeline",
       license: "MIT",
     },
     code: {
@@ -2930,8 +2930,8 @@ export default Timeline;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Animation", "Fade", "Entrance"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/fade-in",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/fade-in",
       license: "MIT",
     },
     code: {
@@ -2988,8 +2988,8 @@ export default FadeIn;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Animation", "Stagger", "List"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/stagger",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/stagger",
       license: "MIT",
     },
     code: {
@@ -3058,8 +3058,8 @@ export default StaggerContainer;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Animation", "Parallax", "Scroll"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/parallax",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/parallax",
       license: "MIT",
     },
     code: {
@@ -3107,8 +3107,8 @@ export default Parallax;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Animation", "Reveal", "Scroll"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/scroll-reveal",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/scroll-reveal",
       license: "MIT",
     },
     code: {
@@ -3160,8 +3160,8 @@ export default ScrollReveal;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Divider", "Separator", "Layout"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/divider",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/divider",
       license: "MIT",
     },
     code: {
@@ -3211,8 +3211,8 @@ export default Divider;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Keyboard", "Key", "Shortcut"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/kbd",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/kbd",
       license: "MIT",
     },
     code: {
@@ -3255,8 +3255,8 @@ export default Kbd;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Chip", "Tag", "Removable"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/chip",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/chip",
       license: "MIT",
     },
     code: {
@@ -3307,8 +3307,8 @@ export default Chip;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Empty", "Placeholder", "State"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/empty-state",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/empty-state",
       license: "MIT",
     },
     code: {
@@ -3358,8 +3358,8 @@ export default EmptyState;`,
     subcategory: "React UI",
     tags: ["React", "Tailwind", "Stats", "Card", "Dashboard"],
     credit: {
-      library: "gICM",
-      url: "https://gicm.dev/components/stat-card",
+      library: "ClawdBot",
+      url: "https://clawdbot.com/components/stat-card",
       license: "MIT",
     },
     code: {

@@ -12801,7 +12801,7 @@ export const MCPS: RegistryItem[] = [
     description:
       "Programmatic Tool Calling coordinator. Orchestrate multi-step pipelines via code instead of individual API calls. 37% token reduction, dependency resolution, conditional execution.",
     longDescription:
-      "Enterprise-grade pipeline orchestration for AI agents. Features include topological sort for dependency resolution, input reference resolution (${results.step1.data}), conditional execution, parallel step support, and integration with gICM's autonomy engine for risk-aware execution. Pre-built templates for research, trading, content, security audits, and portfolio analysis.",
+      "Enterprise-grade pipeline orchestration for AI agents. Features include topological sort for dependency resolution, input reference resolution (${results.step1.data}), conditional execution, parallel step support, and integration with ClawdBot's autonomy engine for risk-aware execution. Pre-built templates for research, trading, content, security audits, and portfolio analysis.",
     category: "PTC & Orchestration",
     tags: [
       "PTC",
@@ -12819,7 +12819,7 @@ export const MCPS: RegistryItem[] = [
     ],
     install: "npx @clawdbot/cli add mcp/ptc-coordinator",
     setup:
-      "Import PTCCoordinator from @gicm/ptc-coordinator and register your tools",
+      "Import PTCCoordinator from @clawdbot/ptc-coordinator and register your tools",
     envKeys: [],
     installs: 0,
     remixes: 0,
@@ -12851,7 +12851,7 @@ export const MCPS: RegistryItem[] = [
     description:
       "Dynamic tool discovery from 513+ agents. 85% context reduction via semantic search. Returns Claude-compatible tool definitions on-demand.",
     longDescription:
-      "Implements Anthropic's Tool Search Tool pattern for gICM's marketplace. Searches 513+ registry items using Gemini embeddings and returns Claude-compatible tool definitions. Supports filtering by kind (agent, tool, block, template), platform (claude, gemini, openai), and quality score. Integrates with Context Engine for semantic search.",
+      "Implements Anthropic's Tool Search Tool pattern for ClawdBot's marketplace. Searches 513+ registry items using Gemini embeddings and returns Claude-compatible tool definitions. Supports filtering by kind (agent, tool, block, template), platform (claude, gemini, openai), and quality score. Integrates with Context Engine for semantic search.",
     category: "PTC & Orchestration",
     tags: [
       "Tool Search",
@@ -12895,7 +12895,7 @@ export const MCPS: RegistryItem[] = [
     description:
       "Risk classification for entire pipelines. Analyzes tool combinations, data flow, and cumulative risk. Integrates with Autonomy Engine.",
     longDescription:
-      "Extends gICM's risk classification to multi-step pipelines. Calculates weighted risk factors: cumulative tool risk (35%), dangerous combinations (25%), complexity (15%), data flow (15%), and metadata (10%). Detects dangerous tool combinations (wallet+trading, deployer+wallet). Returns recommendation: auto_execute, queue_approval, escalate, or reject.",
+      "Extends ClawdBot's risk classification to multi-step pipelines. Calculates weighted risk factors: cumulative tool risk (35%), dangerous combinations (25%), complexity (15%), data flow (15%), and metadata (10%). Detects dangerous tool combinations (wallet+trading, deployer+wallet). Returns recommendation: auto_execute, queue_approval, escalate, or reject.",
     category: "PTC & Orchestration",
     tags: [
       "Risk",
@@ -12908,7 +12908,7 @@ export const MCPS: RegistryItem[] = [
     dependencies: ["autonomy-engine"],
     files: ["packages/autonomy/src/decision/pipeline-classifier.ts"],
     install: "npx @clawdbot/cli add mcp/pipeline-risk-classifier",
-    setup: "Import PipelineRiskClassifier from @gicm/autonomy",
+    setup: "Import PipelineRiskClassifier from @clawdbot/autonomy",
     envKeys: [],
     installs: 0,
     remixes: 0,
@@ -12992,7 +12992,7 @@ export const MCPS: RegistryItem[] = [
     ],
     install: "npx @clawdbot/cli add mcp/autonomy-engine",
     setup:
-      "Import AutonomyEngine from @gicm/autonomy. Configure boundaries in autonomy.config.json.",
+      "Import AutonomyEngine from @clawdbot/autonomy. Configure boundaries in autonomy.config.json.",
     envKeys: [
       "GICM_AUTONOMY_LEVEL",
       "TELEGRAM_BOT_TOKEN",

@@ -154,7 +154,7 @@ export const POINTS_CONFIG: Record<PointAction, PointsConfig> = {
     action: "daily_visit",
     points: 10,
     label: "Daily Visit",
-    description: "Visited gICM today",
+    description: "Visited ClawdBot today",
     category: "engagement",
     icon: "📅",
     maxDaily: 1,

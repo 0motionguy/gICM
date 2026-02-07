@@ -5,31 +5,31 @@ import { GlassCard } from "@/components/ui/glass-card";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | gICM",
+  title: "Terms of Service | ClawdBot",
   description:
-    "gICM terms of service - guidelines for using our free, open-source AI marketplace.",
+    "ClawdBot terms of service - guidelines for using our free, open-source AI marketplace.",
   openGraph: {
-    title: "Terms of Service | gICM",
+    title: "Terms of Service | ClawdBot",
     description:
-      "Terms and conditions for using gICM - the universal AI workflow marketplace.",
-    url: "https://gicm.app/terms",
+      "Terms and conditions for using ClawdBot - the universal AI workflow marketplace.",
+    url: "https://clawdbot.com/terms",
     images: [
       {
         url: "/api/og?title=Terms%20of%20Service&kind=tool",
         width: 1200,
         height: 630,
-        alt: "gICM Terms of Service",
+        alt: "ClawdBot Terms of Service",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Terms of Service | gICM",
-    description: "Terms and conditions for using gICM",
+    title: "Terms of Service | ClawdBot",
+    description: "Terms and conditions for using ClawdBot",
     images: ["/api/og?title=Terms%20of%20Service&kind=tool"],
   },
   alternates: {
-    canonical: "https://gicm.app/terms",
+    canonical: "https://clawdbot.com/terms",
   },
 };
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
             className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
-            Back to gICM Catalog
+            Back to ClawdBot Catalog
           </Link>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function TermsPage() {
                 1. Agreement to Terms
               </h2>
               <p className="leading-relaxed text-zinc-300">
-                By accessing or using gICM ("Service", "Platform"), you agree to
+                By accessing or using ClawdBot ("Service", "Platform"), you agree to
                 be bound by these Terms of Service ("Terms"). If you disagree
                 with any part of these terms, you do not have permission to
                 access the Service.
@@ -82,7 +82,7 @@ export default function TermsPage() {
                 2. Description of Service
               </h2>
               <p className="mb-3 leading-relaxed text-zinc-300">
-                gICM is a marketplace platform that provides:
+                ClawdBot is a marketplace platform that provides:
               </p>
               <ul className="list-disc space-y-2 pl-6 text-zinc-300">
                 <li>
@@ -163,7 +163,7 @@ export default function TermsPage() {
                   <p className="leading-relaxed">
                     The Service and its original content (excluding
                     user-generated content and third-party items), features, and
-                    functionality are owned by gICM and are protected by
+                    functionality are owned by ClawdBot and are protected by
                     international copyright, trademark, and other intellectual
                     property laws.
                   </p>
@@ -173,7 +173,7 @@ export default function TermsPage() {
                     5.2 Registry Items
                   </h3>
                   <p className="leading-relaxed">
-                    Items in the gICM marketplace (agents, skills, commands,
+                    Items in the ClawdBot marketplace (agents, skills, commands,
                     etc.) are provided by third parties and are subject to their
                     own licenses. We do not claim ownership of these items. Each
                     item's license terms are specified in its individual
@@ -185,7 +185,7 @@ export default function TermsPage() {
                     5.3 User-Generated Content
                   </h3>
                   <p className="leading-relaxed">
-                    By sharing stacks, reviews, or other content on gICM, you
+                    By sharing stacks, reviews, or other content on ClawdBot, you
                     grant us a worldwide, non-exclusive, royalty-free license to
                     use, reproduce, and distribute that content in connection
                     with the Service.
@@ -263,7 +263,7 @@ export default function TermsPage() {
                     8.3 Limitation of Liability
                   </h3>
                   <p className="leading-relaxed">
-                    To the maximum extent permitted by law, gICM shall not be
+                    To the maximum extent permitted by law, ClawdBot shall not be
                     liable for any indirect, incidental, special, consequential,
                     or punitive damages resulting from your use of the Service,
                     including loss of data, revenue, or profits.
@@ -297,7 +297,7 @@ export default function TermsPage() {
                 10. Pricing and Payments
               </h2>
               <p className="leading-relaxed text-zinc-300">
-                Currently, gICM is free to use during alpha/beta. Future pricing
+                Currently, ClawdBot is free to use during alpha/beta. Future pricing
                 will be communicated clearly before any charges are implemented.
                 If we introduce paid features, you will have the option to
                 opt-in before being charged.
@@ -349,11 +349,11 @@ export default function TermsPage() {
               </p>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-zinc-300">
                 <p>
-                  <strong className="text-white">Email:</strong> legal@gicm.app
+                  <strong className="text-white">Email:</strong> legal@clawdbot.com
                 </p>
                 <p>
                   <strong className="text-white">GitHub:</strong>{" "}
-                  github.com/Kermit457/gICM
+                  github.com/Kermit457/ClawdBot
                 </p>
               </div>
             </section>
@@ -376,7 +376,7 @@ export default function TermsPage() {
               </h2>
               <p className="leading-relaxed text-zinc-300">
                 These Terms, together with our Privacy Policy, constitute the
-                entire agreement between you and gICM regarding the Service and
+                entire agreement between you and ClawdBot regarding the Service and
                 supersede all prior agreements and understandings.
               </p>
             </section>

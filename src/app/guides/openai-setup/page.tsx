@@ -5,7 +5,7 @@ import { OpenAIIcon } from "@/components/ui/icons";
 import Link from "next/link";
 
 export const metadata = {
-  title: "OpenAI GPT Setup Guide | gICM",
+  title: "OpenAI GPT Setup Guide | ClawdBot",
   description: "Step-by-step guide to set up OpenAI GPT-4o, o1 reasoning, and DALL-E for AI development.",
 };
 
@@ -92,12 +92,12 @@ console.log(response.choices[0].message.content);`}</code>
   },
   {
     number: 5,
-    title: "Install gICM OpenAI Agents",
+    title: "Install ClawdBot OpenAI Agents",
     description: "Add GPT-optimized agents from the marketplace.",
     content: (
       <div className="space-y-4">
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
-          <code className="text-sm text-[#00F0FF]">npx @gicm/cli add agent/openai-reasoning-pro --platform=openai{"\n"}npx @gicm/cli add agent/openai-code-auditor --platform=openai</code>
+          <code className="text-sm text-[#00F0FF]">npx @clawdbot/cli add agent/openai-reasoning-pro --platform=openai{"\n"}npx @clawdbot/cli add agent/openai-code-auditor --platform=openai</code>
         </pre>
         <Link
           href="/?platform=openai"

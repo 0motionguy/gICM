@@ -5,7 +5,7 @@ import { GeminiIcon } from "@/components/ui/icons";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Gemini AI Setup Guide | gICM",
+  title: "Gemini AI Setup Guide | ClawdBot",
   description: "Step-by-step guide to set up Google Gemini 2.0 Flash for multimodal AI development.",
 };
 
@@ -95,12 +95,12 @@ console.log(result.response.text());`}</code>
   },
   {
     number: 5,
-    title: "Install gICM Gemini Agents",
+    title: "Install ClawdBot Gemini Agents",
     description: "Add Gemini-optimized agents from the marketplace.",
     content: (
       <div className="space-y-4">
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
-          <code className="text-sm text-[#00F0FF]">npx @gicm/cli add agent/gemini-vibe-coder --platform=gemini{"\n"}npx @gicm/cli add agent/gemini-visual-builder --platform=gemini</code>
+          <code className="text-sm text-[#00F0FF]">npx @clawdbot/cli add agent/gemini-vibe-coder --platform=gemini{"\n"}npx @clawdbot/cli add agent/gemini-visual-builder --platform=gemini</code>
         </pre>
         <Link
           href="/?platform=gemini"

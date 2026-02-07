@@ -6,7 +6,7 @@ import { z } from "zod";
 // Helper function to send confirmation email
 async function sendConfirmationEmail(email: string, position: number) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@gicm.io";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@clawdbot.com";
 
   // Skip if Resend is not configured
   if (!resendApiKey) {
@@ -23,19 +23,19 @@ async function sendConfirmationEmail(email: string, position: number) {
       body: JSON.stringify({
         from: fromEmail,
         to: email,
-        subject: "Welcome to gICM Waitlist! 🚀",
+        subject: "Welcome to ClawdBot Waitlist! 🚀",
         html: `
           <!DOCTYPE html>
           <html>
           <head>
             <meta charset="UTF-8">
-            <title>gICM Waitlist Confirmation</title>
+            <title>ClawdBot Waitlist Confirmation</title>
           </head>
           <body style="margin: 0; padding: 0; background-color: #0A0A0A; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
             <div style="max-width: 600px; margin: 40px auto; background-color: #18181B; border-radius: 12px; overflow: hidden; border: 1px solid #27272A;">
               <!-- Header -->
               <div style="background: linear-gradient(135deg, #D1FD0A 0%, #8EF0B4 100%); padding: 40px 20px; text-align: center;">
-                <h1 style="margin: 0; font-size: 32px; font-weight: 700; color: #0A0A0A;">gICM://SEND</h1>
+                <h1 style="margin: 0; font-size: 32px; font-weight: 700; color: #0A0A0A;">ClawdBot://SEND</h1>
                 <p style="margin: 8px 0 0; font-size: 14px; color: #18181B; opacity: 0.8;">The AI Marketplace for Web3 Builders</p>
               </div>
 
@@ -44,7 +44,7 @@ async function sendConfirmationEmail(email: string, position: number) {
                 <h2 style="margin: 0 0 16px; font-size: 24px; font-weight: 600; color: #FFFFFF;">You're on the list! ✨</h2>
 
                 <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.6; color: #A1A1AA;">
-                  Thank you for joining the gICM waitlist. You're <strong style="color: #D1FD0A;">position #${position}</strong> in line for early access to our marketplace featuring:
+                  Thank you for joining the ClawdBot waitlist. You're <strong style="color: #D1FD0A;">position #${position}</strong> in line for early access to our marketplace featuring:
                 </p>
 
                 <div style="background-color: #0A0A0A; border-radius: 8px; padding: 24px; margin: 24px 0;">

@@ -5,7 +5,7 @@ import { ClaudeIcon, GeminiIcon, OpenAIIcon } from "@/components/ui/icons";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Vibe Coding Guide | gICM - Start Building with AI",
+  title: "Vibe Coding Guide | ClawdBot - Start Building with AI",
   description: "Complete beginner guide to AI-assisted development. Learn to build full-stack apps with natural language using Claude, Gemini, or GPT.",
 };
 
@@ -39,16 +39,16 @@ const steps = [
   },
   {
     number: 2,
-    title: "Install gICM CLI",
+    title: "Install ClawdBot CLI",
     description: "One command to access 400+ AI agents and skills.",
     content: (
       <div className="space-y-4">
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
-          <code className="text-sm text-[#00F0FF]">npm install -g @gicm/cli</code>
+          <code className="text-sm text-[#00F0FF]">npm install -g @clawdbot/cli</code>
         </pre>
         <p className="text-sm text-zinc-500">Or use npx (no install needed):</p>
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
-          <code className="text-sm text-zinc-400">npx @gicm/cli --help</code>
+          <code className="text-sm text-zinc-400">npx @clawdbot/cli --help</code>
         </pre>
       </div>
     ),
@@ -62,7 +62,7 @@ const steps = [
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
           <code className="text-sm text-zinc-300">{`mkdir my-app && cd my-app
 npm init -y
-npx @gicm/cli init`}</code>
+npx @clawdbot/cli init`}</code>
         </pre>
         <p className="text-sm text-zinc-400">
           This creates your project structure with AI configuration files.
@@ -79,17 +79,17 @@ npx @gicm/cli init`}</code>
         <p className="text-sm text-zinc-400 mb-3">Example: Building a Next.js + Solana DeFi app</p>
         <pre className="p-4 rounded-lg bg-black/50 border border-white/10 overflow-x-auto">
           <code className="text-sm text-[#00F0FF]">{`# Frontend agent
-npx @gicm/cli add agent/frontend-fusion-engine
+npx @clawdbot/cli add agent/frontend-fusion-engine
 
 # Blockchain agent
-npx @gicm/cli add agent/icm-anchor-architect
+npx @clawdbot/cli add agent/icm-anchor-architect
 
 # Security auditor
-npx @gicm/cli add agent/solana-guardian-auditor
+npx @clawdbot/cli add agent/solana-guardian-auditor
 
 # Add skills
-npx @gicm/cli add skill/solana-anchor-mastery
-npx @gicm/cli add skill/nextjs-app-router-patterns`}</code>
+npx @clawdbot/cli add skill/solana-anchor-mastery
+npx @clawdbot/cli add skill/nextjs-app-router-patterns`}</code>
         </pre>
       </div>
     ),

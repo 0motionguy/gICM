@@ -9,19 +9,19 @@ export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "gICM",
-    url: "https://gicm.app",
-    logo: "https://gicm.app/favicon.png",
+    name: "ClawdBot",
+    url: "https://clawdbot.com",
+    logo: "https://clawdbot.com/favicon.png",
     description:
       "The Universal AI Workflow Marketplace - Cross-chain marketplace for AI agents, skills, and workflows",
     sameAs: [
       "https://twitter.com/icm_motion",
-      "https://github.com/0motionguy/gICM",
+      "https://github.com/0motionguy/ClawdBot",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      url: "https://gicm.app",
+      url: "https://clawdbot.com",
     },
   };
 }
@@ -43,7 +43,7 @@ export function generateProductSchema(item: RegistryItem) {
     "@type": "SoftwareApplication",
     name: item.name,
     description: item.description,
-    url: `https://gicm.app/items/${item.slug}`,
+    url: `https://clawdbot.com/items/${item.slug}`,
     applicationCategory: kindLabels[item.kind] || item.kind,
     operatingSystem: "Any",
     inLanguage: "en",
@@ -66,13 +66,13 @@ export function generateProductSchema(item: RegistryItem) {
       : undefined,
     author: {
       "@type": "Organization",
-      name: "gICM",
-      url: "https://gicm.app",
+      name: "ClawdBot",
+      url: "https://clawdbot.com",
     },
     softwareVersion: item.version || "1.0.0",
     keywords: item.tags?.join(", "),
-    downloadUrl: `https://gicm.app/api/items/${item.slug}/files`,
-    installUrl: `https://gicm.app/items/${item.slug}`,
+    downloadUrl: `https://clawdbot.com/api/items/${item.slug}/files`,
+    installUrl: `https://clawdbot.com/items/${item.slug}`,
     softwareRequirements:
       "Node.js 18+, Claude Code CLI or compatible AI platform",
     releaseNotes:
@@ -80,7 +80,7 @@ export function generateProductSchema(item: RegistryItem) {
       `${item.name} - Production ready AI component for Claude, Gemini, and OpenAI`,
     screenshot:
       item.screenshot ||
-      `https://gicm.app/api/og?title=${encodeURIComponent(item.name)}&kind=${item.kind}`,
+      `https://clawdbot.com/api/og?title=${encodeURIComponent(item.name)}&kind=${item.kind}`,
   };
 }
 
@@ -103,14 +103,14 @@ export function generateWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "gICM",
-    url: "https://gicm.app",
+    name: "ClawdBot",
+    url: "https://clawdbot.com",
     description: "The Universal AI Workflow Marketplace",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://gicm.app/?q={search_term_string}",
+        urlTemplate: "https://clawdbot.com/?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },
@@ -149,8 +149,8 @@ export function generateOpus67ProductSchema() {
     ],
     author: {
       "@type": "Organization",
-      name: "gICM",
-      url: "https://gicm.app",
+      name: "ClawdBot",
+      url: "https://clawdbot.com",
     },
   };
 }
@@ -190,7 +190,7 @@ export function generateCollectionSchema(
     "@type": "CollectionPage",
     name,
     description,
-    url: "https://gicm.app",
+    url: "https://clawdbot.com",
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: items.length,
@@ -252,38 +252,38 @@ export function generateItemListSchema(
 }
 
 /**
- * Generate ItemList for gICM marketplace categories
+ * Generate ItemList for ClawdBot marketplace categories
  */
 export function generateMarketplaceCategoriesSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "gICM Marketplace Categories",
+    name: "ClawdBot Marketplace Categories",
     description: "Browse AI agents, skills, commands, and MCP integrations",
     itemListElement: [
       {
         "@type": "ListItem",
         position: 1,
         name: "AI Agents",
-        url: "https://gicm.app/?kind=agent",
+        url: "https://clawdbot.com/?kind=agent",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Skills",
-        url: "https://gicm.app/?kind=skill",
+        url: "https://clawdbot.com/?kind=skill",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Commands",
-        url: "https://gicm.app/?kind=command",
+        url: "https://clawdbot.com/?kind=command",
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "MCP Integrations",
-        url: "https://gicm.app/?kind=mcp",
+        url: "https://clawdbot.com/?kind=mcp",
       },
     ],
   };
@@ -309,10 +309,10 @@ export function generateSpeakableSchema(
 }
 
 /**
- * Speakable schema optimized for gICM homepage
+ * Speakable schema optimized for ClawdBot homepage
  */
 export function generateHomepageSpeakableSchema() {
-  return generateSpeakableSchema("https://gicm.app", [
+  return generateSpeakableSchema("https://clawdbot.com", [
     "h1",
     "[data-speakable='true']",
     ".hero-description",
@@ -340,16 +340,16 @@ export function generateArticleSchema(
     dateModified: dateModified || datePublished,
     author: {
       "@type": "Organization",
-      name: "gICM",
-      url: "https://gicm.app",
+      name: "ClawdBot",
+      url: "https://clawdbot.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "gICM",
-      url: "https://gicm.app",
+      name: "ClawdBot",
+      url: "https://clawdbot.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://gicm.app/favicon.png",
+        url: "https://clawdbot.com/favicon.png",
       },
     },
     mainEntityOfPage: {

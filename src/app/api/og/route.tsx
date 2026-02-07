@@ -7,7 +7,7 @@ export const revalidate = 86400;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") || "gICM";
+  const title = searchParams.get("title") || "ClawdBot";
   const kind = searchParams.get("kind") || "tool";
 
   const kindColors: Record<string, string> = {
@@ -123,7 +123,7 @@ export async function GET(request: Request) {
               fontWeight: "bold",
             }}
           >
-            gICM
+            ClawdBot
           </span>
         </div>
       </div>

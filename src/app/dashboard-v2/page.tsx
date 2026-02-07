@@ -61,7 +61,7 @@ export default function DashboardV2Page() {
             : "border-black/20 text-black/60"
           }
         `}>
-          <p>gICM Marketplace · Real-time Dashboard · Updates every 5s</p>
+          <p>ClawdBot Marketplace · Real-time Dashboard · Updates every 5s</p>
         </footer>
       </div>
     </div>
