@@ -10,6 +10,13 @@
 
 **Status:** ✅ Enabled for autonomous agent browsing
 
+**Rate Limits:**
+
+- Search API: 1000 requests/hour
+- Install API: 500 requests/hour
+- Health Check: Unlimited
+- Discovery Catalog: Unlimited (cached)
+
 ## Agent Capabilities
 
 ClawdBot supports autonomous agents with:
@@ -70,6 +77,26 @@ Body: { "item": "agent/slug" }
 ```
 
 Returns: Installation instructions
+
+**Status:** ✅ Live
+
+### 4. Health Check API
+
+```
+GET https://clawdbot.com/api/health
+```
+
+Returns: Real-time service health status, performance metrics, and availability
+
+**Status:** ✅ Live
+
+### 5. OpenAPI Specification
+
+```
+GET https://clawdbot.com/openapi.json
+```
+
+Returns: Complete OpenAPI 3.0 specification for all endpoints
 
 **Status:** ✅ Live
 

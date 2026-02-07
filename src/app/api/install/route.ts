@@ -76,7 +76,14 @@ export async function POST(request: Request) {
       documentation: `https://clawdbot.com/item/${foundItem.id}`,
     };
 
-    return NextResponse.json(response);
+    // Add rate limiting headers for agents
+    const jsonResponse = NextResponse.json(response);
+    jsonResponse.headers.set("X-RateLimit-Limit", "500");
+    jsonResponse.headers.set("X-RateLimit-Remaining", "499");
+    jsonResponse.headers.set("X-RateLimit-Reset", String(Date.now() + 3600000));
+    jsonResponse.headers.set("X-Agent-Discovery", "enabled");
+
+    return jsonResponse;
   } catch (error) {
     console.error("Install API error:", error);
     return NextResponse.json(

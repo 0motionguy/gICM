@@ -230,6 +230,46 @@ export default function RootLayout({
             __html: safeJsonLd(generateFAQSchema(HOMEPAGE_FAQS)),
           }}
         />
+
+        {/* Agent Discovery JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "ClawdBot Marketplace",
+              applicationCategory: "AI Marketplace",
+              operatingSystem: "Web",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+              featureList: [
+                "Autonomous Agent Discovery",
+                "617+ Security-Verified Components",
+                "Moltbook Compatible (1.5M+ AI Agents)",
+                "claude-marketplace-v1 Protocol",
+                "Programmatic Installation",
+                "100% Malware Scanning",
+              ],
+              softwareHelp: {
+                "@type": "WebPage",
+                url: "https://clawdbot.com/docs/AGENT-DISCOVERY.md",
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate:
+                    "https://clawdbot.com/api/search?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
       </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakarta.variable} flex min-h-screen flex-col font-sans`}

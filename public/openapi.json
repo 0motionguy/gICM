@@ -1,0 +1,438 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ClawdBot Marketplace API",
+    "version": "1.0.0",
+    "description": "Agent Discovery API for autonomous AI agents. Compatible with Moltbook (1.5M+ agents) and claude-marketplace-v1 protocol.",
+    "contact": {
+      "name": "ClawdBot Support",
+      "url": "https://clawdbot.com",
+      "email": "support@clawdbot.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://clawdbot.com",
+      "description": "Production server"
+    },
+    {
+      "url": "https://gicm.app",
+      "description": "Alternative production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Discovery",
+      "description": "Agent discovery and marketplace catalog"
+    },
+    {
+      "name": "Search",
+      "description": "Search and filter marketplace items"
+    },
+    {
+      "name": "Installation",
+      "description": "Get installation instructions for items"
+    }
+  ],
+  "paths": {
+    "/.well-known/claude-marketplace.json": {
+      "get": {
+        "tags": ["Discovery"],
+        "summary": "Get full marketplace catalog",
+        "description": "Returns complete registry of 617+ security-verified items with agent discovery metadata",
+        "operationId": "getMarketplaceCatalog",
+        "responses": {
+          "200": {
+            "description": "Successful response with full catalog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketplaceCatalog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "tags": ["Search"],
+        "summary": "Search marketplace items",
+        "description": "Search and filter items by query, kind, and tags",
+        "operationId": "searchItems",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query string",
+            "schema": {
+              "type": "string",
+              "example": "solana"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "description": "Filter by item kind",
+            "schema": {
+              "type": "string",
+              "enum": ["agent", "skill", "mcp", "workflow", "command"],
+              "example": "agent"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "required": false,
+            "description": "Filter by tag",
+            "schema": {
+              "type": "string",
+              "example": "blockchain"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MarketplaceItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - query parameter required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/install": {
+      "post": {
+        "tags": ["Installation"],
+        "summary": "Get installation instructions",
+        "description": "Returns installation instructions and security info for a specific item",
+        "operationId": "getInstallInstructions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["item"],
+                "properties": {
+                  "item": {
+                    "type": "string",
+                    "description": "Item identifier in format 'category/slug'",
+                    "example": "agent/solana-anchor-expert"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Installation instructions retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstallResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid item format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Installation blocked due to security threat",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "tags": ["Installation"],
+        "summary": "CORS preflight",
+        "description": "CORS preflight request for install endpoint",
+        "responses": {
+          "200": {
+            "description": "CORS preflight successful"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MarketplaceCatalog": {
+        "type": "object",
+        "properties": {
+          "agentDiscovery": {
+            "$ref": "#/components/schemas/AgentDiscovery"
+          },
+          "plugins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketplaceItem"
+            }
+          }
+        }
+      },
+      "AgentDiscovery": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "protocol": {
+            "type": "string",
+            "example": "claude-marketplace-v1"
+          },
+          "endpoints": {
+            "type": "object",
+            "properties": {
+              "catalog": {
+                "type": "string",
+                "format": "uri"
+              },
+              "search": {
+                "type": "string",
+                "format": "uri"
+              },
+              "install": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "security": {
+            "type": "object",
+            "properties": {
+              "scanningEnabled": {
+                "type": "boolean"
+              },
+              "threatDetection": {
+                "type": "string"
+              },
+              "securityScore": {
+                "type": "string"
+              },
+              "malwareProtection": {
+                "type": "boolean"
+              }
+            }
+          },
+          "moltbook": {
+            "type": "object",
+            "properties": {
+              "compatible": {
+                "type": "boolean"
+              },
+              "submolt": {
+                "type": "string"
+              }
+            }
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "totalItems": {
+                "type": "integer"
+              },
+              "securityVerified": {
+                "type": "integer"
+              },
+              "categories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MarketplaceItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "solana-anchor-expert"
+          },
+          "name": {
+            "type": "string",
+            "example": "Solana Anchor Expert"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["agent", "skill", "mcp", "workflow", "command"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "security": {
+            "$ref": "#/components/schemas/SecurityInfo"
+          },
+          "install": {
+            "type": "string",
+            "example": "npx @clawdbot/cli add agent/solana-anchor-expert"
+          }
+        }
+      },
+      "SecurityInfo": {
+        "type": "object",
+        "properties": {
+          "threatLevel": {
+            "type": "string",
+            "enum": ["none", "low", "medium", "high", "critical"],
+            "example": "none"
+          },
+          "securityScore": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "example": 100
+          },
+          "vulnerabilities": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "InstallResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "item": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          "installation": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "example": "cli"
+              },
+              "command": {
+                "type": "string",
+                "example": "npx @clawdbot/cli add agent/solana-anchor-expert"
+              },
+              "alternativeCommands": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "security": {
+            "$ref": "#/components/schemas/SecurityInfo"
+          },
+          "documentation": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Query parameter 'q' is required"
+          }
+        }
+      },
+      "SecurityError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Installation blocked"
+          },
+          "reason": {
+            "type": "string",
+            "example": "Item has high threat level"
+          },
+          "security": {
+            "$ref": "#/components/schemas/SecurityInfo"
+          }
+        }
+      }
+    }
+  }
+}
