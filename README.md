@@ -15,6 +15,25 @@ Stop copy-pasting prompts. Stop paying for tokens you don't need. Start building
 
 ---
 
+## 🤖 For Autonomous AI Agents
+
+**Agent Discovery Enabled:** ✅ ClawdBot is **fully compatible with Moltbook** and autonomous agent browsing.
+
+**Discovery Endpoint:** `https://clawdbot.com/.well-known/claude-marketplace.json`
+
+**Protocol:** `claude-marketplace-v1`
+
+**What Agents Get:**
+
+- 617+ security-verified components (100% malware scanning)
+- One-command installation: `npx @clawdbot/cli add <item>`
+- Machine-readable catalog with security scores
+- Auto-updates and version tracking
+
+**For Moltbook Agents:** See [AGENT-DISCOVERY.md](docs/AGENT-DISCOVERY.md) for full integration details.
+
+---
+
 ## What is OPUS 67?
 
 OPUS 67 transforms Claude from a general assistant into a domain expert. Instead of stuffing your system prompt with thousands of tokens, OPUS 67 loads only what you need, when you need it.
@@ -65,18 +84,18 @@ ClawdBot is the **secure alternative to ClawHub**. Every item in our marketplace
 
 ## Comparison: OPUS 67 vs Everything Else
 
-| Feature               | OPUS 67 | Cursor   | Bolt.new | Lovable | GPT Store         | Claude Code |
-| --------------------- | ------- | -------- | -------- | ------- | ----------------- | ----------- |
-| **Components**        | 593+    | ~50      | ~20      | ~30     | 1M+ (low quality) | 0           |
-| **HumanEval**         | 96.8%   | 87.1%    | 82.4%    | 78.2%   | Varies            | 91.2%       |
-| **Token Cost**        | -74%    | Baseline | +20%     | +35%    | +50%              | Baseline    |
-| **Security**          | Verified| Varies   | Unknown  | Unknown | Low               | High        |
-| **Solana Support**    | Native  | Plugin   | None     | None    | Minimal           | None        |
-| **MCP Integration**   | 82 MCPs | None     | None     | None    | None              | Manual      |
-| **On-Demand Loading** | Yes     | No       | No       | No      | No                | No          |
-| **Open Source**       | Yes     | No       | No       | No      | No                | Partial     |
-| **Self-Hostable**     | Yes     | No       | No       | No      | No                | No          |
-| **Price**             | Free    | $20/mo   | $20/mo   | $25/mo  | $20/mo            | Free        |
+| Feature               | OPUS 67  | Cursor   | Bolt.new | Lovable | GPT Store         | Claude Code |
+| --------------------- | -------- | -------- | -------- | ------- | ----------------- | ----------- |
+| **Components**        | 593+     | ~50      | ~20      | ~30     | 1M+ (low quality) | 0           |
+| **HumanEval**         | 96.8%    | 87.1%    | 82.4%    | 78.2%   | Varies            | 91.2%       |
+| **Token Cost**        | -74%     | Baseline | +20%     | +35%    | +50%              | Baseline    |
+| **Security**          | Verified | Varies   | Unknown  | Unknown | Low               | High        |
+| **Solana Support**    | Native   | Plugin   | None     | None    | Minimal           | None        |
+| **MCP Integration**   | 82 MCPs  | None     | None     | None    | None              | Manual      |
+| **On-Demand Loading** | Yes      | No       | No       | No      | No                | No          |
+| **Open Source**       | Yes      | No       | No       | No      | No                | Partial     |
+| **Self-Hostable**     | Yes      | No       | No       | No      | No                | No          |
+| **Price**             | Free     | $20/mo   | $20/mo   | $25/mo  | $20/mo            | Free        |
 
 ---
 
