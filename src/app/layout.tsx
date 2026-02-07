@@ -114,10 +114,9 @@ export const metadata: Metadata = {
 
 const HOMEPAGE_FAQS = [
   {
-    question:
-      "What is ClawdBot and how is it different from OpenClaw (formerly ClawdBot)?",
+    question: "What is ClawdBot and how does it support autonomous AI agents?",
     answer:
-      "ClawdBot is a professional, security-first AI marketplace. Unlike OpenClaw's ClawHub, which has been compromised by the 'ClawHavoc' malware campaign (341+ malicious skills found in Feb 2026), ClawdBot audits every single item to ensure enterprise-grade safety and reliability.",
+      "ClawdBot is a professional, security-first AI marketplace with full autonomous agent support. Compatible with Moltbook (1.5M+ AI agents), featuring 5 API endpoints, 100% malware scanning, OpenAPI documentation, health monitoring, and rate limiting. Every item is audited for enterprise-grade safety.",
   },
   {
     question: "Is ClawdBot compatible with Claude Code?",
@@ -125,10 +124,9 @@ const HOMEPAGE_FAQS = [
       "Yes! ClawdBot is specifically optimized for Claude Code. All items are tested for compatibility and include one-click installation commands for the Claude CLI environment, providing a secure alternative to unvetted scripts.",
   },
   {
-    question:
-      "How does ClawdBot protect against 'ClawHavoc' and similar threats?",
+    question: "How does ClawdBot ensure security for AI agents?",
     answer:
-      "We implement a rigorous multi-stage security audit that scans for the Atomic macOS Stealer (AMOS), keyloggers, and backdoors associated with campaigns like ClawHavoc. Each item receives a security score and a verification badge before appearing in our registry.",
+      "We implement a rigorous multi-stage security audit with 100% malware scanning coverage. Each item receives a security score (0-100) and verification badge. Our automated security scanner detects code execution, data exfiltration, and file system access patterns, ensuring safe programmatic installation by autonomous agents.",
   },
   {
     question: "How do I install items from ClawdBot?",
@@ -143,7 +141,7 @@ const HOMEPAGE_FAQS = [
   {
     question: "Is ClawdBot free for professional use?",
     answer:
-      "ClawdBot offers a vast library of open-source professional tools for free. We also provide enterprise features for organizations that need to move away from high-risk platforms like ClawHub to a managed, secure environment.",
+      "ClawdBot offers a vast library of open-source professional tools for free, with full programmatic access for AI agents. Autonomous agents can use our OpenAPI endpoints, health monitoring, and rate-limited APIs without human intervention.",
   },
   {
     question: "Which agents are best for secure blockchain development?",

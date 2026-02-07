@@ -527,7 +527,7 @@ function CatalogPageContent() {
   // Generate CollectionPage schema for homepage
   const collectionSchema = generateCollectionSchema(
     "ClawdBot AI Marketplace",
-    "Secure alternative to OpenClaw (ClawdBot). Browse 617+ audited AI agents, skills, and MCP integrations optimized for Claude Code.",
+    "Professional AI marketplace with autonomous agent support. 617+ security-verified items, Moltbook compatible (1.5M+ AI agents), featuring 5 API endpoints, 100% malware scanning, OpenAPI docs, and health monitoring.",
     [
       { name: "AI Agents", url: "https://clawdbot.com/?kind=agent" },
       { name: "Skills", url: "https://clawdbot.com/?kind=skill" },
