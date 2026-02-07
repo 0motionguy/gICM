@@ -110,6 +110,122 @@ jobs:
               body: body
             });
 
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: validate-schemas
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security scan
+        id: security-scan
+        continue-on-error: true
+        run: npm run marketplace:security
+
+      - name: Upload security report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-report
+          path: .cache/security-scan-report.json
+          retention-days: 30
+
+      - name: Generate security summary
+        if: always()
+        run: |
+          node -e "
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('.cache/security-scan-report.json', 'utf8'));
+          const summary = \`## 🛡️ Security Scan Results
+
+          **Scan Date:** ${new Date(report.scanDate).toLocaleString()}
+          **Items Scanned:** ${report.scanned}/${report.totalItems}
+
+          **Security Status:**
+          - ✅ Safe Items: ${report.safeItems} (\${((report.safeItems / report.totalItems) * 100).toFixed(1)}%)
+          - ⚠️  Flagged Items: ${report.flaggedItems.length}
+          - 🚫 Blocked Items: ${report.blockedItems.length}
+
+          **Vulnerabilities by Severity:**
+          - 🔴 Critical: ${report.vulnerabilities.critical}
+          - 🟠 High: ${report.vulnerabilities.high}
+          - 🟡 Medium: ${report.vulnerabilities.medium}
+          - 🟢 Low: ${report.vulnerabilities.low}
+
+          \${report.flaggedItems.length > 0 ? \`
+          **Flagged Items:**
+          \${report.flaggedItems.map(item => \`- \\\`\${item.kind}/\${item.slug}\\\` - \${item.threatLevel} threat (Score: \${item.securityScore}/100)\`).join('\\n')}
+          \` : ''}
+
+          \${report.blockedItems.length > 0 ? \`
+          **🚫 BLOCKED ITEMS (Critical Threats):**
+          \${report.blockedItems.map(id => \`- \${id}\`).join('\\n')}
+          \` : ''}
+          \`;
+          fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary, { flag: 'a' });
+          "
+
+      - name: Comment PR with security findings
+        if: github.event_name == 'pull_request' && steps.security-scan.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('.cache/security-scan-report.json', 'utf8'));
+
+            let body = '## 🚨 Security Scan Failed\n\n';
+
+            if (report.vulnerabilities.critical > 0) {
+              body += `**Critical Vulnerabilities:** ${report.vulnerabilities.critical}\n`;
+            }
+            if (report.vulnerabilities.high > 0) {
+              body += `**High Vulnerabilities:** ${report.vulnerabilities.high}\n`;
+            }
+
+            if (report.blockedItems.length > 0) {
+              body += '\n**🚫 Blocked Items (Critical Threats):**\n';
+              report.blockedItems.forEach(id => {
+                body += `- ${id}\n`;
+              });
+            }
+
+            if (report.flaggedItems.length > 0) {
+              body += '\n**⚠️ Flagged Items:**\n';
+              report.flaggedItems.slice(0, 10).forEach(item => {
+                body += `- \`${item.kind}/${item.slug}\` - ${item.threatLevel} threat (Score: ${item.securityScore}/100)\n`;
+              });
+              if (report.flaggedItems.length > 10) {
+                body += `\n_...and ${report.flaggedItems.length - 10} more items_\n`;
+              }
+            }
+
+            body += `\nSee the [security scan report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for full details.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+      - name: Fail if critical vulnerabilities found
+        if: steps.security-scan.outcome == 'failure'
+        run: |
+          echo "❌ Security scan failed due to critical vulnerabilities"
+          exit 1
+
   audit-quality:
     name: Quality Audit
     runs-on: ubuntu-latest
@@ -232,7 +348,7 @@ jobs:
   update-registry:
     name: Update Registry with Audit Data
     runs-on: ubuntu-latest
-    needs: [audit-quality, analyze-tokens]
+    needs: [security-scan, audit-quality, analyze-tokens]
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     timeout-minutes: 5
 
@@ -304,7 +420,7 @@ jobs:
   notify-results:
     name: Notify Results
     runs-on: ubuntu-latest
-    needs: [sync-repos, validate-schemas, audit-quality, analyze-tokens]
+    needs: [sync-repos, validate-schemas, security-scan, audit-quality, analyze-tokens]
     if: always()
 
     steps:
@@ -312,6 +428,7 @@ jobs:
         run: |
           if [ "${{ needs.sync-repos.result }}" == "failure" ] || \
              [ "${{ needs.validate-schemas.result }}" == "failure" ] || \
+             [ "${{ needs.security-scan.result }}" == "failure" ] || \
              [ "${{ needs.audit-quality.result }}" == "failure" ]; then
             echo "❌ Marketplace quality checks failed"
             exit 1
