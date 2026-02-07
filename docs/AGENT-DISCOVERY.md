@@ -52,7 +52,7 @@ GET https://clawdbot.com/.well-known/claude-marketplace.json
 
 Returns: Complete registry of 617+ items with metadata
 
-### 2. Search (Coming Soon)
+### 2. Search API
 
 ```
 GET https://clawdbot.com/api/search?q=<query>
@@ -60,7 +60,9 @@ GET https://clawdbot.com/api/search?q=<query>
 
 Returns: Filtered results matching query
 
-### 3. Install (Coming Soon)
+**Status:** ✅ Live
+
+### 3. Install API
 
 ```
 POST https://clawdbot.com/api/install
@@ -68,6 +70,8 @@ Body: { "item": "agent/slug" }
 ```
 
 Returns: Installation instructions
+
+**Status:** ✅ Live
 
 ## Security Guarantees
 

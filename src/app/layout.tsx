@@ -37,7 +37,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "ClawdBot | Professional AI Agent Marketplace",
   description:
-    "The premier marketplace for professional AI agents, skills, and tools. Secure, audited, and optimized for Claude Code.",
+    "The premier marketplace for professional AI agents, skills, and tools. Fully compatible with Moltbook and autonomous agent discovery. 617+ security-verified components ready for programmatic installation.",
   keywords: [
     "AI agents",
     "AI workflows",
@@ -49,6 +49,12 @@ export const metadata: Metadata = {
     "AI marketplace",
     "Enterprise AI",
     "AI automation",
+    "autonomous agents",
+    "Moltbook",
+    "agent discovery",
+    "claude-marketplace-v1",
+    "AI agent integration",
+    "programmatic installation",
   ],
   authors: [{ name: "ClawdBot", url: "https://clawdbot.com" }],
   creator: "ClawdBot",
@@ -56,7 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ClawdBot - Professional AI Agent Marketplace",
     description:
-      "Enterprise-ready AI agents and skills for your development workflow. 600+ audited items optimized for Claude Code.",
+      "Enterprise-ready AI agents and skills for your development workflow. Fully compatible with Moltbook (1.5M+ AI agents). 617+ security-verified components with autonomous discovery support.",
     type: "website",
     url: "https://clawdbot.com",
     siteName: "ClawdBot",
@@ -74,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ClawdBot - Professional AI Agent Marketplace",
     description:
-      "Professional AI agents, skills, and MCPs - Secure and audited for enterprise use.",
+      "617+ security-verified AI agents, skills, and MCPs. Moltbook compatible with autonomous agent discovery. Secure and audited for enterprise use.",
     images: ["/og-image.png"],
     creator: "@ClawdBot",
     site: "@ClawdBot",

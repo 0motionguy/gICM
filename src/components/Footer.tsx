@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-white/10 bg-black/90 backdrop-blur">
       <div className="mx-auto max-w-7xl px-6 py-8 md:px-10">
-        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-5">
           {/* Brand */}
           <div className="space-y-3">
             <div className="text-2xl font-black text-white">ClawdBot</div>
@@ -94,6 +94,45 @@ export function Footer() {
                 >
                   GitHub
                 </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Developers */}
+          <div>
+            <h3 className="mb-3 text-sm font-bold text-white">Developers</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="/.well-known/claude-marketplace.json"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
+                  API Endpoint
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="/docs/AGENT-DISCOVERY.md"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
+                  Agent Discovery Docs
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="/api/search"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
+                  Search API
+                </a>
+              </li>
+              <li>
+                <span className="inline-flex items-center gap-1.5 text-[#00F0FF]/80">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#00F0FF]"></span>
+                  Moltbook Compatible
+                </span>
               </li>
             </ul>
           </div>

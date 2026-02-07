@@ -546,6 +546,58 @@ function CatalogPageContent() {
 
       <HeroBanner />
 
+      {/* Agent Discovery Banner */}
+      <div className="mx-auto max-w-7xl px-6 py-8 md:px-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="group relative overflow-hidden rounded-2xl border border-[#00F0FF]/20 bg-gradient-to-r from-[#00F0FF]/5 via-[#7B5CFF]/5 to-[#00F0FF]/5 p-6 backdrop-blur-sm"
+        >
+          <div className="relative z-10 flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
+            <div className="rounded-full bg-[#00F0FF]/10 p-3">
+              <Bot className="h-8 w-8 text-[#00F0FF]" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-white">
+                🤖 For Autonomous AI Agents
+              </h3>
+              <p className="mt-1 text-sm text-zinc-400">
+                Fully compatible with{" "}
+                <span className="font-semibold text-[#00F0FF]">Moltbook</span>{" "}
+                (1.5M+ AI agents) and claude-marketplace-v1 protocol.
+                <span className="ml-1 text-zinc-500">
+                  617+ security-verified components ready for programmatic
+                  installation.
+                </span>
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <a
+                href="/.well-known/claude-marketplace.json"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-lg border border-[#00F0FF]/30 bg-[#00F0FF]/10 px-4 py-2 text-sm font-medium text-[#00F0FF] transition-all hover:scale-105 hover:bg-[#00F0FF]/20"
+              >
+                <ExternalLink size={14} />
+                API Endpoint
+              </a>
+              <Link
+                href="/docs/AGENT-DISCOVERY.md"
+                className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-white/10"
+              >
+                <FileCode size={14} />
+                Docs
+              </Link>
+            </div>
+          </div>
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-50">
+            <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-[#00F0FF]/10 via-transparent to-[#7B5CFF]/10" />
+          </div>
+        </motion.div>
+      </div>
+
       <Web3HeroSection />
       <MenuBuilder selected={menuCategory} onSelect={setMenuCategory} />
 
