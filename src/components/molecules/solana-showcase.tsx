@@ -24,7 +24,8 @@ const FEATURED_SOLANA_ITEMS = [
     name: "Solana Guardian Auditor",
     type: "Agent",
     icon: Shield,
-    description: "Security auditor for Solana programs with PDA validation, signer checks, and economic attack prevention",
+    description:
+      "Security auditor for Solana programs with PDA validation, signer checks, and economic attack prevention",
     color: "from-red-500 to-orange-500",
     bgColor: "bg-red-50 dark:bg-red-900/10",
     borderColor: "border-red-200 dark:border-red-800/30",
@@ -35,7 +36,8 @@ const FEATURED_SOLANA_ITEMS = [
     name: "Anchor Architect",
     type: "Agent",
     icon: Code2,
-    description: "Anchor framework specialist for bonding curves, PDAs, and CPI orchestration",
+    description:
+      "Anchor framework specialist for bonding curves, PDAs, and CPI orchestration",
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-50 dark:bg-purple-900/10",
     borderColor: "border-purple-200 dark:border-purple-800/30",
@@ -46,7 +48,8 @@ const FEATURED_SOLANA_ITEMS = [
     name: "Solana Agent Kit",
     type: "MCP",
     icon: Plug,
-    description: "Complete Solana integration with RPC, wallet management, and transaction building",
+    description:
+      "Complete Solana integration with RPC, wallet management, and transaction building",
     color: "from-lime-500 to-emerald-500",
     bgColor: "bg-lime-50 dark:bg-lime-900/10",
     borderColor: "border-lime-200 dark:border-lime-800/30",
@@ -57,7 +60,8 @@ const FEATURED_SOLANA_ITEMS = [
     name: "Helius RPC",
     type: "MCP",
     icon: Zap,
-    description: "High-performance Solana RPC with webhooks, enhanced APIs, and DAS support",
+    description:
+      "High-performance Solana RPC with webhooks, enhanced APIs, and DAS support",
     color: "from-blue-500 to-cyan-500",
     bgColor: "bg-blue-50 dark:bg-blue-900/10",
     borderColor: "border-blue-200 dark:border-blue-800/30",
@@ -68,7 +72,8 @@ const FEATURED_SOLANA_ITEMS = [
     name: "Anchor Deployment",
     type: "Command",
     icon: Terminal,
-    description: "Deploy Solana programs with Anchor framework, test validation, and network configs",
+    description:
+      "Deploy Solana programs with Anchor framework, test validation, and network configs",
     color: "from-amber-500 to-yellow-500",
     bgColor: "bg-amber-50 dark:bg-amber-900/10",
     borderColor: "border-amber-200 dark:border-amber-800/30",
@@ -79,7 +84,8 @@ const FEATURED_SOLANA_ITEMS = [
     name: "Solana Security Audit",
     type: "Skill",
     icon: Shield,
-    description: "Comprehensive security audit for Solana programs with automated vulnerability detection",
+    description:
+      "Comprehensive security audit for Solana programs with automated vulnerability detection",
     color: "from-indigo-500 to-purple-500",
     bgColor: "bg-indigo-50 dark:bg-indigo-900/10",
     borderColor: "border-indigo-200 dark:border-indigo-800/30",
@@ -89,28 +95,28 @@ const FEATURED_SOLANA_ITEMS = [
 
 const WEB3_USE_CASES = [
   {
-    title: "DeFi Protocol Development",
-    description: "Build AMMs, lending protocols, and yield aggregators on Solana",
+    title: "DeFi Protocols",
+    description: "AMMs, lending, yield aggregators",
     icon: TrendingUp,
-    stats: "12 specialized tools",
+    stats: "12 tools",
   },
   {
-    title: "NFT Marketplace & Minting",
-    description: "Create NFT collections with Metaplex, compressed NFTs, and marketplace integration",
+    title: "NFT Infrastructure",
+    description: "Metaplex, compressed NFTs, marketplace",
     icon: Rocket,
-    stats: "8 ready-to-use agents",
+    stats: "8 agents",
   },
   {
-    title: "Token Launch & Management",
-    description: "Launch SPL tokens, manage liquidity, and implement tokenomics",
+    title: "Token Launch",
+    description: "SPL tokens, liquidity, tokenomics",
     icon: Zap,
-    stats: "6 launch templates",
+    stats: "6 templates",
   },
   {
-    title: "Web3 dApp Frontends",
-    description: "Build production Web3 apps with wallet integration and real-time blockchain data",
+    title: "dApp Frontends",
+    description: "Wallet integration, real-time chain data",
     icon: Code2,
-    stats: "15 UI components",
+    stats: "15 components",
   },
 ];
 
@@ -118,51 +124,54 @@ export function SolanaShowcase() {
   const [hoverHeader, setHoverHeader] = useState(false);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-10 py-8">
+    <div className="mx-auto max-w-7xl px-6 py-8 md:px-10">
       {/* Header */}
       <div
-        className="text-center mb-8"
+        className="mb-8 text-center"
         onMouseEnter={() => setHoverHeader(true)}
         onMouseLeave={() => setHoverHeader(false)}
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime-300/20 border border-lime-300/50 mb-4">
-          <Zap className="w-5 h-5 text-lime-600" />
-          <span className="text-lime-600 font-bold">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-lime-300/50 bg-lime-300/20 px-4 py-2">
+          <Zap className="h-5 w-5 text-lime-600" />
+          <span className="font-bold text-lime-600">
             {hoverHeader ? (
-              <ScrambleText text="Solana Ecosystem" trigger="hover" duration={400} />
+              <ScrambleText
+                text="Solana Ecosystem"
+                trigger="hover"
+                duration={400}
+              />
             ) : (
               "Solana Ecosystem"
             )}
           </span>
         </div>
 
-        <h2 className="text-3xl md:text-4xl font-black text-black dark:text-white mb-3">
-          Built for Solana Builders
+        <h2 className="mb-3 text-3xl font-black text-black dark:text-white md:text-4xl">
+          Solana. Ship-ready.
         </h2>
-        <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-          The most comprehensive AI dev stack for Solana development. From security audits to
-          production deployment.
+        <p className="mx-auto max-w-2xl text-zinc-600 dark:text-zinc-400">
+          24 agents. 18 DeFi tools. 12 security auditors. Audit to deploy.
         </p>
       </div>
 
       {/* Featured Items Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {FEATURED_SOLANA_ITEMS.map((item) => {
           const Icon = item.icon;
 
           return (
             <Link key={item.id} href={`/items/${item.id}`}>
               <Card
-                className={`p-5 hover:shadow-lg transition-all cursor-pointer group ${item.borderColor}`}
+                className={`group cursor-pointer p-5 transition-all hover:shadow-lg ${item.borderColor}`}
               >
-                <div className="flex items-start gap-3 mb-3">
+                <div className="mb-3 flex items-start gap-3">
                   <div
-                    className={`w-12 h-12 rounded-lg ${item.bgColor} border ${item.borderColor} flex items-center justify-center flex-shrink-0`}
+                    className={`h-12 w-12 rounded-lg ${item.bgColor} border ${item.borderColor} flex flex-shrink-0 items-center justify-center`}
                   >
-                    <Icon className={`w-6 h-6 ${item.textColor}`} />
+                    <Icon className={`h-6 w-6 ${item.textColor}`} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-black dark:text-white mb-1 group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 font-bold text-black transition-colors group-hover:text-lime-600 dark:text-white dark:group-hover:text-lime-400">
                       {formatProductName(item.name)}
                     </h3>
                     <Badge variant="outline" className="text-xs">
@@ -171,13 +180,13 @@ export function SolanaShowcase() {
                   </div>
                 </div>
 
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+                <p className="mb-3 text-sm text-zinc-600 dark:text-zinc-400">
                   {item.description}
                 </p>
 
-                <div className="flex items-center gap-2 text-xs font-medium text-lime-600 dark:text-lime-400 group-hover:gap-3 transition-all">
+                <div className="flex items-center gap-2 text-xs font-medium text-lime-600 transition-all group-hover:gap-3 dark:text-lime-400">
                   <span>View details</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="h-3 w-3" />
                 </div>
               </Card>
             </Link>
@@ -186,32 +195,35 @@ export function SolanaShowcase() {
       </div>
 
       {/* Use Cases Section */}
-      <div className="bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-900/50 dark:to-zinc-800/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-8">
-        <h3 className="text-2xl font-black text-black dark:text-white mb-6 text-center">
+      <div className="rounded-2xl border border-zinc-200 bg-gradient-to-br from-zinc-50 to-zinc-100 p-8 dark:border-zinc-800 dark:from-zinc-900/50 dark:to-zinc-800/50">
+        <h3 className="mb-6 text-center text-2xl font-black text-black dark:text-white">
           What You Can Build
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {WEB3_USE_CASES.map((useCase, idx) => {
             const Icon = useCase.icon;
 
             return (
               <div
                 key={idx}
-                className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 hover:border-lime-300 dark:hover:border-lime-700 transition-all"
+                className="rounded-xl border border-zinc-200 bg-white p-6 transition-all hover:border-lime-300 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-lime-700"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-lime-100 dark:bg-lime-900/30 border border-lime-200 dark:border-lime-800 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-lime-600 dark:text-lime-400" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-lime-200 bg-lime-100 dark:border-lime-800 dark:bg-lime-900/30">
+                    <Icon className="h-5 w-5 text-lime-600 dark:text-lime-400" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-black dark:text-white mb-1">
+                    <h4 className="mb-1 font-bold text-black dark:text-white">
                       {useCase.title}
                     </h4>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
+                    <p className="mb-2 text-sm text-zinc-600 dark:text-zinc-400">
                       {useCase.description}
                     </p>
-                    <Badge variant="outline" className="text-xs bg-lime-50 dark:bg-lime-900/20 text-lime-700 dark:text-lime-400 border-lime-200 dark:border-lime-800">
+                    <Badge
+                      variant="outline"
+                      className="border-lime-200 bg-lime-50 text-xs text-lime-700 dark:border-lime-800 dark:bg-lime-900/20 dark:text-lime-400"
+                    >
                       {useCase.stats}
                     </Badge>
                   </div>
@@ -223,18 +235,18 @@ export function SolanaShowcase() {
 
         <div className="mt-8 text-center">
           <Link href="/">
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lime-600 text-white hover:bg-lime-700 transition-colors font-semibold">
+            <button className="inline-flex items-center gap-2 rounded-lg bg-lime-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-lime-700">
               Browse All Solana Tools
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="h-4 w-4" />
             </button>
           </Link>
         </div>
       </div>
 
       {/* Stats Bar */}
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="text-center p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <div className="text-3xl font-black text-lime-600 dark:text-lime-400 mb-1">
+      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="rounded-lg border border-zinc-200 bg-white p-4 text-center dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="mb-1 text-3xl font-black text-lime-600 dark:text-lime-400">
             24
           </div>
           <div className="text-xs text-zinc-600 dark:text-zinc-400">
@@ -242,8 +254,8 @@ export function SolanaShowcase() {
           </div>
         </div>
 
-        <div className="text-center p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <div className="text-3xl font-black text-purple-600 dark:text-purple-400 mb-1">
+        <div className="rounded-lg border border-zinc-200 bg-white p-4 text-center dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="mb-1 text-3xl font-black text-purple-600 dark:text-purple-400">
             18
           </div>
           <div className="text-xs text-zinc-600 dark:text-zinc-400">
@@ -251,8 +263,8 @@ export function SolanaShowcase() {
           </div>
         </div>
 
-        <div className="text-center p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-1">
+        <div className="rounded-lg border border-zinc-200 bg-white p-4 text-center dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="mb-1 text-3xl font-black text-blue-600 dark:text-blue-400">
             12
           </div>
           <div className="text-xs text-zinc-600 dark:text-zinc-400">
@@ -260,8 +272,8 @@ export function SolanaShowcase() {
           </div>
         </div>
 
-        <div className="text-center p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg">
-          <div className="text-3xl font-black text-amber-600 dark:text-amber-400 mb-1">
+        <div className="rounded-lg border border-zinc-200 bg-white p-4 text-center dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="mb-1 text-3xl font-black text-amber-600 dark:text-amber-400">
             100%
           </div>
           <div className="text-xs text-zinc-600 dark:text-zinc-400">

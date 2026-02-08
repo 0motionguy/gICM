@@ -25,7 +25,7 @@ const models = [
     badge: "Most Capable",
     badgeIcon: Zap,
     description:
-      "The most capable Claude model for complex reasoning, extended thinking, and nuanced code generation.",
+      "Complex reasoning, extended thinking, nuanced code generation.",
     code: `const agent = new ClaudeAgent({
   model: "${MODEL_VERSIONS.claude.latestModelId}",
   tools: [fileSystem, git],
@@ -40,8 +40,7 @@ const models = [
     color: "#4E82EE",
     badge: "Multimodal Native",
     badgeIcon: Sparkles,
-    description:
-      "Ultra-fast multimodal AI with agentic capabilities, native tool use, and 1M token context window.",
+    description: "Ultra-fast multimodal. Native tool use. 1M token context.",
     code: `const agent = new GeminiAgent({
   model: "${MODEL_VERSIONS.gemini.latestModelId}",
   multimodal: true,
@@ -56,8 +55,7 @@ const models = [
     color: "#10A37F",
     badge: "Advanced Reasoning",
     badgeIcon: BrainCircuit,
-    description:
-      "The industry standard for speed and capability, featuring state-of-the-art function calling.",
+    description: "Speed + capability. State-of-the-art function calling.",
     code: `const agent = new OpenAIAgent({
   model: "${MODEL_VERSIONS.openai.latestModelId}",
   function_calling: "auto",
@@ -73,12 +71,10 @@ export function ModelShowcase() {
     <div className="mx-auto w-full max-w-7xl px-6 py-16 md:px-10">
       <div className="mb-12 text-center">
         <h2 className="mb-4 font-display text-3xl font-bold text-white md:text-4xl">
-          Power Your Stack with{" "}
-          <span className="text-[#00F0FF]">Any Model</span>
+          Any model. <span className="text-[#00F0FF]">One interface.</span>
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-zinc-400">
-          ClawdBot creates a unified interface for the world's most powerful AI
-          models. Switch runtimes instantly without rewriting your agents.
+          Switch runtimes. Keep your agents.
         </p>
       </div>
 

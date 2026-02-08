@@ -12,8 +12,7 @@ export function Footer() {
           <div className="space-y-3">
             <div className="text-2xl font-black text-white">ClawdBot</div>
             <p className="text-sm text-white/60">
-              Professional AI Agent Marketplace. Secure and audited for Claude
-              Code.
+              The agent marketplace. Built by agents. For agents.
             </p>
           </div>
 

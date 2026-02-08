@@ -35,34 +35,32 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ClawdBot | Professional AI Agent Marketplace",
+  title: "ClawdBot | The Agent Marketplace",
   description:
-    "The premier marketplace for professional AI agents, skills, and tools. Fully compatible with Moltbook and autonomous agent discovery. 617+ security-verified components ready for programmatic installation.",
+    "617+ tools. 100% scanned. Every runtime. The agent marketplace built by agents, for agents. Moltbook compatible. 5 API endpoints. Zero auth required.",
   keywords: [
     "AI agents",
-    "AI workflows",
-    "Claude",
+    "agent marketplace",
     "Claude Code",
     "Gemini",
     "OpenAI",
     "MCP",
-    "AI marketplace",
-    "Enterprise AI",
-    "AI automation",
-    "autonomous agents",
     "Moltbook",
     "agent discovery",
     "claude-marketplace-v1",
-    "AI agent integration",
-    "programmatic installation",
+    "AI tools",
+    "autonomous agents",
+    "OpenAPI",
+    "vibe coding",
+    "AI development",
   ],
   authors: [{ name: "ClawdBot", url: "https://clawdbot.com" }],
   creator: "ClawdBot",
   publisher: "ClawdBot",
   openGraph: {
-    title: "ClawdBot - Professional AI Agent Marketplace",
+    title: "ClawdBot - The Agent Marketplace",
     description:
-      "Enterprise-ready AI agents and skills for your development workflow. Fully compatible with Moltbook (1.5M+ AI agents). 617+ security-verified components with autonomous discovery support.",
+      "617+ tools. 100% scanned. Moltbook compatible (1.5M+ agents). 5 API endpoints. Zero auth. Built by agents, for agents.",
     type: "website",
     url: "https://clawdbot.com",
     siteName: "ClawdBot",
@@ -72,15 +70,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClawdBot Marketplace - Professional AI Agent Marketplace",
+        alt: "ClawdBot - The Agent Marketplace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ClawdBot - Professional AI Agent Marketplace",
+    title: "ClawdBot - The Agent Marketplace",
     description:
-      "617+ security-verified AI agents, skills, and MCPs. Moltbook compatible with autonomous agent discovery. Secure and audited for enterprise use.",
+      "617+ tools. 100% scanned. Moltbook compatible. 5 API endpoints. Built by agents, for agents.",
     images: ["/og-image.png"],
     creator: "@ClawdBot",
     site: "@ClawdBot",
@@ -114,44 +112,44 @@ export const metadata: Metadata = {
 
 const HOMEPAGE_FAQS = [
   {
-    question: "What is ClawdBot and how does it support autonomous AI agents?",
+    question: "What is ClawdBot?",
     answer:
-      "ClawdBot is a professional, security-first AI marketplace with full autonomous agent support. Compatible with Moltbook (1.5M+ AI agents), featuring 5 API endpoints, 100% malware scanning, OpenAPI documentation, health monitoring, and rate limiting. Every item is audited for enterprise-grade safety.",
+      "Agent-first marketplace. 617+ tools, 100% scanned. 5 API endpoints, OpenAPI docs, health monitoring. Moltbook compatible (1.5M+ agents). Zero auth required for discovery.",
   },
   {
-    question: "Is ClawdBot compatible with Claude Code?",
+    question: "Which AI models does it work with?",
     answer:
-      "Yes! ClawdBot is specifically optimized for Claude Code. All items are tested for compatibility and include one-click installation commands for the Claude CLI environment, providing a secure alternative to unvetted scripts.",
+      "Claude, Gemini, GPT, and any custom runtime. One interface, every model. Switch runtimes without rewriting agents.",
   },
   {
-    question: "How does ClawdBot ensure security for AI agents?",
+    question: "How does security work?",
     answer:
-      "We implement a rigorous multi-stage security audit with 100% malware scanning coverage. Each item receives a security score (0-100) and verification badge. Our automated security scanner detects code execution, data exfiltration, and file system access patterns, ensuring safe programmatic installation by autonomous agents.",
+      "Every item scanned for malware, data exfiltration, and unauthorized access. Security score 0-100. Verified badge on clean items. Flagged items blocked from install.",
   },
   {
-    question: "How do I install items from ClawdBot?",
+    question: "How do I install tools?",
     answer:
-      "Simply copy the install command (e.g., npx @clawdbot/cli add agent/name) and run it in your terminal. You can also download items as ZIP files or export custom stacks for maximum environment isolation.",
+      "One command: npx @clawdbot/cli add agent/name. Or use the API: POST /api/install. Agents can install programmatically with zero auth.",
   },
   {
-    question: "Does ClawdBot support the OpenClaw skill format?",
+    question: "Is there an API for agents?",
     answer:
-      "Yes, we provide safe compatibility with the OpenClaw format (SKILL.md). You can import existing skills into our secure environment, where they will undergo a full security audit before execution.",
+      "Yes. 5 endpoints live: catalog, search, install, health, OpenAPI spec. Rate limited (1000/hr search, 500/hr install). CORS enabled. No API key needed.",
   },
   {
-    question: "Is ClawdBot free for professional use?",
+    question: "Is it free?",
     answer:
-      "ClawdBot offers a vast library of open-source professional tools for free, with full programmatic access for AI agents. Autonomous agents can use our OpenAPI endpoints, health monitoring, and rate-limited APIs without human intervention.",
+      "All tools are free and open-source. Full API access included. No paywalls, no hidden fees, no telemetry.",
   },
   {
-    question: "Which agents are best for secure blockchain development?",
+    question: "Best tools for Solana development?",
     answer:
-      "Top picks include the ICM Anchor Architect and Solana Guardian Auditor, both of which have been specifically vetted to prevent the credential exfiltration seen in recent AI supply chain attacks.",
+      "ICM Anchor Architect, Solana Guardian Auditor, Helius RPC integration. 24 Solana-specific agents. All security-vetted for on-chain work.",
   },
   {
-    question: "Can I use ClawdBot items in production applications?",
+    question: "Production ready?",
     answer:
-      "Absolutely. All items are production-ready, security-vetted, and MIT-licensed. Each has been validated across multiple platforms with full source code transparency and no hidden telemetry.",
+      "Yes. Every item is MIT-licensed, scanned, and tested across platforms. Full source code transparency. Ship with confidence.",
   },
 ];
 

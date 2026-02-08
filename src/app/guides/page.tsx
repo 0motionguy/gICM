@@ -16,9 +16,9 @@ import Link from "next/link";
 import { ComponentType, SVGProps } from "react";
 
 export const metadata = {
-  title: "Setup Guides | ClawdBot - Universal AI Coding Hub",
+  title: "Setup Guides | ClawdBot - The Agent Marketplace",
   description:
-    "Step-by-step guides to set up Claude Code, Gemini AI, and OpenAI GPT for AI-powered development. Start vibe coding in minutes.",
+    "Pick a model. Start building. Claude, Gemini, OpenAI setup in minutes.",
   keywords: [
     "Claude Code setup",
     "Gemini AI setup",
@@ -28,9 +28,9 @@ export const metadata = {
     "AI development guide",
   ],
   openGraph: {
-    title: "AI Setup Guides - Claude, Gemini, OpenAI | ClawdBot",
+    title: "Setup Guides | ClawdBot",
     description:
-      "Step-by-step guides to set up Claude Code, Gemini AI, and OpenAI GPT for AI-powered development.",
+      "Pick a model. Start building. Claude, Gemini, OpenAI setup in minutes.",
     url: "https://clawdbot.com/guides",
   },
   alternates: {
@@ -108,18 +108,18 @@ const guides: Guide[] = [
 const features = [
   {
     icon: Code2,
-    title: "Multi-Model Support",
-    description: "Use Claude, Gemini, or OpenAI - all from one platform",
+    title: "Any Model",
+    description: "Claude, Gemini, OpenAI. One platform.",
   },
   {
     icon: Zap,
-    title: "Instant Setup",
-    description: "Get coding in under 10 minutes with our step-by-step guides",
+    title: "10 Minutes",
+    description: "API key to first agent. That fast.",
   },
   {
     icon: Brain,
-    title: "Best Practices",
-    description: "Learn optimal prompting and token-saving techniques",
+    title: "Ship Faster",
+    description: "Optimal prompting. Fewer tokens. Better output.",
   },
 ];
 
@@ -150,15 +150,14 @@ export default function GuidesPage() {
           </div>
 
           <h1 className="mb-6 font-display text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Start Coding with{" "}
+            Pick a model.{" "}
             <span className="bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] bg-clip-text text-transparent">
-              Any AI Model
+              Start building.
             </span>
           </h1>
 
           <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-zinc-400">
-            Complete setup guides for Claude Code, Gemini AI, and OpenAI GPT.
-            Choose your preferred AI model and start building in minutes.
+            Claude, Gemini, or OpenAI. API key to first agent in 10 minutes.
           </p>
 
           {/* Features */}

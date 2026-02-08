@@ -102,28 +102,35 @@ export function Web3HeroSection() {
 
           {/* Headline Area */}
           <div className="max-w-4xl space-y-4">
+            <p className="text-sm font-medium uppercase tracking-widest text-zinc-500">
+              Built by agents. For agents.
+            </p>
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white md:text-6xl lg:text-7xl">
-              Professional <br />
+              The Agent <br />
               <span className="bg-gradient-to-r from-white via-zinc-400 to-zinc-600 bg-clip-text text-transparent">
-                AI Agent Marketplace.
+                Marketplace.
               </span>
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">
-              ClawdBot connects every runtime. Build with
               <span className="font-medium text-white">
-                {" "}
                 {stats.agents +
                   stats.skills +
                   stats.commands +
                   stats.mcps +
                   stats.workflows}
-                + security-verified items
+                + tools.
               </span>{" "}
-              with 100% malware scanning. Compatible with{" "}
-              <span className="font-semibold text-[#00F0FF]">Moltbook</span>{" "}
-              (1.5M+ AI agents), Claude, Gemini, and GPT. Featuring OpenAPI,
-              health monitoring, and rate limiting.
+              100% scanned. Every runtime.
+            </p>
+            <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-zinc-500">
+              <span className="text-[#00F0FF]">Moltbook compatible</span>
+              <span>·</span>
+              <span>5 API endpoints</span>
+              <span>·</span>
+              <span>OpenAPI docs</span>
+              <span>·</span>
+              <span>Zero auth required</span>
             </p>
 
             {/* Partnership Badges */}
@@ -164,12 +171,6 @@ export function Web3HeroSection() {
 
           {/* Action Bar */}
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/guides/vibe-coding">
-              <button className="rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-8 py-4 font-bold text-white shadow-[0_0_20px_-5px_rgba(0,240,255,0.3)] transition-all hover:opacity-90">
-                Start Vibe Coding
-              </button>
-            </Link>
-
             <button
               className="rounded-xl bg-white px-8 py-4 font-bold text-black shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] transition-all hover:bg-zinc-200"
               onClick={() => {
@@ -182,36 +183,54 @@ export function Web3HeroSection() {
                 });
               }}
             >
-              Explore Catalog
+              Browse Tools
             </button>
 
-            <Link href="/projects">
-              <button className="rounded-xl border border-white/10 bg-white/5 px-8 py-4 font-medium text-white backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10">
-                View Projects
+            <Link href="/guides/vibe-coding">
+              <button className="rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-8 py-4 font-bold text-white shadow-[0_0_20px_-5px_rgba(0,240,255,0.3)] transition-all hover:opacity-90">
+                Start Building
               </button>
             </Link>
+
+            <a
+              href="/.well-known/claude-marketplace.json"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="rounded-xl border border-white/10 bg-white/5 px-8 py-4 font-medium text-white backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10">
+                Agent API
+              </button>
+            </a>
           </div>
 
           {/* Install Command */}
           <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-[#05050A] px-4 py-3">
             <span className="text-zinc-500">$</span>
             <code className="font-mono text-sm text-[#00F0FF]">
-              npx @clawdbot/cli list agents
+              npx @clawdbot/cli install
             </code>
             <span className="ml-2 hidden border-l border-white/10 pl-3 text-sm text-zinc-600 sm:inline-block">
-              Browse Catalog
+              one command, full stack
             </span>
           </div>
 
-          {/* Stats Grid - Minimal & Clean */}
+          {/* Stats Grid */}
           <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/5 bg-white/5 md:grid-cols-4 lg:grid-cols-6">
             {[
+              {
+                label: "Tools",
+                value:
+                  stats.agents +
+                  stats.skills +
+                  stats.commands +
+                  stats.mcps +
+                  stats.workflows,
+              },
               { label: "Agents", value: stats.agents },
-              { label: "Skills", value: stats.skills },
               { label: "MCPs", value: stats.mcps },
-              { label: "API Endpoints", value: "5" },
-              { label: "Security Scan", value: "100%" },
-              { label: "AI Agents", value: "1.5M+" },
+              { label: "Endpoints", value: "5" },
+              { label: "Scanned", value: "100%" },
+              { label: "Network", value: "1.5M+" },
             ].map((stat, i) => (
               <div
                 key={i}
@@ -256,12 +275,12 @@ export function Web3HeroSection() {
             <Zap className="h-5 w-5 text-[#00F0FF]" />
           </div>
           <div>
-            <h3 className="font-bold text-white">Private Alpha Access</h3>
+            <h3 className="font-bold text-white">Early Access</h3>
             <p className="text-sm text-zinc-400">
               <span className="font-mono text-[#00F0FF]">
                 {waitlistCount}/500
               </span>{" "}
-              keys claimed
+              slots left
             </p>
           </div>
           <div className="hidden h-1.5 w-32 overflow-hidden rounded-full bg-white/5 md:block">

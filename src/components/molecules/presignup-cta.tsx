@@ -24,9 +24,9 @@ export function PreSignupCTA() {
 
   const handleShare = async () => {
     const shareData = {
-      title: 'ClawdBot - AI Dev Stack for Web3',
-      text: 'Join the ClawdBot waitlist and get early access to the AI-powered dev stack for Web3',
-      url: window.location.href
+      title: "ClawdBot - AI Dev Stack for Web3",
+      text: "Join the ClawdBot waitlist and get early access to the AI-powered dev stack for Web3",
+      url: window.location.href,
     };
 
     try {
@@ -43,63 +43,72 @@ export function PreSignupCTA() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-10 py-3">
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#0f0f0f] via-[#0a0a0a] to-[#070707] p-5 md:p-6 border border-lime-300/40 shadow-xl">
+    <div className="mx-auto max-w-7xl px-6 py-3 md:px-10">
+      <div className="relative overflow-hidden rounded-xl border border-lime-300/40 bg-gradient-to-r from-[#0f0f0f] via-[#0a0a0a] to-[#070707] p-5 shadow-xl md:p-6">
         {/* Glow effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-lime-300/10 via-emerald-300/5 to-transparent" />
 
-        <div className="relative z-10 text-center max-w-3xl mx-auto">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-lime-300/20 border border-lime-300/50 mb-3">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-lime-300/50 bg-lime-300/20 px-3 py-1.5">
             <Sparkles size={14} className="text-lime-300" />
-            <span className="text-lime-300 text-sm font-bold tracking-wide">
-              Build Your AI Dev Stack. Ship Faster.
+            <span className="text-sm font-bold tracking-wide text-lime-300">
+              Describe it. Ship it.
             </span>
           </div>
 
           {/* Headline */}
-          <h2 className="text-2xl md:text-4xl font-black text-white mb-2 leading-tight">
-            Prompt to product <span className="text-lime-300">for Web3.</span>
+          <h2 className="mb-2 text-2xl font-black leading-tight text-white md:text-4xl">
+            From prompt <span className="text-lime-300">to production.</span>
           </h2>
 
           {/* Subline */}
-          <p className="text-white text-base md:text-lg font-medium mb-2 leading-relaxed">
-            Describe it. <span className="text-lime-300">ClawdBot builds</span> the stack. You ship.
+          <p className="mb-2 text-base font-medium leading-relaxed text-white md:text-lg">
+            Describe it. <span className="text-lime-300">Agents build it.</span>{" "}
+            You ship it.
           </p>
 
           {/* CTA Section */}
-          <div className="flex flex-col items-center gap-3 mb-4">
+          <div className="mb-4 flex flex-col items-center gap-3">
             {/* Main CTA Row - Single horizontal row */}
-            <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-4">
+            <div className="flex w-full flex-col items-center justify-center gap-4 lg:flex-row">
               {/* Left: Join Waitlist Button */}
               <button
                 onClick={() => setWaitlistOpen(true)}
                 onMouseEnter={() => setHoverPrimary(true)}
                 onMouseLeave={() => setHoverPrimary(false)}
-                className="px-8 py-3 rounded-lg bg-lime-300 text-black font-bold text-base hover:bg-lime-400 transition-colors shadow-lg"
+                className="rounded-lg bg-lime-300 px-8 py-3 text-base font-bold text-black shadow-lg transition-colors hover:bg-lime-400"
               >
                 {hoverPrimary ? (
-                  <ScrambleText text="Join waitlist" trigger="hover" duration={400} />
+                  <ScrambleText
+                    text="Join waitlist"
+                    trigger="hover"
+                    duration={400}
+                  />
                 ) : (
                   "Join waitlist"
                 )}
               </button>
 
               {/* Right: Alpha Keys Panel - Compact horizontal layout */}
-              <div className="px-5 py-3 rounded-lg border border-white/20 bg-white/5 backdrop-blur">
+              <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-3 backdrop-blur">
                 <div className="flex items-center gap-6">
                   {/* Alpha keys with progress */}
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-white text-sm font-medium">Alpha keys</span>
-                      <span className="text-white/60 text-sm font-medium">
-                        {alphaKeysIssued >= alphaKeysCap ? "Sold out" : `${alphaKeysIssued}/${alphaKeysCap}`}
+                      <span className="text-sm font-medium text-white">
+                        Alpha keys
+                      </span>
+                      <span className="text-sm font-medium text-white/60">
+                        {alphaKeysIssued >= alphaKeysCap
+                          ? "Sold out"
+                          : `${alphaKeysIssued}/${alphaKeysCap}`}
                       </span>
                     </div>
                     {/* Progress bar */}
-                    <div className="h-1.5 w-[180px] bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-1.5 w-[180px] overflow-hidden rounded-full bg-white/10">
                       <div
-                        className="h-full bg-gradient-to-r from-lime-300 to-yellow-400 rounded-full transition-all duration-300"
+                        className="h-full rounded-full bg-gradient-to-r from-lime-300 to-yellow-400 transition-all duration-300"
                         style={{ width: `${progressPercentage}%` }}
                       />
                     </div>
@@ -110,12 +119,16 @@ export function PreSignupCTA() {
                     onClick={handleShare}
                     onMouseEnter={() => setHoverShare(true)}
                     onMouseLeave={() => setHoverShare(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white/60 hover:text-lime-300 transition-colors border-l border-white/10 pl-6"
+                    className="flex items-center gap-2 border-l border-white/10 px-4 py-2 pl-6 text-sm font-semibold text-white/60 transition-colors hover:text-lime-300"
                   >
                     <Share2 size={14} />
                     <span>
                       {hoverShare ? (
-                        <ScrambleText text="Share to boost" trigger="hover" duration={300} />
+                        <ScrambleText
+                          text="Share to boost"
+                          trigger="hover"
+                          duration={300}
+                        />
                       ) : (
                         "Share to boost"
                       )}
@@ -126,16 +139,16 @@ export function PreSignupCTA() {
             </div>
 
             {/* Micro-copy */}
-            <p className="text-zinc-400 text-xs text-center">
+            <p className="text-center text-xs text-zinc-400">
               Early access limited. Invites roll out weekly.
             </p>
 
             {/* AWS Support */}
             <div className="flex items-center justify-center gap-1.5">
-              <span className="px-1.5 py-0.5 text-[10px] font-bold text-white bg-zinc-800 border border-zinc-600 rounded">
+              <span className="rounded border border-zinc-600 bg-zinc-800 px-1.5 py-0.5 text-[10px] font-bold text-white">
                 AWS Activate Partner
               </span>
-              <span className="text-zinc-300 text-[11px]">
+              <span className="text-[11px] text-zinc-300">
                 Up to $100k credits for graduated startups
               </span>
             </div>
@@ -143,40 +156,53 @@ export function PreSignupCTA() {
 
           {/* Contract Address Teaser */}
           <div
-            className="flex items-center justify-center gap-2 text-xs mb-5 cursor-pointer group"
+            className="group mb-5 flex cursor-pointer items-center justify-center gap-2 text-xs"
             onMouseEnter={() => setHoverCA(true)}
             onMouseLeave={() => setHoverCA(false)}
           >
-            <Eye size={14} className="text-zinc-400 group-hover:text-lime-400 transition-colors" />
-            <span className="text-zinc-400 font-medium">CA:</span>
+            <Eye
+              size={14}
+              className="text-zinc-400 transition-colors group-hover:text-lime-400"
+            />
+            <span className="font-medium text-zinc-400">CA:</span>
             <InfiniteScramble
               length={44}
               active={hoverCA}
-              className={`font-mono text-lime-300/70 tracking-wider transition-all ${hoverCA ? '' : 'blur-sm'}`}
+              className={`font-mono tracking-wider text-lime-300/70 transition-all ${hoverCA ? "" : "blur-sm"}`}
             />
           </div>
 
           {/* Stats - Updated with accurate counts */}
-          <div className="pt-4 border-t border-white/20 grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+          <div className="grid grid-cols-2 gap-4 border-t border-white/20 pt-4 text-center md:grid-cols-5">
             <div>
-              <div className="text-xl md:text-2xl font-black text-lime-300">92%</div>
-              <div className="text-xs text-zinc-400 mt-1">Token Savings</div>
+              <div className="text-xl font-black text-lime-300 md:text-2xl">
+                92%
+              </div>
+              <div className="mt-1 text-xs text-zinc-400">Token Savings</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-black text-lime-300">4.7x</div>
-              <div className="text-xs text-zinc-400 mt-1">Faster Builds</div>
+              <div className="text-xl font-black text-lime-300 md:text-2xl">
+                4.7x
+              </div>
+              <div className="mt-1 text-xs text-zinc-400">Faster Builds</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-black text-lime-300">368</div>
-              <div className="text-xs text-zinc-400 mt-1">Total Items</div>
+              <div className="text-xl font-black text-lime-300 md:text-2xl">
+                368
+              </div>
+              <div className="mt-1 text-xs text-zinc-400">Total Items</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-black text-lime-300">68</div>
-              <div className="text-xs text-zinc-400 mt-1">Agents</div>
+              <div className="text-xl font-black text-lime-300 md:text-2xl">
+                68
+              </div>
+              <div className="mt-1 text-xs text-zinc-400">Agents</div>
             </div>
             <div>
-              <div className="text-xl md:text-2xl font-black text-lime-300">92</div>
-              <div className="text-xs text-zinc-400 mt-1">Skills</div>
+              <div className="text-xl font-black text-lime-300 md:text-2xl">
+                92
+              </div>
+              <div className="mt-1 text-xs text-zinc-400">Skills</div>
             </div>
           </div>
         </div>

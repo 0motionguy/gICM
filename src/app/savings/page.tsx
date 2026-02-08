@@ -16,9 +16,9 @@ import { GlassCard } from "@/components/ui/glass-card";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Performance Calculator | ClawdBot",
+  title: "Performance | ClawdBot - The Agent Marketplace",
   description:
-    "Calculate your context reduction, token savings, and speed improvements with Progressive Disclosure technology.",
+    "92% context reduction. 12x faster responses. Calculate your token savings with Progressive Disclosure.",
 };
 
 export default function SavingsPage() {
@@ -43,21 +43,20 @@ export default function SavingsPage() {
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00F0FF]/20 bg-[#00F0FF]/10 px-4 py-2">
             <Sparkles className="h-4 w-4 text-[#00F0FF]" />
             <span className="text-sm font-bold tracking-wide text-[#00F0FF]">
-              88-92% Context Reduction
+              92% Less Context. Same Output.
             </span>
           </div>
 
           <h1 className="mb-6 font-display text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Supercharge Your{" "}
+            Fewer tokens.{" "}
             <span className="bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] bg-clip-text text-transparent">
-              AI Performance
+              Faster output.
             </span>
           </h1>
 
           <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-zinc-400">
-            Progressive Disclosure technology loads only the context you need,
-            when you need it. The result? Dramatically smaller prompts, faster
-            responses, and more efficient AI interactions.
+            Progressive Disclosure loads only what matters. 92% smaller prompts.
+            12x faster responses.
           </p>
 
           {/* Key Benefits */}
@@ -70,7 +69,7 @@ export default function SavingsPage() {
                 90% Smaller Context
               </h3>
               <p className="text-sm text-zinc-400">
-                Dramatically reduce prompt size without sacrificing quality
+                Same quality. 10x less input.
               </p>
             </GlassCard>
 
@@ -79,10 +78,10 @@ export default function SavingsPage() {
                 <Gauge className="h-8 w-8 text-[#00F0FF]" />
               </div>
               <h3 className="mb-2 text-lg font-bold text-white">
-                10-12x Faster Responses
+                12x Faster Responses
               </h3>
               <p className="text-sm text-zinc-400">
-                Less context means faster processing and quicker results
+                Less in, faster out. Simple math.
               </p>
             </GlassCard>
 
@@ -91,10 +90,10 @@ export default function SavingsPage() {
                 <Activity className="h-8 w-8 text-[#00F0FF]" />
               </div>
               <h3 className="mb-2 text-lg font-bold text-white">
-                Maximum Efficiency
+                Peak Efficiency
               </h3>
               <p className="text-sm text-zinc-400">
-                Get more done with fewer tokens and faster turnaround
+                More output per token. Every time.
               </p>
             </GlassCard>
           </div>
@@ -108,7 +107,7 @@ export default function SavingsPage() {
         {/* Performance Examples */}
         <div className="mb-20 mt-16">
           <h2 className="mb-12 text-center font-display text-3xl font-bold text-white">
-            Real-World Performance Gains
+            Real Numbers. Real Savings.
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -329,8 +328,7 @@ export default function SavingsPage() {
                   </Badge>
                 </div>
                 <p className="mb-6 text-sm leading-relaxed text-zinc-400">
-                  Traditional prompts send entire codebases, documentation, and
-                  context in every request, even when most of it isn't needed.
+                  Sends everything. Every time. 12,500 tokens per request.
                 </p>
                 <div className="rounded-xl border border-zinc-700/30 bg-zinc-800/50 p-5 font-mono">
                   <code className="block text-xs leading-loose text-zinc-400">
@@ -353,9 +351,7 @@ export default function SavingsPage() {
                   </Badge>
                 </div>
                 <p className="mb-6 text-sm leading-relaxed text-zinc-400">
-                  Progressive Disclosure intelligently loads only relevant
-                  context for each step, dramatically reducing token usage while
-                  maintaining quality.
+                  Loads only what matters. 980 tokens. Same output quality.
                 </p>
                 <div className="rounded-xl border border-[#00F0FF]/30 bg-[#00F0FF]/10 p-5 font-mono">
                   <code className="block text-xs leading-loose text-[#00F0FF]">

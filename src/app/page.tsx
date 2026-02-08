@@ -559,16 +559,13 @@ function CatalogPageContent() {
               <Bot className="h-8 w-8 text-[#00F0FF]" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-white">
-                🤖 For Autonomous AI Agents
-              </h3>
+              <h3 className="text-lg font-bold text-white">Agent API Live</h3>
               <p className="mt-1 text-sm text-zinc-400">
-                Fully compatible with{" "}
+                5 endpoints. Zero auth.{" "}
                 <span className="font-semibold text-[#00F0FF]">Moltbook</span>{" "}
-                (1.5M+ AI agents) and claude-marketplace-v1 protocol.
-                <span className="ml-1 text-zinc-500">
-                  617+ security-verified components ready for programmatic
-                  installation.
+                compatible.{" "}
+                <span className="font-mono text-zinc-500">
+                  claude-marketplace-v1
                 </span>
               </p>
             </div>
