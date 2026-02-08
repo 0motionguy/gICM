@@ -1,7 +1,7 @@
 {
-  "name": "gICM - Universal AI Workflow Marketplace",
-  "short_name": "gICM",
-  "description": "Cross-chain marketplace for AI agents, skills, and workflows",
+  "name": "ClawdBot | OpenClaw Marketplace",
+  "short_name": "ClawdBot",
+  "description": "OpenClaw compatible marketplace for AI agents, skills, and workflows",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

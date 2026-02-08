@@ -1,4 +1,4 @@
-# gICM Marketplace - robots.txt
+# ClawdBot Marketplace - robots.txt
 
 User-agent: *
 Allow: /
@@ -20,10 +20,10 @@ Allow: /api/search
 Allow: /api/install
 
 # Sitemaps
-Sitemap: https://gicm.app/sitemap.xml
+Sitemap: https://clawdbot.com/sitemap.xml
 
 # Host directive for search engines
-Host: https://gicm.app
+Host: https://clawdbot.com
 
 # AI crawlers (Perplexity, Claude, ChatGPT)
 User-agent: GPTBot

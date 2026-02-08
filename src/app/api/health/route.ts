@@ -51,8 +51,17 @@ export async function GET() {
       },
       agentDiscovery: {
         enabled: true,
-        moltbookCompatible: true,
         corsEnabled: true,
+      },
+      ecosystem: {
+        clawHubMapped: items.filter(
+          (i) => i.openClaw?.category === "clawdhub-native"
+        ).length,
+        clawdBotExclusive: items.filter(
+          (i) => i.openClaw?.category === "clawdbot-exclusive"
+        ).length,
+        moltbookReady: items.filter((i) => i.openClaw?.moltbookDiscoverable)
+          .length,
       },
       performance: {
         responseTimeMs: responseTime,

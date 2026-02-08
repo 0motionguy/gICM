@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { REGISTRY } from "@/lib/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://gicm.app";
+  const baseUrl = "https://clawdbot.com";
 
   // Static pages with SEO-optimized priorities
   const staticPages: MetadataRoute.Sitemap = [

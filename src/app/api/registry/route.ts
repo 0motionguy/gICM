@@ -43,6 +43,9 @@ const FiltersSchema = z.object({
   auditStatus: z
     .enum(["VERIFIED", "NEEDS_FIX", "FLAGGED", "DEPRECATED"])
     .optional(),
+  ecosystem: z
+    .enum(["clawdhub-native", "openclaw-compatible", "clawdbot-exclusive"])
+    .optional(),
 });
 
 // Response types
@@ -157,6 +160,7 @@ export async function GET(request: NextRequest) {
       hasProgressiveDisclosure:
         searchParams.get("hasProgressiveDisclosure") ?? undefined,
       auditStatus: searchParams.get("auditStatus") ?? undefined,
+      ecosystem: searchParams.get("ecosystem") ?? undefined,
     });
 
     if (!filtersResult.success) {
@@ -233,6 +237,13 @@ export async function GET(request: NextRequest) {
     if (filters.auditStatus) {
       items = items.filter(
         (item) => item.audit?.status === filters.auditStatus
+      );
+    }
+
+    // Apply ecosystem filter (OpenClaw compatibility)
+    if (filters.ecosystem) {
+      items = items.filter(
+        (item) => item.openClaw?.category === filters.ecosystem
       );
     }
 

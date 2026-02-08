@@ -1,0 +1,64 @@
+{
+  "mcpServers": {
+    "clawdbot": {
+      "command": "npx",
+      "args": ["-y", "@clawdbot/mcp-server@latest"]
+    }
+  },
+  "_comment": "ClawdBot MCP Server - Search and install 617+ verified Web3/AI skills. Package coming soon.",
+  "_status": "PLANNED_PACKAGE",
+  "_tools": [
+    {
+      "name": "clawdbot_search",
+      "description": "Search ClawdBot marketplace for Web3/Solana/DeFi skills",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Search query" },
+          "kind": {
+            "type": "string",
+            "enum": ["agent", "skill", "mcp", "command"],
+            "description": "Filter by item kind"
+          },
+          "ecosystem": {
+            "type": "string",
+            "enum": ["clawdhub-native", "clawdbot-exclusive"],
+            "description": "Filter by ecosystem"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "clawdbot_install",
+      "description": "Get installation instructions for a ClawdBot skill",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "skill_id": { "type": "string", "description": "Skill ID or slug" }
+        },
+        "required": ["skill_id"]
+      }
+    },
+    {
+      "name": "clawdbot_verify",
+      "description": "Check security status and audit results for a skill",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "skill_name": {
+            "type": "string",
+            "description": "Skill name, ID, or slug"
+          }
+        },
+        "required": ["skill_name"]
+      }
+    }
+  ],
+  "_endpoints": {
+    "api": "https://clawdbot.com/api",
+    "a2a": "https://clawdbot.com/api/a2a/tasks",
+    "agentCard": "https://clawdbot.com/.well-known/agent.json",
+    "openapi": "https://clawdbot.com/openapi.json"
+  }
+}

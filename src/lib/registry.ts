@@ -13091,7 +13091,114 @@ export const BUNDLES: Bundle[] = [
 // REGISTRY EXPORT
 // ============================================================================
 
-export const REGISTRY: RegistryItem[] = [
+// ============================================================================
+// OpenClaw / ClawHub Ecosystem Mappings
+// Maps ClawdBot item IDs to their real ClawHub skill equivalents
+// ============================================================================
+const CLAWHUB_MAPPINGS: Record<
+  string,
+  {
+    clawHubSlug: string;
+    clawHubInstall: string;
+    moltbookDiscoverable?: boolean;
+  }
+> = {
+  // Blockchain & DeFi
+  "jupiter-aggregator-integration": {
+    clawHubSlug: "jupiter",
+    clawHubInstall: "npx clawdhub install jupiter",
+  },
+  "web3-wallet-integration": {
+    clawHubSlug: "phantom-wallet",
+    clawHubInstall: "npx clawdhub install phantom-wallet",
+  },
+  "uniswap-v3-integration-specialist": {
+    clawHubSlug: "bankr",
+    clawHubInstall: "npx clawdhub install bankr",
+  },
+  "graph-protocol-indexer": {
+    clawHubSlug: "registry-broker-hashnet-openclaw",
+    clawHubInstall: "npx clawdhub install registry-broker-hashnet-openclaw",
+  },
+  // Social & Engagement
+  "mcp-twitter": {
+    clawHubSlug: "bird",
+    clawHubInstall: "npx clawdhub install bird",
+    moltbookDiscoverable: true,
+  },
+  // Development & Testing
+  "superpower-test-driven-development": {
+    clawHubSlug: "test-driven-development",
+    clawHubInstall: "npx clawdhub install test-driven-development",
+  },
+  "mcp-github": {
+    clawHubSlug: "github-pr",
+    clawHubInstall: "npx clawdhub install github-pr",
+  },
+  // Search & Research
+  "mcp-brave-search": {
+    clawHubSlug: "brave-search",
+    clawHubInstall: "npx clawdhub install brave-search",
+  },
+  // Design & Productivity
+  "mcp-figma": {
+    clawHubSlug: "figma",
+    clawHubInstall: "npx clawdhub install figma",
+  },
+  "mcp-sendgrid": {
+    clawHubSlug: "himalaya",
+    clawHubInstall: "npx clawdhub install himalaya",
+  },
+  // Home Automation
+  "gemini-home-assistant": {
+    clawHubSlug: "moltbot-ha",
+    clawHubInstall: "npx clawdhub install moltbot-ha",
+    moltbookDiscoverable: true,
+  },
+  // Analytics
+  "mcp-birdeye": {
+    clawHubSlug: "pumpmolt",
+    clawHubInstall: "npx clawdhub install pumpmolt",
+  },
+  // Orchestration
+  "fullstack-orchestrator": {
+    clawHubSlug: "ec-task-orchestrator",
+    clawHubInstall: "npx clawdhub install ec-task-orchestrator",
+  },
+  // Email
+  "gemini-email-marketer": {
+    clawHubSlug: "gmail-pubsub",
+    clawHubInstall: "npx clawdhub install gmail-pubsub",
+  },
+};
+
+function enrichWithOpenClaw(items: RegistryItem[]): RegistryItem[] {
+  return items.map((item) => {
+    const mapping = CLAWHUB_MAPPINGS[item.id];
+    if (mapping) {
+      return {
+        ...item,
+        openClaw: {
+          clawHubSlug: mapping.clawHubSlug,
+          clawHubInstall: mapping.clawHubInstall,
+          isOnClawHub: true,
+          moltbookDiscoverable: mapping.moltbookDiscoverable ?? false,
+          category: "clawdhub-native" as const,
+        },
+      };
+    }
+    return {
+      ...item,
+      openClaw: {
+        isOnClawHub: false,
+        moltbookDiscoverable: false,
+        category: "clawdbot-exclusive" as const,
+      },
+    };
+  });
+}
+
+export const REGISTRY: RegistryItem[] = enrichWithOpenClaw([
   ...AGENTS,
   ...SKILLS,
   ...COMMANDS,
@@ -13104,7 +13211,7 @@ export const REGISTRY: RegistryItem[] = [
   ...CONTENT_AGENTS,
   ...ANTHROPIC_SKILLS,
   ...SUPERPOWERS,
-];
+]);
 
 export function getItemsByKind(
   kind: "agent" | "skill" | "command" | "mcp" | "setting" | "workflow"

@@ -46,12 +46,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ClawdBot | The Agent Marketplace",
+  title: "ClawdBot | AI Agent Marketplace",
   description:
-    "The official ClawdBot marketplace. 617+ OpenClaw compatible tools. 100% scanned. Built by agents, for agents. Moltbook compatible. 5 API endpoints. Zero auth required.",
+    "617+ AI tools for Claude, Gemini, and OpenAI. 14 items on ClawHub (OpenClaw ecosystem). 100% security scanned. Built by agents, for agents.",
   keywords: [
     "Clawbot",
     "OpenClaw",
+    "Moltbook",
+    "ClawHub",
+    "ClawCon",
+    "OnlyCrabs",
+    "MoltyScan",
     "OpenClaw agents",
     "Clawbot marketplace",
     "clawbot tools",
@@ -62,7 +67,6 @@ export const metadata: Metadata = {
     "Gemini",
     "OpenAI",
     "MCP",
-    "Moltbook",
     "agent discovery",
     "claude-marketplace-v1",
     "AI tools",
@@ -75,9 +79,9 @@ export const metadata: Metadata = {
   creator: "ClawdBot",
   publisher: "ClawdBot",
   openGraph: {
-    title: "ClawdBot | The Agent Marketplace",
+    title: "ClawdBot | AI Agent Marketplace",
     description:
-      "617+ tools. 100% scanned. Every runtime. Moltbook compatible. 5 API endpoints. Zero auth. Built by agents, for agents.",
+      "617+ AI tools for Claude, Gemini, and OpenAI. 14 items on ClawHub. 100% security scanned.",
     type: "website",
     url: "https://clawdbot.com",
     siteName: "ClawdBot",
@@ -87,15 +91,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClawdBot - The Agent Marketplace. Built by agents, for agents.",
+        alt: "ClawdBot - AI Agent Marketplace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ClawdBot | The Agent Marketplace",
+    title: "ClawdBot | AI Agent Marketplace",
     description:
-      "617+ tools. 100% scanned. Every runtime. Moltbook compatible. Built by agents, for agents.",
+      "617+ AI tools for Claude, Gemini, and OpenAI. 14 items on ClawHub. 100% security scanned.",
     images: ["/og-image.png"],
     creator: "@ClawdBot",
     site: "@ClawdBot",
@@ -131,7 +135,7 @@ const HOMEPAGE_FAQS = [
   {
     question: "What is ClawdBot?",
     answer:
-      "Agent-first marketplace. 617+ tools, 100% scanned. 5 API endpoints, OpenAPI docs, health monitoring. Moltbook compatible (1.5M+ agents). Zero auth required for discovery.",
+      "Agent-first marketplace. 617+ tools, 100% scanned. 5 API endpoints, OpenAPI docs, health monitoring. 14 items available on ClawHub (OpenClaw ecosystem). Zero auth required for discovery.",
   },
   {
     question: "Which AI models does it work with?",
@@ -216,7 +220,7 @@ export default function RootLayout({
         {/* Agent Discovery Meta Tags */}
         <meta name="ai-marketplace" content="claude-marketplace-v1" />
         <meta name="agent-discovery" content="enabled" />
-        <meta name="moltbook-compatible" content="true" />
+        <meta name="openclaw-ecosystem" content="14-items-on-clawhub" />
         <link
           rel="alternate"
           type="application/json"
@@ -262,7 +266,7 @@ export default function RootLayout({
               featureList: [
                 "Autonomous Agent Discovery",
                 "617+ Security-Verified Components",
-                "Moltbook Compatible (1.5M+ AI Agents)",
+                "14 Items on ClawHub (OpenClaw Ecosystem)",
                 "claude-marketplace-v1 Protocol",
                 "Programmatic Installation",
                 "100% Malware Scanning",

@@ -286,6 +286,31 @@ export default async function ItemDetailsPage({ params }: PageProps) {
               </div>
             </div>
 
+            {/* Ecosystem Badges */}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {item.openClaw?.isOnClawHub && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00F0FF]/20 bg-[#00F0FF]/10 px-3 py-1 text-xs font-semibold text-[#00F0FF]">
+                  <Box size={12} /> On ClawHub
+                </span>
+              )}
+              {item.openClaw?.moltbookDiscoverable && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#7000FF]/20 bg-[#7000FF]/10 px-3 py-1 text-xs font-semibold text-[#7000FF]">
+                  <Sparkles size={12} /> Moltbook Ready
+                </span>
+              )}
+              {item.openClaw?.category === "clawdbot-exclusive" && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-zinc-300">
+                  <Cpu size={12} /> ClawdBot Exclusive
+                </span>
+              )}
+              {item.openClaw?.category === "clawdhub-native" &&
+                !item.openClaw?.isOnClawHub && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#FF4500]/20 bg-[#FF4500]/10 px-3 py-1 text-xs font-semibold text-[#FF4500]">
+                    <Zap size={12} /> OpenClaw Compatible
+                  </span>
+                )}
+            </div>
+
             {/* Stats Row */}
             <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/5 pt-8 md:grid-cols-4">
               <div>

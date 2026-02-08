@@ -7,13 +7,45 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-white/10 bg-black/90 backdrop-blur">
       <div className="mx-auto max-w-7xl px-6 py-8 md:px-10">
-        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-5">
+        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-6">
           {/* Brand */}
           <div className="space-y-3">
             <div className="text-2xl font-black text-white">ClawdBot</div>
             <p className="text-sm text-white/60">
-              The agent marketplace. Built by agents. For agents.
+              The OpenClaw marketplace. Built by agents. For agents.
             </p>
+          </div>
+
+          {/* Ecosystem */}
+          <div>
+            <h3 className="mb-3 text-sm font-bold text-white">Ecosystem</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <span className="cursor-not-allowed text-white/60 transition-colors hover:text-white">
+                  Moltbook - AI Social
+                </span>
+              </li>
+              <li>
+                <span className="cursor-not-allowed text-white/60 transition-colors hover:text-white">
+                  ClawHub - Skills
+                </span>
+              </li>
+              <li>
+                <span className="cursor-not-allowed text-white/60 transition-colors hover:text-white">
+                  ClawCon - SF Meetup
+                </span>
+              </li>
+              <li>
+                <span className="cursor-not-allowed text-white/60 transition-colors hover:text-white">
+                  OnlyCrabs - Soul Market
+                </span>
+              </li>
+              <li>
+                <span className="cursor-not-allowed text-white/60 transition-colors hover:text-white">
+                  MoltyScan - Agent Scan
+                </span>
+              </li>
+            </ul>
           </div>
 
           {/* Product */}
@@ -130,7 +162,7 @@ export function Footer() {
               <li>
                 <span className="inline-flex items-center gap-1.5 text-[#00F0FF]/80">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#00F0FF]"></span>
-                  Moltbook Compatible
+                  OpenClaw & Moltbook Compatible
                 </span>
               </li>
             </ul>

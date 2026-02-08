@@ -113,6 +113,19 @@ export const RegistryItemSchema = z.object({
     })
     .optional(),
 
+  // OpenClaw Ecosystem Fields
+  openClaw: z
+    .object({
+      clawHubSlug: z.string().optional(),
+      clawHubInstall: z.string().optional(),
+      isOnClawHub: z.boolean().optional(),
+      moltbookDiscoverable: z.boolean().optional(),
+      category: z
+        .enum(["clawdhub-native", "openclaw-compatible", "clawdbot-exclusive"])
+        .optional(),
+    })
+    .optional(),
+
   // Security metadata
   security: z
     .object({
@@ -209,6 +222,15 @@ export type RegistryItem = {
       install: string;
       configFile?: string;
     };
+  };
+
+  // OpenClaw Ecosystem Fields
+  openClaw?: {
+    clawHubSlug?: string;
+    clawHubInstall?: string;
+    isOnClawHub?: boolean;
+    moltbookDiscoverable?: boolean;
+    category?: "clawdhub-native" | "openclaw-compatible" | "clawdbot-exclusive";
   };
 
   // Audit metadata

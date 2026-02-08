@@ -1,0 +1,41 @@
+{
+  "name": "clawdbot-web3-skills",
+  "version": "1.0.0",
+  "description": "Access 617+ verified Web3/Solana/DeFi skills from ClawdBot marketplace. Security-audited. Works with Claude, Gemini, OpenAI.",
+  "author": "icm-motion",
+  "homepage": "https://clawdbot.com",
+  "repository": "https://github.com/0motionguy/ClawdBot",
+  "keywords": [
+    "solana",
+    "web3",
+    "defi",
+    "crypto",
+    "trading",
+    "wallet",
+    "verified",
+    "security",
+    "claude",
+    "gemini",
+    "openai",
+    "agent",
+    "mcp",
+    "a2a"
+  ],
+  "license": "MIT",
+  "endpoints": {
+    "agentCard": "https://clawdbot.com/.well-known/agent.json",
+    "marketplace": "https://clawdbot.com/.well-known/claude-marketplace.json",
+    "search": "https://clawdbot.com/api/search",
+    "registry": "https://clawdbot.com/api/registry",
+    "install": "https://clawdbot.com/api/install",
+    "health": "https://clawdbot.com/api/health",
+    "a2aTasks": "https://clawdbot.com/api/a2a/tasks",
+    "openapi": "https://clawdbot.com/openapi.json"
+  },
+  "protocols": ["a2a-v1", "claude-marketplace-v1", "mcp", "openclaw"],
+  "stats": {
+    "totalItems": 617,
+    "clawHubNative": 14,
+    "securityScanned": true
+  }
+}

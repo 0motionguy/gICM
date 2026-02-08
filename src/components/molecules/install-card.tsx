@@ -12,17 +12,29 @@ interface InstallCardProps {
   item: RegistryItem;
 }
 
-type Platform = "claude" | "gemini" | "openai";
+type Platform = "claude" | "gemini" | "openai" | "openclaw";
 
 function getProviders(item: RegistryItem): Provider[] {
   const providers: Provider[] = [];
-  if (item.tags.some((tag) => ["Solana", "Blockchain", "Docker", "Container"].includes(tag))) {
+  if (
+    item.tags.some((tag) =>
+      ["Solana", "Blockchain", "Docker", "Container"].includes(tag)
+    )
+  ) {
     providers.push("docker");
   }
-  if (item.tags.some((tag) => ["Testing", "Execution", "Sandbox"].includes(tag)) || item.kind === "skill") {
+  if (
+    item.tags.some((tag) =>
+      ["Testing", "Execution", "Sandbox"].includes(tag)
+    ) ||
+    item.kind === "skill"
+  ) {
     providers.push("e2b");
   }
-  if (item.tags.some((tag) => ["Claude", "AI", "Agent"].includes(tag)) || item.kind === "agent") {
+  if (
+    item.tags.some((tag) => ["Claude", "AI", "Agent"].includes(tag)) ||
+    item.kind === "agent"
+  ) {
     providers.push("claudefare");
   }
   return providers;
@@ -38,12 +50,24 @@ export function InstallCard({ item }: InstallCardProps) {
 
   const providers = getProviders(item);
 
+  const hasOpenClaw = !!item.openClaw?.clawHubInstall;
+
   const cliCommand = (() => {
+    // OpenClaw / ClawHub install
+    if (selectedPlatform === "openclaw" && item.openClaw?.clawHubInstall) {
+      return item.openClaw.clawHubInstall;
+    }
     // Check for platform-specific implementation
-    if (selectedPlatform === "gemini" && item.implementations?.gemini?.install) {
+    if (
+      selectedPlatform === "gemini" &&
+      item.implementations?.gemini?.install
+    ) {
       return item.implementations.gemini.install;
     }
-    if (selectedPlatform === "openai" && item.implementations?.openai?.install) {
+    if (
+      selectedPlatform === "openai" &&
+      item.implementations?.openai?.install
+    ) {
       return item.implementations.openai.install;
     }
     // Use default command, but add --platform flag if not Claude
@@ -61,62 +85,79 @@ export function InstallCard({ item }: InstallCardProps) {
   }
 
   return (
-    <GlassCard className="p-0 overflow-hidden">
+    <GlassCard className="overflow-hidden p-0">
       {/* Header */}
-      <div className="p-4 border-b border-white/5 bg-white/[0.02] flex items-center justify-between">
+      <div className="flex items-center justify-between border-b border-white/5 bg-white/[0.02] p-4">
         <div className="flex items-center gap-2">
           <Terminal size={16} className="text-[#00F0FF]" />
-          <span className="text-xs font-bold text-white uppercase tracking-wider">Installation</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-white">
+            Installation
+          </span>
         </div>
 
         {/* Platform Toggle */}
-        <div className="flex items-center gap-1 bg-black/40 p-1 rounded-lg border border-white/5">
+        <div className="flex items-center gap-1 rounded-lg border border-white/5 bg-black/40 p-1">
           <button
             onClick={() => setSelectedPlatform("claude")}
             className={cn(
-              "p-1.5 rounded-md transition-all",
-              selectedPlatform === "claude" 
-                ? "bg-[#D97757]/20 text-[#D97757] shadow-[0_0_10px_-5px_#D97757]" 
+              "rounded-md p-1.5 transition-all",
+              selectedPlatform === "claude"
+                ? "bg-[#D97757]/20 text-[#D97757] shadow-[0_0_10px_-5px_#D97757]"
                 : "text-zinc-600 hover:text-zinc-400"
             )}
             title="Optimized for Claude"
           >
-            <ClaudeIcon className="w-3.5 h-3.5" />
+            <ClaudeIcon className="h-3.5 w-3.5" />
           </button>
           <button
             onClick={() => setSelectedPlatform("gemini")}
             className={cn(
-              "p-1.5 rounded-md transition-all",
+              "rounded-md p-1.5 transition-all",
               selectedPlatform === "gemini"
                 ? "bg-[#4E82EE]/20 text-[#4E82EE] shadow-[0_0_10px_-5px_#4E82EE]"
                 : "text-zinc-600 hover:text-zinc-400"
             )}
             title="Optimized for Gemini"
           >
-            <GeminiIcon className="w-3.5 h-3.5" />
+            <GeminiIcon className="h-3.5 w-3.5" />
           </button>
           <button
             onClick={() => setSelectedPlatform("openai")}
             className={cn(
-              "p-1.5 rounded-md transition-all",
+              "rounded-md p-1.5 transition-all",
               selectedPlatform === "openai"
                 ? "bg-[#10A37F]/20 text-[#10A37F] shadow-[0_0_10px_-5px_#10A37F]"
                 : "text-zinc-600 hover:text-zinc-400"
             )}
             title="Optimized for OpenAI"
           >
-            <OpenAIIcon className="w-3.5 h-3.5" />
+            <OpenAIIcon className="h-3.5 w-3.5" />
           </button>
+          {hasOpenClaw && (
+            <button
+              onClick={() => setSelectedPlatform("openclaw")}
+              className={cn(
+                "rounded-md px-1.5 py-1 font-mono text-[10px] font-bold transition-all",
+                selectedPlatform === "openclaw"
+                  ? "bg-[#FF4500]/20 text-[#FF4500] shadow-[0_0_10px_-5px_#FF4500]"
+                  : "text-zinc-600 hover:text-zinc-400"
+              )}
+              title="Install via ClawHub (OpenClaw)"
+            >
+              OC
+            </button>
+          )}
         </div>
       </div>
 
       {/* Command Area */}
-      <div className="p-4 bg-[#050505]">
-        <div className="relative group">
-          <div className="font-mono text-xs md:text-sm text-zinc-300 break-all pr-10 leading-relaxed">
+      <div className="bg-[#050505] p-4">
+        <div className="group relative">
+          <div className="break-all pr-10 font-mono text-xs leading-relaxed text-zinc-300 md:text-sm">
             {cliCommand.startsWith("npx") ? (
               <>
-                <span className="text-[#00F0FF]">npx</span> {cliCommand.replace(/^npx\s+/, "")}
+                <span className="text-[#00F0FF]">npx</span>{" "}
+                {cliCommand.replace(/^npx\s+/, "")}
               </>
             ) : (
               cliCommand
@@ -124,29 +165,41 @@ export function InstallCard({ item }: InstallCardProps) {
           </div>
           <button
             onClick={copyCommand}
-            className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-lg text-zinc-500 hover:text-white hover:bg-white/10 transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 rounded-lg p-2 text-zinc-500 transition-colors hover:bg-white/10 hover:text-white"
           >
-            {copied ? <Check size={16} className="text-[#00F0FF]" /> : <Copy size={16} />}
+            {copied ? (
+              <Check size={16} className="text-[#00F0FF]" />
+            ) : (
+              <Copy size={16} />
+            )}
           </button>
         </div>
 
         {/* Context Help */}
-        <div className="mt-3 flex items-center gap-2 text-[10px] text-zinc-500 border-t border-white/5 pt-3">
+        <div className="mt-3 flex items-center gap-2 border-t border-white/5 pt-3 text-[10px] text-zinc-500">
           <Info size={12} />
           <span>
             {selectedPlatform === "claude"
               ? "Installs the standard version for Claude."
               : selectedPlatform === "gemini"
                 ? "Installs the Gemini-optimized version."
-                : "Installs the OpenAI-optimized version."}
+                : selectedPlatform === "openclaw"
+                  ? "Installs via ClawHub (OpenClaw ecosystem)."
+                  : "Installs the OpenAI-optimized version."}
           </span>
         </div>
       </div>
 
       {/* Footer Info */}
-      <div className="p-4 border-t border-white/5 bg-white/[0.02]">
-        <div className="text-xs text-zinc-500 mb-3">
-          This will install to your <code className="font-mono bg-white/5 px-1 py-0.5 rounded text-zinc-300">.{selectedPlatform}/{item.kind}s/</code> directory
+      <div className="border-t border-white/5 bg-white/[0.02] p-4">
+        <div className="mb-3 text-xs text-zinc-500">
+          This will install to your{" "}
+          <code className="rounded bg-white/5 px-1 py-0.5 font-mono text-zinc-300">
+            {selectedPlatform === "openclaw"
+              ? `~/.openclaw/skills/${item.openClaw?.clawHubSlug || item.slug}/`
+              : `.${selectedPlatform}/${item.kind}s/`}
+          </code>{" "}
+          directory
         </div>
 
         {/* Provider Requirements */}
@@ -159,7 +212,7 @@ export function InstallCard({ item }: InstallCardProps) {
               <Key size={14} className="text-[#7000FF]" />
               Environment Variables
             </div>
-            <div className="rounded-lg bg-black/40 border border-white/5 p-3 space-y-1">
+            <div className="space-y-1 rounded-lg border border-white/5 bg-black/40 p-3">
               {item.envKeys.map((key) => (
                 <div key={key} className="font-mono text-xs text-[#00F0FF]/80">
                   {key}

@@ -127,11 +127,12 @@ export function Web3HeroSection() {
                   stats.workflows}
                 + tools.
               </span>{" "}
-              100% scanned. OpenClaw compatible. Every runtime.
+              100% scanned. Works with Claude, Gemini, OpenAI. 14 items on
+              ClawHub.
             </p>
             <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-zinc-500">
               <span className="text-[#00F0FF]">
-                OpenClaw & Moltbook compatible
+                14 ClawHub native · OpenClaw ecosystem
               </span>
               <span>·</span>
               <span>5 API endpoints</span>
@@ -162,15 +163,15 @@ export function Web3HeroSection() {
                 </div>
               </div>
 
-              {/* Moltbook Agent Discovery */}
+              {/* OpenClaw Ecosystem */}
               <div className="inline-flex items-center gap-3 rounded-xl border border-[#00F0FF]/30 bg-gradient-to-r from-[#00F0FF]/10 to-[#7B5CFF]/5 px-5 py-3">
                 <Bot className="h-10 w-10 text-[#00F0FF]" />
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-[#00F0FF]">
-                    Moltbook Compatible
+                    14 on ClawHub
                   </span>
                   <span className="text-lg font-bold text-[#7B5CFF]">
-                    1.5M+ AI Agents
+                    OpenClaw Ecosystem
                   </span>
                 </div>
               </div>
@@ -239,7 +240,7 @@ export function Web3HeroSection() {
               { label: "MCPs", value: stats.mcps },
               { label: "Endpoints", value: "5" },
               { label: "Scanned", value: "100%" },
-              { label: "Network", value: "1.5M+" },
+              { label: "On ClawHub", value: "14" },
             ].map((stat, i) => (
               <div
                 key={i}

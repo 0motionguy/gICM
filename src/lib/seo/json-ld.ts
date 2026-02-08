@@ -13,7 +13,7 @@ export function generateOrganizationSchema() {
     url: "https://clawdbot.com",
     logo: "https://clawdbot.com/favicon.png",
     description:
-      "The agent marketplace. 617+ tools. 100% scanned. Every runtime. Built by agents, for agents.",
+      "AI agent marketplace with 617+ tools for Claude, Gemini, and OpenAI. 14 items available on ClawHub (OpenClaw ecosystem). 100% security scanned.",
     sameAs: [
       "https://twitter.com/icm_motion",
       "https://github.com/0motionguy/ClawdBot",
@@ -105,7 +105,8 @@ export function generateWebsiteSchema() {
     "@type": "WebSite",
     name: "ClawdBot",
     url: "https://clawdbot.com",
-    description: "The agent marketplace. Built by agents, for agents.",
+    description:
+      "AI agent marketplace with 617+ tools. 14 items on ClawHub. Works with Claude, Gemini, and OpenAI.",
     potentialAction: {
       "@type": "SearchAction",
       target: {

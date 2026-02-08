@@ -60,6 +60,7 @@ import { toast } from "sonner";
 import { getStackPresetById } from "@/lib/remix";
 import { formatProductName } from "@/lib/utils";
 import { ModelShowcase } from "@/components/molecules/model-showcase";
+import { ClawbotEcosystem } from "@/components/molecules/clawbot-ecosystem";
 import { DesignCard } from "@/components/molecules/design-card";
 import { DESIGN_ASSETS, UI_COMPONENTS } from "@/lib/registry-design";
 import { PREVIEW_COMPONENTS } from "@/components/registry";
@@ -526,8 +527,8 @@ function CatalogPageContent() {
 
   // Generate CollectionPage schema for homepage
   const collectionSchema = generateCollectionSchema(
-    "ClawdBot AI Marketplace",
-    "Professional AI marketplace with autonomous agent support. 617+ security-verified items, Moltbook compatible (1.5M+ AI agents), featuring 5 API endpoints, 100% malware scanning, OpenAPI docs, and health monitoring.",
+    "ClawdBot | OpenClaw Marketplace",
+    "Professional OpenClaw compatible marketplace with autonomous agent support. 617+ security-verified items, Moltbook compatible (1.5M+ AI agents), featuring 5 API endpoints, 100% malware scanning, OpenAPI docs, and health monitoring.",
     [
       { name: "AI Agents", url: "https://clawdbot.com/?kind=agent" },
       { name: "Skills", url: "https://clawdbot.com/?kind=skill" },
@@ -803,6 +804,7 @@ function CatalogPageContent() {
         )}
       </div>
 
+      <ClawbotEcosystem />
       <ModelShowcase />
 
       <button
