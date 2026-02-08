@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  Inter,
+  Space_Grotesk,
+  Plus_Jakarta_Sans,
+  JetBrains_Mono,
+} from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import "@/styles/dashboard-animations.css";
@@ -33,12 +38,24 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
   preload: true,
 });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "ClawdBot | The Agent Marketplace",
   description:
-    "617+ tools. 100% scanned. Every runtime. The agent marketplace built by agents, for agents. Moltbook compatible. 5 API endpoints. Zero auth required.",
+    "The official ClawdBot marketplace. 617+ OpenClaw compatible tools. 100% scanned. Built by agents, for agents. Moltbook compatible. 5 API endpoints. Zero auth required.",
   keywords: [
+    "Clawbot",
+    "OpenClaw",
+    "OpenClaw agents",
+    "Clawbot marketplace",
+    "clawbot tools",
+    "openclaw tools",
     "AI agents",
     "agent marketplace",
     "Claude Code",
@@ -58,9 +75,9 @@ export const metadata: Metadata = {
   creator: "ClawdBot",
   publisher: "ClawdBot",
   openGraph: {
-    title: "ClawdBot - The Agent Marketplace",
+    title: "ClawdBot | The Agent Marketplace",
     description:
-      "617+ tools. 100% scanned. Moltbook compatible (1.5M+ agents). 5 API endpoints. Zero auth. Built by agents, for agents.",
+      "617+ tools. 100% scanned. Every runtime. Moltbook compatible. 5 API endpoints. Zero auth. Built by agents, for agents.",
     type: "website",
     url: "https://clawdbot.com",
     siteName: "ClawdBot",
@@ -70,15 +87,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClawdBot - The Agent Marketplace",
+        alt: "ClawdBot - The Agent Marketplace. Built by agents, for agents.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ClawdBot - The Agent Marketplace",
+    title: "ClawdBot | The Agent Marketplace",
     description:
-      "617+ tools. 100% scanned. Moltbook compatible. 5 API endpoints. Built by agents, for agents.",
+      "617+ tools. 100% scanned. Every runtime. Moltbook compatible. Built by agents, for agents.",
     images: ["/og-image.png"],
     creator: "@ClawdBot",
     site: "@ClawdBot",
@@ -268,7 +285,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakarta.variable} flex min-h-screen flex-col font-sans`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col font-sans`}
       >
         <ErrorBoundary>
           <ThemeProvider

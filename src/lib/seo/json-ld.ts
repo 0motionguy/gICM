@@ -13,7 +13,7 @@ export function generateOrganizationSchema() {
     url: "https://clawdbot.com",
     logo: "https://clawdbot.com/favicon.png",
     description:
-      "The Universal AI Workflow Marketplace - Cross-chain marketplace for AI agents, skills, and workflows",
+      "The agent marketplace. 617+ tools. 100% scanned. Every runtime. Built by agents, for agents.",
     sameAs: [
       "https://twitter.com/icm_motion",
       "https://github.com/0motionguy/ClawdBot",
@@ -105,7 +105,7 @@ export function generateWebsiteSchema() {
     "@type": "WebSite",
     name: "ClawdBot",
     url: "https://clawdbot.com",
-    description: "The Universal AI Workflow Marketplace",
+    description: "The agent marketplace. Built by agents, for agents.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -259,7 +259,8 @@ export function generateMarketplaceCategoriesSchema() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "ClawdBot Marketplace Categories",
-    description: "Browse AI agents, skills, commands, and MCP integrations",
+    description:
+      "617+ tools: agents, skills, commands, and MCP integrations. 100% scanned.",
     itemListElement: [
       {
         "@type": "ListItem",

@@ -20,6 +20,7 @@ import {
   Cpu,
   ArrowLeftRight,
   Bot,
+  Box,
 } from "lucide-react";
 import { BridgeModal } from "./bridge-modal";
 
@@ -75,6 +76,11 @@ export function Web3HeroSection() {
               </Badge>
             </a>
 
+            <Badge className="rounded-lg border-[#00F0FF]/20 bg-[#00F0FF]/10 px-3 py-1.5 text-[#00F0FF]">
+              <Box className="mr-2 h-3.5 w-3.5" />
+              OpenClaw Compatible
+            </Badge>
+
             <Badge className="rounded-lg border-[#D97757]/20 bg-[#D97757]/10 px-3 py-1.5 text-[#D97757]">
               <Code2 className="mr-2 h-3.5 w-3.5" />
               Claude Code
@@ -121,10 +127,12 @@ export function Web3HeroSection() {
                   stats.workflows}
                 + tools.
               </span>{" "}
-              100% scanned. Every runtime.
+              100% scanned. OpenClaw compatible. Every runtime.
             </p>
             <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-zinc-500">
-              <span className="text-[#00F0FF]">Moltbook compatible</span>
+              <span className="text-[#00F0FF]">
+                OpenClaw & Moltbook compatible
+              </span>
               <span>·</span>
               <span>5 API endpoints</span>
               <span>·</span>
@@ -205,11 +213,12 @@ export function Web3HeroSection() {
 
           {/* Install Command */}
           <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-[#05050A] px-4 py-3">
-            <span className="text-zinc-500">$</span>
+            <span className="font-mono text-zinc-500">$</span>
             <code className="font-mono text-sm text-[#00F0FF]">
               npx @clawdbot/cli install
             </code>
-            <span className="ml-2 hidden border-l border-white/10 pl-3 text-sm text-zinc-600 sm:inline-block">
+            <span className="terminal-cursor font-mono text-[#00F0FF]">_</span>
+            <span className="ml-2 hidden border-l border-white/10 pl-3 font-mono text-xs text-zinc-600 sm:inline-block">
               one command, full stack
             </span>
           </div>
@@ -236,10 +245,10 @@ export function Web3HeroSection() {
                 key={i}
                 className="flex flex-col items-center bg-[#0F0F11] p-6 text-center transition-colors hover:bg-[#151518]"
               >
-                <div className="mb-1 text-2xl font-bold text-white">
+                <div className="mb-1 font-mono text-2xl font-bold text-white">
                   {stat.value}
                 </div>
-                <div className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <div className="font-mono text-xs font-medium uppercase tracking-wider text-zinc-500">
                   {stat.label}
                 </div>
               </div>

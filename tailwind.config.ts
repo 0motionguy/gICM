@@ -63,6 +63,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "sans-serif"],
         display: ["var(--font-space)", "sans-serif"],
         body: ["var(--font-jakarta)", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {
         "accordion-down": {
@@ -90,8 +91,14 @@ const config: Config = {
           "100%": { transform: "translateX(100%)" },
         },
         meteor: {
-          "0%": { transform: "translateY(-100%) translateX(-100%)", opacity: "1" },
-          "100%": { transform: "translateY(200%) translateX(200%)", opacity: "0" },
+          "0%": {
+            transform: "translateY(-100%) translateX(-100%)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateY(200%) translateX(200%)",
+            opacity: "0",
+          },
         },
         sparkle: {
           "0%, 100%": { opacity: "0", transform: "scale(0)" },
@@ -115,7 +122,10 @@ const config: Config = {
         },
         confetti: {
           "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" },
-          "100%": { transform: "translateY(20px) rotate(180deg)", opacity: "0" },
+          "100%": {
+            transform: "translateY(20px) rotate(180deg)",
+            opacity: "0",
+          },
         },
         "fade-in": {
           "0%": { opacity: "0", transform: "translateY(10px)" },

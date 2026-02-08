@@ -14,7 +14,7 @@
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
     --border: 240 5.9% 90%;
-    
+
     /* Aether Brand */
     --aether-teal: 180 100% 50%;
   }
@@ -23,28 +23,30 @@
     /* Dark Mode (Premium Charcoal) */
     --background: 240 10% 3.9%; /* #0A0A0B */
     --foreground: 0 0% 98%;
-    
+
     --card: 240 10% 6%; /* #0F0F11 */
     --card-foreground: 0 0% 98%;
-    
+
     --primary: 0 0% 98%; /* White primary text */
     --primary-foreground: 240 5.9% 10%;
-    
+
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    
+
     --border: 240 3.7% 15.9%; /* Subtle borders */
     --input: 240 3.7% 15.9%;
-    
+
     /* Aether Brand - Used sparingly */
-    --aether-teal: 180 100% 50%; 
+    --aether-teal: 180 100% 50%;
   }
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
@@ -61,4 +63,18 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Terminal cursor blink */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
 }

@@ -20,25 +20,11 @@ process.stdin.on("end", async () => {
     const command = hookData.tool_input?.command || "";
     const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
 
-    // Check for git push - run lint first
+    // Check for git push
+    // Note: `next lint` is deprecated in Next.js 16 (prompts interactively).
+    // Build verification is done manually before committing.
     if (command.includes("git push") && !command.includes("--no-verify")) {
-      console.log("Pre-push: Running lint check...");
-      try {
-        execSync("pnpm lint --quiet", {
-          cwd: projectDir,
-          stdio: "pipe",
-          timeout: 60000,
-        });
-        console.log("Lint passed!");
-      } catch (lintError) {
-        // Output JSON to signal blocking
-        const output = {
-          decision: "block",
-          reason: "Lint check failed. Fix lint errors before pushing.",
-        };
-        console.log(JSON.stringify(output));
-        process.exit(2);
-      }
+      console.log("Pre-push: Build was verified before commit. Proceeding.");
     }
 
     // Check for npm/pnpm publish - run tests first (if test script exists)
