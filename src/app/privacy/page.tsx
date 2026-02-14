@@ -5,31 +5,31 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { GlassCard } from "@/components/ui/glass-card";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | ClawdBot",
+  title: "Privacy Policy | gICM",
   description:
-    "ClawdBot privacy policy - how we handle your data. We collect minimal data and never sell your information.",
+    "gICM privacy policy - how we handle your data. We collect minimal data and never sell your information.",
   openGraph: {
-    title: "Privacy Policy | ClawdBot",
+    title: "Privacy Policy | gICM",
     description:
-      "ClawdBot privacy policy - how we handle your data with transparency and respect.",
-    url: "https://clawdbot.com/privacy",
+      "gICM privacy policy - how we handle your data with transparency and respect.",
+    url: "https://gicm.app/privacy",
     images: [
       {
         url: "/api/og?title=Privacy%20Policy&kind=tool",
         width: 1200,
         height: 630,
-        alt: "ClawdBot Privacy Policy",
+        alt: "gICM Privacy Policy",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Privacy Policy | ClawdBot",
-    description: "ClawdBot privacy policy - how we handle your data",
+    title: "Privacy Policy | gICM",
+    description: "gICM privacy policy - how we handle your data",
     images: ["/api/og?title=Privacy%20Policy&kind=tool"],
   },
   alternates: {
-    canonical: "https://clawdbot.com/privacy",
+    canonical: "https://gicm.app/privacy",
   },
 };
 
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
             className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
-            Back to ClawdBot
+            Back to gICM
           </Link>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
                 1. Introduction
               </h2>
               <p className="leading-relaxed text-zinc-300">
-                Welcome to ClawdBot ("we", "our", or "us"). We are committed to
+                Welcome to gICM ("we", "our", or "us"). We are committed to
                 protecting your personal information and your right to privacy.
                 This Privacy Policy explains how we collect, use, disclose, and
                 safeguard your information when you visit our marketplace
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
               </h2>
               <p className="mb-3 leading-relaxed text-zinc-300">
                 We collect information that you provide directly to us when
-                using ClawdBot:
+                using gICM:
               </p>
               <ul className="list-disc space-y-2 pl-6 text-zinc-300">
                 <li>
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
                 <li>Provide, maintain, and improve our marketplace services</li>
                 <li>Process waitlist registrations and alpha key requests</li>
                 <li>
-                  Send you updates about ClawdBot, including new features and
+                  Send you updates about gICM, including new features and
                   marketplace items
                 </li>
                 <li>Respond to your comments and questions</li>
@@ -150,7 +150,7 @@ export default function PrivacyPage() {
                 5. Third-Party Services
               </h2>
               <p className="mb-3 leading-relaxed text-zinc-300">
-                ClawdBot may integrate with third-party services, including:
+                gICM may integrate with third-party services, including:
               </p>
               <ul className="list-disc space-y-2 pl-6 text-zinc-300">
                 <li>
@@ -222,7 +222,7 @@ export default function PrivacyPage() {
                 8. Children's Privacy
               </h2>
               <p className="leading-relaxed text-zinc-300">
-                ClawdBot is not intended for children under the age of 13. We do not
+                gICM is not intended for children under the age of 13. We do not
                 knowingly collect personal information from children under 13.
                 If you believe we have collected information from a child under
                 13, please contact us immediately.
@@ -251,11 +251,11 @@ export default function PrivacyPage() {
               <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-zinc-300">
                 <p>
                   <strong className="text-white">Email:</strong>{" "}
-                  privacy@clawdbot.com
+                  privacy@gicm.app
                 </p>
                 <p>
                   <strong className="text-white">GitHub:</strong>{" "}
-                  github.com/Kermit457/ClawdBot
+                  github.com/0motionguy/gICM
                 </p>
               </div>
             </section>
@@ -323,6 +323,12 @@ export default function PrivacyPage() {
                 className="rounded-lg border border-white/20 px-6 py-3 font-bold text-white transition-colors hover:bg-white/5"
               >
                 View Terms of Service
+              </Link>
+              <Link
+                href="/data-deletion"
+                className="rounded-lg border border-white/20 px-6 py-3 font-bold text-white transition-colors hover:bg-white/5"
+              >
+                Data Deletion
               </Link>
             </div>
           </div>
