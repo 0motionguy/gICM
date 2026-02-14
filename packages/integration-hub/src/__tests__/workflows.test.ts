@@ -7,25 +7,32 @@ import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { EventBus } from "../event-bus.js";
 
 // Use vi.hoisted to create mocks that work with hoisted vi.mock calls
-const { mockHub, mockEventBus, mockGrowthEngine, mockBrain } = vi.hoisted(() => ({
-  mockEventBus: {
-    on: vi.fn(),
-    publish: vi.fn(),
-  },
-  mockGrowthEngine: {
-    announceFeature: vi.fn().mockResolvedValue(undefined),
-    generateNow: vi.fn().mockResolvedValue(undefined),
-  },
-  mockBrain: { id: "brain" },
-  mockHub: {
-    getEventBus: vi.fn(),
-    getGrowthEngine: vi.fn(),
-    getBrain: vi.fn(),
-  },
-}));
+const { mockHub, mockEventBus, mockGrowthEngine, mockBrain } = vi.hoisted(
+  () => ({
+    mockEventBus: {
+      on: vi.fn(),
+      publish: vi.fn(),
+    },
+    mockGrowthEngine: {
+      announceFeature: vi.fn().mockResolvedValue(undefined),
+      generateNow: vi.fn().mockResolvedValue(undefined),
+    },
+    mockBrain: { id: "brain" },
+    mockHub: {
+      getEventBus: vi.fn(),
+      getGrowthEngine: vi.fn(),
+      getBrain: vi.fn(),
+    },
+  })
+);
 
 // Import after mocks are set up
-import { registerWorkflows, getWorkflows, workflows, type Workflow } from "../workflows/index.js";
+import {
+  registerWorkflows,
+  getWorkflows,
+  workflows,
+  type Workflow,
+} from "../workflows/index.js";
 
 describe("Workflows", () => {
   beforeEach(() => {
@@ -46,8 +53,8 @@ describe("Workflows", () => {
   // ===========================================================================
 
   describe("workflow definitions", () => {
-    it("should have 4 workflows defined", () => {
-      expect(workflows).toHaveLength(4);
+    it("should have 7 workflows defined", () => {
+      expect(workflows).toHaveLength(7);
     });
 
     it("should have feature-announcement workflow", () => {
@@ -108,7 +115,7 @@ describe("Workflows", () => {
     it("should return all workflows", () => {
       const result = getWorkflows();
       expect(result).toBe(workflows);
-      expect(result).toHaveLength(4);
+      expect(result).toHaveLength(7);
     });
 
     it("should return same reference as workflows array", () => {
@@ -133,7 +140,9 @@ describe("Workflows", () => {
     it("should register correct event types", () => {
       registerWorkflows(mockHub as any);
 
-      const registeredEvents = mockEventBus.on.mock.calls.map((call) => call[0]);
+      const registeredEvents = mockEventBus.on.mock.calls.map(
+        (call) => call[0]
+      );
       expect(registeredEvents).toContain("build.completed");
       expect(registeredEvents).toContain("trade.profit");
       expect(registeredEvents).toContain("treasury.critical");
@@ -209,7 +218,9 @@ describe("Workflows", () => {
     });
 
     it("should handle errors gracefully", async () => {
-      mockGrowthEngine.announceFeature.mockRejectedValue(new Error("API error"));
+      mockGrowthEngine.announceFeature.mockRejectedValue(
+        new Error("API error")
+      );
 
       // Should not throw
       await expect(
@@ -382,7 +393,9 @@ describe("Workflows", () => {
     });
 
     it("should handle errors gracefully", async () => {
-      mockGrowthEngine.generateNow.mockRejectedValue(new Error("Thread failed"));
+      mockGrowthEngine.generateNow.mockRejectedValue(
+        new Error("Thread failed")
+      );
 
       await expect(
         workflow.execute(mockHub as any, { phase: "night_summary" })
@@ -403,12 +416,16 @@ describe("Workflows", () => {
 describe("Content Workflows Module", () => {
   it("should export generateContentBriefsDaily function", async () => {
     // Dynamic import to avoid side effects
-    const { generateContentBriefsDaily } = await import("../workflows/content.js");
+    const { generateContentBriefsDaily } = await import(
+      "../workflows/content.js"
+    );
     expect(typeof generateContentBriefsDaily).toBe("function");
   });
 
   it("should export materializeContentFromBriefs function", async () => {
-    const { materializeContentFromBriefs } = await import("../workflows/content.js");
+    const { materializeContentFromBriefs } = await import(
+      "../workflows/content.js"
+    );
     expect(typeof materializeContentFromBriefs).toBe("function");
   });
 });

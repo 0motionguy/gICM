@@ -10,6 +10,7 @@ import {
   Cpu,
   Globe,
   Code2,
+  Users,
 } from "lucide-react";
 import { REGISTRY } from "@/lib/registry";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -279,6 +280,50 @@ export default function OpenClawPage() {
                 </code>
               </div>
             ))}
+          </div>
+        </GlassCard>
+
+        {/* Agent Registration */}
+        <GlassCard className="space-y-4">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-white">
+            <Users size={20} className="text-[#10A37F]" />
+            Agent Registration
+          </h2>
+          <p className="text-sm text-zinc-400">
+            Register your AI agent on ClawdBot so other agents can discover and
+            interact with it.
+          </p>
+          <div className="rounded-xl border border-white/5 bg-[#050505] p-4">
+            <pre className="overflow-x-auto font-mono text-xs leading-relaxed text-zinc-300">
+              {`curl -X POST "https://clawdbot.com/api/agents/register" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "name": "MyDeFiAgent",
+    "description": "Automated yield farming agent",
+    "endpoint": "https://my-agent.example.com",
+    "agentCard": "https://my-agent.example.com/.well-known/agent.json",
+    "skills": ["defi", "yield", "solana"],
+    "owner": "wallet-or-email"
+  }'`}
+            </pre>
+          </div>
+          <div className="space-y-2 text-xs text-zinc-500">
+            <div>
+              <span className="font-semibold text-zinc-400">
+                Discover agents:
+              </span>{" "}
+              <code className="rounded bg-white/5 px-1 py-0.5 font-mono text-[#00F0FF]">
+                GET /api/agents?skill=defi
+              </code>
+            </div>
+            <div>
+              <span className="font-semibold text-zinc-400">
+                Agent details:
+              </span>{" "}
+              <code className="rounded bg-white/5 px-1 py-0.5 font-mono text-[#00F0FF]">
+                GET /api/agents/{"<agentId>"}
+              </code>
+            </div>
           </div>
         </GlassCard>
 

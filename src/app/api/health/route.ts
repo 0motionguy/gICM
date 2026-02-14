@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { getAllItems } from "@/lib/registry";
+import { REGISTRY } from "@/lib/registry";
+import { promises as fs } from "fs";
+import path from "path";
 
 /**
  * Health Check Endpoint for Agent Monitoring
@@ -8,12 +10,23 @@ import { getAllItems } from "@/lib/registry";
  * Agents can use this to verify service availability before making requests.
  */
 
+async function getRegisteredAgentCount(): Promise<number> {
+  try {
+    const agentsFile = path.join(process.cwd(), "data", "agents.json");
+    const data = await fs.readFile(agentsFile, "utf-8");
+    const agents = JSON.parse(data);
+    return Array.isArray(agents) ? agents.length : 0;
+  } catch {
+    return 0;
+  }
+}
+
 export async function GET() {
   const startTime = Date.now();
 
   try {
     // Check registry availability
-    const items = getAllItems();
+    const items = REGISTRY;
     const totalItems = items.length;
 
     // Calculate security stats
@@ -52,6 +65,16 @@ export async function GET() {
       agentDiscovery: {
         enabled: true,
         corsEnabled: true,
+        protocols: ["a2a-v1", "claude-marketplace-v1", "mcp", "openclaw"],
+      },
+      agentRegistry: {
+        registeredAgents: await getRegisteredAgentCount(),
+        endpoint: "/api/agents",
+        registerEndpoint: "/api/agents/register",
+      },
+      mcpServer: {
+        package: "@clawdbot/mcp-server",
+        status: "available",
       },
       ecosystem: {
         clawHubMapped: items.filter(

@@ -29,7 +29,7 @@ describe("EngineManager", () => {
     it("should initialize with all engines in offline state", () => {
       const allHealth = engineManager.getAllHealth();
 
-      expect(allHealth).toHaveLength(5);
+      expect(allHealth).toHaveLength(6);
       for (const engine of allHealth) {
         expect(engine.connected).toBe(false);
         expect(engine.status).toBe("offline");
@@ -38,7 +38,14 @@ describe("EngineManager", () => {
     });
 
     it("should initialize all expected engine IDs", () => {
-      const engineIds: EngineId[] = ["brain", "money", "growth", "product", "trading"];
+      const engineIds: EngineId[] = [
+        "brain",
+        "money",
+        "growth",
+        "product",
+        "trading",
+        "opus67",
+      ];
 
       for (const id of engineIds) {
         const health = engineManager.getHealth(id);
@@ -267,11 +274,12 @@ describe("EngineManager", () => {
     it("should return all engine health statuses", () => {
       const allHealth = engineManager.getAllHealth();
 
-      expect(allHealth).toHaveLength(5);
+      expect(allHealth).toHaveLength(6);
       expect(allHealth.map((h) => h.id).sort()).toEqual([
         "brain",
         "growth",
         "money",
+        "opus67",
         "product",
         "trading",
       ]);
@@ -311,8 +319,8 @@ describe("EngineManager", () => {
       expect(status).toEqual({
         healthy: 0,
         degraded: 0,
-        offline: 5,
-        total: 5,
+        offline: 6,
+        total: 6,
       });
     });
 
@@ -323,7 +331,7 @@ describe("EngineManager", () => {
       const status = engineManager.getAggregatedStatus();
 
       expect(status.healthy).toBe(2);
-      expect(status.offline).toBe(3);
+      expect(status.offline).toBe(4);
     });
 
     it("should count degraded engines correctly", () => {
@@ -335,13 +343,15 @@ describe("EngineManager", () => {
 
       expect(status.healthy).toBe(1);
       expect(status.degraded).toBe(1);
-      expect(status.offline).toBe(3);
+      expect(status.offline).toBe(4);
     });
 
     it("should have correct total", () => {
       const status = engineManager.getAggregatedStatus();
-      expect(status.total).toBe(5);
-      expect(status.healthy + status.degraded + status.offline).toBe(status.total);
+      expect(status.total).toBe(6);
+      expect(status.healthy + status.degraded + status.offline).toBe(
+        status.total
+      );
     });
   });
 
@@ -363,14 +373,21 @@ describe("EngineManager", () => {
     });
 
     it("should handle all engines changing state", () => {
-      const engines: EngineId[] = ["brain", "money", "growth", "product", "trading"];
+      const engines: EngineId[] = [
+        "brain",
+        "money",
+        "growth",
+        "product",
+        "trading",
+        "opus67",
+      ];
 
       for (const id of engines) {
         engineManager.markConnected(id);
       }
 
       const status = engineManager.getAggregatedStatus();
-      expect(status.healthy).toBe(5);
+      expect(status.healthy).toBe(6);
       expect(status.offline).toBe(0);
 
       for (const id of engines) {
@@ -379,7 +396,7 @@ describe("EngineManager", () => {
 
       const statusAfter = engineManager.getAggregatedStatus();
       expect(statusAfter.healthy).toBe(0);
-      expect(statusAfter.offline).toBe(5);
+      expect(statusAfter.offline).toBe(6);
     });
   });
 });

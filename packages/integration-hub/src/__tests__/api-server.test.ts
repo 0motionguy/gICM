@@ -22,8 +22,8 @@ const mockEngineManager = {
   getAggregatedStatus: vi.fn().mockReturnValue({
     healthy: 0,
     degraded: 0,
-    offline: 5,
-    total: 5,
+    offline: 6,
+    total: 6,
   }),
 };
 
@@ -38,8 +38,8 @@ const mockHub = {
     running: true,
     startedAt: Date.now(),
     apiPort: 3001,
-    engines: { healthy: 0, degraded: 0, offline: 5, total: 5 },
-    workflows: 4,
+    engines: { healthy: 0, degraded: 0, offline: 6, total: 6 },
+    workflows: 7,
   }),
 };
 

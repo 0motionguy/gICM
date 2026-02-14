@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAllItems } from "@/lib/registry";
+import { REGISTRY } from "@/lib/registry";
 
 export async function POST(request: Request) {
   try {
@@ -25,8 +25,7 @@ export async function POST(request: Request) {
     const [category, slug] = parts;
 
     // Find item in registry
-    const allItems = getAllItems();
-    const foundItem = allItems.find((i) => i.id === slug || i.id === item);
+    const foundItem = REGISTRY.find((i) => i.id === slug || i.id === item);
 
     if (!foundItem) {
       return NextResponse.json(

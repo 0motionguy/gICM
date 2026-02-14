@@ -8,17 +8,18 @@ import { EventBus } from "../event-bus.js";
 import { EngineManager } from "../engine-manager.js";
 
 // Use vi.hoisted to create mocks that work with hoisted vi.mock calls
-const { mockApiServer, mockContentScheduler, mockRegisterWorkflows } = vi.hoisted(() => ({
-  mockApiServer: {
-    start: vi.fn().mockResolvedValue(undefined),
-    stop: vi.fn().mockResolvedValue(undefined),
-  },
-  mockContentScheduler: {
-    start: vi.fn(),
-    stop: vi.fn(),
-  },
-  mockRegisterWorkflows: vi.fn(),
-}));
+const { mockApiServer, mockContentScheduler, mockRegisterWorkflows } =
+  vi.hoisted(() => ({
+    mockApiServer: {
+      start: vi.fn().mockResolvedValue(undefined),
+      stop: vi.fn().mockResolvedValue(undefined),
+    },
+    mockContentScheduler: {
+      start: vi.fn(),
+      stop: vi.fn(),
+    },
+    mockRegisterWorkflows: vi.fn(),
+  }));
 
 // Mock external dependencies
 vi.mock("../api/server.js", () => ({
@@ -288,7 +289,10 @@ describe("IntegrationHub", () => {
 
         hub.connectMoneyEngine(mockEngine);
 
-        expect(mockEngine.on).toHaveBeenCalledWith("trade", expect.any(Function));
+        expect(mockEngine.on).toHaveBeenCalledWith(
+          "trade",
+          expect.any(Function)
+        );
       });
 
       it("should wire up alert events", () => {
@@ -296,7 +300,10 @@ describe("IntegrationHub", () => {
 
         hub.connectMoneyEngine(mockEngine);
 
-        expect(mockEngine.on).toHaveBeenCalledWith("alert", expect.any(Function));
+        expect(mockEngine.on).toHaveBeenCalledWith(
+          "alert",
+          expect.any(Function)
+        );
       });
 
       it("should publish trade events to event bus", () => {
@@ -386,8 +393,8 @@ describe("IntegrationHub", () => {
         engines: {
           healthy: 0,
           degraded: 0,
-          offline: 5,
-          total: 5,
+          offline: 6,
+          total: 6,
         },
         workflows: 6,
       });
@@ -420,7 +427,7 @@ describe("IntegrationHub", () => {
       const status = hub.getStatus();
 
       expect(status.engines.healthy).toBe(2);
-      expect(status.engines.offline).toBe(3);
+      expect(status.engines.offline).toBe(4);
     });
   });
 

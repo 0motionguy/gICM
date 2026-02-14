@@ -80,7 +80,7 @@ describe("E2E: Event Flow", () => {
 
     const status = engineManager.getAggregatedStatus();
     expect(status.healthy).toBe(3);
-    expect(status.offline).toBe(2);
+    expect(status.offline).toBe(3);
 
     // One engine has error
     engineManager.markError("money", "Connection lost");
@@ -158,18 +158,21 @@ describe("E2E: Pipeline Execution", () => {
   });
 
   it("should handle pipeline with multiple branches", async () => {
-    const result = await worker.processJob({
-      id: "job-1",
-      pipelineId: "branch-pipeline",
-      pipelineName: "Branch Pipeline",
-      inputs: {},
-      steps: [
-        { id: "step-1", tool: "init" },
-        { id: "step-2a", tool: "branch-a", dependsOn: ["step-1"] },
-        { id: "step-2b", tool: "branch-b", dependsOn: ["step-1"] },
-        { id: "step-3", tool: "merge", dependsOn: ["step-2a", "step-2b"] },
-      ],
-    }, mockUpdateProgress);
+    const result = await worker.processJob(
+      {
+        id: "job-1",
+        pipelineId: "branch-pipeline",
+        pipelineName: "Branch Pipeline",
+        inputs: {},
+        steps: [
+          { id: "step-1", tool: "init" },
+          { id: "step-2a", tool: "branch-a", dependsOn: ["step-1"] },
+          { id: "step-2b", tool: "branch-b", dependsOn: ["step-1"] },
+          { id: "step-3", tool: "merge", dependsOn: ["step-2a", "step-2b"] },
+        ],
+      },
+      mockUpdateProgress
+    );
 
     expect(result.status).toBe("completed");
     expect(result.completedSteps).toHaveLength(4);
@@ -184,16 +187,19 @@ describe("E2E: Pipeline Execution", () => {
       }),
     });
 
-    const result = await workerWithTokens.processJob({
-      id: "job-1",
-      pipelineId: "token-pipeline",
-      pipelineName: "Token Pipeline",
-      inputs: {},
-      steps: [
-        { id: "step-1", tool: "tool1" },
-        { id: "step-2", tool: "tool2" },
-      ],
-    }, mockUpdateProgress);
+    const result = await workerWithTokens.processJob(
+      {
+        id: "job-1",
+        pipelineId: "token-pipeline",
+        pipelineName: "Token Pipeline",
+        inputs: {},
+        steps: [
+          { id: "step-1", tool: "tool1" },
+          { id: "step-2", tool: "tool2" },
+        ],
+      },
+      mockUpdateProgress
+    );
 
     // totalTokens may be tracked differently - verify structure
     expect(result.completedSteps).toHaveLength(2);
@@ -210,17 +216,20 @@ describe("E2E: Pipeline Execution", () => {
       },
     });
 
-    const result = await failingWorker.processJob({
-      id: "job-1",
-      pipelineId: "fail-pipeline",
-      pipelineName: "Fail Pipeline",
-      inputs: {},
-      steps: [
-        { id: "step-1", tool: "success" },
-        { id: "step-2", tool: "fail" },
-        { id: "step-3", tool: "success" },
-      ],
-    }, mockUpdateProgress);
+    const result = await failingWorker.processJob(
+      {
+        id: "job-1",
+        pipelineId: "fail-pipeline",
+        pipelineName: "Fail Pipeline",
+        inputs: {},
+        steps: [
+          { id: "step-1", tool: "success" },
+          { id: "step-2", tool: "fail" },
+          { id: "step-3", tool: "success" },
+        ],
+      },
+      mockUpdateProgress
+    );
 
     // Status is "partial" when some steps complete, some fail
     // Pipeline continues after failure, so step-1 and step-3 complete, step-2 fails
@@ -329,7 +338,8 @@ describe("E2E: Storage Persistence", () => {
     expect(retrievedArticle).toBeDefined();
     expect(retrievedArticle?.markdown).toContain("Success Story");
 
-    const retrievedPacket = await storage.getDistributionPacketByArticleId("article-1");
+    const retrievedPacket =
+      await storage.getDistributionPacketByArticleId("article-1");
     expect(retrievedPacket).toBeDefined();
     expect(retrievedPacket?.twitterThread).toHaveLength(2);
   });
@@ -447,7 +457,9 @@ describe("E2E: Webhook Notifications", () => {
     } as any);
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
-    expect(mockFetch.mock.calls[0][0]).toBe("https://pipeline.example.com/webhook");
+    expect(mockFetch.mock.calls[0][0]).toBe(
+      "https://pipeline.example.com/webhook"
+    );
 
     mockFetch.mockClear();
 
@@ -634,7 +646,9 @@ describe("E2E: Complete System Flow", () => {
     // 6. Verify complete pipeline
     const finalBrief = await storage.getBrief(brief.id);
     const finalArticle = await storage.getArticleByBriefId(brief.id);
-    const finalPacket = await storage.getDistributionPacketByArticleId(article.id);
+    const finalPacket = await storage.getDistributionPacketByArticleId(
+      article.id
+    );
 
     expect(finalBrief).toBeDefined();
     expect(finalArticle).toBeDefined();

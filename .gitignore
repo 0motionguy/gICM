@@ -97,6 +97,9 @@ encryption_key.json
 # Test outputs
 playwright-report/
 test-results/
+
+# Scraped/research data
+data/
 lighthouse-report.json
 
 # Audit findings (regenerate fresh)

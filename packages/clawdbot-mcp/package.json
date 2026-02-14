@@ -1,0 +1,53 @@
+{
+  "name": "@clawdbot/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for ClawdBot — search, install, and verify 617+ Web3/AI skills",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "clawdbot-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "clawdbot",
+    "claude",
+    "web3",
+    "solana",
+    "defi",
+    "ai-agent",
+    "a2a",
+    "openclaw"
+  ],
+  "author": "icm-motion",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0motionguy/ClawdBot.git",
+    "directory": "packages/clawdbot-mcp"
+  },
+  "homepage": "https://clawdbot.com",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
