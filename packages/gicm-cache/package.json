@@ -1,0 +1,51 @@
+{
+  "name": "@gicm/cache",
+  "version": "1.0.0",
+  "description": "3-layer prompt caching for AI agents — L1 prefix cache, L2 semantic response cache, L3 tool result cache. Up to 90% cost savings.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "skill",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "openclaw",
+    "prompt-caching",
+    "llm-cache",
+    "cost-optimization",
+    "gicm"
+  ],
+  "author": "Mirko Basil Dölger <mirko@gicm.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0motionguy/gicm-cache.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  }
+}

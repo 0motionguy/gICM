@@ -7,6 +7,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig: NextConfig = {
   // Note: Domain rewrites are in vercel.json for opus67.com -> /opus67
+  // Redirects for Meta compliance (privacy-policy -> privacy)
+  async redirects() {
+    return [
+      {
+        source: "/privacy-policy",
+        destination: "/privacy",
+        permanent: true,
+      },
+    ];
+  },
   // Security headers
   async headers() {
     return [

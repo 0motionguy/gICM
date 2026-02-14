@@ -1,0 +1,52 @@
+{
+  "name": "@gicm/soul",
+  "version": "1.0.0",
+  "description": "Dynamic SOUL.md mode switching for OpenClaw — load only relevant identity fragments, 80% identity token reduction",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "skill",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "openclaw",
+    "soul",
+    "identity",
+    "mode-switching",
+    "ai-agents",
+    "gicm"
+  ],
+  "author": "Mirko Basil Dölger <mirko@gicm.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0motionguy/gicm-soul.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  }
+}

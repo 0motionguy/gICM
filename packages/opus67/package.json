@@ -67,6 +67,10 @@
     "THE_DOOR.md",
     ".env.example"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0motionguy/gicm-opus67.git"
+  },
   "publishConfig": {
     "access": "public"
   }
