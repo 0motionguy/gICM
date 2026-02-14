@@ -46,11 +46,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ClawdBot | AI Agent Marketplace",
+  title: "gICM | AI Agent Marketplace",
   description:
     "617+ AI tools for Claude, Gemini, and OpenAI. 14 items on ClawHub (OpenClaw ecosystem). 100% security scanned. Built by agents, for agents.",
   keywords: [
-    "Clawbot",
+    "gICM",
     "OpenClaw",
     "Moltbook",
     "ClawHub",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     "OnlyCrabs",
     "MoltyScan",
     "OpenClaw agents",
-    "Clawbot marketplace",
+    "gICM marketplace",
     "clawbot tools",
     "openclaw tools",
     "AI agents",
@@ -75,34 +75,34 @@ export const metadata: Metadata = {
     "vibe coding",
     "AI development",
   ],
-  authors: [{ name: "ClawdBot", url: "https://clawdbot.com" }],
-  creator: "ClawdBot",
-  publisher: "ClawdBot",
+  authors: [{ name: "gICM", url: "https://gicm.app" }],
+  creator: "gICM",
+  publisher: "gICM",
   openGraph: {
-    title: "ClawdBot | AI Agent Marketplace",
+    title: "gICM | AI Agent Marketplace",
     description:
       "617+ AI tools for Claude, Gemini, and OpenAI. 14 items on ClawHub. 100% security scanned.",
     type: "website",
-    url: "https://clawdbot.com",
-    siteName: "ClawdBot",
+    url: "https://gicm.app",
+    siteName: "gICM",
     locale: "en_US",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClawdBot - AI Agent Marketplace",
+        alt: "gICM - AI Agent Marketplace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ClawdBot | AI Agent Marketplace",
+    title: "gICM | AI Agent Marketplace",
     description:
       "617+ AI tools for Claude, Gemini, and OpenAI. 14 items on ClawHub. 100% security scanned.",
     images: ["/og-image.png"],
-    creator: "@ClawdBot",
-    site: "@ClawdBot",
+    creator: "@gICM",
+    site: "@gICM",
   },
   icons: {
     icon: [
@@ -111,9 +111,9 @@ export const metadata: Metadata = {
     ],
     apple: "/favicon.png",
   },
-  metadataBase: new URL("https://clawdbot.com"),
+  metadataBase: new URL("https://gicm.app"),
   alternates: {
-    canonical: "https://clawdbot.com",
+    canonical: "https://gicm.app",
   },
   robots: {
     index: true,
@@ -133,7 +133,7 @@ export const metadata: Metadata = {
 
 const HOMEPAGE_FAQS = [
   {
-    question: "What is ClawdBot?",
+    question: "What is gICM?",
     answer:
       "Agent-first marketplace. 617+ tools, 100% scanned. 5 API endpoints, OpenAPI docs, health monitoring. 14 items available on ClawHub (OpenClaw ecosystem). Zero auth required for discovery.",
   },
@@ -150,7 +150,7 @@ const HOMEPAGE_FAQS = [
   {
     question: "How do I install tools?",
     answer:
-      "One command: npx @clawdbot/cli add agent/name. Or use the API: POST /api/install. Agents can install programmatically with zero auth.",
+      "One command: npx @gicm/cli add agent/name. Or use the API: POST /api/install. Agents can install programmatically with zero auth.",
   },
   {
     question: "Is there an API for agents?",
@@ -207,13 +207,13 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-        <meta name="apple-mobile-web-app-title" content="ClawdBot" />
+        <meta name="apple-mobile-web-app-title" content="gICM" />
 
         {/* RSS Feed */}
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="ClawdBot Feed"
+          title="gICM Feed"
           href="/api/feed"
         />
 
@@ -255,7 +255,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              name: "ClawdBot Marketplace",
+              name: "gICM Marketplace",
               applicationCategory: "AI Marketplace",
               operatingSystem: "Web",
               offers: {
@@ -273,14 +273,14 @@ export default function RootLayout({
               ],
               softwareHelp: {
                 "@type": "WebPage",
-                url: "https://clawdbot.com/docs/AGENT-DISCOVERY.md",
+                url: "https://gicm.app/docs/AGENT-DISCOVERY.md",
               },
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
                   urlTemplate:
-                    "https://clawdbot.com/api/search?q={search_term_string}",
+                    "https://gicm.app/api/search?q={search_term_string}",
                 },
                 "query-input": "required name=search_term_string",
               },

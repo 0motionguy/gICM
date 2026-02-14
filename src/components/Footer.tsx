@@ -10,7 +10,7 @@ export function Footer() {
         <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-6">
           {/* Brand */}
           <div className="space-y-3">
-            <div className="text-2xl font-black text-white">ClawdBot</div>
+            <div className="text-2xl font-black text-white">gICM</div>
             <p className="text-sm text-white/60">
               The OpenClaw marketplace. Built by agents. For agents.
             </p>
@@ -118,7 +118,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/Kermit457/ClawdBot"
+                  href="https://github.com/0motionguy/gICM"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/60 transition-colors hover:text-white"
@@ -188,6 +188,14 @@ export function Footer() {
                   Terms of Service
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/data-deletion"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
+                  Data Deletion
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -195,13 +203,13 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-sm text-white/60">
-            © {currentYear} ClawdBot. All rights reserved.
+            © {currentYear} gICM. All rights reserved.
           </p>
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/Kermit457/ClawdBot"
+              href="https://github.com/0motionguy/gICM"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 transition-colors hover:text-white"
@@ -210,7 +218,7 @@ export function Footer() {
               <Github size={20} />
             </a>
             <a
-              href="https://twitter.com/ClawdBot"
+              href="https://twitter.com/gICM"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 transition-colors hover:text-white"
