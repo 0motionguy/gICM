@@ -1,0 +1,108 @@
+{
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "gateway": {
+    "mode": "local",
+    "port": 18789,
+    "bind": "lan",
+    "auth": {
+      "mode": "token",
+      "token": "1756f3f14e5b11aff816055f7799bc360782e8bc0f448aa8"
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "FILL_IN_ANDYMAINCHATBOT_TOKEN",
+      "dmPolicy": "open",
+      "streamMode": "partial"
+    }
+  },
+  "models": {
+    "providers": {
+      "google": {
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+        "api": "openai-completions",
+        "models": [{ "id": "gemini-2.5-flash", "name": "gemini-2.5-flash" }]
+      },
+      "ollama": {
+        "baseUrl": "http://localhost:11434/v1",
+        "api": "openai-completions",
+        "models": [{ "id": "minimax-m2.5:cloud", "name": "minimax-m2.5:cloud" }]
+      },
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "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",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "anthropic/claude-sonnet-4.5",
+            "name": "anthropic/claude-sonnet-4.5"
+          },
+          {
+            "id": "google/gemini-2.5-flash",
+            "name": "google/gemini-2.5-flash"
+          },
+          {
+            "id": "anthropic/claude-3.5-haiku",
+            "name": "anthropic/claude-3.5-haiku"
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "subagents": {
+          "allowAgents": [
+            "coder",
+            "builder",
+            "researcher",
+            "intelligence",
+            "trading",
+            "growth",
+            "ops"
+          ]
+        }
+      },
+      { "id": "coder", "model": "ollama/minimax-m2.5:cloud" },
+      { "id": "builder", "model": "ollama/minimax-m2.5:cloud" },
+      { "id": "researcher", "model": "ollama/minimax-m2.5:cloud" },
+      {
+        "id": "intelligence",
+        "model": "ollama/minimax-m2.5:cloud",
+        "subagents": { "allowAgents": ["researcher"] }
+      },
+      { "id": "trading", "model": "ollama/minimax-m2.5:cloud" },
+      { "id": "growth", "model": "ollama/minimax-m2.5:cloud" },
+      {
+        "id": "ops",
+        "model": "ollama/minimax-m2.5:cloud",
+        "subagents": { "allowAgents": ["builder"] }
+      }
+    ]
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.2.13",
+    "lastTouchedAt": "2026-02-15T09:32:11.620Z"
+  },
+  "_backup_notes": {
+    "date": "2026-02-15",
+    "telegram_bot": "@Andymainchatbot (get token from BotFather)",
+    "gateway_token_for_nodes": "main-token-2026 (old token, update if changed)",
+    "openrouter_key": "verified working Feb 15 2026",
+    "auth_profiles_were_at": "~/.openclaw/agents/main/agent/auth-profiles.json",
+    "working_profiles": ["openrouter:default", "google:default", "xai:default"],
+    "dead_profiles": [
+      "anthropic:default (401)",
+      "anthropic:claw (OAT dead)",
+      "kimi-coding:default"
+    ]
+  }
+}

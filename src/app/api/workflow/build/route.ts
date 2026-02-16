@@ -17,46 +17,6 @@ const WorkflowRequestSchema = z.object({
   sessionId: z.string().max(100).optional(),
 });
 
-// OPUS 67 - Always included as the BASE of every stack
-const OPUS_67_BASE: RegistryItem = {
-  id: "opus67-base",
-  kind: "workflow",
-  name: "OPUS 67",
-  slug: "opus67",
-  description:
-    "The AI enhancement layer. 141 skills, 82 MCPs, 30 modes. Required foundation for all stacks.",
-  longDescription:
-    "OPUS 67 is the universal foundation that supercharges any AI model. It provides 141 specialist skills, 82 MCP server connections, 30 optimized modes, and persistent memory across sessions. Every stack recommendation starts with OPUS 67 as the base layer.",
-  category: "Foundation",
-  tags: ["base", "foundation", "required", "opus67", "core"],
-  dependencies: [],
-  files: [".claude/CLAUDE.md", ".gemini/GEMINI.md", ".openai/OPENAI.md"],
-  install: "npx create-opus67@latest",
-  layer: ".claude",
-  modelRecommendation: "opus-4.5",
-  envKeys: [],
-  installs: 50000,
-  remixes: 12000,
-  tokenSavings: 95,
-  platforms: ["claude", "gemini", "openai"],
-  compatibility: {
-    models: ["opus-4.5", "sonnet-4.5", "sonnet", "gemini-2.0-flash", "gpt-4o"],
-    software: ["vscode", "cursor", "terminal", "windsurf"],
-  },
-  audit: {
-    lastAudited: "2025-12-11",
-    qualityScore: 99,
-    status: "VERIFIED",
-  },
-};
-
-// Helper to prepend OPUS 67 to any items list
-function prependOpus67(items: RegistryItem[]): RegistryItem[] {
-  // Filter out any duplicate if OPUS 67 is somehow already there
-  const filtered = items.filter((i) => i.id !== "opus67-base");
-  return [OPUS_67_BASE, ...filtered];
-}
-
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || "",
 });
@@ -316,10 +276,8 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
       throw new Error("No matching items found");
     }
 
-    // ALWAYS prepend OPUS 67 as the base layer
-    const items = prependOpus67(rawItems);
+    const items = rawItems;
 
-    // Calculate stats (OPUS 67 counted as workflow)
     const breakdown = {
       agents: items.filter((i) => i!.kind === "agent").length,
       skills: items.filter((i) => i!.kind === "skill").length,
@@ -336,7 +294,7 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
 
     const response = {
       items,
-      reasoning: `**OPUS 67 (Base Layer)** provides 141 skills, 82 MCPs, and 30 modes as the foundation.\n\n${reasoning}`,
+      reasoning,
       totalTokenSavings,
       breakdown,
       cached: false,
@@ -392,8 +350,7 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
     // Use smart fallback - always returns results
     const fallbackResult = getFallbackItems(parsedPrompt);
 
-    // ALWAYS prepend OPUS 67 as the base layer
-    const items = prependOpus67(fallbackResult.items);
+    const items = fallbackResult.items;
 
     const breakdown = {
       agents: items.filter((i) => i.kind === "agent").length,
@@ -407,7 +364,7 @@ Only include item IDs that exist in the catalog. Be selective - quality over qua
     // Return 200 with fallback data - don't throw error to client
     return NextResponse.json({
       items,
-      reasoning: `**OPUS 67 (Base Layer)** provides 141 skills, 82 MCPs, and 30 modes as the foundation.\n\n${fallbackResult.reasoning}`,
+      reasoning: fallbackResult.reasoning,
       totalTokenSavings: items.reduce(
         (sum, item) => sum + (item.tokenSavings || 0),
         0

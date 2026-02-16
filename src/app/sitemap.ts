@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/opus67`,
+      url: `${baseUrl}/dashboard`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,

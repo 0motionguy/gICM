@@ -94,6 +94,9 @@ packages/*/dist/
 # Encryption keys (NEVER commit)
 encryption_key.json
 
+# MCP server configs (contain API keys)
+mcp-servers.json
+
 # Test outputs
 playwright-report/
 test-results/

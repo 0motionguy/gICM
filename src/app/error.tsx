@@ -19,37 +19,37 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950/30 to-slate-950 flex items-center justify-center px-6 relative overflow-hidden">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950/30 to-slate-950 px-6">
       {/* Background orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-red-500/10 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-blue-500/10 blur-[80px]" />
 
-      <div className="relative z-10 max-w-2xl w-full">
-        <GlassCard className="p-12 text-center bg-black/40 border-white/10">
+      <div className="relative z-10 w-full max-w-2xl">
+        <GlassCard className="border-white/10 bg-black/40 p-12 text-center">
           {/* Error Icon */}
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-red-500/10 border border-red-500/30 mb-4">
-              <AlertTriangle className="w-12 h-12 text-red-400" />
+            <div className="mb-4 inline-flex h-24 w-24 items-center justify-center rounded-full border border-red-500/30 bg-red-500/10">
+              <AlertTriangle className="h-12 w-12 text-red-400" />
             </div>
           </div>
 
           {/* Message */}
-          <h2 className="text-3xl font-black text-white mb-4">
+          <h2 className="mb-4 text-3xl font-black text-white">
             Something Went Wrong
           </h2>
-          <p className="text-lg text-zinc-400 mb-8 max-w-md mx-auto">
+          <p className="mx-auto mb-8 max-w-md text-lg text-zinc-400">
             We encountered an unexpected error. Don&apos;t worry, our team has
             been notified and we&apos;re working on a fix.
           </p>
 
           {/* Error Details (Development Only) */}
           {process.env.NODE_ENV === "development" && (
-            <div className="mb-8 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-left">
-              <p className="text-sm font-mono text-red-400 break-all">
+            <div className="mb-8 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-left">
+              <p className="break-all font-mono text-sm text-red-400">
                 {error.message}
               </p>
               {error.digest && (
-                <p className="text-xs text-red-500/70 mt-2">
+                <p className="mt-2 text-xs text-red-500/70">
                   Error ID: {error.digest}
                 </p>
               )}
@@ -57,10 +57,10 @@ export default function Error({
           )}
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               onClick={reset}
-              className="gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold shadow-lg shadow-blue-500/25"
+              className="gap-2 bg-gradient-to-r from-blue-500 to-blue-600 font-bold text-white shadow-lg shadow-blue-500/25 hover:from-blue-600 hover:to-blue-700"
             >
               <RefreshCw size={18} />
               Try Again
@@ -68,7 +68,7 @@ export default function Error({
             <Link href="/">
               <Button
                 variant="outline"
-                className="gap-2 border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white"
+                className="gap-2 border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
               >
                 <Home size={18} />
                 Back to Home
@@ -77,14 +77,14 @@ export default function Error({
           </div>
 
           {/* Additional Help */}
-          <div className="mt-12 pt-8 border-t border-white/10">
-            <p className="text-sm text-zinc-500 mb-4">Still having issues?</p>
+          <div className="mt-12 border-t border-white/10 pt-8">
+            <p className="mb-4 text-sm text-zinc-500">Still having issues?</p>
             <div className="flex items-center justify-center gap-4 text-sm">
               <a
-                href="https://github.com/Kermit457/ClawdBot/issues"
+                href="https://github.com/0motionguy/gICM/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-white font-medium transition-colors"
+                className="font-medium text-zinc-400 transition-colors hover:text-white"
               >
                 Report Issue
               </a>
@@ -93,7 +93,7 @@ export default function Error({
                 href="https://docs.claude.ai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-white font-medium transition-colors"
+                className="font-medium text-zinc-400 transition-colors hover:text-white"
               >
                 Documentation
               </a>
@@ -101,12 +101,11 @@ export default function Error({
           </div>
         </GlassCard>
 
-        {/* OPUS 67 Branding */}
+        {/* gICM Branding */}
         <div className="mt-6 flex items-center justify-center gap-2 text-sm text-zinc-500">
-          <Zap className="w-4 h-4 text-blue-400" />
+          <Zap className="h-4 w-4 text-blue-400" />
           <span>
-            Powered by{" "}
-            <span className="text-blue-400 font-semibold">OPUS 67</span>
+            Powered by <span className="font-semibold text-blue-400">gICM</span>
           </span>
         </div>
       </div>

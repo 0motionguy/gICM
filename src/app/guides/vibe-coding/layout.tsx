@@ -4,7 +4,7 @@ import { generateHowToSchema, safeJsonLd } from "@/lib/seo/json-ld";
 const VIBE_CODING_STEPS = [
   {
     name: "Set Up Your Environment",
-    text: "Install Claude Code CLI and configure your ANTHROPIC_API_KEY. Run 'npx create-opus67@latest' to add OPUS 67 enhancements for maximum vibe coding capability.",
+    text: "Install Claude Code CLI and configure your ANTHROPIC_API_KEY. Browse the gICM marketplace at gicm.app for agents, skills, and MCPs to enhance your setup.",
   },
   {
     name: "Choose Your Development Stack",

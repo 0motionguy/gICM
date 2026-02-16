@@ -14,6 +14,7 @@ import { vscodeRoutes } from "./vscode-routes.js";
 import { haRoutes } from "./ha-routes.js";
 import { drRoutes } from "./dr-routes.js";
 import { observabilityRoutes } from "./observability-routes.js";
+import { mcpRoutes } from "../mcp/routes.js";
 import { getAutonomy } from "@gicm/autonomy";
 
 // ============================================================================
@@ -56,35 +57,73 @@ interface PredictionsStatus {
 
 // Keywords for categorization
 const POLITICS_KEYWORDS = [
-  "election", "president", "congress", "senate", "house",
-  "governor", "vote", "ballot", "democrat", "republican",
-  "trump", "biden", "political", "impeach", "cabinet"
+  "election",
+  "president",
+  "congress",
+  "senate",
+  "house",
+  "governor",
+  "vote",
+  "ballot",
+  "democrat",
+  "republican",
+  "trump",
+  "biden",
+  "political",
+  "impeach",
+  "cabinet",
 ];
 const CRYPTO_KEYWORDS = [
-  "bitcoin", "btc", "ethereum", "eth", "solana", "sol",
-  "crypto", "etf", "sec", "coinbase", "binance", "defi",
-  "nft", "blockchain", "doge", "xrp"
+  "bitcoin",
+  "btc",
+  "ethereum",
+  "eth",
+  "solana",
+  "sol",
+  "crypto",
+  "etf",
+  "sec",
+  "coinbase",
+  "binance",
+  "defi",
+  "nft",
+  "blockchain",
+  "doge",
+  "xrp",
 ];
 const MACRO_KEYWORDS = [
-  "fed", "fomc", "interest rate", "inflation", "cpi",
-  "gdp", "unemployment", "recession", "treasury", "yield"
+  "fed",
+  "fomc",
+  "interest rate",
+  "inflation",
+  "cpi",
+  "gdp",
+  "unemployment",
+  "recession",
+  "treasury",
+  "yield",
 ];
 
-function categorizeMarket(question: string): "politics" | "crypto" | "macro" | "other" {
+function categorizeMarket(
+  question: string
+): "politics" | "crypto" | "macro" | "other" {
   const q = question.toLowerCase();
-  if (POLITICS_KEYWORDS.some(kw => q.includes(kw))) return "politics";
-  if (CRYPTO_KEYWORDS.some(kw => q.includes(kw))) return "crypto";
-  if (MACRO_KEYWORDS.some(kw => q.includes(kw))) return "macro";
+  if (POLITICS_KEYWORDS.some((kw) => q.includes(kw))) return "politics";
+  if (CRYPTO_KEYWORDS.some((kw) => q.includes(kw))) return "crypto";
+  if (MACRO_KEYWORDS.some((kw) => q.includes(kw))) return "macro";
   return "other";
 }
 
 async function fetchPolymarketMarkets(): Promise<PredictionMarket[]> {
   try {
     // Use closed=false to get only open markets
-    const response = await fetch("https://gamma-api.polymarket.com/markets?closed=false&limit=100", {
-      headers: { "User-Agent": "gICM-Hub/1.0", "Accept": "application/json" },
-      signal: AbortSignal.timeout(10000),
-    });
+    const response = await fetch(
+      "https://gamma-api.polymarket.com/markets?closed=false&limit=100",
+      {
+        headers: { "User-Agent": "gICM-Hub/1.0", Accept: "application/json" },
+        signal: AbortSignal.timeout(10000),
+      }
+    );
     if (!response.ok) return [];
     const data = await response.json();
     const markets = Array.isArray(data) ? data : (data.markets ?? []);
@@ -92,7 +131,9 @@ async function fetchPolymarketMarkets(): Promise<PredictionMarket[]> {
     return markets
       .filter((m: any) => !m.closed && m.volumeNum > 1000)
       .map((m: any) => {
-        const prices = m.outcomePrices?.map((p: string) => parseFloat(p) * 100) ?? [50, 50];
+        const prices = m.outcomePrices?.map(
+          (p: string) => parseFloat(p) * 100
+        ) ?? [50, 50];
         return {
           id: `poly-${m.id}`,
           source: "polymarket" as const,
@@ -118,16 +159,22 @@ async function fetchPolymarketMarkets(): Promise<PredictionMarket[]> {
 async function fetchKalshiMarkets(): Promise<PredictionMarket[]> {
   try {
     // Try the elections API first, then fallback
-    let response = await fetch("https://api.elections.kalshi.com/trade-api/v2/markets?status=open&limit=200", {
-      headers: { "User-Agent": "gICM-Hub/1.0", "Accept": "application/json" },
-      signal: AbortSignal.timeout(10000),
-    });
+    let response = await fetch(
+      "https://api.elections.kalshi.com/trade-api/v2/markets?status=open&limit=200",
+      {
+        headers: { "User-Agent": "gICM-Hub/1.0", Accept: "application/json" },
+        signal: AbortSignal.timeout(10000),
+      }
+    );
 
     if (!response.ok) {
-      response = await fetch("https://trading-api.kalshi.com/trade-api/v2/markets?status=open&limit=200", {
-        headers: { "User-Agent": "gICM-Hub/1.0", "Accept": "application/json" },
-        signal: AbortSignal.timeout(10000),
-      });
+      response = await fetch(
+        "https://trading-api.kalshi.com/trade-api/v2/markets?status=open&limit=200",
+        {
+          headers: { "User-Agent": "gICM-Hub/1.0", Accept: "application/json" },
+          signal: AbortSignal.timeout(10000),
+        }
+      );
     }
 
     if (!response.ok) return [];
@@ -135,10 +182,13 @@ async function fetchKalshiMarkets(): Promise<PredictionMarket[]> {
     const markets = data.markets ?? [];
 
     return markets
-      .filter((m: any) => (m.status === "active" || m.status === "open") && m.volume > 10)
+      .filter(
+        (m: any) =>
+          (m.status === "active" || m.status === "open") && m.volume > 10
+      )
       .map((m: any) => {
         const yesPrice = m.yes_bid > 0 ? m.yes_bid : m.last_price;
-        const noPrice = m.no_bid > 0 ? m.no_bid : (100 - m.last_price);
+        const noPrice = m.no_bid > 0 ? m.no_bid : 100 - m.last_price;
         const priceChange = m.last_price - m.previous_price;
 
         return {
@@ -173,18 +223,29 @@ async function aggregatePredictions(): Promise<PredictionsStatus> {
   const allMarkets = [...polymarkets, ...kalshiMarkets];
 
   // Categorize markets
-  const politics = allMarkets.filter(m => m.category === "politics").sort((a, b) => b.volume24h - a.volume24h);
-  const crypto = allMarkets.filter(m => m.category === "crypto").sort((a, b) => b.volume24h - a.volume24h);
+  const politics = allMarkets
+    .filter((m) => m.category === "politics")
+    .sort((a, b) => b.volume24h - a.volume24h);
+  const crypto = allMarkets
+    .filter((m) => m.category === "crypto")
+    .sort((a, b) => b.volume24h - a.volume24h);
 
   // Trending = highest activity score: (volume_24h * |priceChange24h|)
   const trending = [...allMarkets]
-    .map(m => ({ ...m, trendScore: m.volume24h * (Math.abs(m.priceChange24h) + 1) }))
+    .map((m) => ({
+      ...m,
+      trendScore: m.volume24h * (Math.abs(m.priceChange24h) + 1),
+    }))
     .sort((a, b) => b.trendScore - a.trendScore)
     .slice(0, 20);
 
   // Calculate stats
   const totalVolume24h = allMarkets.reduce((sum, m) => sum + m.volume24h, 0);
-  const topMover = allMarkets.reduce((max, m) => Math.abs(m.priceChange24h) > Math.abs(max) ? m.priceChange24h : max, 0);
+  const topMover = allMarkets.reduce(
+    (max, m) =>
+      Math.abs(m.priceChange24h) > Math.abs(max) ? m.priceChange24h : max,
+    0
+  );
 
   return {
     lastUpdated: new Date().toISOString(),
@@ -247,6 +308,9 @@ export async function registerRoutes(
   // Register Observability routes (Phase 12D)
   await observabilityRoutes(fastify);
 
+  // Register MCP Gateway routes
+  await mcpRoutes(fastify);
+
   // =========================================================================
   // ENGINE REGISTRATION ENDPOINTS (for distributed engines)
   // =========================================================================
@@ -254,55 +318,88 @@ export async function registerRoutes(
   /**
    * POST /api/engines/register - Register an engine
    */
-  fastify.post<{ Body: { engineId: string } }>("/api/engines/register", async (req) => {
-    const { engineId } = req.body;
-    const validEngines = ["brain", "money", "growth", "product", "trading", "opus67"] as const;
-    type ValidEngineId = typeof validEngines[number];
+  fastify.post<{ Body: { engineId: string } }>(
+    "/api/engines/register",
+    async (req) => {
+      const { engineId } = req.body;
+      const validEngines = [
+        "brain",
+        "money",
+        "growth",
+        "product",
+        "trading",
+        "opus67",
+      ] as const;
+      type ValidEngineId = (typeof validEngines)[number];
 
-    if (!validEngines.includes(engineId as ValidEngineId)) {
-      return { ok: false, error: `Invalid engine ID. Must be one of: ${validEngines.join(", ")}` };
+      if (!validEngines.includes(engineId as ValidEngineId)) {
+        return {
+          ok: false,
+          error: `Invalid engine ID. Must be one of: ${validEngines.join(", ")}`,
+        };
+      }
+
+      hub.getEngineManager().markConnected(engineId as ValidEngineId);
+      console.log(`[HUB] Engine registered via API: ${engineId}`);
+
+      return { ok: true, message: `Engine ${engineId} registered`, engineId };
     }
-
-    hub.getEngineManager().markConnected(engineId as ValidEngineId);
-    console.log(`[HUB] Engine registered via API: ${engineId}`);
-
-    return { ok: true, message: `Engine ${engineId} registered`, engineId };
-  });
+  );
 
   /**
    * POST /api/engines/heartbeat - Send heartbeat from an engine
    */
-  fastify.post<{ Body: { engineId: string } }>("/api/engines/heartbeat", async (req) => {
-    const { engineId } = req.body;
-    const validEngines = ["brain", "money", "growth", "product", "trading", "opus67"] as const;
-    type ValidEngineId = typeof validEngines[number];
+  fastify.post<{ Body: { engineId: string } }>(
+    "/api/engines/heartbeat",
+    async (req) => {
+      const { engineId } = req.body;
+      const validEngines = [
+        "brain",
+        "money",
+        "growth",
+        "product",
+        "trading",
+        "opus67",
+      ] as const;
+      type ValidEngineId = (typeof validEngines)[number];
 
-    if (!validEngines.includes(engineId as ValidEngineId)) {
-      return { ok: false, error: "Invalid engine ID" };
+      if (!validEngines.includes(engineId as ValidEngineId)) {
+        return { ok: false, error: "Invalid engine ID" };
+      }
+
+      hub.getEngineManager().recordHeartbeat(engineId as ValidEngineId);
+
+      return { ok: true, timestamp: Date.now() };
     }
-
-    hub.getEngineManager().recordHeartbeat(engineId as ValidEngineId);
-
-    return { ok: true, timestamp: Date.now() };
-  });
+  );
 
   /**
    * POST /api/engines/unregister - Unregister an engine
    */
-  fastify.post<{ Body: { engineId: string } }>("/api/engines/unregister", async (req) => {
-    const { engineId } = req.body;
-    const validEngines = ["brain", "money", "growth", "product", "trading", "opus67"] as const;
-    type ValidEngineId = typeof validEngines[number];
+  fastify.post<{ Body: { engineId: string } }>(
+    "/api/engines/unregister",
+    async (req) => {
+      const { engineId } = req.body;
+      const validEngines = [
+        "brain",
+        "money",
+        "growth",
+        "product",
+        "trading",
+        "opus67",
+      ] as const;
+      type ValidEngineId = (typeof validEngines)[number];
 
-    if (!validEngines.includes(engineId as ValidEngineId)) {
-      return { ok: false, error: "Invalid engine ID" };
+      if (!validEngines.includes(engineId as ValidEngineId)) {
+        return { ok: false, error: "Invalid engine ID" };
+      }
+
+      hub.getEngineManager().markDisconnected(engineId as ValidEngineId);
+      console.log(`[HUB] Engine unregistered: ${engineId}`);
+
+      return { ok: true, message: `Engine ${engineId} unregistered` };
     }
-
-    hub.getEngineManager().markDisconnected(engineId as ValidEngineId);
-    console.log(`[HUB] Engine unregistered: ${engineId}`);
-
-    return { ok: true, message: `Engine ${engineId} unregistered` };
-  });
+  );
 
   // =========================================================================
   // STATUS ENDPOINTS
@@ -341,7 +438,7 @@ export async function registerRoutes(
 
     // Otherwise, check if Brain is registered via API
     const allEngines = hub.getEngineManager().getAllHealth();
-    const engineHealth = allEngines.find(e => e.id === "brain");
+    const engineHealth = allEngines.find((e) => e.id === "brain");
     if (engineHealth && engineHealth.connected) {
       // Brain is registered but not directly connected
       // Return a basic status indicating it's running
@@ -481,7 +578,10 @@ export async function registerRoutes(
           usdc: status.treasury.usdcBalance.toNumber(),
         },
         allocations: Object.fromEntries(
-          Object.entries(status.treasury.allocations).map(([k, v]) => [k, v.toNumber()])
+          Object.entries(status.treasury.allocations).map(([k, v]) => [
+            k,
+            v.toNumber(),
+          ])
         ),
         runway: status.health.runway,
         expenses: {
@@ -580,11 +680,14 @@ export async function registerRoutes(
           approved: approved.length,
           building: building.length,
         },
-        activeBuild: building.length > 0 ? {
-          id: building[0].id,
-          name: building[0].name,
-          progress: 50, // TODO: Track actual progress
-        } : null,
+        activeBuild:
+          building.length > 0
+            ? {
+                id: building[0].id,
+                name: building[0].name,
+                progress: 50, // TODO: Track actual progress
+              }
+            : null,
         metrics: {
           discovered: backlog.length,
           built: 0, // TODO: Track completed builds
@@ -610,7 +713,11 @@ export async function registerRoutes(
       return {
         ok: true,
         isRunning: brainStatus.isRunning,
-        enabledSources: brainStatus.hunter?.enabledSources || ["github", "hackernews", "twitter"],
+        enabledSources: brainStatus.hunter?.enabledSources || [
+          "github",
+          "hackernews",
+          "twitter",
+        ],
         totalDiscoveries: brainStatus.hunter?.totalDiscoveries || 0,
         totalSignals: brainStatus.hunter?.totalSignals || 0,
         actionableSignals: brainStatus.hunter?.actionableSignals || 0,
@@ -667,7 +774,13 @@ export async function registerRoutes(
         level: 2,
         queue: { pending: 0, approved: 0, rejected: 0 },
         audit: { total: 0, auto: 0, queued: 0, escalated: 0, successRate: 100 },
-        today: { autoExecuted: 0, queued: 0, escalated: 0, cost: 0, revenue: 0 },
+        today: {
+          autoExecuted: 0,
+          queued: 0,
+          escalated: 0,
+          cost: 0,
+          revenue: 0,
+        },
         stats: { autoExecuted: 0, queued: 0, pending: 0 },
       };
     }
@@ -681,7 +794,11 @@ export async function registerRoutes(
       const autonomy = getAutonomy();
       return { ok: true, queue: autonomy.getQueue() };
     } catch (error) {
-      return { ok: false, error: error instanceof Error ? error.message : "Unknown error", queue: [] };
+      return {
+        ok: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+        queue: [],
+      };
     }
   });
 
@@ -695,7 +812,10 @@ export async function registerRoutes(
       const result = await autonomy.approve(id);
       return { ok: !!result, request: result };
     } catch (error) {
-      return { ok: false, error: error instanceof Error ? error.message : "Unknown error" };
+      return {
+        ok: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
     }
   });
 
@@ -710,7 +830,10 @@ export async function registerRoutes(
       const result = await autonomy.reject(id, reason || "Rejected by user");
       return { ok: !!result, request: result };
     } catch (error) {
-      return { ok: false, error: error instanceof Error ? error.message : "Unknown error" };
+      return {
+        ok: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
     }
   });
 
@@ -722,7 +845,10 @@ export async function registerRoutes(
       const autonomy = getAutonomy();
       return { ok: true, boundaries: autonomy.getBoundaries() };
     } catch (error) {
-      return { ok: false, error: error instanceof Error ? error.message : "Unknown error" };
+      return {
+        ok: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
     }
   });
 
@@ -740,7 +866,13 @@ export async function registerRoutes(
       ok: true,
       knowledge: {
         total: 0,
-        bySource: { github: 0, hackernews: 0, twitter: 0, arxiv: 0, producthunt: 0 },
+        bySource: {
+          github: 0,
+          hackernews: 0,
+          twitter: 0,
+          arxiv: 0,
+          producthunt: 0,
+        },
         byTopic: {},
         recent24h: 0,
       },
@@ -762,18 +894,21 @@ export async function registerRoutes(
   /**
    * GET /api/brain/recent - Recent knowledge items
    */
-  fastify.get<{ Querystring: { limit?: string } }>("/api/brain/recent", async (req) => {
-    const limit = parseInt(req.query.limit || "20", 10);
+  fastify.get<{ Querystring: { limit?: string } }>(
+    "/api/brain/recent",
+    async (req) => {
+      const limit = parseInt(req.query.limit || "20", 10);
 
-    // TODO: Connect to HyperBrain knowledge store
-    // For now, return empty array
-    return {
-      ok: true,
-      items: [],
-      count: 0,
-      limit,
-    };
-  });
+      // TODO: Connect to HyperBrain knowledge store
+      // For now, return empty array
+      return {
+        ok: true,
+        items: [],
+        count: 0,
+        limit,
+      };
+    }
+  );
 
   /**
    * GET /api/brain/patterns - Discovered patterns
@@ -802,39 +937,51 @@ export async function registerRoutes(
   /**
    * POST /api/brain/search - Search knowledge base
    */
-  fastify.post<{ Body: { query: string; limit?: number } }>("/api/brain/search", async (req) => {
-    const { query, limit = 20 } = req.body;
+  fastify.post<{ Body: { query: string; limit?: number } }>(
+    "/api/brain/search",
+    async (req) => {
+      const { query, limit = 20 } = req.body;
 
-    // TODO: Connect to HyperBrain semantic search
-    return {
-      ok: true,
-      query,
-      results: [],
-      count: 0,
-    };
-  });
+      // TODO: Connect to HyperBrain semantic search
+      return {
+        ok: true,
+        query,
+        results: [],
+        count: 0,
+      };
+    }
+  );
 
   /**
    * POST /api/brain/ingest - Trigger knowledge ingestion
    */
-  fastify.post<{ Body: { source?: string } }>("/api/brain/ingest", async (req) => {
-    const { source } = req.body;
+  fastify.post<{ Body: { source?: string } }>(
+    "/api/brain/ingest",
+    async (req) => {
+      const { source } = req.body;
 
-    // TODO: Trigger actual ingestion
-    hub.getEventBus().publish("brain", "brain.ingest_triggered", { source: source || "all" });
+      // TODO: Trigger actual ingestion
+      hub.getEventBus().publish("brain", "brain.ingest_triggered", {
+        source: source || "all",
+      });
 
-    return {
-      ok: true,
-      message: source ? `Ingestion triggered for ${source}` : "Full ingestion triggered",
-    };
-  });
+      return {
+        ok: true,
+        message: source
+          ? `Ingestion triggered for ${source}`
+          : "Full ingestion triggered",
+      };
+    }
+  );
 
   // =========================================================================
   // EVENT ENDPOINTS
   // =========================================================================
 
   // Import event enrichment
-  const { enrichEvents, getAllCategories, CATEGORY_ICONS } = await import("../events/index.js");
+  const { enrichEvents, getAllCategories, CATEGORY_ICONS } = await import(
+    "../events/index.js"
+  );
 
   /**
    * GET /api/events - Recent events (raw)
@@ -847,9 +994,7 @@ export async function registerRoutes(
 
       let events;
       if (category) {
-        events = hub
-          .getEventBus()
-          .getEventsByCategory(category as any, limit);
+        events = hub.getEventBus().getEventsByCategory(category as any, limit);
       } else {
         events = hub.getEventBus().getRecentEvents(limit);
       }
@@ -865,37 +1010,34 @@ export async function registerRoutes(
   /**
    * GET /api/events/enriched - Recent events with enrichment (titles, icons, actions)
    */
-  fastify.get<{ Querystring: { limit?: string; category?: string; severity?: string } }>(
-    "/api/events/enriched",
-    async (req) => {
-      const limit = parseInt(req.query.limit || "50", 10);
-      const category = req.query.category;
-      const severity = req.query.severity;
+  fastify.get<{
+    Querystring: { limit?: string; category?: string; severity?: string };
+  }>("/api/events/enriched", async (req) => {
+    const limit = parseInt(req.query.limit || "50", 10);
+    const category = req.query.category;
+    const severity = req.query.severity;
 
-      let events;
-      if (category) {
-        events = hub
-          .getEventBus()
-          .getEventsByCategory(category as any, limit);
-      } else {
-        events = hub.getEventBus().getRecentEvents(limit);
-      }
-
-      // Enrich events
-      let enriched = enrichEvents(events);
-
-      // Filter by severity if specified
-      if (severity) {
-        enriched = enriched.filter((e) => e.severity === severity);
-      }
-
-      return {
-        ok: true,
-        count: enriched.length,
-        events: enriched,
-      };
+    let events;
+    if (category) {
+      events = hub.getEventBus().getEventsByCategory(category as any, limit);
+    } else {
+      events = hub.getEventBus().getRecentEvents(limit);
     }
-  );
+
+    // Enrich events
+    let enriched = enrichEvents(events);
+
+    // Filter by severity if specified
+    if (severity) {
+      enriched = enriched.filter((e) => e.severity === severity);
+    }
+
+    return {
+      ok: true,
+      count: enriched.length,
+      events: enriched,
+    };
+  });
 
   /**
    * GET /api/events/categories - List available event categories
@@ -1220,7 +1362,10 @@ export async function registerRoutes(
       }
 
       if (execution.status !== "running" && execution.status !== "pending") {
-        return { ok: false, error: `Cannot cancel execution with status: ${execution.status}` };
+        return {
+          ok: false,
+          error: `Cannot cancel execution with status: ${execution.status}`,
+        };
       }
 
       execution.status = "cancelled";
@@ -1256,11 +1401,15 @@ export async function registerRoutes(
         }
 
         const step = pipeline.steps[i];
-        const stepRecord = execution.steps.find((s: StepProgress) => s.id === step.id)!;
+        const stepRecord = execution.steps.find(
+          (s: StepProgress) => s.id === step.id
+        )!;
 
         // Check dependencies
         if (step.dependsOn?.length) {
-          const depsOk = step.dependsOn.every((dep: string) => completedSteps.has(dep));
+          const depsOk = step.dependsOn.every((dep: string) =>
+            completedSteps.has(dep)
+          );
           if (!depsOk) {
             stepRecord.status = "skipped";
             stepRecord.error = "Dependencies not met";
@@ -1302,7 +1451,8 @@ export async function registerRoutes(
         } catch (error) {
           stepRecord.status = "failed";
           stepRecord.completedAt = Date.now();
-          stepRecord.error = error instanceof Error ? error.message : String(error);
+          stepRecord.error =
+            error instanceof Error ? error.message : String(error);
 
           eventBus.publish("pipeline", "pipeline.step_failed", {
             executionId: execution.id,
@@ -1316,7 +1466,11 @@ export async function registerRoutes(
       }
 
       // Complete
-      execution.status = execution.steps.some((s: StepProgress) => s.status === "failed") ? "failed" : "completed";
+      execution.status = execution.steps.some(
+        (s: StepProgress) => s.status === "failed"
+      )
+        ? "failed"
+        : "completed";
       execution.completedAt = Date.now();
       execution.currentStep = null;
       execution.result = results;
@@ -1366,38 +1520,52 @@ export async function registerRoutes(
 
   // Hook up pipeline executions to analytics
   // When pipeline starts, track in analytics
-  hub.getEventBus().subscribe("pipeline", "pipeline.started", async (data: any) => {
-    const exec = pipelineExecutions.get(data.executionId);
-    if (exec) {
-      analytics.startExecution(exec.pipelineId, exec.pipelineName, exec.steps.length);
-    }
-  });
-
-  // When step completes, record in analytics
-  hub.getEventBus().subscribe("pipeline", "pipeline.step_completed", async (data: any) => {
-    const exec = pipelineExecutions.get(data.executionId);
-    if (exec) {
-      const step = exec.steps.find((s: StepProgress) => s.id === data.stepId);
-      if (step) {
-        // Simulate token usage (in production, get from actual LLM call)
-        analytics.recordStep(
-          data.executionId,
-          data.stepId,
-          step.name,
-          "completed",
-          { input: 500 + Math.random() * 500, output: 200 + Math.random() * 300, total: 0 }
+  hub
+    .getEventBus()
+    .subscribe("pipeline", "pipeline.started", async (data: any) => {
+      const exec = pipelineExecutions.get(data.executionId);
+      if (exec) {
+        analytics.startExecution(
+          exec.pipelineId,
+          exec.pipelineName,
+          exec.steps.length
         );
       }
-    }
-  });
+    });
+
+  // When step completes, record in analytics
+  hub
+    .getEventBus()
+    .subscribe("pipeline", "pipeline.step_completed", async (data: any) => {
+      const exec = pipelineExecutions.get(data.executionId);
+      if (exec) {
+        const step = exec.steps.find((s: StepProgress) => s.id === data.stepId);
+        if (step) {
+          // Simulate token usage (in production, get from actual LLM call)
+          analytics.recordStep(
+            data.executionId,
+            data.stepId,
+            step.name,
+            "completed",
+            {
+              input: 500 + Math.random() * 500,
+              output: 200 + Math.random() * 300,
+              total: 0,
+            }
+          );
+        }
+      }
+    });
 
   // When pipeline completes, finalize analytics
-  hub.getEventBus().subscribe("pipeline", "pipeline.completed", async (data: any) => {
-    analytics.completeExecution(
-      data.executionId,
-      data.status === "completed" ? "completed" : "failed"
-    );
-  });
+  hub
+    .getEventBus()
+    .subscribe("pipeline", "pipeline.completed", async (data: any) => {
+      analytics.completeExecution(
+        data.executionId,
+        data.status === "completed" ? "completed" : "failed"
+      );
+    });
 
   /**
    * GET /api/analytics/summary - Get analytics summary
@@ -1494,9 +1662,10 @@ export async function registerRoutes(
         period,
         totalCost: summary.totalCost,
         costTrend: summary.costTrend,
-        avgCostPerExecution: summary.totalExecutions > 0
-          ? summary.totalCost / summary.totalExecutions
-          : 0,
+        avgCostPerExecution:
+          summary.totalExecutions > 0
+            ? summary.totalCost / summary.totalExecutions
+            : 0,
         topCostPipelines: summary.topPipelines.map((p) => ({
           id: p.id,
           name: p.name,
@@ -1567,33 +1736,36 @@ export async function registerRoutes(
   /**
    * GET /api/webhooks/:id - Get webhook by ID
    */
-  fastify.get<{ Params: { id: string } }>("/api/webhooks/:id", async (req, reply) => {
-    const webhook = webhookManager.getWebhook(req.params.id);
+  fastify.get<{ Params: { id: string } }>(
+    "/api/webhooks/:id",
+    async (req, reply) => {
+      const webhook = webhookManager.getWebhook(req.params.id);
 
-    if (!webhook) {
-      reply.code(404);
-      return { ok: false, error: "Webhook not found" };
+      if (!webhook) {
+        reply.code(404);
+        return { ok: false, error: "Webhook not found" };
+      }
+
+      return {
+        ok: true,
+        webhook: {
+          id: webhook.id,
+          name: webhook.name,
+          url: webhook.url,
+          events: webhook.events,
+          enabled: webhook.enabled,
+          retryCount: webhook.retryCount,
+          timeoutMs: webhook.timeoutMs,
+          lastTriggeredAt: webhook.lastTriggeredAt,
+          lastStatus: webhook.lastStatus,
+          failureCount: webhook.failureCount,
+          metadata: webhook.metadata,
+          createdAt: webhook.createdAt,
+          updatedAt: webhook.updatedAt,
+        },
+      };
     }
-
-    return {
-      ok: true,
-      webhook: {
-        id: webhook.id,
-        name: webhook.name,
-        url: webhook.url,
-        events: webhook.events,
-        enabled: webhook.enabled,
-        retryCount: webhook.retryCount,
-        timeoutMs: webhook.timeoutMs,
-        lastTriggeredAt: webhook.lastTriggeredAt,
-        lastStatus: webhook.lastStatus,
-        failureCount: webhook.failureCount,
-        metadata: webhook.metadata,
-        createdAt: webhook.createdAt,
-        updatedAt: webhook.updatedAt,
-      },
-    };
-  });
+  );
 
   /**
    * POST /api/webhooks - Create a new webhook
@@ -1610,7 +1782,16 @@ export async function registerRoutes(
       metadata?: Record<string, unknown>;
     };
   }>("/api/webhooks", async (req, reply) => {
-    const { name, url, secret, events, enabled, retryCount, timeoutMs, metadata } = req.body;
+    const {
+      name,
+      url,
+      secret,
+      events,
+      enabled,
+      retryCount,
+      timeoutMs,
+      metadata,
+    } = req.body;
 
     if (!name || !url) {
       reply.code(400);
@@ -1627,7 +1808,8 @@ export async function registerRoutes(
 
     // Generate secret if not provided
     const webhookSecret =
-      secret || `whsec_${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
+      secret ||
+      `whsec_${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
 
     const webhook = await webhookManager.registerWebhook({
       name,
@@ -1712,59 +1894,71 @@ export async function registerRoutes(
   /**
    * DELETE /api/webhooks/:id - Delete a webhook
    */
-  fastify.delete<{ Params: { id: string } }>("/api/webhooks/:id", async (req, reply) => {
-    const existing = webhookManager.getWebhook(req.params.id);
+  fastify.delete<{ Params: { id: string } }>(
+    "/api/webhooks/:id",
+    async (req, reply) => {
+      const existing = webhookManager.getWebhook(req.params.id);
 
-    if (!existing) {
-      reply.code(404);
-      return { ok: false, error: "Webhook not found" };
+      if (!existing) {
+        reply.code(404);
+        return { ok: false, error: "Webhook not found" };
+      }
+
+      webhookManager.removeWebhook(req.params.id);
+
+      return {
+        ok: true,
+        message: "Webhook deleted",
+      };
     }
-
-    webhookManager.removeWebhook(req.params.id);
-
-    return {
-      ok: true,
-      message: "Webhook deleted",
-    };
-  });
+  );
 
   /**
    * POST /api/webhooks/:id/test - Test a webhook
    */
-  fastify.post<{ Params: { id: string } }>("/api/webhooks/:id/test", async (req, reply) => {
-    const webhook = webhookManager.getWebhook(req.params.id);
+  fastify.post<{ Params: { id: string } }>(
+    "/api/webhooks/:id/test",
+    async (req, reply) => {
+      const webhook = webhookManager.getWebhook(req.params.id);
 
-    if (!webhook) {
-      reply.code(404);
-      return { ok: false, error: "Webhook not found" };
+      if (!webhook) {
+        reply.code(404);
+        return { ok: false, error: "Webhook not found" };
+      }
+
+      // Send test payload
+      await webhookManager.triggerPipelineEvent("pipeline.completed", {
+        id: `test_${Date.now()}`,
+        pipelineId: "test-pipeline",
+        pipelineName: "Test Pipeline",
+        status: "completed",
+        startTime: Date.now() - 5000,
+        endTime: Date.now(),
+        duration: 5000,
+        steps: [],
+        cost: {
+          total: 0.01,
+          breakdown: { llm: 0.01, api: 0, compute: 0 },
+          currency: "USD",
+        },
+        tokens: { input: 1000, output: 500, total: 1500 },
+      });
+
+      return {
+        ok: true,
+        message: "Test webhook triggered",
+      };
     }
-
-    // Send test payload
-    await webhookManager.triggerPipelineEvent("pipeline.completed", {
-      id: `test_${Date.now()}`,
-      pipelineId: "test-pipeline",
-      pipelineName: "Test Pipeline",
-      status: "completed",
-      startTime: Date.now() - 5000,
-      endTime: Date.now(),
-      duration: 5000,
-      steps: [],
-      cost: { total: 0.01, breakdown: { llm: 0.01, api: 0, compute: 0 }, currency: "USD" },
-      tokens: { input: 1000, output: 500, total: 1500 },
-    });
-
-    return {
-      ok: true,
-      message: "Test webhook triggered",
-    };
-  });
+  );
 
   // =========================================================================
   // QUEUE MANAGEMENT ENDPOINTS
   // =========================================================================
 
   // Import queue (late import to avoid circular deps)
-  const { getPipelineQueue, createPipelineWorker } = await import("../queue/index.js");
+  const { getPipelineQueue, createPipelineWorker } = await import(
+    "../queue/index.js"
+  );
   const queue = await getPipelineQueue();
   createPipelineWorker(queue, { analytics });
 
@@ -1797,11 +1991,15 @@ export async function registerRoutes(
       webhookUrl?: string;
     };
   }>("/api/queue/jobs", async (req, reply) => {
-    const { pipelineId, pipelineName, inputs, steps, priority, webhookUrl } = req.body;
+    const { pipelineId, pipelineName, inputs, steps, priority, webhookUrl } =
+      req.body;
 
     if (!pipelineId || !pipelineName || !steps || steps.length === 0) {
       reply.code(400);
-      return { ok: false, error: "pipelineId, pipelineName, and steps are required" };
+      return {
+        ok: false,
+        error: "pipelineId, pipelineName, and steps are required",
+      };
     }
 
     const jobId = await queue.addJob({
@@ -1823,29 +2021,32 @@ export async function registerRoutes(
   /**
    * GET /api/queue/jobs/:id - Get job status
    */
-  fastify.get<{ Params: { id: string } }>("/api/queue/jobs/:id", async (req, reply) => {
-    const progress = queue.getProgress(req.params.id);
+  fastify.get<{ Params: { id: string } }>(
+    "/api/queue/jobs/:id",
+    async (req, reply) => {
+      const progress = queue.getProgress(req.params.id);
 
-    if (!progress) {
-      reply.code(404);
-      return { ok: false, error: "Job not found" };
+      if (!progress) {
+        reply.code(404);
+        return { ok: false, error: "Job not found" };
+      }
+
+      const job = queue.getJob(req.params.id);
+
+      return {
+        ok: true,
+        job: job
+          ? {
+              id: job.id,
+              pipelineId: job.pipelineId,
+              pipelineName: job.pipelineName,
+              priority: job.priority,
+            }
+          : null,
+        progress,
+      };
     }
-
-    const job = queue.getJob(req.params.id);
-
-    return {
-      ok: true,
-      job: job
-        ? {
-            id: job.id,
-            pipelineId: job.pipelineId,
-            pipelineName: job.pipelineName,
-            priority: job.priority,
-          }
-        : null,
-      progress,
-    };
-  });
+  );
 
   /**
    * POST /api/queue/pause - Pause the queue

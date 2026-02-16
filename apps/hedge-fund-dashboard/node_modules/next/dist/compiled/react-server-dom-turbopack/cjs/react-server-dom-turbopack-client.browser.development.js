@@ -97,13 +97,11 @@
         if ("fulfilled" === moduleExports.status)
           moduleExports = moduleExports.value;
         else throw moduleExports.reason;
-      return "*" === metadata[2]
-        ? moduleExports
-        : "" === metadata[2]
-          ? moduleExports.__esModule
-            ? moduleExports.default
-            : moduleExports
-          : moduleExports[metadata[2]];
+      if ("*" === metadata[2]) return moduleExports;
+      if ("" === metadata[2])
+        return moduleExports.__esModule ? moduleExports.default : moduleExports;
+      if (hasOwnProperty.call(moduleExports, metadata[2]))
+        return moduleExports[metadata[2]];
     }
     function getIteratorFn(maybeIterable) {
       if (null === maybeIterable || "object" !== typeof maybeIterable)
@@ -3234,6 +3232,7 @@
       ReactDOM = require("react-dom"),
       decoderOptions = { stream: !0 },
       bind = Function.prototype.bind,
+      hasOwnProperty = Object.prototype.hasOwnProperty,
       instrumentedChunks = new WeakSet(),
       loadedChunks = new WeakSet(),
       chunkIOInfoCache = new Map(),
@@ -3430,10 +3429,10 @@
       return hook.checkDCE ? !0 : !1;
     })({
       bundleType: 1,
-      version: "19.2.0-canary-0bdb9206-20250818",
+      version: "19.2.0-canary-31f0fc34-20251201",
       rendererPackageName: "react-server-dom-turbopack",
       currentDispatcherRef: ReactSharedInternals,
-      reconcilerVersion: "19.2.0-canary-0bdb9206-20250818",
+      reconcilerVersion: "19.2.0-canary-31f0fc34-20251201",
       getCurrentComponentInfo: function () {
         return currentOwnerInDEV;
       }

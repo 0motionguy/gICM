@@ -13,7 +13,6 @@ import {
   Bot,
   Plus,
   CheckCircle2,
-  Sparkles,
   Mic,
   Search,
   Cpu,
@@ -82,7 +81,9 @@ export default function AIStackBuilder() {
   const [currentLoadingStep, setCurrentLoadingStep] = useState(0);
   const [showLoadingModal, setShowLoadingModal] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [stackThemePreference, setStackThemePreference] = useState<"dark" | "light">("dark"); // Stack output preference
+  const [stackThemePreference, setStackThemePreference] = useState<
+    "dark" | "light"
+  >("dark"); // Stack output preference
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { addItem, getActiveStack } = useBundleStore();
@@ -119,8 +120,8 @@ export default function AIStackBuilder() {
   // Show loading spinner until client is hydrated
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-[#0A0A0B] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-[#00F0FF] animate-spin" />
+      <div className="flex min-h-screen items-center justify-center bg-[#0A0A0B]">
+        <Loader2 className="h-8 w-8 animate-spin text-[#00F0FF]" />
       </div>
     );
   }
@@ -195,12 +196,17 @@ export default function AIStackBuilder() {
   };
 
   const handleVoiceInput = () => {
-    if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
+    if (
+      !("webkitSpeechRecognition" in window) &&
+      !("SpeechRecognition" in window)
+    ) {
       toast.error("Voice input not supported in this browser");
       return;
     }
 
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
@@ -239,38 +245,23 @@ export default function AIStackBuilder() {
   const borderClass = isDarkTheme ? "border-white/[0.08]" : "border-gray-200";
 
   const mainContent = (
-    <div className="relative z-10 min-h-screen flex flex-col">
+    <div className="relative z-10 flex min-h-screen flex-col">
       {/* Hero Section */}
       {showHero && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex-1 flex flex-col items-center justify-center px-6 pb-32"
+          className="flex flex-1 flex-col items-center justify-center px-6 pb-32"
         >
-          {/* OPUS 67 Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full ${isDarkTheme ? "bg-[#00F0FF]/10 border-[#00F0FF]/20" : "bg-cyan-100 border-cyan-200"} border mb-8`}
-          >
-            <div className={`w-5 h-5 rounded-full ${isDarkTheme ? "bg-[#00F0FF]/20" : "bg-cyan-200"} flex items-center justify-center`}>
-              <Sparkles className={`w-3 h-3 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`} />
-            </div>
-            <span className={`text-sm font-medium ${isDarkTheme ? "text-white/80" : "text-gray-700"}`}>
-              Powered by <span className={`${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"} font-bold`}>OPUS 67</span>
-            </span>
-          </motion.div>
-
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className={`text-5xl md:text-7xl font-display font-bold text-center ${textClass} mb-6 tracking-tight`}
+            className={`text-center font-display text-5xl font-bold md:text-7xl ${textClass} mb-6 tracking-tight`}
           >
             Stack & Ship{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F]">
+            <span className="bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] bg-clip-text text-transparent">
               with AI
             </span>
           </motion.h1>
@@ -280,10 +271,10 @@ export default function AIStackBuilder() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className={`text-xl ${mutedTextClass} text-center max-w-2xl mb-8`}
+            className={`text-xl ${mutedTextClass} mb-8 max-w-2xl text-center`}
           >
-            Describe your app idea. We&apos;ll assemble the perfect AI-powered stack
-            and generate production-ready code - no coding required.
+            Describe your app idea. We&apos;ll assemble the perfect AI-powered
+            stack and generate production-ready code - no coding required.
           </motion.p>
 
           {/* Gradient CTA Button */}
@@ -292,7 +283,7 @@ export default function AIStackBuilder() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
             onClick={() => inputRef.current?.focus()}
-            className="mb-10 px-8 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/20"
+            className="mb-10 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-8 py-3 font-bold text-white shadow-lg shadow-purple-500/20 transition-opacity hover:opacity-90"
           >
             Stack & Build
           </motion.button>
@@ -305,7 +296,9 @@ export default function AIStackBuilder() {
             className="w-full max-w-2xl"
           >
             <form onSubmit={handleSubmit}>
-              <div className={`relative rounded-2xl border ${borderClass} ${cardBgClass} shadow-2xl ${isDarkTheme ? "shadow-black/50" : "shadow-gray-200/50"} overflow-hidden`}>
+              <div
+                className={`relative rounded-2xl border ${borderClass} ${cardBgClass} shadow-2xl ${isDarkTheme ? "shadow-black/50" : "shadow-gray-200/50"} overflow-hidden`}
+              >
                 <textarea
                   ref={inputRef}
                   value={input}
@@ -318,34 +311,42 @@ export default function AIStackBuilder() {
                   }}
                   placeholder="Describe your app idea and we'll build it..."
                   rows={1}
-                  className={`w-full px-5 py-4 bg-transparent ${textClass} ${isDarkTheme ? "placeholder:text-zinc-500" : "placeholder:text-gray-400"} focus:outline-none resize-none text-lg`}
+                  className={`w-full bg-transparent px-5 py-4 ${textClass} ${isDarkTheme ? "placeholder:text-zinc-500" : "placeholder:text-gray-400"} resize-none text-lg focus:outline-none`}
                   disabled={isLoading}
                   style={{ minHeight: "60px" }}
                 />
 
                 {/* Bottom toolbar */}
-                <div className={`flex items-center justify-between px-4 py-3 border-t ${isDarkTheme ? "border-white/[0.05]" : "border-gray-100"}`}>
+                <div
+                  className={`flex items-center justify-between border-t px-4 py-3 ${isDarkTheme ? "border-white/[0.05]" : "border-gray-100"}`}
+                >
                   {/* Left side - Attachment & Theme Toggle */}
                   <div className="flex items-center gap-2">
                     {/* Attachment button */}
                     <button
                       type="button"
-                      onClick={() => toast.info("File attachments coming soon!")}
-                      className={`flex items-center justify-center w-10 h-10 rounded-xl ${
+                      onClick={() =>
+                        toast.info("File attachments coming soon!")
+                      }
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${
                         isDarkTheme
-                          ? "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-                          : "bg-gray-100 text-gray-500 hover:text-gray-700 hover:bg-gray-200"
+                          ? "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white"
+                          : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
                       } transition-all`}
                       title="Attach file"
                     >
-                      <Paperclip className="w-5 h-5" />
+                      <Paperclip className="h-5 w-5" />
                     </button>
 
                     {/* Stack Theme Toggle (dark/light preference for output) */}
                     <button
                       type="button"
-                      onClick={() => setStackThemePreference(stackThemePreference === "dark" ? "light" : "dark")}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-xl ${
+                      onClick={() =>
+                        setStackThemePreference(
+                          stackThemePreference === "dark" ? "light" : "dark"
+                        )
+                      }
+                      className={`flex items-center gap-2 rounded-xl px-3 py-2 ${
                         isDarkTheme
                           ? "bg-white/5 hover:bg-white/10"
                           : "bg-gray-100 hover:bg-gray-200"
@@ -353,11 +354,17 @@ export default function AIStackBuilder() {
                       title={`Stack theme: ${stackThemePreference}`}
                     >
                       {stackThemePreference === "dark" ? (
-                        <Moon className={`w-4 h-4 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`} />
+                        <Moon
+                          className={`h-4 w-4 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`}
+                        />
                       ) : (
-                        <Sun className={`w-4 h-4 ${isDarkTheme ? "text-yellow-400" : "text-yellow-500"}`} />
+                        <Sun
+                          className={`h-4 w-4 ${isDarkTheme ? "text-yellow-400" : "text-yellow-500"}`}
+                        />
                       )}
-                      <span className={`text-xs font-medium ${isDarkTheme ? "text-zinc-400" : "text-gray-600"}`}>
+                      <span
+                        className={`text-xs font-medium ${isDarkTheme ? "text-zinc-400" : "text-gray-600"}`}
+                      >
                         {stackThemePreference === "dark" ? "Dark" : "Light"}
                       </span>
                     </button>
@@ -369,22 +376,26 @@ export default function AIStackBuilder() {
                       type="button"
                       onClick={handleVoiceInput}
                       disabled={isListening}
-                      className={`flex items-center justify-center w-10 h-10 rounded-xl ${
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${
                         isListening
-                          ? "bg-red-500 text-white animate-pulse"
+                          ? "animate-pulse bg-red-500 text-white"
                           : isDarkTheme
-                            ? "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-                            : "bg-gray-100 text-gray-500 hover:text-gray-700 hover:bg-gray-200"
+                            ? "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white"
+                            : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
                       } transition-all`}
                     >
-                      <Mic className="w-5 h-5" />
+                      <Mic className="h-5 w-5" />
                     </button>
                     <button
                       type="submit"
                       disabled={isLoading || !input.trim()}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] text-white font-semibold hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg"
+                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-5 py-2.5 font-semibold text-white shadow-lg transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
                     >
-                      {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                      {isLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Send className="h-4 w-4" />
+                      )}
                       <span className="hidden sm:inline">Send</span>
                     </button>
                   </div>
@@ -393,7 +404,7 @@ export default function AIStackBuilder() {
             </form>
 
             {/* Example Prompts Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6 w-full">
+            <div className="mt-6 grid w-full grid-cols-1 gap-3 md:grid-cols-2">
               {EXAMPLE_PROMPTS.map((example, index) => {
                 const Icon = example.icon;
                 return (
@@ -406,23 +417,35 @@ export default function AIStackBuilder() {
                       setInput(example.prompt);
                       inputRef.current?.focus();
                     }}
-                    className={`group flex items-center gap-3 p-4 rounded-xl border text-left transition-all ${
+                    className={`group flex items-center gap-3 rounded-xl border p-4 text-left transition-all ${
                       isDarkTheme
-                        ? "bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.05] hover:border-white/[0.15]"
-                        : "bg-white border-gray-200 hover:bg-gray-50 hover:border-gray-300"
+                        ? "border-white/[0.08] bg-white/[0.02] hover:border-white/[0.15] hover:bg-white/[0.05]"
+                        : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
                     }`}
                   >
                     <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110"
-                      style={{ backgroundColor: `${example.color}15`, border: `1px solid ${example.color}30` }}
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-transform group-hover:scale-110"
+                      style={{
+                        backgroundColor: `${example.color}15`,
+                        border: `1px solid ${example.color}30`,
+                      }}
                     >
-                      <Icon className="w-5 h-5" style={{ color: example.color }} />
+                      <Icon
+                        className="h-5 w-5"
+                        style={{ color: example.color }}
+                      />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className={`font-medium text-sm ${textClass}`}>{example.title}</p>
-                      <p className={`text-xs truncate ${mutedTextClass}`}>{example.prompt}</p>
+                    <div className="min-w-0 flex-1">
+                      <p className={`text-sm font-medium ${textClass}`}>
+                        {example.title}
+                      </p>
+                      <p className={`truncate text-xs ${mutedTextClass}`}>
+                        {example.prompt}
+                      </p>
                     </div>
-                    <ArrowRight className={`w-4 h-4 ${mutedTextClass} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                    <ArrowRight
+                      className={`h-4 w-4 ${mutedTextClass} opacity-0 transition-opacity group-hover:opacity-100`}
+                    />
                   </motion.button>
                 );
               })}
@@ -433,8 +456,8 @@ export default function AIStackBuilder() {
 
       {/* Chat Interface */}
       {!showHero && (
-        <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-6 py-8">
-          <div className="flex-1 overflow-y-auto space-y-6 pb-4">
+        <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col px-6 py-8">
+          <div className="flex-1 space-y-6 overflow-y-auto pb-4">
             <AnimatePresence mode="popLayout">
               {messages.map((message) => (
                 <motion.div
@@ -445,96 +468,88 @@ export default function AIStackBuilder() {
                   className={`flex gap-4 ${message.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   {message.role === "assistant" && (
-                    <div className={`w-10 h-10 rounded-xl ${isDarkTheme ? "bg-[#00F0FF]/10 border-[#00F0FF]/20" : "bg-cyan-100 border-cyan-200"} border flex items-center justify-center flex-shrink-0`}>
-                      <Bot className={`w-5 h-5 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`} />
+                    <div
+                      className={`h-10 w-10 rounded-xl ${isDarkTheme ? "border-[#00F0FF]/20 bg-[#00F0FF]/10" : "border-cyan-200 bg-cyan-100"} flex flex-shrink-0 items-center justify-center border`}
+                    >
+                      <Bot
+                        className={`h-5 w-5 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`}
+                      />
                     </div>
                   )}
 
-                  <div className={`max-w-[75%] ${message.role === "user" ? "bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] text-white rounded-2xl rounded-tr-md px-5 py-3" : ""}`}>
-                    <p className={message.role === "user" ? "font-medium" : isDarkTheme ? "text-zinc-300" : "text-gray-700"}>
+                  <div
+                    className={`max-w-[75%] ${message.role === "user" ? "rounded-2xl rounded-tr-md bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-5 py-3 text-white" : ""}`}
+                  >
+                    <p
+                      className={
+                        message.role === "user"
+                          ? "font-medium"
+                          : isDarkTheme
+                            ? "text-zinc-300"
+                            : "text-gray-700"
+                      }
+                    >
                       {message.content}
                     </p>
 
                     {message.items && message.items.length > 0 && (
                       <div className="mt-4 space-y-2">
-                        {/* OPUS 67 - Special highlight card */}
-                        {message.items.find(item => item.id === "opus67-base") && (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="relative overflow-hidden rounded-xl border-2 border-[#00F0FF]/50 bg-gradient-to-r from-[#00F0FF]/10 via-[#00F0FF]/5 to-transparent p-3 mb-3"
-                          >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 blur-3xl rounded-full -mr-16 -mt-16" />
-                            <div className="relative flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-[#00F0FF]/20 border border-[#00F0FF]/30 flex items-center justify-center">
-                                  <Sparkles className="w-5 h-5 text-[#00F0FF]" />
-                                </div>
-                                <div>
-                                  <div className="flex items-center gap-2">
-                                    <p className="text-sm font-bold text-[#00F0FF]">OPUS 67</p>
-                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#00F0FF]/20 text-[#00F0FF] font-medium">BASE</span>
-                                  </div>
-                                  <p className="text-xs text-zinc-400">141 skills · 82 MCPs · 30 modes</p>
-                                </div>
-                              </div>
-                              {!selectedIds.has("opus67-base") ? (
-                                <button
-                                  onClick={() => handleAddItem(message.items!.find(i => i.id === "opus67-base")!)}
-                                  className="px-3 py-1.5 rounded-lg bg-[#00F0FF]/20 text-[#00F0FF] text-xs font-medium hover:bg-[#00F0FF]/30 transition-colors"
-                                >
-                                  Add
-                                </button>
-                              ) : (
-                                <CheckCircle2 className="w-5 h-5 text-[#00F0FF]" />
-                              )}
-                            </div>
-                          </motion.div>
-                        )}
-
                         {/* Header with Add All */}
                         <div className="flex items-center justify-between py-1">
-                          <p className={`text-xs ${isDarkTheme ? "text-zinc-500" : "text-gray-500"} uppercase tracking-wider`}>
-                            Stack ({message.items.length - 1} items)
+                          <p
+                            className={`text-xs ${isDarkTheme ? "text-zinc-500" : "text-gray-500"} uppercase tracking-wider`}
+                          >
+                            Stack ({message.items.length} items)
                           </p>
                           <button
                             onClick={() => handleAddAllItems(message.items!)}
-                            className={`text-xs ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"} hover:underline flex items-center gap-1`}
+                            className={`text-xs ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"} flex items-center gap-1 hover:underline`}
                           >
-                            <Plus className="w-3 h-3" />
+                            <Plus className="h-3 w-3" />
                             Add All
                           </button>
                         </div>
 
-                        {/* Compact grid for other items */}
+                        {/* Compact grid for items */}
                         <div className="flex flex-wrap gap-1.5">
-                          {message.items.filter(item => item.id !== "opus67-base").map((item) => {
+                          {message.items.map((item) => {
                             const isInStack = selectedIds.has(item.id);
-                            const kindColor = item.kind === "agent" ? "#D97757" : item.kind === "skill" ? "#4E82EE" : item.kind === "mcp" ? "#10A37F" : "#888";
+                            const kindColor =
+                              item.kind === "agent"
+                                ? "#D97757"
+                                : item.kind === "skill"
+                                  ? "#4E82EE"
+                                  : item.kind === "mcp"
+                                    ? "#10A37F"
+                                    : "#888";
                             return (
                               <motion.button
                                 key={item.id}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                onClick={() => !isInStack && handleAddItem(item)}
+                                onClick={() =>
+                                  !isInStack && handleAddItem(item)
+                                }
                                 disabled={isInStack}
-                                className={`group flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs transition-all ${
+                                className={`group flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs transition-all ${
                                   isInStack
-                                    ? "bg-[#00F0FF]/10 border border-[#00F0FF]/30 text-[#00F0FF]"
+                                    ? "border border-[#00F0FF]/30 bg-[#00F0FF]/10 text-[#00F0FF]"
                                     : isDarkTheme
-                                      ? "bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/20 text-zinc-300"
-                                      : "bg-gray-50 border border-gray-200 hover:bg-gray-100 text-gray-700"
+                                      ? "border border-white/[0.08] bg-white/[0.03] text-zinc-300 hover:border-white/20 hover:bg-white/[0.08]"
+                                      : "border border-gray-200 bg-gray-50 text-gray-700 hover:bg-gray-100"
                                 }`}
                               >
                                 <span
-                                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                  className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
                                   style={{ backgroundColor: kindColor }}
                                 />
-                                <span className="font-medium truncate max-w-[120px]">{formatProductName(item.name)}</span>
+                                <span className="max-w-[120px] truncate font-medium">
+                                  {formatProductName(item.name)}
+                                </span>
                                 {isInStack ? (
-                                  <CheckCircle2 className="w-3 h-3 flex-shrink-0" />
+                                  <CheckCircle2 className="h-3 w-3 flex-shrink-0" />
                                 ) : (
-                                  <Plus className="w-3 h-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <Plus className="h-3 w-3 flex-shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
                                 )}
                               </motion.button>
                             );
@@ -552,7 +567,9 @@ export default function AIStackBuilder() {
           {/* Input - Bottom */}
           <div className="pt-4">
             <form onSubmit={handleSubmit}>
-              <div className={`relative rounded-2xl border ${borderClass} ${cardBgClass}`}>
+              <div
+                className={`relative rounded-2xl border ${borderClass} ${cardBgClass}`}
+              >
                 <textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -564,32 +581,46 @@ export default function AIStackBuilder() {
                   }}
                   placeholder="Continue building..."
                   rows={1}
-                  className={`w-full px-5 py-4 bg-transparent ${textClass} ${isDarkTheme ? "placeholder:text-zinc-500" : "placeholder:text-gray-400"} focus:outline-none resize-none`}
+                  className={`w-full bg-transparent px-5 py-4 ${textClass} ${isDarkTheme ? "placeholder:text-zinc-500" : "placeholder:text-gray-400"} resize-none focus:outline-none`}
                   disabled={isLoading}
                 />
-                <div className={`flex items-center justify-between px-4 py-3 border-t ${isDarkTheme ? "border-white/[0.05]" : "border-gray-100"}`}>
+                <div
+                  className={`flex items-center justify-between border-t px-4 py-3 ${isDarkTheme ? "border-white/[0.05]" : "border-gray-100"}`}
+                >
                   {/* Left side - Attachment & Theme Toggle */}
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      onClick={() => toast.info("File attachments coming soon!")}
-                      className={`flex items-center justify-center w-10 h-10 rounded-xl ${isDarkTheme ? "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10" : "bg-gray-100 text-gray-500 hover:text-gray-700 hover:bg-gray-200"} transition-all`}
+                      onClick={() =>
+                        toast.info("File attachments coming soon!")
+                      }
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${isDarkTheme ? "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"} transition-all`}
                       title="Attach file"
                     >
-                      <Paperclip className="w-5 h-5" />
+                      <Paperclip className="h-5 w-5" />
                     </button>
                     <button
                       type="button"
-                      onClick={() => setStackThemePreference(stackThemePreference === "dark" ? "light" : "dark")}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-xl ${isDarkTheme ? "bg-white/5 hover:bg-white/10" : "bg-gray-100 hover:bg-gray-200"} transition-all`}
+                      onClick={() =>
+                        setStackThemePreference(
+                          stackThemePreference === "dark" ? "light" : "dark"
+                        )
+                      }
+                      className={`flex items-center gap-2 rounded-xl px-3 py-2 ${isDarkTheme ? "bg-white/5 hover:bg-white/10" : "bg-gray-100 hover:bg-gray-200"} transition-all`}
                       title={`Stack theme: ${stackThemePreference}`}
                     >
                       {stackThemePreference === "dark" ? (
-                        <Moon className={`w-4 h-4 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`} />
+                        <Moon
+                          className={`h-4 w-4 ${isDarkTheme ? "text-[#00F0FF]" : "text-cyan-600"}`}
+                        />
                       ) : (
-                        <Sun className={`w-4 h-4 ${isDarkTheme ? "text-yellow-400" : "text-yellow-500"}`} />
+                        <Sun
+                          className={`h-4 w-4 ${isDarkTheme ? "text-yellow-400" : "text-yellow-500"}`}
+                        />
                       )}
-                      <span className={`text-xs font-medium ${isDarkTheme ? "text-zinc-400" : "text-gray-600"}`}>
+                      <span
+                        className={`text-xs font-medium ${isDarkTheme ? "text-zinc-400" : "text-gray-600"}`}
+                      >
                         {stackThemePreference === "dark" ? "Dark" : "Light"}
                       </span>
                     </button>
@@ -600,16 +631,20 @@ export default function AIStackBuilder() {
                       type="button"
                       onClick={handleVoiceInput}
                       disabled={isListening}
-                      className={`flex items-center justify-center w-10 h-10 rounded-xl ${isListening ? "bg-red-500 text-white animate-pulse" : isDarkTheme ? "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10" : "bg-gray-100 text-gray-500 hover:text-gray-700 hover:bg-gray-200"} transition-all`}
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${isListening ? "animate-pulse bg-red-500 text-white" : isDarkTheme ? "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"} transition-all`}
                     >
-                      <Mic className="w-5 h-5" />
+                      <Mic className="h-5 w-5" />
                     </button>
                     <button
                       type="submit"
                       disabled={isLoading || !input.trim()}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] text-white font-semibold hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg"
+                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] px-5 py-2.5 font-semibold text-white shadow-lg transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
                     >
-                      {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                      {isLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Send className="h-4 w-4" />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -624,9 +659,13 @@ export default function AIStackBuilder() {
   return (
     <div className={`min-h-screen ${isDarkTheme ? "" : "bg-gray-50"}`}>
       {isDarkTheme ? (
-        <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white">{mainContent}</AuroraBackground>
+        <AuroraBackground className="min-h-screen bg-[#0A0A0B] text-white">
+          {mainContent}
+        </AuroraBackground>
       ) : (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">{mainContent}</div>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
+          {mainContent}
+        </div>
       )}
 
       {/* Loading Modal */}
@@ -642,20 +681,20 @@ export default function AIStackBuilder() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-md mx-4"
+              className="relative mx-4 w-full max-w-md"
             >
-              <div className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-[#0F0F11]/90 backdrop-blur-xl p-8">
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] opacity-20 animate-pulse" />
+              <div className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-[#0F0F11]/90 p-8 backdrop-blur-xl">
+                <div className="absolute inset-0 animate-pulse rounded-3xl bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F] opacity-20" />
                 <div className="absolute inset-[1px] rounded-3xl bg-[#0F0F11]" />
 
                 <div className="relative z-10">
-                  <div className="flex justify-center mb-6">
+                  <div className="mb-6 flex justify-center">
                     <motion.div
                       key={currentLoadingStep}
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ type: "spring", duration: 0.5 }}
-                      className="w-20 h-20 rounded-2xl flex items-center justify-center"
+                      className="flex h-20 w-20 items-center justify-center rounded-2xl"
                       style={{
                         backgroundColor: `${LOADING_STEPS[currentLoadingStep].color}15`,
                         border: `2px solid ${LOADING_STEPS[currentLoadingStep].color}40`,
@@ -663,25 +702,45 @@ export default function AIStackBuilder() {
                     >
                       {(() => {
                         const Icon = LOADING_STEPS[currentLoadingStep].icon;
-                        return <Icon className="w-10 h-10" style={{ color: LOADING_STEPS[currentLoadingStep].color }} />;
+                        return (
+                          <Icon
+                            className="h-10 w-10"
+                            style={{
+                              color: LOADING_STEPS[currentLoadingStep].color,
+                            }}
+                          />
+                        );
                       })()}
                     </motion.div>
                   </div>
 
-                  <motion.div key={`text-${currentLoadingStep}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-6">
-                    <p className="text-xl font-bold mb-2" style={{ color: LOADING_STEPS[currentLoadingStep].color }}>
+                  <motion.div
+                    key={`text-${currentLoadingStep}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 text-center"
+                  >
+                    <p
+                      className="mb-2 text-xl font-bold"
+                      style={{ color: LOADING_STEPS[currentLoadingStep].color }}
+                    >
                       {LOADING_STEPS[currentLoadingStep].text}
                     </p>
-                    <p className="text-sm text-zinc-500">Building the perfect stack for you...</p>
+                    <p className="text-sm text-zinc-500">
+                      Building the perfect stack for you...
+                    </p>
                   </motion.div>
 
-                  <div className="flex justify-center gap-2 mb-6">
+                  <div className="mb-6 flex justify-center gap-2">
                     {LOADING_STEPS.map((step, index) => (
                       <motion.div
                         key={index}
-                        className="w-2 h-2 rounded-full"
+                        className="h-2 w-2 rounded-full"
                         animate={{
-                          backgroundColor: index === currentLoadingStep ? step.color : "rgba(255,255,255,0.2)",
+                          backgroundColor:
+                            index === currentLoadingStep
+                              ? step.color
+                              : "rgba(255,255,255,0.2)",
                           scale: index === currentLoadingStep ? 1.3 : 1,
                         }}
                         transition={{ duration: 0.3 }}
@@ -689,11 +748,15 @@ export default function AIStackBuilder() {
                     ))}
                   </div>
 
-                  <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="relative h-2 overflow-hidden rounded-full bg-white/5">
                     <motion.div
                       className="absolute inset-y-0 left-0 w-1/3 rounded-full bg-gradient-to-r from-[#D97757] via-[#4E82EE] to-[#10A37F]"
                       animate={{ x: ["0%", "200%", "0%"] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     />
                   </div>
                 </div>

@@ -1,0 +1,11 @@
+name: gicm-conventions
+version: 1.0.0
+description: Next.js 14 + Turborepo conventions for gICM marketplace
+triggers:
+  - create component
+  - new API route
+  - database schema
+  - add feature
+  - new page
+  - add package
+  - turborepo workspace

@@ -9,7 +9,13 @@
  */
 
 // Main hub
-export { IntegrationHub, type IntegrationHubConfig, type HubStatus, getHub, setHubInstance } from "./hub.js";
+export {
+  IntegrationHub,
+  type IntegrationHubConfig,
+  type HubStatus,
+  getHub,
+  setHubInstance,
+} from "./hub.js";
 
 // Event bus
 export {
@@ -32,7 +38,12 @@ export {
 export { ApiServer, type ApiServerConfig } from "./api/server.js";
 
 // Workflows
-export { workflows, registerWorkflows, getWorkflows, type Workflow } from "./workflows/index.js";
+export {
+  workflows,
+  registerWorkflows,
+  getWorkflows,
+  type Workflow,
+} from "./workflows/index.js";
 
 // Analytics
 export {
@@ -2465,3 +2476,29 @@ export {
   type ModelEvaluatorEvents,
   type ModelEvaluatorStorage,
 } from "./evaluation/index.js";
+
+// =============================================================================
+// MCP GATEWAY (Phase MCP)
+// =============================================================================
+
+export { MCPProcessManager, getMCPManager } from "./mcp/manager.js";
+
+export { MCPConnection } from "./mcp/connection.js";
+
+export { mcpRoutes } from "./mcp/routes.js";
+
+export {
+  MCPServerConfigSchema,
+  MCPConfigFileSchema,
+  MCPToolCallRequestSchema,
+  type MCPServerConfig,
+  type MCPConfigFile,
+  type MCPToolCallRequest,
+  type MCPToolDefinition,
+  type MCPToolResult,
+  type MCPServerStatus,
+  type MCPServerInfo,
+  type MCPGatewayStatus,
+  type JsonRpcRequest,
+  type JsonRpcResponse,
+} from "./mcp/types.js";

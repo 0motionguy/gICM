@@ -1,0 +1,153 @@
+name: Publish @gicm packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump type"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      packages:
+        description: 'Packages to publish (comma-separated or "all")'
+        required: true
+        default: "all"
+      dry-run:
+        description: "Dry run (no actual publish)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: "18"
+  PNPM_VERSION: "9"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve target packages
+        id: targets
+        run: |
+          if [ "${{ inputs.packages }}" = "all" ]; then
+            FILTERS=(
+              "@gicm/router"
+              "@gicm/goldfish"
+              "@gicm/soul"
+              "@gicm/memory"
+              "@gicm/cache"
+              "@gicm/context"
+              "@gicm/shield"
+              "@gicm/orchestrator"
+              "@gicm/dashboard"
+              "@gicm/polyclaw-pro"
+              "@gicm/opus67"
+              "@gicm/installer"
+            )
+          else
+            IFS=',' read -ra FILTERS <<< "${{ inputs.packages }}"
+          fi
+
+          FILTER_ARGS=""
+          for pkg in "${FILTERS[@]}"; do
+            pkg=$(echo "$pkg" | xargs)
+            FILTER_ARGS="$FILTER_ARGS --filter $pkg"
+          done
+          echo "filter_args=$FILTER_ARGS" >> "$GITHUB_OUTPUT"
+          echo "Publishing: ${FILTERS[*]}"
+
+      - name: Build packages
+        run: pnpm ${{ steps.targets.outputs.filter_args }} build
+
+      - name: Run tests
+        run: pnpm ${{ steps.targets.outputs.filter_args }} test -- --run
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump versions
+        if: ${{ !inputs.dry-run }}
+        run: |
+          BUMP="${{ inputs.bump }}"
+          pnpm ${{ steps.targets.outputs.filter_args }} exec -- npm version "$BUMP" --no-git-tag-version
+
+      - name: Commit version bump
+        if: ${{ !inputs.dry-run }}
+        run: |
+          git add -A
+          git commit -m "chore: bump @gicm packages (${{ inputs.bump }})" || echo "No changes to commit"
+
+      - name: Publish to npm
+        run: |
+          DRY_RUN_FLAG=""
+          if [ "${{ inputs.dry-run }}" = "true" ]; then
+            DRY_RUN_FLAG="--dry-run"
+          fi
+          pnpm ${{ steps.targets.outputs.filter_args }} publish --access public --no-git-checks $DRY_RUN_FLAG
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create git tags
+        if: ${{ !inputs.dry-run }}
+        run: |
+          # Read each published package version and create a tag
+          if [ "${{ inputs.packages }}" = "all" ]; then
+            PKGS="router goldfish soul memory cache context shield orchestrator dashboard polyclaw-pro installer"
+            # opus67 uses different path
+            VERSION=$(node -p "require('./packages/opus67/package.json').version")
+            git tag "opus67@v${VERSION}" || true
+          else
+            PKGS="${{ inputs.packages }}"
+          fi
+
+          for name in $PKGS; do
+            name=$(echo "$name" | xargs | sed 's/@gicm\///')
+            PKG_DIR="packages/gicm-${name}"
+            if [ -f "${PKG_DIR}/package.json" ]; then
+              VERSION=$(node -p "require('./${PKG_DIR}/package.json').version")
+              git tag "@gicm/${name}@v${VERSION}" || true
+            fi
+          done
+
+      - name: Push tags
+        if: ${{ !inputs.dry-run }}
+        run: |
+          git push origin HEAD
+          git push origin --tags
+
+      - name: Summary
+        run: |
+          echo "## Publish Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Bump:** ${{ inputs.bump }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Packages:** ${{ inputs.packages }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Dry Run:** ${{ inputs.dry-run }}" >> "$GITHUB_STEP_SUMMARY"
