@@ -507,7 +507,7 @@ Include:
     prompt: `Generate a README.md for an npm package with:
 - Package name: @gicm/opus67
 - Purpose: AI enhancement layer for Claude Code
-- Features: 141 skills, 82 MCPs, 10 modes, 107 agents
+- Features: 92 skills, 24 MCP tools, 12 modes
 - Installation: npx create-opus67@latest
 
 Include:

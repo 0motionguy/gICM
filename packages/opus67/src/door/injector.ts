@@ -80,7 +80,7 @@ export function createInjectionBlock(doorContent: string): string {
   const condensedDoor = `
 # OPUS 67 v6.0.0 - THE DOOR IS OPEN
 
-> Unified AI Runtime - 141 Skills | 107 Agents | 30 Modes | 82 MCPs
+> Skill Orchestration Engine - 92 Skills | 24 MCP Tools | 12 Modes
 
 ## Active Capabilities
 

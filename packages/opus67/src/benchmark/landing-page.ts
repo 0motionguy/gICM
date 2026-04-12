@@ -400,7 +400,7 @@ ${colors.bgGreen}${colors.bright}╔══════════════�
 ║                                                                                           ║
 ║   ═══════════════════════════════════════════════════════════════════════════════        ║
 ║                                                                                           ║
-║   141 Skills | 108 Agents | 95 MCPs | 30 Modes | 93 Commands                              ║
+║   92 Skills | 24 MCP Tools | 12 Modes | 105 Commands                                      ║
 ║                                                                                           ║
 ║   Built with Claude Opus 4.5 + Smart Multi-Model Routing                                  ║
 ║   Benchmarked: December 2024                                                              ║
@@ -447,13 +447,13 @@ ${colors.cyan}╔═════════════════════
 ║  ${colors.bright}OPUS 67 v6.0.0${colors.cyan} - AI Coding Benchmark Champion                          ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║                                                                       ║
-║  ${colors.green}✅ HumanEval:${colors.cyan}    96.8% pass@1  (+5.6% vs Claude base)             ║
-║  ${colors.green}✅ Real-World:${colors.cyan}   8/8 task wins across all categories             ║
-║  ${colors.green}✅ Speed:${colors.cyan}        29% faster (smart routing)                      ║
-║  ${colors.green}✅ Cost:${colors.cyan}         74% cheaper (multi-model blend)                 ║
-║  ${colors.green}✅ Context:${colors.cyan}      89% token reduction (141 skills)                ║
+║  ${colors.green}✅ Routing:${colors.cyan}     100% accuracy (15/15 skill routing tests)         ║
+║  ${colors.green}✅ Latency:${colors.cyan}     5ms avg skill detection (local TF-IDF)           ║
+║  ${colors.green}✅ Overhead:${colors.cyan}    ~505 tokens/session (85% reduction from v6.2)    ║
+║  ${colors.green}✅ Tools:${colors.cyan}       24 MCP tools across 7 categories                 ║
+║  ${colors.green}✅ Skills:${colors.cyan}      92 domain skills (27 deep, 43 solid)             ║
 ║                                                                       ║
-║  ${colors.yellow}Overall Score: 93.8/100${colors.cyan}  │  ${colors.bright}#1 vs Claude, GPT, Gemini${colors.cyan}          ║
+║  ${colors.yellow}Skill Orchestration Engine${colors.cyan}  │  ${colors.bright}Honest metrics only${colors.cyan}              ║
 ║                                                                       ║
 ║  ${colors.dim}npx create-opus67@latest${colors.cyan}                                          ║
 ╚═══════════════════════════════════════════════════════════════════════╝${colors.reset}`;

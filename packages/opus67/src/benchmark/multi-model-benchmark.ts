@@ -30,7 +30,7 @@ export const BENCHMARK_MODELS: Record<string, ModelConfig> = {
   opus67: {
     id: "opus67",
     name: "OPUS 67 v6.0.0",
-    description: "Claude + Multi-Model Router + 141 Skills",
+    description: "Claude + Skill Orchestration Engine + 92 Skills",
     costPer1kInput: 0.015,
     costPer1kOutput: 0.075,
     avgLatencyMs: 850,
