@@ -83,19 +83,19 @@ export function generateBootScreen(config: BootConfig = {}): string {
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
-║   ⚡ PERFORMANCE                                                          ║
+║   ⚡ CAPABILITIES                                                         ║
 ║   ───────────────────────────────────────────────────────────────────     ║
 ║                                                                           ║
-║   CONTEXT ENGINE                      │  COST SAVINGS                     ║
-║   ● 50,000 tokens pre-indexed         │  ● 47% avg cost reduction         ║
-║   ● 1,247 files in memory             │  ● 23% queries FREE (local LLM)   ║
-║   ● 94% context relevance             │  ● Smart routing saves 31%        ║
-║   ● <50ms retrieval                   │  ● $0.00 for LIGHT mode           ║
+║   SKILL ENGINE                        │  INTEGRATIONS                     ║
+║   ● 24 MCP tools available            │  ● Obsidian wiki (search/read)    ║
+║   ● 5ms avg skill detection           │  ● OpenClaw fleet (8 agents)      ║
+║   ● 100% routing accuracy (15/15)     │  ● Context7 (official docs)       ║
+║   ● ~505 tokens/session overhead      │  ● Tavily (web research)          ║
 ║                                                                           ║
-║   SPEED                               │  ACCURACY                         ║
-║   ● 3.2x faster response              │  ● 89% first-attempt success      ║
-║   ● 12x faster with SWARM             │  ● 96% code compiles              ║
-║   ● 847ms avg latency                 │  ● 71% fewer iterations           ║
+║   SAFETY                              │  COMMANDS                         ║
+║   ● Context budget monitor            │  ● /opus67-plan (GSD tasks)       ║
+║   ● Prompt injection guard            │  ● /opus67-compile-wiki           ║
+║   ● Tool health analytics             │  ● /memory (persistent store)     ║
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
