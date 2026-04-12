@@ -345,7 +345,7 @@ export class BrainAPI extends EventEmitter<ApiEvents> {
         title: "OPUS 67 BRAIN API",
         version: "3.0.0",
         description:
-          "Self-evolving AI runtime with multi-model routing and council deliberation",
+          "Skill orchestration engine with multi-model routing and context management",
       },
       servers: [
         { url: "http://localhost:3100", description: "Local development" },

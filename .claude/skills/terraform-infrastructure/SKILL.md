@@ -1,6 +1,6 @@
 ---
 name: terraform-infrastructure
-description: "5.0\""
+description: "Terraform infrastructure-as-code patterns for AWS, GCP, and Azure deployments."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

@@ -1,6 +1,6 @@
 ---
 name: websocket-realtime
-description: "{"
+description: "WebSocket real-time communication patterns including reconnection, heartbeats, and scaling."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

@@ -1,6 +1,6 @@
 ---
 name: jest-unit-testing
-description: "{"
+description: "Jest unit testing patterns including mocking, snapshot testing, and test organization."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

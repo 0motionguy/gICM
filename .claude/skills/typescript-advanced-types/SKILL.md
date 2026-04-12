@@ -1,6 +1,6 @@
 ---
 name: typescript-advanced-types
-description: "= { [P in keyof T]?: T[P] }"
+description: "Advanced TypeScript type patterns including conditional types, mapped types, and type-level programming."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

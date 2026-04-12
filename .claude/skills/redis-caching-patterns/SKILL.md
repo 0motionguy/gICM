@@ -1,6 +1,6 @@
 ---
 name: redis-caching-patterns
-description: "Math.min(times * 50, 2000)"
+description: "Redis caching patterns including cache-aside, write-through, TTL strategies, and Lua scripting."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

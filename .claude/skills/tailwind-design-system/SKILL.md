@@ -1,6 +1,6 @@
 ---
 name: tailwind-design-system
-description: "<h1 className=\"text-2xl font-bold text-gray-900 dark:text-white\">"
+description: "Tailwind CSS design system patterns including custom themes, component variants, and dark mode."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

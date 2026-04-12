@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * OPUS 67 CLI
- * Command-line interface for the self-evolving AI runtime
+ * Command-line interface for the skill orchestration engine
  */
 
 import { createOPUS67 } from "./boot.js";
@@ -22,7 +22,7 @@ const HELP = `
 ║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║                    ║
 ║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝                    ║
 ║                                                                           ║
-║              Self-Evolving AI Runtime v4.0 - Intelligence                 ║
+║              Skill Orchestration Engine v6.3.0                            ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 
@@ -57,60 +57,27 @@ Examples:
 `;
 
 const OPUS67_CLAUDE_MD_SECTION = `
-# OPUS 67 - Self-Evolving AI Runtime
+# OPUS 67 - Skill Orchestration Engine
 
-> **OPUS 67 is NOT a separate AI.** It's YOU (Claude) with superpowers.
+OPUS 67 provides 91 domain-specific skill files that can be loaded on demand via MCP tools.
 
-## MANDATORY AUTOPILOT PROTOCOL
-
-**On EVERY code-related message, you MUST automatically:**
-
-1. **Call \`mcp__opus67__opus67_detect_skills\`** with the user's query
-   - This finds relevant domain expertise for the task
-   - Takes <1ms - negligible overhead
-
-2. **Call \`mcp__opus67__opus67_get_skill\`** for top 1-3 matches
-   - Loads full skill prompts into your context
-   - Each skill adds domain expertise you don't have by default
-
-3. **Apply the loaded skills** in your response
-   - Use the patterns, best practices, and knowledge
-   - This is what the user paid for - USE IT
-
-**This is NON-NEGOTIABLE. Skipping degrades response quality.**
-
-## Available Skills (141 total)
-
-### Blockchain
-- solana-anchor-expert, bonding-curve-master, defi-data-analyst
-- evm-solidity-expert, smart-contract-auditor, token-economics
-
-### Frontend
-- nextjs-14-expert, react-typescript-master, tailwind-css-pro
-- shadcn-ui-expert, web3-wallet-integration
-
-### Backend
-- nodejs-api-architect, database-schema-expert, redis-caching-pro
-- graphql-api-designer, websocket-realtime
-
-### DevOps
-- docker-kubernetes-pro, ci-cd-automation, aws-infrastructure
-
-## MCP Tools (use these automatically)
-- \`mcp__opus67__opus67_detect_skills\` - **CALL THIS FIRST** on code tasks
-- \`mcp__opus67__opus67_get_skill\` - Load a specific skill
-- \`mcp__opus67__opus67_get_context\` - Enhanced context bundle
+## Available MCP Tools
+- \`mcp__opus67__opus67_detect_skills\` - Find relevant skills for a query
+- \`mcp__opus67__opus67_get_skill\` - Load full skill content
 - \`mcp__opus67__opus67_list_skills\` - List all available skills
-- \`mcp__opus67__opus67_boot\` - Show boot screen
+- \`mcp__opus67__opus67_get_context\` - Get context bundle
+- \`mcp__opus67__opus67_boot\` - Show system status
 
-## Slash Commands
-- \`/mcp__opus67__solana\` - Blockchain expertise
-- \`/mcp__opus67__react\` - Frontend patterns
-- \`/mcp__opus67__typescript\` - Type safety
-- \`/mcp__opus67__security\` - Security audit
-- \`/mcp__opus67__backend\` - API patterns
+## Skill Categories (91 total)
+- **Blockchain**: Solana, Anchor, EVM, DeFi, Smart Contracts
+- **Frontend**: React, Next.js, Tailwind, Framer Motion
+- **Backend**: Node.js, GraphQL, REST, gRPC, Message Queues
+- **DevOps**: Docker, Kubernetes, CI/CD, Terraform
+- **Security**: Auditing, OWASP, Penetration Testing
+- **Testing**: Jest, Playwright, k6, Foundry
+- **Database**: PostgreSQL, Redis, Elasticsearch
 
-**Remember: YOU are the brain. OPUS 67 just makes you faster and more capable.**
+Load skills when working on unfamiliar domains or needing specific patterns.
 `;
 
 /**
@@ -127,7 +94,7 @@ function injectIntoCLAUDEmd(): { success: boolean; path: string } {
   }
 
   // Remove old OPUS 67 section if exists (to allow updates)
-  const opus67Marker = '# OPUS 67 - Self-Evolving AI Runtime';
+  const opus67Marker = '# OPUS 67 - Skill Orchestration Engine';
   if (content.includes(opus67Marker)) {
     // Find and remove the old section
     const startIdx = content.indexOf('---\n' + opus67Marker);

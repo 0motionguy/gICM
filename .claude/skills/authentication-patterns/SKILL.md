@@ -1,6 +1,6 @@
 ---
 name: authentication-patterns
-description: "{"
+description: "Authentication and authorization patterns including JWT, OAuth2, session management, and RBAC."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

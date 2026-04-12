@@ -1,9 +1,8 @@
 ---
 name: gicm-opus67
 description: >
-  Self-evolving AI runtime. 141 skills, 82 MCP connections, 10 operating modes,
-  107 agents. Multi-model routing, prompt caching, context engineering,
-  cross-session memory, evolution engine.
+  Skill orchestration engine for Claude Code. 91 skills, 10 operating modes,
+  107 agents. Keyword-based context loading with token budgeting.
 user-invocable: true
 metadata:
   openclaw:
@@ -18,9 +17,9 @@ metadata:
         - ANTHROPIC_API_KEY
 ---
 
-# OPUS 67 — Self-Evolving AI Runtime
+# OPUS 67 — Skill Orchestration Engine
 
-141 skills, 82 MCP connections, 10 modes, 107 agents. Multi-model routing (Claude/Gemini/DeepSeek/local), prompt caching, cross-session memory, evolution engine.
+91 skills, 10 modes, 107 agents. Keyword-based context loading with complexity-scored mode selection and multi-model routing.
 
 ## Quick Start
 
@@ -49,10 +48,9 @@ const session = opus.process("design the system architecture");
 ## Key Features
 
 - **Multi-Model Router**: Routes to optimal model per task (Opus for architecture, Haiku for quick tasks)
-- **Skill Detection**: Auto-loads domain expertise from 141 skills based on query analysis
-- **MCP Hub**: Connects to 82 tool servers (GitHub, Supabase, Sentry, Solana RPC, etc.)
-- **Cross-Session Memory**: Graphiti-based persistent memory with SQLite + vector search
-- **Evolution Engine**: Self-improvement through pattern detection and code improvement
+- **Skill Detection**: Keyword-matches domain expertise from 91 skills based on query analysis
+- **MCP Hub**: Registry of tool server definitions
+- **Pattern Detection**: Logs patterns across sessions for analysis
 - **Brain Runtime**: HTTP/WebSocket server for real-time AI processing
 
 ## API

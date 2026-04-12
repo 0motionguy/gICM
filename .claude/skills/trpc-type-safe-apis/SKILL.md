@@ -1,6 +1,6 @@
 ---
 name: trpc-type-safe-apis
-description: "().create()"
+description: "tRPC type-safe API patterns including routers, middleware, and React Query integration."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

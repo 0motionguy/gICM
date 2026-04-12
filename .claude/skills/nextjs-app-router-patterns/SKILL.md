@@ -1,6 +1,6 @@
 ---
 name: nextjs-app-router-patterns
-description: "{data.title}</div>"
+description: "Next.js App Router patterns including server components, streaming, and data fetching."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

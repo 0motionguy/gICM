@@ -66,7 +66,7 @@ export function generateBootScreen(config: BootConfig = {}): string {
 ║  ╚██████╔╝██║     ╚██████╔╝███████║    ╚██████╔╝   ██║                    ║
 ║   ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝     ╚═════╝    ╚═╝                    ║
 ║                                                                           ║
-║                    Self-Evolving AI Runtime v${version.padEnd(25)}       ║
+║                    Skill Orchestration Engine v${version.padEnd(24)}       ║
 ║                                                                           ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║

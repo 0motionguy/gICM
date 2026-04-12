@@ -1,6 +1,6 @@
 ---
 name: error-handling-patterns
-description: "="
+description: "Error handling patterns including custom errors, retry logic, circuit breakers, and error boundaries."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

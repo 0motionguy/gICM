@@ -1,6 +1,6 @@
 ---
 name: refactoring-patterns
-description: "sum + o.amount, 0)"
+description: "Code refactoring patterns including extract method, compose functions, and clean architecture."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

@@ -1,6 +1,6 @@
 ---
 name: documentation-automation
-description: "{"
+description: "Automated documentation generation, API docs, and documentation-as-code workflows."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

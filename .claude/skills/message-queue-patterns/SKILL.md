@@ -1,6 +1,6 @@
 ---
 name: message-queue-patterns
-description: "{"
+description: "Message queue patterns with RabbitMQ, Redis Streams, and async job processing."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

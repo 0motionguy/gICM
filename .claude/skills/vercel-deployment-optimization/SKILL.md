@@ -1,6 +1,6 @@
 ---
 name: vercel-deployment-optimization
-description: "# Inspect deployment"
+description: "Vercel deployment optimization including edge functions, ISR, and build caching."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

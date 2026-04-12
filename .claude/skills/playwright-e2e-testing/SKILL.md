@@ -1,6 +1,6 @@
 ---
 name: playwright-e2e-testing
-description: "{"
+description: "Playwright end-to-end testing patterns including page objects, fixtures, and visual regression."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

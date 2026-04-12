@@ -1,6 +1,6 @@
 ---
 name: load-testing-k6
-description: "r.status === 200 });"
+description: "Load testing with k6 including scenario design, thresholds, and performance benchmarking."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

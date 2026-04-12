@@ -1,6 +1,6 @@
 ---
 name: framer-motion-animations
-description: "Content"
+description: "Framer Motion animation patterns for React including transitions, gestures, and layout animations."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

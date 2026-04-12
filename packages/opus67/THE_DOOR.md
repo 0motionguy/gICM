@@ -2,8 +2,8 @@
 
 > **Version:** 6.2.0 "Claude Harmony"
 > **Features:** 10 Operating Modes + Extended Thinking + Unified Brain API + Unified Memory + Claude Code 2.0.65 Compatible
-> **Purpose:** Self-evolving AI runtime with intelligent mode selection and cross-session memory
-> **Stats:** 141 Skills • 82 MCPs • 10 Modes • 107 Agents • 5 Memory Sources
+> **Purpose:** Skill orchestration engine with intelligent mode selection and context management
+> **Stats:** 91 Skills • 10 Modes • 107 Agents
 
 ---
 

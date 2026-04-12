@@ -1,6 +1,6 @@
 ---
 name: solana-program-testing
-description: "{"
+description: "Solana program testing with Bankrun, integration tests, and program simulation."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

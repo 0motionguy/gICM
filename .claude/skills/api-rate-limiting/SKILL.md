@@ -1,6 +1,6 @@
 ---
 name: api-rate-limiting
-description: "{"
+description: "Token bucket, leaky bucket, sliding window algorithms and distributed rate limiting patterns."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

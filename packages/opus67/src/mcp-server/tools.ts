@@ -242,4 +242,147 @@ export const TOOL_DEFINITIONS = [
       required: [],
     },
   },
+  // Progressive disclosure (Phase 2)
+  {
+    name: "opus67_skillSummaries",
+    description:
+      "Get compact skill summaries (~50 tokens each) for browsing. Use opus67_get_skill for full content.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        category: {
+          type: "string",
+          description:
+            'Filter by category (e.g., "blockchain", "frontend", "backend", "devops", "security", "testing")',
+        },
+      },
+      required: [],
+    },
+  },
+  {
+    name: "opus67_tokenBudget",
+    description:
+      "Show token budgets per mode and estimated skill token costs. Helps plan context loading.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        mode: {
+          type: "string",
+          description:
+            "Mode to highlight (auto, scan, build, review, architect, debug, ultra, think, vibe, light)",
+        },
+      },
+      required: [],
+    },
+  },
+  // Phase 3: Native Integrations
+  {
+    name: "opus67_wikiSearch",
+    description:
+      "Search the agnt-wiki Obsidian vault (190 pages of business, agent, venue, and platform docs)",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: "Search query (e.g., 'venue onboarding', 'agent fleet', 'pricing')",
+        },
+      },
+      required: ["query"],
+    },
+  },
+  {
+    name: "opus67_wikiRead",
+    description:
+      "Read a specific page from the agnt-wiki Obsidian vault by path",
+    inputSchema: {
+      type: "object",
+      properties: {
+        path: {
+          type: "string",
+          description:
+            "Wiki page path (e.g., '_index.md', 'platform/stack.md', 'agents/fleet-architecture.md', 'memory/andy-memory.md')",
+        },
+      },
+      required: ["path"],
+    },
+  },
+  {
+    name: "opus67_wikiWrite",
+    description:
+      "Append content to an agnt-wiki page. Enforces frontmatter conventions and logs to memory.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        path: {
+          type: "string",
+          description: "Wiki page path to append to",
+        },
+        content: {
+          type: "string",
+          description: "Markdown content to append",
+        },
+      },
+      required: ["path", "content"],
+    },
+  },
+  {
+    name: "opus67_fleetStatus",
+    description:
+      "Get status of the OpenClaw agent fleet on Mac gateway (nodes, agents, connectivity)",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
+  {
+    name: "opus67_fleetDispatch",
+    description:
+      "Dispatch a task to a specific agent on the OpenClaw fleet",
+    inputSchema: {
+      type: "object",
+      properties: {
+        agent: {
+          type: "string",
+          description:
+            "Agent name (main, coder, builder, researcher, intelligence, trading, growth, ops)",
+        },
+        task: {
+          type: "string",
+          description: "Task description to send to the agent",
+        },
+      },
+      required: ["agent", "task"],
+    },
+  },
+  {
+    name: "opus67_fleetAgents",
+    description:
+      "List all available agents on the OpenClaw fleet with their roles and capabilities",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
+  {
+    name: "opus67_hermesQuery",
+    description:
+      "Send a query to the local Hermes Python agent and get a structured response",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: "The question or task for Hermes",
+        },
+        timeout: {
+          type: "number",
+          description: "Timeout in seconds (default: 60)",
+        },
+      },
+      required: ["query"],
+    },
+  },
 ];

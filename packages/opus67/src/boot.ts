@@ -1,5 +1,5 @@
 /**
- * OPUS 67 - Self-Evolving AI Runtime
+ * OPUS 67 - Skill Orchestration Engine
  * Boot sequence and main orchestrator
  *
  * NOW WITH UNIFIED MEMORY!
@@ -473,7 +473,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`
 ╔═══════════════════════════════════════════════════════════════╗
 ║                        OPUS 67                                 ║
-║              Self-Evolving AI Runtime                          ║
+║              Skill Orchestration Engine                          ║
 ║                   UNIFIED MEMORY                               ║
 ╚═══════════════════════════════════════════════════════════════╝
   `);

@@ -1,6 +1,6 @@
 ---
 name: github-actions-workflows
-description: "> $GITHUB_OUTPUT"
+description: "GitHub Actions CI/CD workflow patterns including matrix builds, caching, and deployment."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

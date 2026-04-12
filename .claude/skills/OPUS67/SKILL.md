@@ -1,99 +1,21 @@
 ---
-description: |
-  OPUS 67 Auto-Activation - Enhances Claude with 140+ domain expertise skills.
-  Triggers automatically on ALL code-related tasks to provide specialized knowledge.
+description: "OPUS 67 orchestration. 97 skills, 25 MCP tools, wiki/fleet/research integration."
 triggers:
   keywords:
-    - code
-    - build
-    - implement
-    - fix
-    - debug
-    - refactor
-    - create
-    - add
-    - update
-    - modify
-    - write
-    - develop
-    - deploy
-    - test
-    - review
-    - optimize
-    - migrate
-    - integrate
-  extensions:
-    - .ts
-    - .tsx
-    - .js
-    - .jsx
-    - .sol
-    - .rs
-    - .py
-    - .go
-    - .java
-    - .vue
-    - .svelte
-    - .css
-    - .scss
-    - .html
-    - .yaml
-    - .yml
-    - .json
-    - .toml
-    - .md
+    - opus67
+    - load skill
+    - fleet
 ---
 
-# OPUS 67 - Domain Expertise Enhancement Layer
+# OPUS 67 — 25 MCP Tools
 
-You have OPUS 67 installed. This gives you access to **140+ specialized skills** that enhance your capabilities.
+**Skills**: `opus67_detect_skills` (auto-find) | `opus67_get_skill` (load full) | `opus67_skillSummaries` (browse compact) | `opus67_tokenBudget` (budgets)
+**Wiki**: `opus67_wikiSearch` | `opus67_wikiRead` | `opus67_wikiWrite` (190-page Obsidian vault)
+**Fleet**: `opus67_fleetStatus` | `opus67_fleetAgents` | `opus67_fleetDispatch` (8 OpenClaw agents)
+**Memory**: `opus67_queryMemory` | `opus67_multiHopQuery` | `opus67_writeMemory` | `opus67_memoryStats`
+**Analytics**: `opus67_toolMetrics` | `opus67_unhealthyTools`
+**External**: `opus67_hermesQuery` (Python agent)
 
-## MANDATORY PROTOCOL
+**Research** (other MCPs): Context7 `get-library-docs` (official docs) | Tavily `tavily_research` (web)
 
-On every code-related task, you MUST:
-
-1. **Detect relevant skills**: Call `opus67_detect_skills` with the user's query
-2. **Load expertise**: Call `opus67_get_skill` for the top 1-3 matches
-3. **Apply knowledge**: Use the loaded skill prompts in your response
-
-## Available MCP Tools
-
-| Tool | Purpose |
-|------|---------|
-| `opus67_detect_skills` | Find relevant skills for a task |
-| `opus67_get_skill` | Load full skill definition |
-| `opus67_get_context` | Get enhanced context bundle |
-| `opus67_list_skills` | Show all available skills |
-| `opus67_status` | Check system status |
-
-## Slash Commands (Auto-Inject)
-
-Type these to instantly load skill expertise:
-- `/mcp__opus67__solana` - Solana/Anchor blockchain expertise
-- `/mcp__opus67__react` - React 19 + Next.js 15 patterns
-- `/mcp__opus67__typescript` - Advanced TypeScript patterns
-- `/mcp__opus67__security` - Security audit expertise
-- `/mcp__opus67__backend` - Node.js/API patterns
-- `/mcp__opus67__devops` - Docker/CI/CD automation
-- `/mcp__opus67__testing` - Testing patterns
-- `/mcp__opus67__database` - SQL/query optimization
-- `/mcp__opus67__web3` - DeFi/blockchain integration
-- `/mcp__opus67__grab` - Screenshot to code conversion
-
-## Skill Categories
-
-- **Blockchain**: Solana, Anchor, EVM, DeFi, Smart Contracts
-- **Frontend**: React, Next.js, Vue, Tailwind, State Management
-- **Backend**: Node.js, Express, FastAPI, GraphQL, REST
-- **DevOps**: Docker, Kubernetes, CI/CD, Terraform
-- **Security**: Auditing, Penetration Testing, OWASP
-- **Testing**: Unit, Integration, E2E, TDD
-- **Database**: PostgreSQL, MongoDB, Redis, Query Optimization
-- **Language**: TypeScript, Rust, Python, Go
-
-## Remember
-
-YOU are Claude. OPUS 67 is your enhancement layer - skills, MCPs, and workflows that make you faster and more capable. The user paid for these superpowers. Use them on every task.
-
----
-*OPUS 67 v5.1.9 - Claude with Superpowers*
+Load `context7-deep-search` for library ID mappings. Load `tavily-research` for query patterns. Load `task-planning` for GSD-style plans. Load `wiki-compiler` for compiled truth pattern.

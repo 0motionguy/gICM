@@ -1,6 +1,6 @@
 ---
 name: shadcn-component-system
-description: "Click me</Button>"
+description: "Shadcn/ui component system patterns including theming, composition, and design tokens."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

@@ -1,6 +1,6 @@
 ---
 name: responsive-mobile-first
-description: "{/* 16px mobile, 24px tablet, 32px desktop */}"
+description: "Mobile-first responsive design patterns with Tailwind CSS breakpoints and fluid typography."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

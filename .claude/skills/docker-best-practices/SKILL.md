@@ -1,6 +1,6 @@
 ---
 name: docker-best-practices
-description: "{process.exit(r.statusCode === 200 ? 0 : 1)})\""
+description: "Docker production best practices including health checks, multi-stage builds, and security hardening."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

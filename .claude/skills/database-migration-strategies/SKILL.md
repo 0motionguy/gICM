@@ -1,6 +1,6 @@
 ---
 name: database-migration-strategies
-description: "setTimeout(resolve, 100))"
+description: "Database migration strategies, zero-downtime migrations, rollback planning, and schema evolution."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

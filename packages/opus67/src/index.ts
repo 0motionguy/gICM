@@ -1,13 +1,9 @@
 /**
- * OPUS 67 - Self-Evolving AI Runtime
- * Version 6.3.0 "Context Engineering" - Multi-stage retrieval, hierarchical memory,
- * session checkpointing, tool analytics, adaptive context pruning
+ * OPUS 67 - Skill Orchestration Engine for Claude Code
+ * Version 6.3.0 "Context Engineering"
  *
- * Building on v6.2.0 "Claude Harmony" with Context Engineering research improvements:
- * - +17% skill detection precision (multi-stage retrieval)
- * - +42% token efficiency (adaptive context pruner)
- * - 95% cross-session continuity (session checkpointing)
- * - OpenSkills compatibility for Claude Code/Cursor/Windsurf/Aider
+ * Core: keyword-based skill matching, complexity-scored mode selection,
+ * MCP tool server, and pattern detection.
  */
 
 import { appendFileSync, mkdirSync, existsSync } from "fs";

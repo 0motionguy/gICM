@@ -1,6 +1,6 @@
 ---
 name: supabase-realtime-subscriptions
-description: "console.log('New message:', payload.new)"
+description: "Supabase Realtime subscriptions including channels, presence, and row-level security."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

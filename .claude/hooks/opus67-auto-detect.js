@@ -1,28 +1,17 @@
 #!/usr/bin/env node
 /**
- * OPUS 67 Auto-Detection Hook
+ * OPUS 67 Session Start Hook
  *
- * This hook runs on session start to pre-load skill context
- * and create a reminder file for Claude to use OPUS 67 tools.
+ * Detects project type and outputs a concise skill summary to stdout.
+ * Claude Code captures stdout from hooks as additionalContext.
  *
- * FIXED: Using CommonJS require() instead of ES module imports
+ * Outputs ~50 tokens of useful context, not marketing banners.
  */
-const { writeFileSync, existsSync, mkdirSync } = require("fs");
+const { existsSync, appendFileSync, mkdirSync } = require("fs");
 const { join } = require("path");
 
 const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
-const cacheDir = join(projectDir, ".claude", ".opus67-cache");
 
-// Ensure cache directory exists
-try {
-  if (!existsSync(cacheDir)) {
-    mkdirSync(cacheDir, { recursive: true });
-  }
-} catch (e) {
-  // Ignore mkdir errors
-}
-
-// Try to detect project type and pre-load relevant skills
 function detectProjectType() {
   const indicators = {
     solana: ["Anchor.toml", "programs/", "Cargo.toml"],
@@ -41,7 +30,6 @@ function detectProjectType() {
   };
 
   const detected = [];
-
   for (const [type, files] of Object.entries(indicators)) {
     for (const file of files) {
       try {
@@ -50,121 +38,56 @@ function detectProjectType() {
           break;
         }
       } catch (e) {
-        // Ignore file check errors
+        // Ignore
       }
     }
   }
-
   return detected;
 }
 
-// Map project types to skill IDs
 const skillMap = {
-  solana: [
-    "solana-anchor-expert",
-    "rust-solana-patterns",
-    "anchor-macros-mastery",
-  ],
-  react: ["react-component-builder", "typescript-patterns", "tailwind-styling"],
-  nextjs: ["nextjs-14-expert", "app-router-patterns", "server-components"],
-  node: ["nodejs-backend", "api-design-patterns", "express-fastify"],
-  python: ["python-best-practices", "fastapi-patterns", "django-expert"],
-  rust: ["rust-advanced-patterns", "memory-safety", "async-rust"],
-  go: ["go-patterns", "go-concurrency", "go-microservices"],
+  solana: ["solana-anchor-mastery", "bonding-curve-mathematics"],
+  react: ["react-performance-optimization", "typescript-advanced-types"],
+  nextjs: ["nextjs-app-router-patterns", "tailwind-design-system"],
+  node: ["api-rate-limiting", "error-handling-patterns"],
+  python: ["database-migration-strategies"],
+  rust: ["solana-program-optimization"],
+  go: ["grpc-communication", "caching-strategies"],
 };
 
 try {
-  const projectTypes = detectProjectType();
-  const relevantSkills = [];
-
-  for (const type of projectTypes) {
-    if (skillMap[type]) {
-      relevantSkills.push(...skillMap[type]);
-    }
+  const types = detectProjectType();
+  const skills = [];
+  for (const type of types) {
+    if (skillMap[type]) skills.push(...skillMap[type]);
   }
+  const topSkills = [...new Set(skills)].slice(0, 5);
 
-  const topSkills = relevantSkills.slice(0, 5);
+  // Output to stdout — Claude Code captures this as context
+  // Keep it concise: ~50 tokens, no ASCII art, no demands
+  const output = [
+    `OPUS 67: ${types.join(", ") || "generic"} project detected.`,
+    topSkills.length > 0
+      ? `Relevant skills: ${topSkills.join(", ")}.`
+      : "",
+    `Use opus67_detect_skills or opus67_skillSummaries to load domain expertise.`,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  // Write pre-detected context to cache
-  const cacheContext = {
-    timestamp: new Date().toISOString(),
-    projectDir,
-    projectTypes,
-    preloadedSkills: topSkills,
-    reminder:
-      "ALWAYS call opus67_detect_skills before responding to code tasks",
-  };
+  console.log(output);
 
-  writeFileSync(
-    join(cacheDir, "session-context.json"),
-    JSON.stringify(cacheContext, null, 2),
-  );
-
-  // Output structured additionalContext for Claude Code auto-injection
-  const additionalContext = `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                         OPUS 67 AUTOPILOT ACTIVE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📁 Project Types: ${projectTypes.length > 0 ? projectTypes.join(", ") : "Generic"}
-🎯 Pre-loaded Skills: ${topSkills.length > 0 ? topSkills.join(", ") : "None detected"}
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ MANDATORY SKILL LOADING PROTOCOL                                            │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ On EVERY code-related task, you MUST:                                       │
-│                                                                             │
-│ 1. Call mcp__opus67__opus67_detect_skills with the user's query             │
-│ 2. Call mcp__opus67__opus67_get_skill for top 1-3 matches                   │
-│ 3. Apply the loaded expertise in your response                              │
-│                                                                             │
-│ Available slash commands: /mcp__opus67__solana, /mcp__opus67__react, etc.   │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-Skills are YOUR superpowers. The user paid for OPUS 67 - use it on every task!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-`;
-
-  // Write context to cache file (Claude reads this)
-  writeFileSync(
-    join(cacheDir, "additional-context.txt"),
-    additionalContext.trim(),
-  );
-
-  // Log to file for debugging
+  // Minimal debug log (no cache files)
   const logDir = join(projectDir, ".claude", "logs");
-  if (!existsSync(logDir)) {
-    mkdirSync(logDir, { recursive: true });
-  }
-  const logFile = join(logDir, "opus67-autodetect.log");
-  const logEntry = `[${new Date().toISOString()}] OPUS 67 v6.0.0 Auto-detect: ${projectTypes.join(", ") || "generic"} -> ${topSkills.join(", ") || "base skills"}\n`;
-  require("fs").appendFileSync(logFile, logEntry);
-
-  // Output to stdout - appears as "hook success: <message>" in Claude Code startup
-  const skillList = topSkills.slice(0, 3).join(", ");
-  console.log(
-    `Project: ${projectTypes.join(", ") || "generic"} → Skills: ${skillList || "base"}`,
-  );
-} catch (err) {
-  // Log error to file instead of stderr to avoid Claude Code warning
   try {
-    const logDir = join(projectDir, ".claude", "logs");
-    if (!existsSync(logDir)) {
-      mkdirSync(logDir, { recursive: true });
-    }
-    const logFile = join(
-      logDir,
-      `hook-errors-${new Date().toISOString().split("T")[0]}.jsonl`,
+    if (!existsSync(logDir)) mkdirSync(logDir, { recursive: true });
+    appendFileSync(
+      join(logDir, "opus67-autodetect.log"),
+      `[${new Date().toISOString()}] ${types.join(",") || "generic"} -> ${topSkills.join(",") || "base"}\n`
     );
-    const errorLog =
-      JSON.stringify({
-        timestamp: new Date().toISOString(),
-        hook: "opus67-auto-detect",
-        error: err.message,
-        stack: err.stack,
-      }) + "\n";
-    require("fs").appendFileSync(logFile, errorLog);
   } catch (e) {
-    // Truly silent fail
+    // Silent
   }
+} catch (err) {
+  // Silent fail — don't break session start
 }

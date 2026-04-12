@@ -1,6 +1,6 @@
 ---
 name: react-performance-optimization
-description: "{"
+description: "React performance optimization including memoization, virtualization, and render profiling."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

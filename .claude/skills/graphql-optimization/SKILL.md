@@ -1,6 +1,6 @@
 ---
 name: graphql-optimization
-description: "{"
+description: "GraphQL query optimization, DataLoader patterns, caching, and N+1 prevention."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0

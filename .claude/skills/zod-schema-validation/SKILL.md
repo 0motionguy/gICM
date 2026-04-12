@@ -1,6 +1,6 @@
 ---
 name: zod-schema-validation
-description: "new Date())"
+description: "Zod schema validation patterns including transforms, refinements, and form validation."
 version: 1.0.0
 author: gICM Community
 license: Apache-2.0
